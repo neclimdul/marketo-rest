@@ -119,7 +119,7 @@ class OpportunitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class OpportunitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class OpportunitiesApiTest extends TestCase
     /**
      * @dataProvider provideDeleteOpportunitiesUsingPOST
      * @covers ::deleteOpportunitiesUsingPOST
-     * @covers ::deleteOpportunitiesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteOpportunitiesUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class OpportunitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteOpportunitiesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteOpportunitiesUsingPOST
-     * @covers ::deleteOpportunitiesUsingPOSTWithHttpInfo
-     * @covers ::deleteOpportunitiesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteOpportunitiesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteOpportunitiesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteOpportunitiesUsingPOST
-     * @covers ::deleteOpportunitiesUsingPOSTAsync
-     * @covers ::deleteOpportunitiesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteOpportunitiesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteOpportunitiesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteOpportunitiesUsingPOST
-     * @covers ::deleteOpportunitiesUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteOpportunitiesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteOpportunitiesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteOpportunitiesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteOpportunityRolesUsingPOST(): \Generator
@@ -227,7 +167,7 @@ class OpportunitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -235,7 +175,7 @@ class OpportunitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
     }
@@ -243,8 +183,6 @@ class OpportunitiesApiTest extends TestCase
     /**
      * @dataProvider provideDeleteOpportunityRolesUsingPOST
      * @covers ::deleteOpportunityRolesUsingPOST
-     * @covers ::deleteOpportunityRolesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteOpportunityRolesUsingPOST(
         int $code,
@@ -259,65 +197,7 @@ class OpportunitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteOpportunityRolesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteOpportunityRolesUsingPOST
-     * @covers ::deleteOpportunityRolesUsingPOSTWithHttpInfo
-     * @covers ::deleteOpportunityRolesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteOpportunityRolesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteOpportunityRolesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteOpportunityRolesUsingPOST
-     * @covers ::deleteOpportunityRolesUsingPOSTAsync
-     * @covers ::deleteOpportunityRolesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteOpportunityRolesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteOpportunityRolesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteOpportunityRolesUsingPOST
-     * @covers ::deleteOpportunityRolesUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteOpportunityRolesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteOpportunityRolesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteOpportunityRolesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDescribeOpportunityRoleUsingGET(): \Generator
@@ -333,14 +213,14 @@ class OpportunitiesApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
     }
@@ -348,8 +228,6 @@ class OpportunitiesApiTest extends TestCase
     /**
      * @dataProvider provideDescribeOpportunityRoleUsingGET
      * @covers ::describeOpportunityRoleUsingGET
-     * @covers ::describeOpportunityRoleUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testDescribeOpportunityRoleUsingGET(
         int $code,
@@ -364,65 +242,7 @@ class OpportunitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'describeOpportunityRoleUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeOpportunityRoleUsingGET
-     * @covers ::describeOpportunityRoleUsingGETWithHttpInfo
-     * @covers ::describeOpportunityRoleUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testDescribeOpportunityRoleUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeOpportunityRoleUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeOpportunityRoleUsingGET
-     * @covers ::describeOpportunityRoleUsingGETAsync
-     * @covers ::describeOpportunityRoleUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeOpportunityRoleUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeOpportunityRoleUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeOpportunityRoleUsingGET
-     * @covers ::describeOpportunityRoleUsingGETAsyncWithHttpInfo
-     * @covers ::describeOpportunityRoleUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeOpportunityRoleUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeOpportunityRoleUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDescribeUsingGET4(): \Generator
@@ -438,14 +258,14 @@ class OpportunitiesApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
     }
@@ -453,8 +273,6 @@ class OpportunitiesApiTest extends TestCase
     /**
      * @dataProvider provideDescribeUsingGET4
      * @covers ::describeUsingGET4
-     * @covers ::describeUsingGET4Request
-     * @covers ::makeRequest
      */
     public function testDescribeUsingGET4(
         int $code,
@@ -469,65 +287,7 @@ class OpportunitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'describeUsingGET4'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET4
-     * @covers ::describeUsingGET4WithHttpInfo
-     * @covers ::describeUsingGET4Request
-     * @covers ::makeRequest
-     */
-    public function testDescribeUsingGET4WithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGET4WithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET4
-     * @covers ::describeUsingGET4Async
-     * @covers ::describeUsingGET4Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeUsingGET4Async(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGET4Async'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET4
-     * @covers ::describeUsingGET4AsyncWithHttpInfo
-     * @covers ::describeUsingGET4Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeUsingGET4AsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGET4AsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetOpportunitiesUsingGET(): \Generator
@@ -555,7 +315,7 @@ class OpportunitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -568,7 +328,7 @@ class OpportunitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
     }
@@ -576,8 +336,6 @@ class OpportunitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetOpportunitiesUsingGET
      * @covers ::getOpportunitiesUsingGET
-     * @covers ::getOpportunitiesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetOpportunitiesUsingGET(
         int $code,
@@ -592,65 +350,7 @@ class OpportunitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getOpportunitiesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunitiesUsingGET
-     * @covers ::getOpportunitiesUsingGETWithHttpInfo
-     * @covers ::getOpportunitiesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetOpportunitiesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunitiesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunitiesUsingGET
-     * @covers ::getOpportunitiesUsingGETAsync
-     * @covers ::getOpportunitiesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetOpportunitiesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunitiesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunitiesUsingGET
-     * @covers ::getOpportunitiesUsingGETAsyncWithHttpInfo
-     * @covers ::getOpportunitiesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetOpportunitiesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunitiesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetOpportunityFieldByNameUsingGET(): \Generator
@@ -668,7 +368,7 @@ class OpportunitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -676,7 +376,7 @@ class OpportunitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
     }
@@ -684,8 +384,6 @@ class OpportunitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetOpportunityFieldByNameUsingGET
      * @covers ::getOpportunityFieldByNameUsingGET
-     * @covers ::getOpportunityFieldByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetOpportunityFieldByNameUsingGET(
         int $code,
@@ -700,65 +398,7 @@ class OpportunitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getOpportunityFieldByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunityFieldByNameUsingGET
-     * @covers ::getOpportunityFieldByNameUsingGETWithHttpInfo
-     * @covers ::getOpportunityFieldByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetOpportunityFieldByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunityFieldByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunityFieldByNameUsingGET
-     * @covers ::getOpportunityFieldByNameUsingGETAsync
-     * @covers ::getOpportunityFieldByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetOpportunityFieldByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunityFieldByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunityFieldByNameUsingGET
-     * @covers ::getOpportunityFieldByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getOpportunityFieldByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetOpportunityFieldByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunityFieldByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetOpportunityFieldsUsingGET(): \Generator
@@ -778,7 +418,7 @@ class OpportunitiesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -787,7 +427,7 @@ class OpportunitiesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
     }
@@ -795,8 +435,6 @@ class OpportunitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetOpportunityFieldsUsingGET
      * @covers ::getOpportunityFieldsUsingGET
-     * @covers ::getOpportunityFieldsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetOpportunityFieldsUsingGET(
         int $code,
@@ -811,65 +449,7 @@ class OpportunitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getOpportunityFieldsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunityFieldsUsingGET
-     * @covers ::getOpportunityFieldsUsingGETWithHttpInfo
-     * @covers ::getOpportunityFieldsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetOpportunityFieldsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunityFieldsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunityFieldsUsingGET
-     * @covers ::getOpportunityFieldsUsingGETAsync
-     * @covers ::getOpportunityFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetOpportunityFieldsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunityFieldsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunityFieldsUsingGET
-     * @covers ::getOpportunityFieldsUsingGETAsyncWithHttpInfo
-     * @covers ::getOpportunityFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetOpportunityFieldsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunityFieldsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetOpportunityRolesUsingGET(): \Generator
@@ -897,7 +477,7 @@ class OpportunitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -910,7 +490,7 @@ class OpportunitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
     }
@@ -918,8 +498,6 @@ class OpportunitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetOpportunityRolesUsingGET
      * @covers ::getOpportunityRolesUsingGET
-     * @covers ::getOpportunityRolesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetOpportunityRolesUsingGET(
         int $code,
@@ -934,65 +512,7 @@ class OpportunitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getOpportunityRolesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunityRolesUsingGET
-     * @covers ::getOpportunityRolesUsingGETWithHttpInfo
-     * @covers ::getOpportunityRolesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetOpportunityRolesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunityRolesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunityRolesUsingGET
-     * @covers ::getOpportunityRolesUsingGETAsync
-     * @covers ::getOpportunityRolesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetOpportunityRolesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunityRolesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetOpportunityRolesUsingGET
-     * @covers ::getOpportunityRolesUsingGETAsyncWithHttpInfo
-     * @covers ::getOpportunityRolesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetOpportunityRolesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getOpportunityRolesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideSyncOpportunitiesUsingPOST(): \Generator
@@ -1010,7 +530,7 @@ class OpportunitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1018,7 +538,7 @@ class OpportunitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
     }
@@ -1026,8 +546,6 @@ class OpportunitiesApiTest extends TestCase
     /**
      * @dataProvider provideSyncOpportunitiesUsingPOST
      * @covers ::syncOpportunitiesUsingPOST
-     * @covers ::syncOpportunitiesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testSyncOpportunitiesUsingPOST(
         int $code,
@@ -1042,65 +560,7 @@ class OpportunitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'syncOpportunitiesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncOpportunitiesUsingPOST
-     * @covers ::syncOpportunitiesUsingPOSTWithHttpInfo
-     * @covers ::syncOpportunitiesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testSyncOpportunitiesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncOpportunitiesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncOpportunitiesUsingPOST
-     * @covers ::syncOpportunitiesUsingPOSTAsync
-     * @covers ::syncOpportunitiesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncOpportunitiesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncOpportunitiesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncOpportunitiesUsingPOST
-     * @covers ::syncOpportunitiesUsingPOSTAsyncWithHttpInfo
-     * @covers ::syncOpportunitiesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncOpportunitiesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncOpportunitiesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideSyncOpportunityRolesUsingPOST(): \Generator
@@ -1118,7 +578,7 @@ class OpportunitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1126,7 +586,7 @@ class OpportunitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
     }
@@ -1134,8 +594,6 @@ class OpportunitiesApiTest extends TestCase
     /**
      * @dataProvider provideSyncOpportunityRolesUsingPOST
      * @covers ::syncOpportunityRolesUsingPOST
-     * @covers ::syncOpportunityRolesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testSyncOpportunityRolesUsingPOST(
         int $code,
@@ -1150,64 +608,6 @@ class OpportunitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'syncOpportunityRolesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncOpportunityRolesUsingPOST
-     * @covers ::syncOpportunityRolesUsingPOSTWithHttpInfo
-     * @covers ::syncOpportunityRolesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testSyncOpportunityRolesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncOpportunityRolesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncOpportunityRolesUsingPOST
-     * @covers ::syncOpportunityRolesUsingPOSTAsync
-     * @covers ::syncOpportunityRolesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncOpportunityRolesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncOpportunityRolesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncOpportunityRolesUsingPOST
-     * @covers ::syncOpportunityRolesUsingPOSTAsyncWithHttpInfo
-     * @covers ::syncOpportunityRolesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncOpportunityRolesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncOpportunityRolesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

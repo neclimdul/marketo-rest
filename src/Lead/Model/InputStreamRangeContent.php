@@ -31,7 +31,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @psalm-suppress MixedReturnStatement
  * @psalm-suppress MixedInferredReturnType
  */
-class InputStreamRangeContent extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable, \Stringable
+class InputStreamRangeContent extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     use AdditionalPropertiesTrait;
 
@@ -252,7 +252,6 @@ class InputStreamRangeContent extends ModelBase implements ModelInterface, \Arra
      * @return string
      * @throws \JsonException
      */
-    #[\Override]
     public function __toString(): string
     {
         return json_encode(

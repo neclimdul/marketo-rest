@@ -119,7 +119,7 @@ class SegmentsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class SegmentsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class SegmentsApiTest extends TestCase
     /**
      * @dataProvider provideGetSegmentationUsingGET
      * @covers ::getSegmentationUsingGET
-     * @covers ::getSegmentationUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSegmentationUsingGET(
         int $code,
@@ -151,65 +149,7 @@ class SegmentsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSegmentationUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSegmentationUsingGET
-     * @covers ::getSegmentationUsingGETWithHttpInfo
-     * @covers ::getSegmentationUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSegmentationUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSegmentationUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSegmentationUsingGET
-     * @covers ::getSegmentationUsingGETAsync
-     * @covers ::getSegmentationUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSegmentationUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSegmentationUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSegmentationUsingGET
-     * @covers ::getSegmentationUsingGETAsyncWithHttpInfo
-     * @covers ::getSegmentationUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSegmentationUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSegmentationUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetSegmentsForSegmentationUsingGET(): \Generator
@@ -233,7 +173,7 @@ class SegmentsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -244,7 +184,7 @@ class SegmentsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse',
+            null,
             ['application/json']
         );
     }
@@ -252,8 +192,6 @@ class SegmentsApiTest extends TestCase
     /**
      * @dataProvider provideGetSegmentsForSegmentationUsingGET
      * @covers ::getSegmentsForSegmentationUsingGET
-     * @covers ::getSegmentsForSegmentationUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSegmentsForSegmentationUsingGET(
         int $code,
@@ -268,64 +206,6 @@ class SegmentsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSegmentsForSegmentationUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSegmentsForSegmentationUsingGET
-     * @covers ::getSegmentsForSegmentationUsingGETWithHttpInfo
-     * @covers ::getSegmentsForSegmentationUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSegmentsForSegmentationUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSegmentsForSegmentationUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSegmentsForSegmentationUsingGET
-     * @covers ::getSegmentsForSegmentationUsingGETAsync
-     * @covers ::getSegmentsForSegmentationUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSegmentsForSegmentationUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSegmentsForSegmentationUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSegmentsForSegmentationUsingGET
-     * @covers ::getSegmentsForSegmentationUsingGETAsyncWithHttpInfo
-     * @covers ::getSegmentsForSegmentationUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSegmentsForSegmentationUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSegmentsForSegmentationUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

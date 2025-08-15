@@ -31,7 +31,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @psalm-suppress MixedReturnStatement
  * @psalm-suppress MixedInferredReturnType
  */
-class TagResponseGetAll extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable, \Stringable
+class TagResponseGetAll extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     use AdditionalPropertiesTrait;
 
@@ -233,7 +233,6 @@ class TagResponseGetAll extends ModelBase implements ModelInterface, \ArrayAcces
      * @return string
      * @throws \JsonException
      */
-    #[\Override]
     public function __toString(): string
     {
         return json_encode(

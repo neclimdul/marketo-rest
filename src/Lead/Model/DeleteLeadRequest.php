@@ -31,7 +31,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @psalm-suppress MixedReturnStatement
  * @psalm-suppress MixedInferredReturnType
  */
-class DeleteLeadRequest extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable, \Stringable
+class DeleteLeadRequest extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     use AdditionalPropertiesTrait;
 
@@ -171,7 +171,6 @@ class DeleteLeadRequest extends ModelBase implements ModelInterface, \ArrayAcces
      * @return string
      * @throws \JsonException
      */
-    #[\Override]
     public function __toString(): string
     {
         return json_encode(

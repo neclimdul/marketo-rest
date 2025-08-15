@@ -119,7 +119,7 @@ class CampaignsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class CampaignsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class CampaignsApiTest extends TestCase
     /**
      * @dataProvider provideGetCampaignByIdUsingGET
      * @covers ::getCampaignByIdUsingGET
-     * @covers ::getCampaignByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetCampaignByIdUsingGET(
         int $code,
@@ -151,65 +149,7 @@ class CampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getCampaignByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCampaignByIdUsingGET
-     * @covers ::getCampaignByIdUsingGETWithHttpInfo
-     * @covers ::getCampaignByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetCampaignByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCampaignByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCampaignByIdUsingGET
-     * @covers ::getCampaignByIdUsingGETAsync
-     * @covers ::getCampaignByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCampaignByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCampaignByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCampaignByIdUsingGET
-     * @covers ::getCampaignByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getCampaignByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCampaignByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCampaignByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetCampaignsUsingGET(): \Generator
@@ -239,7 +179,7 @@ class CampaignsApiTest extends TestCase
                 'string',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -253,7 +193,7 @@ class CampaignsApiTest extends TestCase
                 'string',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+            null,
             ['application/json']
         );
     }
@@ -261,8 +201,6 @@ class CampaignsApiTest extends TestCase
     /**
      * @dataProvider provideGetCampaignsUsingGET
      * @covers ::getCampaignsUsingGET
-     * @covers ::getCampaignsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetCampaignsUsingGET(
         int $code,
@@ -277,65 +215,7 @@ class CampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getCampaignsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCampaignsUsingGET
-     * @covers ::getCampaignsUsingGETWithHttpInfo
-     * @covers ::getCampaignsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetCampaignsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCampaignsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCampaignsUsingGET
-     * @covers ::getCampaignsUsingGETAsync
-     * @covers ::getCampaignsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCampaignsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCampaignsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCampaignsUsingGET
-     * @covers ::getCampaignsUsingGETAsyncWithHttpInfo
-     * @covers ::getCampaignsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCampaignsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCampaignsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideScheduleCampaignUsingPOST(): \Generator
@@ -355,7 +235,7 @@ class CampaignsApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -364,7 +244,7 @@ class CampaignsApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+            null,
             ['application/json']
         );
     }
@@ -372,8 +252,6 @@ class CampaignsApiTest extends TestCase
     /**
      * @dataProvider provideScheduleCampaignUsingPOST
      * @covers ::scheduleCampaignUsingPOST
-     * @covers ::scheduleCampaignUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testScheduleCampaignUsingPOST(
         int $code,
@@ -388,65 +266,7 @@ class CampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'scheduleCampaignUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideScheduleCampaignUsingPOST
-     * @covers ::scheduleCampaignUsingPOSTWithHttpInfo
-     * @covers ::scheduleCampaignUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testScheduleCampaignUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'scheduleCampaignUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideScheduleCampaignUsingPOST
-     * @covers ::scheduleCampaignUsingPOSTAsync
-     * @covers ::scheduleCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testScheduleCampaignUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'scheduleCampaignUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideScheduleCampaignUsingPOST
-     * @covers ::scheduleCampaignUsingPOSTAsyncWithHttpInfo
-     * @covers ::scheduleCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testScheduleCampaignUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'scheduleCampaignUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideTriggerCampaignUsingPOST(): \Generator
@@ -466,7 +286,7 @@ class CampaignsApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -475,7 +295,7 @@ class CampaignsApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+            null,
             ['application/json']
         );
     }
@@ -483,8 +303,6 @@ class CampaignsApiTest extends TestCase
     /**
      * @dataProvider provideTriggerCampaignUsingPOST
      * @covers ::triggerCampaignUsingPOST
-     * @covers ::triggerCampaignUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testTriggerCampaignUsingPOST(
         int $code,
@@ -499,64 +317,6 @@ class CampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'triggerCampaignUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideTriggerCampaignUsingPOST
-     * @covers ::triggerCampaignUsingPOSTWithHttpInfo
-     * @covers ::triggerCampaignUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testTriggerCampaignUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'triggerCampaignUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideTriggerCampaignUsingPOST
-     * @covers ::triggerCampaignUsingPOSTAsync
-     * @covers ::triggerCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testTriggerCampaignUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'triggerCampaignUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideTriggerCampaignUsingPOST
-     * @covers ::triggerCampaignUsingPOSTAsyncWithHttpInfo
-     * @covers ::triggerCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testTriggerCampaignUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'triggerCampaignUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

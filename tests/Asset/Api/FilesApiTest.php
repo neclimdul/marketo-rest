@@ -127,7 +127,7 @@ class FilesApiTest extends TestCase
                 'string',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -139,7 +139,7 @@ class FilesApiTest extends TestCase
                 'string',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+            null,
             ['application/json']
         );
     }
@@ -147,8 +147,6 @@ class FilesApiTest extends TestCase
     /**
      * @dataProvider provideCreateFileUsingPOST
      * @covers ::createFileUsingPOST
-     * @covers ::createFileUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateFileUsingPOST(
         int $code,
@@ -163,65 +161,7 @@ class FilesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createFileUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateFileUsingPOST
-     * @covers ::createFileUsingPOSTWithHttpInfo
-     * @covers ::createFileUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateFileUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createFileUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateFileUsingPOST
-     * @covers ::createFileUsingPOSTAsync
-     * @covers ::createFileUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateFileUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createFileUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateFileUsingPOST
-     * @covers ::createFileUsingPOSTAsyncWithHttpInfo
-     * @covers ::createFileUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateFileUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createFileUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetFileByIdUsingGET(): \Generator
@@ -239,7 +179,7 @@ class FilesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -247,7 +187,7 @@ class FilesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+            null,
             ['application/json']
         );
     }
@@ -255,8 +195,6 @@ class FilesApiTest extends TestCase
     /**
      * @dataProvider provideGetFileByIdUsingGET
      * @covers ::getFileByIdUsingGET
-     * @covers ::getFileByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetFileByIdUsingGET(
         int $code,
@@ -271,65 +209,7 @@ class FilesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getFileByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFileByIdUsingGET
-     * @covers ::getFileByIdUsingGETWithHttpInfo
-     * @covers ::getFileByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetFileByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFileByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFileByIdUsingGET
-     * @covers ::getFileByIdUsingGETAsync
-     * @covers ::getFileByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFileByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFileByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFileByIdUsingGET
-     * @covers ::getFileByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getFileByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFileByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFileByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetFileByNameUsingGET(): \Generator
@@ -347,7 +227,7 @@ class FilesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -355,7 +235,7 @@ class FilesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+            null,
             ['application/json']
         );
     }
@@ -363,8 +243,6 @@ class FilesApiTest extends TestCase
     /**
      * @dataProvider provideGetFileByNameUsingGET
      * @covers ::getFileByNameUsingGET
-     * @covers ::getFileByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetFileByNameUsingGET(
         int $code,
@@ -379,65 +257,7 @@ class FilesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getFileByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFileByNameUsingGET
-     * @covers ::getFileByNameUsingGETWithHttpInfo
-     * @covers ::getFileByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetFileByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFileByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFileByNameUsingGET
-     * @covers ::getFileByNameUsingGETAsync
-     * @covers ::getFileByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFileByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFileByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFileByNameUsingGET
-     * @covers ::getFileByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getFileByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFileByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFileByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetFilesUsingGET(): \Generator
@@ -459,7 +279,7 @@ class FilesApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -469,7 +289,7 @@ class FilesApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+            null,
             ['application/json']
         );
     }
@@ -477,8 +297,6 @@ class FilesApiTest extends TestCase
     /**
      * @dataProvider provideGetFilesUsingGET
      * @covers ::getFilesUsingGET
-     * @covers ::getFilesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetFilesUsingGET(
         int $code,
@@ -493,64 +311,6 @@ class FilesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getFilesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFilesUsingGET
-     * @covers ::getFilesUsingGETWithHttpInfo
-     * @covers ::getFilesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetFilesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFilesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFilesUsingGET
-     * @covers ::getFilesUsingGETAsync
-     * @covers ::getFilesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFilesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFilesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFilesUsingGET
-     * @covers ::getFilesUsingGETAsyncWithHttpInfo
-     * @covers ::getFilesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFilesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFilesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

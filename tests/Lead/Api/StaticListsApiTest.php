@@ -123,7 +123,7 @@ class StaticListsApiTest extends TestCase
                 'int[]',
                 '\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -133,7 +133,7 @@ class StaticListsApiTest extends TestCase
                 'int[]',
                 '\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+            null,
             ['application/json']
         );
     }
@@ -141,8 +141,6 @@ class StaticListsApiTest extends TestCase
     /**
      * @dataProvider provideAddLeadsToListUsingPOST
      * @covers ::addLeadsToListUsingPOST
-     * @covers ::addLeadsToListUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testAddLeadsToListUsingPOST(
         int $code,
@@ -157,65 +155,7 @@ class StaticListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'addLeadsToListUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddLeadsToListUsingPOST
-     * @covers ::addLeadsToListUsingPOSTWithHttpInfo
-     * @covers ::addLeadsToListUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testAddLeadsToListUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addLeadsToListUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddLeadsToListUsingPOST
-     * @covers ::addLeadsToListUsingPOSTAsync
-     * @covers ::addLeadsToListUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddLeadsToListUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addLeadsToListUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddLeadsToListUsingPOST
-     * @covers ::addLeadsToListUsingPOSTAsyncWithHttpInfo
-     * @covers ::addLeadsToListUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddLeadsToListUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addLeadsToListUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideAreLeadsMemberOfListUsingGET(): \Generator
@@ -237,7 +177,7 @@ class StaticListsApiTest extends TestCase
                 'int[]',
                 '\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -247,7 +187,7 @@ class StaticListsApiTest extends TestCase
                 'int[]',
                 '\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+            null,
             ['application/json']
         );
     }
@@ -255,8 +195,6 @@ class StaticListsApiTest extends TestCase
     /**
      * @dataProvider provideAreLeadsMemberOfListUsingGET
      * @covers ::areLeadsMemberOfListUsingGET
-     * @covers ::areLeadsMemberOfListUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testAreLeadsMemberOfListUsingGET(
         int $code,
@@ -271,65 +209,7 @@ class StaticListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'areLeadsMemberOfListUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAreLeadsMemberOfListUsingGET
-     * @covers ::areLeadsMemberOfListUsingGETWithHttpInfo
-     * @covers ::areLeadsMemberOfListUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testAreLeadsMemberOfListUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'areLeadsMemberOfListUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAreLeadsMemberOfListUsingGET
-     * @covers ::areLeadsMemberOfListUsingGETAsync
-     * @covers ::areLeadsMemberOfListUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAreLeadsMemberOfListUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'areLeadsMemberOfListUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAreLeadsMemberOfListUsingGET
-     * @covers ::areLeadsMemberOfListUsingGETAsyncWithHttpInfo
-     * @covers ::areLeadsMemberOfListUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAreLeadsMemberOfListUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'areLeadsMemberOfListUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLeadsByListIdUsingGET(): \Generator
@@ -353,7 +233,7 @@ class StaticListsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -364,7 +244,7 @@ class StaticListsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId',
+            null,
             ['application/json']
         );
     }
@@ -372,8 +252,6 @@ class StaticListsApiTest extends TestCase
     /**
      * @dataProvider provideGetLeadsByListIdUsingGET
      * @covers ::getLeadsByListIdUsingGET
-     * @covers ::getLeadsByListIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLeadsByListIdUsingGET(
         int $code,
@@ -388,65 +266,7 @@ class StaticListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLeadsByListIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadsByListIdUsingGET
-     * @covers ::getLeadsByListIdUsingGETWithHttpInfo
-     * @covers ::getLeadsByListIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLeadsByListIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadsByListIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadsByListIdUsingGET
-     * @covers ::getLeadsByListIdUsingGETAsync
-     * @covers ::getLeadsByListIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLeadsByListIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadsByListIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadsByListIdUsingGET
-     * @covers ::getLeadsByListIdUsingGETAsyncWithHttpInfo
-     * @covers ::getLeadsByListIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLeadsByListIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadsByListIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLeadsByListIdUsingGET1(): \Generator
@@ -470,7 +290,7 @@ class StaticListsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -481,7 +301,7 @@ class StaticListsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+            null,
             ['application/json']
         );
     }
@@ -489,8 +309,6 @@ class StaticListsApiTest extends TestCase
     /**
      * @dataProvider provideGetLeadsByListIdUsingGET1
      * @covers ::getLeadsByListIdUsingGET1
-     * @covers ::getLeadsByListIdUsingGET1Request
-     * @covers ::makeRequest
      */
     public function testGetLeadsByListIdUsingGET1(
         int $code,
@@ -505,65 +323,7 @@ class StaticListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLeadsByListIdUsingGET1'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadsByListIdUsingGET1
-     * @covers ::getLeadsByListIdUsingGET1WithHttpInfo
-     * @covers ::getLeadsByListIdUsingGET1Request
-     * @covers ::makeRequest
-     */
-    public function testGetLeadsByListIdUsingGET1WithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadsByListIdUsingGET1WithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadsByListIdUsingGET1
-     * @covers ::getLeadsByListIdUsingGET1Async
-     * @covers ::getLeadsByListIdUsingGET1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLeadsByListIdUsingGET1Async(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadsByListIdUsingGET1Async'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadsByListIdUsingGET1
-     * @covers ::getLeadsByListIdUsingGET1AsyncWithHttpInfo
-     * @covers ::getLeadsByListIdUsingGET1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLeadsByListIdUsingGET1AsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadsByListIdUsingGET1AsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetListByIdUsingGET(): \Generator
@@ -581,7 +341,7 @@ class StaticListsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -589,7 +349,7 @@ class StaticListsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList',
+            null,
             ['application/json']
         );
     }
@@ -597,8 +357,6 @@ class StaticListsApiTest extends TestCase
     /**
      * @dataProvider provideGetListByIdUsingGET
      * @covers ::getListByIdUsingGET
-     * @covers ::getListByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetListByIdUsingGET(
         int $code,
@@ -613,65 +371,7 @@ class StaticListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getListByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetListByIdUsingGET
-     * @covers ::getListByIdUsingGETWithHttpInfo
-     * @covers ::getListByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetListByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getListByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetListByIdUsingGET
-     * @covers ::getListByIdUsingGETAsync
-     * @covers ::getListByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetListByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getListByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetListByIdUsingGET
-     * @covers ::getListByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getListByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetListByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getListByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetListsUsingGET(): \Generator
@@ -699,7 +399,7 @@ class StaticListsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -712,7 +412,7 @@ class StaticListsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList',
+            null,
             ['application/json']
         );
     }
@@ -720,8 +420,6 @@ class StaticListsApiTest extends TestCase
     /**
      * @dataProvider provideGetListsUsingGET
      * @covers ::getListsUsingGET
-     * @covers ::getListsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetListsUsingGET(
         int $code,
@@ -736,65 +434,7 @@ class StaticListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getListsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetListsUsingGET
-     * @covers ::getListsUsingGETWithHttpInfo
-     * @covers ::getListsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetListsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getListsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetListsUsingGET
-     * @covers ::getListsUsingGETAsync
-     * @covers ::getListsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetListsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getListsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetListsUsingGET
-     * @covers ::getListsUsingGETAsyncWithHttpInfo
-     * @covers ::getListsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetListsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getListsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideRemoveLeadsFromListUsingDELETE(): \Generator
@@ -816,7 +456,7 @@ class StaticListsApiTest extends TestCase
                 'int[]',
                 '\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -826,7 +466,7 @@ class StaticListsApiTest extends TestCase
                 'int[]',
                 '\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+            null,
             ['application/json']
         );
     }
@@ -834,8 +474,6 @@ class StaticListsApiTest extends TestCase
     /**
      * @dataProvider provideRemoveLeadsFromListUsingDELETE
      * @covers ::removeLeadsFromListUsingDELETE
-     * @covers ::removeLeadsFromListUsingDELETERequest
-     * @covers ::makeRequest
      */
     public function testRemoveLeadsFromListUsingDELETE(
         int $code,
@@ -850,64 +488,6 @@ class StaticListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'removeLeadsFromListUsingDELETE'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideRemoveLeadsFromListUsingDELETE
-     * @covers ::removeLeadsFromListUsingDELETEWithHttpInfo
-     * @covers ::removeLeadsFromListUsingDELETERequest
-     * @covers ::makeRequest
-     */
-    public function testRemoveLeadsFromListUsingDELETEWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'removeLeadsFromListUsingDELETEWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideRemoveLeadsFromListUsingDELETE
-     * @covers ::removeLeadsFromListUsingDELETEAsync
-     * @covers ::removeLeadsFromListUsingDELETERequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testRemoveLeadsFromListUsingDELETEAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'removeLeadsFromListUsingDELETEAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideRemoveLeadsFromListUsingDELETE
-     * @covers ::removeLeadsFromListUsingDELETEAsyncWithHttpInfo
-     * @covers ::removeLeadsFromListUsingDELETERequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testRemoveLeadsFromListUsingDELETEAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'removeLeadsFromListUsingDELETEAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

@@ -125,7 +125,7 @@ class SmartListsApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\Folder',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -136,7 +136,7 @@ class SmartListsApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\Folder',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+            null,
             ['application/json']
         );
     }
@@ -144,8 +144,6 @@ class SmartListsApiTest extends TestCase
     /**
      * @dataProvider provideCloneSmartListUsingPOST
      * @covers ::cloneSmartListUsingPOST
-     * @covers ::cloneSmartListUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCloneSmartListUsingPOST(
         int $code,
@@ -160,65 +158,7 @@ class SmartListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'cloneSmartListUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneSmartListUsingPOST
-     * @covers ::cloneSmartListUsingPOSTWithHttpInfo
-     * @covers ::cloneSmartListUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCloneSmartListUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneSmartListUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneSmartListUsingPOST
-     * @covers ::cloneSmartListUsingPOSTAsync
-     * @covers ::cloneSmartListUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneSmartListUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneSmartListUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneSmartListUsingPOST
-     * @covers ::cloneSmartListUsingPOSTAsyncWithHttpInfo
-     * @covers ::cloneSmartListUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneSmartListUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneSmartListUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteSmartListByIdUsingPOST(): \Generator
@@ -236,7 +176,7 @@ class SmartListsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -244,7 +184,7 @@ class SmartListsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -252,8 +192,6 @@ class SmartListsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteSmartListByIdUsingPOST
      * @covers ::deleteSmartListByIdUsingPOST
-     * @covers ::deleteSmartListByIdUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteSmartListByIdUsingPOST(
         int $code,
@@ -268,65 +206,7 @@ class SmartListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteSmartListByIdUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteSmartListByIdUsingPOST
-     * @covers ::deleteSmartListByIdUsingPOSTWithHttpInfo
-     * @covers ::deleteSmartListByIdUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteSmartListByIdUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteSmartListByIdUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteSmartListByIdUsingPOST
-     * @covers ::deleteSmartListByIdUsingPOSTAsync
-     * @covers ::deleteSmartListByIdUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteSmartListByIdUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteSmartListByIdUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteSmartListByIdUsingPOST
-     * @covers ::deleteSmartListByIdUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteSmartListByIdUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteSmartListByIdUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteSmartListByIdUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetSmartListByIdUsingGET(): \Generator
@@ -346,7 +226,7 @@ class SmartListsApiTest extends TestCase
                 'int',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -355,7 +235,7 @@ class SmartListsApiTest extends TestCase
                 'int',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+            null,
             ['application/json']
         );
     }
@@ -363,8 +243,6 @@ class SmartListsApiTest extends TestCase
     /**
      * @dataProvider provideGetSmartListByIdUsingGET
      * @covers ::getSmartListByIdUsingGET
-     * @covers ::getSmartListByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSmartListByIdUsingGET(
         int $code,
@@ -379,65 +257,7 @@ class SmartListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSmartListByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListByIdUsingGET
-     * @covers ::getSmartListByIdUsingGETWithHttpInfo
-     * @covers ::getSmartListByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSmartListByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListByIdUsingGET
-     * @covers ::getSmartListByIdUsingGETAsync
-     * @covers ::getSmartListByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartListByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListByIdUsingGET
-     * @covers ::getSmartListByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getSmartListByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartListByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetSmartListByNameUsingGET(): \Generator
@@ -455,7 +275,7 @@ class SmartListsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -463,7 +283,7 @@ class SmartListsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+            null,
             ['application/json']
         );
     }
@@ -471,8 +291,6 @@ class SmartListsApiTest extends TestCase
     /**
      * @dataProvider provideGetSmartListByNameUsingGET
      * @covers ::getSmartListByNameUsingGET
-     * @covers ::getSmartListByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSmartListByNameUsingGET(
         int $code,
@@ -487,65 +305,7 @@ class SmartListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSmartListByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListByNameUsingGET
-     * @covers ::getSmartListByNameUsingGETWithHttpInfo
-     * @covers ::getSmartListByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSmartListByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListByNameUsingGET
-     * @covers ::getSmartListByNameUsingGETAsync
-     * @covers ::getSmartListByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartListByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListByNameUsingGET
-     * @covers ::getSmartListByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getSmartListByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartListByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetSmartListsUsingGET(): \Generator
@@ -571,7 +331,7 @@ class SmartListsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -583,7 +343,7 @@ class SmartListsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+            null,
             ['application/json']
         );
     }
@@ -591,8 +351,6 @@ class SmartListsApiTest extends TestCase
     /**
      * @dataProvider provideGetSmartListsUsingGET
      * @covers ::getSmartListsUsingGET
-     * @covers ::getSmartListsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSmartListsUsingGET(
         int $code,
@@ -607,64 +365,6 @@ class SmartListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSmartListsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListsUsingGET
-     * @covers ::getSmartListsUsingGETWithHttpInfo
-     * @covers ::getSmartListsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSmartListsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListsUsingGET
-     * @covers ::getSmartListsUsingGETAsync
-     * @covers ::getSmartListsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartListsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListsUsingGET
-     * @covers ::getSmartListsUsingGETAsyncWithHttpInfo
-     * @covers ::getSmartListsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartListsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

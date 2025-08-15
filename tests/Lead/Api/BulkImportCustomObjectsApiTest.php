@@ -121,7 +121,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -130,7 +130,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
     }
@@ -138,8 +138,6 @@ class BulkImportCustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideGetImportCustomObjectFailuresUsingGET
      * @covers ::getImportCustomObjectFailuresUsingGET
-     * @covers ::getImportCustomObjectFailuresUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetImportCustomObjectFailuresUsingGET(
         int $code,
@@ -154,65 +152,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectFailuresUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportCustomObjectFailuresUsingGET
-     * @covers ::getImportCustomObjectFailuresUsingGETWithHttpInfo
-     * @covers ::getImportCustomObjectFailuresUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetImportCustomObjectFailuresUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectFailuresUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportCustomObjectFailuresUsingGET
-     * @covers ::getImportCustomObjectFailuresUsingGETAsync
-     * @covers ::getImportCustomObjectFailuresUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportCustomObjectFailuresUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== 'object') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectFailuresUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportCustomObjectFailuresUsingGET
-     * @covers ::getImportCustomObjectFailuresUsingGETAsyncWithHttpInfo
-     * @covers ::getImportCustomObjectFailuresUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportCustomObjectFailuresUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectFailuresUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetImportCustomObjectStatusUsingGET(): \Generator
@@ -232,7 +172,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -241,7 +181,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse',
+            null,
             ['application/json']
         );
     }
@@ -249,8 +189,6 @@ class BulkImportCustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideGetImportCustomObjectStatusUsingGET
      * @covers ::getImportCustomObjectStatusUsingGET
-     * @covers ::getImportCustomObjectStatusUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetImportCustomObjectStatusUsingGET(
         int $code,
@@ -265,65 +203,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectStatusUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportCustomObjectStatusUsingGET
-     * @covers ::getImportCustomObjectStatusUsingGETWithHttpInfo
-     * @covers ::getImportCustomObjectStatusUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetImportCustomObjectStatusUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectStatusUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportCustomObjectStatusUsingGET
-     * @covers ::getImportCustomObjectStatusUsingGETAsync
-     * @covers ::getImportCustomObjectStatusUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportCustomObjectStatusUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectStatusUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportCustomObjectStatusUsingGET
-     * @covers ::getImportCustomObjectStatusUsingGETAsyncWithHttpInfo
-     * @covers ::getImportCustomObjectStatusUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportCustomObjectStatusUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectStatusUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetImportCustomObjectWarningsUsingGET(): \Generator
@@ -343,7 +223,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -352,7 +232,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
     }
@@ -360,8 +240,6 @@ class BulkImportCustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideGetImportCustomObjectWarningsUsingGET
      * @covers ::getImportCustomObjectWarningsUsingGET
-     * @covers ::getImportCustomObjectWarningsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetImportCustomObjectWarningsUsingGET(
         int $code,
@@ -376,65 +254,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectWarningsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportCustomObjectWarningsUsingGET
-     * @covers ::getImportCustomObjectWarningsUsingGETWithHttpInfo
-     * @covers ::getImportCustomObjectWarningsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetImportCustomObjectWarningsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectWarningsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportCustomObjectWarningsUsingGET
-     * @covers ::getImportCustomObjectWarningsUsingGETAsync
-     * @covers ::getImportCustomObjectWarningsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportCustomObjectWarningsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== 'object') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectWarningsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportCustomObjectWarningsUsingGET
-     * @covers ::getImportCustomObjectWarningsUsingGETAsyncWithHttpInfo
-     * @covers ::getImportCustomObjectWarningsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportCustomObjectWarningsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportCustomObjectWarningsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideImportCustomObjectUsingPOST(): \Generator
@@ -456,7 +276,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
                 'string',
                 '\SplFileObject',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -466,7 +286,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
                 'string',
                 '\SplFileObject',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse',
+            null,
             ['application/json']
         );
     }
@@ -474,8 +294,6 @@ class BulkImportCustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideImportCustomObjectUsingPOST
      * @covers ::importCustomObjectUsingPOST
-     * @covers ::importCustomObjectUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testImportCustomObjectUsingPOST(
         int $code,
@@ -490,64 +308,6 @@ class BulkImportCustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'importCustomObjectUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideImportCustomObjectUsingPOST
-     * @covers ::importCustomObjectUsingPOSTWithHttpInfo
-     * @covers ::importCustomObjectUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testImportCustomObjectUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'importCustomObjectUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideImportCustomObjectUsingPOST
-     * @covers ::importCustomObjectUsingPOSTAsync
-     * @covers ::importCustomObjectUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testImportCustomObjectUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'importCustomObjectUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideImportCustomObjectUsingPOST
-     * @covers ::importCustomObjectUsingPOSTAsyncWithHttpInfo
-     * @covers ::importCustomObjectUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testImportCustomObjectUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'importCustomObjectUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

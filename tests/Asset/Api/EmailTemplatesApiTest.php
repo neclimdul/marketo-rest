@@ -119,7 +119,7 @@ class EmailTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class EmailTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideApproveDraftUsingPOST1
      * @covers ::approveDraftUsingPOST1
-     * @covers ::approveDraftUsingPOST1Request
-     * @covers ::makeRequest
      */
     public function testApproveDraftUsingPOST1(
         int $code,
@@ -151,65 +149,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'approveDraftUsingPOST1'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveDraftUsingPOST1
-     * @covers ::approveDraftUsingPOST1WithHttpInfo
-     * @covers ::approveDraftUsingPOST1Request
-     * @covers ::makeRequest
-     */
-    public function testApproveDraftUsingPOST1WithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveDraftUsingPOST1WithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveDraftUsingPOST1
-     * @covers ::approveDraftUsingPOST1Async
-     * @covers ::approveDraftUsingPOST1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveDraftUsingPOST1Async(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveDraftUsingPOST1Async'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveDraftUsingPOST1
-     * @covers ::approveDraftUsingPOST1AsyncWithHttpInfo
-     * @covers ::approveDraftUsingPOST1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveDraftUsingPOST1AsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveDraftUsingPOST1AsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCloneTemplateUsingPOST(): \Generator
@@ -233,7 +173,7 @@ class EmailTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -244,7 +184,7 @@ class EmailTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -252,8 +192,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideCloneTemplateUsingPOST
      * @covers ::cloneTemplateUsingPOST
-     * @covers ::cloneTemplateUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCloneTemplateUsingPOST(
         int $code,
@@ -268,65 +206,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'cloneTemplateUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneTemplateUsingPOST
-     * @covers ::cloneTemplateUsingPOSTWithHttpInfo
-     * @covers ::cloneTemplateUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCloneTemplateUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneTemplateUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneTemplateUsingPOST
-     * @covers ::cloneTemplateUsingPOSTAsync
-     * @covers ::cloneTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneTemplateUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneTemplateUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneTemplateUsingPOST
-     * @covers ::cloneTemplateUsingPOSTAsyncWithHttpInfo
-     * @covers ::cloneTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneTemplateUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneTemplateUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCreateEmailTemplateUsingPOST(): \Generator
@@ -350,7 +230,7 @@ class EmailTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -361,7 +241,7 @@ class EmailTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -369,8 +249,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideCreateEmailTemplateUsingPOST
      * @covers ::createEmailTemplateUsingPOST
-     * @covers ::createEmailTemplateUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateEmailTemplateUsingPOST(
         int $code,
@@ -385,65 +263,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createEmailTemplateUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateEmailTemplateUsingPOST
-     * @covers ::createEmailTemplateUsingPOSTWithHttpInfo
-     * @covers ::createEmailTemplateUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateEmailTemplateUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createEmailTemplateUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateEmailTemplateUsingPOST
-     * @covers ::createEmailTemplateUsingPOSTAsync
-     * @covers ::createEmailTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateEmailTemplateUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createEmailTemplateUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateEmailTemplateUsingPOST
-     * @covers ::createEmailTemplateUsingPOSTAsyncWithHttpInfo
-     * @covers ::createEmailTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateEmailTemplateUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createEmailTemplateUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteTemplateUsingPOST(): \Generator
@@ -461,7 +281,7 @@ class EmailTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -469,7 +289,7 @@ class EmailTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -477,8 +297,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideDeleteTemplateUsingPOST
      * @covers ::deleteTemplateUsingPOST
-     * @covers ::deleteTemplateUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteTemplateUsingPOST(
         int $code,
@@ -493,65 +311,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteTemplateUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteTemplateUsingPOST
-     * @covers ::deleteTemplateUsingPOSTWithHttpInfo
-     * @covers ::deleteTemplateUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteTemplateUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteTemplateUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteTemplateUsingPOST
-     * @covers ::deleteTemplateUsingPOSTAsync
-     * @covers ::deleteTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteTemplateUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteTemplateUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteTemplateUsingPOST
-     * @covers ::deleteTemplateUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteTemplateUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteTemplateUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDiscardDraftUsingPOST1(): \Generator
@@ -569,7 +329,7 @@ class EmailTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -577,7 +337,7 @@ class EmailTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -585,8 +345,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideDiscardDraftUsingPOST1
      * @covers ::discardDraftUsingPOST1
-     * @covers ::discardDraftUsingPOST1Request
-     * @covers ::makeRequest
      */
     public function testDiscardDraftUsingPOST1(
         int $code,
@@ -601,65 +359,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'discardDraftUsingPOST1'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardDraftUsingPOST1
-     * @covers ::discardDraftUsingPOST1WithHttpInfo
-     * @covers ::discardDraftUsingPOST1Request
-     * @covers ::makeRequest
-     */
-    public function testDiscardDraftUsingPOST1WithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardDraftUsingPOST1WithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardDraftUsingPOST1
-     * @covers ::discardDraftUsingPOST1Async
-     * @covers ::discardDraftUsingPOST1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardDraftUsingPOST1Async(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardDraftUsingPOST1Async'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardDraftUsingPOST1
-     * @covers ::discardDraftUsingPOST1AsyncWithHttpInfo
-     * @covers ::discardDraftUsingPOST1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardDraftUsingPOST1AsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardDraftUsingPOST1AsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetEmailTemplateUsedByUsingGET(): \Generator
@@ -681,7 +381,7 @@ class EmailTemplatesApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -691,7 +391,7 @@ class EmailTemplatesApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse',
+            null,
             ['application/json']
         );
     }
@@ -699,8 +399,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideGetEmailTemplateUsedByUsingGET
      * @covers ::getEmailTemplateUsedByUsingGET
-     * @covers ::getEmailTemplateUsedByUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetEmailTemplateUsedByUsingGET(
         int $code,
@@ -715,65 +413,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getEmailTemplateUsedByUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetEmailTemplateUsedByUsingGET
-     * @covers ::getEmailTemplateUsedByUsingGETWithHttpInfo
-     * @covers ::getEmailTemplateUsedByUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetEmailTemplateUsedByUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getEmailTemplateUsedByUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetEmailTemplateUsedByUsingGET
-     * @covers ::getEmailTemplateUsedByUsingGETAsync
-     * @covers ::getEmailTemplateUsedByUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetEmailTemplateUsedByUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getEmailTemplateUsedByUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetEmailTemplateUsedByUsingGET
-     * @covers ::getEmailTemplateUsedByUsingGETAsyncWithHttpInfo
-     * @covers ::getEmailTemplateUsedByUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetEmailTemplateUsedByUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getEmailTemplateUsedByUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetEmailTemplatesUsingGET(): \Generator
@@ -795,7 +435,7 @@ class EmailTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -805,7 +445,7 @@ class EmailTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -813,8 +453,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideGetEmailTemplatesUsingGET
      * @covers ::getEmailTemplatesUsingGET
-     * @covers ::getEmailTemplatesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetEmailTemplatesUsingGET(
         int $code,
@@ -829,65 +467,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getEmailTemplatesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetEmailTemplatesUsingGET
-     * @covers ::getEmailTemplatesUsingGETWithHttpInfo
-     * @covers ::getEmailTemplatesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetEmailTemplatesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getEmailTemplatesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetEmailTemplatesUsingGET
-     * @covers ::getEmailTemplatesUsingGETAsync
-     * @covers ::getEmailTemplatesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetEmailTemplatesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getEmailTemplatesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetEmailTemplatesUsingGET
-     * @covers ::getEmailTemplatesUsingGETAsyncWithHttpInfo
-     * @covers ::getEmailTemplatesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetEmailTemplatesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getEmailTemplatesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetTemplateByIdUsingGET(): \Generator
@@ -907,7 +487,7 @@ class EmailTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -916,7 +496,7 @@ class EmailTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -924,8 +504,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideGetTemplateByIdUsingGET
      * @covers ::getTemplateByIdUsingGET
-     * @covers ::getTemplateByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetTemplateByIdUsingGET(
         int $code,
@@ -940,65 +518,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getTemplateByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTemplateByIdUsingGET
-     * @covers ::getTemplateByIdUsingGETWithHttpInfo
-     * @covers ::getTemplateByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetTemplateByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTemplateByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTemplateByIdUsingGET
-     * @covers ::getTemplateByIdUsingGETAsync
-     * @covers ::getTemplateByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTemplateByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTemplateByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTemplateByIdUsingGET
-     * @covers ::getTemplateByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getTemplateByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTemplateByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTemplateByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetTemplateByNameUsingGET(): \Generator
@@ -1018,7 +538,7 @@ class EmailTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1027,7 +547,7 @@ class EmailTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -1035,8 +555,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideGetTemplateByNameUsingGET
      * @covers ::getTemplateByNameUsingGET
-     * @covers ::getTemplateByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetTemplateByNameUsingGET(
         int $code,
@@ -1051,65 +569,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getTemplateByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTemplateByNameUsingGET
-     * @covers ::getTemplateByNameUsingGETWithHttpInfo
-     * @covers ::getTemplateByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetTemplateByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTemplateByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTemplateByNameUsingGET
-     * @covers ::getTemplateByNameUsingGETAsync
-     * @covers ::getTemplateByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTemplateByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTemplateByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTemplateByNameUsingGET
-     * @covers ::getTemplateByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getTemplateByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTemplateByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTemplateByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetTemplateContentByIdUsingGET(): \Generator
@@ -1129,7 +589,7 @@ class EmailTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1138,7 +598,7 @@ class EmailTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse',
+            null,
             ['application/json']
         );
     }
@@ -1146,8 +606,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideGetTemplateContentByIdUsingGET
      * @covers ::getTemplateContentByIdUsingGET
-     * @covers ::getTemplateContentByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetTemplateContentByIdUsingGET(
         int $code,
@@ -1162,65 +620,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getTemplateContentByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTemplateContentByIdUsingGET
-     * @covers ::getTemplateContentByIdUsingGETWithHttpInfo
-     * @covers ::getTemplateContentByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetTemplateContentByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTemplateContentByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTemplateContentByIdUsingGET
-     * @covers ::getTemplateContentByIdUsingGETAsync
-     * @covers ::getTemplateContentByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTemplateContentByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTemplateContentByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTemplateContentByIdUsingGET
-     * @covers ::getTemplateContentByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getTemplateContentByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTemplateContentByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTemplateContentByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUnapproveDraftUsingPOST1(): \Generator
@@ -1238,7 +638,7 @@ class EmailTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1246,7 +646,7 @@ class EmailTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -1254,8 +654,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideUnapproveDraftUsingPOST1
      * @covers ::unapproveDraftUsingPOST1
-     * @covers ::unapproveDraftUsingPOST1Request
-     * @covers ::makeRequest
      */
     public function testUnapproveDraftUsingPOST1(
         int $code,
@@ -1270,65 +668,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'unapproveDraftUsingPOST1'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveDraftUsingPOST1
-     * @covers ::unapproveDraftUsingPOST1WithHttpInfo
-     * @covers ::unapproveDraftUsingPOST1Request
-     * @covers ::makeRequest
-     */
-    public function testUnapproveDraftUsingPOST1WithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveDraftUsingPOST1WithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveDraftUsingPOST1
-     * @covers ::unapproveDraftUsingPOST1Async
-     * @covers ::unapproveDraftUsingPOST1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testUnapproveDraftUsingPOST1Async(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveDraftUsingPOST1Async'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveDraftUsingPOST1
-     * @covers ::unapproveDraftUsingPOST1AsyncWithHttpInfo
-     * @covers ::unapproveDraftUsingPOST1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testUnapproveDraftUsingPOST1AsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveDraftUsingPOST1AsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateEmailTemplateContentUsingPOST(): \Generator
@@ -1348,7 +688,7 @@ class EmailTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1357,7 +697,7 @@ class EmailTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -1365,8 +705,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideUpdateEmailTemplateContentUsingPOST
      * @covers ::updateEmailTemplateContentUsingPOST
-     * @covers ::updateEmailTemplateContentUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateEmailTemplateContentUsingPOST(
         int $code,
@@ -1381,65 +719,7 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateEmailTemplateContentUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateEmailTemplateContentUsingPOST
-     * @covers ::updateEmailTemplateContentUsingPOSTWithHttpInfo
-     * @covers ::updateEmailTemplateContentUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateEmailTemplateContentUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateEmailTemplateContentUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateEmailTemplateContentUsingPOST
-     * @covers ::updateEmailTemplateContentUsingPOSTAsync
-     * @covers ::updateEmailTemplateContentUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateEmailTemplateContentUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateEmailTemplateContentUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateEmailTemplateContentUsingPOST
-     * @covers ::updateEmailTemplateContentUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateEmailTemplateContentUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateEmailTemplateContentUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateEmailTemplateContentUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateEmailTemplateUsingPOST(): \Generator
@@ -1461,7 +741,7 @@ class EmailTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1471,7 +751,7 @@ class EmailTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -1479,8 +759,6 @@ class EmailTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideUpdateEmailTemplateUsingPOST
      * @covers ::updateEmailTemplateUsingPOST
-     * @covers ::updateEmailTemplateUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateEmailTemplateUsingPOST(
         int $code,
@@ -1495,64 +773,6 @@ class EmailTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateEmailTemplateUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateEmailTemplateUsingPOST
-     * @covers ::updateEmailTemplateUsingPOSTWithHttpInfo
-     * @covers ::updateEmailTemplateUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateEmailTemplateUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateEmailTemplateUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateEmailTemplateUsingPOST
-     * @covers ::updateEmailTemplateUsingPOSTAsync
-     * @covers ::updateEmailTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateEmailTemplateUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateEmailTemplateUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateEmailTemplateUsingPOST
-     * @covers ::updateEmailTemplateUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateEmailTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateEmailTemplateUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateEmailTemplateUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

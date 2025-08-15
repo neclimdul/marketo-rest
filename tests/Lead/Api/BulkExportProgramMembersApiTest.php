@@ -119,7 +119,7 @@ class BulkExportProgramMembersApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class BulkExportProgramMembersApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class BulkExportProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideCancelExportProgramMembersUsingPOST
      * @covers ::cancelExportProgramMembersUsingPOST
-     * @covers ::cancelExportProgramMembersUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCancelExportProgramMembersUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class BulkExportProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'cancelExportProgramMembersUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCancelExportProgramMembersUsingPOST
-     * @covers ::cancelExportProgramMembersUsingPOSTWithHttpInfo
-     * @covers ::cancelExportProgramMembersUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCancelExportProgramMembersUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cancelExportProgramMembersUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCancelExportProgramMembersUsingPOST
-     * @covers ::cancelExportProgramMembersUsingPOSTAsync
-     * @covers ::cancelExportProgramMembersUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCancelExportProgramMembersUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cancelExportProgramMembersUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCancelExportProgramMembersUsingPOST
-     * @covers ::cancelExportProgramMembersUsingPOSTAsyncWithHttpInfo
-     * @covers ::cancelExportProgramMembersUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCancelExportProgramMembersUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cancelExportProgramMembersUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCreateExportProgramMembersUsingPOST(): \Generator
@@ -227,7 +167,7 @@ class BulkExportProgramMembersApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -235,7 +175,7 @@ class BulkExportProgramMembersApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
     }
@@ -243,8 +183,6 @@ class BulkExportProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideCreateExportProgramMembersUsingPOST
      * @covers ::createExportProgramMembersUsingPOST
-     * @covers ::createExportProgramMembersUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateExportProgramMembersUsingPOST(
         int $code,
@@ -259,65 +197,7 @@ class BulkExportProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createExportProgramMembersUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateExportProgramMembersUsingPOST
-     * @covers ::createExportProgramMembersUsingPOSTWithHttpInfo
-     * @covers ::createExportProgramMembersUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateExportProgramMembersUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createExportProgramMembersUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateExportProgramMembersUsingPOST
-     * @covers ::createExportProgramMembersUsingPOSTAsync
-     * @covers ::createExportProgramMembersUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateExportProgramMembersUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createExportProgramMembersUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateExportProgramMembersUsingPOST
-     * @covers ::createExportProgramMembersUsingPOSTAsyncWithHttpInfo
-     * @covers ::createExportProgramMembersUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateExportProgramMembersUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createExportProgramMembersUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideEnqueueExportProgramMembersUsingPOST(): \Generator
@@ -335,7 +215,7 @@ class BulkExportProgramMembersApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -343,7 +223,7 @@ class BulkExportProgramMembersApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
     }
@@ -351,8 +231,6 @@ class BulkExportProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideEnqueueExportProgramMembersUsingPOST
      * @covers ::enqueueExportProgramMembersUsingPOST
-     * @covers ::enqueueExportProgramMembersUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testEnqueueExportProgramMembersUsingPOST(
         int $code,
@@ -367,65 +245,7 @@ class BulkExportProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'enqueueExportProgramMembersUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideEnqueueExportProgramMembersUsingPOST
-     * @covers ::enqueueExportProgramMembersUsingPOSTWithHttpInfo
-     * @covers ::enqueueExportProgramMembersUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testEnqueueExportProgramMembersUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'enqueueExportProgramMembersUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideEnqueueExportProgramMembersUsingPOST
-     * @covers ::enqueueExportProgramMembersUsingPOSTAsync
-     * @covers ::enqueueExportProgramMembersUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testEnqueueExportProgramMembersUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'enqueueExportProgramMembersUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideEnqueueExportProgramMembersUsingPOST
-     * @covers ::enqueueExportProgramMembersUsingPOSTAsyncWithHttpInfo
-     * @covers ::enqueueExportProgramMembersUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testEnqueueExportProgramMembersUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'enqueueExportProgramMembersUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetExportProgramMembersFileUsingGET(): \Generator
@@ -445,7 +265,7 @@ class BulkExportProgramMembersApiTest extends TestCase
                 'string',
                 'string',
             ],
-            'object',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -454,7 +274,7 @@ class BulkExportProgramMembersApiTest extends TestCase
                 'string',
                 'string',
             ],
-            'object',
+            null,
             ['application/json']
         );
     }
@@ -462,8 +282,6 @@ class BulkExportProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideGetExportProgramMembersFileUsingGET
      * @covers ::getExportProgramMembersFileUsingGET
-     * @covers ::getExportProgramMembersFileUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetExportProgramMembersFileUsingGET(
         int $code,
@@ -478,65 +296,7 @@ class BulkExportProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersFileUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportProgramMembersFileUsingGET
-     * @covers ::getExportProgramMembersFileUsingGETWithHttpInfo
-     * @covers ::getExportProgramMembersFileUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetExportProgramMembersFileUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersFileUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportProgramMembersFileUsingGET
-     * @covers ::getExportProgramMembersFileUsingGETAsync
-     * @covers ::getExportProgramMembersFileUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportProgramMembersFileUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== 'object') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersFileUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportProgramMembersFileUsingGET
-     * @covers ::getExportProgramMembersFileUsingGETAsyncWithHttpInfo
-     * @covers ::getExportProgramMembersFileUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportProgramMembersFileUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersFileUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetExportProgramMembersStatusUsingGET(): \Generator
@@ -554,7 +314,7 @@ class BulkExportProgramMembersApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -562,7 +322,7 @@ class BulkExportProgramMembersApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
     }
@@ -570,8 +330,6 @@ class BulkExportProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideGetExportProgramMembersStatusUsingGET
      * @covers ::getExportProgramMembersStatusUsingGET
-     * @covers ::getExportProgramMembersStatusUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetExportProgramMembersStatusUsingGET(
         int $code,
@@ -586,65 +344,7 @@ class BulkExportProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersStatusUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportProgramMembersStatusUsingGET
-     * @covers ::getExportProgramMembersStatusUsingGETWithHttpInfo
-     * @covers ::getExportProgramMembersStatusUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetExportProgramMembersStatusUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersStatusUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportProgramMembersStatusUsingGET
-     * @covers ::getExportProgramMembersStatusUsingGETAsync
-     * @covers ::getExportProgramMembersStatusUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportProgramMembersStatusUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersStatusUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportProgramMembersStatusUsingGET
-     * @covers ::getExportProgramMembersStatusUsingGETAsyncWithHttpInfo
-     * @covers ::getExportProgramMembersStatusUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportProgramMembersStatusUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersStatusUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetExportProgramMembersUsingGET(): \Generator
@@ -666,7 +366,7 @@ class BulkExportProgramMembersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -676,7 +376,7 @@ class BulkExportProgramMembersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken',
+            null,
             ['application/json']
         );
     }
@@ -684,8 +384,6 @@ class BulkExportProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideGetExportProgramMembersUsingGET
      * @covers ::getExportProgramMembersUsingGET
-     * @covers ::getExportProgramMembersUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetExportProgramMembersUsingGET(
         int $code,
@@ -700,64 +398,6 @@ class BulkExportProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportProgramMembersUsingGET
-     * @covers ::getExportProgramMembersUsingGETWithHttpInfo
-     * @covers ::getExportProgramMembersUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetExportProgramMembersUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportProgramMembersUsingGET
-     * @covers ::getExportProgramMembersUsingGETAsync
-     * @covers ::getExportProgramMembersUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportProgramMembersUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportProgramMembersUsingGET
-     * @covers ::getExportProgramMembersUsingGETAsyncWithHttpInfo
-     * @covers ::getExportProgramMembersUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportProgramMembersUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportProgramMembersUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

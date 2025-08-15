@@ -119,7 +119,7 @@ class ProgramsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class ProgramsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class ProgramsApiTest extends TestCase
     /**
      * @dataProvider provideApproveProgramUsingPOST
      * @covers ::approveProgramUsingPOST
-     * @covers ::approveProgramUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testApproveProgramUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class ProgramsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'approveProgramUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveProgramUsingPOST
-     * @covers ::approveProgramUsingPOSTWithHttpInfo
-     * @covers ::approveProgramUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testApproveProgramUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveProgramUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveProgramUsingPOST
-     * @covers ::approveProgramUsingPOSTAsync
-     * @covers ::approveProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveProgramUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveProgramUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveProgramUsingPOST
-     * @covers ::approveProgramUsingPOSTAsyncWithHttpInfo
-     * @covers ::approveProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveProgramUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveProgramUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideBrowseProgramsUsingGET(): \Generator
@@ -235,7 +175,7 @@ class ProgramsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -247,7 +187,7 @@ class ProgramsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms',
+            null,
             ['application/json']
         );
     }
@@ -255,8 +195,6 @@ class ProgramsApiTest extends TestCase
     /**
      * @dataProvider provideBrowseProgramsUsingGET
      * @covers ::browseProgramsUsingGET
-     * @covers ::browseProgramsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testBrowseProgramsUsingGET(
         int $code,
@@ -271,65 +209,7 @@ class ProgramsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'browseProgramsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideBrowseProgramsUsingGET
-     * @covers ::browseProgramsUsingGETWithHttpInfo
-     * @covers ::browseProgramsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testBrowseProgramsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'browseProgramsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideBrowseProgramsUsingGET
-     * @covers ::browseProgramsUsingGETAsync
-     * @covers ::browseProgramsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testBrowseProgramsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'browseProgramsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideBrowseProgramsUsingGET
-     * @covers ::browseProgramsUsingGETAsyncWithHttpInfo
-     * @covers ::browseProgramsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testBrowseProgramsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'browseProgramsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCloneProgramUsingPOST(): \Generator
@@ -353,7 +233,7 @@ class ProgramsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -364,7 +244,7 @@ class ProgramsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
     }
@@ -372,8 +252,6 @@ class ProgramsApiTest extends TestCase
     /**
      * @dataProvider provideCloneProgramUsingPOST
      * @covers ::cloneProgramUsingPOST
-     * @covers ::cloneProgramUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCloneProgramUsingPOST(
         int $code,
@@ -388,65 +266,7 @@ class ProgramsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'cloneProgramUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneProgramUsingPOST
-     * @covers ::cloneProgramUsingPOSTWithHttpInfo
-     * @covers ::cloneProgramUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCloneProgramUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneProgramUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneProgramUsingPOST
-     * @covers ::cloneProgramUsingPOSTAsync
-     * @covers ::cloneProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneProgramUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneProgramUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneProgramUsingPOST
-     * @covers ::cloneProgramUsingPOSTAsyncWithHttpInfo
-     * @covers ::cloneProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneProgramUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneProgramUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCreateProgramUsingPOST(): \Generator
@@ -476,7 +296,7 @@ class ProgramsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Asset\Model\TagRequest[]',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -490,7 +310,7 @@ class ProgramsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Asset\Model\TagRequest[]',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
     }
@@ -498,8 +318,6 @@ class ProgramsApiTest extends TestCase
     /**
      * @dataProvider provideCreateProgramUsingPOST
      * @covers ::createProgramUsingPOST
-     * @covers ::createProgramUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateProgramUsingPOST(
         int $code,
@@ -514,65 +332,7 @@ class ProgramsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createProgramUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateProgramUsingPOST
-     * @covers ::createProgramUsingPOSTWithHttpInfo
-     * @covers ::createProgramUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateProgramUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createProgramUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateProgramUsingPOST
-     * @covers ::createProgramUsingPOSTAsync
-     * @covers ::createProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateProgramUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createProgramUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateProgramUsingPOST
-     * @covers ::createProgramUsingPOSTAsyncWithHttpInfo
-     * @covers ::createProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateProgramUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createProgramUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteProgramUsingPOST(): \Generator
@@ -590,7 +350,7 @@ class ProgramsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -598,7 +358,7 @@ class ProgramsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -606,8 +366,6 @@ class ProgramsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteProgramUsingPOST
      * @covers ::deleteProgramUsingPOST
-     * @covers ::deleteProgramUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteProgramUsingPOST(
         int $code,
@@ -622,65 +380,7 @@ class ProgramsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteProgramUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteProgramUsingPOST
-     * @covers ::deleteProgramUsingPOSTWithHttpInfo
-     * @covers ::deleteProgramUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteProgramUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteProgramUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteProgramUsingPOST
-     * @covers ::deleteProgramUsingPOSTAsync
-     * @covers ::deleteProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteProgramUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteProgramUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteProgramUsingPOST
-     * @covers ::deleteProgramUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteProgramUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteProgramUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetProgramByIdUsingGET(): \Generator
@@ -698,7 +398,7 @@ class ProgramsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -706,7 +406,7 @@ class ProgramsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
     }
@@ -714,8 +414,6 @@ class ProgramsApiTest extends TestCase
     /**
      * @dataProvider provideGetProgramByIdUsingGET
      * @covers ::getProgramByIdUsingGET
-     * @covers ::getProgramByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetProgramByIdUsingGET(
         int $code,
@@ -730,65 +428,7 @@ class ProgramsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getProgramByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramByIdUsingGET
-     * @covers ::getProgramByIdUsingGETWithHttpInfo
-     * @covers ::getProgramByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetProgramByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramByIdUsingGET
-     * @covers ::getProgramByIdUsingGETAsync
-     * @covers ::getProgramByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramByIdUsingGET
-     * @covers ::getProgramByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getProgramByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetProgramByNameUsingGET(): \Generator
@@ -810,7 +450,7 @@ class ProgramsApiTest extends TestCase
                 'bool',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -820,7 +460,7 @@ class ProgramsApiTest extends TestCase
                 'bool',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
     }
@@ -828,8 +468,6 @@ class ProgramsApiTest extends TestCase
     /**
      * @dataProvider provideGetProgramByNameUsingGET
      * @covers ::getProgramByNameUsingGET
-     * @covers ::getProgramByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetProgramByNameUsingGET(
         int $code,
@@ -844,65 +482,7 @@ class ProgramsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getProgramByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramByNameUsingGET
-     * @covers ::getProgramByNameUsingGETWithHttpInfo
-     * @covers ::getProgramByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetProgramByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramByNameUsingGET
-     * @covers ::getProgramByNameUsingGETAsync
-     * @covers ::getProgramByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramByNameUsingGET
-     * @covers ::getProgramByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getProgramByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetProgramListByTagUsingGET(): \Generator
@@ -926,7 +506,7 @@ class ProgramsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -937,7 +517,7 @@ class ProgramsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
     }
@@ -945,8 +525,6 @@ class ProgramsApiTest extends TestCase
     /**
      * @dataProvider provideGetProgramListByTagUsingGET
      * @covers ::getProgramListByTagUsingGET
-     * @covers ::getProgramListByTagUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetProgramListByTagUsingGET(
         int $code,
@@ -961,65 +539,7 @@ class ProgramsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getProgramListByTagUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramListByTagUsingGET
-     * @covers ::getProgramListByTagUsingGETWithHttpInfo
-     * @covers ::getProgramListByTagUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetProgramListByTagUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramListByTagUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramListByTagUsingGET
-     * @covers ::getProgramListByTagUsingGETAsync
-     * @covers ::getProgramListByTagUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramListByTagUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramListByTagUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramListByTagUsingGET
-     * @covers ::getProgramListByTagUsingGETAsyncWithHttpInfo
-     * @covers ::getProgramListByTagUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramListByTagUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramListByTagUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetSmartListByProgramIdUsingGET(): \Generator
@@ -1039,7 +559,7 @@ class ProgramsApiTest extends TestCase
                 'int',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1048,7 +568,7 @@ class ProgramsApiTest extends TestCase
                 'int',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+            null,
             ['application/json']
         );
     }
@@ -1056,8 +576,6 @@ class ProgramsApiTest extends TestCase
     /**
      * @dataProvider provideGetSmartListByProgramIdUsingGET
      * @covers ::getSmartListByProgramIdUsingGET
-     * @covers ::getSmartListByProgramIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSmartListByProgramIdUsingGET(
         int $code,
@@ -1072,65 +590,7 @@ class ProgramsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSmartListByProgramIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListByProgramIdUsingGET
-     * @covers ::getSmartListByProgramIdUsingGETWithHttpInfo
-     * @covers ::getSmartListByProgramIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSmartListByProgramIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListByProgramIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListByProgramIdUsingGET
-     * @covers ::getSmartListByProgramIdUsingGETAsync
-     * @covers ::getSmartListByProgramIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartListByProgramIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListByProgramIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListByProgramIdUsingGET
-     * @covers ::getSmartListByProgramIdUsingGETAsyncWithHttpInfo
-     * @covers ::getSmartListByProgramIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartListByProgramIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListByProgramIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUnapproveProgramUsingPOST(): \Generator
@@ -1148,7 +608,7 @@ class ProgramsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1156,7 +616,7 @@ class ProgramsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -1164,8 +624,6 @@ class ProgramsApiTest extends TestCase
     /**
      * @dataProvider provideUnapproveProgramUsingPOST
      * @covers ::unapproveProgramUsingPOST
-     * @covers ::unapproveProgramUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUnapproveProgramUsingPOST(
         int $code,
@@ -1180,65 +638,7 @@ class ProgramsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'unapproveProgramUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveProgramUsingPOST
-     * @covers ::unapproveProgramUsingPOSTWithHttpInfo
-     * @covers ::unapproveProgramUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUnapproveProgramUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveProgramUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveProgramUsingPOST
-     * @covers ::unapproveProgramUsingPOSTAsync
-     * @covers ::unapproveProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUnapproveProgramUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveProgramUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveProgramUsingPOST
-     * @covers ::unapproveProgramUsingPOSTAsyncWithHttpInfo
-     * @covers ::unapproveProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUnapproveProgramUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveProgramUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateProgramUsingPOST(): \Generator
@@ -1270,7 +670,7 @@ class ProgramsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Asset\Model\TagRequest[]',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1285,7 +685,7 @@ class ProgramsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Asset\Model\TagRequest[]',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+            null,
             ['application/json']
         );
     }
@@ -1293,8 +693,6 @@ class ProgramsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateProgramUsingPOST
      * @covers ::updateProgramUsingPOST
-     * @covers ::updateProgramUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateProgramUsingPOST(
         int $code,
@@ -1309,64 +707,6 @@ class ProgramsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateProgramUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateProgramUsingPOST
-     * @covers ::updateProgramUsingPOSTWithHttpInfo
-     * @covers ::updateProgramUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateProgramUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateProgramUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateProgramUsingPOST
-     * @covers ::updateProgramUsingPOSTAsync
-     * @covers ::updateProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateProgramUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateProgramUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateProgramUsingPOST
-     * @covers ::updateProgramUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateProgramUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateProgramUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateProgramUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

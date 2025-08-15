@@ -121,7 +121,7 @@ class NamedAccountListsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -130,7 +130,7 @@ class NamedAccountListsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
     }
@@ -138,8 +138,6 @@ class NamedAccountListsApiTest extends TestCase
     /**
      * @dataProvider provideAddNamedAccountListMembersUsingPOST
      * @covers ::addNamedAccountListMembersUsingPOST
-     * @covers ::addNamedAccountListMembersUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testAddNamedAccountListMembersUsingPOST(
         int $code,
@@ -154,65 +152,7 @@ class NamedAccountListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'addNamedAccountListMembersUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddNamedAccountListMembersUsingPOST
-     * @covers ::addNamedAccountListMembersUsingPOSTWithHttpInfo
-     * @covers ::addNamedAccountListMembersUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testAddNamedAccountListMembersUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addNamedAccountListMembersUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddNamedAccountListMembersUsingPOST
-     * @covers ::addNamedAccountListMembersUsingPOSTAsync
-     * @covers ::addNamedAccountListMembersUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddNamedAccountListMembersUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addNamedAccountListMembersUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddNamedAccountListMembersUsingPOST
-     * @covers ::addNamedAccountListMembersUsingPOSTAsyncWithHttpInfo
-     * @covers ::addNamedAccountListMembersUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddNamedAccountListMembersUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addNamedAccountListMembersUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteNamedAccountListsUsingPOST(): \Generator
@@ -230,7 +170,7 @@ class NamedAccountListsApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -238,7 +178,7 @@ class NamedAccountListsApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList',
+            null,
             ['application/json']
         );
     }
@@ -246,8 +186,6 @@ class NamedAccountListsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteNamedAccountListsUsingPOST
      * @covers ::deleteNamedAccountListsUsingPOST
-     * @covers ::deleteNamedAccountListsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteNamedAccountListsUsingPOST(
         int $code,
@@ -262,65 +200,7 @@ class NamedAccountListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteNamedAccountListsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteNamedAccountListsUsingPOST
-     * @covers ::deleteNamedAccountListsUsingPOSTWithHttpInfo
-     * @covers ::deleteNamedAccountListsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteNamedAccountListsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteNamedAccountListsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteNamedAccountListsUsingPOST
-     * @covers ::deleteNamedAccountListsUsingPOSTAsync
-     * @covers ::deleteNamedAccountListsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteNamedAccountListsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteNamedAccountListsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteNamedAccountListsUsingPOST
-     * @covers ::deleteNamedAccountListsUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteNamedAccountListsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteNamedAccountListsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteNamedAccountListsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetNamedAccountListMembersUsingGET(): \Generator
@@ -344,7 +224,7 @@ class NamedAccountListsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -355,7 +235,7 @@ class NamedAccountListsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
     }
@@ -363,8 +243,6 @@ class NamedAccountListsApiTest extends TestCase
     /**
      * @dataProvider provideGetNamedAccountListMembersUsingGET
      * @covers ::getNamedAccountListMembersUsingGET
-     * @covers ::getNamedAccountListMembersUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetNamedAccountListMembersUsingGET(
         int $code,
@@ -379,65 +257,7 @@ class NamedAccountListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getNamedAccountListMembersUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountListMembersUsingGET
-     * @covers ::getNamedAccountListMembersUsingGETWithHttpInfo
-     * @covers ::getNamedAccountListMembersUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetNamedAccountListMembersUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountListMembersUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountListMembersUsingGET
-     * @covers ::getNamedAccountListMembersUsingGETAsync
-     * @covers ::getNamedAccountListMembersUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetNamedAccountListMembersUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountListMembersUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountListMembersUsingGET
-     * @covers ::getNamedAccountListMembersUsingGETAsyncWithHttpInfo
-     * @covers ::getNamedAccountListMembersUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetNamedAccountListMembersUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountListMembersUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetNamedAccountListsUsingGET(): \Generator
@@ -461,7 +281,7 @@ class NamedAccountListsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -472,7 +292,7 @@ class NamedAccountListsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList',
+            null,
             ['application/json']
         );
     }
@@ -480,8 +300,6 @@ class NamedAccountListsApiTest extends TestCase
     /**
      * @dataProvider provideGetNamedAccountListsUsingGET
      * @covers ::getNamedAccountListsUsingGET
-     * @covers ::getNamedAccountListsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetNamedAccountListsUsingGET(
         int $code,
@@ -496,65 +314,7 @@ class NamedAccountListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getNamedAccountListsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountListsUsingGET
-     * @covers ::getNamedAccountListsUsingGETWithHttpInfo
-     * @covers ::getNamedAccountListsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetNamedAccountListsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountListsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountListsUsingGET
-     * @covers ::getNamedAccountListsUsingGETAsync
-     * @covers ::getNamedAccountListsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetNamedAccountListsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountListsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountListsUsingGET
-     * @covers ::getNamedAccountListsUsingGETAsyncWithHttpInfo
-     * @covers ::getNamedAccountListsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetNamedAccountListsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountListsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideRemoveNamedAccountListMembersUsingPOST(): \Generator
@@ -574,7 +334,7 @@ class NamedAccountListsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -583,7 +343,7 @@ class NamedAccountListsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
     }
@@ -591,8 +351,6 @@ class NamedAccountListsApiTest extends TestCase
     /**
      * @dataProvider provideRemoveNamedAccountListMembersUsingPOST
      * @covers ::removeNamedAccountListMembersUsingPOST
-     * @covers ::removeNamedAccountListMembersUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testRemoveNamedAccountListMembersUsingPOST(
         int $code,
@@ -607,65 +365,7 @@ class NamedAccountListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'removeNamedAccountListMembersUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideRemoveNamedAccountListMembersUsingPOST
-     * @covers ::removeNamedAccountListMembersUsingPOSTWithHttpInfo
-     * @covers ::removeNamedAccountListMembersUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testRemoveNamedAccountListMembersUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'removeNamedAccountListMembersUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideRemoveNamedAccountListMembersUsingPOST
-     * @covers ::removeNamedAccountListMembersUsingPOSTAsync
-     * @covers ::removeNamedAccountListMembersUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testRemoveNamedAccountListMembersUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'removeNamedAccountListMembersUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideRemoveNamedAccountListMembersUsingPOST
-     * @covers ::removeNamedAccountListMembersUsingPOSTAsyncWithHttpInfo
-     * @covers ::removeNamedAccountListMembersUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testRemoveNamedAccountListMembersUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'removeNamedAccountListMembersUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideSyncNamedAccountListsUsingPOST(): \Generator
@@ -683,7 +383,7 @@ class NamedAccountListsApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -691,7 +391,7 @@ class NamedAccountListsApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList',
+            null,
             ['application/json']
         );
     }
@@ -699,8 +399,6 @@ class NamedAccountListsApiTest extends TestCase
     /**
      * @dataProvider provideSyncNamedAccountListsUsingPOST
      * @covers ::syncNamedAccountListsUsingPOST
-     * @covers ::syncNamedAccountListsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testSyncNamedAccountListsUsingPOST(
         int $code,
@@ -715,64 +413,6 @@ class NamedAccountListsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'syncNamedAccountListsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncNamedAccountListsUsingPOST
-     * @covers ::syncNamedAccountListsUsingPOSTWithHttpInfo
-     * @covers ::syncNamedAccountListsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testSyncNamedAccountListsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncNamedAccountListsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncNamedAccountListsUsingPOST
-     * @covers ::syncNamedAccountListsUsingPOSTAsync
-     * @covers ::syncNamedAccountListsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncNamedAccountListsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncNamedAccountListsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncNamedAccountListsUsingPOST
-     * @covers ::syncNamedAccountListsUsingPOSTAsyncWithHttpInfo
-     * @covers ::syncNamedAccountListsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncNamedAccountListsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncNamedAccountListsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

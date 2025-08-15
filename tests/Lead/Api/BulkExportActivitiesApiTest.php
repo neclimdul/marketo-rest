@@ -119,7 +119,7 @@ class BulkExportActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class BulkExportActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class BulkExportActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideCancelExportActivitiesUsingPOST
      * @covers ::cancelExportActivitiesUsingPOST
-     * @covers ::cancelExportActivitiesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCancelExportActivitiesUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class BulkExportActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'cancelExportActivitiesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCancelExportActivitiesUsingPOST
-     * @covers ::cancelExportActivitiesUsingPOSTWithHttpInfo
-     * @covers ::cancelExportActivitiesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCancelExportActivitiesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cancelExportActivitiesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCancelExportActivitiesUsingPOST
-     * @covers ::cancelExportActivitiesUsingPOSTAsync
-     * @covers ::cancelExportActivitiesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCancelExportActivitiesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cancelExportActivitiesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCancelExportActivitiesUsingPOST
-     * @covers ::cancelExportActivitiesUsingPOSTAsyncWithHttpInfo
-     * @covers ::cancelExportActivitiesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCancelExportActivitiesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cancelExportActivitiesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCreateExportActivitiesUsingPOST(): \Generator
@@ -227,7 +167,7 @@ class BulkExportActivitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -235,7 +175,7 @@ class BulkExportActivitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
     }
@@ -243,8 +183,6 @@ class BulkExportActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideCreateExportActivitiesUsingPOST
      * @covers ::createExportActivitiesUsingPOST
-     * @covers ::createExportActivitiesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateExportActivitiesUsingPOST(
         int $code,
@@ -259,65 +197,7 @@ class BulkExportActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createExportActivitiesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateExportActivitiesUsingPOST
-     * @covers ::createExportActivitiesUsingPOSTWithHttpInfo
-     * @covers ::createExportActivitiesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateExportActivitiesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createExportActivitiesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateExportActivitiesUsingPOST
-     * @covers ::createExportActivitiesUsingPOSTAsync
-     * @covers ::createExportActivitiesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateExportActivitiesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createExportActivitiesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateExportActivitiesUsingPOST
-     * @covers ::createExportActivitiesUsingPOSTAsyncWithHttpInfo
-     * @covers ::createExportActivitiesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateExportActivitiesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createExportActivitiesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideEnqueueExportActivitiesUsingPOST(): \Generator
@@ -335,7 +215,7 @@ class BulkExportActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -343,7 +223,7 @@ class BulkExportActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
     }
@@ -351,8 +231,6 @@ class BulkExportActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideEnqueueExportActivitiesUsingPOST
      * @covers ::enqueueExportActivitiesUsingPOST
-     * @covers ::enqueueExportActivitiesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testEnqueueExportActivitiesUsingPOST(
         int $code,
@@ -367,65 +245,7 @@ class BulkExportActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'enqueueExportActivitiesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideEnqueueExportActivitiesUsingPOST
-     * @covers ::enqueueExportActivitiesUsingPOSTWithHttpInfo
-     * @covers ::enqueueExportActivitiesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testEnqueueExportActivitiesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'enqueueExportActivitiesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideEnqueueExportActivitiesUsingPOST
-     * @covers ::enqueueExportActivitiesUsingPOSTAsync
-     * @covers ::enqueueExportActivitiesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testEnqueueExportActivitiesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'enqueueExportActivitiesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideEnqueueExportActivitiesUsingPOST
-     * @covers ::enqueueExportActivitiesUsingPOSTAsyncWithHttpInfo
-     * @covers ::enqueueExportActivitiesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testEnqueueExportActivitiesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'enqueueExportActivitiesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetExportActivitiesFileUsingGET(): \Generator
@@ -445,7 +265,7 @@ class BulkExportActivitiesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            'object',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -454,7 +274,7 @@ class BulkExportActivitiesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            'object',
+            null,
             ['application/json']
         );
     }
@@ -462,8 +282,6 @@ class BulkExportActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetExportActivitiesFileUsingGET
      * @covers ::getExportActivitiesFileUsingGET
-     * @covers ::getExportActivitiesFileUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetExportActivitiesFileUsingGET(
         int $code,
@@ -478,65 +296,7 @@ class BulkExportActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getExportActivitiesFileUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportActivitiesFileUsingGET
-     * @covers ::getExportActivitiesFileUsingGETWithHttpInfo
-     * @covers ::getExportActivitiesFileUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetExportActivitiesFileUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportActivitiesFileUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportActivitiesFileUsingGET
-     * @covers ::getExportActivitiesFileUsingGETAsync
-     * @covers ::getExportActivitiesFileUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportActivitiesFileUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== 'object') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportActivitiesFileUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportActivitiesFileUsingGET
-     * @covers ::getExportActivitiesFileUsingGETAsyncWithHttpInfo
-     * @covers ::getExportActivitiesFileUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportActivitiesFileUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportActivitiesFileUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetExportActivitiesStatusUsingGET(): \Generator
@@ -554,7 +314,7 @@ class BulkExportActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -562,7 +322,7 @@ class BulkExportActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+            null,
             ['application/json']
         );
     }
@@ -570,8 +330,6 @@ class BulkExportActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetExportActivitiesStatusUsingGET
      * @covers ::getExportActivitiesStatusUsingGET
-     * @covers ::getExportActivitiesStatusUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetExportActivitiesStatusUsingGET(
         int $code,
@@ -586,65 +344,7 @@ class BulkExportActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getExportActivitiesStatusUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportActivitiesStatusUsingGET
-     * @covers ::getExportActivitiesStatusUsingGETWithHttpInfo
-     * @covers ::getExportActivitiesStatusUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetExportActivitiesStatusUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportActivitiesStatusUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportActivitiesStatusUsingGET
-     * @covers ::getExportActivitiesStatusUsingGETAsync
-     * @covers ::getExportActivitiesStatusUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportActivitiesStatusUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportActivitiesStatusUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportActivitiesStatusUsingGET
-     * @covers ::getExportActivitiesStatusUsingGETAsyncWithHttpInfo
-     * @covers ::getExportActivitiesStatusUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportActivitiesStatusUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportActivitiesStatusUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetExportActivitiesUsingGET(): \Generator
@@ -666,7 +366,7 @@ class BulkExportActivitiesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -676,7 +376,7 @@ class BulkExportActivitiesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken',
+            null,
             ['application/json']
         );
     }
@@ -684,8 +384,6 @@ class BulkExportActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetExportActivitiesUsingGET
      * @covers ::getExportActivitiesUsingGET
-     * @covers ::getExportActivitiesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetExportActivitiesUsingGET(
         int $code,
@@ -700,64 +398,6 @@ class BulkExportActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getExportActivitiesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportActivitiesUsingGET
-     * @covers ::getExportActivitiesUsingGETWithHttpInfo
-     * @covers ::getExportActivitiesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetExportActivitiesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportActivitiesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportActivitiesUsingGET
-     * @covers ::getExportActivitiesUsingGETAsync
-     * @covers ::getExportActivitiesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportActivitiesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportActivitiesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetExportActivitiesUsingGET
-     * @covers ::getExportActivitiesUsingGETAsyncWithHttpInfo
-     * @covers ::getExportActivitiesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetExportActivitiesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getExportActivitiesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

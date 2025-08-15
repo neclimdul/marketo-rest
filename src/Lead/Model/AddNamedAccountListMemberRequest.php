@@ -31,7 +31,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @psalm-suppress MixedReturnStatement
  * @psalm-suppress MixedInferredReturnType
  */
-class AddNamedAccountListMemberRequest extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable, \Stringable
+class AddNamedAccountListMemberRequest extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     use AdditionalPropertiesTrait;
 
@@ -171,7 +171,6 @@ class AddNamedAccountListMemberRequest extends ModelBase implements ModelInterfa
      * @return string
      * @throws \JsonException
      */
-    #[\Override]
     public function __toString(): string
     {
         return json_encode(

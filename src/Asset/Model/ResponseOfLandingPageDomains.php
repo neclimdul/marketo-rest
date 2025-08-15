@@ -31,7 +31,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @psalm-suppress MixedReturnStatement
  * @psalm-suppress MixedInferredReturnType
  */
-class ResponseOfLandingPageDomains extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable, \Stringable
+class ResponseOfLandingPageDomains extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     use AdditionalPropertiesTrait;
 
@@ -280,7 +280,6 @@ class ResponseOfLandingPageDomains extends ModelBase implements ModelInterface, 
      * @return string
      * @throws \JsonException
      */
-    #[\Override]
     public function __toString(): string
     {
         return json_encode(

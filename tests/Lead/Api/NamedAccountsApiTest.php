@@ -119,7 +119,7 @@ class NamedAccountsApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class NamedAccountsApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class NamedAccountsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteNamedAccountsUsingPOST
      * @covers ::deleteNamedAccountsUsingPOST
-     * @covers ::deleteNamedAccountsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteNamedAccountsUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class NamedAccountsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteNamedAccountsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteNamedAccountsUsingPOST
-     * @covers ::deleteNamedAccountsUsingPOSTWithHttpInfo
-     * @covers ::deleteNamedAccountsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteNamedAccountsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteNamedAccountsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteNamedAccountsUsingPOST
-     * @covers ::deleteNamedAccountsUsingPOSTAsync
-     * @covers ::deleteNamedAccountsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteNamedAccountsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteNamedAccountsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteNamedAccountsUsingPOST
-     * @covers ::deleteNamedAccountsUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteNamedAccountsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteNamedAccountsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteNamedAccountsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDescribeUsingGET3(): \Generator
@@ -225,14 +165,14 @@ class NamedAccountsApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
     }
@@ -240,8 +180,6 @@ class NamedAccountsApiTest extends TestCase
     /**
      * @dataProvider provideDescribeUsingGET3
      * @covers ::describeUsingGET3
-     * @covers ::describeUsingGET3Request
-     * @covers ::makeRequest
      */
     public function testDescribeUsingGET3(
         int $code,
@@ -256,65 +194,7 @@ class NamedAccountsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'describeUsingGET3'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET3
-     * @covers ::describeUsingGET3WithHttpInfo
-     * @covers ::describeUsingGET3Request
-     * @covers ::makeRequest
-     */
-    public function testDescribeUsingGET3WithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGET3WithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET3
-     * @covers ::describeUsingGET3Async
-     * @covers ::describeUsingGET3Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeUsingGET3Async(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGET3Async'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET3
-     * @covers ::describeUsingGET3AsyncWithHttpInfo
-     * @covers ::describeUsingGET3Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeUsingGET3AsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGET3AsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetNamedAccountFieldByNameUsingGET(): \Generator
@@ -332,7 +212,7 @@ class NamedAccountsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -340,7 +220,7 @@ class NamedAccountsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
     }
@@ -348,8 +228,6 @@ class NamedAccountsApiTest extends TestCase
     /**
      * @dataProvider provideGetNamedAccountFieldByNameUsingGET
      * @covers ::getNamedAccountFieldByNameUsingGET
-     * @covers ::getNamedAccountFieldByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetNamedAccountFieldByNameUsingGET(
         int $code,
@@ -364,65 +242,7 @@ class NamedAccountsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getNamedAccountFieldByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountFieldByNameUsingGET
-     * @covers ::getNamedAccountFieldByNameUsingGETWithHttpInfo
-     * @covers ::getNamedAccountFieldByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetNamedAccountFieldByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountFieldByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountFieldByNameUsingGET
-     * @covers ::getNamedAccountFieldByNameUsingGETAsync
-     * @covers ::getNamedAccountFieldByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetNamedAccountFieldByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountFieldByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountFieldByNameUsingGET
-     * @covers ::getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getNamedAccountFieldByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetNamedAccountFieldByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetNamedAccountFieldsUsingGET(): \Generator
@@ -442,7 +262,7 @@ class NamedAccountsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -451,7 +271,7 @@ class NamedAccountsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
     }
@@ -459,8 +279,6 @@ class NamedAccountsApiTest extends TestCase
     /**
      * @dataProvider provideGetNamedAccountFieldsUsingGET
      * @covers ::getNamedAccountFieldsUsingGET
-     * @covers ::getNamedAccountFieldsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetNamedAccountFieldsUsingGET(
         int $code,
@@ -475,65 +293,7 @@ class NamedAccountsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getNamedAccountFieldsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountFieldsUsingGET
-     * @covers ::getNamedAccountFieldsUsingGETWithHttpInfo
-     * @covers ::getNamedAccountFieldsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetNamedAccountFieldsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountFieldsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountFieldsUsingGET
-     * @covers ::getNamedAccountFieldsUsingGETAsync
-     * @covers ::getNamedAccountFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetNamedAccountFieldsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountFieldsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountFieldsUsingGET
-     * @covers ::getNamedAccountFieldsUsingGETAsyncWithHttpInfo
-     * @covers ::getNamedAccountFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetNamedAccountFieldsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountFieldsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetNamedAccountsUsingGET(): \Generator
@@ -559,7 +319,7 @@ class NamedAccountsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -571,7 +331,7 @@ class NamedAccountsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
     }
@@ -579,8 +339,6 @@ class NamedAccountsApiTest extends TestCase
     /**
      * @dataProvider provideGetNamedAccountsUsingGET
      * @covers ::getNamedAccountsUsingGET
-     * @covers ::getNamedAccountsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetNamedAccountsUsingGET(
         int $code,
@@ -595,65 +353,7 @@ class NamedAccountsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getNamedAccountsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountsUsingGET
-     * @covers ::getNamedAccountsUsingGETWithHttpInfo
-     * @covers ::getNamedAccountsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetNamedAccountsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountsUsingGET
-     * @covers ::getNamedAccountsUsingGETAsync
-     * @covers ::getNamedAccountsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetNamedAccountsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetNamedAccountsUsingGET
-     * @covers ::getNamedAccountsUsingGETAsyncWithHttpInfo
-     * @covers ::getNamedAccountsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetNamedAccountsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getNamedAccountsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideSyncNamedAccountsUsingPOST(): \Generator
@@ -671,7 +371,7 @@ class NamedAccountsApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -679,7 +379,7 @@ class NamedAccountsApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+            null,
             ['application/json']
         );
     }
@@ -687,8 +387,6 @@ class NamedAccountsApiTest extends TestCase
     /**
      * @dataProvider provideSyncNamedAccountsUsingPOST
      * @covers ::syncNamedAccountsUsingPOST
-     * @covers ::syncNamedAccountsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testSyncNamedAccountsUsingPOST(
         int $code,
@@ -703,64 +401,6 @@ class NamedAccountsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'syncNamedAccountsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncNamedAccountsUsingPOST
-     * @covers ::syncNamedAccountsUsingPOSTWithHttpInfo
-     * @covers ::syncNamedAccountsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testSyncNamedAccountsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncNamedAccountsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncNamedAccountsUsingPOST
-     * @covers ::syncNamedAccountsUsingPOSTAsync
-     * @covers ::syncNamedAccountsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncNamedAccountsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncNamedAccountsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncNamedAccountsUsingPOST
-     * @covers ::syncNamedAccountsUsingPOSTAsyncWithHttpInfo
-     * @covers ::syncNamedAccountsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncNamedAccountsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncNamedAccountsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

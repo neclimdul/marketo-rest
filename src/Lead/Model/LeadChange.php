@@ -31,7 +31,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @psalm-suppress MixedReturnStatement
  * @psalm-suppress MixedInferredReturnType
  */
-class LeadChange extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable, \Stringable
+class LeadChange extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     use AdditionalPropertiesTrait;
 
@@ -379,7 +379,6 @@ class LeadChange extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
      * @return string
      * @throws \JsonException
      */
-    #[\Override]
     public function __toString(): string
     {
         return json_encode(

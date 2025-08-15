@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Lead\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Lead\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Lead\Configuration;
 use NecLimDul\MarketoRest\Lead\HeaderSelector;
 use NecLimDul\MarketoRest\Lead\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class OpportunitiesApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class OpportunitiesApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,163 +112,20 @@ class OpportunitiesApi
     }
 
     /**
-     * Exception handler for deleteOpportunitiesUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function deleteOpportunitiesUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Delete Opportunities
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
      *   deleteCustomObjectRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteOpportunitiesUsingPOST(
-        ?\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
-        [$response] = $this->deleteOpportunitiesUsingPOSTWithHttpInfo($delete_custom_object_request);
-        return $response;
-    }
-
-    /**
-     * Delete Opportunities
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
-     *   deleteCustomObjectRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteOpportunitiesUsingPOSTWithHttpInfo(
-        ?\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): array {
-        $request = $this->deleteOpportunitiesUsingPOSTRequest($delete_custom_object_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteOpportunitiesUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Opportunities
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
-     *   deleteCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteOpportunitiesUsingPOSTAsync(
-        ?\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): PromiseInterface {
-        return $this->deleteOpportunitiesUsingPOSTAsyncWithHttpInfo($delete_custom_object_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject => $response[0]
-            );
-    }
-
-    /**
-     * Delete Opportunities
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
-     *   deleteCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteOpportunitiesUsingPOSTAsyncWithHttpInfo(
-        ?\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteOpportunitiesUsingPOSTRequest($delete_custom_object_request),
-            [$this, 'deleteOpportunitiesUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteOpportunitiesUsingPOST'
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
-     *   deleteCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteOpportunitiesUsingPOSTRequest(
-        ?\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): Request {
+        null|\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/delete.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -258,53 +133,27 @@ class OpportunitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $delete_custom_object_request,
             ),
-            // Form Params
-            [
-            ],
-            $delete_custom_object_request
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for deleteOpportunityRolesUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function deleteOpportunityRolesUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -312,134 +161,16 @@ class OpportunitiesApi
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
      *   deleteCustomObjectRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteOpportunityRolesUsingPOST(
-        ?\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
-        [$response] = $this->deleteOpportunityRolesUsingPOSTWithHttpInfo($delete_custom_object_request);
-        return $response;
-    }
-
-    /**
-     * Delete Opportunity Roles
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
-     *   deleteCustomObjectRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteOpportunityRolesUsingPOSTWithHttpInfo(
-        ?\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): array {
-        $request = $this->deleteOpportunityRolesUsingPOSTRequest($delete_custom_object_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteOpportunityRolesUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Opportunity Roles
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
-     *   deleteCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteOpportunityRolesUsingPOSTAsync(
-        ?\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): PromiseInterface {
-        return $this->deleteOpportunityRolesUsingPOSTAsyncWithHttpInfo($delete_custom_object_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject => $response[0]
-            );
-    }
-
-    /**
-     * Delete Opportunity Roles
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
-     *   deleteCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteOpportunityRolesUsingPOSTAsyncWithHttpInfo(
-        ?\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteOpportunityRolesUsingPOSTRequest($delete_custom_object_request),
-            [$this, 'deleteOpportunityRolesUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteOpportunityRolesUsingPOST'
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
-     *   deleteCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteOpportunityRolesUsingPOSTRequest(
-        ?\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): Request {
+        null|\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/roles/delete.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -447,168 +178,38 @@ class OpportunitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $delete_custom_object_request,
             ),
-            // Form Params
-            [
-            ],
-            $delete_custom_object_request
+            $responseMap,
+            async: $async,
         );
     }
 
     /**
-     * Exception handler for describeOpportunityRoleUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function describeOpportunityRoleUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
-     * Describe Opportunity Role
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
-     */
-    public function describeOpportunityRoleUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
-    {
-        [$response] = $this->describeOpportunityRoleUsingGETWithHttpInfo();
-        return $response;
-    }
-
-    /**
-     * Describe Opportunity Role
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function describeOpportunityRoleUsingGETWithHttpInfo(): array
-    {
-        $request = $this->describeOpportunityRoleUsingGETRequest();
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->describeOpportunityRoleUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-            ),
-        };
-    }
-
-    /**
      * Describe Opportunity Role
      *
      * @throws \InvalidArgumentException
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
-    public function describeOpportunityRoleUsingGETAsync(): PromiseInterface
-    {
-        return $this->describeOpportunityRoleUsingGETAsyncWithHttpInfo()
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData => $response[0]
-            );
-    }
-
-    /**
-     * Describe Opportunity Role
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function describeOpportunityRoleUsingGETAsyncWithHttpInfo(): PromiseInterface
-    {
-        return $this->makeAsyncRequest(
-            $this->describeOpportunityRoleUsingGETRequest(),
-            [$this, 'describeOpportunityRoleUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'describeOpportunityRoleUsingGET'
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function describeOpportunityRoleUsingGETRequest(): Request
-    {
+    public function describeOpportunityRoleUsingGET(
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/roles/describe.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -616,168 +217,38 @@ class OpportunitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 
     /**
-     * Exception handler for describeUsingGET4.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function describeUsingGET4HandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
-     * Describe Opportunity
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
-     */
-    public function describeUsingGET4(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
-    {
-        [$response] = $this->describeUsingGET4WithHttpInfo();
-        return $response;
-    }
-
-    /**
-     * Describe Opportunity
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function describeUsingGET4WithHttpInfo(): array
-    {
-        $request = $this->describeUsingGET4Request();
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->describeUsingGET4HandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-            ),
-        };
-    }
-
-    /**
      * Describe Opportunity
      *
      * @throws \InvalidArgumentException
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
-    public function describeUsingGET4Async(): PromiseInterface
-    {
-        return $this->describeUsingGET4AsyncWithHttpInfo()
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData => $response[0]
-            );
-    }
-
-    /**
-     * Describe Opportunity
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function describeUsingGET4AsyncWithHttpInfo(): PromiseInterface
-    {
-        return $this->makeAsyncRequest(
-            $this->describeUsingGET4Request(),
-            [$this, 'describeUsingGET4HandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'describeUsingGET4'
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function describeUsingGET4Request(): Request
-    {
+    public function describeUsingGET4(
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/describe.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -785,53 +256,27 @@ class OpportunitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getOpportunitiesUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getOpportunitiesUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -849,199 +294,21 @@ class OpportunitiesApi
      *   Paging token returned from a previous response
      * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
      *   customObjectLookupRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getOpportunitiesUsingGET(
         string $filter_type,
         array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
-        [$response] = $this->getOpportunitiesUsingGETWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $custom_object_lookup_request);
-        return $response;
-    }
-
-    /**
-     * Get Opportunities
-     *
-     * @param string $filter_type
-     *   Opportunities field to filter on
-     * @param string[] $filter_values
-     *   Comma-separated list of values to match against
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   Maximum number of records to return in the response. Max and default is 300
-     * @param string|null $next_page_token
-     *   Paging token returned from a previous response
-     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
-     *   customObjectLookupRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getOpportunitiesUsingGETWithHttpInfo(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null
-    ): array {
-        $request = $this->getOpportunitiesUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $custom_object_lookup_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getOpportunitiesUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-        };
-    }
-
-    /**
-     * Get Opportunities
-     *
-     * @param string $filter_type
-     *   Opportunities field to filter on
-     * @param string[] $filter_values
-     *   Comma-separated list of values to match against
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   Maximum number of records to return in the response. Max and default is 300
-     * @param string|null $next_page_token
-     *   Paging token returned from a previous response
-     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
-     *   customObjectLookupRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getOpportunitiesUsingGETAsync(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null
-    ): PromiseInterface {
-        return $this->getOpportunitiesUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $custom_object_lookup_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject => $response[0]
-            );
-    }
-
-    /**
-     * Get Opportunities
-     *
-     * @param string $filter_type
-     *   Opportunities field to filter on
-     * @param string[] $filter_values
-     *   Comma-separated list of values to match against
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   Maximum number of records to return in the response. Max and default is 300
-     * @param string|null $next_page_token
-     *   Paging token returned from a previous response
-     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
-     *   customObjectLookupRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getOpportunitiesUsingGETAsyncWithHttpInfo(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getOpportunitiesUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $custom_object_lookup_request),
-            [$this, 'getOpportunitiesUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getOpportunitiesUsingGET'
-     *
-     * @param string $filter_type
-     *   Opportunities field to filter on
-     * @param string[] $filter_values
-     *   Comma-separated list of values to match against
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   Maximum number of records to return in the response. Max and default is 300
-     * @param string|null $next_page_token
-     *   Paging token returned from a previous response
-     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
-     *   customObjectLookupRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getOpportunitiesUsingGETRequest(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null
-    ): Request {
+        null|array $fields = null,
+        null|int $batch_size = null,
+        null|string $next_page_token = null,
+        null|\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
             throw new \InvalidArgumentException(
@@ -1055,58 +322,32 @@ class OpportunitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'filterType' => ObjectSerializer::toQueryValue($filter_type),
-                'filterValues' => ObjectSerializer::serializeCollection($filter_values, 'multi'),
-                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
-                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
-                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'filterType' => ObjectSerializer::toQueryValue($filter_type),
+                    'filterValues' => ObjectSerializer::serializeCollection($filter_values, 'multi'),
+                    'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
+                    'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                    'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                $custom_object_lookup_request,
             ),
-            // Form Params
-            [
-            ],
-            $custom_object_lookup_request
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getOpportunityFieldByNameUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getOpportunityFieldByNameUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1114,139 +355,24 @@ class OpportunitiesApi
      *
      * @param string $field_api_name
      *   The API name of opportunity field
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getOpportunityFieldByNameUsingGET(
-        string $field_api_name
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField {
-        [$response] = $this->getOpportunityFieldByNameUsingGETWithHttpInfo($field_api_name);
-        return $response;
-    }
-
-    /**
-     * Get Opportunity Field by Name
-     *
-     * @param string $field_api_name
-     *   The API name of opportunity field
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getOpportunityFieldByNameUsingGETWithHttpInfo(
-        string $field_api_name
-    ): array {
-        $request = $this->getOpportunityFieldByNameUsingGETRequest($field_api_name);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getOpportunityFieldByNameUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-            ),
-        };
-    }
-
-    /**
-     * Get Opportunity Field by Name
-     *
-     * @param string $field_api_name
-     *   The API name of opportunity field
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getOpportunityFieldByNameUsingGETAsync(
-        string $field_api_name
-    ): PromiseInterface {
-        return $this->getOpportunityFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField => $response[0]
-            );
-    }
-
-    /**
-     * Get Opportunity Field by Name
-     *
-     * @param string $field_api_name
-     *   The API name of opportunity field
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getOpportunityFieldByNameUsingGETAsyncWithHttpInfo(
-        string $field_api_name
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getOpportunityFieldByNameUsingGETRequest($field_api_name),
-            [$this, 'getOpportunityFieldByNameUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getOpportunityFieldByNameUsingGET'
-     *
-     * @param string $field_api_name
-     *   The API name of opportunity field
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getOpportunityFieldByNameUsingGETRequest(
-        string $field_api_name
-    ): Request {
-        $resourcePath = '/rest/v1/opportunities/schema/fields/{fieldApiName}.json';
+        string $field_api_name,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'fieldApiName' . '}',
-            ObjectSerializer::toPathValue($field_api_name),
-            $resourcePath
+            [
+                '{' . 'fieldApiName' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($field_api_name),
+            ],
+            '/rest/v1/opportunities/schema/fields/{fieldApiName}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1254,53 +380,27 @@ class OpportunitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getOpportunityFieldsUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getOpportunityFieldsUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1310,147 +410,17 @@ class OpportunitiesApi
      *   The batch size to return. The max and default value is 300.
      * @param string|null $next_page_token
      *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getOpportunityFieldsUsingGET(
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField {
-        [$response] = $this->getOpportunityFieldsUsingGETWithHttpInfo($batch_size, $next_page_token);
-        return $response;
-    }
-
-    /**
-     * Get Opportunity Fields
-     *
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getOpportunityFieldsUsingGETWithHttpInfo(
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): array {
-        $request = $this->getOpportunityFieldsUsingGETRequest($batch_size, $next_page_token);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getOpportunityFieldsUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-            ),
-        };
-    }
-
-    /**
-     * Get Opportunity Fields
-     *
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getOpportunityFieldsUsingGETAsync(
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->getOpportunityFieldsUsingGETAsyncWithHttpInfo($batch_size, $next_page_token)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField => $response[0]
-            );
-    }
-
-    /**
-     * Get Opportunity Fields
-     *
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getOpportunityFieldsUsingGETAsyncWithHttpInfo(
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getOpportunityFieldsUsingGETRequest($batch_size, $next_page_token),
-            [$this, 'getOpportunityFieldsUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getOpportunityFieldsUsingGET'
-     *
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getOpportunityFieldsUsingGETRequest(
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): Request {
+        null|int $batch_size = null,
+        null|string $next_page_token = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/schema/fields.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1458,55 +428,29 @@ class OpportunitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
-                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                    'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getOpportunityRolesUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getOpportunityRolesUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1524,199 +468,21 @@ class OpportunitiesApi
      *   Paging token returned from a previous response
      * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
      *   Optional JSON request for retrieving opportunity roles with compound keys
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getOpportunityRolesUsingGET(
         string $filter_type,
         array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
-        [$response] = $this->getOpportunityRolesUsingGETWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $custom_object_lookup_request);
-        return $response;
-    }
-
-    /**
-     * Get Opportunity Roles
-     *
-     * @param string $filter_type
-     *   The role field to filter on. Searchable fields can be retrieved with the Describe Opportunity call.
-     * @param string[] $filter_values
-     *   Comma-separated list of field values to return records for
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   Maximum number of records to return in the response. Max and default is 300
-     * @param string|null $next_page_token
-     *   Paging token returned from a previous response
-     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
-     *   Optional JSON request for retrieving opportunity roles with compound keys
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getOpportunityRolesUsingGETWithHttpInfo(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null
-    ): array {
-        $request = $this->getOpportunityRolesUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $custom_object_lookup_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getOpportunityRolesUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-        };
-    }
-
-    /**
-     * Get Opportunity Roles
-     *
-     * @param string $filter_type
-     *   The role field to filter on. Searchable fields can be retrieved with the Describe Opportunity call.
-     * @param string[] $filter_values
-     *   Comma-separated list of field values to return records for
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   Maximum number of records to return in the response. Max and default is 300
-     * @param string|null $next_page_token
-     *   Paging token returned from a previous response
-     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
-     *   Optional JSON request for retrieving opportunity roles with compound keys
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getOpportunityRolesUsingGETAsync(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null
-    ): PromiseInterface {
-        return $this->getOpportunityRolesUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $custom_object_lookup_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject => $response[0]
-            );
-    }
-
-    /**
-     * Get Opportunity Roles
-     *
-     * @param string $filter_type
-     *   The role field to filter on. Searchable fields can be retrieved with the Describe Opportunity call.
-     * @param string[] $filter_values
-     *   Comma-separated list of field values to return records for
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   Maximum number of records to return in the response. Max and default is 300
-     * @param string|null $next_page_token
-     *   Paging token returned from a previous response
-     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
-     *   Optional JSON request for retrieving opportunity roles with compound keys
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getOpportunityRolesUsingGETAsyncWithHttpInfo(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getOpportunityRolesUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $custom_object_lookup_request),
-            [$this, 'getOpportunityRolesUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getOpportunityRolesUsingGET'
-     *
-     * @param string $filter_type
-     *   The role field to filter on. Searchable fields can be retrieved with the Describe Opportunity call.
-     * @param string[] $filter_values
-     *   Comma-separated list of field values to return records for
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   Maximum number of records to return in the response. Max and default is 300
-     * @param string|null $next_page_token
-     *   Paging token returned from a previous response
-     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
-     *   Optional JSON request for retrieving opportunity roles with compound keys
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getOpportunityRolesUsingGETRequest(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null
-    ): Request {
+        null|array $fields = null,
+        null|int $batch_size = null,
+        null|string $next_page_token = null,
+        null|\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
             throw new \InvalidArgumentException(
@@ -1730,58 +496,32 @@ class OpportunitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'filterType' => ObjectSerializer::toQueryValue($filter_type),
-                'filterValues' => ObjectSerializer::serializeCollection($filter_values, 'multi'),
-                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
-                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
-                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'filterType' => ObjectSerializer::toQueryValue($filter_type),
+                    'filterValues' => ObjectSerializer::serializeCollection($filter_values, 'multi'),
+                    'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
+                    'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                    'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                $custom_object_lookup_request,
             ),
-            // Form Params
-            [
-            ],
-            $custom_object_lookup_request
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for syncOpportunitiesUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function syncOpportunitiesUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1789,134 +529,16 @@ class OpportunitiesApi
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
      *   syncCustomObjectRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function syncOpportunitiesUsingPOST(
-        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
-        [$response] = $this->syncOpportunitiesUsingPOSTWithHttpInfo($sync_custom_object_request);
-        return $response;
-    }
-
-    /**
-     * Sync Opportunities
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-     *   syncCustomObjectRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function syncOpportunitiesUsingPOSTWithHttpInfo(
-        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): array {
-        $request = $this->syncOpportunitiesUsingPOSTRequest($sync_custom_object_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->syncOpportunitiesUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-        };
-    }
-
-    /**
-     * Sync Opportunities
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-     *   syncCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function syncOpportunitiesUsingPOSTAsync(
-        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): PromiseInterface {
-        return $this->syncOpportunitiesUsingPOSTAsyncWithHttpInfo($sync_custom_object_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject => $response[0]
-            );
-    }
-
-    /**
-     * Sync Opportunities
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-     *   syncCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function syncOpportunitiesUsingPOSTAsyncWithHttpInfo(
-        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->syncOpportunitiesUsingPOSTRequest($sync_custom_object_request),
-            [$this, 'syncOpportunitiesUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'syncOpportunitiesUsingPOST'
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-     *   syncCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function syncOpportunitiesUsingPOSTRequest(
-        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): Request {
+        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1924,53 +546,27 @@ class OpportunitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $sync_custom_object_request,
             ),
-            // Form Params
-            [
-            ],
-            $sync_custom_object_request
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for syncOpportunityRolesUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function syncOpportunityRolesUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1978,134 +574,16 @@ class OpportunitiesApi
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
      *   syncCustomObjectRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function syncOpportunityRolesUsingPOST(
-        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
-        [$response] = $this->syncOpportunityRolesUsingPOSTWithHttpInfo($sync_custom_object_request);
-        return $response;
-    }
-
-    /**
-     * Sync Opportunity Roles
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-     *   syncCustomObjectRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function syncOpportunityRolesUsingPOSTWithHttpInfo(
-        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): array {
-        $request = $this->syncOpportunityRolesUsingPOSTRequest($sync_custom_object_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->syncOpportunityRolesUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-            ),
-        };
-    }
-
-    /**
-     * Sync Opportunity Roles
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-     *   syncCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function syncOpportunityRolesUsingPOSTAsync(
-        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): PromiseInterface {
-        return $this->syncOpportunityRolesUsingPOSTAsyncWithHttpInfo($sync_custom_object_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject => $response[0]
-            );
-    }
-
-    /**
-     * Sync Opportunity Roles
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-     *   syncCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function syncOpportunityRolesUsingPOSTAsyncWithHttpInfo(
-        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->syncOpportunityRolesUsingPOSTRequest($sync_custom_object_request),
-            [$this, 'syncOpportunityRolesUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'syncOpportunityRolesUsingPOST'
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-     *   syncCustomObjectRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function syncOpportunityRolesUsingPOSTRequest(
-        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): Request {
+        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/roles.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2113,27 +591,26 @@ class OpportunitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $sync_custom_object_request,
             ),
-            // Form Params
-            [
-            ],
-            $sync_custom_object_request
+            $responseMap,
+            async: $async,
         );
     }
 }

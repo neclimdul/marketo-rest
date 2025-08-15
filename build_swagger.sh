@@ -45,10 +45,10 @@ function build_swagger() {
 }
 
 if [ ! -d "$PWD/openapi-php" ]; then
-  git clone git@gitlab.com:neclimdul/openapi-php.git -b v3
+  git clone git@gitlab.com:neclimdul/openapi-php.git -b 2.x
 else
   cd openapi-php || exit
-  git checkout main
+  git checkout 2.x
   git pull
   cd - || exit
 fi

@@ -119,7 +119,7 @@ class TagsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class TagsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class TagsApiTest extends TestCase
     /**
      * @dataProvider provideGetTagByNameUsingGET
      * @covers ::getTagByNameUsingGET
-     * @covers ::getTagByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetTagByNameUsingGET(
         int $code,
@@ -151,65 +149,7 @@ class TagsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getTagByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTagByNameUsingGET
-     * @covers ::getTagByNameUsingGETWithHttpInfo
-     * @covers ::getTagByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetTagByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTagByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTagByNameUsingGET
-     * @covers ::getTagByNameUsingGETAsync
-     * @covers ::getTagByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTagByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTagByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTagByNameUsingGET
-     * @covers ::getTagByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getTagByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTagByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTagByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetTagTypesUsingGET(): \Generator
@@ -229,7 +169,7 @@ class TagsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -238,7 +178,7 @@ class TagsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll',
+            null,
             ['application/json']
         );
     }
@@ -246,8 +186,6 @@ class TagsApiTest extends TestCase
     /**
      * @dataProvider provideGetTagTypesUsingGET
      * @covers ::getTagTypesUsingGET
-     * @covers ::getTagTypesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetTagTypesUsingGET(
         int $code,
@@ -262,64 +200,6 @@ class TagsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getTagTypesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTagTypesUsingGET
-     * @covers ::getTagTypesUsingGETWithHttpInfo
-     * @covers ::getTagTypesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetTagTypesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTagTypesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTagTypesUsingGET
-     * @covers ::getTagTypesUsingGETAsync
-     * @covers ::getTagTypesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTagTypesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTagTypesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTagTypesUsingGET
-     * @covers ::getTagTypesUsingGETAsyncWithHttpInfo
-     * @covers ::getTagTypesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTagTypesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTagTypesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

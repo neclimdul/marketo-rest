@@ -117,14 +117,14 @@ class UsageApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData',
+            null,
             ['application/json']
         );
     }
@@ -132,8 +132,6 @@ class UsageApiTest extends TestCase
     /**
      * @dataProvider provideGetDailyErrorsUsingGET
      * @covers ::getDailyErrorsUsingGET
-     * @covers ::getDailyErrorsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetDailyErrorsUsingGET(
         int $code,
@@ -148,65 +146,7 @@ class UsageApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getDailyErrorsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDailyErrorsUsingGET
-     * @covers ::getDailyErrorsUsingGETWithHttpInfo
-     * @covers ::getDailyErrorsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetDailyErrorsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDailyErrorsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDailyErrorsUsingGET
-     * @covers ::getDailyErrorsUsingGETAsync
-     * @covers ::getDailyErrorsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetDailyErrorsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDailyErrorsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDailyErrorsUsingGET
-     * @covers ::getDailyErrorsUsingGETAsyncWithHttpInfo
-     * @covers ::getDailyErrorsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetDailyErrorsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDailyErrorsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetDailyUsageUsingGET(): \Generator
@@ -222,14 +162,14 @@ class UsageApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
+            null,
             ['application/json']
         );
     }
@@ -237,8 +177,6 @@ class UsageApiTest extends TestCase
     /**
      * @dataProvider provideGetDailyUsageUsingGET
      * @covers ::getDailyUsageUsingGET
-     * @covers ::getDailyUsageUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetDailyUsageUsingGET(
         int $code,
@@ -253,65 +191,7 @@ class UsageApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getDailyUsageUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDailyUsageUsingGET
-     * @covers ::getDailyUsageUsingGETWithHttpInfo
-     * @covers ::getDailyUsageUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetDailyUsageUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDailyUsageUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDailyUsageUsingGET
-     * @covers ::getDailyUsageUsingGETAsync
-     * @covers ::getDailyUsageUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetDailyUsageUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDailyUsageUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDailyUsageUsingGET
-     * @covers ::getDailyUsageUsingGETAsyncWithHttpInfo
-     * @covers ::getDailyUsageUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetDailyUsageUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDailyUsageUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLast7DaysErrorsUsingGET(): \Generator
@@ -327,14 +207,14 @@ class UsageApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData',
+            null,
             ['application/json']
         );
     }
@@ -342,8 +222,6 @@ class UsageApiTest extends TestCase
     /**
      * @dataProvider provideGetLast7DaysErrorsUsingGET
      * @covers ::getLast7DaysErrorsUsingGET
-     * @covers ::getLast7DaysErrorsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLast7DaysErrorsUsingGET(
         int $code,
@@ -358,65 +236,7 @@ class UsageApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLast7DaysErrorsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLast7DaysErrorsUsingGET
-     * @covers ::getLast7DaysErrorsUsingGETWithHttpInfo
-     * @covers ::getLast7DaysErrorsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLast7DaysErrorsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLast7DaysErrorsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLast7DaysErrorsUsingGET
-     * @covers ::getLast7DaysErrorsUsingGETAsync
-     * @covers ::getLast7DaysErrorsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLast7DaysErrorsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLast7DaysErrorsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLast7DaysErrorsUsingGET
-     * @covers ::getLast7DaysErrorsUsingGETAsyncWithHttpInfo
-     * @covers ::getLast7DaysErrorsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLast7DaysErrorsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLast7DaysErrorsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLast7DaysUsageUsingGET(): \Generator
@@ -432,14 +252,14 @@ class UsageApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
+            null,
             ['application/json']
         );
     }
@@ -447,8 +267,6 @@ class UsageApiTest extends TestCase
     /**
      * @dataProvider provideGetLast7DaysUsageUsingGET
      * @covers ::getLast7DaysUsageUsingGET
-     * @covers ::getLast7DaysUsageUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLast7DaysUsageUsingGET(
         int $code,
@@ -463,64 +281,6 @@ class UsageApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLast7DaysUsageUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLast7DaysUsageUsingGET
-     * @covers ::getLast7DaysUsageUsingGETWithHttpInfo
-     * @covers ::getLast7DaysUsageUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLast7DaysUsageUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLast7DaysUsageUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLast7DaysUsageUsingGET
-     * @covers ::getLast7DaysUsageUsingGETAsync
-     * @covers ::getLast7DaysUsageUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLast7DaysUsageUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLast7DaysUsageUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLast7DaysUsageUsingGET
-     * @covers ::getLast7DaysUsageUsingGETAsyncWithHttpInfo
-     * @covers ::getLast7DaysUsageUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLast7DaysUsageUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLast7DaysUsageUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

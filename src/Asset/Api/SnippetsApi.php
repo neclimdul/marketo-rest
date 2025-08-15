@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Asset\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Asset\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Asset\Configuration;
 use NecLimDul\MarketoRest\Asset\HeaderSelector;
 use NecLimDul\MarketoRest\Asset\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class SnippetsApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class SnippetsApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,168 +112,28 @@ class SnippetsApi
     }
 
     /**
-     * Exception handler for approveSnippetUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function approveSnippetUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Approve Snippet Draft
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function approveSnippetUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse {
-        [$response] = $this->approveSnippetUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Approve Snippet Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function approveSnippetUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->approveSnippetUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->approveSnippetUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Approve Snippet Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function approveSnippetUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->approveSnippetUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse => $response[0]
-            );
-    }
-
-    /**
-     * Approve Snippet Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function approveSnippetUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->approveSnippetUsingPOSTRequest($id),
-            [$this, 'approveSnippetUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'approveSnippetUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function approveSnippetUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/snippet/{id}/approveDraft.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/snippet/{id}/approveDraft.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -263,53 +141,27 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for cloneSnippetUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function cloneSnippetUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -322,174 +174,27 @@ class SnippetsApi
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
      * @param string|null $description
      *   Description of the cloned snippet
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function cloneSnippetUsingPOST(
         int $id,
         string $name,
         \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse {
-        [$response] = $this->cloneSnippetUsingPOSTWithHttpInfo($id, $name, $folder, $description);
-        return $response;
-    }
-
-    /**
-     * Clone Snippet
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   Name for the cloned snippet
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the cloned snippet
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function cloneSnippetUsingPOSTWithHttpInfo(
-        int $id,
-        string $name,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null
-    ): array {
-        $request = $this->cloneSnippetUsingPOSTRequest($id, $name, $folder, $description);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->cloneSnippetUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Clone Snippet
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   Name for the cloned snippet
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the cloned snippet
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function cloneSnippetUsingPOSTAsync(
-        int $id,
-        string $name,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null
-    ): PromiseInterface {
-        return $this->cloneSnippetUsingPOSTAsyncWithHttpInfo($id, $name, $folder, $description)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse => $response[0]
-            );
-    }
-
-    /**
-     * Clone Snippet
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   Name for the cloned snippet
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the cloned snippet
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function cloneSnippetUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $name,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->cloneSnippetUsingPOSTRequest($id, $name, $folder, $description),
-            [$this, 'cloneSnippetUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'cloneSnippetUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   Name for the cloned snippet
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the cloned snippet
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function cloneSnippetUsingPOSTRequest(
-        int $id,
-        string $name,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/snippet/{id}/clone.json';
+        null|string $description = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/snippet/{id}/clone.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -497,56 +202,32 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'name' => ObjectSerializer::toFormValue($name),
+                    'folder' => ObjectSerializer::toFormValue($folder),
+                    'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'name' => ObjectSerializer::toFormValue($name),
-                'folder' => ObjectSerializer::toFormValue($folder),
-                'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for createSnippetUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function createSnippetUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -557,156 +238,18 @@ class SnippetsApi
      *   Name of the snippet
      * @param string|null $description
      *   Description of the snippet
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function createSnippetUsingPOST(
         \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
         string $name,
-        ?string $description = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse {
-        [$response] = $this->createSnippetUsingPOSTWithHttpInfo($folder, $name, $description);
-        return $response;
-    }
-
-    /**
-     * Create Snippet
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $name
-     *   Name of the snippet
-     * @param string|null $description
-     *   Description of the snippet
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function createSnippetUsingPOSTWithHttpInfo(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $name,
-        ?string $description = null
-    ): array {
-        $request = $this->createSnippetUsingPOSTRequest($folder, $name, $description);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->createSnippetUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Create Snippet
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $name
-     *   Name of the snippet
-     * @param string|null $description
-     *   Description of the snippet
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function createSnippetUsingPOSTAsync(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $name,
-        ?string $description = null
-    ): PromiseInterface {
-        return $this->createSnippetUsingPOSTAsyncWithHttpInfo($folder, $name, $description)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse => $response[0]
-            );
-    }
-
-    /**
-     * Create Snippet
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $name
-     *   Name of the snippet
-     * @param string|null $description
-     *   Description of the snippet
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createSnippetUsingPOSTAsyncWithHttpInfo(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $name,
-        ?string $description = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->createSnippetUsingPOSTRequest($folder, $name, $description),
-            [$this, 'createSnippetUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'createSnippetUsingPOST'
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $name
-     *   Name of the snippet
-     * @param string|null $description
-     *   Description of the snippet
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createSnippetUsingPOSTRequest(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $name,
-        ?string $description = null
-    ): Request {
+        null|string $description = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/snippets.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -714,56 +257,32 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
+                    'folder' => ObjectSerializer::toFormValue($folder),
+                    'name' => ObjectSerializer::toFormValue($name),
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
-                'folder' => ObjectSerializer::toFormValue($folder),
-                'name' => ObjectSerializer::toFormValue($name),
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for deleteSnippetUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function deleteSnippetUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -771,139 +290,24 @@ class SnippetsApi
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteSnippetUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->deleteSnippetUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Delete Snippet
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteSnippetUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->deleteSnippetUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteSnippetUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Snippet
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteSnippetUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->deleteSnippetUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Delete Snippet
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteSnippetUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteSnippetUsingPOSTRequest($id),
-            [$this, 'deleteSnippetUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteSnippetUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteSnippetUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/snippet/{id}/delete.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/snippet/{id}/delete.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -911,53 +315,27 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for discardSnippetUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function discardSnippetUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -965,139 +343,24 @@ class SnippetsApi
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function discardSnippetUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->discardSnippetUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Discard Snippet Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function discardSnippetUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->discardSnippetUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->discardSnippetUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Discard Snippet Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function discardSnippetUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->discardSnippetUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Discard Snippet Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function discardSnippetUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->discardSnippetUsingPOSTRequest($id),
-            [$this, 'discardSnippetUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'discardSnippetUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function discardSnippetUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/snippet/{id}/discardDraft.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/snippet/{id}/discardDraft.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1105,60 +368,27 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getDynamicContentUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getDynamicContentUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                /**
-                 * Psalm doesn't understand what to do if we're hinting an array.
-                 *
-                 * @psalm-suppress ArgumentTypeCoercion
-                 * @psalm-suppress UndefinedClass
-                 * @psalm-suppress ReservedWord
-                 */
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        'object', // @phpstan-ignore argument.type
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1168,152 +398,25 @@ class SnippetsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return object
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getDynamicContentUsingGET(
         int $id,
-        ?string $status = null
-    ): object {
-        [$response] = $this->getDynamicContentUsingGETWithHttpInfo($id, $status);
-        return $response;
-    }
-
-    /**
-     * Get Dynamic Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     object,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getDynamicContentUsingGETWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): array {
-        $request = $this->getDynamicContentUsingGETRequest($id, $status);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getDynamicContentUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                'object'
-            ),
-            default => $this->responseToReturn(
-                $response,
-                'object'
-            ),
-        };
-    }
-
-    /**
-     * Get Dynamic Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getDynamicContentUsingGETAsync(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->getDynamicContentUsingGETAsyncWithHttpInfo($id, $status)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     object,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): object => $response[0]
-            );
-    }
-
-    /**
-     * Get Dynamic Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getDynamicContentUsingGETAsyncWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getDynamicContentUsingGETRequest($id, $status),
-            [$this, 'getDynamicContentUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        'object'
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        'object'
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getDynamicContentUsingGET'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getDynamicContentUsingGETRequest(
-        int $id,
-        ?string $status = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/snippet/{id}/dynamicContent.json';
+        null|string $status = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/snippet/{id}/dynamicContent.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1321,54 +424,28 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getSnippetByIdUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getSnippetByIdUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1378,152 +455,25 @@ class SnippetsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getSnippetByIdUsingGET(
         int $id,
-        ?string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse {
-        [$response] = $this->getSnippetByIdUsingGETWithHttpInfo($id, $status);
-        return $response;
-    }
-
-    /**
-     * Get Snippet by Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getSnippetByIdUsingGETWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): array {
-        $request = $this->getSnippetByIdUsingGETRequest($id, $status);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getSnippetByIdUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Snippet by Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getSnippetByIdUsingGETAsync(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->getSnippetByIdUsingGETAsyncWithHttpInfo($id, $status)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Snippet by Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getSnippetByIdUsingGETAsyncWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getSnippetByIdUsingGETRequest($id, $status),
-            [$this, 'getSnippetByIdUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getSnippetByIdUsingGET'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getSnippetByIdUsingGETRequest(
-        int $id,
-        ?string $status = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/snippet/{id}.json';
+        null|string $status = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/snippet/{id}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1531,54 +481,28 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getSnippetContentByIdUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getSnippetContentByIdUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1588,152 +512,25 @@ class SnippetsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getSnippetContentByIdUsingGET(
         int $id,
-        ?string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse {
-        [$response] = $this->getSnippetContentByIdUsingGETWithHttpInfo($id, $status);
-        return $response;
-    }
-
-    /**
-     * Get Snippet Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getSnippetContentByIdUsingGETWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): array {
-        $request = $this->getSnippetContentByIdUsingGETRequest($id, $status);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getSnippetContentByIdUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Snippet Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getSnippetContentByIdUsingGETAsync(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->getSnippetContentByIdUsingGETAsyncWithHttpInfo($id, $status)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Snippet Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getSnippetContentByIdUsingGETAsyncWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getSnippetContentByIdUsingGETRequest($id, $status),
-            [$this, 'getSnippetContentByIdUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getSnippetContentByIdUsingGET'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getSnippetContentByIdUsingGETRequest(
-        int $id,
-        ?string $status = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/snippet/{id}/content.json';
+        null|string $status = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/snippet/{id}/content.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1741,54 +538,28 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getSnippetUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getSnippetUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1800,160 +571,18 @@ class SnippetsApi
      *   Maximum number of channels to return. Max 200, default 20
      * @param int|null $offset
      *   Integer offset for paging
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getSnippetUsingGET(
-        ?string $status = null,
-        ?int $max_return = null,
-        ?int $offset = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse {
-        [$response] = $this->getSnippetUsingGETWithHttpInfo($status, $max_return, $offset);
-        return $response;
-    }
-
-    /**
-     * Get Snippets
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param int|null $max_return
-     *   Maximum number of channels to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getSnippetUsingGETWithHttpInfo(
-        ?string $status = null,
-        ?int $max_return = null,
-        ?int $offset = null
-    ): array {
-        $request = $this->getSnippetUsingGETRequest($status, $max_return, $offset);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getSnippetUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Snippets
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param int|null $max_return
-     *   Maximum number of channels to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getSnippetUsingGETAsync(
-        ?string $status = null,
-        ?int $max_return = null,
-        ?int $offset = null
-    ): PromiseInterface {
-        return $this->getSnippetUsingGETAsyncWithHttpInfo($status, $max_return, $offset)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Snippets
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param int|null $max_return
-     *   Maximum number of channels to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getSnippetUsingGETAsyncWithHttpInfo(
-        ?string $status = null,
-        ?int $max_return = null,
-        ?int $offset = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getSnippetUsingGETRequest($status, $max_return, $offset),
-            [$this, 'getSnippetUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getSnippetUsingGET'
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param int|null $max_return
-     *   Maximum number of channels to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getSnippetUsingGETRequest(
-        ?string $status = null,
-        ?int $max_return = null,
-        ?int $offset = null
-    ): Request {
+        null|string $status = null,
+        null|int $max_return = null,
+        null|int $offset = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/snippets.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1961,56 +590,30 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
-                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                    'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                    'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for unapproveSnippetUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function unapproveSnippetUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2018,139 +621,24 @@ class SnippetsApi
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function unapproveSnippetUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse {
-        [$response] = $this->unapproveSnippetUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Unapprove Snippet
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function unapproveSnippetUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->unapproveSnippetUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->unapproveSnippetUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Unapprove Snippet
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function unapproveSnippetUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->unapproveSnippetUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse => $response[0]
-            );
-    }
-
-    /**
-     * Unapprove Snippet
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function unapproveSnippetUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->unapproveSnippetUsingPOSTRequest($id),
-            [$this, 'unapproveSnippetUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'unapproveSnippetUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function unapproveSnippetUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/snippet/{id}/unapprove.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/snippet/{id}/unapprove.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2158,53 +646,27 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateContentUsingPOST1.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateContentUsingPOST1HandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2216,165 +678,26 @@ class SnippetsApi
      *   Content of the snippet
      * @param string $type
      *   Type of snippet content
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateContentUsingPOST1(
         int $id,
         string $content,
-        string $type
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->updateContentUsingPOST1WithHttpInfo($id, $content, $type);
-        return $response;
-    }
-
-    /**
-     * Update Snippet Content
-     *
-     * @param int $id
-     *   id
-     * @param string $content
-     *   Content of the snippet
-     * @param string $type
-     *   Type of snippet content
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateContentUsingPOST1WithHttpInfo(
-        int $id,
-        string $content,
-        string $type
-    ): array {
-        $request = $this->updateContentUsingPOST1Request($id, $content, $type);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateContentUsingPOST1HandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Snippet Content
-     *
-     * @param int $id
-     *   id
-     * @param string $content
-     *   Content of the snippet
-     * @param string $type
-     *   Type of snippet content
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateContentUsingPOST1Async(
-        int $id,
-        string $content,
-        string $type
-    ): PromiseInterface {
-        return $this->updateContentUsingPOST1AsyncWithHttpInfo($id, $content, $type)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Snippet Content
-     *
-     * @param int $id
-     *   id
-     * @param string $content
-     *   Content of the snippet
-     * @param string $type
-     *   Type of snippet content
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateContentUsingPOST1AsyncWithHttpInfo(
-        int $id,
-        string $content,
-        string $type
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateContentUsingPOST1Request($id, $content, $type),
-            [$this, 'updateContentUsingPOST1HandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateContentUsingPOST1'
-     *
-     * @param int $id
-     *   id
-     * @param string $content
-     *   Content of the snippet
-     * @param string $type
-     *   Type of snippet content
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateContentUsingPOST1Request(
-        int $id,
-        string $content,
-        string $type
-    ): Request {
-        $resourcePath = '/rest/asset/v1/snippet/{id}/content.json';
+        string $type,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/snippet/{id}/content.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2382,55 +705,29 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'content' => ObjectSerializer::toQueryValue($content),
-                'type' => ObjectSerializer::toQueryValue($type),
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'content' => ObjectSerializer::toQueryValue($content),
+                    'type' => ObjectSerializer::toQueryValue($type),
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateDynamicContentUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateDynamicContentUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2444,183 +741,29 @@ class SnippetsApi
      *   Type of dynamic content section
      * @param string|null $value
      *   Value of the dynamic content section
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateDynamicContentUsingPOST(
         int $id,
         int $segment_id,
-        ?string $type = null,
-        ?string $value = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->updateDynamicContentUsingPOSTWithHttpInfo($id, $segment_id, $type, $value);
-        return $response;
-    }
-
-    /**
-     * Update Snippet Dynamic Content
-     *
-     * @param int $id
-     *   id
-     * @param int $segment_id
-     *   segmentId
-     * @param string|null $type
-     *   Type of dynamic content section
-     * @param string|null $value
-     *   Value of the dynamic content section
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateDynamicContentUsingPOSTWithHttpInfo(
-        int $id,
-        int $segment_id,
-        ?string $type = null,
-        ?string $value = null
-    ): array {
-        $request = $this->updateDynamicContentUsingPOSTRequest($id, $segment_id, $type, $value);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateDynamicContentUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Snippet Dynamic Content
-     *
-     * @param int $id
-     *   id
-     * @param int $segment_id
-     *   segmentId
-     * @param string|null $type
-     *   Type of dynamic content section
-     * @param string|null $value
-     *   Value of the dynamic content section
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateDynamicContentUsingPOSTAsync(
-        int $id,
-        int $segment_id,
-        ?string $type = null,
-        ?string $value = null
-    ): PromiseInterface {
-        return $this->updateDynamicContentUsingPOSTAsyncWithHttpInfo($id, $segment_id, $type, $value)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Snippet Dynamic Content
-     *
-     * @param int $id
-     *   id
-     * @param int $segment_id
-     *   segmentId
-     * @param string|null $type
-     *   Type of dynamic content section
-     * @param string|null $value
-     *   Value of the dynamic content section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateDynamicContentUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        int $segment_id,
-        ?string $type = null,
-        ?string $value = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateDynamicContentUsingPOSTRequest($id, $segment_id, $type, $value),
-            [$this, 'updateDynamicContentUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateDynamicContentUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param int $segment_id
-     *   segmentId
-     * @param string|null $type
-     *   Type of dynamic content section
-     * @param string|null $value
-     *   Value of the dynamic content section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateDynamicContentUsingPOSTRequest(
-        int $id,
-        int $segment_id,
-        ?string $type = null,
-        ?string $value = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/snippet/{id}/dynamicContent/{segmentId}.json';
+        null|string $type = null,
+        null|string $value = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'segmentId' . '}',
-            ObjectSerializer::toPathValue($segment_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'segmentId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($segment_id),
+            ],
+            '/rest/asset/v1/snippet/{id}/dynamicContent/{segmentId}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2628,55 +771,31 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'type' => isset($type) ? ObjectSerializer::toFormValue($type) : null,
+                    'value' => isset($value) ? ObjectSerializer::toFormValue($value) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'type' => isset($type) ? ObjectSerializer::toFormValue($type) : null,
-                'value' => isset($value) ? ObjectSerializer::toFormValue($value) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateSnippetUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateSnippetUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2690,178 +809,27 @@ class SnippetsApi
      *   Archival status of the snippet
      * @param string|null $name
      *   Name of the snippet
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateSnippetUsingPOST(
         int $id,
-        ?string $description = null,
-        ?string $is_archive = null,
-        ?string $name = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse {
-        [$response] = $this->updateSnippetUsingPOSTWithHttpInfo($id, $description, $is_archive, $name);
-        return $response;
-    }
-
-    /**
-     * Update Snippet Metadata
-     *
-     * @param int $id
-     *   id
-     * @param string|null $description
-     *   Description of the snippet
-     * @param string|null $is_archive
-     *   Archival status of the snippet
-     * @param string|null $name
-     *   Name of the snippet
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateSnippetUsingPOSTWithHttpInfo(
-        int $id,
-        ?string $description = null,
-        ?string $is_archive = null,
-        ?string $name = null
-    ): array {
-        $request = $this->updateSnippetUsingPOSTRequest($id, $description, $is_archive, $name);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateSnippetUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Snippet Metadata
-     *
-     * @param int $id
-     *   id
-     * @param string|null $description
-     *   Description of the snippet
-     * @param string|null $is_archive
-     *   Archival status of the snippet
-     * @param string|null $name
-     *   Name of the snippet
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateSnippetUsingPOSTAsync(
-        int $id,
-        ?string $description = null,
-        ?string $is_archive = null,
-        ?string $name = null
-    ): PromiseInterface {
-        return $this->updateSnippetUsingPOSTAsyncWithHttpInfo($id, $description, $is_archive, $name)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Snippet Metadata
-     *
-     * @param int $id
-     *   id
-     * @param string|null $description
-     *   Description of the snippet
-     * @param string|null $is_archive
-     *   Archival status of the snippet
-     * @param string|null $name
-     *   Name of the snippet
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateSnippetUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        ?string $description = null,
-        ?string $is_archive = null,
-        ?string $name = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateSnippetUsingPOSTRequest($id, $description, $is_archive, $name),
-            [$this, 'updateSnippetUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateSnippetUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $description
-     *   Description of the snippet
-     * @param string|null $is_archive
-     *   Archival status of the snippet
-     * @param string|null $name
-     *   Name of the snippet
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateSnippetUsingPOSTRequest(
-        int $id,
-        ?string $description = null,
-        ?string $is_archive = null,
-        ?string $name = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/snippet/{id}.json';
+        null|string $description = null,
+        null|string $is_archive = null,
+        null|string $name = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/snippet/{id}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2869,30 +837,31 @@ class SnippetsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
+                    'isArchive' => isset($is_archive) ? ObjectSerializer::toFormValue($is_archive) : null,
+                    'name' => isset($name) ? ObjectSerializer::toFormValue($name) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
-                'isArchive' => isset($is_archive) ? ObjectSerializer::toFormValue($is_archive) : null,
-                'name' => isset($name) ? ObjectSerializer::toFormValue($name) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 }

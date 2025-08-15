@@ -119,7 +119,7 @@ class SnippetsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class SnippetsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideApproveSnippetUsingPOST
      * @covers ::approveSnippetUsingPOST
-     * @covers ::approveSnippetUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testApproveSnippetUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'approveSnippetUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveSnippetUsingPOST
-     * @covers ::approveSnippetUsingPOSTWithHttpInfo
-     * @covers ::approveSnippetUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testApproveSnippetUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveSnippetUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveSnippetUsingPOST
-     * @covers ::approveSnippetUsingPOSTAsync
-     * @covers ::approveSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveSnippetUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveSnippetUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveSnippetUsingPOST
-     * @covers ::approveSnippetUsingPOSTAsyncWithHttpInfo
-     * @covers ::approveSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveSnippetUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveSnippetUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCloneSnippetUsingPOST(): \Generator
@@ -233,7 +173,7 @@ class SnippetsApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\Folder',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -244,7 +184,7 @@ class SnippetsApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\Folder',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
     }
@@ -252,8 +192,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideCloneSnippetUsingPOST
      * @covers ::cloneSnippetUsingPOST
-     * @covers ::cloneSnippetUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCloneSnippetUsingPOST(
         int $code,
@@ -268,65 +206,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'cloneSnippetUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneSnippetUsingPOST
-     * @covers ::cloneSnippetUsingPOSTWithHttpInfo
-     * @covers ::cloneSnippetUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCloneSnippetUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneSnippetUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneSnippetUsingPOST
-     * @covers ::cloneSnippetUsingPOSTAsync
-     * @covers ::cloneSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneSnippetUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneSnippetUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneSnippetUsingPOST
-     * @covers ::cloneSnippetUsingPOSTAsyncWithHttpInfo
-     * @covers ::cloneSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneSnippetUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneSnippetUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCreateSnippetUsingPOST(): \Generator
@@ -348,7 +228,7 @@ class SnippetsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -358,7 +238,7 @@ class SnippetsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
     }
@@ -366,8 +246,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideCreateSnippetUsingPOST
      * @covers ::createSnippetUsingPOST
-     * @covers ::createSnippetUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateSnippetUsingPOST(
         int $code,
@@ -382,65 +260,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createSnippetUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateSnippetUsingPOST
-     * @covers ::createSnippetUsingPOSTWithHttpInfo
-     * @covers ::createSnippetUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateSnippetUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createSnippetUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateSnippetUsingPOST
-     * @covers ::createSnippetUsingPOSTAsync
-     * @covers ::createSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateSnippetUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createSnippetUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateSnippetUsingPOST
-     * @covers ::createSnippetUsingPOSTAsyncWithHttpInfo
-     * @covers ::createSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateSnippetUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createSnippetUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteSnippetUsingPOST(): \Generator
@@ -458,7 +278,7 @@ class SnippetsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -466,7 +286,7 @@ class SnippetsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -474,8 +294,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteSnippetUsingPOST
      * @covers ::deleteSnippetUsingPOST
-     * @covers ::deleteSnippetUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteSnippetUsingPOST(
         int $code,
@@ -490,65 +308,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteSnippetUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteSnippetUsingPOST
-     * @covers ::deleteSnippetUsingPOSTWithHttpInfo
-     * @covers ::deleteSnippetUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteSnippetUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteSnippetUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteSnippetUsingPOST
-     * @covers ::deleteSnippetUsingPOSTAsync
-     * @covers ::deleteSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteSnippetUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteSnippetUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteSnippetUsingPOST
-     * @covers ::deleteSnippetUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteSnippetUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteSnippetUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDiscardSnippetUsingPOST(): \Generator
@@ -566,7 +326,7 @@ class SnippetsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -574,7 +334,7 @@ class SnippetsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -582,8 +342,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideDiscardSnippetUsingPOST
      * @covers ::discardSnippetUsingPOST
-     * @covers ::discardSnippetUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDiscardSnippetUsingPOST(
         int $code,
@@ -598,65 +356,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'discardSnippetUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardSnippetUsingPOST
-     * @covers ::discardSnippetUsingPOSTWithHttpInfo
-     * @covers ::discardSnippetUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDiscardSnippetUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardSnippetUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardSnippetUsingPOST
-     * @covers ::discardSnippetUsingPOSTAsync
-     * @covers ::discardSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardSnippetUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardSnippetUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardSnippetUsingPOST
-     * @covers ::discardSnippetUsingPOSTAsyncWithHttpInfo
-     * @covers ::discardSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardSnippetUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardSnippetUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetDynamicContentUsingGET(): \Generator
@@ -676,7 +376,7 @@ class SnippetsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            'object',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -685,7 +385,7 @@ class SnippetsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            'object',
+            null,
             ['application/json']
         );
     }
@@ -693,8 +393,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideGetDynamicContentUsingGET
      * @covers ::getDynamicContentUsingGET
-     * @covers ::getDynamicContentUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetDynamicContentUsingGET(
         int $code,
@@ -709,65 +407,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getDynamicContentUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDynamicContentUsingGET
-     * @covers ::getDynamicContentUsingGETWithHttpInfo
-     * @covers ::getDynamicContentUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetDynamicContentUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDynamicContentUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDynamicContentUsingGET
-     * @covers ::getDynamicContentUsingGETAsync
-     * @covers ::getDynamicContentUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetDynamicContentUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== 'object') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDynamicContentUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDynamicContentUsingGET
-     * @covers ::getDynamicContentUsingGETAsyncWithHttpInfo
-     * @covers ::getDynamicContentUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetDynamicContentUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDynamicContentUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetSnippetByIdUsingGET(): \Generator
@@ -787,7 +427,7 @@ class SnippetsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -796,7 +436,7 @@ class SnippetsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
     }
@@ -804,8 +444,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideGetSnippetByIdUsingGET
      * @covers ::getSnippetByIdUsingGET
-     * @covers ::getSnippetByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSnippetByIdUsingGET(
         int $code,
@@ -820,65 +458,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSnippetByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSnippetByIdUsingGET
-     * @covers ::getSnippetByIdUsingGETWithHttpInfo
-     * @covers ::getSnippetByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSnippetByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSnippetByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSnippetByIdUsingGET
-     * @covers ::getSnippetByIdUsingGETAsync
-     * @covers ::getSnippetByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSnippetByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSnippetByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSnippetByIdUsingGET
-     * @covers ::getSnippetByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getSnippetByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSnippetByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSnippetByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetSnippetContentByIdUsingGET(): \Generator
@@ -898,7 +478,7 @@ class SnippetsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -907,7 +487,7 @@ class SnippetsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse',
+            null,
             ['application/json']
         );
     }
@@ -915,8 +495,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideGetSnippetContentByIdUsingGET
      * @covers ::getSnippetContentByIdUsingGET
-     * @covers ::getSnippetContentByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSnippetContentByIdUsingGET(
         int $code,
@@ -931,65 +509,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSnippetContentByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSnippetContentByIdUsingGET
-     * @covers ::getSnippetContentByIdUsingGETWithHttpInfo
-     * @covers ::getSnippetContentByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSnippetContentByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSnippetContentByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSnippetContentByIdUsingGET
-     * @covers ::getSnippetContentByIdUsingGETAsync
-     * @covers ::getSnippetContentByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSnippetContentByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSnippetContentByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSnippetContentByIdUsingGET
-     * @covers ::getSnippetContentByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getSnippetContentByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSnippetContentByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSnippetContentByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetSnippetUsingGET(): \Generator
@@ -1011,7 +531,7 @@ class SnippetsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1021,7 +541,7 @@ class SnippetsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
     }
@@ -1029,8 +549,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideGetSnippetUsingGET
      * @covers ::getSnippetUsingGET
-     * @covers ::getSnippetUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSnippetUsingGET(
         int $code,
@@ -1045,65 +563,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSnippetUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSnippetUsingGET
-     * @covers ::getSnippetUsingGETWithHttpInfo
-     * @covers ::getSnippetUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSnippetUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSnippetUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSnippetUsingGET
-     * @covers ::getSnippetUsingGETAsync
-     * @covers ::getSnippetUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSnippetUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSnippetUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSnippetUsingGET
-     * @covers ::getSnippetUsingGETAsyncWithHttpInfo
-     * @covers ::getSnippetUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSnippetUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSnippetUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUnapproveSnippetUsingPOST(): \Generator
@@ -1121,7 +581,7 @@ class SnippetsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1129,7 +589,7 @@ class SnippetsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
     }
@@ -1137,8 +597,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideUnapproveSnippetUsingPOST
      * @covers ::unapproveSnippetUsingPOST
-     * @covers ::unapproveSnippetUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUnapproveSnippetUsingPOST(
         int $code,
@@ -1153,65 +611,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'unapproveSnippetUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveSnippetUsingPOST
-     * @covers ::unapproveSnippetUsingPOSTWithHttpInfo
-     * @covers ::unapproveSnippetUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUnapproveSnippetUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveSnippetUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveSnippetUsingPOST
-     * @covers ::unapproveSnippetUsingPOSTAsync
-     * @covers ::unapproveSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUnapproveSnippetUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveSnippetUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveSnippetUsingPOST
-     * @covers ::unapproveSnippetUsingPOSTAsyncWithHttpInfo
-     * @covers ::unapproveSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUnapproveSnippetUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveSnippetUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateContentUsingPOST1(): \Generator
@@ -1233,7 +633,7 @@ class SnippetsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1243,7 +643,7 @@ class SnippetsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -1251,8 +651,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateContentUsingPOST1
      * @covers ::updateContentUsingPOST1
-     * @covers ::updateContentUsingPOST1Request
-     * @covers ::makeRequest
      */
     public function testUpdateContentUsingPOST1(
         int $code,
@@ -1267,65 +665,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateContentUsingPOST1'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateContentUsingPOST1
-     * @covers ::updateContentUsingPOST1WithHttpInfo
-     * @covers ::updateContentUsingPOST1Request
-     * @covers ::makeRequest
-     */
-    public function testUpdateContentUsingPOST1WithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateContentUsingPOST1WithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateContentUsingPOST1
-     * @covers ::updateContentUsingPOST1Async
-     * @covers ::updateContentUsingPOST1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateContentUsingPOST1Async(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateContentUsingPOST1Async'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateContentUsingPOST1
-     * @covers ::updateContentUsingPOST1AsyncWithHttpInfo
-     * @covers ::updateContentUsingPOST1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateContentUsingPOST1AsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateContentUsingPOST1AsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateDynamicContentUsingPOST(): \Generator
@@ -1349,7 +689,7 @@ class SnippetsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1360,7 +700,7 @@ class SnippetsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -1368,8 +708,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateDynamicContentUsingPOST
      * @covers ::updateDynamicContentUsingPOST
-     * @covers ::updateDynamicContentUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateDynamicContentUsingPOST(
         int $code,
@@ -1384,65 +722,7 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateDynamicContentUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateDynamicContentUsingPOST
-     * @covers ::updateDynamicContentUsingPOSTWithHttpInfo
-     * @covers ::updateDynamicContentUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateDynamicContentUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateDynamicContentUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateDynamicContentUsingPOST
-     * @covers ::updateDynamicContentUsingPOSTAsync
-     * @covers ::updateDynamicContentUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateDynamicContentUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateDynamicContentUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateDynamicContentUsingPOST
-     * @covers ::updateDynamicContentUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateDynamicContentUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateDynamicContentUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateDynamicContentUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateSnippetUsingPOST(): \Generator
@@ -1466,7 +746,7 @@ class SnippetsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1477,7 +757,7 @@ class SnippetsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+            null,
             ['application/json']
         );
     }
@@ -1485,8 +765,6 @@ class SnippetsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateSnippetUsingPOST
      * @covers ::updateSnippetUsingPOST
-     * @covers ::updateSnippetUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateSnippetUsingPOST(
         int $code,
@@ -1501,64 +779,6 @@ class SnippetsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateSnippetUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateSnippetUsingPOST
-     * @covers ::updateSnippetUsingPOSTWithHttpInfo
-     * @covers ::updateSnippetUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateSnippetUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateSnippetUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateSnippetUsingPOST
-     * @covers ::updateSnippetUsingPOSTAsync
-     * @covers ::updateSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateSnippetUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateSnippetUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateSnippetUsingPOST
-     * @covers ::updateSnippetUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateSnippetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateSnippetUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateSnippetUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

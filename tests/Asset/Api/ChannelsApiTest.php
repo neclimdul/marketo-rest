@@ -121,7 +121,7 @@ class ChannelsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -130,7 +130,7 @@ class ChannelsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
+            null,
             ['application/json']
         );
     }
@@ -138,8 +138,6 @@ class ChannelsApiTest extends TestCase
     /**
      * @dataProvider provideGetAllChannelsUsingGET
      * @covers ::getAllChannelsUsingGET
-     * @covers ::getAllChannelsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetAllChannelsUsingGET(
         int $code,
@@ -154,65 +152,7 @@ class ChannelsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getAllChannelsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllChannelsUsingGET
-     * @covers ::getAllChannelsUsingGETWithHttpInfo
-     * @covers ::getAllChannelsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetAllChannelsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllChannelsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllChannelsUsingGET
-     * @covers ::getAllChannelsUsingGETAsync
-     * @covers ::getAllChannelsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetAllChannelsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllChannelsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllChannelsUsingGET
-     * @covers ::getAllChannelsUsingGETAsyncWithHttpInfo
-     * @covers ::getAllChannelsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetAllChannelsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllChannelsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetChannelByNameUsingGET(): \Generator
@@ -230,7 +170,7 @@ class ChannelsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -238,7 +178,7 @@ class ChannelsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
+            null,
             ['application/json']
         );
     }
@@ -246,8 +186,6 @@ class ChannelsApiTest extends TestCase
     /**
      * @dataProvider provideGetChannelByNameUsingGET
      * @covers ::getChannelByNameUsingGET
-     * @covers ::getChannelByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetChannelByNameUsingGET(
         int $code,
@@ -262,64 +200,6 @@ class ChannelsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getChannelByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetChannelByNameUsingGET
-     * @covers ::getChannelByNameUsingGETWithHttpInfo
-     * @covers ::getChannelByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetChannelByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getChannelByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetChannelByNameUsingGET
-     * @covers ::getChannelByNameUsingGETAsync
-     * @covers ::getChannelByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetChannelByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getChannelByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetChannelByNameUsingGET
-     * @covers ::getChannelByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getChannelByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetChannelByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getChannelByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

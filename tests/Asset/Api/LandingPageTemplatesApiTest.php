@@ -119,7 +119,7 @@ class LandingPageTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class LandingPageTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideApproveLandingPageTemplateUsingPOST
      * @covers ::approveLandingPageTemplateUsingPOST
-     * @covers ::approveLandingPageTemplateUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testApproveLandingPageTemplateUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'approveLandingPageTemplateUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveLandingPageTemplateUsingPOST
-     * @covers ::approveLandingPageTemplateUsingPOSTWithHttpInfo
-     * @covers ::approveLandingPageTemplateUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testApproveLandingPageTemplateUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveLandingPageTemplateUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveLandingPageTemplateUsingPOST
-     * @covers ::approveLandingPageTemplateUsingPOSTAsync
-     * @covers ::approveLandingPageTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveLandingPageTemplateUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveLandingPageTemplateUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveLandingPageTemplateUsingPOST
-     * @covers ::approveLandingPageTemplateUsingPOSTAsyncWithHttpInfo
-     * @covers ::approveLandingPageTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveLandingPageTemplateUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveLandingPageTemplateUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCloneLpTemplateUsingPOST(): \Generator
@@ -233,7 +173,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -244,7 +184,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -252,8 +192,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideCloneLpTemplateUsingPOST
      * @covers ::cloneLpTemplateUsingPOST
-     * @covers ::cloneLpTemplateUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCloneLpTemplateUsingPOST(
         int $code,
@@ -268,65 +206,7 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'cloneLpTemplateUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneLpTemplateUsingPOST
-     * @covers ::cloneLpTemplateUsingPOSTWithHttpInfo
-     * @covers ::cloneLpTemplateUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCloneLpTemplateUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneLpTemplateUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneLpTemplateUsingPOST
-     * @covers ::cloneLpTemplateUsingPOSTAsync
-     * @covers ::cloneLpTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneLpTemplateUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneLpTemplateUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneLpTemplateUsingPOST
-     * @covers ::cloneLpTemplateUsingPOSTAsyncWithHttpInfo
-     * @covers ::cloneLpTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneLpTemplateUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneLpTemplateUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCreateLpTemplateUsingPOST(): \Generator
@@ -352,7 +232,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'bool',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -364,7 +244,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'bool',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -372,8 +252,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideCreateLpTemplateUsingPOST
      * @covers ::createLpTemplateUsingPOST
-     * @covers ::createLpTemplateUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateLpTemplateUsingPOST(
         int $code,
@@ -388,65 +266,7 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createLpTemplateUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateLpTemplateUsingPOST
-     * @covers ::createLpTemplateUsingPOSTWithHttpInfo
-     * @covers ::createLpTemplateUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateLpTemplateUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createLpTemplateUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateLpTemplateUsingPOST
-     * @covers ::createLpTemplateUsingPOSTAsync
-     * @covers ::createLpTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateLpTemplateUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createLpTemplateUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateLpTemplateUsingPOST
-     * @covers ::createLpTemplateUsingPOSTAsyncWithHttpInfo
-     * @covers ::createLpTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateLpTemplateUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createLpTemplateUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteLpTemplateUsingPOST(): \Generator
@@ -464,7 +284,7 @@ class LandingPageTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -472,7 +292,7 @@ class LandingPageTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -480,8 +300,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideDeleteLpTemplateUsingPOST
      * @covers ::deleteLpTemplateUsingPOST
-     * @covers ::deleteLpTemplateUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteLpTemplateUsingPOST(
         int $code,
@@ -496,65 +314,7 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteLpTemplateUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteLpTemplateUsingPOST
-     * @covers ::deleteLpTemplateUsingPOSTWithHttpInfo
-     * @covers ::deleteLpTemplateUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteLpTemplateUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteLpTemplateUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteLpTemplateUsingPOST
-     * @covers ::deleteLpTemplateUsingPOSTAsync
-     * @covers ::deleteLpTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteLpTemplateUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteLpTemplateUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteLpTemplateUsingPOST
-     * @covers ::deleteLpTemplateUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteLpTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteLpTemplateUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteLpTemplateUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDiscardDraftUsingPOST2(): \Generator
@@ -572,7 +332,7 @@ class LandingPageTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -580,7 +340,7 @@ class LandingPageTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -588,8 +348,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideDiscardDraftUsingPOST2
      * @covers ::discardDraftUsingPOST2
-     * @covers ::discardDraftUsingPOST2Request
-     * @covers ::makeRequest
      */
     public function testDiscardDraftUsingPOST2(
         int $code,
@@ -604,65 +362,7 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'discardDraftUsingPOST2'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardDraftUsingPOST2
-     * @covers ::discardDraftUsingPOST2WithHttpInfo
-     * @covers ::discardDraftUsingPOST2Request
-     * @covers ::makeRequest
-     */
-    public function testDiscardDraftUsingPOST2WithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardDraftUsingPOST2WithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardDraftUsingPOST2
-     * @covers ::discardDraftUsingPOST2Async
-     * @covers ::discardDraftUsingPOST2Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardDraftUsingPOST2Async(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardDraftUsingPOST2Async'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardDraftUsingPOST2
-     * @covers ::discardDraftUsingPOST2AsyncWithHttpInfo
-     * @covers ::discardDraftUsingPOST2Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardDraftUsingPOST2AsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardDraftUsingPOST2AsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLandingPageTemplateByIdUsingGET(): \Generator
@@ -682,7 +382,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -691,7 +391,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -699,8 +399,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideGetLandingPageTemplateByIdUsingGET
      * @covers ::getLandingPageTemplateByIdUsingGET
-     * @covers ::getLandingPageTemplateByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLandingPageTemplateByIdUsingGET(
         int $code,
@@ -715,65 +413,7 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplateByIdUsingGET
-     * @covers ::getLandingPageTemplateByIdUsingGETWithHttpInfo
-     * @covers ::getLandingPageTemplateByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLandingPageTemplateByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplateByIdUsingGET
-     * @covers ::getLandingPageTemplateByIdUsingGETAsync
-     * @covers ::getLandingPageTemplateByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageTemplateByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplateByIdUsingGET
-     * @covers ::getLandingPageTemplateByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getLandingPageTemplateByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageTemplateByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLandingPageTemplateByNameUsingGET(): \Generator
@@ -791,7 +431,7 @@ class LandingPageTemplatesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -799,7 +439,7 @@ class LandingPageTemplatesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -807,8 +447,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideGetLandingPageTemplateByNameUsingGET
      * @covers ::getLandingPageTemplateByNameUsingGET
-     * @covers ::getLandingPageTemplateByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLandingPageTemplateByNameUsingGET(
         int $code,
@@ -823,65 +461,7 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplateByNameUsingGET
-     * @covers ::getLandingPageTemplateByNameUsingGETWithHttpInfo
-     * @covers ::getLandingPageTemplateByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLandingPageTemplateByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplateByNameUsingGET
-     * @covers ::getLandingPageTemplateByNameUsingGETAsync
-     * @covers ::getLandingPageTemplateByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageTemplateByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplateByNameUsingGET
-     * @covers ::getLandingPageTemplateByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getLandingPageTemplateByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageTemplateByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLandingPageTemplateContentUsingGET(): \Generator
@@ -901,7 +481,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -910,7 +490,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse',
+            null,
             ['application/json']
         );
     }
@@ -918,8 +498,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideGetLandingPageTemplateContentUsingGET
      * @covers ::getLandingPageTemplateContentUsingGET
-     * @covers ::getLandingPageTemplateContentUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLandingPageTemplateContentUsingGET(
         int $code,
@@ -934,65 +512,7 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateContentUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplateContentUsingGET
-     * @covers ::getLandingPageTemplateContentUsingGETWithHttpInfo
-     * @covers ::getLandingPageTemplateContentUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLandingPageTemplateContentUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateContentUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplateContentUsingGET
-     * @covers ::getLandingPageTemplateContentUsingGETAsync
-     * @covers ::getLandingPageTemplateContentUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageTemplateContentUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateContentUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplateContentUsingGET
-     * @covers ::getLandingPageTemplateContentUsingGETAsyncWithHttpInfo
-     * @covers ::getLandingPageTemplateContentUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageTemplateContentUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplateContentUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLandingPageTemplatesUsingGET(): \Generator
@@ -1016,7 +536,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1027,7 +547,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -1035,8 +555,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideGetLandingPageTemplatesUsingGET
      * @covers ::getLandingPageTemplatesUsingGET
-     * @covers ::getLandingPageTemplatesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLandingPageTemplatesUsingGET(
         int $code,
@@ -1051,65 +569,7 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplatesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplatesUsingGET
-     * @covers ::getLandingPageTemplatesUsingGETWithHttpInfo
-     * @covers ::getLandingPageTemplatesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLandingPageTemplatesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplatesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplatesUsingGET
-     * @covers ::getLandingPageTemplatesUsingGETAsync
-     * @covers ::getLandingPageTemplatesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageTemplatesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplatesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageTemplatesUsingGET
-     * @covers ::getLandingPageTemplatesUsingGETAsyncWithHttpInfo
-     * @covers ::getLandingPageTemplatesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageTemplatesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageTemplatesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUnapproveLandingPageTemplateUsingPOST(): \Generator
@@ -1127,7 +587,7 @@ class LandingPageTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1135,7 +595,7 @@ class LandingPageTemplatesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -1143,8 +603,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideUnapproveLandingPageTemplateUsingPOST
      * @covers ::unapproveLandingPageTemplateUsingPOST
-     * @covers ::unapproveLandingPageTemplateUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUnapproveLandingPageTemplateUsingPOST(
         int $code,
@@ -1159,65 +617,7 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'unapproveLandingPageTemplateUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveLandingPageTemplateUsingPOST
-     * @covers ::unapproveLandingPageTemplateUsingPOSTWithHttpInfo
-     * @covers ::unapproveLandingPageTemplateUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUnapproveLandingPageTemplateUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveLandingPageTemplateUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveLandingPageTemplateUsingPOST
-     * @covers ::unapproveLandingPageTemplateUsingPOSTAsync
-     * @covers ::unapproveLandingPageTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUnapproveLandingPageTemplateUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveLandingPageTemplateUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUnapproveLandingPageTemplateUsingPOST
-     * @covers ::unapproveLandingPageTemplateUsingPOSTAsyncWithHttpInfo
-     * @covers ::unapproveLandingPageTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUnapproveLandingPageTemplateUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'unapproveLandingPageTemplateUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateLandingPageTemplateContentUsingPOST(): \Generator
@@ -1237,7 +637,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1246,7 +646,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -1254,8 +654,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideUpdateLandingPageTemplateContentUsingPOST
      * @covers ::updateLandingPageTemplateContentUsingPOST
-     * @covers ::updateLandingPageTemplateContentUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateLandingPageTemplateContentUsingPOST(
         int $code,
@@ -1270,65 +668,7 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateLandingPageTemplateContentUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateLandingPageTemplateContentUsingPOST
-     * @covers ::updateLandingPageTemplateContentUsingPOSTWithHttpInfo
-     * @covers ::updateLandingPageTemplateContentUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateLandingPageTemplateContentUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateLandingPageTemplateContentUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateLandingPageTemplateContentUsingPOST
-     * @covers ::updateLandingPageTemplateContentUsingPOSTAsync
-     * @covers ::updateLandingPageTemplateContentUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateLandingPageTemplateContentUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateLandingPageTemplateContentUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateLandingPageTemplateContentUsingPOST
-     * @covers ::updateLandingPageTemplateContentUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateLandingPageTemplateContentUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateLandingPageTemplateContentUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateLandingPageTemplateContentUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateLpTemplateUsingPOST(): \Generator
@@ -1352,7 +692,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'bool',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1363,7 +703,7 @@ class LandingPageTemplatesApiTest extends TestCase
                 'bool',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+            null,
             ['application/json']
         );
     }
@@ -1371,8 +711,6 @@ class LandingPageTemplatesApiTest extends TestCase
     /**
      * @dataProvider provideUpdateLpTemplateUsingPOST
      * @covers ::updateLpTemplateUsingPOST
-     * @covers ::updateLpTemplateUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateLpTemplateUsingPOST(
         int $code,
@@ -1387,64 +725,6 @@ class LandingPageTemplatesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateLpTemplateUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateLpTemplateUsingPOST
-     * @covers ::updateLpTemplateUsingPOSTWithHttpInfo
-     * @covers ::updateLpTemplateUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateLpTemplateUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateLpTemplateUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateLpTemplateUsingPOST
-     * @covers ::updateLpTemplateUsingPOSTAsync
-     * @covers ::updateLpTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateLpTemplateUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateLpTemplateUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateLpTemplateUsingPOST
-     * @covers ::updateLpTemplateUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateLpTemplateUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateLpTemplateUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateLpTemplateUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

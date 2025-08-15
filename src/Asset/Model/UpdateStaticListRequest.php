@@ -31,7 +31,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @psalm-suppress MixedReturnStatement
  * @psalm-suppress MixedInferredReturnType
  */
-class UpdateStaticListRequest extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable, \Stringable
+class UpdateStaticListRequest extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     use AdditionalPropertiesTrait;
 
@@ -196,7 +196,6 @@ class UpdateStaticListRequest extends ModelBase implements ModelInterface, \Arra
      * @return string
      * @throws \JsonException
      */
-    #[\Override]
     public function __toString(): string
     {
         return json_encode(

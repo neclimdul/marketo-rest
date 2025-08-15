@@ -119,7 +119,7 @@ class CompaniesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class CompaniesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class CompaniesApiTest extends TestCase
     /**
      * @dataProvider provideDeleteCompaniesUsingPOST
      * @covers ::deleteCompaniesUsingPOST
-     * @covers ::deleteCompaniesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteCompaniesUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class CompaniesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteCompaniesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCompaniesUsingPOST
-     * @covers ::deleteCompaniesUsingPOSTWithHttpInfo
-     * @covers ::deleteCompaniesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteCompaniesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCompaniesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCompaniesUsingPOST
-     * @covers ::deleteCompaniesUsingPOSTAsync
-     * @covers ::deleteCompaniesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCompaniesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCompaniesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCompaniesUsingPOST
-     * @covers ::deleteCompaniesUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteCompaniesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCompaniesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCompaniesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDescribeUsingGET(): \Generator
@@ -225,14 +165,14 @@ class CompaniesApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
     }
@@ -240,8 +180,6 @@ class CompaniesApiTest extends TestCase
     /**
      * @dataProvider provideDescribeUsingGET
      * @covers ::describeUsingGET
-     * @covers ::describeUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testDescribeUsingGET(
         int $code,
@@ -256,65 +194,7 @@ class CompaniesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'describeUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET
-     * @covers ::describeUsingGETWithHttpInfo
-     * @covers ::describeUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testDescribeUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET
-     * @covers ::describeUsingGETAsync
-     * @covers ::describeUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET
-     * @covers ::describeUsingGETAsyncWithHttpInfo
-     * @covers ::describeUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetCompaniesUsingGET(): \Generator
@@ -340,7 +220,7 @@ class CompaniesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -352,7 +232,7 @@ class CompaniesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+            null,
             ['application/json']
         );
     }
@@ -360,8 +240,6 @@ class CompaniesApiTest extends TestCase
     /**
      * @dataProvider provideGetCompaniesUsingGET
      * @covers ::getCompaniesUsingGET
-     * @covers ::getCompaniesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetCompaniesUsingGET(
         int $code,
@@ -376,65 +254,7 @@ class CompaniesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getCompaniesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCompaniesUsingGET
-     * @covers ::getCompaniesUsingGETWithHttpInfo
-     * @covers ::getCompaniesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetCompaniesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCompaniesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCompaniesUsingGET
-     * @covers ::getCompaniesUsingGETAsync
-     * @covers ::getCompaniesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCompaniesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCompaniesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCompaniesUsingGET
-     * @covers ::getCompaniesUsingGETAsyncWithHttpInfo
-     * @covers ::getCompaniesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCompaniesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCompaniesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetCompanyFieldByNameUsingGET(): \Generator
@@ -452,7 +272,7 @@ class CompaniesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -460,7 +280,7 @@ class CompaniesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
     }
@@ -468,8 +288,6 @@ class CompaniesApiTest extends TestCase
     /**
      * @dataProvider provideGetCompanyFieldByNameUsingGET
      * @covers ::getCompanyFieldByNameUsingGET
-     * @covers ::getCompanyFieldByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetCompanyFieldByNameUsingGET(
         int $code,
@@ -484,65 +302,7 @@ class CompaniesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getCompanyFieldByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCompanyFieldByNameUsingGET
-     * @covers ::getCompanyFieldByNameUsingGETWithHttpInfo
-     * @covers ::getCompanyFieldByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetCompanyFieldByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCompanyFieldByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCompanyFieldByNameUsingGET
-     * @covers ::getCompanyFieldByNameUsingGETAsync
-     * @covers ::getCompanyFieldByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCompanyFieldByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCompanyFieldByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCompanyFieldByNameUsingGET
-     * @covers ::getCompanyFieldByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getCompanyFieldByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCompanyFieldByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCompanyFieldByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetCompanyFieldsUsingGET(): \Generator
@@ -562,7 +322,7 @@ class CompaniesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -571,7 +331,7 @@ class CompaniesApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
     }
@@ -579,8 +339,6 @@ class CompaniesApiTest extends TestCase
     /**
      * @dataProvider provideGetCompanyFieldsUsingGET
      * @covers ::getCompanyFieldsUsingGET
-     * @covers ::getCompanyFieldsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetCompanyFieldsUsingGET(
         int $code,
@@ -595,65 +353,7 @@ class CompaniesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getCompanyFieldsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCompanyFieldsUsingGET
-     * @covers ::getCompanyFieldsUsingGETWithHttpInfo
-     * @covers ::getCompanyFieldsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetCompanyFieldsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCompanyFieldsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCompanyFieldsUsingGET
-     * @covers ::getCompanyFieldsUsingGETAsync
-     * @covers ::getCompanyFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCompanyFieldsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCompanyFieldsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCompanyFieldsUsingGET
-     * @covers ::getCompanyFieldsUsingGETAsyncWithHttpInfo
-     * @covers ::getCompanyFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCompanyFieldsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCompanyFieldsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideSyncCompaniesUsingPOST(): \Generator
@@ -671,7 +371,7 @@ class CompaniesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -679,7 +379,7 @@ class CompaniesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+            null,
             ['application/json']
         );
     }
@@ -687,8 +387,6 @@ class CompaniesApiTest extends TestCase
     /**
      * @dataProvider provideSyncCompaniesUsingPOST
      * @covers ::syncCompaniesUsingPOST
-     * @covers ::syncCompaniesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testSyncCompaniesUsingPOST(
         int $code,
@@ -703,64 +401,6 @@ class CompaniesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'syncCompaniesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncCompaniesUsingPOST
-     * @covers ::syncCompaniesUsingPOSTWithHttpInfo
-     * @covers ::syncCompaniesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testSyncCompaniesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncCompaniesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncCompaniesUsingPOST
-     * @covers ::syncCompaniesUsingPOSTAsync
-     * @covers ::syncCompaniesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncCompaniesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncCompaniesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncCompaniesUsingPOST
-     * @covers ::syncCompaniesUsingPOSTAsyncWithHttpInfo
-     * @covers ::syncCompaniesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncCompaniesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncCompaniesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

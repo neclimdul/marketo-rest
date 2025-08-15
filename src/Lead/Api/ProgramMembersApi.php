@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Lead\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Lead\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Lead\Configuration;
 use NecLimDul\MarketoRest\Lead\HeaderSelector;
 use NecLimDul\MarketoRest\Lead\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class ProgramMembersApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class ProgramMembersApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,163 +112,20 @@ class ProgramMembersApi
     }
 
     /**
-     * Exception handler for createProgramMemberFieldUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function createProgramMemberFieldUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Create Program Member Fields
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
      *   createLeadFieldRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function createProgramMemberFieldUsingPOST(
-        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField {
-        [$response] = $this->createProgramMemberFieldUsingPOSTWithHttpInfo($create_lead_field_request);
-        return $response;
-    }
-
-    /**
-     * Create Program Member Fields
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
-     *   createLeadFieldRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function createProgramMemberFieldUsingPOSTWithHttpInfo(
-        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
-    ): array {
-        $request = $this->createProgramMemberFieldUsingPOSTRequest($create_lead_field_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->createProgramMemberFieldUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField::class
-            ),
-        };
-    }
-
-    /**
-     * Create Program Member Fields
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
-     *   createLeadFieldRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function createProgramMemberFieldUsingPOSTAsync(
-        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
-    ): PromiseInterface {
-        return $this->createProgramMemberFieldUsingPOSTAsyncWithHttpInfo($create_lead_field_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField => $response[0]
-            );
-    }
-
-    /**
-     * Create Program Member Fields
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
-     *   createLeadFieldRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createProgramMemberFieldUsingPOSTAsyncWithHttpInfo(
-        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->createProgramMemberFieldUsingPOSTRequest($create_lead_field_request),
-            [$this, 'createProgramMemberFieldUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'createProgramMemberFieldUsingPOST'
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
-     *   createLeadFieldRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createProgramMemberFieldUsingPOSTRequest(
-        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
-    ): Request {
+        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/programs/members/schema/fields.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -258,53 +133,27 @@ class ProgramMembersApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $create_lead_field_request,
             ),
-            // Form Params
-            [
-            ],
-            $create_lead_field_request
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for deleteProgramMemberUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function deleteProgramMemberUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -314,152 +163,25 @@ class ProgramMembersApi
      *   The id of target program.
      * @param \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
      *   deleteProgramMemberRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteProgramMemberUsingPOST(
         int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete {
-        [$response] = $this->deleteProgramMemberUsingPOSTWithHttpInfo($program_id, $delete_program_member_request);
-        return $response;
-    }
-
-    /**
-     * Delete Program Members
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
-     *   deleteProgramMemberRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteProgramMemberUsingPOSTWithHttpInfo(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
-    ): array {
-        $request = $this->deleteProgramMemberUsingPOSTRequest($program_id, $delete_program_member_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteProgramMemberUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Program Members
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
-     *   deleteProgramMemberRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteProgramMemberUsingPOSTAsync(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
-    ): PromiseInterface {
-        return $this->deleteProgramMemberUsingPOSTAsyncWithHttpInfo($program_id, $delete_program_member_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete => $response[0]
-            );
-    }
-
-    /**
-     * Delete Program Members
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
-     *   deleteProgramMemberRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteProgramMemberUsingPOSTAsyncWithHttpInfo(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteProgramMemberUsingPOSTRequest($program_id, $delete_program_member_request),
-            [$this, 'deleteProgramMemberUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteProgramMemberUsingPOST'
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
-     *   deleteProgramMemberRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteProgramMemberUsingPOSTRequest(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
-    ): Request {
-        $resourcePath = '/rest/v1/programs/{programId}/members/delete.json';
+        \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'programId' . '}',
-            ObjectSerializer::toPathValue($program_id),
-            $resourcePath
+            [
+                '{' . 'programId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($program_id),
+            ],
+            '/rest/v1/programs/{programId}/members/delete.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -467,168 +189,38 @@ class ProgramMembersApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $delete_program_member_request,
             ),
-            // Form Params
-            [
-            ],
-            $delete_program_member_request
+            $responseMap,
+            async: $async,
         );
     }
 
     /**
-     * Exception handler for describeProgramMemberUsingGET2.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function describeProgramMemberUsingGET2HandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
-     * Describe Program Member
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2
-     */
-    public function describeProgramMemberUsingGET2(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2
-    {
-        [$response] = $this->describeProgramMemberUsingGET2WithHttpInfo();
-        return $response;
-    }
-
-    /**
-     * Describe Program Member
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function describeProgramMemberUsingGET2WithHttpInfo(): array
-    {
-        $request = $this->describeProgramMemberUsingGET2Request();
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->describeProgramMemberUsingGET2HandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2::class
-            ),
-        };
-    }
-
-    /**
      * Describe Program Member
      *
      * @throws \InvalidArgumentException
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
-    public function describeProgramMemberUsingGET2Async(): PromiseInterface
-    {
-        return $this->describeProgramMemberUsingGET2AsyncWithHttpInfo()
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2 => $response[0]
-            );
-    }
-
-    /**
-     * Describe Program Member
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function describeProgramMemberUsingGET2AsyncWithHttpInfo(): PromiseInterface
-    {
-        return $this->makeAsyncRequest(
-            $this->describeProgramMemberUsingGET2Request(),
-            [$this, 'describeProgramMemberUsingGET2HandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'describeProgramMemberUsingGET2'
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function describeProgramMemberUsingGET2Request(): Request
-    {
+    public function describeProgramMemberUsingGET2(
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/programs/members/describe.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -636,53 +228,27 @@ class ProgramMembersApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getProgramMemberFieldByNameUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getProgramMemberFieldByNameUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -690,139 +256,24 @@ class ProgramMembersApi
      *
      * @param string $field_api_name
      *   The API name of program member field
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getProgramMemberFieldByNameUsingGET(
-        string $field_api_name
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField {
-        [$response] = $this->getProgramMemberFieldByNameUsingGETWithHttpInfo($field_api_name);
-        return $response;
-    }
-
-    /**
-     * Get Program Member Field by Name
-     *
-     * @param string $field_api_name
-     *   The API name of program member field
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getProgramMemberFieldByNameUsingGETWithHttpInfo(
-        string $field_api_name
-    ): array {
-        $request = $this->getProgramMemberFieldByNameUsingGETRequest($field_api_name);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getProgramMemberFieldByNameUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-            ),
-        };
-    }
-
-    /**
-     * Get Program Member Field by Name
-     *
-     * @param string $field_api_name
-     *   The API name of program member field
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getProgramMemberFieldByNameUsingGETAsync(
-        string $field_api_name
-    ): PromiseInterface {
-        return $this->getProgramMemberFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField => $response[0]
-            );
-    }
-
-    /**
-     * Get Program Member Field by Name
-     *
-     * @param string $field_api_name
-     *   The API name of program member field
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getProgramMemberFieldByNameUsingGETAsyncWithHttpInfo(
-        string $field_api_name
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getProgramMemberFieldByNameUsingGETRequest($field_api_name),
-            [$this, 'getProgramMemberFieldByNameUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getProgramMemberFieldByNameUsingGET'
-     *
-     * @param string $field_api_name
-     *   The API name of program member field
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getProgramMemberFieldByNameUsingGETRequest(
-        string $field_api_name
-    ): Request {
-        $resourcePath = '/rest/v1/programs/members/schema/fields/{fieldApiName}.json';
+        string $field_api_name,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'fieldApiName' . '}',
-            ObjectSerializer::toPathValue($field_api_name),
-            $resourcePath
+            [
+                '{' . 'fieldApiName' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($field_api_name),
+            ],
+            '/rest/v1/programs/members/schema/fields/{fieldApiName}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -830,53 +281,27 @@ class ProgramMembersApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getProgramMemberFieldsUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getProgramMemberFieldsUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -886,147 +311,17 @@ class ProgramMembersApi
      *   The batch size to return. The max and default value is 300.
      * @param string|null $next_page_token
      *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getProgramMemberFieldsUsingGET(
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField {
-        [$response] = $this->getProgramMemberFieldsUsingGETWithHttpInfo($batch_size, $next_page_token);
-        return $response;
-    }
-
-    /**
-     * Get Program Member Fields
-     *
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getProgramMemberFieldsUsingGETWithHttpInfo(
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): array {
-        $request = $this->getProgramMemberFieldsUsingGETRequest($batch_size, $next_page_token);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getProgramMemberFieldsUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-            ),
-        };
-    }
-
-    /**
-     * Get Program Member Fields
-     *
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getProgramMemberFieldsUsingGETAsync(
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->getProgramMemberFieldsUsingGETAsyncWithHttpInfo($batch_size, $next_page_token)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField => $response[0]
-            );
-    }
-
-    /**
-     * Get Program Member Fields
-     *
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getProgramMemberFieldsUsingGETAsyncWithHttpInfo(
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getProgramMemberFieldsUsingGETRequest($batch_size, $next_page_token),
-            [$this, 'getProgramMemberFieldsUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getProgramMemberFieldsUsingGET'
-     *
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getProgramMemberFieldsUsingGETRequest(
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): Request {
+        null|int $batch_size = null,
+        null|string $next_page_token = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/programs/members/schema/fields.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1034,55 +329,29 @@ class ProgramMembersApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
-                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                    'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getProgramMembersUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getProgramMembersUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1091,249 +360,50 @@ class ProgramMembersApi
      * @param int $program_id
      *   The id of target program.
      * @param string $filter_type
-     *   The program member field to filter on. Any custom field (string or integer types only), \&quot;updatedAt\&quot;, or any searchable field. Searchable fields can be obtained via the &lt;a href&#x3D;\&quot;/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\&quot;&gt;Describe Program Member&lt;/a&gt; endpoint.
+     *   The program member field to filter on. Any custom field (string or integer types only), \"updatedAt\", or any searchable field. Searchable fields can be obtained via the <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint.
      * @param string[] $filter_values
      *   A comma-separated list of values to filter on in the specified fields.
      * @param string|null $start_at
-     *   When using filterType&#x3D;updatedAt, the start of date range filter (ISO 8601-format)
+     *   When using filterType=updatedAt, the start of date range filter (ISO 8601-format)
      * @param string|null $end_at
-     *   When using filterType&#x3D;updatedAt, the end of date range filter (ISO 8601-format)
+     *   When using filterType=updatedAt, the end of date range filter (ISO 8601-format)
      * @param string[]|null $fields
      *   A comma-separated list of lead fields to return for each record.
      * @param int|null $batch_size
      *   The batch size to return. The max and default value is 300.
      * @param string|null $next_page_token
      *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getProgramMembersUsingGET(
         int $program_id,
         string $filter_type,
         array $filter_values,
-        ?string $start_at = null,
-        ?string $end_at = null,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember {
-        [$response] = $this->getProgramMembersUsingGETWithHttpInfo($program_id, $filter_type, $filter_values, $start_at, $end_at, $fields, $batch_size, $next_page_token);
-        return $response;
-    }
-
-    /**
-     * Get Program Members
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param string $filter_type
-     *   The program member field to filter on. Any custom field (string or integer types only), \&quot;updatedAt\&quot;, or any searchable field. Searchable fields can be obtained via the &lt;a href&#x3D;\&quot;/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\&quot;&gt;Describe Program Member&lt;/a&gt; endpoint.
-     * @param string[] $filter_values
-     *   A comma-separated list of values to filter on in the specified fields.
-     * @param string|null $start_at
-     *   When using filterType&#x3D;updatedAt, the start of date range filter (ISO 8601-format)
-     * @param string|null $end_at
-     *   When using filterType&#x3D;updatedAt, the end of date range filter (ISO 8601-format)
-     * @param string[]|null $fields
-     *   A comma-separated list of lead fields to return for each record.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getProgramMembersUsingGETWithHttpInfo(
-        int $program_id,
-        string $filter_type,
-        array $filter_values,
-        ?string $start_at = null,
-        ?string $end_at = null,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): array {
-        $request = $this->getProgramMembersUsingGETRequest($program_id, $filter_type, $filter_values, $start_at, $end_at, $fields, $batch_size, $next_page_token);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getProgramMembersUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember::class
-            ),
-        };
-    }
-
-    /**
-     * Get Program Members
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param string $filter_type
-     *   The program member field to filter on. Any custom field (string or integer types only), \&quot;updatedAt\&quot;, or any searchable field. Searchable fields can be obtained via the &lt;a href&#x3D;\&quot;/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\&quot;&gt;Describe Program Member&lt;/a&gt; endpoint.
-     * @param string[] $filter_values
-     *   A comma-separated list of values to filter on in the specified fields.
-     * @param string|null $start_at
-     *   When using filterType&#x3D;updatedAt, the start of date range filter (ISO 8601-format)
-     * @param string|null $end_at
-     *   When using filterType&#x3D;updatedAt, the end of date range filter (ISO 8601-format)
-     * @param string[]|null $fields
-     *   A comma-separated list of lead fields to return for each record.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getProgramMembersUsingGETAsync(
-        int $program_id,
-        string $filter_type,
-        array $filter_values,
-        ?string $start_at = null,
-        ?string $end_at = null,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->getProgramMembersUsingGETAsyncWithHttpInfo($program_id, $filter_type, $filter_values, $start_at, $end_at, $fields, $batch_size, $next_page_token)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember => $response[0]
-            );
-    }
-
-    /**
-     * Get Program Members
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param string $filter_type
-     *   The program member field to filter on. Any custom field (string or integer types only), \&quot;updatedAt\&quot;, or any searchable field. Searchable fields can be obtained via the &lt;a href&#x3D;\&quot;/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\&quot;&gt;Describe Program Member&lt;/a&gt; endpoint.
-     * @param string[] $filter_values
-     *   A comma-separated list of values to filter on in the specified fields.
-     * @param string|null $start_at
-     *   When using filterType&#x3D;updatedAt, the start of date range filter (ISO 8601-format)
-     * @param string|null $end_at
-     *   When using filterType&#x3D;updatedAt, the end of date range filter (ISO 8601-format)
-     * @param string[]|null $fields
-     *   A comma-separated list of lead fields to return for each record.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getProgramMembersUsingGETAsyncWithHttpInfo(
-        int $program_id,
-        string $filter_type,
-        array $filter_values,
-        ?string $start_at = null,
-        ?string $end_at = null,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getProgramMembersUsingGETRequest($program_id, $filter_type, $filter_values, $start_at, $end_at, $fields, $batch_size, $next_page_token),
-            [$this, 'getProgramMembersUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getProgramMembersUsingGET'
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param string $filter_type
-     *   The program member field to filter on. Any custom field (string or integer types only), \&quot;updatedAt\&quot;, or any searchable field. Searchable fields can be obtained via the &lt;a href&#x3D;\&quot;/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\&quot;&gt;Describe Program Member&lt;/a&gt; endpoint.
-     * @param string[] $filter_values
-     *   A comma-separated list of values to filter on in the specified fields.
-     * @param string|null $start_at
-     *   When using filterType&#x3D;updatedAt, the start of date range filter (ISO 8601-format)
-     * @param string|null $end_at
-     *   When using filterType&#x3D;updatedAt, the end of date range filter (ISO 8601-format)
-     * @param string[]|null $fields
-     *   A comma-separated list of lead fields to return for each record.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getProgramMembersUsingGETRequest(
-        int $program_id,
-        string $filter_type,
-        array $filter_values,
-        ?string $start_at = null,
-        ?string $end_at = null,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): Request {
+        null|string $start_at = null,
+        null|string $end_at = null,
+        null|array $fields = null,
+        null|int $batch_size = null,
+        null|string $next_page_token = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $filter_values when calling getProgramMembersUsingGET'
             );
         }
-        $resourcePath = '/rest/v1/programs/{programId}/members.json';
         $resourcePath = str_replace(
-            '{' . 'programId' . '}',
-            ObjectSerializer::toPathValue($program_id),
-            $resourcePath
+            [
+                '{' . 'programId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($program_id),
+            ],
+            '/rest/v1/programs/{programId}/members.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1341,60 +411,34 @@ class ProgramMembersApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'filterType' => ObjectSerializer::toQueryValue($filter_type),
-                'filterValues' => ObjectSerializer::serializeCollection($filter_values, 'multi'),
-                'startAt' => isset($start_at) ? ObjectSerializer::toQueryValue($start_at) : null,
-                'endAt' => isset($end_at) ? ObjectSerializer::toQueryValue($end_at) : null,
-                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
-                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
-                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'filterType' => ObjectSerializer::toQueryValue($filter_type),
+                    'filterValues' => ObjectSerializer::serializeCollection($filter_values, 'multi'),
+                    'startAt' => isset($start_at) ? ObjectSerializer::toQueryValue($start_at) : null,
+                    'endAt' => isset($end_at) ? ObjectSerializer::toQueryValue($end_at) : null,
+                    'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
+                    'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                    'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for syncProgramMemberDataUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function syncProgramMemberDataUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1404,152 +448,25 @@ class ProgramMembersApi
      *   The id of target program.
      * @param \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
      *   syncProgramMemberDataRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function syncProgramMemberDataUsingPOST(
         int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData {
-        [$response] = $this->syncProgramMemberDataUsingPOSTWithHttpInfo($program_id, $sync_program_member_data_request);
-        return $response;
-    }
-
-    /**
-     * Sync Program Member Data
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
-     *   syncProgramMemberDataRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function syncProgramMemberDataUsingPOSTWithHttpInfo(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
-    ): array {
-        $request = $this->syncProgramMemberDataUsingPOSTRequest($program_id, $sync_program_member_data_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->syncProgramMemberDataUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData::class
-            ),
-        };
-    }
-
-    /**
-     * Sync Program Member Data
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
-     *   syncProgramMemberDataRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function syncProgramMemberDataUsingPOSTAsync(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
-    ): PromiseInterface {
-        return $this->syncProgramMemberDataUsingPOSTAsyncWithHttpInfo($program_id, $sync_program_member_data_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData => $response[0]
-            );
-    }
-
-    /**
-     * Sync Program Member Data
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
-     *   syncProgramMemberDataRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function syncProgramMemberDataUsingPOSTAsyncWithHttpInfo(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->syncProgramMemberDataUsingPOSTRequest($program_id, $sync_program_member_data_request),
-            [$this, 'syncProgramMemberDataUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'syncProgramMemberDataUsingPOST'
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
-     *   syncProgramMemberDataRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function syncProgramMemberDataUsingPOSTRequest(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
-    ): Request {
-        $resourcePath = '/rest/v1/programs/{programId}/members.json';
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'programId' . '}',
-            ObjectSerializer::toPathValue($program_id),
-            $resourcePath
+            [
+                '{' . 'programId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($program_id),
+            ],
+            '/rest/v1/programs/{programId}/members.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1557,53 +474,27 @@ class ProgramMembersApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $sync_program_member_data_request,
             ),
-            // Form Params
-            [
-            ],
-            $sync_program_member_data_request
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for syncProgramMemberStatusUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function syncProgramMemberStatusUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1613,152 +504,25 @@ class ProgramMembersApi
      *   The id of target program.
      * @param \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
      *   syncProgramMemberStatusRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function syncProgramMemberStatusUsingPOST(
         int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus {
-        [$response] = $this->syncProgramMemberStatusUsingPOSTWithHttpInfo($program_id, $sync_program_member_status_request);
-        return $response;
-    }
-
-    /**
-     * Sync Program Member Status
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
-     *   syncProgramMemberStatusRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function syncProgramMemberStatusUsingPOSTWithHttpInfo(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
-    ): array {
-        $request = $this->syncProgramMemberStatusUsingPOSTRequest($program_id, $sync_program_member_status_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->syncProgramMemberStatusUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus::class
-            ),
-        };
-    }
-
-    /**
-     * Sync Program Member Status
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
-     *   syncProgramMemberStatusRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function syncProgramMemberStatusUsingPOSTAsync(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
-    ): PromiseInterface {
-        return $this->syncProgramMemberStatusUsingPOSTAsyncWithHttpInfo($program_id, $sync_program_member_status_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus => $response[0]
-            );
-    }
-
-    /**
-     * Sync Program Member Status
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
-     *   syncProgramMemberStatusRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function syncProgramMemberStatusUsingPOSTAsyncWithHttpInfo(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->syncProgramMemberStatusUsingPOSTRequest($program_id, $sync_program_member_status_request),
-            [$this, 'syncProgramMemberStatusUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'syncProgramMemberStatusUsingPOST'
-     *
-     * @param int $program_id
-     *   The id of target program.
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
-     *   syncProgramMemberStatusRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function syncProgramMemberStatusUsingPOSTRequest(
-        int $program_id,
-        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
-    ): Request {
-        $resourcePath = '/rest/v1/programs/{programId}/members/status.json';
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'programId' . '}',
-            ObjectSerializer::toPathValue($program_id),
-            $resourcePath
+            [
+                '{' . 'programId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($program_id),
+            ],
+            '/rest/v1/programs/{programId}/members/status.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1766,53 +530,27 @@ class ProgramMembersApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $sync_program_member_status_request,
             ),
-            // Form Params
-            [
-            ],
-            $sync_program_member_status_request
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateProgramMemberFieldUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function updateProgramMemberFieldUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1822,152 +560,25 @@ class ProgramMembersApi
      *   The API name of program member field
      * @param \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
      *   updateLeadFieldRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateProgramMemberFieldUsingPOST(
         string $field_api_name,
-        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField {
-        [$response] = $this->updateProgramMemberFieldUsingPOSTWithHttpInfo($field_api_name, $update_lead_field_request);
-        return $response;
-    }
-
-    /**
-     * Update Program Member Field
-     *
-     * @param string $field_api_name
-     *   The API name of program member field
-     * @param \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
-     *   updateLeadFieldRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateProgramMemberFieldUsingPOSTWithHttpInfo(
-        string $field_api_name,
-        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
-    ): array {
-        $request = $this->updateProgramMemberFieldUsingPOSTRequest($field_api_name, $update_lead_field_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateProgramMemberFieldUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField::class
-            ),
-        };
-    }
-
-    /**
-     * Update Program Member Field
-     *
-     * @param string $field_api_name
-     *   The API name of program member field
-     * @param \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
-     *   updateLeadFieldRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateProgramMemberFieldUsingPOSTAsync(
-        string $field_api_name,
-        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
-    ): PromiseInterface {
-        return $this->updateProgramMemberFieldUsingPOSTAsyncWithHttpInfo($field_api_name, $update_lead_field_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField => $response[0]
-            );
-    }
-
-    /**
-     * Update Program Member Field
-     *
-     * @param string $field_api_name
-     *   The API name of program member field
-     * @param \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
-     *   updateLeadFieldRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateProgramMemberFieldUsingPOSTAsyncWithHttpInfo(
-        string $field_api_name,
-        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateProgramMemberFieldUsingPOSTRequest($field_api_name, $update_lead_field_request),
-            [$this, 'updateProgramMemberFieldUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateProgramMemberFieldUsingPOST'
-     *
-     * @param string $field_api_name
-     *   The API name of program member field
-     * @param \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
-     *   updateLeadFieldRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateProgramMemberFieldUsingPOSTRequest(
-        string $field_api_name,
-        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
-    ): Request {
-        $resourcePath = '/rest/v1/programs/members/schema/fields/{fieldApiName}.json';
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'fieldApiName' . '}',
-            ObjectSerializer::toPathValue($field_api_name),
-            $resourcePath
+            [
+                '{' . 'fieldApiName' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($field_api_name),
+            ],
+            '/rest/v1/programs/members/schema/fields/{fieldApiName}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1975,27 +586,26 @@ class ProgramMembersApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $update_lead_field_request,
             ),
-            // Form Params
-            [
-            ],
-            $update_lead_field_request
+            $responseMap,
+            async: $async,
         );
     }
 }

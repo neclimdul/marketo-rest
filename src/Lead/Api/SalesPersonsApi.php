@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Lead\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Lead\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Lead\Configuration;
 use NecLimDul\MarketoRest\Lead\HeaderSelector;
 use NecLimDul\MarketoRest\Lead\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class SalesPersonsApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class SalesPersonsApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,163 +112,20 @@ class SalesPersonsApi
     }
 
     /**
-     * Exception handler for deleteSalesPersonUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function deleteSalesPersonUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Delete SalesPersons
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
      *   deleteSalesPersonRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteSalesPersonUsingPOST(
-        \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson {
-        [$response] = $this->deleteSalesPersonUsingPOSTWithHttpInfo($delete_sales_person_request);
-        return $response;
-    }
-
-    /**
-     * Delete SalesPersons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-     *   deleteSalesPersonRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteSalesPersonUsingPOSTWithHttpInfo(
-        \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-    ): array {
-        $request = $this->deleteSalesPersonUsingPOSTRequest($delete_sales_person_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteSalesPersonUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-            ),
-        };
-    }
-
-    /**
-     * Delete SalesPersons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-     *   deleteSalesPersonRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteSalesPersonUsingPOSTAsync(
-        \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-    ): PromiseInterface {
-        return $this->deleteSalesPersonUsingPOSTAsyncWithHttpInfo($delete_sales_person_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson => $response[0]
-            );
-    }
-
-    /**
-     * Delete SalesPersons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-     *   deleteSalesPersonRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteSalesPersonUsingPOSTAsyncWithHttpInfo(
-        \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteSalesPersonUsingPOSTRequest($delete_sales_person_request),
-            [$this, 'deleteSalesPersonUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteSalesPersonUsingPOST'
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-     *   deleteSalesPersonRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteSalesPersonUsingPOSTRequest(
-        \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-    ): Request {
+        \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/salespersons/delete.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -258,168 +133,38 @@ class SalesPersonsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $delete_sales_person_request,
             ),
-            // Form Params
-            [
-            ],
-            $delete_sales_person_request
+            $responseMap,
+            async: $async,
         );
     }
 
     /**
-     * Exception handler for describeUsingGET5.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function describeUsingGET5HandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
-     * Describe SalesPersons
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
-     */
-    public function describeUsingGET5(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
-    {
-        [$response] = $this->describeUsingGET5WithHttpInfo();
-        return $response;
-    }
-
-    /**
-     * Describe SalesPersons
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function describeUsingGET5WithHttpInfo(): array
-    {
-        $request = $this->describeUsingGET5Request();
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->describeUsingGET5HandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-            ),
-        };
-    }
-
-    /**
      * Describe SalesPersons
      *
      * @throws \InvalidArgumentException
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
-    public function describeUsingGET5Async(): PromiseInterface
-    {
-        return $this->describeUsingGET5AsyncWithHttpInfo()
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData => $response[0]
-            );
-    }
-
-    /**
-     * Describe SalesPersons
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function describeUsingGET5AsyncWithHttpInfo(): PromiseInterface
-    {
-        return $this->makeAsyncRequest(
-            $this->describeUsingGET5Request(),
-            [$this, 'describeUsingGET5HandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'describeUsingGET5'
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function describeUsingGET5Request(): Request
-    {
+    public function describeUsingGET5(
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/salespersons/describe.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -427,53 +172,27 @@ class SalesPersonsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getSalesPersonUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getSalesPersonUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -489,186 +208,20 @@ class SalesPersonsApi
      *   The batch size to return. The max and default value is 300.
      * @param string|null $next_page_token
      *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getSalesPersonUsingGET(
         string $filter_type,
         array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson {
-        [$response] = $this->getSalesPersonUsingGETWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-        return $response;
-    }
-
-    /**
-     * Get SalesPersons
-     *
-     * @param string $filter_type
-     *   The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
-     * @param string[] $filter_values
-     *   Comma seperated list of search values.
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getSalesPersonUsingGETWithHttpInfo(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): array {
-        $request = $this->getSalesPersonUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getSalesPersonUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-            ),
-        };
-    }
-
-    /**
-     * Get SalesPersons
-     *
-     * @param string $filter_type
-     *   The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
-     * @param string[] $filter_values
-     *   Comma seperated list of search values.
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getSalesPersonUsingGETAsync(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->getSalesPersonUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson => $response[0]
-            );
-    }
-
-    /**
-     * Get SalesPersons
-     *
-     * @param string $filter_type
-     *   The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
-     * @param string[] $filter_values
-     *   Comma seperated list of search values.
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getSalesPersonUsingGETAsyncWithHttpInfo(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getSalesPersonUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token),
-            [$this, 'getSalesPersonUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getSalesPersonUsingGET'
-     *
-     * @param string $filter_type
-     *   The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
-     * @param string[] $filter_values
-     *   Comma seperated list of search values.
-     * @param string[]|null $fields
-     *   Comma-separated list of fields to include in the response
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getSalesPersonUsingGETRequest(
-        string $filter_type,
-        array $filter_values,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): Request {
+        null|array $fields = null,
+        null|int $batch_size = null,
+        null|string $next_page_token = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
             throw new \InvalidArgumentException(
@@ -682,58 +235,32 @@ class SalesPersonsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'filterType' => ObjectSerializer::toQueryValue($filter_type),
-                'filterValues' => ObjectSerializer::serializeCollection($filter_values, 'csv'),
-                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
-                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
-                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'filterType' => ObjectSerializer::toQueryValue($filter_type),
+                    'filterValues' => ObjectSerializer::serializeCollection($filter_values, 'csv'),
+                    'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
+                    'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                    'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for syncSalesPersonsUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function syncSalesPersonsUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -741,134 +268,16 @@ class SalesPersonsApi
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
      *   syncSalesPersonRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function syncSalesPersonsUsingPOST(
-        \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson {
-        [$response] = $this->syncSalesPersonsUsingPOSTWithHttpInfo($sync_sales_person_request);
-        return $response;
-    }
-
-    /**
-     * Sync SalesPersons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-     *   syncSalesPersonRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function syncSalesPersonsUsingPOSTWithHttpInfo(
-        \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-    ): array {
-        $request = $this->syncSalesPersonsUsingPOSTRequest($sync_sales_person_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->syncSalesPersonsUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-            ),
-        };
-    }
-
-    /**
-     * Sync SalesPersons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-     *   syncSalesPersonRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function syncSalesPersonsUsingPOSTAsync(
-        \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-    ): PromiseInterface {
-        return $this->syncSalesPersonsUsingPOSTAsyncWithHttpInfo($sync_sales_person_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson => $response[0]
-            );
-    }
-
-    /**
-     * Sync SalesPersons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-     *   syncSalesPersonRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function syncSalesPersonsUsingPOSTAsyncWithHttpInfo(
-        \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->syncSalesPersonsUsingPOSTRequest($sync_sales_person_request),
-            [$this, 'syncSalesPersonsUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'syncSalesPersonsUsingPOST'
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-     *   syncSalesPersonRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function syncSalesPersonsUsingPOSTRequest(
-        \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-    ): Request {
+        \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/salespersons.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -876,27 +285,26 @@ class SalesPersonsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $sync_sales_person_request,
             ),
-            // Form Params
-            [
-            ],
-            $sync_sales_person_request
+            $responseMap,
+            async: $async,
         );
     }
 }

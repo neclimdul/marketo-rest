@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Asset\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Asset\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Asset\Configuration;
 use NecLimDul\MarketoRest\Asset\HeaderSelector;
 use NecLimDul\MarketoRest\Asset\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class EmailsApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class EmailsApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,31 +112,6 @@ class EmailsApi
     }
 
     /**
-     * Exception handler for addModuleUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function addModuleUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Add Email Module
      *
      * @param int $id
@@ -129,183 +122,29 @@ class EmailsApi
      *   Name of the module
      * @param int $index
      *   Index of the module. Determines the order of the module in the email.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function addModuleUsingPOST(
         int $id,
         string $module_id,
         string $name,
-        int $index
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse {
-        [$response] = $this->addModuleUsingPOSTWithHttpInfo($id, $module_id, $name, $index);
-        return $response;
-    }
-
-    /**
-     * Add Email Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   Name of the module
-     * @param int $index
-     *   Index of the module. Determines the order of the module in the email.
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function addModuleUsingPOSTWithHttpInfo(
-        int $id,
-        string $module_id,
-        string $name,
-        int $index
-    ): array {
-        $request = $this->addModuleUsingPOSTRequest($id, $module_id, $name, $index);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->addModuleUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Add Email Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   Name of the module
-     * @param int $index
-     *   Index of the module. Determines the order of the module in the email.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function addModuleUsingPOSTAsync(
-        int $id,
-        string $module_id,
-        string $name,
-        int $index
-    ): PromiseInterface {
-        return $this->addModuleUsingPOSTAsyncWithHttpInfo($id, $module_id, $name, $index)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse => $response[0]
-            );
-    }
-
-    /**
-     * Add Email Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   Name of the module
-     * @param int $index
-     *   Index of the module. Determines the order of the module in the email.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function addModuleUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $module_id,
-        string $name,
-        int $index
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->addModuleUsingPOSTRequest($id, $module_id, $name, $index),
-            [$this, 'addModuleUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'addModuleUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   Name of the module
-     * @param int $index
-     *   Index of the module. Determines the order of the module in the email.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function addModuleUsingPOSTRequest(
-        int $id,
-        string $module_id,
-        string $name,
-        int $index
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/add.json';
+        int $index,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'moduleId' . '}',
-            ObjectSerializer::toPathValue($module_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'moduleId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($module_id),
+            ],
+            '/rest/asset/v1/email/{id}/content/{moduleId}/add.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -313,55 +152,29 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'name' => ObjectSerializer::toQueryValue($name),
-                'index' => ObjectSerializer::toQueryValue($index),
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'name' => ObjectSerializer::toQueryValue($name),
+                    'index' => ObjectSerializer::toQueryValue($index),
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for approveDraftUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function approveDraftUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -369,139 +182,24 @@ class EmailsApi
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function approveDraftUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->approveDraftUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Approve Email Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function approveDraftUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->approveDraftUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->approveDraftUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Approve Email Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function approveDraftUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->approveDraftUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Approve Email Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function approveDraftUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->approveDraftUsingPOSTRequest($id),
-            [$this, 'approveDraftUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'approveDraftUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function approveDraftUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/approveDraft.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/approveDraft.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -509,53 +207,27 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for cloneEmailUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function cloneEmailUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -570,187 +242,28 @@ class EmailsApi
      *   Description of the asset
      * @param bool|null $operational
      *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function cloneEmailUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
         string $name,
-        ?string $description = null,
-        ?bool $operational = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse {
-        [$response] = $this->cloneEmailUsingPOSTWithHttpInfo($id, $folder, $name, $description, $operational);
-        return $response;
-    }
-
-    /**
-     * Clone Email
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $name
-     *   Name of the new email asset
-     * @param string|null $description
-     *   Description of the asset
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function cloneEmailUsingPOSTWithHttpInfo(
-        int $id,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $name,
-        ?string $description = null,
-        ?bool $operational = null
-    ): array {
-        $request = $this->cloneEmailUsingPOSTRequest($id, $folder, $name, $description, $operational);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->cloneEmailUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Clone Email
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $name
-     *   Name of the new email asset
-     * @param string|null $description
-     *   Description of the asset
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function cloneEmailUsingPOSTAsync(
-        int $id,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $name,
-        ?string $description = null,
-        ?bool $operational = null
-    ): PromiseInterface {
-        return $this->cloneEmailUsingPOSTAsyncWithHttpInfo($id, $folder, $name, $description, $operational)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse => $response[0]
-            );
-    }
-
-    /**
-     * Clone Email
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $name
-     *   Name of the new email asset
-     * @param string|null $description
-     *   Description of the asset
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function cloneEmailUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $name,
-        ?string $description = null,
-        ?bool $operational = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->cloneEmailUsingPOSTRequest($id, $folder, $name, $description, $operational),
-            [$this, 'cloneEmailUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'cloneEmailUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $name
-     *   Name of the new email asset
-     * @param string|null $description
-     *   Description of the asset
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function cloneEmailUsingPOSTRequest(
-        int $id,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $name,
-        ?string $description = null,
-        ?bool $operational = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/clone.json';
+        null|string $description = null,
+        null|bool $operational = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/clone.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -758,57 +271,33 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
+                    'folder' => ObjectSerializer::toFormValue($folder),
+                    'name' => ObjectSerializer::toFormValue($name),
+                    'operational' => isset($operational) ? ObjectSerializer::toFormValue($operational) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
-                'folder' => ObjectSerializer::toFormValue($folder),
-                'name' => ObjectSerializer::toFormValue($name),
-                'operational' => isset($operational) ? ObjectSerializer::toFormValue($operational) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for createEmailFullContentUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function createEmailFullContentUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -818,152 +307,25 @@ class EmailsApi
      *   Id of the email
      * @param string $content
      *   Multipart file. File containing HTML document to update with. File cannot include JavaScript or script tags.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function createEmailFullContentUsingPOST(
         int $id,
-        string $content
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse {
-        [$response] = $this->createEmailFullContentUsingPOSTWithHttpInfo($id, $content);
-        return $response;
-    }
-
-    /**
-     * Update Email Full Content
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string $content
-     *   Multipart file. File containing HTML document to update with. File cannot include JavaScript or script tags.
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function createEmailFullContentUsingPOSTWithHttpInfo(
-        int $id,
-        string $content
-    ): array {
-        $request = $this->createEmailFullContentUsingPOSTRequest($id, $content);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->createEmailFullContentUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Email Full Content
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string $content
-     *   Multipart file. File containing HTML document to update with. File cannot include JavaScript or script tags.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function createEmailFullContentUsingPOSTAsync(
-        int $id,
-        string $content
-    ): PromiseInterface {
-        return $this->createEmailFullContentUsingPOSTAsyncWithHttpInfo($id, $content)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Email Full Content
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string $content
-     *   Multipart file. File containing HTML document to update with. File cannot include JavaScript or script tags.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createEmailFullContentUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $content
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->createEmailFullContentUsingPOSTRequest($id, $content),
-            [$this, 'createEmailFullContentUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'createEmailFullContentUsingPOST'
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string $content
-     *   Multipart file. File containing HTML document to update with. File cannot include JavaScript or script tags.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createEmailFullContentUsingPOSTRequest(
-        int $id,
-        string $content
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/fullContent.json';
+        string $content,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/fullContent.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -974,50 +336,26 @@ class EmailsApi
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'content' => ObjectSerializer::toFormValue($content),
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'content' => ObjectSerializer::toFormValue($content),
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for createEmailUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function createEmailUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1042,10 +380,11 @@ class EmailsApi
      *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
      * @param string|null $text_only
      *   Setting to include text-only version of email when sent
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function createEmailUsingPOST(
         \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
@@ -1055,234 +394,11 @@ class EmailsApi
         string $reply_email,
         string $subject,
         int $template,
-        ?string $description = null,
-        ?bool $operational = null,
-        ?string $text_only = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse {
-        [$response] = $this->createEmailUsingPOSTWithHttpInfo($folder, $from_email, $from_name, $name, $reply_email, $subject, $template, $description, $operational, $text_only);
-        return $response;
-    }
-
-    /**
-     * Create Email
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $from_email
-     *   From-address of the Email
-     * @param string $from_name
-     *   From-name of the Email
-     * @param string $name
-     *   Name of the email
-     * @param string $reply_email
-     *   Reply-To address of the Email
-     * @param string $subject
-     *   Subject Line of the Email
-     * @param int $template
-     *   Id of the parent template
-     * @param string|null $description
-     *   Description of the asset
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     * @param string|null $text_only
-     *   Setting to include text-only version of email when sent
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function createEmailUsingPOSTWithHttpInfo(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $from_email,
-        string $from_name,
-        string $name,
-        string $reply_email,
-        string $subject,
-        int $template,
-        ?string $description = null,
-        ?bool $operational = null,
-        ?string $text_only = null
-    ): array {
-        $request = $this->createEmailUsingPOSTRequest($folder, $from_email, $from_name, $name, $reply_email, $subject, $template, $description, $operational, $text_only);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->createEmailUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Create Email
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $from_email
-     *   From-address of the Email
-     * @param string $from_name
-     *   From-name of the Email
-     * @param string $name
-     *   Name of the email
-     * @param string $reply_email
-     *   Reply-To address of the Email
-     * @param string $subject
-     *   Subject Line of the Email
-     * @param int $template
-     *   Id of the parent template
-     * @param string|null $description
-     *   Description of the asset
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     * @param string|null $text_only
-     *   Setting to include text-only version of email when sent
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function createEmailUsingPOSTAsync(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $from_email,
-        string $from_name,
-        string $name,
-        string $reply_email,
-        string $subject,
-        int $template,
-        ?string $description = null,
-        ?bool $operational = null,
-        ?string $text_only = null
-    ): PromiseInterface {
-        return $this->createEmailUsingPOSTAsyncWithHttpInfo($folder, $from_email, $from_name, $name, $reply_email, $subject, $template, $description, $operational, $text_only)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse => $response[0]
-            );
-    }
-
-    /**
-     * Create Email
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $from_email
-     *   From-address of the Email
-     * @param string $from_name
-     *   From-name of the Email
-     * @param string $name
-     *   Name of the email
-     * @param string $reply_email
-     *   Reply-To address of the Email
-     * @param string $subject
-     *   Subject Line of the Email
-     * @param int $template
-     *   Id of the parent template
-     * @param string|null $description
-     *   Description of the asset
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     * @param string|null $text_only
-     *   Setting to include text-only version of email when sent
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createEmailUsingPOSTAsyncWithHttpInfo(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $from_email,
-        string $from_name,
-        string $name,
-        string $reply_email,
-        string $subject,
-        int $template,
-        ?string $description = null,
-        ?bool $operational = null,
-        ?string $text_only = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->createEmailUsingPOSTRequest($folder, $from_email, $from_name, $name, $reply_email, $subject, $template, $description, $operational, $text_only),
-            [$this, 'createEmailUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'createEmailUsingPOST'
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string $from_email
-     *   From-address of the Email
-     * @param string $from_name
-     *   From-name of the Email
-     * @param string $name
-     *   Name of the email
-     * @param string $reply_email
-     *   Reply-To address of the Email
-     * @param string $subject
-     *   Subject Line of the Email
-     * @param int $template
-     *   Id of the parent template
-     * @param string|null $description
-     *   Description of the asset
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     * @param string|null $text_only
-     *   Setting to include text-only version of email when sent
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createEmailUsingPOSTRequest(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        string $from_email,
-        string $from_name,
-        string $name,
-        string $reply_email,
-        string $subject,
-        int $template,
-        ?string $description = null,
-        ?bool $operational = null,
-        ?string $text_only = null
-    ): Request {
+        null|string $description = null,
+        null|bool $operational = null,
+        null|string $text_only = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/emails.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1290,63 +406,39 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
+                    'folder' => ObjectSerializer::toFormValue($folder),
+                    'fromEmail' => ObjectSerializer::toFormValue($from_email),
+                    'fromName' => ObjectSerializer::toFormValue($from_name),
+                    'name' => ObjectSerializer::toFormValue($name),
+                    'operational' => isset($operational) ? ObjectSerializer::toFormValue($operational) : null,
+                    'replyEmail' => ObjectSerializer::toFormValue($reply_email),
+                    'subject' => ObjectSerializer::toFormValue($subject),
+                    'template' => ObjectSerializer::toFormValue($template),
+                    'textOnly' => isset($text_only) ? ObjectSerializer::toFormValue($text_only) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
-                'folder' => ObjectSerializer::toFormValue($folder),
-                'fromEmail' => ObjectSerializer::toFormValue($from_email),
-                'fromName' => ObjectSerializer::toFormValue($from_name),
-                'name' => ObjectSerializer::toFormValue($name),
-                'operational' => isset($operational) ? ObjectSerializer::toFormValue($operational) : null,
-                'replyEmail' => ObjectSerializer::toFormValue($reply_email),
-                'subject' => ObjectSerializer::toFormValue($subject),
-                'template' => ObjectSerializer::toFormValue($template),
-                'textOnly' => isset($text_only) ? ObjectSerializer::toFormValue($text_only) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for deleteEmailUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function deleteEmailUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1354,139 +446,24 @@ class EmailsApi
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteEmailUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->deleteEmailUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Delete Email
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteEmailUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->deleteEmailUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteEmailUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Email
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteEmailUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->deleteEmailUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Delete Email
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteEmailUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteEmailUsingPOSTRequest($id),
-            [$this, 'deleteEmailUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteEmailUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteEmailUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/delete.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/delete.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1494,53 +471,27 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for deleteModuleUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function deleteModuleUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1550,157 +501,27 @@ class EmailsApi
      *   id
      * @param string $module_id
      *   moduleId
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteModuleUsingPOST(
         int $id,
-        string $module_id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse {
-        [$response] = $this->deleteModuleUsingPOSTWithHttpInfo($id, $module_id);
-        return $response;
-    }
-
-    /**
-     * Delete Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteModuleUsingPOSTWithHttpInfo(
-        int $id,
-        string $module_id
-    ): array {
-        $request = $this->deleteModuleUsingPOSTRequest($id, $module_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteModuleUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteModuleUsingPOSTAsync(
-        int $id,
-        string $module_id
-    ): PromiseInterface {
-        return $this->deleteModuleUsingPOSTAsyncWithHttpInfo($id, $module_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse => $response[0]
-            );
-    }
-
-    /**
-     * Delete Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteModuleUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $module_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteModuleUsingPOSTRequest($id, $module_id),
-            [$this, 'deleteModuleUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteModuleUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteModuleUsingPOSTRequest(
-        int $id,
-        string $module_id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/delete.json';
+        string $module_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'moduleId' . '}',
-            ObjectSerializer::toPathValue($module_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'moduleId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($module_id),
+            ],
+            '/rest/asset/v1/email/{id}/content/{moduleId}/delete.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1708,53 +529,27 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for discardDraftUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function discardDraftUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1762,139 +557,24 @@ class EmailsApi
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function discardDraftUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->discardDraftUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Discard Email Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function discardDraftUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->discardDraftUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->discardDraftUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Discard Email Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function discardDraftUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->discardDraftUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Discard Email Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function discardDraftUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->discardDraftUsingPOSTRequest($id),
-            [$this, 'discardDraftUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'discardDraftUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function discardDraftUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/discardDraft.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/discardDraft.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1902,53 +582,27 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for duplicateModuleUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function duplicateModuleUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1960,170 +614,28 @@ class EmailsApi
      *   moduleId
      * @param string $name
      *   Name of the new module
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function duplicateModuleUsingPOST(
         int $id,
         string $module_id,
-        string $name
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse {
-        [$response] = $this->duplicateModuleUsingPOSTWithHttpInfo($id, $module_id, $name);
-        return $response;
-    }
-
-    /**
-     * Duplicate Email Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   Name of the new module
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function duplicateModuleUsingPOSTWithHttpInfo(
-        int $id,
-        string $module_id,
-        string $name
-    ): array {
-        $request = $this->duplicateModuleUsingPOSTRequest($id, $module_id, $name);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->duplicateModuleUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Duplicate Email Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   Name of the new module
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function duplicateModuleUsingPOSTAsync(
-        int $id,
-        string $module_id,
-        string $name
-    ): PromiseInterface {
-        return $this->duplicateModuleUsingPOSTAsyncWithHttpInfo($id, $module_id, $name)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse => $response[0]
-            );
-    }
-
-    /**
-     * Duplicate Email Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   Name of the new module
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function duplicateModuleUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $module_id,
-        string $name
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->duplicateModuleUsingPOSTRequest($id, $module_id, $name),
-            [$this, 'duplicateModuleUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'duplicateModuleUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   Name of the new module
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function duplicateModuleUsingPOSTRequest(
-        int $id,
-        string $module_id,
-        string $name
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/duplicate.json';
+        string $name,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'moduleId' . '}',
-            ObjectSerializer::toPathValue($module_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'moduleId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($module_id),
+            ],
+            '/rest/asset/v1/email/{id}/content/{moduleId}/duplicate.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2131,54 +643,28 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'name' => ObjectSerializer::toQueryValue($name),
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'name' => ObjectSerializer::toQueryValue($name),
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getEmailByIdUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getEmailByIdUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2188,152 +674,25 @@ class EmailsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getEmailByIdUsingGET(
         int $id,
-        ?string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse {
-        [$response] = $this->getEmailByIdUsingGETWithHttpInfo($id, $status);
-        return $response;
-    }
-
-    /**
-     * Get Email By Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getEmailByIdUsingGETWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): array {
-        $request = $this->getEmailByIdUsingGETRequest($id, $status);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getEmailByIdUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Email By Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getEmailByIdUsingGETAsync(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->getEmailByIdUsingGETAsyncWithHttpInfo($id, $status)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Email By Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getEmailByIdUsingGETAsyncWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getEmailByIdUsingGETRequest($id, $status),
-            [$this, 'getEmailByIdUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getEmailByIdUsingGET'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getEmailByIdUsingGETRequest(
-        int $id,
-        ?string $status = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}.json';
+        null|string $status = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2341,54 +700,28 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getEmailByNameUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getEmailByNameUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2399,161 +732,19 @@ class EmailsApi
      * @param string|null $status
      *   Status filter for draft or approved versions
      * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
+     *   JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getEmailByNameUsingGET(
         string $name,
-        ?string $status = null,
-        ?string $folder = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse {
-        [$response] = $this->getEmailByNameUsingGETWithHttpInfo($name, $status, $folder);
-        return $response;
-    }
-
-    /**
-     * Get Email by Name
-     *
-     * @param string $name
-     *   Name of the email
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getEmailByNameUsingGETWithHttpInfo(
-        string $name,
-        ?string $status = null,
-        ?string $folder = null
-    ): array {
-        $request = $this->getEmailByNameUsingGETRequest($name, $status, $folder);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getEmailByNameUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Email by Name
-     *
-     * @param string $name
-     *   Name of the email
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getEmailByNameUsingGETAsync(
-        string $name,
-        ?string $status = null,
-        ?string $folder = null
-    ): PromiseInterface {
-        return $this->getEmailByNameUsingGETAsyncWithHttpInfo($name, $status, $folder)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Email by Name
-     *
-     * @param string $name
-     *   Name of the email
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getEmailByNameUsingGETAsyncWithHttpInfo(
-        string $name,
-        ?string $status = null,
-        ?string $folder = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getEmailByNameUsingGETRequest($name, $status, $folder),
-            [$this, 'getEmailByNameUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getEmailByNameUsingGET'
-     *
-     * @param string $name
-     *   Name of the email
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getEmailByNameUsingGETRequest(
-        string $name,
-        ?string $status = null,
-        ?string $folder = null
-    ): Request {
+        null|string $status = null,
+        null|string $folder = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/email/byName.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2561,171 +752,41 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'name' => ObjectSerializer::toQueryValue($name),
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'name' => ObjectSerializer::toQueryValue($name),
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                    'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 
     /**
-     * Exception handler for getEmailCCFieldsUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getEmailCCFieldsUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
-     * Get Email CC Fields
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse
-     */
-    public function getEmailCCFieldsUsingGET(): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse
-    {
-        [$response] = $this->getEmailCCFieldsUsingGETWithHttpInfo();
-        return $response;
-    }
-
-    /**
-     * Get Email CC Fields
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getEmailCCFieldsUsingGETWithHttpInfo(): array
-    {
-        $request = $this->getEmailCCFieldsUsingGETRequest();
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getEmailCCFieldsUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse::class
-            ),
-        };
-    }
-
-    /**
      * Get Email CC Fields
      *
      * @throws \InvalidArgumentException
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
-    public function getEmailCCFieldsUsingGETAsync(): PromiseInterface
-    {
-        return $this->getEmailCCFieldsUsingGETAsyncWithHttpInfo()
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Email CC Fields
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getEmailCCFieldsUsingGETAsyncWithHttpInfo(): PromiseInterface
-    {
-        return $this->makeAsyncRequest(
-            $this->getEmailCCFieldsUsingGETRequest(),
-            [$this, 'getEmailCCFieldsUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getEmailCCFieldsUsingGET'
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getEmailCCFieldsUsingGETRequest(): Request
-    {
+    public function getEmailCCFieldsUsingGET(
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/email/ccFields.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2733,53 +794,27 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getEmailContentByIdUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getEmailContentByIdUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2789,152 +824,25 @@ class EmailsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getEmailContentByIdUsingGET(
         int $id,
-        ?string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse {
-        [$response] = $this->getEmailContentByIdUsingGETWithHttpInfo($id, $status);
-        return $response;
-    }
-
-    /**
-     * Get Email Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getEmailContentByIdUsingGETWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): array {
-        $request = $this->getEmailContentByIdUsingGETRequest($id, $status);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getEmailContentByIdUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Email Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getEmailContentByIdUsingGETAsync(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->getEmailContentByIdUsingGETAsyncWithHttpInfo($id, $status)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Email Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getEmailContentByIdUsingGETAsyncWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getEmailContentByIdUsingGETRequest($id, $status),
-            [$this, 'getEmailContentByIdUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getEmailContentByIdUsingGET'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getEmailContentByIdUsingGETRequest(
-        int $id,
-        ?string $status = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/content.json';
+        null|string $status = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/content.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2942,54 +850,28 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getEmailDynamicContentUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getEmailDynamicContentUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -3001,170 +883,28 @@ class EmailsApi
      *   Id of email dynamic content section
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getEmailDynamicContentUsingGET(
         int $id,
         string $content_id,
-        ?string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse {
-        [$response] = $this->getEmailDynamicContentUsingGETWithHttpInfo($id, $content_id, $status);
-        return $response;
-    }
-
-    /**
-     * Get Email Dynamic Content
-     *
-     * @param int $id
-     *   Id of email
-     * @param string $content_id
-     *   Id of email dynamic content section
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getEmailDynamicContentUsingGETWithHttpInfo(
-        int $id,
-        string $content_id,
-        ?string $status = null
-    ): array {
-        $request = $this->getEmailDynamicContentUsingGETRequest($id, $content_id, $status);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getEmailDynamicContentUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Email Dynamic Content
-     *
-     * @param int $id
-     *   Id of email
-     * @param string $content_id
-     *   Id of email dynamic content section
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getEmailDynamicContentUsingGETAsync(
-        int $id,
-        string $content_id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->getEmailDynamicContentUsingGETAsyncWithHttpInfo($id, $content_id, $status)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Email Dynamic Content
-     *
-     * @param int $id
-     *   Id of email
-     * @param string $content_id
-     *   Id of email dynamic content section
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getEmailDynamicContentUsingGETAsyncWithHttpInfo(
-        int $id,
-        string $content_id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getEmailDynamicContentUsingGETRequest($id, $content_id, $status),
-            [$this, 'getEmailDynamicContentUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getEmailDynamicContentUsingGET'
-     *
-     * @param int $id
-     *   Id of email
-     * @param string $content_id
-     *   Id of email dynamic content section
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getEmailDynamicContentUsingGETRequest(
-        int $id,
-        string $content_id,
-        ?string $status = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/dynamicContent/{contentId}.json';
+        null|string $status = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'contentId' . '}',
-            ObjectSerializer::toPathValue($content_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'contentId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($content_id),
+            ],
+            '/rest/asset/v1/email/{id}/dynamicContent/{contentId}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -3172,54 +912,28 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getEmailFullContentUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getEmailFullContentUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -3233,178 +947,27 @@ class EmailsApi
      *   The lead id to impersonate. Email is rendered as though it was received by this lead.
      * @param string|null $type
      *   Email content type to return. Default is HTML.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getEmailFullContentUsingGET(
         int $id,
-        ?string $status = null,
-        ?int $lead_id = null,
-        ?string $type = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse {
-        [$response] = $this->getEmailFullContentUsingGETWithHttpInfo($id, $status, $lead_id, $type);
-        return $response;
-    }
-
-    /**
-     * Get Email Full Content
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string|null $status
-     *   Status filter for draft or approved versions. Defaults to approved if asset is approved, draft if not.
-     * @param int|null $lead_id
-     *   The lead id to impersonate. Email is rendered as though it was received by this lead.
-     * @param string|null $type
-     *   Email content type to return. Default is HTML.
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getEmailFullContentUsingGETWithHttpInfo(
-        int $id,
-        ?string $status = null,
-        ?int $lead_id = null,
-        ?string $type = null
-    ): array {
-        $request = $this->getEmailFullContentUsingGETRequest($id, $status, $lead_id, $type);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getEmailFullContentUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Email Full Content
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string|null $status
-     *   Status filter for draft or approved versions. Defaults to approved if asset is approved, draft if not.
-     * @param int|null $lead_id
-     *   The lead id to impersonate. Email is rendered as though it was received by this lead.
-     * @param string|null $type
-     *   Email content type to return. Default is HTML.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getEmailFullContentUsingGETAsync(
-        int $id,
-        ?string $status = null,
-        ?int $lead_id = null,
-        ?string $type = null
-    ): PromiseInterface {
-        return $this->getEmailFullContentUsingGETAsyncWithHttpInfo($id, $status, $lead_id, $type)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Email Full Content
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string|null $status
-     *   Status filter for draft or approved versions. Defaults to approved if asset is approved, draft if not.
-     * @param int|null $lead_id
-     *   The lead id to impersonate. Email is rendered as though it was received by this lead.
-     * @param string|null $type
-     *   Email content type to return. Default is HTML.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getEmailFullContentUsingGETAsyncWithHttpInfo(
-        int $id,
-        ?string $status = null,
-        ?int $lead_id = null,
-        ?string $type = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getEmailFullContentUsingGETRequest($id, $status, $lead_id, $type),
-            [$this, 'getEmailFullContentUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getEmailFullContentUsingGET'
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string|null $status
-     *   Status filter for draft or approved versions. Defaults to approved if asset is approved, draft if not.
-     * @param int|null $lead_id
-     *   The lead id to impersonate. Email is rendered as though it was received by this lead.
-     * @param string|null $type
-     *   Email content type to return. Default is HTML.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getEmailFullContentUsingGETRequest(
-        int $id,
-        ?string $status = null,
-        ?int $lead_id = null,
-        ?string $type = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/fullContent.json';
+        null|string $status = null,
+        null|int $lead_id = null,
+        null|string $type = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/fullContent.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -3412,56 +975,30 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-                'leadId' => isset($lead_id) ? ObjectSerializer::toQueryValue($lead_id) : null,
-                'type' => isset($type) ? ObjectSerializer::toQueryValue($type) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                    'leadId' => isset($lead_id) ? ObjectSerializer::toQueryValue($lead_id) : null,
+                    'type' => isset($type) ? ObjectSerializer::toQueryValue($type) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getEmailUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getEmailUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -3470,208 +1007,30 @@ class EmailsApi
      * @param string|null $status
      *   Status filter for draft or approved versions
      * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
+     *   JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      * @param int|null $offset
      *   Integer offset for paging
      * @param int|null $max_return
      *   Maximum number of emails to return. Max 200, default 20
      * @param string|null $earliest_updated_at
-     *   Exclude emails prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
+     *   Exclude emails prior to this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
      * @param string|null $latest_updated_at
-     *   Exclude emails after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
+     *   Exclude emails after this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getEmailUsingGET(
-        ?string $status = null,
-        ?string $folder = null,
-        ?int $offset = null,
-        ?int $max_return = null,
-        ?string $earliest_updated_at = null,
-        ?string $latest_updated_at = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse {
-        [$response] = $this->getEmailUsingGETWithHttpInfo($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
-        return $response;
-    }
-
-    /**
-     * Get Emails
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of emails to return. Max 200, default 20
-     * @param string|null $earliest_updated_at
-     *   Exclude emails prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     * @param string|null $latest_updated_at
-     *   Exclude emails after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getEmailUsingGETWithHttpInfo(
-        ?string $status = null,
-        ?string $folder = null,
-        ?int $offset = null,
-        ?int $max_return = null,
-        ?string $earliest_updated_at = null,
-        ?string $latest_updated_at = null
-    ): array {
-        $request = $this->getEmailUsingGETRequest($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getEmailUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Emails
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of emails to return. Max 200, default 20
-     * @param string|null $earliest_updated_at
-     *   Exclude emails prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     * @param string|null $latest_updated_at
-     *   Exclude emails after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getEmailUsingGETAsync(
-        ?string $status = null,
-        ?string $folder = null,
-        ?int $offset = null,
-        ?int $max_return = null,
-        ?string $earliest_updated_at = null,
-        ?string $latest_updated_at = null
-    ): PromiseInterface {
-        return $this->getEmailUsingGETAsyncWithHttpInfo($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Emails
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of emails to return. Max 200, default 20
-     * @param string|null $earliest_updated_at
-     *   Exclude emails prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     * @param string|null $latest_updated_at
-     *   Exclude emails after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getEmailUsingGETAsyncWithHttpInfo(
-        ?string $status = null,
-        ?string $folder = null,
-        ?int $offset = null,
-        ?int $max_return = null,
-        ?string $earliest_updated_at = null,
-        ?string $latest_updated_at = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getEmailUsingGETRequest($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at),
-            [$this, 'getEmailUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getEmailUsingGET'
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of emails to return. Max 200, default 20
-     * @param string|null $earliest_updated_at
-     *   Exclude emails prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     * @param string|null $latest_updated_at
-     *   Exclude emails after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getEmailUsingGETRequest(
-        ?string $status = null,
-        ?string $folder = null,
-        ?int $offset = null,
-        ?int $max_return = null,
-        ?string $earliest_updated_at = null,
-        ?string $latest_updated_at = null
-    ): Request {
+        null|string $status = null,
+        null|string $folder = null,
+        null|int $offset = null,
+        null|int $max_return = null,
+        null|string $earliest_updated_at = null,
+        null|string $latest_updated_at = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/emails.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -3679,59 +1038,33 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
-                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
-                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
-                'earliestUpdatedAt' => isset($earliest_updated_at) ? ObjectSerializer::toQueryValue($earliest_updated_at) : null,
-                'latestUpdatedAt' => isset($latest_updated_at) ? ObjectSerializer::toQueryValue($latest_updated_at) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                    'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
+                    'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                    'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                    'earliestUpdatedAt' => isset($earliest_updated_at) ? ObjectSerializer::toQueryValue($earliest_updated_at) : null,
+                    'latestUpdatedAt' => isset($latest_updated_at) ? ObjectSerializer::toQueryValue($latest_updated_at) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getEmailVariablesUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getEmailVariablesUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -3739,139 +1072,24 @@ class EmailsApi
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getEmailVariablesUsingGET(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse {
-        [$response] = $this->getEmailVariablesUsingGETWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Get Email Variables
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getEmailVariablesUsingGETWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->getEmailVariablesUsingGETRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getEmailVariablesUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Email Variables
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getEmailVariablesUsingGETAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->getEmailVariablesUsingGETAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Email Variables
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getEmailVariablesUsingGETAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getEmailVariablesUsingGETRequest($id),
-            [$this, 'getEmailVariablesUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getEmailVariablesUsingGET'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getEmailVariablesUsingGETRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/variables.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/variables.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -3879,53 +1097,27 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for rearrangeModulesUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function rearrangeModulesUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -3933,139 +1125,24 @@ class EmailsApi
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function rearrangeModulesUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse {
-        [$response] = $this->rearrangeModulesUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Rearrange Email Modules
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function rearrangeModulesUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->rearrangeModulesUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->rearrangeModulesUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Rearrange Email Modules
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function rearrangeModulesUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->rearrangeModulesUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse => $response[0]
-            );
-    }
-
-    /**
-     * Rearrange Email Modules
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function rearrangeModulesUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->rearrangeModulesUsingPOSTRequest($id),
-            [$this, 'rearrangeModulesUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'rearrangeModulesUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function rearrangeModulesUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/content/rearrange.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/content/rearrange.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -4073,53 +1150,27 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for renameUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function renameUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -4131,170 +1182,28 @@ class EmailsApi
      *   moduleId
      * @param string $name
      *   New module name
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function renameUsingPOST(
         int $id,
         string $module_id,
-        string $name
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse {
-        [$response] = $this->renameUsingPOSTWithHttpInfo($id, $module_id, $name);
-        return $response;
-    }
-
-    /**
-     * Rename Email Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   New module name
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function renameUsingPOSTWithHttpInfo(
-        int $id,
-        string $module_id,
-        string $name
-    ): array {
-        $request = $this->renameUsingPOSTRequest($id, $module_id, $name);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->renameUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Rename Email Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   New module name
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function renameUsingPOSTAsync(
-        int $id,
-        string $module_id,
-        string $name
-    ): PromiseInterface {
-        return $this->renameUsingPOSTAsyncWithHttpInfo($id, $module_id, $name)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse => $response[0]
-            );
-    }
-
-    /**
-     * Rename Email Module
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   New module name
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function renameUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $module_id,
-        string $name
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->renameUsingPOSTRequest($id, $module_id, $name),
-            [$this, 'renameUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'renameUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $module_id
-     *   moduleId
-     * @param string $name
-     *   New module name
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function renameUsingPOSTRequest(
-        int $id,
-        string $module_id,
-        string $name
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/rename.json';
+        string $name,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'moduleId' . '}',
-            ObjectSerializer::toPathValue($module_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'moduleId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($module_id),
+            ],
+            '/rest/asset/v1/email/{id}/content/{moduleId}/rename.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -4302,54 +1211,28 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'name' => ObjectSerializer::toQueryValue($name),
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'name' => ObjectSerializer::toQueryValue($name),
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for sendSampleEmailUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function sendSampleEmailUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -4363,178 +1246,27 @@ class EmailsApi
      *   Id of a lead to impersonate. Tokens and dynamic content will be populated as though it were sent to the lead.
      * @param bool|null $text_only
      *   Whether to send to text only version along with the HTML version. Default false.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function sendSampleEmailUsingPOST(
         int $id,
         string $email_address,
-        ?string $lead_id = null,
-        ?bool $text_only = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse {
-        [$response] = $this->sendSampleEmailUsingPOSTWithHttpInfo($id, $email_address, $lead_id, $text_only);
-        return $response;
-    }
-
-    /**
-     * Send Sample Email
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string $email_address
-     *   Email address to receive sample email
-     * @param string|null $lead_id
-     *   Id of a lead to impersonate. Tokens and dynamic content will be populated as though it were sent to the lead.
-     * @param bool|null $text_only
-     *   Whether to send to text only version along with the HTML version. Default false.
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function sendSampleEmailUsingPOSTWithHttpInfo(
-        int $id,
-        string $email_address,
-        ?string $lead_id = null,
-        ?bool $text_only = null
-    ): array {
-        $request = $this->sendSampleEmailUsingPOSTRequest($id, $email_address, $lead_id, $text_only);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->sendSampleEmailUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Send Sample Email
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string $email_address
-     *   Email address to receive sample email
-     * @param string|null $lead_id
-     *   Id of a lead to impersonate. Tokens and dynamic content will be populated as though it were sent to the lead.
-     * @param bool|null $text_only
-     *   Whether to send to text only version along with the HTML version. Default false.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function sendSampleEmailUsingPOSTAsync(
-        int $id,
-        string $email_address,
-        ?string $lead_id = null,
-        ?bool $text_only = null
-    ): PromiseInterface {
-        return $this->sendSampleEmailUsingPOSTAsyncWithHttpInfo($id, $email_address, $lead_id, $text_only)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse => $response[0]
-            );
-    }
-
-    /**
-     * Send Sample Email
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string $email_address
-     *   Email address to receive sample email
-     * @param string|null $lead_id
-     *   Id of a lead to impersonate. Tokens and dynamic content will be populated as though it were sent to the lead.
-     * @param bool|null $text_only
-     *   Whether to send to text only version along with the HTML version. Default false.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function sendSampleEmailUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $email_address,
-        ?string $lead_id = null,
-        ?bool $text_only = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->sendSampleEmailUsingPOSTRequest($id, $email_address, $lead_id, $text_only),
-            [$this, 'sendSampleEmailUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'sendSampleEmailUsingPOST'
-     *
-     * @param int $id
-     *   Id of the email
-     * @param string $email_address
-     *   Email address to receive sample email
-     * @param string|null $lead_id
-     *   Id of a lead to impersonate. Tokens and dynamic content will be populated as though it were sent to the lead.
-     * @param bool|null $text_only
-     *   Whether to send to text only version along with the HTML version. Default false.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function sendSampleEmailUsingPOSTRequest(
-        int $id,
-        string $email_address,
-        ?string $lead_id = null,
-        ?bool $text_only = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/sendSample.json';
+        null|string $lead_id = null,
+        null|bool $text_only = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/sendSample.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -4542,56 +1274,32 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'emailAddress' => ObjectSerializer::toFormValue($email_address),
+                    'leadId' => isset($lead_id) ? ObjectSerializer::toFormValue($lead_id) : null,
+                    'textOnly' => isset($text_only) ? ObjectSerializer::toFormValue($text_only) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'emailAddress' => ObjectSerializer::toFormValue($email_address),
-                'leadId' => isset($lead_id) ? ObjectSerializer::toFormValue($lead_id) : null,
-                'textOnly' => isset($text_only) ? ObjectSerializer::toFormValue($text_only) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for unapproveDraftUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function unapproveDraftUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -4599,139 +1307,24 @@ class EmailsApi
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function unapproveDraftUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->unapproveDraftUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Unapprove Email
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function unapproveDraftUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->unapproveDraftUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->unapproveDraftUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Unapprove Email
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function unapproveDraftUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->unapproveDraftUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Unapprove Email
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function unapproveDraftUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->unapproveDraftUsingPOSTRequest($id),
-            [$this, 'unapproveDraftUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'unapproveDraftUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function unapproveDraftUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/unapprove.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/unapprove.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -4739,53 +1332,27 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateEmailComponentContentUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateEmailComponentContentUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -4816,301 +1383,39 @@ class EmailsApi
      *   Sets the Url of the video element. Videos must be either from YouTube or Vimeo
      * @param int|null $width
      *   Overrides native width of the image. The resulting file will be resized to the given width
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateEmailComponentContentUsingPOST(
         int $id,
         string $html_id,
         string $type,
         string $value,
-        ?string $alt_text = null,
-        ?string $external_url = null,
-        ?int $height = null,
-        ?string $image = null,
-        ?string $link_url = null,
-        ?bool $over_write = null,
-        ?string $style = null,
-        ?string $text_value = null,
-        ?string $video_url = null,
-        ?int $width = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->updateEmailComponentContentUsingPOSTWithHttpInfo($id, $html_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $text_value, $video_url, $width);
-        return $response;
-    }
-
-    /**
-     * Update Email Content Section
-     *
-     * @param int $id
-     *   id
-     * @param string $html_id
-     *   htmlId
-     * @param string $type
-     *   Type of content to set for the section.
-     * @param string $value
-     *   Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed
-     * @param string|null $alt_text
-     *   Sets the value of the alt parameter for the resulting img element
-     * @param string|null $external_url
-     * @param int|null $height
-     *   Overrides naitve height of the image. The resulting file will be resized to the given height
-     * @param string|null $image
-     *   Multipart file that allows you to load an image from your computer
-     * @param string|null $link_url
-     * @param bool|null $over_write
-     *   Allows overwriting of the existing image content section
-     * @param string|null $style
-     *   Sets the value of the style parameter for the content section
-     * @param string|null $text_value
-     * @param string|null $video_url
-     *   Sets the Url of the video element. Videos must be either from YouTube or Vimeo
-     * @param int|null $width
-     *   Overrides native width of the image. The resulting file will be resized to the given width
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateEmailComponentContentUsingPOSTWithHttpInfo(
-        int $id,
-        string $html_id,
-        string $type,
-        string $value,
-        ?string $alt_text = null,
-        ?string $external_url = null,
-        ?int $height = null,
-        ?string $image = null,
-        ?string $link_url = null,
-        ?bool $over_write = null,
-        ?string $style = null,
-        ?string $text_value = null,
-        ?string $video_url = null,
-        ?int $width = null
-    ): array {
-        $request = $this->updateEmailComponentContentUsingPOSTRequest($id, $html_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $text_value, $video_url, $width);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateEmailComponentContentUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Email Content Section
-     *
-     * @param int $id
-     *   id
-     * @param string $html_id
-     *   htmlId
-     * @param string $type
-     *   Type of content to set for the section.
-     * @param string $value
-     *   Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed
-     * @param string|null $alt_text
-     *   Sets the value of the alt parameter for the resulting img element
-     * @param string|null $external_url
-     * @param int|null $height
-     *   Overrides naitve height of the image. The resulting file will be resized to the given height
-     * @param string|null $image
-     *   Multipart file that allows you to load an image from your computer
-     * @param string|null $link_url
-     * @param bool|null $over_write
-     *   Allows overwriting of the existing image content section
-     * @param string|null $style
-     *   Sets the value of the style parameter for the content section
-     * @param string|null $text_value
-     * @param string|null $video_url
-     *   Sets the Url of the video element. Videos must be either from YouTube or Vimeo
-     * @param int|null $width
-     *   Overrides native width of the image. The resulting file will be resized to the given width
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateEmailComponentContentUsingPOSTAsync(
-        int $id,
-        string $html_id,
-        string $type,
-        string $value,
-        ?string $alt_text = null,
-        ?string $external_url = null,
-        ?int $height = null,
-        ?string $image = null,
-        ?string $link_url = null,
-        ?bool $over_write = null,
-        ?string $style = null,
-        ?string $text_value = null,
-        ?string $video_url = null,
-        ?int $width = null
-    ): PromiseInterface {
-        return $this->updateEmailComponentContentUsingPOSTAsyncWithHttpInfo($id, $html_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $text_value, $video_url, $width)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Email Content Section
-     *
-     * @param int $id
-     *   id
-     * @param string $html_id
-     *   htmlId
-     * @param string $type
-     *   Type of content to set for the section.
-     * @param string $value
-     *   Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed
-     * @param string|null $alt_text
-     *   Sets the value of the alt parameter for the resulting img element
-     * @param string|null $external_url
-     * @param int|null $height
-     *   Overrides naitve height of the image. The resulting file will be resized to the given height
-     * @param string|null $image
-     *   Multipart file that allows you to load an image from your computer
-     * @param string|null $link_url
-     * @param bool|null $over_write
-     *   Allows overwriting of the existing image content section
-     * @param string|null $style
-     *   Sets the value of the style parameter for the content section
-     * @param string|null $text_value
-     * @param string|null $video_url
-     *   Sets the Url of the video element. Videos must be either from YouTube or Vimeo
-     * @param int|null $width
-     *   Overrides native width of the image. The resulting file will be resized to the given width
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateEmailComponentContentUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $html_id,
-        string $type,
-        string $value,
-        ?string $alt_text = null,
-        ?string $external_url = null,
-        ?int $height = null,
-        ?string $image = null,
-        ?string $link_url = null,
-        ?bool $over_write = null,
-        ?string $style = null,
-        ?string $text_value = null,
-        ?string $video_url = null,
-        ?int $width = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateEmailComponentContentUsingPOSTRequest($id, $html_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $text_value, $video_url, $width),
-            [$this, 'updateEmailComponentContentUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateEmailComponentContentUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $html_id
-     *   htmlId
-     * @param string $type
-     *   Type of content to set for the section.
-     * @param string $value
-     *   Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed
-     * @param string|null $alt_text
-     *   Sets the value of the alt parameter for the resulting img element
-     * @param string|null $external_url
-     * @param int|null $height
-     *   Overrides naitve height of the image. The resulting file will be resized to the given height
-     * @param string|null $image
-     *   Multipart file that allows you to load an image from your computer
-     * @param string|null $link_url
-     * @param bool|null $over_write
-     *   Allows overwriting of the existing image content section
-     * @param string|null $style
-     *   Sets the value of the style parameter for the content section
-     * @param string|null $text_value
-     * @param string|null $video_url
-     *   Sets the Url of the video element. Videos must be either from YouTube or Vimeo
-     * @param int|null $width
-     *   Overrides native width of the image. The resulting file will be resized to the given width
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateEmailComponentContentUsingPOSTRequest(
-        int $id,
-        string $html_id,
-        string $type,
-        string $value,
-        ?string $alt_text = null,
-        ?string $external_url = null,
-        ?int $height = null,
-        ?string $image = null,
-        ?string $link_url = null,
-        ?bool $over_write = null,
-        ?string $style = null,
-        ?string $text_value = null,
-        ?string $video_url = null,
-        ?int $width = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/content/{htmlId}.json';
+        null|string $alt_text = null,
+        null|string $external_url = null,
+        null|int $height = null,
+        null|string $image = null,
+        null|string $link_url = null,
+        null|bool $over_write = null,
+        null|string $style = null,
+        null|string $text_value = null,
+        null|string $video_url = null,
+        null|int $width = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'htmlId' . '}',
-            ObjectSerializer::toPathValue($html_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'htmlId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($html_id),
+            ],
+            '/rest/asset/v1/email/{id}/content/{htmlId}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -5118,65 +1423,41 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'altText' => isset($alt_text) ? ObjectSerializer::toFormValue($alt_text) : null,
+                    'externalUrl' => isset($external_url) ? ObjectSerializer::toFormValue($external_url) : null,
+                    'height' => isset($height) ? ObjectSerializer::toFormValue($height) : null,
+                    'image' => isset($image) ? ObjectSerializer::toFormValue($image) : null,
+                    'linkUrl' => isset($link_url) ? ObjectSerializer::toFormValue($link_url) : null,
+                    'overWrite' => isset($over_write) ? ObjectSerializer::toFormValue($over_write) : null,
+                    'style' => isset($style) ? ObjectSerializer::toFormValue($style) : null,
+                    'textValue' => isset($text_value) ? ObjectSerializer::toFormValue($text_value) : null,
+                    'type' => ObjectSerializer::toFormValue($type),
+                    'value' => ObjectSerializer::toFormValue($value),
+                    'videoUrl' => isset($video_url) ? ObjectSerializer::toFormValue($video_url) : null,
+                    'width' => isset($width) ? ObjectSerializer::toFormValue($width) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'altText' => isset($alt_text) ? ObjectSerializer::toFormValue($alt_text) : null,
-                'externalUrl' => isset($external_url) ? ObjectSerializer::toFormValue($external_url) : null,
-                'height' => isset($height) ? ObjectSerializer::toFormValue($height) : null,
-                'image' => isset($image) ? ObjectSerializer::toFormValue($image) : null,
-                'linkUrl' => isset($link_url) ? ObjectSerializer::toFormValue($link_url) : null,
-                'overWrite' => isset($over_write) ? ObjectSerializer::toFormValue($over_write) : null,
-                'style' => isset($style) ? ObjectSerializer::toFormValue($style) : null,
-                'textValue' => isset($text_value) ? ObjectSerializer::toFormValue($text_value) : null,
-                'type' => ObjectSerializer::toFormValue($type),
-                'value' => ObjectSerializer::toFormValue($value),
-                'videoUrl' => isset($video_url) ? ObjectSerializer::toFormValue($video_url) : null,
-                'width' => isset($width) ? ObjectSerializer::toFormValue($width) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateEmailContentUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateEmailContentUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -5188,175 +1469,28 @@ class EmailsApi
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_name
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $reply_to
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $subject
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateEmailContentUsingPOST(
         int $id,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_to = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->updateEmailContentUsingPOSTWithHttpInfo($id, $from_email, $from_name, $reply_to, $subject);
-        return $response;
-    }
-
-    /**
-     * Update Email Content
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_email
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_name
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $reply_to
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $subject
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateEmailContentUsingPOSTWithHttpInfo(
-        int $id,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_to = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject = null
-    ): array {
-        $request = $this->updateEmailContentUsingPOSTRequest($id, $from_email, $from_name, $reply_to, $subject);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateEmailContentUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Email Content
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_email
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_name
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $reply_to
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $subject
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateEmailContentUsingPOSTAsync(
-        int $id,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_to = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject = null
-    ): PromiseInterface {
-        return $this->updateEmailContentUsingPOSTAsyncWithHttpInfo($id, $from_email, $from_name, $reply_to, $subject)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Email Content
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_email
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_name
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $reply_to
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $subject
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateEmailContentUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_to = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateEmailContentUsingPOSTRequest($id, $from_email, $from_name, $reply_to, $subject),
-            [$this, 'updateEmailContentUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateEmailContentUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_email
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_name
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $reply_to
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $subject
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateEmailContentUsingPOSTRequest(
-        int $id,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_to = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/content.json';
+        null|\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email = null,
+        null|\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name = null,
+        null|\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_to = null,
+        null|\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}/content.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -5364,57 +1498,33 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'fromEmail' => isset($from_email) ? ObjectSerializer::toFormValue($from_email) : null,
+                    'fromName' => isset($from_name) ? ObjectSerializer::toFormValue($from_name) : null,
+                    'replyTO' => isset($reply_to) ? ObjectSerializer::toFormValue($reply_to) : null,
+                    'subject' => isset($subject) ? ObjectSerializer::toFormValue($subject) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'fromEmail' => isset($from_email) ? ObjectSerializer::toFormValue($from_email) : null,
-                'fromName' => isset($from_name) ? ObjectSerializer::toFormValue($from_name) : null,
-                'replyTO' => isset($reply_to) ? ObjectSerializer::toFormValue($reply_to) : null,
-                'subject' => isset($subject) ? ObjectSerializer::toFormValue($subject) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateEmailDynamicContentUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateEmailDynamicContentUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -5444,292 +1554,38 @@ class EmailsApi
      *   Sets the Url of the video element. Videos must be either from YouTube or Vimeo
      * @param int|null $width
      *   Overrides native width of the image. The resulting file will be resized to the given width
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateEmailDynamicContentUsingPOST(
         int $id,
         string $content_id,
         string $type,
         string $value,
-        ?string $alt_text = null,
-        ?string $external_url = null,
-        ?int $height = null,
-        ?string $image = null,
-        ?string $link_url = null,
-        ?bool $over_write = null,
-        ?string $style = null,
-        ?string $video_url = null,
-        ?int $width = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->updateEmailDynamicContentUsingPOSTWithHttpInfo($id, $content_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $video_url, $width);
-        return $response;
-    }
-
-    /**
-     * Update Email Dynamic Content Section
-     *
-     * @param int $id
-     *   Id of email
-     * @param string $content_id
-     *   Id of email dynamic content section
-     * @param string $type
-     *   Type of content to set for the section.
-     * @param string $value
-     *   Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed
-     * @param string|null $alt_text
-     *   Sets the value of the alt parameter for the resulting img element
-     * @param string|null $external_url
-     * @param int|null $height
-     *   Overrides naitve height of the image. The resulting file will be resized to the given height
-     * @param string|null $image
-     *   Multipart file that allows you to add an image from your computer
-     * @param string|null $link_url
-     * @param bool|null $over_write
-     *   Allows overwriting of the existing image content section
-     * @param string|null $style
-     *   Sets the value of the style parameter for the content section
-     * @param string|null $video_url
-     *   Sets the Url of the video element. Videos must be either from YouTube or Vimeo
-     * @param int|null $width
-     *   Overrides native width of the image. The resulting file will be resized to the given width
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateEmailDynamicContentUsingPOSTWithHttpInfo(
-        int $id,
-        string $content_id,
-        string $type,
-        string $value,
-        ?string $alt_text = null,
-        ?string $external_url = null,
-        ?int $height = null,
-        ?string $image = null,
-        ?string $link_url = null,
-        ?bool $over_write = null,
-        ?string $style = null,
-        ?string $video_url = null,
-        ?int $width = null
-    ): array {
-        $request = $this->updateEmailDynamicContentUsingPOSTRequest($id, $content_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $video_url, $width);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateEmailDynamicContentUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Email Dynamic Content Section
-     *
-     * @param int $id
-     *   Id of email
-     * @param string $content_id
-     *   Id of email dynamic content section
-     * @param string $type
-     *   Type of content to set for the section.
-     * @param string $value
-     *   Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed
-     * @param string|null $alt_text
-     *   Sets the value of the alt parameter for the resulting img element
-     * @param string|null $external_url
-     * @param int|null $height
-     *   Overrides naitve height of the image. The resulting file will be resized to the given height
-     * @param string|null $image
-     *   Multipart file that allows you to add an image from your computer
-     * @param string|null $link_url
-     * @param bool|null $over_write
-     *   Allows overwriting of the existing image content section
-     * @param string|null $style
-     *   Sets the value of the style parameter for the content section
-     * @param string|null $video_url
-     *   Sets the Url of the video element. Videos must be either from YouTube or Vimeo
-     * @param int|null $width
-     *   Overrides native width of the image. The resulting file will be resized to the given width
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateEmailDynamicContentUsingPOSTAsync(
-        int $id,
-        string $content_id,
-        string $type,
-        string $value,
-        ?string $alt_text = null,
-        ?string $external_url = null,
-        ?int $height = null,
-        ?string $image = null,
-        ?string $link_url = null,
-        ?bool $over_write = null,
-        ?string $style = null,
-        ?string $video_url = null,
-        ?int $width = null
-    ): PromiseInterface {
-        return $this->updateEmailDynamicContentUsingPOSTAsyncWithHttpInfo($id, $content_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $video_url, $width)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Email Dynamic Content Section
-     *
-     * @param int $id
-     *   Id of email
-     * @param string $content_id
-     *   Id of email dynamic content section
-     * @param string $type
-     *   Type of content to set for the section.
-     * @param string $value
-     *   Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed
-     * @param string|null $alt_text
-     *   Sets the value of the alt parameter for the resulting img element
-     * @param string|null $external_url
-     * @param int|null $height
-     *   Overrides naitve height of the image. The resulting file will be resized to the given height
-     * @param string|null $image
-     *   Multipart file that allows you to add an image from your computer
-     * @param string|null $link_url
-     * @param bool|null $over_write
-     *   Allows overwriting of the existing image content section
-     * @param string|null $style
-     *   Sets the value of the style parameter for the content section
-     * @param string|null $video_url
-     *   Sets the Url of the video element. Videos must be either from YouTube or Vimeo
-     * @param int|null $width
-     *   Overrides native width of the image. The resulting file will be resized to the given width
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateEmailDynamicContentUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $content_id,
-        string $type,
-        string $value,
-        ?string $alt_text = null,
-        ?string $external_url = null,
-        ?int $height = null,
-        ?string $image = null,
-        ?string $link_url = null,
-        ?bool $over_write = null,
-        ?string $style = null,
-        ?string $video_url = null,
-        ?int $width = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateEmailDynamicContentUsingPOSTRequest($id, $content_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $video_url, $width),
-            [$this, 'updateEmailDynamicContentUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateEmailDynamicContentUsingPOST'
-     *
-     * @param int $id
-     *   Id of email
-     * @param string $content_id
-     *   Id of email dynamic content section
-     * @param string $type
-     *   Type of content to set for the section.
-     * @param string $value
-     *   Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed
-     * @param string|null $alt_text
-     *   Sets the value of the alt parameter for the resulting img element
-     * @param string|null $external_url
-     * @param int|null $height
-     *   Overrides naitve height of the image. The resulting file will be resized to the given height
-     * @param string|null $image
-     *   Multipart file that allows you to add an image from your computer
-     * @param string|null $link_url
-     * @param bool|null $over_write
-     *   Allows overwriting of the existing image content section
-     * @param string|null $style
-     *   Sets the value of the style parameter for the content section
-     * @param string|null $video_url
-     *   Sets the Url of the video element. Videos must be either from YouTube or Vimeo
-     * @param int|null $width
-     *   Overrides native width of the image. The resulting file will be resized to the given width
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateEmailDynamicContentUsingPOSTRequest(
-        int $id,
-        string $content_id,
-        string $type,
-        string $value,
-        ?string $alt_text = null,
-        ?string $external_url = null,
-        ?int $height = null,
-        ?string $image = null,
-        ?string $link_url = null,
-        ?bool $over_write = null,
-        ?string $style = null,
-        ?string $video_url = null,
-        ?int $width = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/dynamicContent/{contentId}.json';
+        null|string $alt_text = null,
+        null|string $external_url = null,
+        null|int $height = null,
+        null|string $image = null,
+        null|string $link_url = null,
+        null|bool $over_write = null,
+        null|string $style = null,
+        null|string $video_url = null,
+        null|int $width = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'contentId' . '}',
-            ObjectSerializer::toPathValue($content_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'contentId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($content_id),
+            ],
+            '/rest/asset/v1/email/{id}/dynamicContent/{contentId}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -5737,64 +1593,40 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'altText' => isset($alt_text) ? ObjectSerializer::toFormValue($alt_text) : null,
+                    'externalUrl' => isset($external_url) ? ObjectSerializer::toFormValue($external_url) : null,
+                    'height' => isset($height) ? ObjectSerializer::toFormValue($height) : null,
+                    'image' => isset($image) ? ObjectSerializer::toFormValue($image) : null,
+                    'linkUrl' => isset($link_url) ? ObjectSerializer::toFormValue($link_url) : null,
+                    'overWrite' => isset($over_write) ? ObjectSerializer::toFormValue($over_write) : null,
+                    'style' => isset($style) ? ObjectSerializer::toFormValue($style) : null,
+                    'type' => ObjectSerializer::toFormValue($type),
+                    'value' => ObjectSerializer::toFormValue($value),
+                    'videoUrl' => isset($video_url) ? ObjectSerializer::toFormValue($video_url) : null,
+                    'width' => isset($width) ? ObjectSerializer::toFormValue($width) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'altText' => isset($alt_text) ? ObjectSerializer::toFormValue($alt_text) : null,
-                'externalUrl' => isset($external_url) ? ObjectSerializer::toFormValue($external_url) : null,
-                'height' => isset($height) ? ObjectSerializer::toFormValue($height) : null,
-                'image' => isset($image) ? ObjectSerializer::toFormValue($image) : null,
-                'linkUrl' => isset($link_url) ? ObjectSerializer::toFormValue($link_url) : null,
-                'overWrite' => isset($over_write) ? ObjectSerializer::toFormValue($over_write) : null,
-                'style' => isset($style) ? ObjectSerializer::toFormValue($style) : null,
-                'type' => ObjectSerializer::toFormValue($type),
-                'value' => ObjectSerializer::toFormValue($value),
-                'videoUrl' => isset($video_url) ? ObjectSerializer::toFormValue($video_url) : null,
-                'width' => isset($width) ? ObjectSerializer::toFormValue($width) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateEmailUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateEmailUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -5815,231 +1647,32 @@ class EmailsApi
      * @param bool|null $text_only
      *   Setting to include text-only version of email when sent
      * @param bool|null $web_view
-     *   Whether the email has been enabled to allow the &#39;View as Web Page&#39; when received
+     *   Whether the email has been enabled to allow the 'View as Web Page' when received
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateEmailUsingPOST(
         int $id,
-        ?string $description = null,
-        ?string $name = null,
-        ?string $pre_header = null,
-        ?bool $operational = null,
-        ?bool $published = null,
-        ?bool $text_only = null,
-        ?bool $web_view = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse {
-        [$response] = $this->updateEmailUsingPOSTWithHttpInfo($id, $description, $name, $pre_header, $operational, $published, $text_only, $web_view);
-        return $response;
-    }
-
-    /**
-     * Update Email Metadata
-     *
-     * @param int $id
-     *   id
-     * @param string|null $description
-     *   Description of the asset
-     * @param string|null $name
-     *   Name of the Email
-     * @param string|null $pre_header
-     *   Preheader text for the email
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     * @param bool|null $published
-     *   Whether the email has been published to Sales Insight. Default false
-     * @param bool|null $text_only
-     *   Setting to include text-only version of email when sent
-     * @param bool|null $web_view
-     *   Whether the email has been enabled to allow the &#39;View as Web Page&#39; when received
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateEmailUsingPOSTWithHttpInfo(
-        int $id,
-        ?string $description = null,
-        ?string $name = null,
-        ?string $pre_header = null,
-        ?bool $operational = null,
-        ?bool $published = null,
-        ?bool $text_only = null,
-        ?bool $web_view = null
-    ): array {
-        $request = $this->updateEmailUsingPOSTRequest($id, $description, $name, $pre_header, $operational, $published, $text_only, $web_view);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateEmailUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Email Metadata
-     *
-     * @param int $id
-     *   id
-     * @param string|null $description
-     *   Description of the asset
-     * @param string|null $name
-     *   Name of the Email
-     * @param string|null $pre_header
-     *   Preheader text for the email
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     * @param bool|null $published
-     *   Whether the email has been published to Sales Insight. Default false
-     * @param bool|null $text_only
-     *   Setting to include text-only version of email when sent
-     * @param bool|null $web_view
-     *   Whether the email has been enabled to allow the &#39;View as Web Page&#39; when received
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateEmailUsingPOSTAsync(
-        int $id,
-        ?string $description = null,
-        ?string $name = null,
-        ?string $pre_header = null,
-        ?bool $operational = null,
-        ?bool $published = null,
-        ?bool $text_only = null,
-        ?bool $web_view = null
-    ): PromiseInterface {
-        return $this->updateEmailUsingPOSTAsyncWithHttpInfo($id, $description, $name, $pre_header, $operational, $published, $text_only, $web_view)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Email Metadata
-     *
-     * @param int $id
-     *   id
-     * @param string|null $description
-     *   Description of the asset
-     * @param string|null $name
-     *   Name of the Email
-     * @param string|null $pre_header
-     *   Preheader text for the email
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     * @param bool|null $published
-     *   Whether the email has been published to Sales Insight. Default false
-     * @param bool|null $text_only
-     *   Setting to include text-only version of email when sent
-     * @param bool|null $web_view
-     *   Whether the email has been enabled to allow the &#39;View as Web Page&#39; when received
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateEmailUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        ?string $description = null,
-        ?string $name = null,
-        ?string $pre_header = null,
-        ?bool $operational = null,
-        ?bool $published = null,
-        ?bool $text_only = null,
-        ?bool $web_view = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateEmailUsingPOSTRequest($id, $description, $name, $pre_header, $operational, $published, $text_only, $web_view),
-            [$this, 'updateEmailUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateEmailUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $description
-     *   Description of the asset
-     * @param string|null $name
-     *   Name of the Email
-     * @param string|null $pre_header
-     *   Preheader text for the email
-     * @param bool|null $operational
-     *   Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     * @param bool|null $published
-     *   Whether the email has been published to Sales Insight. Default false
-     * @param bool|null $text_only
-     *   Setting to include text-only version of email when sent
-     * @param bool|null $web_view
-     *   Whether the email has been enabled to allow the &#39;View as Web Page&#39; when received
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateEmailUsingPOSTRequest(
-        int $id,
-        ?string $description = null,
-        ?string $name = null,
-        ?string $pre_header = null,
-        ?bool $operational = null,
-        ?bool $published = null,
-        ?bool $text_only = null,
-        ?bool $web_view = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}.json';
+        null|string $description = null,
+        null|string $name = null,
+        null|string $pre_header = null,
+        null|bool $operational = null,
+        null|bool $published = null,
+        null|bool $text_only = null,
+        null|bool $web_view = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/email/{id}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -6047,60 +1680,36 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
+                    'name' => isset($name) ? ObjectSerializer::toFormValue($name) : null,
+                    'preHeader' => isset($pre_header) ? ObjectSerializer::toFormValue($pre_header) : null,
+                    'operational' => isset($operational) ? ObjectSerializer::toFormValue($operational) : null,
+                    'published' => isset($published) ? ObjectSerializer::toFormValue($published) : null,
+                    'textOnly' => isset($text_only) ? ObjectSerializer::toFormValue($text_only) : null,
+                    'webView' => isset($web_view) ? ObjectSerializer::toFormValue($web_view) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
-                'name' => isset($name) ? ObjectSerializer::toFormValue($name) : null,
-                'preHeader' => isset($pre_header) ? ObjectSerializer::toFormValue($pre_header) : null,
-                'operational' => isset($operational) ? ObjectSerializer::toFormValue($operational) : null,
-                'published' => isset($published) ? ObjectSerializer::toFormValue($published) : null,
-                'textOnly' => isset($text_only) ? ObjectSerializer::toFormValue($text_only) : null,
-                'webView' => isset($web_view) ? ObjectSerializer::toFormValue($web_view) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateVariableUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateVariableUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -6114,183 +1723,29 @@ class EmailsApi
      *   Value to update variable with
      * @param string|null $module_id
      *   Module that variable is associated with. Required for updating module variables. Not needed for global variables.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateVariableUsingPOST(
         int $id,
         string $name,
-        ?string $value = null,
-        ?string $module_id = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse {
-        [$response] = $this->updateVariableUsingPOSTWithHttpInfo($id, $name, $value, $module_id);
-        return $response;
-    }
-
-    /**
-     * Update Email Variable
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   name
-     * @param string|null $value
-     *   Value to update variable with
-     * @param string|null $module_id
-     *   Module that variable is associated with. Required for updating module variables. Not needed for global variables.
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateVariableUsingPOSTWithHttpInfo(
-        int $id,
-        string $name,
-        ?string $value = null,
-        ?string $module_id = null
-    ): array {
-        $request = $this->updateVariableUsingPOSTRequest($id, $name, $value, $module_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateVariableUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Email Variable
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   name
-     * @param string|null $value
-     *   Value to update variable with
-     * @param string|null $module_id
-     *   Module that variable is associated with. Required for updating module variables. Not needed for global variables.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateVariableUsingPOSTAsync(
-        int $id,
-        string $name,
-        ?string $value = null,
-        ?string $module_id = null
-    ): PromiseInterface {
-        return $this->updateVariableUsingPOSTAsyncWithHttpInfo($id, $name, $value, $module_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Email Variable
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   name
-     * @param string|null $value
-     *   Value to update variable with
-     * @param string|null $module_id
-     *   Module that variable is associated with. Required for updating module variables. Not needed for global variables.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateVariableUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $name,
-        ?string $value = null,
-        ?string $module_id = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateVariableUsingPOSTRequest($id, $name, $value, $module_id),
-            [$this, 'updateVariableUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateVariableUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   name
-     * @param string|null $value
-     *   Value to update variable with
-     * @param string|null $module_id
-     *   Module that variable is associated with. Required for updating module variables. Not needed for global variables.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateVariableUsingPOSTRequest(
-        int $id,
-        string $name,
-        ?string $value = null,
-        ?string $module_id = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/email/{id}/variable/{name}.json';
+        null|string $value = null,
+        null|string $module_id = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'name' . '}',
-            ObjectSerializer::toPathValue($name),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'name' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($name),
+            ],
+            '/rest/asset/v1/email/{id}/variable/{name}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -6298,29 +1753,30 @@ class EmailsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'value' => isset($value) ? ObjectSerializer::toFormValue($value) : null,
+                    'moduleId' => isset($module_id) ? ObjectSerializer::toFormValue($module_id) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'value' => isset($value) ? ObjectSerializer::toFormValue($value) : null,
-                'moduleId' => isset($module_id) ? ObjectSerializer::toFormValue($module_id) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 }

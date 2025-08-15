@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Lead\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Lead\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Lead\Configuration;
 use NecLimDul\MarketoRest\Lead\HeaderSelector;
 use NecLimDul\MarketoRest\Lead\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class StaticListsApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class StaticListsApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,31 +112,6 @@ class StaticListsApi
     }
 
     /**
-     * Exception handler for addLeadsToListUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function addLeadsToListUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Add to List
      *
      * @param int $list_id
@@ -127,165 +120,26 @@ class StaticListsApi
      *   Comma-separated list of lead ids to add to the list
      * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest|null $list_operation_request
      *   Optional JSON request body for submitting leads
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function addLeadsToListUsingPOST(
         int $list_id,
-        ?array $id = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData {
-        [$response] = $this->addLeadsToListUsingPOSTWithHttpInfo($list_id, $id, $list_operation_request);
-        return $response;
-    }
-
-    /**
-     * Add to List
-     *
-     * @param int $list_id
-     *   Id of target list
-     * @param int[]|null $id
-     *   Comma-separated list of lead ids to add to the list
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest|null $list_operation_request
-     *   Optional JSON request body for submitting leads
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function addLeadsToListUsingPOSTWithHttpInfo(
-        int $list_id,
-        ?array $id = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null
-    ): array {
-        $request = $this->addLeadsToListUsingPOSTRequest($list_id, $id, $list_operation_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->addLeadsToListUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-            ),
-        };
-    }
-
-    /**
-     * Add to List
-     *
-     * @param int $list_id
-     *   Id of target list
-     * @param int[]|null $id
-     *   Comma-separated list of lead ids to add to the list
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest|null $list_operation_request
-     *   Optional JSON request body for submitting leads
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function addLeadsToListUsingPOSTAsync(
-        int $list_id,
-        ?array $id = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null
-    ): PromiseInterface {
-        return $this->addLeadsToListUsingPOSTAsyncWithHttpInfo($list_id, $id, $list_operation_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData => $response[0]
-            );
-    }
-
-    /**
-     * Add to List
-     *
-     * @param int $list_id
-     *   Id of target list
-     * @param int[]|null $id
-     *   Comma-separated list of lead ids to add to the list
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest|null $list_operation_request
-     *   Optional JSON request body for submitting leads
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function addLeadsToListUsingPOSTAsyncWithHttpInfo(
-        int $list_id,
-        ?array $id = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->addLeadsToListUsingPOSTRequest($list_id, $id, $list_operation_request),
-            [$this, 'addLeadsToListUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'addLeadsToListUsingPOST'
-     *
-     * @param int $list_id
-     *   Id of target list
-     * @param int[]|null $id
-     *   Comma-separated list of lead ids to add to the list
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest|null $list_operation_request
-     *   Optional JSON request body for submitting leads
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function addLeadsToListUsingPOSTRequest(
-        int $list_id,
-        ?array $id = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null
-    ): Request {
-        $resourcePath = '/rest/v1/lists/{listId}/leads.json';
+        null|array $id = null,
+        null|\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'listId' . '}',
-            ObjectSerializer::toPathValue($list_id),
-            $resourcePath
+            [
+                '{' . 'listId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($list_id),
+            ],
+            '/rest/v1/lists/{listId}/leads.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -293,54 +147,28 @@ class StaticListsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'id' => isset($id) ? ObjectSerializer::serializeCollection($id, 'multi') : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'id' => isset($id) ? ObjectSerializer::serializeCollection($id, 'multi') : null,
                 ],
-                $headers
+                $headers,
+                [],
+                $list_operation_request,
             ),
-            // Form Params
-            [
-            ],
-            $list_operation_request
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for areLeadsMemberOfListUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function areLeadsMemberOfListUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -352,165 +180,26 @@ class StaticListsApi
      *   Comma-separated list of lead ids to check
      * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest|null $list_operation_request
      *   Optional JSON request body
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function areLeadsMemberOfListUsingGET(
         int $list_id,
-        ?array $id = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData {
-        [$response] = $this->areLeadsMemberOfListUsingGETWithHttpInfo($list_id, $id, $list_operation_request);
-        return $response;
-    }
-
-    /**
-     * Member of List
-     *
-     * @param int $list_id
-     *   Id of the static list to check against
-     * @param int[]|null $id
-     *   Comma-separated list of lead ids to check
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest|null $list_operation_request
-     *   Optional JSON request body
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function areLeadsMemberOfListUsingGETWithHttpInfo(
-        int $list_id,
-        ?array $id = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null
-    ): array {
-        $request = $this->areLeadsMemberOfListUsingGETRequest($list_id, $id, $list_operation_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->areLeadsMemberOfListUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-            ),
-        };
-    }
-
-    /**
-     * Member of List
-     *
-     * @param int $list_id
-     *   Id of the static list to check against
-     * @param int[]|null $id
-     *   Comma-separated list of lead ids to check
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest|null $list_operation_request
-     *   Optional JSON request body
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function areLeadsMemberOfListUsingGETAsync(
-        int $list_id,
-        ?array $id = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null
-    ): PromiseInterface {
-        return $this->areLeadsMemberOfListUsingGETAsyncWithHttpInfo($list_id, $id, $list_operation_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData => $response[0]
-            );
-    }
-
-    /**
-     * Member of List
-     *
-     * @param int $list_id
-     *   Id of the static list to check against
-     * @param int[]|null $id
-     *   Comma-separated list of lead ids to check
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest|null $list_operation_request
-     *   Optional JSON request body
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function areLeadsMemberOfListUsingGETAsyncWithHttpInfo(
-        int $list_id,
-        ?array $id = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->areLeadsMemberOfListUsingGETRequest($list_id, $id, $list_operation_request),
-            [$this, 'areLeadsMemberOfListUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'areLeadsMemberOfListUsingGET'
-     *
-     * @param int $list_id
-     *   Id of the static list to check against
-     * @param int[]|null $id
-     *   Comma-separated list of lead ids to check
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest|null $list_operation_request
-     *   Optional JSON request body
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function areLeadsMemberOfListUsingGETRequest(
-        int $list_id,
-        ?array $id = null,
-        ?\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null
-    ): Request {
-        $resourcePath = '/rest/v1/lists/{listId}/leads/ismember.json';
+        null|array $id = null,
+        null|\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'listId' . '}',
-            ObjectSerializer::toPathValue($list_id),
-            $resourcePath
+            [
+                '{' . 'listId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($list_id),
+            ],
+            '/rest/v1/lists/{listId}/leads/ismember.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -518,54 +207,28 @@ class StaticListsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'id' => isset($id) ? ObjectSerializer::serializeCollection($id, 'multi') : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'id' => isset($id) ? ObjectSerializer::serializeCollection($id, 'multi') : null,
                 ],
-                $headers
+                $headers,
+                [],
+                $list_operation_request,
             ),
-            // Form Params
-            [
-            ],
-            $list_operation_request
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getLeadsByListIdUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getLeadsByListIdUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -579,178 +242,27 @@ class StaticListsApi
      *   The batch size to return. The max and default value is 300.
      * @param string|null $next_page_token
      *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getLeadsByListIdUsingGET(
         int $list_id,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId {
-        [$response] = $this->getLeadsByListIdUsingGETWithHttpInfo($list_id, $fields, $batch_size, $next_page_token);
-        return $response;
-    }
-
-    /**
-     * Get Leads By List Id
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     * @param string[]|null $fields
-     *   Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getLeadsByListIdUsingGETWithHttpInfo(
-        int $list_id,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): array {
-        $request = $this->getLeadsByListIdUsingGETRequest($list_id, $fields, $batch_size, $next_page_token);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getLeadsByListIdUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId::class
-            ),
-        };
-    }
-
-    /**
-     * Get Leads By List Id
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     * @param string[]|null $fields
-     *   Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getLeadsByListIdUsingGETAsync(
-        int $list_id,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->getLeadsByListIdUsingGETAsyncWithHttpInfo($list_id, $fields, $batch_size, $next_page_token)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId => $response[0]
-            );
-    }
-
-    /**
-     * Get Leads By List Id
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     * @param string[]|null $fields
-     *   Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getLeadsByListIdUsingGETAsyncWithHttpInfo(
-        int $list_id,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getLeadsByListIdUsingGETRequest($list_id, $fields, $batch_size, $next_page_token),
-            [$this, 'getLeadsByListIdUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getLeadsByListIdUsingGET'
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     * @param string[]|null $fields
-     *   Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getLeadsByListIdUsingGETRequest(
-        int $list_id,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): Request {
-        $resourcePath = '/rest/v1/list/{listId}/leads.json';
+        null|array $fields = null,
+        null|int $batch_size = null,
+        null|string $next_page_token = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'listId' . '}',
-            ObjectSerializer::toPathValue($list_id),
-            $resourcePath
+            [
+                '{' . 'listId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($list_id),
+            ],
+            '/rest/v1/list/{listId}/leads.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -758,56 +270,30 @@ class StaticListsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
-                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
-                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
+                    'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                    'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getLeadsByListIdUsingGET1.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getLeadsByListIdUsingGET1HandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -821,178 +307,27 @@ class StaticListsApi
      *   The batch size to return. The max and default value is 300.
      * @param string|null $next_page_token
      *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getLeadsByListIdUsingGET1(
         int $list_id,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead {
-        [$response] = $this->getLeadsByListIdUsingGET1WithHttpInfo($list_id, $fields, $batch_size, $next_page_token);
-        return $response;
-    }
-
-    /**
-     * Get Leads By List Id
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     * @param string[]|null $fields
-     *   Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getLeadsByListIdUsingGET1WithHttpInfo(
-        int $list_id,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): array {
-        $request = $this->getLeadsByListIdUsingGET1Request($list_id, $fields, $batch_size, $next_page_token);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getLeadsByListIdUsingGET1HandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class
-            ),
-        };
-    }
-
-    /**
-     * Get Leads By List Id
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     * @param string[]|null $fields
-     *   Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getLeadsByListIdUsingGET1Async(
-        int $list_id,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->getLeadsByListIdUsingGET1AsyncWithHttpInfo($list_id, $fields, $batch_size, $next_page_token)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead => $response[0]
-            );
-    }
-
-    /**
-     * Get Leads By List Id
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     * @param string[]|null $fields
-     *   Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getLeadsByListIdUsingGET1AsyncWithHttpInfo(
-        int $list_id,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getLeadsByListIdUsingGET1Request($list_id, $fields, $batch_size, $next_page_token),
-            [$this, 'getLeadsByListIdUsingGET1HandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getLeadsByListIdUsingGET1'
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     * @param string[]|null $fields
-     *   Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getLeadsByListIdUsingGET1Request(
-        int $list_id,
-        ?array $fields = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): Request {
-        $resourcePath = '/rest/v1/lists/{listId}/leads.json';
+        null|array $fields = null,
+        null|int $batch_size = null,
+        null|string $next_page_token = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'listId' . '}',
-            ObjectSerializer::toPathValue($list_id),
-            $resourcePath
+            [
+                '{' . 'listId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($list_id),
+            ],
+            '/rest/v1/lists/{listId}/leads.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1000,56 +335,30 @@ class StaticListsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
-                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
-                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
+                    'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                    'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getListByIdUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getListByIdUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1057,139 +366,24 @@ class StaticListsApi
      *
      * @param int $list_id
      *   Id of the static list to retrieve records from
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getListByIdUsingGET(
-        int $list_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList {
-        [$response] = $this->getListByIdUsingGETWithHttpInfo($list_id);
-        return $response;
-    }
-
-    /**
-     * Get List by Id
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getListByIdUsingGETWithHttpInfo(
-        int $list_id
-    ): array {
-        $request = $this->getListByIdUsingGETRequest($list_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getListByIdUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList::class
-            ),
-        };
-    }
-
-    /**
-     * Get List by Id
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getListByIdUsingGETAsync(
-        int $list_id
-    ): PromiseInterface {
-        return $this->getListByIdUsingGETAsyncWithHttpInfo($list_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList => $response[0]
-            );
-    }
-
-    /**
-     * Get List by Id
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getListByIdUsingGETAsyncWithHttpInfo(
-        int $list_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getListByIdUsingGETRequest($list_id),
-            [$this, 'getListByIdUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getListByIdUsingGET'
-     *
-     * @param int $list_id
-     *   Id of the static list to retrieve records from
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getListByIdUsingGETRequest(
-        int $list_id
-    ): Request {
-        $resourcePath = '/rest/v1/lists/{listId}.json';
+        int $list_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'listId' . '}',
-            ObjectSerializer::toPathValue($list_id),
-            $resourcePath
+            [
+                '{' . 'listId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($list_id),
+            ],
+            '/rest/v1/lists/{listId}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1197,53 +391,27 @@ class StaticListsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getListsUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getListsUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1261,199 +429,21 @@ class StaticListsApi
      *   The batch size to return. The max and default value is 300.
      * @param string|null $next_page_token
      *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getListsUsingGET(
-        ?array $id = null,
-        ?array $name = null,
-        ?array $program_name = null,
-        ?array $workspace_name = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList {
-        [$response] = $this->getListsUsingGETWithHttpInfo($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token);
-        return $response;
-    }
-
-    /**
-     * Get Lists
-     *
-     * @param int[]|null $id
-     *   Comma-separated list of static list ids to return
-     * @param string[]|null $name
-     *   Comma-separated list of static list names to return
-     * @param string[]|null $program_name
-     *   Comma-separated list of program names. If set will return all static lists that are children of the given programs
-     * @param string[]|null $workspace_name
-     *   Comma-separated list of workspace names. If set will return all static lists that are children of the given workspaces
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getListsUsingGETWithHttpInfo(
-        ?array $id = null,
-        ?array $name = null,
-        ?array $program_name = null,
-        ?array $workspace_name = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): array {
-        $request = $this->getListsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getListsUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList::class
-            ),
-        };
-    }
-
-    /**
-     * Get Lists
-     *
-     * @param int[]|null $id
-     *   Comma-separated list of static list ids to return
-     * @param string[]|null $name
-     *   Comma-separated list of static list names to return
-     * @param string[]|null $program_name
-     *   Comma-separated list of program names. If set will return all static lists that are children of the given programs
-     * @param string[]|null $workspace_name
-     *   Comma-separated list of workspace names. If set will return all static lists that are children of the given workspaces
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getListsUsingGETAsync(
-        ?array $id = null,
-        ?array $name = null,
-        ?array $program_name = null,
-        ?array $workspace_name = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->getListsUsingGETAsyncWithHttpInfo($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList => $response[0]
-            );
-    }
-
-    /**
-     * Get Lists
-     *
-     * @param int[]|null $id
-     *   Comma-separated list of static list ids to return
-     * @param string[]|null $name
-     *   Comma-separated list of static list names to return
-     * @param string[]|null $program_name
-     *   Comma-separated list of program names. If set will return all static lists that are children of the given programs
-     * @param string[]|null $workspace_name
-     *   Comma-separated list of workspace names. If set will return all static lists that are children of the given workspaces
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getListsUsingGETAsyncWithHttpInfo(
-        ?array $id = null,
-        ?array $name = null,
-        ?array $program_name = null,
-        ?array $workspace_name = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getListsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token),
-            [$this, 'getListsUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getListsUsingGET'
-     *
-     * @param int[]|null $id
-     *   Comma-separated list of static list ids to return
-     * @param string[]|null $name
-     *   Comma-separated list of static list names to return
-     * @param string[]|null $program_name
-     *   Comma-separated list of program names. If set will return all static lists that are children of the given programs
-     * @param string[]|null $workspace_name
-     *   Comma-separated list of workspace names. If set will return all static lists that are children of the given workspaces
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getListsUsingGETRequest(
-        ?array $id = null,
-        ?array $name = null,
-        ?array $program_name = null,
-        ?array $workspace_name = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): Request {
+        null|array $id = null,
+        null|array $name = null,
+        null|array $program_name = null,
+        null|array $workspace_name = null,
+        null|int $batch_size = null,
+        null|string $next_page_token = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/v1/lists.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1461,59 +451,33 @@ class StaticListsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'id' => isset($id) ? ObjectSerializer::serializeCollection($id, 'multi') : null,
-                'name' => isset($name) ? ObjectSerializer::serializeCollection($name, 'multi') : null,
-                'programName' => isset($program_name) ? ObjectSerializer::serializeCollection($program_name, 'multi') : null,
-                'workspaceName' => isset($workspace_name) ? ObjectSerializer::serializeCollection($workspace_name, 'multi') : null,
-                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
-                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'id' => isset($id) ? ObjectSerializer::serializeCollection($id, 'multi') : null,
+                    'name' => isset($name) ? ObjectSerializer::serializeCollection($name, 'multi') : null,
+                    'programName' => isset($program_name) ? ObjectSerializer::serializeCollection($program_name, 'multi') : null,
+                    'workspaceName' => isset($workspace_name) ? ObjectSerializer::serializeCollection($workspace_name, 'multi') : null,
+                    'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                    'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for removeLeadsFromListUsingDELETE.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function removeLeadsFromListUsingDELETEHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1525,171 +489,32 @@ class StaticListsApi
      *   id
      * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request
      *   listOperationRequest
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function removeLeadsFromListUsingDELETE(
         int $list_id,
         array $id,
-        \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData {
-        [$response] = $this->removeLeadsFromListUsingDELETEWithHttpInfo($list_id, $id, $list_operation_request);
-        return $response;
-    }
-
-    /**
-     * Remove from List
-     *
-     * @param int $list_id
-     *   Id of static list to remove leads from
-     * @param int[] $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request
-     *   listOperationRequest
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function removeLeadsFromListUsingDELETEWithHttpInfo(
-        int $list_id,
-        array $id,
-        \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request
-    ): array {
-        $request = $this->removeLeadsFromListUsingDELETERequest($list_id, $id, $list_operation_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->removeLeadsFromListUsingDELETEHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-            ),
-        };
-    }
-
-    /**
-     * Remove from List
-     *
-     * @param int $list_id
-     *   Id of static list to remove leads from
-     * @param int[] $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request
-     *   listOperationRequest
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function removeLeadsFromListUsingDELETEAsync(
-        int $list_id,
-        array $id,
-        \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request
-    ): PromiseInterface {
-        return $this->removeLeadsFromListUsingDELETEAsyncWithHttpInfo($list_id, $id, $list_operation_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData => $response[0]
-            );
-    }
-
-    /**
-     * Remove from List
-     *
-     * @param int $list_id
-     *   Id of static list to remove leads from
-     * @param int[] $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request
-     *   listOperationRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function removeLeadsFromListUsingDELETEAsyncWithHttpInfo(
-        int $list_id,
-        array $id,
-        \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->removeLeadsFromListUsingDELETERequest($list_id, $id, $list_operation_request),
-            [$this, 'removeLeadsFromListUsingDELETEHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'removeLeadsFromListUsingDELETE'
-     *
-     * @param int $list_id
-     *   Id of static list to remove leads from
-     * @param int[] $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request
-     *   listOperationRequest
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function removeLeadsFromListUsingDELETERequest(
-        int $list_id,
-        array $id,
-        \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request
-    ): Request {
+        \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request,
+        bool $async = false,
+    ): ApiResponseInterface {
         // Verify the required parameter 'id' is set.
         if (empty($id)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling removeLeadsFromListUsingDELETE'
             );
         }
-        $resourcePath = '/rest/v1/lists/{listId}/leads.json';
         $resourcePath = str_replace(
-            '{' . 'listId' . '}',
-            ObjectSerializer::toPathValue($list_id),
-            $resourcePath
+            [
+                '{' . 'listId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($list_id),
+            ],
+            '/rest/v1/lists/{listId}/leads.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1697,28 +522,27 @@ class StaticListsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'DELETE',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'id' => ObjectSerializer::serializeCollection($id, 'multi'),
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'DELETE',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'id' => ObjectSerializer::serializeCollection($id, 'multi'),
                 ],
-                $headers
+                $headers,
+                [],
+                $list_operation_request,
             ),
-            // Form Params
-            [
-            ],
-            $list_operation_request
+            $responseMap,
+            async: $async,
         );
     }
 }

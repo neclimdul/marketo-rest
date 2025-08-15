@@ -123,7 +123,7 @@ class FileContentsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -133,7 +133,7 @@ class FileContentsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+            null,
             ['application/json']
         );
     }
@@ -141,8 +141,6 @@ class FileContentsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateContentUsingPOST
      * @covers ::updateContentUsingPOST
-     * @covers ::updateContentUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateContentUsingPOST(
         int $code,
@@ -157,64 +155,6 @@ class FileContentsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateContentUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateContentUsingPOST
-     * @covers ::updateContentUsingPOSTWithHttpInfo
-     * @covers ::updateContentUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateContentUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateContentUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateContentUsingPOST
-     * @covers ::updateContentUsingPOSTAsync
-     * @covers ::updateContentUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateContentUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateContentUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateContentUsingPOST
-     * @covers ::updateContentUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateContentUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateContentUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateContentUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

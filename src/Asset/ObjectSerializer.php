@@ -184,14 +184,14 @@ class ObjectSerializer
      * the http body (form parameter). If it's a string, pass through unchanged
      * If it's a datetime object, format it in ISO8601.
      *
-     * @param scalar|\SplFileObject $value
+     * @param string|\SplFileObject $value
      *   The value of the form parameter.
      *
      * @return string
      *   The form string.
      * @throws \NecLimDul\MarketoRest\Asset\ApiException
      */
-    public static function toFormValue(mixed $value): string
+    public static function toFormValue(string|\SplFileObject $value): string
     {
         return self::getDefaultSerializer()->toFormValue($value);
     }

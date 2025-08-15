@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Asset\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Asset\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Asset\Configuration;
 use NecLimDul\MarketoRest\Asset\HeaderSelector;
 use NecLimDul\MarketoRest\Asset\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class FormFieldsApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class FormFieldsApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,183 +112,31 @@ class FormFieldsApi
     }
 
     /**
-     * Exception handler for addFieldSetUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function addFieldSetUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Add Fieldset to Form
      *
      * @param int $id
      *   id
      * @param string $label
      *   Label of the fieldset
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function addFieldSetUsingPOST(
         int $id,
-        string $label
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse {
-        [$response] = $this->addFieldSetUsingPOSTWithHttpInfo($id, $label);
-        return $response;
-    }
-
-    /**
-     * Add Fieldset to Form
-     *
-     * @param int $id
-     *   id
-     * @param string $label
-     *   Label of the fieldset
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function addFieldSetUsingPOSTWithHttpInfo(
-        int $id,
-        string $label
-    ): array {
-        $request = $this->addFieldSetUsingPOSTRequest($id, $label);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->addFieldSetUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Add Fieldset to Form
-     *
-     * @param int $id
-     *   id
-     * @param string $label
-     *   Label of the fieldset
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function addFieldSetUsingPOSTAsync(
-        int $id,
-        string $label
-    ): PromiseInterface {
-        return $this->addFieldSetUsingPOSTAsyncWithHttpInfo($id, $label)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse => $response[0]
-            );
-    }
-
-    /**
-     * Add Fieldset to Form
-     *
-     * @param int $id
-     *   id
-     * @param string $label
-     *   Label of the fieldset
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function addFieldSetUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $label
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->addFieldSetUsingPOSTRequest($id, $label),
-            [$this, 'addFieldSetUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'addFieldSetUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $label
-     *   Label of the fieldset
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function addFieldSetUsingPOSTRequest(
-        int $id,
-        string $label
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/fieldSet.json';
+        string $label,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/fieldSet.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -278,54 +144,30 @@ class FormFieldsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'label' => ObjectSerializer::toFormValue($label),
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'label' => ObjectSerializer::toFormValue($label),
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for addFieldToAFormUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function addFieldToAFormUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -375,412 +217,45 @@ class FormFieldsApi
      *   Comma-separated list of accepted values for the field. Only for select-field types
      * @param int|null $visible_lines
      *   Number of lines to display for the field element
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function addFieldToAFormUsingPOST(
         int $id,
         string $field_id,
-        ?int $blank_fields = null,
-        ?string $default_value = null,
-        ?int $field_width = null,
-        ?bool $form_prefill = null,
-        ?bool $is_sensitive = null,
-        ?string $hint_text = null,
-        ?bool $initially_checked = null,
-        ?string $instructions = null,
-        ?string $label = null,
-        ?bool $label_to_right = null,
-        ?int $label_width = null,
-        ?string $mask_input = null,
-        ?int $max_length = null,
-        ?float $max_value = null,
-        ?float $min_value = null,
-        ?bool $multi_select = null,
-        ?bool $required = null,
-        ?string $validation_message = null,
-        ?string $values = null,
-        ?int $visible_lines = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse {
-        [$response] = $this->addFieldToAFormUsingPOSTWithHttpInfo($id, $field_id, $blank_fields, $default_value, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines);
-        return $response;
-    }
-
-    /**
-     * Add Field to Form
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   Id of the field
-     * @param int|null $blank_fields
-     *   Number of blank fields to show when progressive profiling is enabled
-     * @param string|null $default_value
-     *   Optional default value for the field
-     * @param int|null $field_width
-     *   Width of the input or select element
-     * @param bool|null $form_prefill
-     *   Whether the field should prefill. Default true
-     * @param bool|null $is_sensitive
-     *   Whether the field is marked as sensitive. Default false
-     * @param string|null $hint_text
-     *   Hint text for the field
-     * @param bool|null $initially_checked
-     *   Whether the field should be checked upon loading. Default false
-     * @param string|null $instructions
-     *   Instructions for the field
-     * @param string|null $label
-     *   Label of the field
-     * @param bool|null $label_to_right
-     *   Whether the field label should be displayed to the right of the input/select element. Default false
-     * @param int|null $label_width
-     *   Width of the field label element
-     * @param string|null $mask_input
-     *   Optional input mask for the field
-     * @param int|null $max_length
-     *   Maximum length for text type fields
-     * @param float|null $max_value
-     *   Maximum value accepted by the field
-     * @param float|null $min_value
-     *   Minimum value accepted by the field
-     * @param bool|null $multi_select
-     *   Whether the field should allow multiple selections. Default false
-     * @param bool|null $required
-     *   Whether the field is required to submit the form. Default false
-     * @param string|null $validation_message
-     *   Validation message to display on failed validation
-     * @param string|null $values
-     *   Comma-separated list of accepted values for the field. Only for select-field types
-     * @param int|null $visible_lines
-     *   Number of lines to display for the field element
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function addFieldToAFormUsingPOSTWithHttpInfo(
-        int $id,
-        string $field_id,
-        ?int $blank_fields = null,
-        ?string $default_value = null,
-        ?int $field_width = null,
-        ?bool $form_prefill = null,
-        ?bool $is_sensitive = null,
-        ?string $hint_text = null,
-        ?bool $initially_checked = null,
-        ?string $instructions = null,
-        ?string $label = null,
-        ?bool $label_to_right = null,
-        ?int $label_width = null,
-        ?string $mask_input = null,
-        ?int $max_length = null,
-        ?float $max_value = null,
-        ?float $min_value = null,
-        ?bool $multi_select = null,
-        ?bool $required = null,
-        ?string $validation_message = null,
-        ?string $values = null,
-        ?int $visible_lines = null
-    ): array {
-        $request = $this->addFieldToAFormUsingPOSTRequest($id, $field_id, $blank_fields, $default_value, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->addFieldToAFormUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Add Field to Form
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   Id of the field
-     * @param int|null $blank_fields
-     *   Number of blank fields to show when progressive profiling is enabled
-     * @param string|null $default_value
-     *   Optional default value for the field
-     * @param int|null $field_width
-     *   Width of the input or select element
-     * @param bool|null $form_prefill
-     *   Whether the field should prefill. Default true
-     * @param bool|null $is_sensitive
-     *   Whether the field is marked as sensitive. Default false
-     * @param string|null $hint_text
-     *   Hint text for the field
-     * @param bool|null $initially_checked
-     *   Whether the field should be checked upon loading. Default false
-     * @param string|null $instructions
-     *   Instructions for the field
-     * @param string|null $label
-     *   Label of the field
-     * @param bool|null $label_to_right
-     *   Whether the field label should be displayed to the right of the input/select element. Default false
-     * @param int|null $label_width
-     *   Width of the field label element
-     * @param string|null $mask_input
-     *   Optional input mask for the field
-     * @param int|null $max_length
-     *   Maximum length for text type fields
-     * @param float|null $max_value
-     *   Maximum value accepted by the field
-     * @param float|null $min_value
-     *   Minimum value accepted by the field
-     * @param bool|null $multi_select
-     *   Whether the field should allow multiple selections. Default false
-     * @param bool|null $required
-     *   Whether the field is required to submit the form. Default false
-     * @param string|null $validation_message
-     *   Validation message to display on failed validation
-     * @param string|null $values
-     *   Comma-separated list of accepted values for the field. Only for select-field types
-     * @param int|null $visible_lines
-     *   Number of lines to display for the field element
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function addFieldToAFormUsingPOSTAsync(
-        int $id,
-        string $field_id,
-        ?int $blank_fields = null,
-        ?string $default_value = null,
-        ?int $field_width = null,
-        ?bool $form_prefill = null,
-        ?bool $is_sensitive = null,
-        ?string $hint_text = null,
-        ?bool $initially_checked = null,
-        ?string $instructions = null,
-        ?string $label = null,
-        ?bool $label_to_right = null,
-        ?int $label_width = null,
-        ?string $mask_input = null,
-        ?int $max_length = null,
-        ?float $max_value = null,
-        ?float $min_value = null,
-        ?bool $multi_select = null,
-        ?bool $required = null,
-        ?string $validation_message = null,
-        ?string $values = null,
-        ?int $visible_lines = null
-    ): PromiseInterface {
-        return $this->addFieldToAFormUsingPOSTAsyncWithHttpInfo($id, $field_id, $blank_fields, $default_value, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse => $response[0]
-            );
-    }
-
-    /**
-     * Add Field to Form
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   Id of the field
-     * @param int|null $blank_fields
-     *   Number of blank fields to show when progressive profiling is enabled
-     * @param string|null $default_value
-     *   Optional default value for the field
-     * @param int|null $field_width
-     *   Width of the input or select element
-     * @param bool|null $form_prefill
-     *   Whether the field should prefill. Default true
-     * @param bool|null $is_sensitive
-     *   Whether the field is marked as sensitive. Default false
-     * @param string|null $hint_text
-     *   Hint text for the field
-     * @param bool|null $initially_checked
-     *   Whether the field should be checked upon loading. Default false
-     * @param string|null $instructions
-     *   Instructions for the field
-     * @param string|null $label
-     *   Label of the field
-     * @param bool|null $label_to_right
-     *   Whether the field label should be displayed to the right of the input/select element. Default false
-     * @param int|null $label_width
-     *   Width of the field label element
-     * @param string|null $mask_input
-     *   Optional input mask for the field
-     * @param int|null $max_length
-     *   Maximum length for text type fields
-     * @param float|null $max_value
-     *   Maximum value accepted by the field
-     * @param float|null $min_value
-     *   Minimum value accepted by the field
-     * @param bool|null $multi_select
-     *   Whether the field should allow multiple selections. Default false
-     * @param bool|null $required
-     *   Whether the field is required to submit the form. Default false
-     * @param string|null $validation_message
-     *   Validation message to display on failed validation
-     * @param string|null $values
-     *   Comma-separated list of accepted values for the field. Only for select-field types
-     * @param int|null $visible_lines
-     *   Number of lines to display for the field element
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function addFieldToAFormUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $field_id,
-        ?int $blank_fields = null,
-        ?string $default_value = null,
-        ?int $field_width = null,
-        ?bool $form_prefill = null,
-        ?bool $is_sensitive = null,
-        ?string $hint_text = null,
-        ?bool $initially_checked = null,
-        ?string $instructions = null,
-        ?string $label = null,
-        ?bool $label_to_right = null,
-        ?int $label_width = null,
-        ?string $mask_input = null,
-        ?int $max_length = null,
-        ?float $max_value = null,
-        ?float $min_value = null,
-        ?bool $multi_select = null,
-        ?bool $required = null,
-        ?string $validation_message = null,
-        ?string $values = null,
-        ?int $visible_lines = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->addFieldToAFormUsingPOSTRequest($id, $field_id, $blank_fields, $default_value, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines),
-            [$this, 'addFieldToAFormUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'addFieldToAFormUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   Id of the field
-     * @param int|null $blank_fields
-     *   Number of blank fields to show when progressive profiling is enabled
-     * @param string|null $default_value
-     *   Optional default value for the field
-     * @param int|null $field_width
-     *   Width of the input or select element
-     * @param bool|null $form_prefill
-     *   Whether the field should prefill. Default true
-     * @param bool|null $is_sensitive
-     *   Whether the field is marked as sensitive. Default false
-     * @param string|null $hint_text
-     *   Hint text for the field
-     * @param bool|null $initially_checked
-     *   Whether the field should be checked upon loading. Default false
-     * @param string|null $instructions
-     *   Instructions for the field
-     * @param string|null $label
-     *   Label of the field
-     * @param bool|null $label_to_right
-     *   Whether the field label should be displayed to the right of the input/select element. Default false
-     * @param int|null $label_width
-     *   Width of the field label element
-     * @param string|null $mask_input
-     *   Optional input mask for the field
-     * @param int|null $max_length
-     *   Maximum length for text type fields
-     * @param float|null $max_value
-     *   Maximum value accepted by the field
-     * @param float|null $min_value
-     *   Minimum value accepted by the field
-     * @param bool|null $multi_select
-     *   Whether the field should allow multiple selections. Default false
-     * @param bool|null $required
-     *   Whether the field is required to submit the form. Default false
-     * @param string|null $validation_message
-     *   Validation message to display on failed validation
-     * @param string|null $values
-     *   Comma-separated list of accepted values for the field. Only for select-field types
-     * @param int|null $visible_lines
-     *   Number of lines to display for the field element
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function addFieldToAFormUsingPOSTRequest(
-        int $id,
-        string $field_id,
-        ?int $blank_fields = null,
-        ?string $default_value = null,
-        ?int $field_width = null,
-        ?bool $form_prefill = null,
-        ?bool $is_sensitive = null,
-        ?string $hint_text = null,
-        ?bool $initially_checked = null,
-        ?string $instructions = null,
-        ?string $label = null,
-        ?bool $label_to_right = null,
-        ?int $label_width = null,
-        ?string $mask_input = null,
-        ?int $max_length = null,
-        ?float $max_value = null,
-        ?float $min_value = null,
-        ?bool $multi_select = null,
-        ?bool $required = null,
-        ?string $validation_message = null,
-        ?string $values = null,
-        ?int $visible_lines = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/fields.json';
+        null|int $blank_fields = null,
+        null|string $default_value = null,
+        null|int $field_width = null,
+        null|bool $form_prefill = null,
+        null|bool $is_sensitive = null,
+        null|string $hint_text = null,
+        null|bool $initially_checked = null,
+        null|string $instructions = null,
+        null|string $label = null,
+        null|bool $label_to_right = null,
+        null|int $label_width = null,
+        null|string $mask_input = null,
+        null|int $max_length = null,
+        null|float $max_value = null,
+        null|float $min_value = null,
+        null|bool $multi_select = null,
+        null|bool $required = null,
+        null|string $validation_message = null,
+        null|string $values = null,
+        null|int $visible_lines = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/fields.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -788,74 +263,50 @@ class FormFieldsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'blankFields' => isset($blank_fields) ? ObjectSerializer::toFormValue($blank_fields) : null,
+                    'defaultValue' => isset($default_value) ? ObjectSerializer::toFormValue($default_value) : null,
+                    'fieldId' => ObjectSerializer::toFormValue($field_id),
+                    'fieldWidth' => isset($field_width) ? ObjectSerializer::toFormValue($field_width) : null,
+                    'formPrefill' => isset($form_prefill) ? ObjectSerializer::toFormValue($form_prefill) : null,
+                    'isSensitive' => isset($is_sensitive) ? ObjectSerializer::toFormValue($is_sensitive) : null,
+                    'hintText' => isset($hint_text) ? ObjectSerializer::toFormValue($hint_text) : null,
+                    'initiallyChecked' => isset($initially_checked) ? ObjectSerializer::toFormValue($initially_checked) : null,
+                    'instructions' => isset($instructions) ? ObjectSerializer::toFormValue($instructions) : null,
+                    'label' => isset($label) ? ObjectSerializer::toFormValue($label) : null,
+                    'labelToRight' => isset($label_to_right) ? ObjectSerializer::toFormValue($label_to_right) : null,
+                    'labelWidth' => isset($label_width) ? ObjectSerializer::toFormValue($label_width) : null,
+                    'maskInput' => isset($mask_input) ? ObjectSerializer::toFormValue($mask_input) : null,
+                    'maxLength' => isset($max_length) ? ObjectSerializer::toFormValue($max_length) : null,
+                    'maxValue' => isset($max_value) ? ObjectSerializer::toFormValue($max_value) : null,
+                    'minValue' => isset($min_value) ? ObjectSerializer::toFormValue($min_value) : null,
+                    'multiSelect' => isset($multi_select) ? ObjectSerializer::toFormValue($multi_select) : null,
+                    'required' => isset($required) ? ObjectSerializer::toFormValue($required) : null,
+                    'validationMessage' => isset($validation_message) ? ObjectSerializer::toFormValue($validation_message) : null,
+                    'values' => isset($values) ? ObjectSerializer::toFormValue($values) : null,
+                    'visibleLines' => isset($visible_lines) ? ObjectSerializer::toFormValue($visible_lines) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'blankFields' => isset($blank_fields) ? ObjectSerializer::toFormValue($blank_fields) : null,
-                'defaultValue' => isset($default_value) ? ObjectSerializer::toFormValue($default_value) : null,
-                'fieldId' => ObjectSerializer::toFormValue($field_id),
-                'fieldWidth' => isset($field_width) ? ObjectSerializer::toFormValue($field_width) : null,
-                'formPrefill' => isset($form_prefill) ? ObjectSerializer::toFormValue($form_prefill) : null,
-                'isSensitive' => isset($is_sensitive) ? ObjectSerializer::toFormValue($is_sensitive) : null,
-                'hintText' => isset($hint_text) ? ObjectSerializer::toFormValue($hint_text) : null,
-                'initiallyChecked' => isset($initially_checked) ? ObjectSerializer::toFormValue($initially_checked) : null,
-                'instructions' => isset($instructions) ? ObjectSerializer::toFormValue($instructions) : null,
-                'label' => isset($label) ? ObjectSerializer::toFormValue($label) : null,
-                'labelToRight' => isset($label_to_right) ? ObjectSerializer::toFormValue($label_to_right) : null,
-                'labelWidth' => isset($label_width) ? ObjectSerializer::toFormValue($label_width) : null,
-                'maskInput' => isset($mask_input) ? ObjectSerializer::toFormValue($mask_input) : null,
-                'maxLength' => isset($max_length) ? ObjectSerializer::toFormValue($max_length) : null,
-                'maxValue' => isset($max_value) ? ObjectSerializer::toFormValue($max_value) : null,
-                'minValue' => isset($min_value) ? ObjectSerializer::toFormValue($min_value) : null,
-                'multiSelect' => isset($multi_select) ? ObjectSerializer::toFormValue($multi_select) : null,
-                'required' => isset($required) ? ObjectSerializer::toFormValue($required) : null,
-                'validationMessage' => isset($validation_message) ? ObjectSerializer::toFormValue($validation_message) : null,
-                'values' => isset($values) ? ObjectSerializer::toFormValue($values) : null,
-                'visibleLines' => isset($visible_lines) ? ObjectSerializer::toFormValue($visible_lines) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for addFormFieldVisibilityRuleUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function addFormFieldVisibilityRuleUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -866,166 +317,28 @@ class FormFieldsApi
      * @param string $field_id
      *   fieldId
      * @param \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null $visibility_rule
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function addFormFieldVisibilityRuleUsingPOST(
         int $form_id,
         string $field_id,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest $visibility_rule = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse {
-        [$response] = $this->addFormFieldVisibilityRuleUsingPOSTWithHttpInfo($form_id, $field_id, $visibility_rule);
-        return $response;
-    }
-
-    /**
-     * Add Form Field Visibility Rules
-     *
-     * @param int $form_id
-     *   formId
-     * @param string $field_id
-     *   fieldId
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null $visibility_rule
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function addFormFieldVisibilityRuleUsingPOSTWithHttpInfo(
-        int $form_id,
-        string $field_id,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest $visibility_rule = null
-    ): array {
-        $request = $this->addFormFieldVisibilityRuleUsingPOSTRequest($form_id, $field_id, $visibility_rule);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->addFormFieldVisibilityRuleUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Add Form Field Visibility Rules
-     *
-     * @param int $form_id
-     *   formId
-     * @param string $field_id
-     *   fieldId
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null $visibility_rule
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function addFormFieldVisibilityRuleUsingPOSTAsync(
-        int $form_id,
-        string $field_id,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest $visibility_rule = null
-    ): PromiseInterface {
-        return $this->addFormFieldVisibilityRuleUsingPOSTAsyncWithHttpInfo($form_id, $field_id, $visibility_rule)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse => $response[0]
-            );
-    }
-
-    /**
-     * Add Form Field Visibility Rules
-     *
-     * @param int $form_id
-     *   formId
-     * @param string $field_id
-     *   fieldId
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null $visibility_rule
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function addFormFieldVisibilityRuleUsingPOSTAsyncWithHttpInfo(
-        int $form_id,
-        string $field_id,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest $visibility_rule = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->addFormFieldVisibilityRuleUsingPOSTRequest($form_id, $field_id, $visibility_rule),
-            [$this, 'addFormFieldVisibilityRuleUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'addFormFieldVisibilityRuleUsingPOST'
-     *
-     * @param int $form_id
-     *   formId
-     * @param string $field_id
-     *   fieldId
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null $visibility_rule
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function addFormFieldVisibilityRuleUsingPOSTRequest(
-        int $form_id,
-        string $field_id,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest $visibility_rule = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{formId}/field/{fieldId}/visibility.json';
+        null|\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest $visibility_rule = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'formId' . '}',
-            ObjectSerializer::toPathValue($form_id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'fieldId' . '}',
-            ObjectSerializer::toPathValue($field_id),
-            $resourcePath
+            [
+                '{' . 'formId' . '}',
+                '{' . 'fieldId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($form_id),
+                ObjectSerializer::toPathValue($field_id),
+            ],
+            '/rest/asset/v1/form/{formId}/field/{fieldId}/visibility.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1033,54 +346,30 @@ class FormFieldsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'visibilityRule' => isset($visibility_rule) ? ObjectSerializer::toFormValue($visibility_rule) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'visibilityRule' => isset($visibility_rule) ? ObjectSerializer::toFormValue($visibility_rule) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for addRichTextFieldUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function addRichTextFieldUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1090,152 +379,25 @@ class FormFieldsApi
      *   id
      * @param string $text
      *   Multipart file. HTML Content for the rich text field.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function addRichTextFieldUsingPOST(
         int $id,
-        string $text
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse {
-        [$response] = $this->addRichTextFieldUsingPOSTWithHttpInfo($id, $text);
-        return $response;
-    }
-
-    /**
-     * Add Rich Text Field
-     *
-     * @param int $id
-     *   id
-     * @param string $text
-     *   Multipart file. HTML Content for the rich text field.
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function addRichTextFieldUsingPOSTWithHttpInfo(
-        int $id,
-        string $text
-    ): array {
-        $request = $this->addRichTextFieldUsingPOSTRequest($id, $text);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->addRichTextFieldUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Add Rich Text Field
-     *
-     * @param int $id
-     *   id
-     * @param string $text
-     *   Multipart file. HTML Content for the rich text field.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function addRichTextFieldUsingPOSTAsync(
-        int $id,
-        string $text
-    ): PromiseInterface {
-        return $this->addRichTextFieldUsingPOSTAsyncWithHttpInfo($id, $text)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse => $response[0]
-            );
-    }
-
-    /**
-     * Add Rich Text Field
-     *
-     * @param int $id
-     *   id
-     * @param string $text
-     *   Multipart file. HTML Content for the rich text field.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function addRichTextFieldUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $text
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->addRichTextFieldUsingPOSTRequest($id, $text),
-            [$this, 'addRichTextFieldUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'addRichTextFieldUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $text
-     *   Multipart file. HTML Content for the rich text field.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function addRichTextFieldUsingPOSTRequest(
-        int $id,
-        string $text
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/richText.json';
+        string $text,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/richText.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1243,54 +405,30 @@ class FormFieldsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'text' => ObjectSerializer::toFormValue($text),
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'text' => ObjectSerializer::toFormValue($text),
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for deleteFormFieldFromFieldSetUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function deleteFormFieldFromFieldSetUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1302,175 +440,30 @@ class FormFieldsApi
      *   fieldSetId
      * @param string $field_id
      *   fieldId
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteFormFieldFromFieldSetUsingPOST(
         int $id,
         string $field_set_id,
-        string $field_id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->deleteFormFieldFromFieldSetUsingPOSTWithHttpInfo($id, $field_set_id, $field_id);
-        return $response;
-    }
-
-    /**
-     * Delete Field from Fieldset
-     *
-     * @param int $id
-     *   id
-     * @param string $field_set_id
-     *   fieldSetId
-     * @param string $field_id
-     *   fieldId
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteFormFieldFromFieldSetUsingPOSTWithHttpInfo(
-        int $id,
-        string $field_set_id,
-        string $field_id
-    ): array {
-        $request = $this->deleteFormFieldFromFieldSetUsingPOSTRequest($id, $field_set_id, $field_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteFormFieldFromFieldSetUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Field from Fieldset
-     *
-     * @param int $id
-     *   id
-     * @param string $field_set_id
-     *   fieldSetId
-     * @param string $field_id
-     *   fieldId
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteFormFieldFromFieldSetUsingPOSTAsync(
-        int $id,
-        string $field_set_id,
-        string $field_id
-    ): PromiseInterface {
-        return $this->deleteFormFieldFromFieldSetUsingPOSTAsyncWithHttpInfo($id, $field_set_id, $field_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Delete Field from Fieldset
-     *
-     * @param int $id
-     *   id
-     * @param string $field_set_id
-     *   fieldSetId
-     * @param string $field_id
-     *   fieldId
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteFormFieldFromFieldSetUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $field_set_id,
-        string $field_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteFormFieldFromFieldSetUsingPOSTRequest($id, $field_set_id, $field_id),
-            [$this, 'deleteFormFieldFromFieldSetUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteFormFieldFromFieldSetUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $field_set_id
-     *   fieldSetId
-     * @param string $field_id
-     *   fieldId
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteFormFieldFromFieldSetUsingPOSTRequest(
-        int $id,
-        string $field_set_id,
-        string $field_id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/fieldSet/{fieldSetId}/field/{fieldId}/delete.json';
+        string $field_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'fieldSetId' . '}',
-            ObjectSerializer::toPathValue($field_set_id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'fieldId' . '}',
-            ObjectSerializer::toPathValue($field_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'fieldSetId' . '}',
+                '{' . 'fieldId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($field_set_id),
+                ObjectSerializer::toPathValue($field_id),
+            ],
+            '/rest/asset/v1/form/{id}/fieldSet/{fieldSetId}/field/{fieldId}/delete.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1478,53 +471,27 @@ class FormFieldsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for deleteFormFieldUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function deleteFormFieldUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1534,157 +501,27 @@ class FormFieldsApi
      *   id
      * @param string $field_id
      *   fieldId
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteFormFieldUsingPOST(
         int $id,
-        string $field_id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->deleteFormFieldUsingPOSTWithHttpInfo($id, $field_id);
-        return $response;
-    }
-
-    /**
-     * Delete Form Field
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   fieldId
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteFormFieldUsingPOSTWithHttpInfo(
-        int $id,
-        string $field_id
-    ): array {
-        $request = $this->deleteFormFieldUsingPOSTRequest($id, $field_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteFormFieldUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Form Field
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   fieldId
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteFormFieldUsingPOSTAsync(
-        int $id,
-        string $field_id
-    ): PromiseInterface {
-        return $this->deleteFormFieldUsingPOSTAsyncWithHttpInfo($id, $field_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Delete Form Field
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   fieldId
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteFormFieldUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $field_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteFormFieldUsingPOSTRequest($id, $field_id),
-            [$this, 'deleteFormFieldUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteFormFieldUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   fieldId
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteFormFieldUsingPOSTRequest(
-        int $id,
-        string $field_id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/field/{fieldId}/delete.json';
+        string $field_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'fieldId' . '}',
-            ObjectSerializer::toPathValue($field_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'fieldId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($field_id),
+            ],
+            '/rest/asset/v1/form/{id}/field/{fieldId}/delete.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1692,53 +529,27 @@ class FormFieldsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getAllFieldsUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getAllFieldsUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1748,147 +559,17 @@ class FormFieldsApi
      *   Maximum number of fields to return. Max 200, default 20
      * @param int|null $offset
      *   Integer offset for paging
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getAllFieldsUsingGET(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse {
-        [$response] = $this->getAllFieldsUsingGETWithHttpInfo($max_return, $offset);
-        return $response;
-    }
-
-    /**
-     * Get Available Form Fields
-     *
-     * @param int|null $max_return
-     *   Maximum number of fields to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getAllFieldsUsingGETWithHttpInfo(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): array {
-        $request = $this->getAllFieldsUsingGETRequest($max_return, $offset);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getAllFieldsUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Available Form Fields
-     *
-     * @param int|null $max_return
-     *   Maximum number of fields to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getAllFieldsUsingGETAsync(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): PromiseInterface {
-        return $this->getAllFieldsUsingGETAsyncWithHttpInfo($max_return, $offset)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Available Form Fields
-     *
-     * @param int|null $max_return
-     *   Maximum number of fields to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getAllFieldsUsingGETAsyncWithHttpInfo(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getAllFieldsUsingGETRequest($max_return, $offset),
-            [$this, 'getAllFieldsUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getAllFieldsUsingGET'
-     *
-     * @param int|null $max_return
-     *   Maximum number of fields to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getAllFieldsUsingGETRequest(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): Request {
+        null|int $max_return = null,
+        null|int $offset = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/form/fields.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1896,55 +577,29 @@ class FormFieldsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
-                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                    'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getAllProgramMemberFieldsUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getAllProgramMemberFieldsUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1954,147 +609,17 @@ class FormFieldsApi
      *   Maximum number of fields to return. Max 200, default 20
      * @param int|null $offset
      *   Integer offset for paging
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getAllProgramMemberFieldsUsingGET(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse {
-        [$response] = $this->getAllProgramMemberFieldsUsingGETWithHttpInfo($max_return, $offset);
-        return $response;
-    }
-
-    /**
-     * Get Available Form Program Member Fields
-     *
-     * @param int|null $max_return
-     *   Maximum number of fields to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getAllProgramMemberFieldsUsingGETWithHttpInfo(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): array {
-        $request = $this->getAllProgramMemberFieldsUsingGETRequest($max_return, $offset);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getAllProgramMemberFieldsUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Available Form Program Member Fields
-     *
-     * @param int|null $max_return
-     *   Maximum number of fields to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getAllProgramMemberFieldsUsingGETAsync(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): PromiseInterface {
-        return $this->getAllProgramMemberFieldsUsingGETAsyncWithHttpInfo($max_return, $offset)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Available Form Program Member Fields
-     *
-     * @param int|null $max_return
-     *   Maximum number of fields to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getAllProgramMemberFieldsUsingGETAsyncWithHttpInfo(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getAllProgramMemberFieldsUsingGETRequest($max_return, $offset),
-            [$this, 'getAllProgramMemberFieldsUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getAllProgramMemberFieldsUsingGET'
-     *
-     * @param int|null $max_return
-     *   Maximum number of fields to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getAllProgramMemberFieldsUsingGETRequest(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): Request {
+        null|int $max_return = null,
+        null|int $offset = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/form/programMemberFields.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2102,55 +627,29 @@ class FormFieldsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
-                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                    'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getFormFieldByFormVidUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getFormFieldByFormVidUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2160,152 +659,25 @@ class FormFieldsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getFormFieldByFormVidUsingGET(
         int $id,
-        ?string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse {
-        [$response] = $this->getFormFieldByFormVidUsingGETWithHttpInfo($id, $status);
-        return $response;
-    }
-
-    /**
-     * Get Fields for Form
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getFormFieldByFormVidUsingGETWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): array {
-        $request = $this->getFormFieldByFormVidUsingGETRequest($id, $status);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getFormFieldByFormVidUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Fields for Form
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getFormFieldByFormVidUsingGETAsync(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->getFormFieldByFormVidUsingGETAsyncWithHttpInfo($id, $status)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Fields for Form
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getFormFieldByFormVidUsingGETAsyncWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getFormFieldByFormVidUsingGETRequest($id, $status),
-            [$this, 'getFormFieldByFormVidUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getFormFieldByFormVidUsingGET'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getFormFieldByFormVidUsingGETRequest(
-        int $id,
-        ?string $status = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/fields.json';
+        null|string $status = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/fields.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2313,54 +685,28 @@ class FormFieldsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateFieldPositionsUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateFieldPositionsUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2369,148 +715,25 @@ class FormFieldsApi
      * @param int $id
      *   id
      * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null $positions
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateFieldPositionsUsingPOST(
         int $id,
-        ?array $positions = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->updateFieldPositionsUsingPOSTWithHttpInfo($id, $positions);
-        return $response;
-    }
-
-    /**
-     * Update Field Positions
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null $positions
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateFieldPositionsUsingPOSTWithHttpInfo(
-        int $id,
-        ?array $positions = null
-    ): array {
-        $request = $this->updateFieldPositionsUsingPOSTRequest($id, $positions);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateFieldPositionsUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Field Positions
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null $positions
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateFieldPositionsUsingPOSTAsync(
-        int $id,
-        ?array $positions = null
-    ): PromiseInterface {
-        return $this->updateFieldPositionsUsingPOSTAsyncWithHttpInfo($id, $positions)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Field Positions
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null $positions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateFieldPositionsUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        ?array $positions = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateFieldPositionsUsingPOSTRequest($id, $positions),
-            [$this, 'updateFieldPositionsUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateFieldPositionsUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null $positions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateFieldPositionsUsingPOSTRequest(
-        int $id,
-        ?array $positions = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/reArrange.json';
+        null|array $positions = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/reArrange.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2518,54 +741,30 @@ class FormFieldsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'positions' => isset($positions) ? ObjectSerializer::toFormValue($positions) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'positions' => isset($positions) ? ObjectSerializer::toFormValue($positions) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateFormFieldUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateFormFieldUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2614,433 +813,51 @@ class FormFieldsApi
      * @param string|null $validation_message
      *   Validation message to display on failed validation
      * @param string|null $values
-     *   Array of JSON objects that contain field attributes. Only for select-field types. Example: values&#x3D;[{&#39;label&#39;:&#39;Select...&#39;,&#39;value&#39;:&#39;&#39;,&#39;isDefault&#39;:true,&#39;selected&#39;:true}, {&#39;label&#39;:&#39;MR&#39;,&#39;value&#39;:&#39;Mr&#39;}, {&#39;label&#39;:&#39;MS&#39;,&#39;value&#39;:&#39;Ms&#39;}, {&#39;label&#39;:&#39;MRS&#39;,&#39;value&#39;:&#39;Mrs&#39;}, {&#39;label&#39;:&#39;DR&#39;,&#39;value&#39;:&#39;Dr&#39;}, {&#39;label&#39;:&#39;PROF&#39;,&#39;value&#39;:&#39;Prof&#39;}]
+     *   Array of JSON objects that contain field attributes. Only for select-field types. Example: values=[{'label':'Select...','value':'','isDefault':true,'selected':true}, {'label':'MR','value':'Mr'}, {'label':'MS','value':'Ms'}, {'label':'MRS','value':'Mrs'}, {'label':'DR','value':'Dr'}, {'label':'PROF','value':'Prof'}]
      * @param int|null $visible_lines
      *   Number of lines to display for the field element
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateFormFieldUsingPOST(
         int $id,
         string $field_id,
-        ?int $blank_fields = null,
-        ?string $default_value = null,
-        ?string $field_type = null,
-        ?int $field_width = null,
-        ?bool $form_prefill = null,
-        ?bool $is_sensitive = null,
-        ?string $hint_text = null,
-        ?bool $initially_checked = null,
-        ?string $instructions = null,
-        ?string $label = null,
-        ?bool $label_to_right = null,
-        ?int $label_width = null,
-        ?string $mask_input = null,
-        ?int $max_length = null,
-        ?float $max_value = null,
-        ?float $min_value = null,
-        ?bool $multi_select = null,
-        ?bool $required = null,
-        ?string $validation_message = null,
-        ?string $values = null,
-        ?int $visible_lines = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse {
-        [$response] = $this->updateFormFieldUsingPOSTWithHttpInfo($id, $field_id, $blank_fields, $default_value, $field_type, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines);
-        return $response;
-    }
-
-    /**
-     * Update Form Field
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   fieldId
-     * @param int|null $blank_fields
-     *   Number of blank fields to show when progressive profiling is enabled
-     * @param string|null $default_value
-     *   Optional default value for the field
-     * @param string|null $field_type
-     *   Type of field
-     * @param int|null $field_width
-     *   Width of the input or select element
-     * @param bool|null $form_prefill
-     *   Whether the field should prefill. Default true
-     * @param bool|null $is_sensitive
-     *   Whether the field is marked as sensitive. Default false
-     * @param string|null $hint_text
-     *   Hint text for the field
-     * @param bool|null $initially_checked
-     *   Whether the field should be checked upon loading. Default false
-     * @param string|null $instructions
-     *   Instructions for the field
-     * @param string|null $label
-     *   Label of the field
-     * @param bool|null $label_to_right
-     *   Whether the field label should be displayed to the right of the input/select element. Default false
-     * @param int|null $label_width
-     *   Width of the field label element
-     * @param string|null $mask_input
-     *   Optional input mask for the field
-     * @param int|null $max_length
-     *   Maximum length for text type fields
-     * @param float|null $max_value
-     *   Maximum value accepted by the field
-     * @param float|null $min_value
-     *   Minimum value accepted by the field
-     * @param bool|null $multi_select
-     *   Whether the field should allow multiple selections. Default false
-     * @param bool|null $required
-     *   Whether the field is required to submit the form. Default false
-     * @param string|null $validation_message
-     *   Validation message to display on failed validation
-     * @param string|null $values
-     *   Array of JSON objects that contain field attributes. Only for select-field types. Example: values&#x3D;[{&#39;label&#39;:&#39;Select...&#39;,&#39;value&#39;:&#39;&#39;,&#39;isDefault&#39;:true,&#39;selected&#39;:true}, {&#39;label&#39;:&#39;MR&#39;,&#39;value&#39;:&#39;Mr&#39;}, {&#39;label&#39;:&#39;MS&#39;,&#39;value&#39;:&#39;Ms&#39;}, {&#39;label&#39;:&#39;MRS&#39;,&#39;value&#39;:&#39;Mrs&#39;}, {&#39;label&#39;:&#39;DR&#39;,&#39;value&#39;:&#39;Dr&#39;}, {&#39;label&#39;:&#39;PROF&#39;,&#39;value&#39;:&#39;Prof&#39;}]
-     * @param int|null $visible_lines
-     *   Number of lines to display for the field element
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateFormFieldUsingPOSTWithHttpInfo(
-        int $id,
-        string $field_id,
-        ?int $blank_fields = null,
-        ?string $default_value = null,
-        ?string $field_type = null,
-        ?int $field_width = null,
-        ?bool $form_prefill = null,
-        ?bool $is_sensitive = null,
-        ?string $hint_text = null,
-        ?bool $initially_checked = null,
-        ?string $instructions = null,
-        ?string $label = null,
-        ?bool $label_to_right = null,
-        ?int $label_width = null,
-        ?string $mask_input = null,
-        ?int $max_length = null,
-        ?float $max_value = null,
-        ?float $min_value = null,
-        ?bool $multi_select = null,
-        ?bool $required = null,
-        ?string $validation_message = null,
-        ?string $values = null,
-        ?int $visible_lines = null
-    ): array {
-        $request = $this->updateFormFieldUsingPOSTRequest($id, $field_id, $blank_fields, $default_value, $field_type, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateFormFieldUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Form Field
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   fieldId
-     * @param int|null $blank_fields
-     *   Number of blank fields to show when progressive profiling is enabled
-     * @param string|null $default_value
-     *   Optional default value for the field
-     * @param string|null $field_type
-     *   Type of field
-     * @param int|null $field_width
-     *   Width of the input or select element
-     * @param bool|null $form_prefill
-     *   Whether the field should prefill. Default true
-     * @param bool|null $is_sensitive
-     *   Whether the field is marked as sensitive. Default false
-     * @param string|null $hint_text
-     *   Hint text for the field
-     * @param bool|null $initially_checked
-     *   Whether the field should be checked upon loading. Default false
-     * @param string|null $instructions
-     *   Instructions for the field
-     * @param string|null $label
-     *   Label of the field
-     * @param bool|null $label_to_right
-     *   Whether the field label should be displayed to the right of the input/select element. Default false
-     * @param int|null $label_width
-     *   Width of the field label element
-     * @param string|null $mask_input
-     *   Optional input mask for the field
-     * @param int|null $max_length
-     *   Maximum length for text type fields
-     * @param float|null $max_value
-     *   Maximum value accepted by the field
-     * @param float|null $min_value
-     *   Minimum value accepted by the field
-     * @param bool|null $multi_select
-     *   Whether the field should allow multiple selections. Default false
-     * @param bool|null $required
-     *   Whether the field is required to submit the form. Default false
-     * @param string|null $validation_message
-     *   Validation message to display on failed validation
-     * @param string|null $values
-     *   Array of JSON objects that contain field attributes. Only for select-field types. Example: values&#x3D;[{&#39;label&#39;:&#39;Select...&#39;,&#39;value&#39;:&#39;&#39;,&#39;isDefault&#39;:true,&#39;selected&#39;:true}, {&#39;label&#39;:&#39;MR&#39;,&#39;value&#39;:&#39;Mr&#39;}, {&#39;label&#39;:&#39;MS&#39;,&#39;value&#39;:&#39;Ms&#39;}, {&#39;label&#39;:&#39;MRS&#39;,&#39;value&#39;:&#39;Mrs&#39;}, {&#39;label&#39;:&#39;DR&#39;,&#39;value&#39;:&#39;Dr&#39;}, {&#39;label&#39;:&#39;PROF&#39;,&#39;value&#39;:&#39;Prof&#39;}]
-     * @param int|null $visible_lines
-     *   Number of lines to display for the field element
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateFormFieldUsingPOSTAsync(
-        int $id,
-        string $field_id,
-        ?int $blank_fields = null,
-        ?string $default_value = null,
-        ?string $field_type = null,
-        ?int $field_width = null,
-        ?bool $form_prefill = null,
-        ?bool $is_sensitive = null,
-        ?string $hint_text = null,
-        ?bool $initially_checked = null,
-        ?string $instructions = null,
-        ?string $label = null,
-        ?bool $label_to_right = null,
-        ?int $label_width = null,
-        ?string $mask_input = null,
-        ?int $max_length = null,
-        ?float $max_value = null,
-        ?float $min_value = null,
-        ?bool $multi_select = null,
-        ?bool $required = null,
-        ?string $validation_message = null,
-        ?string $values = null,
-        ?int $visible_lines = null
-    ): PromiseInterface {
-        return $this->updateFormFieldUsingPOSTAsyncWithHttpInfo($id, $field_id, $blank_fields, $default_value, $field_type, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Form Field
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   fieldId
-     * @param int|null $blank_fields
-     *   Number of blank fields to show when progressive profiling is enabled
-     * @param string|null $default_value
-     *   Optional default value for the field
-     * @param string|null $field_type
-     *   Type of field
-     * @param int|null $field_width
-     *   Width of the input or select element
-     * @param bool|null $form_prefill
-     *   Whether the field should prefill. Default true
-     * @param bool|null $is_sensitive
-     *   Whether the field is marked as sensitive. Default false
-     * @param string|null $hint_text
-     *   Hint text for the field
-     * @param bool|null $initially_checked
-     *   Whether the field should be checked upon loading. Default false
-     * @param string|null $instructions
-     *   Instructions for the field
-     * @param string|null $label
-     *   Label of the field
-     * @param bool|null $label_to_right
-     *   Whether the field label should be displayed to the right of the input/select element. Default false
-     * @param int|null $label_width
-     *   Width of the field label element
-     * @param string|null $mask_input
-     *   Optional input mask for the field
-     * @param int|null $max_length
-     *   Maximum length for text type fields
-     * @param float|null $max_value
-     *   Maximum value accepted by the field
-     * @param float|null $min_value
-     *   Minimum value accepted by the field
-     * @param bool|null $multi_select
-     *   Whether the field should allow multiple selections. Default false
-     * @param bool|null $required
-     *   Whether the field is required to submit the form. Default false
-     * @param string|null $validation_message
-     *   Validation message to display on failed validation
-     * @param string|null $values
-     *   Array of JSON objects that contain field attributes. Only for select-field types. Example: values&#x3D;[{&#39;label&#39;:&#39;Select...&#39;,&#39;value&#39;:&#39;&#39;,&#39;isDefault&#39;:true,&#39;selected&#39;:true}, {&#39;label&#39;:&#39;MR&#39;,&#39;value&#39;:&#39;Mr&#39;}, {&#39;label&#39;:&#39;MS&#39;,&#39;value&#39;:&#39;Ms&#39;}, {&#39;label&#39;:&#39;MRS&#39;,&#39;value&#39;:&#39;Mrs&#39;}, {&#39;label&#39;:&#39;DR&#39;,&#39;value&#39;:&#39;Dr&#39;}, {&#39;label&#39;:&#39;PROF&#39;,&#39;value&#39;:&#39;Prof&#39;}]
-     * @param int|null $visible_lines
-     *   Number of lines to display for the field element
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateFormFieldUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $field_id,
-        ?int $blank_fields = null,
-        ?string $default_value = null,
-        ?string $field_type = null,
-        ?int $field_width = null,
-        ?bool $form_prefill = null,
-        ?bool $is_sensitive = null,
-        ?string $hint_text = null,
-        ?bool $initially_checked = null,
-        ?string $instructions = null,
-        ?string $label = null,
-        ?bool $label_to_right = null,
-        ?int $label_width = null,
-        ?string $mask_input = null,
-        ?int $max_length = null,
-        ?float $max_value = null,
-        ?float $min_value = null,
-        ?bool $multi_select = null,
-        ?bool $required = null,
-        ?string $validation_message = null,
-        ?string $values = null,
-        ?int $visible_lines = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateFormFieldUsingPOSTRequest($id, $field_id, $blank_fields, $default_value, $field_type, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines),
-            [$this, 'updateFormFieldUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateFormFieldUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $field_id
-     *   fieldId
-     * @param int|null $blank_fields
-     *   Number of blank fields to show when progressive profiling is enabled
-     * @param string|null $default_value
-     *   Optional default value for the field
-     * @param string|null $field_type
-     *   Type of field
-     * @param int|null $field_width
-     *   Width of the input or select element
-     * @param bool|null $form_prefill
-     *   Whether the field should prefill. Default true
-     * @param bool|null $is_sensitive
-     *   Whether the field is marked as sensitive. Default false
-     * @param string|null $hint_text
-     *   Hint text for the field
-     * @param bool|null $initially_checked
-     *   Whether the field should be checked upon loading. Default false
-     * @param string|null $instructions
-     *   Instructions for the field
-     * @param string|null $label
-     *   Label of the field
-     * @param bool|null $label_to_right
-     *   Whether the field label should be displayed to the right of the input/select element. Default false
-     * @param int|null $label_width
-     *   Width of the field label element
-     * @param string|null $mask_input
-     *   Optional input mask for the field
-     * @param int|null $max_length
-     *   Maximum length for text type fields
-     * @param float|null $max_value
-     *   Maximum value accepted by the field
-     * @param float|null $min_value
-     *   Minimum value accepted by the field
-     * @param bool|null $multi_select
-     *   Whether the field should allow multiple selections. Default false
-     * @param bool|null $required
-     *   Whether the field is required to submit the form. Default false
-     * @param string|null $validation_message
-     *   Validation message to display on failed validation
-     * @param string|null $values
-     *   Array of JSON objects that contain field attributes. Only for select-field types. Example: values&#x3D;[{&#39;label&#39;:&#39;Select...&#39;,&#39;value&#39;:&#39;&#39;,&#39;isDefault&#39;:true,&#39;selected&#39;:true}, {&#39;label&#39;:&#39;MR&#39;,&#39;value&#39;:&#39;Mr&#39;}, {&#39;label&#39;:&#39;MS&#39;,&#39;value&#39;:&#39;Ms&#39;}, {&#39;label&#39;:&#39;MRS&#39;,&#39;value&#39;:&#39;Mrs&#39;}, {&#39;label&#39;:&#39;DR&#39;,&#39;value&#39;:&#39;Dr&#39;}, {&#39;label&#39;:&#39;PROF&#39;,&#39;value&#39;:&#39;Prof&#39;}]
-     * @param int|null $visible_lines
-     *   Number of lines to display for the field element
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateFormFieldUsingPOSTRequest(
-        int $id,
-        string $field_id,
-        ?int $blank_fields = null,
-        ?string $default_value = null,
-        ?string $field_type = null,
-        ?int $field_width = null,
-        ?bool $form_prefill = null,
-        ?bool $is_sensitive = null,
-        ?string $hint_text = null,
-        ?bool $initially_checked = null,
-        ?string $instructions = null,
-        ?string $label = null,
-        ?bool $label_to_right = null,
-        ?int $label_width = null,
-        ?string $mask_input = null,
-        ?int $max_length = null,
-        ?float $max_value = null,
-        ?float $min_value = null,
-        ?bool $multi_select = null,
-        ?bool $required = null,
-        ?string $validation_message = null,
-        ?string $values = null,
-        ?int $visible_lines = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/field/{fieldId}.json';
+        null|int $blank_fields = null,
+        null|string $default_value = null,
+        null|string $field_type = null,
+        null|int $field_width = null,
+        null|bool $form_prefill = null,
+        null|bool $is_sensitive = null,
+        null|string $hint_text = null,
+        null|bool $initially_checked = null,
+        null|string $instructions = null,
+        null|string $label = null,
+        null|bool $label_to_right = null,
+        null|int $label_width = null,
+        null|string $mask_input = null,
+        null|int $max_length = null,
+        null|float $max_value = null,
+        null|float $min_value = null,
+        null|bool $multi_select = null,
+        null|bool $required = null,
+        null|string $validation_message = null,
+        null|string $values = null,
+        null|int $visible_lines = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'fieldId' . '}',
-            ObjectSerializer::toPathValue($field_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'fieldId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($field_id),
+            ],
+            '/rest/asset/v1/form/{id}/field/{fieldId}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -3048,48 +865,49 @@ class FormFieldsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'blankFields' => isset($blank_fields) ? ObjectSerializer::toFormValue($blank_fields) : null,
+                    'defaultValue' => isset($default_value) ? ObjectSerializer::toFormValue($default_value) : null,
+                    'fieldType' => isset($field_type) ? ObjectSerializer::toFormValue($field_type) : null,
+                    'fieldWidth' => isset($field_width) ? ObjectSerializer::toFormValue($field_width) : null,
+                    'formPrefill' => isset($form_prefill) ? ObjectSerializer::toFormValue($form_prefill) : null,
+                    'isSensitive' => isset($is_sensitive) ? ObjectSerializer::toFormValue($is_sensitive) : null,
+                    'hintText' => isset($hint_text) ? ObjectSerializer::toFormValue($hint_text) : null,
+                    'initiallyChecked' => isset($initially_checked) ? ObjectSerializer::toFormValue($initially_checked) : null,
+                    'instructions' => isset($instructions) ? ObjectSerializer::toFormValue($instructions) : null,
+                    'label' => isset($label) ? ObjectSerializer::toFormValue($label) : null,
+                    'labelToRight' => isset($label_to_right) ? ObjectSerializer::toFormValue($label_to_right) : null,
+                    'labelWidth' => isset($label_width) ? ObjectSerializer::toFormValue($label_width) : null,
+                    'maskInput' => isset($mask_input) ? ObjectSerializer::toFormValue($mask_input) : null,
+                    'maxLength' => isset($max_length) ? ObjectSerializer::toFormValue($max_length) : null,
+                    'maxValue' => isset($max_value) ? ObjectSerializer::toFormValue($max_value) : null,
+                    'minValue' => isset($min_value) ? ObjectSerializer::toFormValue($min_value) : null,
+                    'multiSelect' => isset($multi_select) ? ObjectSerializer::toFormValue($multi_select) : null,
+                    'required' => isset($required) ? ObjectSerializer::toFormValue($required) : null,
+                    'validationMessage' => isset($validation_message) ? ObjectSerializer::toFormValue($validation_message) : null,
+                    'values' => isset($values) ? ObjectSerializer::toFormValue($values) : null,
+                    'visibleLines' => isset($visible_lines) ? ObjectSerializer::toFormValue($visible_lines) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'blankFields' => isset($blank_fields) ? ObjectSerializer::toFormValue($blank_fields) : null,
-                'defaultValue' => isset($default_value) ? ObjectSerializer::toFormValue($default_value) : null,
-                'fieldType' => isset($field_type) ? ObjectSerializer::toFormValue($field_type) : null,
-                'fieldWidth' => isset($field_width) ? ObjectSerializer::toFormValue($field_width) : null,
-                'formPrefill' => isset($form_prefill) ? ObjectSerializer::toFormValue($form_prefill) : null,
-                'isSensitive' => isset($is_sensitive) ? ObjectSerializer::toFormValue($is_sensitive) : null,
-                'hintText' => isset($hint_text) ? ObjectSerializer::toFormValue($hint_text) : null,
-                'initiallyChecked' => isset($initially_checked) ? ObjectSerializer::toFormValue($initially_checked) : null,
-                'instructions' => isset($instructions) ? ObjectSerializer::toFormValue($instructions) : null,
-                'label' => isset($label) ? ObjectSerializer::toFormValue($label) : null,
-                'labelToRight' => isset($label_to_right) ? ObjectSerializer::toFormValue($label_to_right) : null,
-                'labelWidth' => isset($label_width) ? ObjectSerializer::toFormValue($label_width) : null,
-                'maskInput' => isset($mask_input) ? ObjectSerializer::toFormValue($mask_input) : null,
-                'maxLength' => isset($max_length) ? ObjectSerializer::toFormValue($max_length) : null,
-                'maxValue' => isset($max_value) ? ObjectSerializer::toFormValue($max_value) : null,
-                'minValue' => isset($min_value) ? ObjectSerializer::toFormValue($min_value) : null,
-                'multiSelect' => isset($multi_select) ? ObjectSerializer::toFormValue($multi_select) : null,
-                'required' => isset($required) ? ObjectSerializer::toFormValue($required) : null,
-                'validationMessage' => isset($validation_message) ? ObjectSerializer::toFormValue($validation_message) : null,
-                'values' => isset($values) ? ObjectSerializer::toFormValue($values) : null,
-                'visibleLines' => isset($visible_lines) ? ObjectSerializer::toFormValue($visible_lines) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 }

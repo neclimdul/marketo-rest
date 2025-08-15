@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Lead\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Lead\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Lead\Configuration;
 use NecLimDul\MarketoRest\Lead\HeaderSelector;
 use NecLimDul\MarketoRest\Lead\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class BulkExportActivitiesApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class BulkExportActivitiesApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,168 +112,28 @@ class BulkExportActivitiesApi
     }
 
     /**
-     * Exception handler for cancelExportActivitiesUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function cancelExportActivitiesUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Cancel Export Activity Job
      *
      * @param string $export_id
      *   Id of export batch job.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function cancelExportActivitiesUsingPOST(
-        string $export_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
-        [$response] = $this->cancelExportActivitiesUsingPOSTWithHttpInfo($export_id);
-        return $response;
-    }
-
-    /**
-     * Cancel Export Activity Job
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function cancelExportActivitiesUsingPOSTWithHttpInfo(
-        string $export_id
-    ): array {
-        $request = $this->cancelExportActivitiesUsingPOSTRequest($export_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->cancelExportActivitiesUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Cancel Export Activity Job
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function cancelExportActivitiesUsingPOSTAsync(
-        string $export_id
-    ): PromiseInterface {
-        return $this->cancelExportActivitiesUsingPOSTAsyncWithHttpInfo($export_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse => $response[0]
-            );
-    }
-
-    /**
-     * Cancel Export Activity Job
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function cancelExportActivitiesUsingPOSTAsyncWithHttpInfo(
-        string $export_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->cancelExportActivitiesUsingPOSTRequest($export_id),
-            [$this, 'cancelExportActivitiesUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'cancelExportActivitiesUsingPOST'
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function cancelExportActivitiesUsingPOSTRequest(
-        string $export_id
-    ): Request {
-        $resourcePath = '/bulk/v1/activities/export/{exportId}/cancel.json';
+        string $export_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'exportId' . '}',
-            ObjectSerializer::toPathValue($export_id),
-            $resourcePath
+            [
+                '{' . 'exportId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($export_id),
+            ],
+            '/bulk/v1/activities/export/{exportId}/cancel.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -263,188 +141,44 @@ class BulkExportActivitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for createExportActivitiesUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function createExportActivitiesUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
      * Create Export Activity Job
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest|null $export_activity_request
-     *   exportActivityRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;primaryAttributeValueId\&quot;:\&quot;Attribute ID\&quot;,&lt;br&gt;  \&quot;primaryAttributeValue\&quot;:\&quot;Attribute Value\&quot;,&lt;br&gt;  \&quot;attributes\&quot;:\&quot;Secondary Attributes\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
+     *   exportActivityRequest<br><br>ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.<br><br>Example:<br><code>\"columnHeaderNames\":{<br>  \"primaryAttributeValueId\":\"Attribute ID\",<br>  \"primaryAttributeValue\":\"Attribute Value\",<br>  \"attributes\":\"Secondary Attributes\"<br>}</code><br>
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function createExportActivitiesUsingPOST(
-        ?\NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest $export_activity_request = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
-        [$response] = $this->createExportActivitiesUsingPOSTWithHttpInfo($export_activity_request);
-        return $response;
-    }
-
-    /**
-     * Create Export Activity Job
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest|null $export_activity_request
-     *   exportActivityRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;primaryAttributeValueId\&quot;:\&quot;Attribute ID\&quot;,&lt;br&gt;  \&quot;primaryAttributeValue\&quot;:\&quot;Attribute Value\&quot;,&lt;br&gt;  \&quot;attributes\&quot;:\&quot;Secondary Attributes\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function createExportActivitiesUsingPOSTWithHttpInfo(
-        ?\NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest $export_activity_request = null
-    ): array {
-        $request = $this->createExportActivitiesUsingPOSTRequest($export_activity_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->createExportActivitiesUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Create Export Activity Job
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest|null $export_activity_request
-     *   exportActivityRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;primaryAttributeValueId\&quot;:\&quot;Attribute ID\&quot;,&lt;br&gt;  \&quot;primaryAttributeValue\&quot;:\&quot;Attribute Value\&quot;,&lt;br&gt;  \&quot;attributes\&quot;:\&quot;Secondary Attributes\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function createExportActivitiesUsingPOSTAsync(
-        ?\NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest $export_activity_request = null
-    ): PromiseInterface {
-        return $this->createExportActivitiesUsingPOSTAsyncWithHttpInfo($export_activity_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse => $response[0]
-            );
-    }
-
-    /**
-     * Create Export Activity Job
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest|null $export_activity_request
-     *   exportActivityRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;primaryAttributeValueId\&quot;:\&quot;Attribute ID\&quot;,&lt;br&gt;  \&quot;primaryAttributeValue\&quot;:\&quot;Attribute Value\&quot;,&lt;br&gt;  \&quot;attributes\&quot;:\&quot;Secondary Attributes\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createExportActivitiesUsingPOSTAsyncWithHttpInfo(
-        ?\NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest $export_activity_request = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->createExportActivitiesUsingPOSTRequest($export_activity_request),
-            [$this, 'createExportActivitiesUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'createExportActivitiesUsingPOST'
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest|null $export_activity_request
-     *   exportActivityRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;primaryAttributeValueId\&quot;:\&quot;Attribute ID\&quot;,&lt;br&gt;  \&quot;primaryAttributeValue\&quot;:\&quot;Attribute Value\&quot;,&lt;br&gt;  \&quot;attributes\&quot;:\&quot;Secondary Attributes\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createExportActivitiesUsingPOSTRequest(
-        ?\NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest $export_activity_request = null
-    ): Request {
+        null|\NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest $export_activity_request = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/bulk/v1/activities/export/create.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -452,53 +186,27 @@ class BulkExportActivitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $export_activity_request,
             ),
-            // Form Params
-            [
-            ],
-            $export_activity_request
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for enqueueExportActivitiesUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function enqueueExportActivitiesUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -506,139 +214,24 @@ class BulkExportActivitiesApi
      *
      * @param string $export_id
      *   Id of export batch job.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function enqueueExportActivitiesUsingPOST(
-        string $export_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
-        [$response] = $this->enqueueExportActivitiesUsingPOSTWithHttpInfo($export_id);
-        return $response;
-    }
-
-    /**
-     * Enqueue Export Activity Job
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function enqueueExportActivitiesUsingPOSTWithHttpInfo(
-        string $export_id
-    ): array {
-        $request = $this->enqueueExportActivitiesUsingPOSTRequest($export_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->enqueueExportActivitiesUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Enqueue Export Activity Job
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function enqueueExportActivitiesUsingPOSTAsync(
-        string $export_id
-    ): PromiseInterface {
-        return $this->enqueueExportActivitiesUsingPOSTAsyncWithHttpInfo($export_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse => $response[0]
-            );
-    }
-
-    /**
-     * Enqueue Export Activity Job
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function enqueueExportActivitiesUsingPOSTAsyncWithHttpInfo(
-        string $export_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->enqueueExportActivitiesUsingPOSTRequest($export_id),
-            [$this, 'enqueueExportActivitiesUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'enqueueExportActivitiesUsingPOST'
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function enqueueExportActivitiesUsingPOSTRequest(
-        string $export_id
-    ): Request {
-        $resourcePath = '/bulk/v1/activities/export/{exportId}/enqueue.json';
+        string $export_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'exportId' . '}',
-            ObjectSerializer::toPathValue($export_id),
-            $resourcePath
+            [
+                '{' . 'exportId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($export_id),
+            ],
+            '/bulk/v1/activities/export/{exportId}/enqueue.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -646,60 +239,27 @@ class BulkExportActivitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getExportActivitiesFileUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getExportActivitiesFileUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                /**
-                 * Psalm doesn't understand what to do if we're hinting an array.
-                 *
-                 * @psalm-suppress ArgumentTypeCoercion
-                 * @psalm-suppress UndefinedClass
-                 * @psalm-suppress ReservedWord
-                 */
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        'object', // @phpstan-ignore argument.type
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -708,153 +268,26 @@ class BulkExportActivitiesApi
      * @param string $export_id
      *   Id of export batch job.
      * @param string|null $range
-     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
+     *   To support partial retrieval of extracted data, the HTTP header \"Range\" of type \"bytes\" may be specified. See RFC 2616 \"Range Retrieval Requests\" for more information. If the header is not set, the entire contents will be returned.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return object
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getExportActivitiesFileUsingGET(
         string $export_id,
-        ?string $range = null
-    ): object {
-        [$response] = $this->getExportActivitiesFileUsingGETWithHttpInfo($export_id, $range);
-        return $response;
-    }
-
-    /**
-     * Get Export Activity File
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     * @param string|null $range
-     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     object,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getExportActivitiesFileUsingGETWithHttpInfo(
-        string $export_id,
-        ?string $range = null
-    ): array {
-        $request = $this->getExportActivitiesFileUsingGETRequest($export_id, $range);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getExportActivitiesFileUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                'object'
-            ),
-            default => $this->responseToReturn(
-                $response,
-                'object'
-            ),
-        };
-    }
-
-    /**
-     * Get Export Activity File
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     * @param string|null $range
-     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getExportActivitiesFileUsingGETAsync(
-        string $export_id,
-        ?string $range = null
-    ): PromiseInterface {
-        return $this->getExportActivitiesFileUsingGETAsyncWithHttpInfo($export_id, $range)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     object,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): object => $response[0]
-            );
-    }
-
-    /**
-     * Get Export Activity File
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     * @param string|null $range
-     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getExportActivitiesFileUsingGETAsyncWithHttpInfo(
-        string $export_id,
-        ?string $range = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getExportActivitiesFileUsingGETRequest($export_id, $range),
-            [$this, 'getExportActivitiesFileUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        'object'
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        'object'
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getExportActivitiesFileUsingGET'
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     * @param string|null $range
-     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getExportActivitiesFileUsingGETRequest(
-        string $export_id,
-        ?string $range = null
-    ): Request {
-        $resourcePath = '/bulk/v1/activities/export/{exportId}/file.json';
+        null|string $range = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'exportId' . '}',
-            ObjectSerializer::toPathValue($export_id),
-            $resourcePath
+            [
+                '{' . 'exportId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($export_id),
+            ],
+            '/bulk/v1/activities/export/{exportId}/file.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -862,54 +295,32 @@ class BulkExportActivitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
-                    'Range' => isset($range) ? ObjectSerializer::toHeaderValue($range) : null,
                 ],
-                $headers
+                array_merge(
+                    [
+                        'Range' => isset($range) ? ObjectSerializer::toHeaderValue($range) : null,
+                    ],
+                    $headers
+                ),
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getExportActivitiesStatusUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getExportActivitiesStatusUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -917,139 +328,24 @@ class BulkExportActivitiesApi
      *
      * @param string $export_id
      *   Id of export batch job.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getExportActivitiesStatusUsingGET(
-        string $export_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
-        [$response] = $this->getExportActivitiesStatusUsingGETWithHttpInfo($export_id);
-        return $response;
-    }
-
-    /**
-     * Get Export Activity Job Status
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getExportActivitiesStatusUsingGETWithHttpInfo(
-        string $export_id
-    ): array {
-        $request = $this->getExportActivitiesStatusUsingGETRequest($export_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getExportActivitiesStatusUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Export Activity Job Status
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getExportActivitiesStatusUsingGETAsync(
-        string $export_id
-    ): PromiseInterface {
-        return $this->getExportActivitiesStatusUsingGETAsyncWithHttpInfo($export_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Export Activity Job Status
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getExportActivitiesStatusUsingGETAsyncWithHttpInfo(
-        string $export_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getExportActivitiesStatusUsingGETRequest($export_id),
-            [$this, 'getExportActivitiesStatusUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getExportActivitiesStatusUsingGET'
-     *
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getExportActivitiesStatusUsingGETRequest(
-        string $export_id
-    ): Request {
-        $resourcePath = '/bulk/v1/activities/export/{exportId}/status.json';
+        string $export_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'exportId' . '}',
-            ObjectSerializer::toPathValue($export_id),
-            $resourcePath
+            [
+                '{' . 'exportId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($export_id),
+            ],
+            '/bulk/v1/activities/export/{exportId}/status.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1057,53 +353,27 @@ class BulkExportActivitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getExportActivitiesUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getExportActivitiesUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1115,160 +385,18 @@ class BulkExportActivitiesApi
      *   The batch size to return. The max and default value is 300.
      * @param string|null $next_page_token
      *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getExportActivitiesUsingGET(
-        ?array $status = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken {
-        [$response] = $this->getExportActivitiesUsingGETWithHttpInfo($status, $batch_size, $next_page_token);
-        return $response;
-    }
-
-    /**
-     * Get Export Activity Jobs
-     *
-     * @param string[]|null $status
-     *   Comma separated list of statuses to filter on.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getExportActivitiesUsingGETWithHttpInfo(
-        ?array $status = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): array {
-        $request = $this->getExportActivitiesUsingGETRequest($status, $batch_size, $next_page_token);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getExportActivitiesUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class
-            ),
-        };
-    }
-
-    /**
-     * Get Export Activity Jobs
-     *
-     * @param string[]|null $status
-     *   Comma separated list of statuses to filter on.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getExportActivitiesUsingGETAsync(
-        ?array $status = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->getExportActivitiesUsingGETAsyncWithHttpInfo($status, $batch_size, $next_page_token)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken => $response[0]
-            );
-    }
-
-    /**
-     * Get Export Activity Jobs
-     *
-     * @param string[]|null $status
-     *   Comma separated list of statuses to filter on.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getExportActivitiesUsingGETAsyncWithHttpInfo(
-        ?array $status = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getExportActivitiesUsingGETRequest($status, $batch_size, $next_page_token),
-            [$this, 'getExportActivitiesUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getExportActivitiesUsingGET'
-     *
-     * @param string[]|null $status
-     *   Comma separated list of statuses to filter on.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getExportActivitiesUsingGETRequest(
-        ?array $status = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): Request {
+        null|array $status = null,
+        null|int $batch_size = null,
+        null|string $next_page_token = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/bulk/v1/activities/export.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1276,30 +404,29 @@ class BulkExportActivitiesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::serializeCollection($status, 'multi') : null,
-                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
-                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::serializeCollection($status, 'multi') : null,
+                    'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                    'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 }

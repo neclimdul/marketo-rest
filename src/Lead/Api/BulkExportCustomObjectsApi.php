@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Lead\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Lead\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Lead\Configuration;
 use NecLimDul\MarketoRest\Lead\HeaderSelector;
 use NecLimDul\MarketoRest\Lead\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class BulkExportCustomObjectsApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class BulkExportCustomObjectsApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,188 +112,33 @@ class BulkExportCustomObjectsApi
     }
 
     /**
-     * Exception handler for cancelExportCustomObjectsUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function cancelExportCustomObjectsUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Cancel Export Custom Object Job
      *
      * @param string $api_name
      *   API Name of the custom object for the export batch job.
      * @param string $export_id
      *   Id of export batch job.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function cancelExportCustomObjectsUsingPOST(
         string $api_name,
-        string $export_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
-        [$response] = $this->cancelExportCustomObjectsUsingPOSTWithHttpInfo($api_name, $export_id);
-        return $response;
-    }
-
-    /**
-     * Cancel Export Custom Object Job
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function cancelExportCustomObjectsUsingPOSTWithHttpInfo(
-        string $api_name,
-        string $export_id
-    ): array {
-        $request = $this->cancelExportCustomObjectsUsingPOSTRequest($api_name, $export_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->cancelExportCustomObjectsUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Cancel Export Custom Object Job
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function cancelExportCustomObjectsUsingPOSTAsync(
-        string $api_name,
-        string $export_id
-    ): PromiseInterface {
-        return $this->cancelExportCustomObjectsUsingPOSTAsyncWithHttpInfo($api_name, $export_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse => $response[0]
-            );
-    }
-
-    /**
-     * Cancel Export Custom Object Job
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function cancelExportCustomObjectsUsingPOSTAsyncWithHttpInfo(
-        string $api_name,
-        string $export_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->cancelExportCustomObjectsUsingPOSTRequest($api_name, $export_id),
-            [$this, 'cancelExportCustomObjectsUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'cancelExportCustomObjectsUsingPOST'
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function cancelExportCustomObjectsUsingPOSTRequest(
-        string $api_name,
-        string $export_id
-    ): Request {
-        $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/cancel.json';
+        string $export_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'apiName' . '}',
-            ObjectSerializer::toPathValue($api_name),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'exportId' . '}',
-            ObjectSerializer::toPathValue($export_id),
-            $resourcePath
+            [
+                '{' . 'apiName' . '}',
+                '{' . 'exportId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($api_name),
+                ObjectSerializer::toPathValue($export_id),
+            ],
+            '/bulk/v1/customobjects/{apiName}/export/{exportId}/cancel.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -283,53 +146,27 @@ class BulkExportCustomObjectsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for createExportCustomObjectsUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function createExportCustomObjectsUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -338,153 +175,26 @@ class BulkExportCustomObjectsApi
      * @param string $api_name
      *   API Name of the custom object for the export batch job.
      * @param \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest|null $export_custom_object_request
-     *   exportCustomObjectRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of custom object attributes and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;attrName1\&quot;:\&quot;value1\&quot;,&lt;br&gt;  \&quot;attrName2\&quot;:\&quot;value2\&quot;,&lt;br&gt;  \&quot;attrName3\&quot;:\&quot;value3\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
+     *   exportCustomObjectRequest<br><br>ColumnHeaderNames: A JSON object containing key-value pairs of custom object attributes and column header names.<br><br>Example:<br><code>\"columnHeaderNames\":{<br>  \"attrName1\":\"value1\",<br>  \"attrName2\":\"value2\",<br>  \"attrName3\":\"value3\"<br>}</code><br>
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function createExportCustomObjectsUsingPOST(
         string $api_name,
-        ?\NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest $export_custom_object_request = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
-        [$response] = $this->createExportCustomObjectsUsingPOSTWithHttpInfo($api_name, $export_custom_object_request);
-        return $response;
-    }
-
-    /**
-     * Create Export Custom Object Job
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest|null $export_custom_object_request
-     *   exportCustomObjectRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of custom object attributes and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;attrName1\&quot;:\&quot;value1\&quot;,&lt;br&gt;  \&quot;attrName2\&quot;:\&quot;value2\&quot;,&lt;br&gt;  \&quot;attrName3\&quot;:\&quot;value3\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function createExportCustomObjectsUsingPOSTWithHttpInfo(
-        string $api_name,
-        ?\NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest $export_custom_object_request = null
-    ): array {
-        $request = $this->createExportCustomObjectsUsingPOSTRequest($api_name, $export_custom_object_request);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->createExportCustomObjectsUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Create Export Custom Object Job
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest|null $export_custom_object_request
-     *   exportCustomObjectRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of custom object attributes and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;attrName1\&quot;:\&quot;value1\&quot;,&lt;br&gt;  \&quot;attrName2\&quot;:\&quot;value2\&quot;,&lt;br&gt;  \&quot;attrName3\&quot;:\&quot;value3\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function createExportCustomObjectsUsingPOSTAsync(
-        string $api_name,
-        ?\NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest $export_custom_object_request = null
-    ): PromiseInterface {
-        return $this->createExportCustomObjectsUsingPOSTAsyncWithHttpInfo($api_name, $export_custom_object_request)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse => $response[0]
-            );
-    }
-
-    /**
-     * Create Export Custom Object Job
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest|null $export_custom_object_request
-     *   exportCustomObjectRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of custom object attributes and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;attrName1\&quot;:\&quot;value1\&quot;,&lt;br&gt;  \&quot;attrName2\&quot;:\&quot;value2\&quot;,&lt;br&gt;  \&quot;attrName3\&quot;:\&quot;value3\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createExportCustomObjectsUsingPOSTAsyncWithHttpInfo(
-        string $api_name,
-        ?\NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest $export_custom_object_request = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->createExportCustomObjectsUsingPOSTRequest($api_name, $export_custom_object_request),
-            [$this, 'createExportCustomObjectsUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'createExportCustomObjectsUsingPOST'
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest|null $export_custom_object_request
-     *   exportCustomObjectRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of custom object attributes and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;attrName1\&quot;:\&quot;value1\&quot;,&lt;br&gt;  \&quot;attrName2\&quot;:\&quot;value2\&quot;,&lt;br&gt;  \&quot;attrName3\&quot;:\&quot;value3\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createExportCustomObjectsUsingPOSTRequest(
-        string $api_name,
-        ?\NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest $export_custom_object_request = null
-    ): Request {
-        $resourcePath = '/bulk/v1/customobjects/{apiName}/export/create.json';
+        null|\NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest $export_custom_object_request = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'apiName' . '}',
-            ObjectSerializer::toPathValue($api_name),
-            $resourcePath
+            [
+                '{' . 'apiName' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($api_name),
+            ],
+            '/bulk/v1/customobjects/{apiName}/export/create.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -492,53 +202,27 @@ class BulkExportCustomObjectsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/json']
+            ['application/json'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                $export_custom_object_request,
             ),
-            // Form Params
-            [
-            ],
-            $export_custom_object_request
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for enqueueExportCustomObjectsUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function enqueueExportCustomObjectsUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -548,157 +232,27 @@ class BulkExportCustomObjectsApi
      *   API Name of the custom object for the export batch job.
      * @param string $export_id
      *   Id of export batch job.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function enqueueExportCustomObjectsUsingPOST(
         string $api_name,
-        string $export_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
-        [$response] = $this->enqueueExportCustomObjectsUsingPOSTWithHttpInfo($api_name, $export_id);
-        return $response;
-    }
-
-    /**
-     * Enqueue Export Custom Object Job
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function enqueueExportCustomObjectsUsingPOSTWithHttpInfo(
-        string $api_name,
-        string $export_id
-    ): array {
-        $request = $this->enqueueExportCustomObjectsUsingPOSTRequest($api_name, $export_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->enqueueExportCustomObjectsUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Enqueue Export Custom Object Job
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function enqueueExportCustomObjectsUsingPOSTAsync(
-        string $api_name,
-        string $export_id
-    ): PromiseInterface {
-        return $this->enqueueExportCustomObjectsUsingPOSTAsyncWithHttpInfo($api_name, $export_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse => $response[0]
-            );
-    }
-
-    /**
-     * Enqueue Export Custom Object Job
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function enqueueExportCustomObjectsUsingPOSTAsyncWithHttpInfo(
-        string $api_name,
-        string $export_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->enqueueExportCustomObjectsUsingPOSTRequest($api_name, $export_id),
-            [$this, 'enqueueExportCustomObjectsUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'enqueueExportCustomObjectsUsingPOST'
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function enqueueExportCustomObjectsUsingPOSTRequest(
-        string $api_name,
-        string $export_id
-    ): Request {
-        $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/enqueue.json';
+        string $export_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'apiName' . '}',
-            ObjectSerializer::toPathValue($api_name),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'exportId' . '}',
-            ObjectSerializer::toPathValue($export_id),
-            $resourcePath
+            [
+                '{' . 'apiName' . '}',
+                '{' . 'exportId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($api_name),
+                ObjectSerializer::toPathValue($export_id),
+            ],
+            '/bulk/v1/customobjects/{apiName}/export/{exportId}/enqueue.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -706,60 +260,27 @@ class BulkExportCustomObjectsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getExportCustomObjectsFileUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getExportCustomObjectsFileUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                /**
-                 * Psalm doesn't understand what to do if we're hinting an array.
-                 *
-                 * @psalm-suppress ArgumentTypeCoercion
-                 * @psalm-suppress UndefinedClass
-                 * @psalm-suppress ReservedWord
-                 */
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        'object', // @phpstan-ignore argument.type
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -770,171 +291,29 @@ class BulkExportCustomObjectsApi
      * @param string $export_id
      *   Id of export batch job.
      * @param string|null $range
-     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
+     *   To support partial retrieval of extracted data, the HTTP header \"Range\" of type \"bytes\" may be specified. See RFC 2616 \"Range Retrieval Requests\" for more information. If the header is not set, the entire contents will be returned.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return object
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getExportCustomObjectsFileUsingGET(
         string $api_name,
         string $export_id,
-        ?string $range = null
-    ): object {
-        [$response] = $this->getExportCustomObjectsFileUsingGETWithHttpInfo($api_name, $export_id, $range);
-        return $response;
-    }
-
-    /**
-     * Get Export Custom Object File
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     * @param string|null $range
-     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     object,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getExportCustomObjectsFileUsingGETWithHttpInfo(
-        string $api_name,
-        string $export_id,
-        ?string $range = null
-    ): array {
-        $request = $this->getExportCustomObjectsFileUsingGETRequest($api_name, $export_id, $range);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getExportCustomObjectsFileUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                'object'
-            ),
-            default => $this->responseToReturn(
-                $response,
-                'object'
-            ),
-        };
-    }
-
-    /**
-     * Get Export Custom Object File
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     * @param string|null $range
-     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getExportCustomObjectsFileUsingGETAsync(
-        string $api_name,
-        string $export_id,
-        ?string $range = null
-    ): PromiseInterface {
-        return $this->getExportCustomObjectsFileUsingGETAsyncWithHttpInfo($api_name, $export_id, $range)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     object,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): object => $response[0]
-            );
-    }
-
-    /**
-     * Get Export Custom Object File
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     * @param string|null $range
-     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getExportCustomObjectsFileUsingGETAsyncWithHttpInfo(
-        string $api_name,
-        string $export_id,
-        ?string $range = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getExportCustomObjectsFileUsingGETRequest($api_name, $export_id, $range),
-            [$this, 'getExportCustomObjectsFileUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        'object'
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        'object'
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getExportCustomObjectsFileUsingGET'
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     * @param string|null $range
-     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getExportCustomObjectsFileUsingGETRequest(
-        string $api_name,
-        string $export_id,
-        ?string $range = null
-    ): Request {
-        $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/file.json';
+        null|string $range = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'apiName' . '}',
-            ObjectSerializer::toPathValue($api_name),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'exportId' . '}',
-            ObjectSerializer::toPathValue($export_id),
-            $resourcePath
+            [
+                '{' . 'apiName' . '}',
+                '{' . 'exportId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($api_name),
+                ObjectSerializer::toPathValue($export_id),
+            ],
+            '/bulk/v1/customobjects/{apiName}/export/{exportId}/file.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -942,54 +321,32 @@ class BulkExportCustomObjectsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
-                    'Range' => isset($range) ? ObjectSerializer::toHeaderValue($range) : null,
                 ],
-                $headers
+                array_merge(
+                    [
+                        'Range' => isset($range) ? ObjectSerializer::toHeaderValue($range) : null,
+                    ],
+                    $headers
+                ),
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getExportCustomObjectsStatusUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getExportCustomObjectsStatusUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -999,157 +356,27 @@ class BulkExportCustomObjectsApi
      *   API Name of the custom object for the export batch job.
      * @param string $export_id
      *   Id of export batch job.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getExportCustomObjectsStatusUsingGET(
         string $api_name,
-        string $export_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
-        [$response] = $this->getExportCustomObjectsStatusUsingGETWithHttpInfo($api_name, $export_id);
-        return $response;
-    }
-
-    /**
-     * Get Export Custom Object Job Status
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getExportCustomObjectsStatusUsingGETWithHttpInfo(
-        string $api_name,
-        string $export_id
-    ): array {
-        $request = $this->getExportCustomObjectsStatusUsingGETRequest($api_name, $export_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getExportCustomObjectsStatusUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Export Custom Object Job Status
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getExportCustomObjectsStatusUsingGETAsync(
-        string $api_name,
-        string $export_id
-    ): PromiseInterface {
-        return $this->getExportCustomObjectsStatusUsingGETAsyncWithHttpInfo($api_name, $export_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Export Custom Object Job Status
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getExportCustomObjectsStatusUsingGETAsyncWithHttpInfo(
-        string $api_name,
-        string $export_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getExportCustomObjectsStatusUsingGETRequest($api_name, $export_id),
-            [$this, 'getExportCustomObjectsStatusUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getExportCustomObjectsStatusUsingGET'
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string $export_id
-     *   Id of export batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getExportCustomObjectsStatusUsingGETRequest(
-        string $api_name,
-        string $export_id
-    ): Request {
-        $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/status.json';
+        string $export_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'apiName' . '}',
-            ObjectSerializer::toPathValue($api_name),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'exportId' . '}',
-            ObjectSerializer::toPathValue($export_id),
-            $resourcePath
+            [
+                '{' . 'apiName' . '}',
+                '{' . 'exportId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($api_name),
+                ObjectSerializer::toPathValue($export_id),
+            ],
+            '/bulk/v1/customobjects/{apiName}/export/{exportId}/status.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1157,53 +384,27 @@ class BulkExportCustomObjectsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getExportCustomObjectsUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getExportCustomObjectsUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1217,178 +418,27 @@ class BulkExportCustomObjectsApi
      *   The batch size to return. The max and default value is 300.
      * @param string|null $next_page_token
      *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getExportCustomObjectsUsingGET(
         string $api_name,
-        ?array $status = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken {
-        [$response] = $this->getExportCustomObjectsUsingGETWithHttpInfo($api_name, $status, $batch_size, $next_page_token);
-        return $response;
-    }
-
-    /**
-     * Get Export Custom Object Jobs
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string[]|null $status
-     *   Comma separated list of statuses to filter on.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getExportCustomObjectsUsingGETWithHttpInfo(
-        string $api_name,
-        ?array $status = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): array {
-        $request = $this->getExportCustomObjectsUsingGETRequest($api_name, $status, $batch_size, $next_page_token);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getExportCustomObjectsUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class
-            ),
-        };
-    }
-
-    /**
-     * Get Export Custom Object Jobs
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string[]|null $status
-     *   Comma separated list of statuses to filter on.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getExportCustomObjectsUsingGETAsync(
-        string $api_name,
-        ?array $status = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->getExportCustomObjectsUsingGETAsyncWithHttpInfo($api_name, $status, $batch_size, $next_page_token)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken => $response[0]
-            );
-    }
-
-    /**
-     * Get Export Custom Object Jobs
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string[]|null $status
-     *   Comma separated list of statuses to filter on.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getExportCustomObjectsUsingGETAsyncWithHttpInfo(
-        string $api_name,
-        ?array $status = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getExportCustomObjectsUsingGETRequest($api_name, $status, $batch_size, $next_page_token),
-            [$this, 'getExportCustomObjectsUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getExportCustomObjectsUsingGET'
-     *
-     * @param string $api_name
-     *   API Name of the custom object for the export batch job.
-     * @param string[]|null $status
-     *   Comma separated list of statuses to filter on.
-     * @param int|null $batch_size
-     *   The batch size to return. The max and default value is 300.
-     * @param string|null $next_page_token
-     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getExportCustomObjectsUsingGETRequest(
-        string $api_name,
-        ?array $status = null,
-        ?int $batch_size = null,
-        ?string $next_page_token = null
-    ): Request {
-        $resourcePath = '/bulk/v1/customobjects/{apiName}/export.json';
+        null|array $status = null,
+        null|int $batch_size = null,
+        null|string $next_page_token = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'apiName' . '}',
-            ObjectSerializer::toPathValue($api_name),
-            $resourcePath
+            [
+                '{' . 'apiName' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($api_name),
+            ],
+            '/bulk/v1/customobjects/{apiName}/export.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1396,30 +446,29 @@ class BulkExportCustomObjectsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::serializeCollection($status, 'multi') : null,
-                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
-                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::serializeCollection($status, 'multi') : null,
+                    'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                    'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 }

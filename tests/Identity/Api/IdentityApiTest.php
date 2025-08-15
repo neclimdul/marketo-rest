@@ -123,7 +123,7 @@ class IdentityApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -133,7 +133,7 @@ class IdentityApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity',
+            null,
             ['application/json']
         );
     }
@@ -141,8 +141,6 @@ class IdentityApiTest extends TestCase
     /**
      * @dataProvider provideIdentityUsingGET
      * @covers ::identityUsingGET
-     * @covers ::identityUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testIdentityUsingGET(
         int $code,
@@ -157,65 +155,7 @@ class IdentityApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'identityUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideIdentityUsingGET
-     * @covers ::identityUsingGETWithHttpInfo
-     * @covers ::identityUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testIdentityUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'identityUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideIdentityUsingGET
-     * @covers ::identityUsingGETAsync
-     * @covers ::identityUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testIdentityUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'identityUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideIdentityUsingGET
-     * @covers ::identityUsingGETAsyncWithHttpInfo
-     * @covers ::identityUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testIdentityUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'identityUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideIdentityUsingPOST(): \Generator
@@ -237,7 +177,7 @@ class IdentityApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -247,7 +187,7 @@ class IdentityApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity',
+            null,
             ['application/json']
         );
     }
@@ -255,8 +195,6 @@ class IdentityApiTest extends TestCase
     /**
      * @dataProvider provideIdentityUsingPOST
      * @covers ::identityUsingPOST
-     * @covers ::identityUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testIdentityUsingPOST(
         int $code,
@@ -271,64 +209,6 @@ class IdentityApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'identityUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideIdentityUsingPOST
-     * @covers ::identityUsingPOSTWithHttpInfo
-     * @covers ::identityUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testIdentityUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'identityUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideIdentityUsingPOST
-     * @covers ::identityUsingPOSTAsync
-     * @covers ::identityUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testIdentityUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'identityUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideIdentityUsingPOST
-     * @covers ::identityUsingPOSTAsyncWithHttpInfo
-     * @covers ::identityUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testIdentityUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'identityUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

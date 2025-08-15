@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Asset\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Asset\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Asset\Configuration;
 use NecLimDul\MarketoRest\Asset\HeaderSelector;
 use NecLimDul\MarketoRest\Asset\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class LandingPageRedirectRulesApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class LandingPageRedirectRulesApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,183 +112,24 @@ class LandingPageRedirectRulesApi
     }
 
     /**
-     * Exception handler for createLandingPageRedirectRuleUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function createLandingPageRedirectRuleUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Create Landing Page Redirect Rule
      *
      * @param string $hostname
      *   The hostname for the landing pages. Branding domain or alias. Max 255 characters
      * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from
      * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function createLandingPageRedirectRuleUsingPOST(
         string $hostname,
         \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from,
-        \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules {
-        [$response] = $this->createLandingPageRedirectRuleUsingPOSTWithHttpInfo($hostname, $redirect_from, $redirect_to);
-        return $response;
-    }
-
-    /**
-     * Create Landing Page Redirect Rule
-     *
-     * @param string $hostname
-     *   The hostname for the landing pages. Branding domain or alias. Max 255 characters
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function createLandingPageRedirectRuleUsingPOSTWithHttpInfo(
-        string $hostname,
-        \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from,
-        \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to
-    ): array {
-        $request = $this->createLandingPageRedirectRuleUsingPOSTRequest($hostname, $redirect_from, $redirect_to);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->createLandingPageRedirectRuleUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-            ),
-        };
-    }
-
-    /**
-     * Create Landing Page Redirect Rule
-     *
-     * @param string $hostname
-     *   The hostname for the landing pages. Branding domain or alias. Max 255 characters
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function createLandingPageRedirectRuleUsingPOSTAsync(
-        string $hostname,
-        \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from,
-        \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to
-    ): PromiseInterface {
-        return $this->createLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo($hostname, $redirect_from, $redirect_to)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules => $response[0]
-            );
-    }
-
-    /**
-     * Create Landing Page Redirect Rule
-     *
-     * @param string $hostname
-     *   The hostname for the landing pages. Branding domain or alias. Max 255 characters
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo(
-        string $hostname,
-        \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from,
-        \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->createLandingPageRedirectRuleUsingPOSTRequest($hostname, $redirect_from, $redirect_to),
-            [$this, 'createLandingPageRedirectRuleUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'createLandingPageRedirectRuleUsingPOST'
-     *
-     * @param string $hostname
-     *   The hostname for the landing pages. Branding domain or alias. Max 255 characters
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createLandingPageRedirectRuleUsingPOSTRequest(
-        string $hostname,
-        \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from,
-        \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to
-    ): Request {
+        \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/redirectRules.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -278,56 +137,32 @@ class LandingPageRedirectRulesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'hostname' => ObjectSerializer::toFormValue($hostname),
+                    'redirectFrom' => ObjectSerializer::toFormValue($redirect_from),
+                    'redirectTo' => ObjectSerializer::toFormValue($redirect_to),
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'hostname' => ObjectSerializer::toFormValue($hostname),
-                'redirectFrom' => ObjectSerializer::toFormValue($redirect_from),
-                'redirectTo' => ObjectSerializer::toFormValue($redirect_to),
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for deleteLandingPageRedirectRuleUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function deleteLandingPageRedirectRuleUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -335,139 +170,24 @@ class LandingPageRedirectRulesApi
      *
      * @param int $id
      *   Id of landing page redirect rule
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteLandingPageRedirectRuleUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->deleteLandingPageRedirectRuleUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Delete Landing Page Redirect Rule
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteLandingPageRedirectRuleUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->deleteLandingPageRedirectRuleUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteLandingPageRedirectRuleUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Landing Page Redirect Rule
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteLandingPageRedirectRuleUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->deleteLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Delete Landing Page Redirect Rule
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteLandingPageRedirectRuleUsingPOSTRequest($id),
-            [$this, 'deleteLandingPageRedirectRuleUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteLandingPageRedirectRuleUsingPOST'
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteLandingPageRedirectRuleUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/redirectRule/{id}/delete.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/redirectRule/{id}/delete.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -475,53 +195,27 @@ class LandingPageRedirectRulesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getLandingPageDomainsUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getLandingPageDomainsUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -531,147 +225,17 @@ class LandingPageRedirectRulesApi
      *   Maximum number of landing page domains and domain aliases to return. Max 200, default 20
      * @param int|null $offset
      *   Integer offset for paging
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getLandingPageDomainsUsingGET(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains {
-        [$response] = $this->getLandingPageDomainsUsingGETWithHttpInfo($max_return, $offset);
-        return $response;
-    }
-
-    /**
-     * Get Landing Page Domains
-     *
-     * @param int|null $max_return
-     *   Maximum number of landing page domains and domain aliases to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getLandingPageDomainsUsingGETWithHttpInfo(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): array {
-        $request = $this->getLandingPageDomainsUsingGETRequest($max_return, $offset);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getLandingPageDomainsUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains::class
-            ),
-        };
-    }
-
-    /**
-     * Get Landing Page Domains
-     *
-     * @param int|null $max_return
-     *   Maximum number of landing page domains and domain aliases to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getLandingPageDomainsUsingGETAsync(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): PromiseInterface {
-        return $this->getLandingPageDomainsUsingGETAsyncWithHttpInfo($max_return, $offset)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains => $response[0]
-            );
-    }
-
-    /**
-     * Get Landing Page Domains
-     *
-     * @param int|null $max_return
-     *   Maximum number of landing page domains and domain aliases to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getLandingPageDomainsUsingGETAsyncWithHttpInfo(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getLandingPageDomainsUsingGETRequest($max_return, $offset),
-            [$this, 'getLandingPageDomainsUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getLandingPageDomainsUsingGET'
-     *
-     * @param int|null $max_return
-     *   Maximum number of landing page domains and domain aliases to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getLandingPageDomainsUsingGETRequest(
-        ?int $max_return = null,
-        ?int $offset = null
-    ): Request {
+        null|int $max_return = null,
+        null|int $offset = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/landingPageDomains.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -679,55 +243,29 @@ class LandingPageRedirectRulesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
-                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                    'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getLandingPageRedirectRuleByIdUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getLandingPageRedirectRuleByIdUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -735,139 +273,24 @@ class LandingPageRedirectRulesApi
      *
      * @param int $id
      *   Id of landing page redirect rule
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getLandingPageRedirectRuleByIdUsingGET(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules {
-        [$response] = $this->getLandingPageRedirectRuleByIdUsingGETWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Get Landing Page Redirect Rule by Id
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getLandingPageRedirectRuleByIdUsingGETWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->getLandingPageRedirectRuleByIdUsingGETRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getLandingPageRedirectRuleByIdUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-            ),
-        };
-    }
-
-    /**
-     * Get Landing Page Redirect Rule by Id
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getLandingPageRedirectRuleByIdUsingGETAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->getLandingPageRedirectRuleByIdUsingGETAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules => $response[0]
-            );
-    }
-
-    /**
-     * Get Landing Page Redirect Rule by Id
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getLandingPageRedirectRuleByIdUsingGETAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getLandingPageRedirectRuleByIdUsingGETRequest($id),
-            [$this, 'getLandingPageRedirectRuleByIdUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getLandingPageRedirectRuleByIdUsingGET'
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getLandingPageRedirectRuleByIdUsingGETRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/redirectRule/{id}.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/redirectRule/{id}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -875,53 +298,27 @@ class LandingPageRedirectRulesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getLandingPageRedirectRulesUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getLandingPageRedirectRulesUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -936,202 +333,24 @@ class LandingPageRedirectRulesApi
      * @param string|null $redirect_to_path
      *   Path of landing page to redirect to
      * @param string|null $earliest_updated_at
-     *   Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
+     *   Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
      * @param string|null $latest_updated_at
-     *   Exclude landing page redirect rules after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
+     *   Exclude landing page redirect rules after this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getLandingPageRedirectRulesUsingGET(
-        ?int $max_return = null,
-        ?int $offset = null,
-        ?string $redirect_tolanding_page_id = null,
-        ?string $redirect_to_path = null,
-        ?string $earliest_updated_at = null,
-        ?string $latest_updated_at = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules {
-        [$response] = $this->getLandingPageRedirectRulesUsingGETWithHttpInfo($max_return, $offset, $redirect_tolanding_page_id, $redirect_to_path, $earliest_updated_at, $latest_updated_at);
-        return $response;
-    }
-
-    /**
-     * Get Landing Page Redirect Rules
-     *
-     * @param int|null $max_return
-     *   Maximum number of landing page redirect rules to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param string|null $redirect_tolanding_page_id
-     *   Landing page id of landing page to redirect to
-     * @param string|null $redirect_to_path
-     *   Path of landing page to redirect to
-     * @param string|null $earliest_updated_at
-     *   Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     * @param string|null $latest_updated_at
-     *   Exclude landing page redirect rules after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getLandingPageRedirectRulesUsingGETWithHttpInfo(
-        ?int $max_return = null,
-        ?int $offset = null,
-        ?string $redirect_tolanding_page_id = null,
-        ?string $redirect_to_path = null,
-        ?string $earliest_updated_at = null,
-        ?string $latest_updated_at = null
-    ): array {
-        $request = $this->getLandingPageRedirectRulesUsingGETRequest($max_return, $offset, $redirect_tolanding_page_id, $redirect_to_path, $earliest_updated_at, $latest_updated_at);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getLandingPageRedirectRulesUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-            ),
-        };
-    }
-
-    /**
-     * Get Landing Page Redirect Rules
-     *
-     * @param int|null $max_return
-     *   Maximum number of landing page redirect rules to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param string|null $redirect_tolanding_page_id
-     *   Landing page id of landing page to redirect to
-     * @param string|null $redirect_to_path
-     *   Path of landing page to redirect to
-     * @param string|null $earliest_updated_at
-     *   Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     * @param string|null $latest_updated_at
-     *   Exclude landing page redirect rules after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getLandingPageRedirectRulesUsingGETAsync(
-        ?int $max_return = null,
-        ?int $offset = null,
-        ?string $redirect_tolanding_page_id = null,
-        ?string $redirect_to_path = null,
-        ?string $earliest_updated_at = null,
-        ?string $latest_updated_at = null
-    ): PromiseInterface {
-        return $this->getLandingPageRedirectRulesUsingGETAsyncWithHttpInfo($max_return, $offset, $redirect_tolanding_page_id, $redirect_to_path, $earliest_updated_at, $latest_updated_at)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules => $response[0]
-            );
-    }
-
-    /**
-     * Get Landing Page Redirect Rules
-     *
-     * @param int|null $max_return
-     *   Maximum number of landing page redirect rules to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param string|null $redirect_tolanding_page_id
-     *   Landing page id of landing page to redirect to
-     * @param string|null $redirect_to_path
-     *   Path of landing page to redirect to
-     * @param string|null $earliest_updated_at
-     *   Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     * @param string|null $latest_updated_at
-     *   Exclude landing page redirect rules after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getLandingPageRedirectRulesUsingGETAsyncWithHttpInfo(
-        ?int $max_return = null,
-        ?int $offset = null,
-        ?string $redirect_tolanding_page_id = null,
-        ?string $redirect_to_path = null,
-        ?string $earliest_updated_at = null,
-        ?string $latest_updated_at = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getLandingPageRedirectRulesUsingGETRequest($max_return, $offset, $redirect_tolanding_page_id, $redirect_to_path, $earliest_updated_at, $latest_updated_at),
-            [$this, 'getLandingPageRedirectRulesUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getLandingPageRedirectRulesUsingGET'
-     *
-     * @param int|null $max_return
-     *   Maximum number of landing page redirect rules to return. Max 200, default 20
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param string|null $redirect_tolanding_page_id
-     *   Landing page id of landing page to redirect to
-     * @param string|null $redirect_to_path
-     *   Path of landing page to redirect to
-     * @param string|null $earliest_updated_at
-     *   Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     * @param string|null $latest_updated_at
-     *   Exclude landing page redirect rules after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getLandingPageRedirectRulesUsingGETRequest(
-        ?int $max_return = null,
-        ?int $offset = null,
-        ?string $redirect_tolanding_page_id = null,
-        ?string $redirect_to_path = null,
-        ?string $earliest_updated_at = null,
-        ?string $latest_updated_at = null
-    ): Request {
+        null|int $max_return = null,
+        null|int $offset = null,
+        null|string $redirect_tolanding_page_id = null,
+        null|string $redirect_to_path = null,
+        null|string $earliest_updated_at = null,
+        null|string $latest_updated_at = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/redirectRules.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1139,59 +358,33 @@ class LandingPageRedirectRulesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
-                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
-                'redirectTolandingPageId' => isset($redirect_tolanding_page_id) ? ObjectSerializer::toQueryValue($redirect_tolanding_page_id) : null,
-                'redirectToPath' => isset($redirect_to_path) ? ObjectSerializer::toQueryValue($redirect_to_path) : null,
-                'earliestUpdatedAt' => isset($earliest_updated_at) ? ObjectSerializer::toQueryValue($earliest_updated_at) : null,
-                'latestUpdatedAt' => isset($latest_updated_at) ? ObjectSerializer::toQueryValue($latest_updated_at) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                    'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                    'redirectTolandingPageId' => isset($redirect_tolanding_page_id) ? ObjectSerializer::toQueryValue($redirect_tolanding_page_id) : null,
+                    'redirectToPath' => isset($redirect_to_path) ? ObjectSerializer::toQueryValue($redirect_to_path) : null,
+                    'earliestUpdatedAt' => isset($earliest_updated_at) ? ObjectSerializer::toQueryValue($earliest_updated_at) : null,
+                    'latestUpdatedAt' => isset($latest_updated_at) ? ObjectSerializer::toQueryValue($latest_updated_at) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateLandingPageRedirectRuleUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateLandingPageRedirectRuleUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1203,170 +396,27 @@ class LandingPageRedirectRulesApi
      *   The hostname for the landing pages. Branding domain or alias. Max 255 characters
      * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null $redirect_from
      * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo|null $redirect_to
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateLandingPageRedirectRuleUsingPOST(
         int $id,
-        ?string $hostname = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules {
-        [$response] = $this->updateLandingPageRedirectRuleUsingPOSTWithHttpInfo($id, $hostname, $redirect_from, $redirect_to);
-        return $response;
-    }
-
-    /**
-     * Update Landing Page Redirect Rule
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     * @param string|null $hostname
-     *   The hostname for the landing pages. Branding domain or alias. Max 255 characters
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null $redirect_from
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo|null $redirect_to
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateLandingPageRedirectRuleUsingPOSTWithHttpInfo(
-        int $id,
-        ?string $hostname = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to = null
-    ): array {
-        $request = $this->updateLandingPageRedirectRuleUsingPOSTRequest($id, $hostname, $redirect_from, $redirect_to);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateLandingPageRedirectRuleUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-            ),
-        };
-    }
-
-    /**
-     * Update Landing Page Redirect Rule
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     * @param string|null $hostname
-     *   The hostname for the landing pages. Branding domain or alias. Max 255 characters
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null $redirect_from
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo|null $redirect_to
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateLandingPageRedirectRuleUsingPOSTAsync(
-        int $id,
-        ?string $hostname = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to = null
-    ): PromiseInterface {
-        return $this->updateLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo($id, $hostname, $redirect_from, $redirect_to)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules => $response[0]
-            );
-    }
-
-    /**
-     * Update Landing Page Redirect Rule
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     * @param string|null $hostname
-     *   The hostname for the landing pages. Branding domain or alias. Max 255 characters
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null $redirect_from
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo|null $redirect_to
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        ?string $hostname = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateLandingPageRedirectRuleUsingPOSTRequest($id, $hostname, $redirect_from, $redirect_to),
-            [$this, 'updateLandingPageRedirectRuleUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateLandingPageRedirectRuleUsingPOST'
-     *
-     * @param int $id
-     *   Id of landing page redirect rule
-     * @param string|null $hostname
-     *   The hostname for the landing pages. Branding domain or alias. Max 255 characters
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null $redirect_from
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo|null $redirect_to
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateLandingPageRedirectRuleUsingPOSTRequest(
-        int $id,
-        ?string $hostname = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/redirectRule/{id}.json';
+        null|string $hostname = null,
+        null|\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from = null,
+        null|\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/redirectRule/{id}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1374,30 +424,31 @@ class LandingPageRedirectRulesApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'hostname' => isset($hostname) ? ObjectSerializer::toFormValue($hostname) : null,
+                    'redirectFrom' => isset($redirect_from) ? ObjectSerializer::toFormValue($redirect_from) : null,
+                    'redirectTo' => isset($redirect_to) ? ObjectSerializer::toFormValue($redirect_to) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'hostname' => isset($hostname) ? ObjectSerializer::toFormValue($hostname) : null,
-                'redirectFrom' => isset($redirect_from) ? ObjectSerializer::toFormValue($redirect_from) : null,
-                'redirectTo' => isset($redirect_to) ? ObjectSerializer::toFormValue($redirect_to) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 }

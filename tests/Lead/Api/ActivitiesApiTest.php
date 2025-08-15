@@ -119,7 +119,7 @@ class ActivitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class ActivitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideAddCustomActivityUsingPOST
      * @covers ::addCustomActivityUsingPOST
-     * @covers ::addCustomActivityUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testAddCustomActivityUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'addCustomActivityUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddCustomActivityUsingPOST
-     * @covers ::addCustomActivityUsingPOSTWithHttpInfo
-     * @covers ::addCustomActivityUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testAddCustomActivityUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addCustomActivityUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddCustomActivityUsingPOST
-     * @covers ::addCustomActivityUsingPOSTAsync
-     * @covers ::addCustomActivityUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddCustomActivityUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addCustomActivityUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddCustomActivityUsingPOST
-     * @covers ::addCustomActivityUsingPOSTAsyncWithHttpInfo
-     * @covers ::addCustomActivityUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddCustomActivityUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addCustomActivityUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideApproveCustomActivityTypeUsingPOST(): \Generator
@@ -227,7 +167,7 @@ class ActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -235,7 +175,7 @@ class ActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
     }
@@ -243,8 +183,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideApproveCustomActivityTypeUsingPOST
      * @covers ::approveCustomActivityTypeUsingPOST
-     * @covers ::approveCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testApproveCustomActivityTypeUsingPOST(
         int $code,
@@ -259,65 +197,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'approveCustomActivityTypeUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveCustomActivityTypeUsingPOST
-     * @covers ::approveCustomActivityTypeUsingPOSTWithHttpInfo
-     * @covers ::approveCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testApproveCustomActivityTypeUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveCustomActivityTypeUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveCustomActivityTypeUsingPOST
-     * @covers ::approveCustomActivityTypeUsingPOSTAsync
-     * @covers ::approveCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveCustomActivityTypeUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveCustomActivityTypeUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveCustomActivityTypeUsingPOST
-     * @covers ::approveCustomActivityTypeUsingPOSTAsyncWithHttpInfo
-     * @covers ::approveCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveCustomActivityTypeUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveCustomActivityTypeUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCreateCustomActivityTypeAttributesUsingPOST(): \Generator
@@ -337,7 +217,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -346,7 +226,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
     }
@@ -354,8 +234,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideCreateCustomActivityTypeAttributesUsingPOST
      * @covers ::createCustomActivityTypeAttributesUsingPOST
-     * @covers ::createCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateCustomActivityTypeAttributesUsingPOST(
         int $code,
@@ -370,65 +248,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createCustomActivityTypeAttributesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateCustomActivityTypeAttributesUsingPOST
-     * @covers ::createCustomActivityTypeAttributesUsingPOSTWithHttpInfo
-     * @covers ::createCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateCustomActivityTypeAttributesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createCustomActivityTypeAttributesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateCustomActivityTypeAttributesUsingPOST
-     * @covers ::createCustomActivityTypeAttributesUsingPOSTAsync
-     * @covers ::createCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateCustomActivityTypeAttributesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createCustomActivityTypeAttributesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateCustomActivityTypeAttributesUsingPOST
-     * @covers ::createCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo
-     * @covers ::createCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCreateCustomActivityTypeUsingPOST(): \Generator
@@ -446,7 +266,7 @@ class ActivitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -454,7 +274,7 @@ class ActivitiesApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
     }
@@ -462,8 +282,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideCreateCustomActivityTypeUsingPOST
      * @covers ::createCustomActivityTypeUsingPOST
-     * @covers ::createCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateCustomActivityTypeUsingPOST(
         int $code,
@@ -478,65 +296,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createCustomActivityTypeUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateCustomActivityTypeUsingPOST
-     * @covers ::createCustomActivityTypeUsingPOSTWithHttpInfo
-     * @covers ::createCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateCustomActivityTypeUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createCustomActivityTypeUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateCustomActivityTypeUsingPOST
-     * @covers ::createCustomActivityTypeUsingPOSTAsync
-     * @covers ::createCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateCustomActivityTypeUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createCustomActivityTypeUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateCustomActivityTypeUsingPOST
-     * @covers ::createCustomActivityTypeUsingPOSTAsyncWithHttpInfo
-     * @covers ::createCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateCustomActivityTypeUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createCustomActivityTypeUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteCustomActivityTypeAttributesUsingPOST(): \Generator
@@ -556,7 +316,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -565,7 +325,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
     }
@@ -573,8 +333,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideDeleteCustomActivityTypeAttributesUsingPOST
      * @covers ::deleteCustomActivityTypeAttributesUsingPOST
-     * @covers ::deleteCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteCustomActivityTypeAttributesUsingPOST(
         int $code,
@@ -589,65 +347,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteCustomActivityTypeAttributesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomActivityTypeAttributesUsingPOST
-     * @covers ::deleteCustomActivityTypeAttributesUsingPOSTWithHttpInfo
-     * @covers ::deleteCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteCustomActivityTypeAttributesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomActivityTypeAttributesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomActivityTypeAttributesUsingPOST
-     * @covers ::deleteCustomActivityTypeAttributesUsingPOSTAsync
-     * @covers ::deleteCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCustomActivityTypeAttributesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomActivityTypeAttributesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomActivityTypeAttributesUsingPOST
-     * @covers ::deleteCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteCustomActivityTypeUsingPOST(): \Generator
@@ -665,7 +365,7 @@ class ActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -673,7 +373,7 @@ class ActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
     }
@@ -681,8 +381,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideDeleteCustomActivityTypeUsingPOST
      * @covers ::deleteCustomActivityTypeUsingPOST
-     * @covers ::deleteCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteCustomActivityTypeUsingPOST(
         int $code,
@@ -697,65 +395,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteCustomActivityTypeUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomActivityTypeUsingPOST
-     * @covers ::deleteCustomActivityTypeUsingPOSTWithHttpInfo
-     * @covers ::deleteCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteCustomActivityTypeUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomActivityTypeUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomActivityTypeUsingPOST
-     * @covers ::deleteCustomActivityTypeUsingPOSTAsync
-     * @covers ::deleteCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCustomActivityTypeUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomActivityTypeUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomActivityTypeUsingPOST
-     * @covers ::deleteCustomActivityTypeUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCustomActivityTypeUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomActivityTypeUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDescribeCustomActivityTypeUsingGET(): \Generator
@@ -775,7 +415,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -784,7 +424,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
     }
@@ -792,8 +432,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideDescribeCustomActivityTypeUsingGET
      * @covers ::describeCustomActivityTypeUsingGET
-     * @covers ::describeCustomActivityTypeUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testDescribeCustomActivityTypeUsingGET(
         int $code,
@@ -808,65 +446,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'describeCustomActivityTypeUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeCustomActivityTypeUsingGET
-     * @covers ::describeCustomActivityTypeUsingGETWithHttpInfo
-     * @covers ::describeCustomActivityTypeUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testDescribeCustomActivityTypeUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeCustomActivityTypeUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeCustomActivityTypeUsingGET
-     * @covers ::describeCustomActivityTypeUsingGETAsync
-     * @covers ::describeCustomActivityTypeUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeCustomActivityTypeUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeCustomActivityTypeUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeCustomActivityTypeUsingGET
-     * @covers ::describeCustomActivityTypeUsingGETAsyncWithHttpInfo
-     * @covers ::describeCustomActivityTypeUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeCustomActivityTypeUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeCustomActivityTypeUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDiscardDraftofCustomActivityTypeUsingPOST(): \Generator
@@ -884,7 +464,7 @@ class ActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -892,7 +472,7 @@ class ActivitiesApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
     }
@@ -900,8 +480,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideDiscardDraftofCustomActivityTypeUsingPOST
      * @covers ::discardDraftofCustomActivityTypeUsingPOST
-     * @covers ::discardDraftofCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDiscardDraftofCustomActivityTypeUsingPOST(
         int $code,
@@ -916,65 +494,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'discardDraftofCustomActivityTypeUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardDraftofCustomActivityTypeUsingPOST
-     * @covers ::discardDraftofCustomActivityTypeUsingPOSTWithHttpInfo
-     * @covers ::discardDraftofCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDiscardDraftofCustomActivityTypeUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardDraftofCustomActivityTypeUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardDraftofCustomActivityTypeUsingPOST
-     * @covers ::discardDraftofCustomActivityTypeUsingPOSTAsync
-     * @covers ::discardDraftofCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardDraftofCustomActivityTypeUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardDraftofCustomActivityTypeUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardDraftofCustomActivityTypeUsingPOST
-     * @covers ::discardDraftofCustomActivityTypeUsingPOSTAsyncWithHttpInfo
-     * @covers ::discardDraftofCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardDraftofCustomActivityTypeUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardDraftofCustomActivityTypeUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetActivitiesPagingTokenUsingGET(): \Generator
@@ -992,7 +512,7 @@ class ActivitiesApiTest extends TestCase
             [
                 '\DateTime',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1000,7 +520,7 @@ class ActivitiesApiTest extends TestCase
             [
                 '\DateTime',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid',
+            null,
             ['application/json']
         );
     }
@@ -1008,8 +528,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetActivitiesPagingTokenUsingGET
      * @covers ::getActivitiesPagingTokenUsingGET
-     * @covers ::getActivitiesPagingTokenUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetActivitiesPagingTokenUsingGET(
         int $code,
@@ -1024,65 +542,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getActivitiesPagingTokenUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetActivitiesPagingTokenUsingGET
-     * @covers ::getActivitiesPagingTokenUsingGETWithHttpInfo
-     * @covers ::getActivitiesPagingTokenUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetActivitiesPagingTokenUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getActivitiesPagingTokenUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetActivitiesPagingTokenUsingGET
-     * @covers ::getActivitiesPagingTokenUsingGETAsync
-     * @covers ::getActivitiesPagingTokenUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetActivitiesPagingTokenUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getActivitiesPagingTokenUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetActivitiesPagingTokenUsingGET
-     * @covers ::getActivitiesPagingTokenUsingGETAsyncWithHttpInfo
-     * @covers ::getActivitiesPagingTokenUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetActivitiesPagingTokenUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getActivitiesPagingTokenUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetAllActivityTypesUsingGET(): \Generator
@@ -1098,14 +558,14 @@ class ActivitiesApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType',
+            null,
             ['application/json']
         );
     }
@@ -1113,8 +573,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetAllActivityTypesUsingGET
      * @covers ::getAllActivityTypesUsingGET
-     * @covers ::getAllActivityTypesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetAllActivityTypesUsingGET(
         int $code,
@@ -1129,65 +587,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getAllActivityTypesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllActivityTypesUsingGET
-     * @covers ::getAllActivityTypesUsingGETWithHttpInfo
-     * @covers ::getAllActivityTypesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetAllActivityTypesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllActivityTypesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllActivityTypesUsingGET
-     * @covers ::getAllActivityTypesUsingGETAsync
-     * @covers ::getAllActivityTypesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetAllActivityTypesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllActivityTypesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllActivityTypesUsingGET
-     * @covers ::getAllActivityTypesUsingGETAsyncWithHttpInfo
-     * @covers ::getAllActivityTypesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetAllActivityTypesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllActivityTypesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetCustomActivityTypeUsingGET(): \Generator
@@ -1203,14 +603,14 @@ class ActivitiesApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
     }
@@ -1218,8 +618,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetCustomActivityTypeUsingGET
      * @covers ::getCustomActivityTypeUsingGET
-     * @covers ::getCustomActivityTypeUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetCustomActivityTypeUsingGET(
         int $code,
@@ -1234,65 +632,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getCustomActivityTypeUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomActivityTypeUsingGET
-     * @covers ::getCustomActivityTypeUsingGETWithHttpInfo
-     * @covers ::getCustomActivityTypeUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetCustomActivityTypeUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomActivityTypeUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomActivityTypeUsingGET
-     * @covers ::getCustomActivityTypeUsingGETAsync
-     * @covers ::getCustomActivityTypeUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCustomActivityTypeUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomActivityTypeUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomActivityTypeUsingGET
-     * @covers ::getCustomActivityTypeUsingGETAsyncWithHttpInfo
-     * @covers ::getCustomActivityTypeUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCustomActivityTypeUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomActivityTypeUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetDeletedLeadsUsingGET(): \Generator
@@ -1312,7 +652,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1321,7 +661,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
+            null,
             ['application/json']
         );
     }
@@ -1329,8 +669,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetDeletedLeadsUsingGET
      * @covers ::getDeletedLeadsUsingGET
-     * @covers ::getDeletedLeadsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetDeletedLeadsUsingGET(
         int $code,
@@ -1345,65 +683,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getDeletedLeadsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDeletedLeadsUsingGET
-     * @covers ::getDeletedLeadsUsingGETWithHttpInfo
-     * @covers ::getDeletedLeadsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetDeletedLeadsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDeletedLeadsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDeletedLeadsUsingGET
-     * @covers ::getDeletedLeadsUsingGETAsync
-     * @covers ::getDeletedLeadsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetDeletedLeadsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDeletedLeadsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetDeletedLeadsUsingGET
-     * @covers ::getDeletedLeadsUsingGETAsyncWithHttpInfo
-     * @covers ::getDeletedLeadsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetDeletedLeadsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getDeletedLeadsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLeadActivitiesUsingGET(): \Generator
@@ -1431,7 +711,7 @@ class ActivitiesApiTest extends TestCase
                 'int[]',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1444,7 +724,7 @@ class ActivitiesApiTest extends TestCase
                 'int[]',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
+            null,
             ['application/json']
         );
     }
@@ -1452,8 +732,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetLeadActivitiesUsingGET
      * @covers ::getLeadActivitiesUsingGET
-     * @covers ::getLeadActivitiesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLeadActivitiesUsingGET(
         int $code,
@@ -1468,65 +746,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLeadActivitiesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadActivitiesUsingGET
-     * @covers ::getLeadActivitiesUsingGETWithHttpInfo
-     * @covers ::getLeadActivitiesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLeadActivitiesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadActivitiesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadActivitiesUsingGET
-     * @covers ::getLeadActivitiesUsingGETAsync
-     * @covers ::getLeadActivitiesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLeadActivitiesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadActivitiesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadActivitiesUsingGET
-     * @covers ::getLeadActivitiesUsingGETAsyncWithHttpInfo
-     * @covers ::getLeadActivitiesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLeadActivitiesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadActivitiesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLeadChangesUsingGET(): \Generator
@@ -1552,7 +772,7 @@ class ActivitiesApiTest extends TestCase
                 'int[]',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1564,7 +784,7 @@ class ActivitiesApiTest extends TestCase
                 'int[]',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange',
+            null,
             ['application/json']
         );
     }
@@ -1572,8 +792,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideGetLeadChangesUsingGET
      * @covers ::getLeadChangesUsingGET
-     * @covers ::getLeadChangesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLeadChangesUsingGET(
         int $code,
@@ -1588,65 +806,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLeadChangesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadChangesUsingGET
-     * @covers ::getLeadChangesUsingGETWithHttpInfo
-     * @covers ::getLeadChangesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLeadChangesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadChangesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadChangesUsingGET
-     * @covers ::getLeadChangesUsingGETAsync
-     * @covers ::getLeadChangesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLeadChangesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadChangesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLeadChangesUsingGET
-     * @covers ::getLeadChangesUsingGETAsyncWithHttpInfo
-     * @covers ::getLeadChangesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLeadChangesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLeadChangesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateCustomActivityTypeAttributesUsingPOST(): \Generator
@@ -1666,7 +826,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1675,7 +835,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
     }
@@ -1683,8 +843,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideUpdateCustomActivityTypeAttributesUsingPOST
      * @covers ::updateCustomActivityTypeAttributesUsingPOST
-     * @covers ::updateCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateCustomActivityTypeAttributesUsingPOST(
         int $code,
@@ -1699,65 +857,7 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateCustomActivityTypeAttributesUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateCustomActivityTypeAttributesUsingPOST
-     * @covers ::updateCustomActivityTypeAttributesUsingPOSTWithHttpInfo
-     * @covers ::updateCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateCustomActivityTypeAttributesUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateCustomActivityTypeAttributesUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateCustomActivityTypeAttributesUsingPOST
-     * @covers ::updateCustomActivityTypeAttributesUsingPOSTAsync
-     * @covers ::updateCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateCustomActivityTypeAttributesUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateCustomActivityTypeAttributesUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateCustomActivityTypeAttributesUsingPOST
-     * @covers ::updateCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateCustomActivityTypeAttributesUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateCustomActivityTypeUsingPOST(): \Generator
@@ -1777,7 +877,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1786,7 +886,7 @@ class ActivitiesApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+            null,
             ['application/json']
         );
     }
@@ -1794,8 +894,6 @@ class ActivitiesApiTest extends TestCase
     /**
      * @dataProvider provideUpdateCustomActivityTypeUsingPOST
      * @covers ::updateCustomActivityTypeUsingPOST
-     * @covers ::updateCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateCustomActivityTypeUsingPOST(
         int $code,
@@ -1810,64 +908,6 @@ class ActivitiesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateCustomActivityTypeUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateCustomActivityTypeUsingPOST
-     * @covers ::updateCustomActivityTypeUsingPOSTWithHttpInfo
-     * @covers ::updateCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateCustomActivityTypeUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateCustomActivityTypeUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateCustomActivityTypeUsingPOST
-     * @covers ::updateCustomActivityTypeUsingPOSTAsync
-     * @covers ::updateCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateCustomActivityTypeUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateCustomActivityTypeUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateCustomActivityTypeUsingPOST
-     * @covers ::updateCustomActivityTypeUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateCustomActivityTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateCustomActivityTypeUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateCustomActivityTypeUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

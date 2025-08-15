@@ -121,7 +121,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -130,7 +130,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+            null,
             ['application/json']
         );
     }
@@ -138,8 +138,6 @@ class FormFieldsApiTest extends TestCase
     /**
      * @dataProvider provideAddFieldSetUsingPOST
      * @covers ::addFieldSetUsingPOST
-     * @covers ::addFieldSetUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testAddFieldSetUsingPOST(
         int $code,
@@ -154,65 +152,7 @@ class FormFieldsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'addFieldSetUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddFieldSetUsingPOST
-     * @covers ::addFieldSetUsingPOSTWithHttpInfo
-     * @covers ::addFieldSetUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testAddFieldSetUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addFieldSetUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddFieldSetUsingPOST
-     * @covers ::addFieldSetUsingPOSTAsync
-     * @covers ::addFieldSetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddFieldSetUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addFieldSetUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddFieldSetUsingPOST
-     * @covers ::addFieldSetUsingPOSTAsyncWithHttpInfo
-     * @covers ::addFieldSetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddFieldSetUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addFieldSetUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideAddFieldToAFormUsingPOST(): \Generator
@@ -272,7 +212,7 @@ class FormFieldsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -301,7 +241,7 @@ class FormFieldsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+            null,
             ['application/json']
         );
     }
@@ -309,8 +249,6 @@ class FormFieldsApiTest extends TestCase
     /**
      * @dataProvider provideAddFieldToAFormUsingPOST
      * @covers ::addFieldToAFormUsingPOST
-     * @covers ::addFieldToAFormUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testAddFieldToAFormUsingPOST(
         int $code,
@@ -325,65 +263,7 @@ class FormFieldsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'addFieldToAFormUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddFieldToAFormUsingPOST
-     * @covers ::addFieldToAFormUsingPOSTWithHttpInfo
-     * @covers ::addFieldToAFormUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testAddFieldToAFormUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addFieldToAFormUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddFieldToAFormUsingPOST
-     * @covers ::addFieldToAFormUsingPOSTAsync
-     * @covers ::addFieldToAFormUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddFieldToAFormUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addFieldToAFormUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddFieldToAFormUsingPOST
-     * @covers ::addFieldToAFormUsingPOSTAsyncWithHttpInfo
-     * @covers ::addFieldToAFormUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddFieldToAFormUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addFieldToAFormUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideAddFormFieldVisibilityRuleUsingPOST(): \Generator
@@ -405,7 +285,7 @@ class FormFieldsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -415,7 +295,7 @@ class FormFieldsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse',
+            null,
             ['application/json']
         );
     }
@@ -423,8 +303,6 @@ class FormFieldsApiTest extends TestCase
     /**
      * @dataProvider provideAddFormFieldVisibilityRuleUsingPOST
      * @covers ::addFormFieldVisibilityRuleUsingPOST
-     * @covers ::addFormFieldVisibilityRuleUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testAddFormFieldVisibilityRuleUsingPOST(
         int $code,
@@ -439,65 +317,7 @@ class FormFieldsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'addFormFieldVisibilityRuleUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddFormFieldVisibilityRuleUsingPOST
-     * @covers ::addFormFieldVisibilityRuleUsingPOSTWithHttpInfo
-     * @covers ::addFormFieldVisibilityRuleUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testAddFormFieldVisibilityRuleUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addFormFieldVisibilityRuleUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddFormFieldVisibilityRuleUsingPOST
-     * @covers ::addFormFieldVisibilityRuleUsingPOSTAsync
-     * @covers ::addFormFieldVisibilityRuleUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddFormFieldVisibilityRuleUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addFormFieldVisibilityRuleUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddFormFieldVisibilityRuleUsingPOST
-     * @covers ::addFormFieldVisibilityRuleUsingPOSTAsyncWithHttpInfo
-     * @covers ::addFormFieldVisibilityRuleUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddFormFieldVisibilityRuleUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addFormFieldVisibilityRuleUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideAddRichTextFieldUsingPOST(): \Generator
@@ -517,7 +337,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -526,7 +346,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+            null,
             ['application/json']
         );
     }
@@ -534,8 +354,6 @@ class FormFieldsApiTest extends TestCase
     /**
      * @dataProvider provideAddRichTextFieldUsingPOST
      * @covers ::addRichTextFieldUsingPOST
-     * @covers ::addRichTextFieldUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testAddRichTextFieldUsingPOST(
         int $code,
@@ -550,65 +368,7 @@ class FormFieldsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'addRichTextFieldUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddRichTextFieldUsingPOST
-     * @covers ::addRichTextFieldUsingPOSTWithHttpInfo
-     * @covers ::addRichTextFieldUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testAddRichTextFieldUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addRichTextFieldUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddRichTextFieldUsingPOST
-     * @covers ::addRichTextFieldUsingPOSTAsync
-     * @covers ::addRichTextFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddRichTextFieldUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addRichTextFieldUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddRichTextFieldUsingPOST
-     * @covers ::addRichTextFieldUsingPOSTAsyncWithHttpInfo
-     * @covers ::addRichTextFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddRichTextFieldUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addRichTextFieldUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteFormFieldFromFieldSetUsingPOST(): \Generator
@@ -630,7 +390,7 @@ class FormFieldsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -640,7 +400,7 @@ class FormFieldsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -648,8 +408,6 @@ class FormFieldsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteFormFieldFromFieldSetUsingPOST
      * @covers ::deleteFormFieldFromFieldSetUsingPOST
-     * @covers ::deleteFormFieldFromFieldSetUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteFormFieldFromFieldSetUsingPOST(
         int $code,
@@ -664,65 +422,7 @@ class FormFieldsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteFormFieldFromFieldSetUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFormFieldFromFieldSetUsingPOST
-     * @covers ::deleteFormFieldFromFieldSetUsingPOSTWithHttpInfo
-     * @covers ::deleteFormFieldFromFieldSetUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteFormFieldFromFieldSetUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFormFieldFromFieldSetUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFormFieldFromFieldSetUsingPOST
-     * @covers ::deleteFormFieldFromFieldSetUsingPOSTAsync
-     * @covers ::deleteFormFieldFromFieldSetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteFormFieldFromFieldSetUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFormFieldFromFieldSetUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFormFieldFromFieldSetUsingPOST
-     * @covers ::deleteFormFieldFromFieldSetUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteFormFieldFromFieldSetUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteFormFieldFromFieldSetUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFormFieldFromFieldSetUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteFormFieldUsingPOST(): \Generator
@@ -742,7 +442,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -751,7 +451,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -759,8 +459,6 @@ class FormFieldsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteFormFieldUsingPOST
      * @covers ::deleteFormFieldUsingPOST
-     * @covers ::deleteFormFieldUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteFormFieldUsingPOST(
         int $code,
@@ -775,65 +473,7 @@ class FormFieldsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteFormFieldUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFormFieldUsingPOST
-     * @covers ::deleteFormFieldUsingPOSTWithHttpInfo
-     * @covers ::deleteFormFieldUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteFormFieldUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFormFieldUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFormFieldUsingPOST
-     * @covers ::deleteFormFieldUsingPOSTAsync
-     * @covers ::deleteFormFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteFormFieldUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFormFieldUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFormFieldUsingPOST
-     * @covers ::deleteFormFieldUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteFormFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteFormFieldUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFormFieldUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetAllFieldsUsingGET(): \Generator
@@ -853,7 +493,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -862,7 +502,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
+            null,
             ['application/json']
         );
     }
@@ -870,8 +510,6 @@ class FormFieldsApiTest extends TestCase
     /**
      * @dataProvider provideGetAllFieldsUsingGET
      * @covers ::getAllFieldsUsingGET
-     * @covers ::getAllFieldsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetAllFieldsUsingGET(
         int $code,
@@ -886,65 +524,7 @@ class FormFieldsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getAllFieldsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllFieldsUsingGET
-     * @covers ::getAllFieldsUsingGETWithHttpInfo
-     * @covers ::getAllFieldsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetAllFieldsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllFieldsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllFieldsUsingGET
-     * @covers ::getAllFieldsUsingGETAsync
-     * @covers ::getAllFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetAllFieldsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllFieldsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllFieldsUsingGET
-     * @covers ::getAllFieldsUsingGETAsyncWithHttpInfo
-     * @covers ::getAllFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetAllFieldsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllFieldsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetAllProgramMemberFieldsUsingGET(): \Generator
@@ -964,7 +544,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -973,7 +553,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
+            null,
             ['application/json']
         );
     }
@@ -981,8 +561,6 @@ class FormFieldsApiTest extends TestCase
     /**
      * @dataProvider provideGetAllProgramMemberFieldsUsingGET
      * @covers ::getAllProgramMemberFieldsUsingGET
-     * @covers ::getAllProgramMemberFieldsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetAllProgramMemberFieldsUsingGET(
         int $code,
@@ -997,65 +575,7 @@ class FormFieldsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getAllProgramMemberFieldsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllProgramMemberFieldsUsingGET
-     * @covers ::getAllProgramMemberFieldsUsingGETWithHttpInfo
-     * @covers ::getAllProgramMemberFieldsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetAllProgramMemberFieldsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllProgramMemberFieldsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllProgramMemberFieldsUsingGET
-     * @covers ::getAllProgramMemberFieldsUsingGETAsync
-     * @covers ::getAllProgramMemberFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetAllProgramMemberFieldsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllProgramMemberFieldsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllProgramMemberFieldsUsingGET
-     * @covers ::getAllProgramMemberFieldsUsingGETAsyncWithHttpInfo
-     * @covers ::getAllProgramMemberFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetAllProgramMemberFieldsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllProgramMemberFieldsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetFormFieldByFormVidUsingGET(): \Generator
@@ -1075,7 +595,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1084,7 +604,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+            null,
             ['application/json']
         );
     }
@@ -1092,8 +612,6 @@ class FormFieldsApiTest extends TestCase
     /**
      * @dataProvider provideGetFormFieldByFormVidUsingGET
      * @covers ::getFormFieldByFormVidUsingGET
-     * @covers ::getFormFieldByFormVidUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetFormFieldByFormVidUsingGET(
         int $code,
@@ -1108,65 +626,7 @@ class FormFieldsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getFormFieldByFormVidUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFormFieldByFormVidUsingGET
-     * @covers ::getFormFieldByFormVidUsingGETWithHttpInfo
-     * @covers ::getFormFieldByFormVidUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetFormFieldByFormVidUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFormFieldByFormVidUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFormFieldByFormVidUsingGET
-     * @covers ::getFormFieldByFormVidUsingGETAsync
-     * @covers ::getFormFieldByFormVidUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFormFieldByFormVidUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFormFieldByFormVidUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFormFieldByFormVidUsingGET
-     * @covers ::getFormFieldByFormVidUsingGETAsyncWithHttpInfo
-     * @covers ::getFormFieldByFormVidUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFormFieldByFormVidUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFormFieldByFormVidUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateFieldPositionsUsingPOST(): \Generator
@@ -1186,7 +646,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1195,7 +655,7 @@ class FormFieldsApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -1203,8 +663,6 @@ class FormFieldsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateFieldPositionsUsingPOST
      * @covers ::updateFieldPositionsUsingPOST
-     * @covers ::updateFieldPositionsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateFieldPositionsUsingPOST(
         int $code,
@@ -1219,65 +677,7 @@ class FormFieldsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateFieldPositionsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFieldPositionsUsingPOST
-     * @covers ::updateFieldPositionsUsingPOSTWithHttpInfo
-     * @covers ::updateFieldPositionsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateFieldPositionsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFieldPositionsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFieldPositionsUsingPOST
-     * @covers ::updateFieldPositionsUsingPOSTAsync
-     * @covers ::updateFieldPositionsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateFieldPositionsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFieldPositionsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFieldPositionsUsingPOST
-     * @covers ::updateFieldPositionsUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateFieldPositionsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateFieldPositionsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFieldPositionsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateFormFieldUsingPOST(): \Generator
@@ -1339,7 +739,7 @@ class FormFieldsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1369,7 +769,7 @@ class FormFieldsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+            null,
             ['application/json']
         );
     }
@@ -1377,8 +777,6 @@ class FormFieldsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateFormFieldUsingPOST
      * @covers ::updateFormFieldUsingPOST
-     * @covers ::updateFormFieldUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateFormFieldUsingPOST(
         int $code,
@@ -1393,64 +791,6 @@ class FormFieldsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateFormFieldUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFormFieldUsingPOST
-     * @covers ::updateFormFieldUsingPOSTWithHttpInfo
-     * @covers ::updateFormFieldUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateFormFieldUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFormFieldUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFormFieldUsingPOST
-     * @covers ::updateFormFieldUsingPOSTAsync
-     * @covers ::updateFormFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateFormFieldUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFormFieldUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFormFieldUsingPOST
-     * @covers ::updateFormFieldUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateFormFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateFormFieldUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFormFieldUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

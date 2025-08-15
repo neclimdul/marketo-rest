@@ -127,7 +127,7 @@ class TokensApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -139,7 +139,7 @@ class TokensApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
+            null,
             ['application/json']
         );
     }
@@ -147,8 +147,6 @@ class TokensApiTest extends TestCase
     /**
      * @dataProvider provideAddTokenTOFolderUsingPOST
      * @covers ::addTokenTOFolderUsingPOST
-     * @covers ::addTokenTOFolderUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testAddTokenTOFolderUsingPOST(
         int $code,
@@ -163,65 +161,7 @@ class TokensApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'addTokenTOFolderUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddTokenTOFolderUsingPOST
-     * @covers ::addTokenTOFolderUsingPOSTWithHttpInfo
-     * @covers ::addTokenTOFolderUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testAddTokenTOFolderUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addTokenTOFolderUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddTokenTOFolderUsingPOST
-     * @covers ::addTokenTOFolderUsingPOSTAsync
-     * @covers ::addTokenTOFolderUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddTokenTOFolderUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addTokenTOFolderUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddTokenTOFolderUsingPOST
-     * @covers ::addTokenTOFolderUsingPOSTAsyncWithHttpInfo
-     * @covers ::addTokenTOFolderUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddTokenTOFolderUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addTokenTOFolderUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteTokenByNameUsingPOST(): \Generator
@@ -245,7 +185,7 @@ class TokensApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -256,7 +196,7 @@ class TokensApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -264,8 +204,6 @@ class TokensApiTest extends TestCase
     /**
      * @dataProvider provideDeleteTokenByNameUsingPOST
      * @covers ::deleteTokenByNameUsingPOST
-     * @covers ::deleteTokenByNameUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteTokenByNameUsingPOST(
         int $code,
@@ -280,65 +218,7 @@ class TokensApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteTokenByNameUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteTokenByNameUsingPOST
-     * @covers ::deleteTokenByNameUsingPOSTWithHttpInfo
-     * @covers ::deleteTokenByNameUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteTokenByNameUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteTokenByNameUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteTokenByNameUsingPOST
-     * @covers ::deleteTokenByNameUsingPOSTAsync
-     * @covers ::deleteTokenByNameUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteTokenByNameUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteTokenByNameUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteTokenByNameUsingPOST
-     * @covers ::deleteTokenByNameUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteTokenByNameUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteTokenByNameUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteTokenByNameUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetTokensByFolderIdUsingGET(): \Generator
@@ -358,7 +238,7 @@ class TokensApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -367,7 +247,7 @@ class TokensApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
+            null,
             ['application/json']
         );
     }
@@ -375,8 +255,6 @@ class TokensApiTest extends TestCase
     /**
      * @dataProvider provideGetTokensByFolderIdUsingGET
      * @covers ::getTokensByFolderIdUsingGET
-     * @covers ::getTokensByFolderIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetTokensByFolderIdUsingGET(
         int $code,
@@ -391,64 +269,6 @@ class TokensApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getTokensByFolderIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTokensByFolderIdUsingGET
-     * @covers ::getTokensByFolderIdUsingGETWithHttpInfo
-     * @covers ::getTokensByFolderIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetTokensByFolderIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTokensByFolderIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTokensByFolderIdUsingGET
-     * @covers ::getTokensByFolderIdUsingGETAsync
-     * @covers ::getTokensByFolderIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTokensByFolderIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTokensByFolderIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetTokensByFolderIdUsingGET
-     * @covers ::getTokensByFolderIdUsingGETAsyncWithHttpInfo
-     * @covers ::getTokensByFolderIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetTokensByFolderIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getTokensByFolderIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

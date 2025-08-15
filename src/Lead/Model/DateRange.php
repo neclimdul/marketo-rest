@@ -31,7 +31,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @psalm-suppress MixedReturnStatement
  * @psalm-suppress MixedInferredReturnType
  */
-class DateRange extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable, \Stringable
+class DateRange extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     use AdditionalPropertiesTrait;
 
@@ -196,7 +196,6 @@ class DateRange extends ModelBase implements ModelInterface, \ArrayAccess, \Json
      * @return string
      * @throws \JsonException
      */
-    #[\Override]
     public function __toString(): string
     {
         return json_encode(

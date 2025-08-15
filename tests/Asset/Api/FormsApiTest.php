@@ -119,7 +119,7 @@ class FormsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class FormsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideApproveFromUsingPOST
      * @covers ::approveFromUsingPOST
-     * @covers ::approveFromUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testApproveFromUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'approveFromUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveFromUsingPOST
-     * @covers ::approveFromUsingPOSTWithHttpInfo
-     * @covers ::approveFromUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testApproveFromUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveFromUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveFromUsingPOST
-     * @covers ::approveFromUsingPOSTAsync
-     * @covers ::approveFromUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveFromUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveFromUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveFromUsingPOST
-     * @covers ::approveFromUsingPOSTAsyncWithHttpInfo
-     * @covers ::approveFromUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveFromUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveFromUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideBrowseForms2UsingGET(): \Generator
@@ -233,7 +173,7 @@ class FormsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -244,7 +184,7 @@ class FormsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
     }
@@ -252,8 +192,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideBrowseForms2UsingGET
      * @covers ::browseForms2UsingGET
-     * @covers ::browseForms2UsingGETRequest
-     * @covers ::makeRequest
      */
     public function testBrowseForms2UsingGET(
         int $code,
@@ -268,65 +206,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'browseForms2UsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideBrowseForms2UsingGET
-     * @covers ::browseForms2UsingGETWithHttpInfo
-     * @covers ::browseForms2UsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testBrowseForms2UsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'browseForms2UsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideBrowseForms2UsingGET
-     * @covers ::browseForms2UsingGETAsync
-     * @covers ::browseForms2UsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testBrowseForms2UsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'browseForms2UsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideBrowseForms2UsingGET
-     * @covers ::browseForms2UsingGETAsyncWithHttpInfo
-     * @covers ::browseForms2UsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testBrowseForms2UsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'browseForms2UsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCloneLpFormsUsingPOST(): \Generator
@@ -350,7 +230,7 @@ class FormsApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\Folder',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -361,7 +241,7 @@ class FormsApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\Folder',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
     }
@@ -369,8 +249,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideCloneLpFormsUsingPOST
      * @covers ::cloneLpFormsUsingPOST
-     * @covers ::cloneLpFormsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCloneLpFormsUsingPOST(
         int $code,
@@ -385,65 +263,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'cloneLpFormsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneLpFormsUsingPOST
-     * @covers ::cloneLpFormsUsingPOSTWithHttpInfo
-     * @covers ::cloneLpFormsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCloneLpFormsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneLpFormsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneLpFormsUsingPOST
-     * @covers ::cloneLpFormsUsingPOSTAsync
-     * @covers ::cloneLpFormsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneLpFormsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneLpFormsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneLpFormsUsingPOST
-     * @covers ::cloneLpFormsUsingPOSTAsyncWithHttpInfo
-     * @covers ::cloneLpFormsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneLpFormsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneLpFormsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCreateLpFormsUsingPOST(): \Generator
@@ -481,7 +301,7 @@ class FormsApiTest extends TestCase
                 'bool',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -499,7 +319,7 @@ class FormsApiTest extends TestCase
                 'bool',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
     }
@@ -507,8 +327,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideCreateLpFormsUsingPOST
      * @covers ::createLpFormsUsingPOST
-     * @covers ::createLpFormsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateLpFormsUsingPOST(
         int $code,
@@ -523,65 +341,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createLpFormsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateLpFormsUsingPOST
-     * @covers ::createLpFormsUsingPOSTWithHttpInfo
-     * @covers ::createLpFormsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateLpFormsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createLpFormsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateLpFormsUsingPOST
-     * @covers ::createLpFormsUsingPOSTAsync
-     * @covers ::createLpFormsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateLpFormsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createLpFormsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateLpFormsUsingPOST
-     * @covers ::createLpFormsUsingPOSTAsyncWithHttpInfo
-     * @covers ::createLpFormsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateLpFormsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createLpFormsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteFormByIdUsingPOST(): \Generator
@@ -599,7 +359,7 @@ class FormsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -607,7 +367,7 @@ class FormsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -615,8 +375,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteFormByIdUsingPOST
      * @covers ::deleteFormByIdUsingPOST
-     * @covers ::deleteFormByIdUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteFormByIdUsingPOST(
         int $code,
@@ -631,65 +389,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteFormByIdUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFormByIdUsingPOST
-     * @covers ::deleteFormByIdUsingPOSTWithHttpInfo
-     * @covers ::deleteFormByIdUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteFormByIdUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFormByIdUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFormByIdUsingPOST
-     * @covers ::deleteFormByIdUsingPOSTAsync
-     * @covers ::deleteFormByIdUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteFormByIdUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFormByIdUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFormByIdUsingPOST
-     * @covers ::deleteFormByIdUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteFormByIdUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteFormByIdUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFormByIdUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDiscardFormByIdUsingPOST(): \Generator
@@ -707,7 +407,7 @@ class FormsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -715,7 +415,7 @@ class FormsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -723,8 +423,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideDiscardFormByIdUsingPOST
      * @covers ::discardFormByIdUsingPOST
-     * @covers ::discardFormByIdUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDiscardFormByIdUsingPOST(
         int $code,
@@ -739,65 +437,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'discardFormByIdUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardFormByIdUsingPOST
-     * @covers ::discardFormByIdUsingPOSTWithHttpInfo
-     * @covers ::discardFormByIdUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDiscardFormByIdUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardFormByIdUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardFormByIdUsingPOST
-     * @covers ::discardFormByIdUsingPOSTAsync
-     * @covers ::discardFormByIdUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardFormByIdUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardFormByIdUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardFormByIdUsingPOST
-     * @covers ::discardFormByIdUsingPOSTAsyncWithHttpInfo
-     * @covers ::discardFormByIdUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardFormByIdUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardFormByIdUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetFormUsedByUsingGET(): \Generator
@@ -819,7 +459,7 @@ class FormsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -829,7 +469,7 @@ class FormsApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse',
+            null,
             ['application/json']
         );
     }
@@ -837,8 +477,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideGetFormUsedByUsingGET
      * @covers ::getFormUsedByUsingGET
-     * @covers ::getFormUsedByUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetFormUsedByUsingGET(
         int $code,
@@ -853,65 +491,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getFormUsedByUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFormUsedByUsingGET
-     * @covers ::getFormUsedByUsingGETWithHttpInfo
-     * @covers ::getFormUsedByUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetFormUsedByUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFormUsedByUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFormUsedByUsingGET
-     * @covers ::getFormUsedByUsingGETAsync
-     * @covers ::getFormUsedByUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFormUsedByUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFormUsedByUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFormUsedByUsingGET
-     * @covers ::getFormUsedByUsingGETAsyncWithHttpInfo
-     * @covers ::getFormUsedByUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFormUsedByUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFormUsedByUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLpFormByIdUsingGET(): \Generator
@@ -931,7 +511,7 @@ class FormsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -940,7 +520,7 @@ class FormsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
     }
@@ -948,8 +528,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideGetLpFormByIdUsingGET
      * @covers ::getLpFormByIdUsingGET
-     * @covers ::getLpFormByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLpFormByIdUsingGET(
         int $code,
@@ -964,65 +542,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLpFormByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLpFormByIdUsingGET
-     * @covers ::getLpFormByIdUsingGETWithHttpInfo
-     * @covers ::getLpFormByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLpFormByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLpFormByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLpFormByIdUsingGET
-     * @covers ::getLpFormByIdUsingGETAsync
-     * @covers ::getLpFormByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLpFormByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLpFormByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLpFormByIdUsingGET
-     * @covers ::getLpFormByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getLpFormByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLpFormByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLpFormByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLpFormByNameUsingGET(): \Generator
@@ -1044,7 +564,7 @@ class FormsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1054,7 +574,7 @@ class FormsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
     }
@@ -1062,8 +582,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideGetLpFormByNameUsingGET
      * @covers ::getLpFormByNameUsingGET
-     * @covers ::getLpFormByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLpFormByNameUsingGET(
         int $code,
@@ -1078,65 +596,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLpFormByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLpFormByNameUsingGET
-     * @covers ::getLpFormByNameUsingGETWithHttpInfo
-     * @covers ::getLpFormByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLpFormByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLpFormByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLpFormByNameUsingGET
-     * @covers ::getLpFormByNameUsingGETAsync
-     * @covers ::getLpFormByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLpFormByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLpFormByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLpFormByNameUsingGET
-     * @covers ::getLpFormByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getLpFormByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLpFormByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLpFormByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetThankYouPageByIdUsingGET(): \Generator
@@ -1156,7 +616,7 @@ class FormsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1165,7 +625,7 @@ class FormsApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
+            null,
             ['application/json']
         );
     }
@@ -1173,8 +633,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideGetThankYouPageByIdUsingGET
      * @covers ::getThankYouPageByIdUsingGET
-     * @covers ::getThankYouPageByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetThankYouPageByIdUsingGET(
         int $code,
@@ -1189,65 +647,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getThankYouPageByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetThankYouPageByIdUsingGET
-     * @covers ::getThankYouPageByIdUsingGETWithHttpInfo
-     * @covers ::getThankYouPageByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetThankYouPageByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getThankYouPageByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetThankYouPageByIdUsingGET
-     * @covers ::getThankYouPageByIdUsingGETAsync
-     * @covers ::getThankYouPageByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetThankYouPageByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getThankYouPageByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetThankYouPageByIdUsingGET
-     * @covers ::getThankYouPageByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getThankYouPageByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetThankYouPageByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getThankYouPageByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateFormSubmitButtonUsingPOST(): \Generator
@@ -1273,7 +673,7 @@ class FormsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1285,7 +685,7 @@ class FormsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
     }
@@ -1293,8 +693,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateFormSubmitButtonUsingPOST
      * @covers ::updateFormSubmitButtonUsingPOST
-     * @covers ::updateFormSubmitButtonUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateFormSubmitButtonUsingPOST(
         int $code,
@@ -1309,65 +707,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateFormSubmitButtonUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFormSubmitButtonUsingPOST
-     * @covers ::updateFormSubmitButtonUsingPOSTWithHttpInfo
-     * @covers ::updateFormSubmitButtonUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateFormSubmitButtonUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFormSubmitButtonUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFormSubmitButtonUsingPOST
-     * @covers ::updateFormSubmitButtonUsingPOSTAsync
-     * @covers ::updateFormSubmitButtonUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateFormSubmitButtonUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFormSubmitButtonUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFormSubmitButtonUsingPOST
-     * @covers ::updateFormSubmitButtonUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateFormSubmitButtonUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateFormSubmitButtonUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFormSubmitButtonUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateFormsUsingPOST(): \Generator
@@ -1407,7 +747,7 @@ class FormsApiTest extends TestCase
                 'bool',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1426,7 +766,7 @@ class FormsApiTest extends TestCase
                 'bool',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+            null,
             ['application/json']
         );
     }
@@ -1434,8 +774,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateFormsUsingPOST
      * @covers ::updateFormsUsingPOST
-     * @covers ::updateFormsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateFormsUsingPOST(
         int $code,
@@ -1450,65 +788,7 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateFormsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFormsUsingPOST
-     * @covers ::updateFormsUsingPOSTWithHttpInfo
-     * @covers ::updateFormsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateFormsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFormsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFormsUsingPOST
-     * @covers ::updateFormsUsingPOSTAsync
-     * @covers ::updateFormsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateFormsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFormsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFormsUsingPOST
-     * @covers ::updateFormsUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateFormsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateFormsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFormsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateThankYouPageByIdUsingPOST(): \Generator
@@ -1528,7 +808,7 @@ class FormsApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1537,7 +817,7 @@ class FormsApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
+            null,
             ['application/json']
         );
     }
@@ -1545,8 +825,6 @@ class FormsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateThankYouPageByIdUsingPOST
      * @covers ::updateThankYouPageByIdUsingPOST
-     * @covers ::updateThankYouPageByIdUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateThankYouPageByIdUsingPOST(
         int $code,
@@ -1561,64 +839,6 @@ class FormsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateThankYouPageByIdUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateThankYouPageByIdUsingPOST
-     * @covers ::updateThankYouPageByIdUsingPOSTWithHttpInfo
-     * @covers ::updateThankYouPageByIdUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateThankYouPageByIdUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateThankYouPageByIdUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateThankYouPageByIdUsingPOST
-     * @covers ::updateThankYouPageByIdUsingPOSTAsync
-     * @covers ::updateThankYouPageByIdUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateThankYouPageByIdUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateThankYouPageByIdUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateThankYouPageByIdUsingPOST
-     * @covers ::updateThankYouPageByIdUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateThankYouPageByIdUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateThankYouPageByIdUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateThankYouPageByIdUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

@@ -121,7 +121,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -130,7 +130,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
     }
@@ -138,8 +138,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideAddCustomObjectTypeFieldsUsingPOST
      * @covers ::addCustomObjectTypeFieldsUsingPOST
-     * @covers ::addCustomObjectTypeFieldsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testAddCustomObjectTypeFieldsUsingPOST(
         int $code,
@@ -154,65 +152,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'addCustomObjectTypeFieldsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddCustomObjectTypeFieldsUsingPOST
-     * @covers ::addCustomObjectTypeFieldsUsingPOSTWithHttpInfo
-     * @covers ::addCustomObjectTypeFieldsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testAddCustomObjectTypeFieldsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addCustomObjectTypeFieldsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddCustomObjectTypeFieldsUsingPOST
-     * @covers ::addCustomObjectTypeFieldsUsingPOSTAsync
-     * @covers ::addCustomObjectTypeFieldsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddCustomObjectTypeFieldsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addCustomObjectTypeFieldsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideAddCustomObjectTypeFieldsUsingPOST
-     * @covers ::addCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo
-     * @covers ::addCustomObjectTypeFieldsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testAddCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'addCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideApproveCustomObjectTypeUsingPOST(): \Generator
@@ -230,7 +170,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -238,7 +178,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
     }
@@ -246,8 +186,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideApproveCustomObjectTypeUsingPOST
      * @covers ::approveCustomObjectTypeUsingPOST
-     * @covers ::approveCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testApproveCustomObjectTypeUsingPOST(
         int $code,
@@ -262,65 +200,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'approveCustomObjectTypeUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveCustomObjectTypeUsingPOST
-     * @covers ::approveCustomObjectTypeUsingPOSTWithHttpInfo
-     * @covers ::approveCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testApproveCustomObjectTypeUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveCustomObjectTypeUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveCustomObjectTypeUsingPOST
-     * @covers ::approveCustomObjectTypeUsingPOSTAsync
-     * @covers ::approveCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveCustomObjectTypeUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveCustomObjectTypeUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideApproveCustomObjectTypeUsingPOST
-     * @covers ::approveCustomObjectTypeUsingPOSTAsyncWithHttpInfo
-     * @covers ::approveCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testApproveCustomObjectTypeUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'approveCustomObjectTypeUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteCustomObjectTypeFieldsUsingPOST(): \Generator
@@ -340,7 +220,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -349,7 +229,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
     }
@@ -357,8 +237,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteCustomObjectTypeFieldsUsingPOST
      * @covers ::deleteCustomObjectTypeFieldsUsingPOST
-     * @covers ::deleteCustomObjectTypeFieldsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteCustomObjectTypeFieldsUsingPOST(
         int $code,
@@ -373,65 +251,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectTypeFieldsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomObjectTypeFieldsUsingPOST
-     * @covers ::deleteCustomObjectTypeFieldsUsingPOSTWithHttpInfo
-     * @covers ::deleteCustomObjectTypeFieldsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteCustomObjectTypeFieldsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectTypeFieldsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomObjectTypeFieldsUsingPOST
-     * @covers ::deleteCustomObjectTypeFieldsUsingPOSTAsync
-     * @covers ::deleteCustomObjectTypeFieldsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCustomObjectTypeFieldsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectTypeFieldsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomObjectTypeFieldsUsingPOST
-     * @covers ::deleteCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteCustomObjectTypeFieldsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteCustomObjectTypeUsingPOST(): \Generator
@@ -449,7 +269,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -457,7 +277,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
     }
@@ -465,8 +285,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteCustomObjectTypeUsingPOST
      * @covers ::deleteCustomObjectTypeUsingPOST
-     * @covers ::deleteCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteCustomObjectTypeUsingPOST(
         int $code,
@@ -481,65 +299,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectTypeUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomObjectTypeUsingPOST
-     * @covers ::deleteCustomObjectTypeUsingPOSTWithHttpInfo
-     * @covers ::deleteCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteCustomObjectTypeUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectTypeUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomObjectTypeUsingPOST
-     * @covers ::deleteCustomObjectTypeUsingPOSTAsync
-     * @covers ::deleteCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCustomObjectTypeUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectTypeUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomObjectTypeUsingPOST
-     * @covers ::deleteCustomObjectTypeUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCustomObjectTypeUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectTypeUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteCustomObjectsUsingPOST(): \Generator
@@ -559,7 +319,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -568,7 +328,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
     }
@@ -576,8 +336,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteCustomObjectsUsingPOST
      * @covers ::deleteCustomObjectsUsingPOST
-     * @covers ::deleteCustomObjectsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteCustomObjectsUsingPOST(
         int $code,
@@ -592,65 +350,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomObjectsUsingPOST
-     * @covers ::deleteCustomObjectsUsingPOSTWithHttpInfo
-     * @covers ::deleteCustomObjectsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteCustomObjectsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomObjectsUsingPOST
-     * @covers ::deleteCustomObjectsUsingPOSTAsync
-     * @covers ::deleteCustomObjectsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCustomObjectsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteCustomObjectsUsingPOST
-     * @covers ::deleteCustomObjectsUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteCustomObjectsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteCustomObjectsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteCustomObjectsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDescribeCustomObjectTypeUsingGET(): \Generator
@@ -670,7 +370,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -679,7 +379,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
     }
@@ -687,8 +387,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideDescribeCustomObjectTypeUsingGET
      * @covers ::describeCustomObjectTypeUsingGET
-     * @covers ::describeCustomObjectTypeUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testDescribeCustomObjectTypeUsingGET(
         int $code,
@@ -703,65 +401,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'describeCustomObjectTypeUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeCustomObjectTypeUsingGET
-     * @covers ::describeCustomObjectTypeUsingGETWithHttpInfo
-     * @covers ::describeCustomObjectTypeUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testDescribeCustomObjectTypeUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeCustomObjectTypeUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeCustomObjectTypeUsingGET
-     * @covers ::describeCustomObjectTypeUsingGETAsync
-     * @covers ::describeCustomObjectTypeUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeCustomObjectTypeUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeCustomObjectTypeUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeCustomObjectTypeUsingGET
-     * @covers ::describeCustomObjectTypeUsingGETAsyncWithHttpInfo
-     * @covers ::describeCustomObjectTypeUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeCustomObjectTypeUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeCustomObjectTypeUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDescribeUsingGET1(): \Generator
@@ -779,7 +419,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -787,7 +427,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
     }
@@ -795,8 +435,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideDescribeUsingGET1
      * @covers ::describeUsingGET1
-     * @covers ::describeUsingGET1Request
-     * @covers ::makeRequest
      */
     public function testDescribeUsingGET1(
         int $code,
@@ -811,65 +449,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'describeUsingGET1'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET1
-     * @covers ::describeUsingGET1WithHttpInfo
-     * @covers ::describeUsingGET1Request
-     * @covers ::makeRequest
-     */
-    public function testDescribeUsingGET1WithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGET1WithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET1
-     * @covers ::describeUsingGET1Async
-     * @covers ::describeUsingGET1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeUsingGET1Async(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGET1Async'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeUsingGET1
-     * @covers ::describeUsingGET1AsyncWithHttpInfo
-     * @covers ::describeUsingGET1Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeUsingGET1AsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeUsingGET1AsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDiscardCustomObjectTypeUsingPOST(): \Generator
@@ -887,7 +467,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -895,7 +475,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
     }
@@ -903,8 +483,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideDiscardCustomObjectTypeUsingPOST
      * @covers ::discardCustomObjectTypeUsingPOST
-     * @covers ::discardCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDiscardCustomObjectTypeUsingPOST(
         int $code,
@@ -919,65 +497,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'discardCustomObjectTypeUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardCustomObjectTypeUsingPOST
-     * @covers ::discardCustomObjectTypeUsingPOSTWithHttpInfo
-     * @covers ::discardCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDiscardCustomObjectTypeUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardCustomObjectTypeUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardCustomObjectTypeUsingPOST
-     * @covers ::discardCustomObjectTypeUsingPOSTAsync
-     * @covers ::discardCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardCustomObjectTypeUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardCustomObjectTypeUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDiscardCustomObjectTypeUsingPOST
-     * @covers ::discardCustomObjectTypeUsingPOSTAsyncWithHttpInfo
-     * @covers ::discardCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDiscardCustomObjectTypeUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'discardCustomObjectTypeUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetCustomObjectTypeDependentAssetsUsingGET(): \Generator
@@ -995,7 +515,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1003,7 +523,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets',
+            null,
             ['application/json']
         );
     }
@@ -1011,8 +531,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideGetCustomObjectTypeDependentAssetsUsingGET
      * @covers ::getCustomObjectTypeDependentAssetsUsingGET
-     * @covers ::getCustomObjectTypeDependentAssetsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetCustomObjectTypeDependentAssetsUsingGET(
         int $code,
@@ -1027,65 +545,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeDependentAssetsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectTypeDependentAssetsUsingGET
-     * @covers ::getCustomObjectTypeDependentAssetsUsingGETWithHttpInfo
-     * @covers ::getCustomObjectTypeDependentAssetsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetCustomObjectTypeDependentAssetsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeDependentAssetsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectTypeDependentAssetsUsingGET
-     * @covers ::getCustomObjectTypeDependentAssetsUsingGETAsync
-     * @covers ::getCustomObjectTypeDependentAssetsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCustomObjectTypeDependentAssetsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeDependentAssetsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectTypeDependentAssetsUsingGET
-     * @covers ::getCustomObjectTypeDependentAssetsUsingGETAsyncWithHttpInfo
-     * @covers ::getCustomObjectTypeDependentAssetsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCustomObjectTypeDependentAssetsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeDependentAssetsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetCustomObjectTypeFieldDataTypesUsingGET(): \Generator
@@ -1101,14 +561,14 @@ class CustomObjectsApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes',
+            null,
             ['application/json']
         );
     }
@@ -1116,8 +576,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideGetCustomObjectTypeFieldDataTypesUsingGET
      * @covers ::getCustomObjectTypeFieldDataTypesUsingGET
-     * @covers ::getCustomObjectTypeFieldDataTypesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetCustomObjectTypeFieldDataTypesUsingGET(
         int $code,
@@ -1132,65 +590,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeFieldDataTypesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectTypeFieldDataTypesUsingGET
-     * @covers ::getCustomObjectTypeFieldDataTypesUsingGETWithHttpInfo
-     * @covers ::getCustomObjectTypeFieldDataTypesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetCustomObjectTypeFieldDataTypesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeFieldDataTypesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectTypeFieldDataTypesUsingGET
-     * @covers ::getCustomObjectTypeFieldDataTypesUsingGETAsync
-     * @covers ::getCustomObjectTypeFieldDataTypesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCustomObjectTypeFieldDataTypesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeFieldDataTypesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectTypeFieldDataTypesUsingGET
-     * @covers ::getCustomObjectTypeFieldDataTypesUsingGETAsyncWithHttpInfo
-     * @covers ::getCustomObjectTypeFieldDataTypesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCustomObjectTypeFieldDataTypesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeFieldDataTypesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetCustomObjectTypeLinkableObjectsUsingGET(): \Generator
@@ -1206,14 +606,14 @@ class CustomObjectsApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject',
+            null,
             ['application/json']
         );
     }
@@ -1221,8 +621,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideGetCustomObjectTypeLinkableObjectsUsingGET
      * @covers ::getCustomObjectTypeLinkableObjectsUsingGET
-     * @covers ::getCustomObjectTypeLinkableObjectsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetCustomObjectTypeLinkableObjectsUsingGET(
         int $code,
@@ -1237,65 +635,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeLinkableObjectsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectTypeLinkableObjectsUsingGET
-     * @covers ::getCustomObjectTypeLinkableObjectsUsingGETWithHttpInfo
-     * @covers ::getCustomObjectTypeLinkableObjectsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetCustomObjectTypeLinkableObjectsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeLinkableObjectsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectTypeLinkableObjectsUsingGET
-     * @covers ::getCustomObjectTypeLinkableObjectsUsingGETAsync
-     * @covers ::getCustomObjectTypeLinkableObjectsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCustomObjectTypeLinkableObjectsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeLinkableObjectsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectTypeLinkableObjectsUsingGET
-     * @covers ::getCustomObjectTypeLinkableObjectsUsingGETAsyncWithHttpInfo
-     * @covers ::getCustomObjectTypeLinkableObjectsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCustomObjectTypeLinkableObjectsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectTypeLinkableObjectsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetCustomObjectsUsingGET(): \Generator
@@ -1325,7 +665,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1339,7 +679,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
     }
@@ -1347,8 +687,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideGetCustomObjectsUsingGET
      * @covers ::getCustomObjectsUsingGET
-     * @covers ::getCustomObjectsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetCustomObjectsUsingGET(
         int $code,
@@ -1363,65 +701,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getCustomObjectsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectsUsingGET
-     * @covers ::getCustomObjectsUsingGETWithHttpInfo
-     * @covers ::getCustomObjectsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetCustomObjectsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectsUsingGET
-     * @covers ::getCustomObjectsUsingGETAsync
-     * @covers ::getCustomObjectsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCustomObjectsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetCustomObjectsUsingGET
-     * @covers ::getCustomObjectsUsingGETAsyncWithHttpInfo
-     * @covers ::getCustomObjectsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetCustomObjectsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getCustomObjectsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideListCustomObjectTypesUsingGET(): \Generator
@@ -1441,7 +721,7 @@ class CustomObjectsApiTest extends TestCase
                 'string[]',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1450,7 +730,7 @@ class CustomObjectsApiTest extends TestCase
                 'string[]',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
     }
@@ -1458,8 +738,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideListCustomObjectTypesUsingGET
      * @covers ::listCustomObjectTypesUsingGET
-     * @covers ::listCustomObjectTypesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testListCustomObjectTypesUsingGET(
         int $code,
@@ -1474,65 +752,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'listCustomObjectTypesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideListCustomObjectTypesUsingGET
-     * @covers ::listCustomObjectTypesUsingGETWithHttpInfo
-     * @covers ::listCustomObjectTypesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testListCustomObjectTypesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'listCustomObjectTypesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideListCustomObjectTypesUsingGET
-     * @covers ::listCustomObjectTypesUsingGETAsync
-     * @covers ::listCustomObjectTypesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testListCustomObjectTypesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'listCustomObjectTypesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideListCustomObjectTypesUsingGET
-     * @covers ::listCustomObjectTypesUsingGETAsyncWithHttpInfo
-     * @covers ::listCustomObjectTypesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testListCustomObjectTypesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'listCustomObjectTypesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideListCustomObjectsUsingGET(): \Generator
@@ -1550,7 +770,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string[]',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1558,7 +778,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 'string[]',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+            null,
             ['application/json']
         );
     }
@@ -1566,8 +786,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideListCustomObjectsUsingGET
      * @covers ::listCustomObjectsUsingGET
-     * @covers ::listCustomObjectsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testListCustomObjectsUsingGET(
         int $code,
@@ -1582,65 +800,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'listCustomObjectsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideListCustomObjectsUsingGET
-     * @covers ::listCustomObjectsUsingGETWithHttpInfo
-     * @covers ::listCustomObjectsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testListCustomObjectsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'listCustomObjectsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideListCustomObjectsUsingGET
-     * @covers ::listCustomObjectsUsingGETAsync
-     * @covers ::listCustomObjectsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testListCustomObjectsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'listCustomObjectsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideListCustomObjectsUsingGET
-     * @covers ::listCustomObjectsUsingGETAsyncWithHttpInfo
-     * @covers ::listCustomObjectsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testListCustomObjectsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'listCustomObjectsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideSyncCustomObjectTypeUsingPOST(): \Generator
@@ -1658,7 +818,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1666,7 +826,7 @@ class CustomObjectsApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
     }
@@ -1674,8 +834,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideSyncCustomObjectTypeUsingPOST
      * @covers ::syncCustomObjectTypeUsingPOST
-     * @covers ::syncCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testSyncCustomObjectTypeUsingPOST(
         int $code,
@@ -1690,65 +848,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'syncCustomObjectTypeUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncCustomObjectTypeUsingPOST
-     * @covers ::syncCustomObjectTypeUsingPOSTWithHttpInfo
-     * @covers ::syncCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testSyncCustomObjectTypeUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncCustomObjectTypeUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncCustomObjectTypeUsingPOST
-     * @covers ::syncCustomObjectTypeUsingPOSTAsync
-     * @covers ::syncCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncCustomObjectTypeUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncCustomObjectTypeUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncCustomObjectTypeUsingPOST
-     * @covers ::syncCustomObjectTypeUsingPOSTAsyncWithHttpInfo
-     * @covers ::syncCustomObjectTypeUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncCustomObjectTypeUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncCustomObjectTypeUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideSyncCustomObjectsUsingPOST(): \Generator
@@ -1768,7 +868,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1777,7 +877,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+            null,
             ['application/json']
         );
     }
@@ -1785,8 +885,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideSyncCustomObjectsUsingPOST
      * @covers ::syncCustomObjectsUsingPOST
-     * @covers ::syncCustomObjectsUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testSyncCustomObjectsUsingPOST(
         int $code,
@@ -1801,65 +899,7 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'syncCustomObjectsUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncCustomObjectsUsingPOST
-     * @covers ::syncCustomObjectsUsingPOSTWithHttpInfo
-     * @covers ::syncCustomObjectsUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testSyncCustomObjectsUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncCustomObjectsUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncCustomObjectsUsingPOST
-     * @covers ::syncCustomObjectsUsingPOSTAsync
-     * @covers ::syncCustomObjectsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncCustomObjectsUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncCustomObjectsUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncCustomObjectsUsingPOST
-     * @covers ::syncCustomObjectsUsingPOSTAsyncWithHttpInfo
-     * @covers ::syncCustomObjectsUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncCustomObjectsUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncCustomObjectsUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateCustomObjectTypeFieldUsingPOST(): \Generator
@@ -1881,7 +921,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1891,7 +931,7 @@ class CustomObjectsApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+            null,
             ['application/json']
         );
     }
@@ -1899,8 +939,6 @@ class CustomObjectsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateCustomObjectTypeFieldUsingPOST
      * @covers ::updateCustomObjectTypeFieldUsingPOST
-     * @covers ::updateCustomObjectTypeFieldUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateCustomObjectTypeFieldUsingPOST(
         int $code,
@@ -1915,64 +953,6 @@ class CustomObjectsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateCustomObjectTypeFieldUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateCustomObjectTypeFieldUsingPOST
-     * @covers ::updateCustomObjectTypeFieldUsingPOSTWithHttpInfo
-     * @covers ::updateCustomObjectTypeFieldUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateCustomObjectTypeFieldUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateCustomObjectTypeFieldUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateCustomObjectTypeFieldUsingPOST
-     * @covers ::updateCustomObjectTypeFieldUsingPOSTAsync
-     * @covers ::updateCustomObjectTypeFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateCustomObjectTypeFieldUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateCustomObjectTypeFieldUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateCustomObjectTypeFieldUsingPOST
-     * @covers ::updateCustomObjectTypeFieldUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateCustomObjectTypeFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateCustomObjectTypeFieldUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateCustomObjectTypeFieldUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

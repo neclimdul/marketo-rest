@@ -119,7 +119,7 @@ class BulkImportProgramMembersApiTest extends TestCase
             [
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class BulkImportProgramMembersApiTest extends TestCase
             [
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class BulkImportProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideGetImportProgramMemberFailuresUsingGET
      * @covers ::getImportProgramMemberFailuresUsingGET
-     * @covers ::getImportProgramMemberFailuresUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetImportProgramMemberFailuresUsingGET(
         int $code,
@@ -151,65 +149,7 @@ class BulkImportProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberFailuresUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportProgramMemberFailuresUsingGET
-     * @covers ::getImportProgramMemberFailuresUsingGETWithHttpInfo
-     * @covers ::getImportProgramMemberFailuresUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetImportProgramMemberFailuresUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberFailuresUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportProgramMemberFailuresUsingGET
-     * @covers ::getImportProgramMemberFailuresUsingGETAsync
-     * @covers ::getImportProgramMemberFailuresUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportProgramMemberFailuresUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== 'object') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberFailuresUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportProgramMemberFailuresUsingGET
-     * @covers ::getImportProgramMemberFailuresUsingGETAsyncWithHttpInfo
-     * @covers ::getImportProgramMemberFailuresUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportProgramMemberFailuresUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberFailuresUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetImportProgramMemberStatusUsingGET(): \Generator
@@ -227,7 +167,7 @@ class BulkImportProgramMembersApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -235,7 +175,7 @@ class BulkImportProgramMembersApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse',
+            null,
             ['application/json']
         );
     }
@@ -243,8 +183,6 @@ class BulkImportProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideGetImportProgramMemberStatusUsingGET
      * @covers ::getImportProgramMemberStatusUsingGET
-     * @covers ::getImportProgramMemberStatusUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetImportProgramMemberStatusUsingGET(
         int $code,
@@ -259,65 +197,7 @@ class BulkImportProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberStatusUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportProgramMemberStatusUsingGET
-     * @covers ::getImportProgramMemberStatusUsingGETWithHttpInfo
-     * @covers ::getImportProgramMemberStatusUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetImportProgramMemberStatusUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberStatusUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportProgramMemberStatusUsingGET
-     * @covers ::getImportProgramMemberStatusUsingGETAsync
-     * @covers ::getImportProgramMemberStatusUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportProgramMemberStatusUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberStatusUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportProgramMemberStatusUsingGET
-     * @covers ::getImportProgramMemberStatusUsingGETAsyncWithHttpInfo
-     * @covers ::getImportProgramMemberStatusUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportProgramMemberStatusUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberStatusUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetImportProgramMemberWarningsUsingGET(): \Generator
@@ -335,7 +215,7 @@ class BulkImportProgramMembersApiTest extends TestCase
             [
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -343,7 +223,7 @@ class BulkImportProgramMembersApiTest extends TestCase
             [
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
     }
@@ -351,8 +231,6 @@ class BulkImportProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideGetImportProgramMemberWarningsUsingGET
      * @covers ::getImportProgramMemberWarningsUsingGET
-     * @covers ::getImportProgramMemberWarningsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetImportProgramMemberWarningsUsingGET(
         int $code,
@@ -367,65 +245,7 @@ class BulkImportProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberWarningsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportProgramMemberWarningsUsingGET
-     * @covers ::getImportProgramMemberWarningsUsingGETWithHttpInfo
-     * @covers ::getImportProgramMemberWarningsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetImportProgramMemberWarningsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberWarningsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportProgramMemberWarningsUsingGET
-     * @covers ::getImportProgramMemberWarningsUsingGETAsync
-     * @covers ::getImportProgramMemberWarningsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportProgramMemberWarningsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== 'object') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberWarningsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportProgramMemberWarningsUsingGET
-     * @covers ::getImportProgramMemberWarningsUsingGETAsyncWithHttpInfo
-     * @covers ::getImportProgramMemberWarningsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportProgramMemberWarningsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportProgramMemberWarningsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideImportProgramMemberUsingPOST(): \Generator
@@ -449,7 +269,7 @@ class BulkImportProgramMembersApiTest extends TestCase
                 'string',
                 '\SplFileObject',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -460,7 +280,7 @@ class BulkImportProgramMembersApiTest extends TestCase
                 'string',
                 '\SplFileObject',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse',
+            null,
             ['application/json']
         );
     }
@@ -468,8 +288,6 @@ class BulkImportProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideImportProgramMemberUsingPOST
      * @covers ::importProgramMemberUsingPOST
-     * @covers ::importProgramMemberUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testImportProgramMemberUsingPOST(
         int $code,
@@ -484,64 +302,6 @@ class BulkImportProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'importProgramMemberUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideImportProgramMemberUsingPOST
-     * @covers ::importProgramMemberUsingPOSTWithHttpInfo
-     * @covers ::importProgramMemberUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testImportProgramMemberUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'importProgramMemberUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideImportProgramMemberUsingPOST
-     * @covers ::importProgramMemberUsingPOSTAsync
-     * @covers ::importProgramMemberUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testImportProgramMemberUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'importProgramMemberUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideImportProgramMemberUsingPOST
-     * @covers ::importProgramMemberUsingPOSTAsyncWithHttpInfo
-     * @covers ::importProgramMemberUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testImportProgramMemberUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'importProgramMemberUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

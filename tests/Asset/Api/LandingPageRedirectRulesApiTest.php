@@ -123,7 +123,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\RedirectFrom',
                 '\NecLimDul\MarketoRest\Asset\Model\RedirectTo',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -133,7 +133,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\RedirectFrom',
                 '\NecLimDul\MarketoRest\Asset\Model\RedirectTo',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules',
+            null,
             ['application/json']
         );
     }
@@ -141,8 +141,6 @@ class LandingPageRedirectRulesApiTest extends TestCase
     /**
      * @dataProvider provideCreateLandingPageRedirectRuleUsingPOST
      * @covers ::createLandingPageRedirectRuleUsingPOST
-     * @covers ::createLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateLandingPageRedirectRuleUsingPOST(
         int $code,
@@ -157,65 +155,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createLandingPageRedirectRuleUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateLandingPageRedirectRuleUsingPOST
-     * @covers ::createLandingPageRedirectRuleUsingPOSTWithHttpInfo
-     * @covers ::createLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateLandingPageRedirectRuleUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createLandingPageRedirectRuleUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateLandingPageRedirectRuleUsingPOST
-     * @covers ::createLandingPageRedirectRuleUsingPOSTAsync
-     * @covers ::createLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateLandingPageRedirectRuleUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createLandingPageRedirectRuleUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateLandingPageRedirectRuleUsingPOST
-     * @covers ::createLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo
-     * @covers ::createLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteLandingPageRedirectRuleUsingPOST(): \Generator
@@ -233,7 +173,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -241,7 +181,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -249,8 +189,6 @@ class LandingPageRedirectRulesApiTest extends TestCase
     /**
      * @dataProvider provideDeleteLandingPageRedirectRuleUsingPOST
      * @covers ::deleteLandingPageRedirectRuleUsingPOST
-     * @covers ::deleteLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteLandingPageRedirectRuleUsingPOST(
         int $code,
@@ -265,65 +203,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteLandingPageRedirectRuleUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteLandingPageRedirectRuleUsingPOST
-     * @covers ::deleteLandingPageRedirectRuleUsingPOSTWithHttpInfo
-     * @covers ::deleteLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteLandingPageRedirectRuleUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteLandingPageRedirectRuleUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteLandingPageRedirectRuleUsingPOST
-     * @covers ::deleteLandingPageRedirectRuleUsingPOSTAsync
-     * @covers ::deleteLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteLandingPageRedirectRuleUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteLandingPageRedirectRuleUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteLandingPageRedirectRuleUsingPOST
-     * @covers ::deleteLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLandingPageDomainsUsingGET(): \Generator
@@ -343,7 +223,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -352,7 +232,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains',
+            null,
             ['application/json']
         );
     }
@@ -360,8 +240,6 @@ class LandingPageRedirectRulesApiTest extends TestCase
     /**
      * @dataProvider provideGetLandingPageDomainsUsingGET
      * @covers ::getLandingPageDomainsUsingGET
-     * @covers ::getLandingPageDomainsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLandingPageDomainsUsingGET(
         int $code,
@@ -376,65 +254,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLandingPageDomainsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageDomainsUsingGET
-     * @covers ::getLandingPageDomainsUsingGETWithHttpInfo
-     * @covers ::getLandingPageDomainsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLandingPageDomainsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageDomainsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageDomainsUsingGET
-     * @covers ::getLandingPageDomainsUsingGETAsync
-     * @covers ::getLandingPageDomainsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageDomainsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageDomainsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageDomainsUsingGET
-     * @covers ::getLandingPageDomainsUsingGETAsyncWithHttpInfo
-     * @covers ::getLandingPageDomainsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageDomainsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageDomainsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLandingPageRedirectRuleByIdUsingGET(): \Generator
@@ -452,7 +272,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -460,7 +280,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules',
+            null,
             ['application/json']
         );
     }
@@ -468,8 +288,6 @@ class LandingPageRedirectRulesApiTest extends TestCase
     /**
      * @dataProvider provideGetLandingPageRedirectRuleByIdUsingGET
      * @covers ::getLandingPageRedirectRuleByIdUsingGET
-     * @covers ::getLandingPageRedirectRuleByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLandingPageRedirectRuleByIdUsingGET(
         int $code,
@@ -484,65 +302,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLandingPageRedirectRuleByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageRedirectRuleByIdUsingGET
-     * @covers ::getLandingPageRedirectRuleByIdUsingGETWithHttpInfo
-     * @covers ::getLandingPageRedirectRuleByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLandingPageRedirectRuleByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageRedirectRuleByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageRedirectRuleByIdUsingGET
-     * @covers ::getLandingPageRedirectRuleByIdUsingGETAsync
-     * @covers ::getLandingPageRedirectRuleByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageRedirectRuleByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageRedirectRuleByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageRedirectRuleByIdUsingGET
-     * @covers ::getLandingPageRedirectRuleByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getLandingPageRedirectRuleByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageRedirectRuleByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageRedirectRuleByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetLandingPageRedirectRulesUsingGET(): \Generator
@@ -570,7 +330,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -583,7 +343,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules',
+            null,
             ['application/json']
         );
     }
@@ -591,8 +351,6 @@ class LandingPageRedirectRulesApiTest extends TestCase
     /**
      * @dataProvider provideGetLandingPageRedirectRulesUsingGET
      * @covers ::getLandingPageRedirectRulesUsingGET
-     * @covers ::getLandingPageRedirectRulesUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetLandingPageRedirectRulesUsingGET(
         int $code,
@@ -607,65 +365,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getLandingPageRedirectRulesUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageRedirectRulesUsingGET
-     * @covers ::getLandingPageRedirectRulesUsingGETWithHttpInfo
-     * @covers ::getLandingPageRedirectRulesUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetLandingPageRedirectRulesUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageRedirectRulesUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageRedirectRulesUsingGET
-     * @covers ::getLandingPageRedirectRulesUsingGETAsync
-     * @covers ::getLandingPageRedirectRulesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageRedirectRulesUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageRedirectRulesUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetLandingPageRedirectRulesUsingGET
-     * @covers ::getLandingPageRedirectRulesUsingGETAsyncWithHttpInfo
-     * @covers ::getLandingPageRedirectRulesUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetLandingPageRedirectRulesUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getLandingPageRedirectRulesUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateLandingPageRedirectRuleUsingPOST(): \Generator
@@ -689,7 +389,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\RedirectFrom',
                 '\NecLimDul\MarketoRest\Asset\Model\RedirectTo',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -700,7 +400,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\RedirectFrom',
                 '\NecLimDul\MarketoRest\Asset\Model\RedirectTo',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules',
+            null,
             ['application/json']
         );
     }
@@ -708,8 +408,6 @@ class LandingPageRedirectRulesApiTest extends TestCase
     /**
      * @dataProvider provideUpdateLandingPageRedirectRuleUsingPOST
      * @covers ::updateLandingPageRedirectRuleUsingPOST
-     * @covers ::updateLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateLandingPageRedirectRuleUsingPOST(
         int $code,
@@ -724,64 +422,6 @@ class LandingPageRedirectRulesApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateLandingPageRedirectRuleUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateLandingPageRedirectRuleUsingPOST
-     * @covers ::updateLandingPageRedirectRuleUsingPOSTWithHttpInfo
-     * @covers ::updateLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateLandingPageRedirectRuleUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateLandingPageRedirectRuleUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateLandingPageRedirectRuleUsingPOST
-     * @covers ::updateLandingPageRedirectRuleUsingPOSTAsync
-     * @covers ::updateLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateLandingPageRedirectRuleUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateLandingPageRedirectRuleUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateLandingPageRedirectRuleUsingPOST
-     * @covers ::updateLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateLandingPageRedirectRuleUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateLandingPageRedirectRuleUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

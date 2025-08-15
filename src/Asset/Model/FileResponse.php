@@ -31,7 +31,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @psalm-suppress MixedReturnStatement
  * @psalm-suppress MixedInferredReturnType
  */
-class FileResponse extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable, \Stringable
+class FileResponse extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     use AdditionalPropertiesTrait;
 
@@ -416,7 +416,6 @@ class FileResponse extends ModelBase implements ModelInterface, \ArrayAccess, \J
      * @return string
      * @throws \JsonException
      */
-    #[\Override]
     public function __toString(): string
     {
         return json_encode(

@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Asset\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Asset\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Asset\Configuration;
 use NecLimDul\MarketoRest\Asset\HeaderSelector;
 use NecLimDul\MarketoRest\Asset\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class FormsApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class FormsApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,168 +112,28 @@ class FormsApi
     }
 
     /**
-     * Exception handler for approveFromUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function approveFromUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Approve Form Draft
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function approveFromUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
-        [$response] = $this->approveFromUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Approve Form Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function approveFromUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->approveFromUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->approveFromUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Approve Form Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function approveFromUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->approveFromUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse => $response[0]
-            );
-    }
-
-    /**
-     * Approve Form Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function approveFromUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->approveFromUsingPOSTRequest($id),
-            [$this, 'approveFromUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'approveFromUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function approveFromUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/approveDraft.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/approveDraft.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -263,53 +141,27 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for browseForms2UsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function browseForms2UsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -318,178 +170,24 @@ class FormsApi
      * @param string|null $status
      *   Status filter for draft or approved versions
      * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
+     *   JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      * @param string|null $max_return
      *   Maximum number of channels to return. Max 200, default 20
      * @param string|null $offset
      *   Integer offset for paging
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function browseForms2UsingGET(
-        ?string $status = null,
-        ?string $folder = null,
-        ?string $max_return = null,
-        ?string $offset = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
-        [$response] = $this->browseForms2UsingGETWithHttpInfo($status, $folder, $max_return, $offset);
-        return $response;
-    }
-
-    /**
-     * Get Forms
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     * @param string|null $max_return
-     *   Maximum number of channels to return. Max 200, default 20
-     * @param string|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function browseForms2UsingGETWithHttpInfo(
-        ?string $status = null,
-        ?string $folder = null,
-        ?string $max_return = null,
-        ?string $offset = null
-    ): array {
-        $request = $this->browseForms2UsingGETRequest($status, $folder, $max_return, $offset);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->browseForms2UsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Forms
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     * @param string|null $max_return
-     *   Maximum number of channels to return. Max 200, default 20
-     * @param string|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function browseForms2UsingGETAsync(
-        ?string $status = null,
-        ?string $folder = null,
-        ?string $max_return = null,
-        ?string $offset = null
-    ): PromiseInterface {
-        return $this->browseForms2UsingGETAsyncWithHttpInfo($status, $folder, $max_return, $offset)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Forms
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     * @param string|null $max_return
-     *   Maximum number of channels to return. Max 200, default 20
-     * @param string|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function browseForms2UsingGETAsyncWithHttpInfo(
-        ?string $status = null,
-        ?string $folder = null,
-        ?string $max_return = null,
-        ?string $offset = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->browseForms2UsingGETRequest($status, $folder, $max_return, $offset),
-            [$this, 'browseForms2UsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'browseForms2UsingGET'
-     *
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     * @param string|null $max_return
-     *   Maximum number of channels to return. Max 200, default 20
-     * @param string|null $offset
-     *   Integer offset for paging
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function browseForms2UsingGETRequest(
-        ?string $status = null,
-        ?string $folder = null,
-        ?string $max_return = null,
-        ?string $offset = null
-    ): Request {
+        null|string $status = null,
+        null|string $folder = null,
+        null|string $max_return = null,
+        null|string $offset = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/forms.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -497,57 +195,31 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
-                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
-                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                    'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
+                    'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                    'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for cloneLpFormsUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function cloneLpFormsUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -560,174 +232,27 @@ class FormsApi
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
      * @param string|null $description
      *   Description of the cloned form
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function cloneLpFormsUsingPOST(
         int $id,
         string $name,
         \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
-        [$response] = $this->cloneLpFormsUsingPOSTWithHttpInfo($id, $name, $folder, $description);
-        return $response;
-    }
-
-    /**
-     * Clone Form
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   Name for the cloned form
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the cloned form
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function cloneLpFormsUsingPOSTWithHttpInfo(
-        int $id,
-        string $name,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null
-    ): array {
-        $request = $this->cloneLpFormsUsingPOSTRequest($id, $name, $folder, $description);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->cloneLpFormsUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Clone Form
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   Name for the cloned form
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the cloned form
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function cloneLpFormsUsingPOSTAsync(
-        int $id,
-        string $name,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null
-    ): PromiseInterface {
-        return $this->cloneLpFormsUsingPOSTAsyncWithHttpInfo($id, $name, $folder, $description)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse => $response[0]
-            );
-    }
-
-    /**
-     * Clone Form
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   Name for the cloned form
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the cloned form
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function cloneLpFormsUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $name,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->cloneLpFormsUsingPOSTRequest($id, $name, $folder, $description),
-            [$this, 'cloneLpFormsUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'cloneLpFormsUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $name
-     *   Name for the cloned form
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the cloned form
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function cloneLpFormsUsingPOSTRequest(
-        int $id,
-        string $name,
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/clone.json';
+        null|string $description = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/clone.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -735,56 +260,32 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'name' => ObjectSerializer::toFormValue($name),
+                    'folder' => ObjectSerializer::toFormValue($folder),
+                    'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'name' => ObjectSerializer::toFormValue($name),
-                'folder' => ObjectSerializer::toFormValue($folder),
-                'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for createLpFormsUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function createLpFormsUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -810,256 +311,26 @@ class FormsApi
      *   Whether progressive profiling is enabled for the form
      * @param string|null $theme
      *   CSS theme for the form to use
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function createLpFormsUsingPOST(
         \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null,
-        ?string $font_family = null,
-        ?string $font_size = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
-        ?string $label_position = null,
-        ?string $language = null,
-        ?string $locale = null,
-        ?string $name = null,
-        ?bool $progressive_profiling = null,
-        ?string $theme = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
-        [$response] = $this->createLpFormsUsingPOSTWithHttpInfo($folder, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme);
-        return $response;
-    }
-
-    /**
-     * Create Form
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the form
-     * @param string|null $font_family
-     *   font-family property for the form
-     * @param string|null $font_size
-     *   font-size property of the form
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor
-     * @param string|null $label_position
-     *   Default positioning of labels.
-     * @param string|null $language
-     *   Language of the form
-     * @param string|null $locale
-     *   Locale of the form
-     * @param string|null $name
-     *   Name of the form
-     * @param bool|null $progressive_profiling
-     *   Whether progressive profiling is enabled for the form
-     * @param string|null $theme
-     *   CSS theme for the form to use
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function createLpFormsUsingPOSTWithHttpInfo(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null,
-        ?string $font_family = null,
-        ?string $font_size = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
-        ?string $label_position = null,
-        ?string $language = null,
-        ?string $locale = null,
-        ?string $name = null,
-        ?bool $progressive_profiling = null,
-        ?string $theme = null
-    ): array {
-        $request = $this->createLpFormsUsingPOSTRequest($folder, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->createLpFormsUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Create Form
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the form
-     * @param string|null $font_family
-     *   font-family property for the form
-     * @param string|null $font_size
-     *   font-size property of the form
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor
-     * @param string|null $label_position
-     *   Default positioning of labels.
-     * @param string|null $language
-     *   Language of the form
-     * @param string|null $locale
-     *   Locale of the form
-     * @param string|null $name
-     *   Name of the form
-     * @param bool|null $progressive_profiling
-     *   Whether progressive profiling is enabled for the form
-     * @param string|null $theme
-     *   CSS theme for the form to use
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function createLpFormsUsingPOSTAsync(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null,
-        ?string $font_family = null,
-        ?string $font_size = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
-        ?string $label_position = null,
-        ?string $language = null,
-        ?string $locale = null,
-        ?string $name = null,
-        ?bool $progressive_profiling = null,
-        ?string $theme = null
-    ): PromiseInterface {
-        return $this->createLpFormsUsingPOSTAsyncWithHttpInfo($folder, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse => $response[0]
-            );
-    }
-
-    /**
-     * Create Form
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the form
-     * @param string|null $font_family
-     *   font-family property for the form
-     * @param string|null $font_size
-     *   font-size property of the form
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor
-     * @param string|null $label_position
-     *   Default positioning of labels.
-     * @param string|null $language
-     *   Language of the form
-     * @param string|null $locale
-     *   Locale of the form
-     * @param string|null $name
-     *   Name of the form
-     * @param bool|null $progressive_profiling
-     *   Whether progressive profiling is enabled for the form
-     * @param string|null $theme
-     *   CSS theme for the form to use
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createLpFormsUsingPOSTAsyncWithHttpInfo(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null,
-        ?string $font_family = null,
-        ?string $font_size = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
-        ?string $label_position = null,
-        ?string $language = null,
-        ?string $locale = null,
-        ?string $name = null,
-        ?bool $progressive_profiling = null,
-        ?string $theme = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->createLpFormsUsingPOSTRequest($folder, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme),
-            [$this, 'createLpFormsUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'createLpFormsUsingPOST'
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder
-     * @param string|null $description
-     *   Description of the form
-     * @param string|null $font_family
-     *   font-family property for the form
-     * @param string|null $font_size
-     *   font-size property of the form
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor
-     * @param string|null $label_position
-     *   Default positioning of labels.
-     * @param string|null $language
-     *   Language of the form
-     * @param string|null $locale
-     *   Locale of the form
-     * @param string|null $name
-     *   Name of the form
-     * @param bool|null $progressive_profiling
-     *   Whether progressive profiling is enabled for the form
-     * @param string|null $theme
-     *   CSS theme for the form to use
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createLpFormsUsingPOSTRequest(
-        \NecLimDul\MarketoRest\Asset\Model\Folder $folder,
-        ?string $description = null,
-        ?string $font_family = null,
-        ?string $font_size = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
-        ?string $label_position = null,
-        ?string $language = null,
-        ?string $locale = null,
-        ?string $name = null,
-        ?bool $progressive_profiling = null,
-        ?string $theme = null
-    ): Request {
+        null|string $description = null,
+        null|string $font_family = null,
+        null|string $font_size = null,
+        null|\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
+        null|string $label_position = null,
+        null|string $language = null,
+        null|string $locale = null,
+        null|string $name = null,
+        null|bool $progressive_profiling = null,
+        null|string $theme = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/forms.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1067,64 +338,40 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
+                    'folder' => ObjectSerializer::toFormValue($folder),
+                    'fontFamily' => isset($font_family) ? ObjectSerializer::toFormValue($font_family) : null,
+                    'fontSize' => isset($font_size) ? ObjectSerializer::toFormValue($font_size) : null,
+                    'knownVisitor' => isset($known_visitor) ? ObjectSerializer::toFormValue($known_visitor) : null,
+                    'labelPosition' => isset($label_position) ? ObjectSerializer::toFormValue($label_position) : null,
+                    'language' => isset($language) ? ObjectSerializer::toFormValue($language) : null,
+                    'locale' => isset($locale) ? ObjectSerializer::toFormValue($locale) : null,
+                    'name' => isset($name) ? ObjectSerializer::toFormValue($name) : null,
+                    'progressiveProfiling' => isset($progressive_profiling) ? ObjectSerializer::toFormValue($progressive_profiling) : null,
+                    'theme' => isset($theme) ? ObjectSerializer::toFormValue($theme) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
-                'folder' => ObjectSerializer::toFormValue($folder),
-                'fontFamily' => isset($font_family) ? ObjectSerializer::toFormValue($font_family) : null,
-                'fontSize' => isset($font_size) ? ObjectSerializer::toFormValue($font_size) : null,
-                'knownVisitor' => isset($known_visitor) ? ObjectSerializer::toFormValue($known_visitor) : null,
-                'labelPosition' => isset($label_position) ? ObjectSerializer::toFormValue($label_position) : null,
-                'language' => isset($language) ? ObjectSerializer::toFormValue($language) : null,
-                'locale' => isset($locale) ? ObjectSerializer::toFormValue($locale) : null,
-                'name' => isset($name) ? ObjectSerializer::toFormValue($name) : null,
-                'progressiveProfiling' => isset($progressive_profiling) ? ObjectSerializer::toFormValue($progressive_profiling) : null,
-                'theme' => isset($theme) ? ObjectSerializer::toFormValue($theme) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for deleteFormByIdUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function deleteFormByIdUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1132,139 +379,24 @@ class FormsApi
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteFormByIdUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->deleteFormByIdUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Delete Form
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteFormByIdUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->deleteFormByIdUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteFormByIdUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Form
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteFormByIdUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->deleteFormByIdUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Delete Form
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteFormByIdUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteFormByIdUsingPOSTRequest($id),
-            [$this, 'deleteFormByIdUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteFormByIdUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteFormByIdUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/delete.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/delete.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1272,53 +404,27 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for discardFormByIdUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function discardFormByIdUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1326,139 +432,24 @@ class FormsApi
      *
      * @param int $id
      *   id
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function discardFormByIdUsingPOST(
-        int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->discardFormByIdUsingPOSTWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Discard Form Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function discardFormByIdUsingPOSTWithHttpInfo(
-        int $id
-    ): array {
-        $request = $this->discardFormByIdUsingPOSTRequest($id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->discardFormByIdUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Discard Form Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function discardFormByIdUsingPOSTAsync(
-        int $id
-    ): PromiseInterface {
-        return $this->discardFormByIdUsingPOSTAsyncWithHttpInfo($id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Discard Form Draft
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function discardFormByIdUsingPOSTAsyncWithHttpInfo(
-        int $id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->discardFormByIdUsingPOSTRequest($id),
-            [$this, 'discardFormByIdUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'discardFormByIdUsingPOST'
-     *
-     * @param int $id
-     *   id
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function discardFormByIdUsingPOSTRequest(
-        int $id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/discardDraft.json';
+        int $id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/discardDraft.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1466,53 +457,27 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getFormUsedByUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getFormUsedByUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1524,165 +489,26 @@ class FormsApi
      *   Integer offset for paging
      * @param int|null $max_return
      *   Maximum number of assets to return. Max 200, default 20
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getFormUsedByUsingGET(
         int $id,
-        ?int $offset = null,
-        ?int $max_return = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse {
-        [$response] = $this->getFormUsedByUsingGETWithHttpInfo($id, $offset, $max_return);
-        return $response;
-    }
-
-    /**
-     * Get Form Used By
-     *
-     * @param int $id
-     *   Id of the form
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of assets to return. Max 200, default 20
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getFormUsedByUsingGETWithHttpInfo(
-        int $id,
-        ?int $offset = null,
-        ?int $max_return = null
-    ): array {
-        $request = $this->getFormUsedByUsingGETRequest($id, $offset, $max_return);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getFormUsedByUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Form Used By
-     *
-     * @param int $id
-     *   Id of the form
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of assets to return. Max 200, default 20
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getFormUsedByUsingGETAsync(
-        int $id,
-        ?int $offset = null,
-        ?int $max_return = null
-    ): PromiseInterface {
-        return $this->getFormUsedByUsingGETAsyncWithHttpInfo($id, $offset, $max_return)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Form Used By
-     *
-     * @param int $id
-     *   Id of the form
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of assets to return. Max 200, default 20
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getFormUsedByUsingGETAsyncWithHttpInfo(
-        int $id,
-        ?int $offset = null,
-        ?int $max_return = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getFormUsedByUsingGETRequest($id, $offset, $max_return),
-            [$this, 'getFormUsedByUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getFormUsedByUsingGET'
-     *
-     * @param int $id
-     *   Id of the form
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of assets to return. Max 200, default 20
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getFormUsedByUsingGETRequest(
-        int $id,
-        ?int $offset = null,
-        ?int $max_return = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/usedBy.json';
+        null|int $offset = null,
+        null|int $max_return = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/usedBy.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1690,55 +516,29 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
-                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                    'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getLpFormByIdUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getLpFormByIdUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1748,152 +548,25 @@ class FormsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getLpFormByIdUsingGET(
         int $id,
-        ?string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
-        [$response] = $this->getLpFormByIdUsingGETWithHttpInfo($id, $status);
-        return $response;
-    }
-
-    /**
-     * Get Form By Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getLpFormByIdUsingGETWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): array {
-        $request = $this->getLpFormByIdUsingGETRequest($id, $status);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getLpFormByIdUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Form By Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getLpFormByIdUsingGETAsync(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->getLpFormByIdUsingGETAsyncWithHttpInfo($id, $status)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Form By Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getLpFormByIdUsingGETAsyncWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getLpFormByIdUsingGETRequest($id, $status),
-            [$this, 'getLpFormByIdUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getLpFormByIdUsingGET'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getLpFormByIdUsingGETRequest(
-        int $id,
-        ?string $status = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}.json';
+        null|string $status = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1901,54 +574,28 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getLpFormByNameUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getLpFormByNameUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1959,161 +606,19 @@ class FormsApi
      * @param string|null $status
      *   Status filter for draft or approved versions
      * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
+     *   JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getLpFormByNameUsingGET(
         string $name,
-        ?string $status = null,
-        ?string $folder = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
-        [$response] = $this->getLpFormByNameUsingGETWithHttpInfo($name, $status, $folder);
-        return $response;
-    }
-
-    /**
-     * Get Form by Name
-     *
-     * @param string $name
-     *   Name of the form
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getLpFormByNameUsingGETWithHttpInfo(
-        string $name,
-        ?string $status = null,
-        ?string $folder = null
-    ): array {
-        $request = $this->getLpFormByNameUsingGETRequest($name, $status, $folder);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getLpFormByNameUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Form by Name
-     *
-     * @param string $name
-     *   Name of the form
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getLpFormByNameUsingGETAsync(
-        string $name,
-        ?string $status = null,
-        ?string $folder = null
-    ): PromiseInterface {
-        return $this->getLpFormByNameUsingGETAsyncWithHttpInfo($name, $status, $folder)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Form by Name
-     *
-     * @param string $name
-     *   Name of the form
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getLpFormByNameUsingGETAsyncWithHttpInfo(
-        string $name,
-        ?string $status = null,
-        ?string $folder = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getLpFormByNameUsingGETRequest($name, $status, $folder),
-            [$this, 'getLpFormByNameUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getLpFormByNameUsingGET'
-     *
-     * @param string $name
-     *   Name of the form
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     * @param string|null $folder
-     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getLpFormByNameUsingGETRequest(
-        string $name,
-        ?string $status = null,
-        ?string $folder = null
-    ): Request {
+        null|string $status = null,
+        null|string $folder = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/form/byName.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2121,56 +626,30 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'name' => ObjectSerializer::toQueryValue($name),
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'name' => ObjectSerializer::toQueryValue($name),
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                    'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getThankYouPageByIdUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getThankYouPageByIdUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2180,152 +659,25 @@ class FormsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getThankYouPageByIdUsingGET(
         int $id,
-        ?string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse {
-        [$response] = $this->getThankYouPageByIdUsingGETWithHttpInfo($id, $status);
-        return $response;
-    }
-
-    /**
-     * Get Thank You Page by Form Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getThankYouPageByIdUsingGETWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): array {
-        $request = $this->getThankYouPageByIdUsingGETRequest($id, $status);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getThankYouPageByIdUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Thank You Page by Form Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getThankYouPageByIdUsingGETAsync(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->getThankYouPageByIdUsingGETAsyncWithHttpInfo($id, $status)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Thank You Page by Form Id
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getThankYouPageByIdUsingGETAsyncWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getThankYouPageByIdUsingGETRequest($id, $status),
-            [$this, 'getThankYouPageByIdUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getThankYouPageByIdUsingGET'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getThankYouPageByIdUsingGETRequest(
-        int $id,
-        ?string $status = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/thankYouPage.json';
+        null|string $status = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/thankYouPage.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2333,54 +685,28 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateFormSubmitButtonUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateFormSubmitButtonUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2396,191 +722,28 @@ class FormsApi
      *   Label text of the button
      * @param string|null $waiting_label
      *   Waiting text of the button
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateFormSubmitButtonUsingPOST(
         int $id,
-        ?int $button_position = null,
-        ?string $button_style = null,
-        ?string $label = null,
-        ?string $waiting_label = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
-        [$response] = $this->updateFormSubmitButtonUsingPOSTWithHttpInfo($id, $button_position, $button_style, $label, $waiting_label);
-        return $response;
-    }
-
-    /**
-     * Update Submit Button
-     *
-     * @param int $id
-     *   id
-     * @param int|null $button_position
-     *   Location in pixels of the button relative to the left of the form
-     * @param string|null $button_style
-     *   Style of the button
-     * @param string|null $label
-     *   Label text of the button
-     * @param string|null $waiting_label
-     *   Waiting text of the button
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateFormSubmitButtonUsingPOSTWithHttpInfo(
-        int $id,
-        ?int $button_position = null,
-        ?string $button_style = null,
-        ?string $label = null,
-        ?string $waiting_label = null
-    ): array {
-        $request = $this->updateFormSubmitButtonUsingPOSTRequest($id, $button_position, $button_style, $label, $waiting_label);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateFormSubmitButtonUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Submit Button
-     *
-     * @param int $id
-     *   id
-     * @param int|null $button_position
-     *   Location in pixels of the button relative to the left of the form
-     * @param string|null $button_style
-     *   Style of the button
-     * @param string|null $label
-     *   Label text of the button
-     * @param string|null $waiting_label
-     *   Waiting text of the button
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateFormSubmitButtonUsingPOSTAsync(
-        int $id,
-        ?int $button_position = null,
-        ?string $button_style = null,
-        ?string $label = null,
-        ?string $waiting_label = null
-    ): PromiseInterface {
-        return $this->updateFormSubmitButtonUsingPOSTAsyncWithHttpInfo($id, $button_position, $button_style, $label, $waiting_label)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Submit Button
-     *
-     * @param int $id
-     *   id
-     * @param int|null $button_position
-     *   Location in pixels of the button relative to the left of the form
-     * @param string|null $button_style
-     *   Style of the button
-     * @param string|null $label
-     *   Label text of the button
-     * @param string|null $waiting_label
-     *   Waiting text of the button
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateFormSubmitButtonUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        ?int $button_position = null,
-        ?string $button_style = null,
-        ?string $label = null,
-        ?string $waiting_label = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateFormSubmitButtonUsingPOSTRequest($id, $button_position, $button_style, $label, $waiting_label),
-            [$this, 'updateFormSubmitButtonUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateFormSubmitButtonUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param int|null $button_position
-     *   Location in pixels of the button relative to the left of the form
-     * @param string|null $button_style
-     *   Style of the button
-     * @param string|null $label
-     *   Label text of the button
-     * @param string|null $waiting_label
-     *   Waiting text of the button
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateFormSubmitButtonUsingPOSTRequest(
-        int $id,
-        ?int $button_position = null,
-        ?string $button_style = null,
-        ?string $label = null,
-        ?string $waiting_label = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/submitButton.json';
+        null|int $button_position = null,
+        null|string $button_style = null,
+        null|string $label = null,
+        null|string $waiting_label = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/submitButton.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2588,57 +751,33 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'buttonPosition' => isset($button_position) ? ObjectSerializer::toFormValue($button_position) : null,
+                    'buttonStyle' => isset($button_style) ? ObjectSerializer::toFormValue($button_style) : null,
+                    'label' => isset($label) ? ObjectSerializer::toFormValue($label) : null,
+                    'waitingLabel' => isset($waiting_label) ? ObjectSerializer::toFormValue($waiting_label) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'buttonPosition' => isset($button_position) ? ObjectSerializer::toFormValue($button_position) : null,
-                'buttonStyle' => isset($button_style) ? ObjectSerializer::toFormValue($button_style) : null,
-                'label' => isset($label) ? ObjectSerializer::toFormValue($label) : null,
-                'waitingLabel' => isset($waiting_label) ? ObjectSerializer::toFormValue($waiting_label) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateFormsUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateFormsUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -2667,278 +806,35 @@ class FormsApi
      *   Whether progressive profiling is enabled for the form
      * @param string|null $theme
      *   CSS theme for the form to use
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateFormsUsingPOST(
         int $id,
-        ?string $custom_css = null,
-        ?string $description = null,
-        ?string $font_family = null,
-        ?string $font_size = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
-        ?string $label_position = null,
-        ?string $language = null,
-        ?string $locale = null,
-        ?string $name = null,
-        ?bool $progressive_profiling = null,
-        ?string $theme = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
-        [$response] = $this->updateFormsUsingPOSTWithHttpInfo($id, $custom_css, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme);
-        return $response;
-    }
-
-    /**
-     * Update Form Metadata
-     *
-     * @param int $id
-     *   id
-     * @param string|null $custom_css
-     *   Custom CSS to apply to the form
-     * @param string|null $description
-     *   Description of the form
-     * @param string|null $font_family
-     *   font-family property for the form
-     * @param string|null $font_size
-     *   font-size property of the form
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor
-     * @param string|null $label_position
-     *   Default positioning of labels.
-     * @param string|null $language
-     *   Language of the form
-     * @param string|null $locale
-     *   Locale of the form
-     * @param string|null $name
-     *   Name of the form
-     * @param bool|null $progressive_profiling
-     *   Whether progressive profiling is enabled for the form
-     * @param string|null $theme
-     *   CSS theme for the form to use
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateFormsUsingPOSTWithHttpInfo(
-        int $id,
-        ?string $custom_css = null,
-        ?string $description = null,
-        ?string $font_family = null,
-        ?string $font_size = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
-        ?string $label_position = null,
-        ?string $language = null,
-        ?string $locale = null,
-        ?string $name = null,
-        ?bool $progressive_profiling = null,
-        ?string $theme = null
-    ): array {
-        $request = $this->updateFormsUsingPOSTRequest($id, $custom_css, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateFormsUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Form Metadata
-     *
-     * @param int $id
-     *   id
-     * @param string|null $custom_css
-     *   Custom CSS to apply to the form
-     * @param string|null $description
-     *   Description of the form
-     * @param string|null $font_family
-     *   font-family property for the form
-     * @param string|null $font_size
-     *   font-size property of the form
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor
-     * @param string|null $label_position
-     *   Default positioning of labels.
-     * @param string|null $language
-     *   Language of the form
-     * @param string|null $locale
-     *   Locale of the form
-     * @param string|null $name
-     *   Name of the form
-     * @param bool|null $progressive_profiling
-     *   Whether progressive profiling is enabled for the form
-     * @param string|null $theme
-     *   CSS theme for the form to use
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateFormsUsingPOSTAsync(
-        int $id,
-        ?string $custom_css = null,
-        ?string $description = null,
-        ?string $font_family = null,
-        ?string $font_size = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
-        ?string $label_position = null,
-        ?string $language = null,
-        ?string $locale = null,
-        ?string $name = null,
-        ?bool $progressive_profiling = null,
-        ?string $theme = null
-    ): PromiseInterface {
-        return $this->updateFormsUsingPOSTAsyncWithHttpInfo($id, $custom_css, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Form Metadata
-     *
-     * @param int $id
-     *   id
-     * @param string|null $custom_css
-     *   Custom CSS to apply to the form
-     * @param string|null $description
-     *   Description of the form
-     * @param string|null $font_family
-     *   font-family property for the form
-     * @param string|null $font_size
-     *   font-size property of the form
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor
-     * @param string|null $label_position
-     *   Default positioning of labels.
-     * @param string|null $language
-     *   Language of the form
-     * @param string|null $locale
-     *   Locale of the form
-     * @param string|null $name
-     *   Name of the form
-     * @param bool|null $progressive_profiling
-     *   Whether progressive profiling is enabled for the form
-     * @param string|null $theme
-     *   CSS theme for the form to use
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateFormsUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        ?string $custom_css = null,
-        ?string $description = null,
-        ?string $font_family = null,
-        ?string $font_size = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
-        ?string $label_position = null,
-        ?string $language = null,
-        ?string $locale = null,
-        ?string $name = null,
-        ?bool $progressive_profiling = null,
-        ?string $theme = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateFormsUsingPOSTRequest($id, $custom_css, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme),
-            [$this, 'updateFormsUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateFormsUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $custom_css
-     *   Custom CSS to apply to the form
-     * @param string|null $description
-     *   Description of the form
-     * @param string|null $font_family
-     *   font-family property for the form
-     * @param string|null $font_size
-     *   font-size property of the form
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor
-     * @param string|null $label_position
-     *   Default positioning of labels.
-     * @param string|null $language
-     *   Language of the form
-     * @param string|null $locale
-     *   Locale of the form
-     * @param string|null $name
-     *   Name of the form
-     * @param bool|null $progressive_profiling
-     *   Whether progressive profiling is enabled for the form
-     * @param string|null $theme
-     *   CSS theme for the form to use
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateFormsUsingPOSTRequest(
-        int $id,
-        ?string $custom_css = null,
-        ?string $description = null,
-        ?string $font_family = null,
-        ?string $font_size = null,
-        ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
-        ?string $label_position = null,
-        ?string $language = null,
-        ?string $locale = null,
-        ?string $name = null,
-        ?bool $progressive_profiling = null,
-        ?string $theme = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}.json';
+        null|string $custom_css = null,
+        null|string $description = null,
+        null|string $font_family = null,
+        null|string $font_size = null,
+        null|\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor = null,
+        null|string $label_position = null,
+        null|string $language = null,
+        null|string $locale = null,
+        null|string $name = null,
+        null|bool $progressive_profiling = null,
+        null|string $theme = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2946,64 +842,40 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'customCss' => isset($custom_css) ? ObjectSerializer::toFormValue($custom_css) : null,
+                    'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
+                    'fontFamily' => isset($font_family) ? ObjectSerializer::toFormValue($font_family) : null,
+                    'fontSize' => isset($font_size) ? ObjectSerializer::toFormValue($font_size) : null,
+                    'knownVisitor' => isset($known_visitor) ? ObjectSerializer::toFormValue($known_visitor) : null,
+                    'labelPosition' => isset($label_position) ? ObjectSerializer::toFormValue($label_position) : null,
+                    'language' => isset($language) ? ObjectSerializer::toFormValue($language) : null,
+                    'locale' => isset($locale) ? ObjectSerializer::toFormValue($locale) : null,
+                    'name' => isset($name) ? ObjectSerializer::toFormValue($name) : null,
+                    'progressiveProfiling' => isset($progressive_profiling) ? ObjectSerializer::toFormValue($progressive_profiling) : null,
+                    'theme' => isset($theme) ? ObjectSerializer::toFormValue($theme) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'customCss' => isset($custom_css) ? ObjectSerializer::toFormValue($custom_css) : null,
-                'description' => isset($description) ? ObjectSerializer::toFormValue($description) : null,
-                'fontFamily' => isset($font_family) ? ObjectSerializer::toFormValue($font_family) : null,
-                'fontSize' => isset($font_size) ? ObjectSerializer::toFormValue($font_size) : null,
-                'knownVisitor' => isset($known_visitor) ? ObjectSerializer::toFormValue($known_visitor) : null,
-                'labelPosition' => isset($label_position) ? ObjectSerializer::toFormValue($label_position) : null,
-                'language' => isset($language) ? ObjectSerializer::toFormValue($language) : null,
-                'locale' => isset($locale) ? ObjectSerializer::toFormValue($locale) : null,
-                'name' => isset($name) ? ObjectSerializer::toFormValue($name) : null,
-                'progressiveProfiling' => isset($progressive_profiling) ? ObjectSerializer::toFormValue($progressive_profiling) : null,
-                'theme' => isset($theme) ? ObjectSerializer::toFormValue($theme) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateThankYouPageByIdUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateThankYouPageByIdUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -3013,152 +885,25 @@ class FormsApi
      *   id
      * @param \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]|null $thankyou
      *   JSON array of followup rules
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateThankYouPageByIdUsingPOST(
         int $id,
-        ?array $thankyou = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse {
-        [$response] = $this->updateThankYouPageByIdUsingPOSTWithHttpInfo($id, $thankyou);
-        return $response;
-    }
-
-    /**
-     * Update Thank You Page
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]|null $thankyou
-     *   JSON array of followup rules
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateThankYouPageByIdUsingPOSTWithHttpInfo(
-        int $id,
-        ?array $thankyou = null
-    ): array {
-        $request = $this->updateThankYouPageByIdUsingPOSTRequest($id, $thankyou);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateThankYouPageByIdUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Thank You Page
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]|null $thankyou
-     *   JSON array of followup rules
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateThankYouPageByIdUsingPOSTAsync(
-        int $id,
-        ?array $thankyou = null
-    ): PromiseInterface {
-        return $this->updateThankYouPageByIdUsingPOSTAsyncWithHttpInfo($id, $thankyou)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Thank You Page
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]|null $thankyou
-     *   JSON array of followup rules
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateThankYouPageByIdUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        ?array $thankyou = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateThankYouPageByIdUsingPOSTRequest($id, $thankyou),
-            [$this, 'updateThankYouPageByIdUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateThankYouPageByIdUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]|null $thankyou
-     *   JSON array of followup rules
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateThankYouPageByIdUsingPOSTRequest(
-        int $id,
-        ?array $thankyou = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/form/{id}/thankYouPage.json';
+        null|array $thankyou = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/form/{id}/thankYouPage.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -3166,28 +911,29 @@ class FormsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'thankyou' => isset($thankyou) ? ObjectSerializer::toFormValue($thankyou) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'thankyou' => isset($thankyou) ? ObjectSerializer::toFormValue($thankyou) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 }

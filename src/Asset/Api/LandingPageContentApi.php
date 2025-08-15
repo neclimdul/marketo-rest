@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Asset\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Asset\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Asset\Configuration;
 use NecLimDul\MarketoRest\Asset\HeaderSelector;
 use NecLimDul\MarketoRest\Asset\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class LandingPageContentApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class LandingPageContentApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,31 +112,6 @@ class LandingPageContentApi
     }
 
     /**
-     * Exception handler for addLandingPageContentUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function addLandingPageContentUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Add Landing Page Content Section
      *
      * @param int $id
@@ -156,356 +149,41 @@ class LandingPageContentApi
      *   width property of the HTML section
      * @param string|null $z_index
      *   z-index property of the HTML section
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function addLandingPageContentUsingPOST(
         int $id,
         string $content_id,
         string $type,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $top = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->addLandingPageContentUsingPOSTWithHttpInfo($id, $content_id, $type, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $left, $link_url, $opacity, $top, $value, $width, $z_index);
-        return $response;
-    }
-
-    /**
-     * Add Landing Page Content Section
-     *
-     * @param int $id
-     *   id
-     * @param string $content_id
-     *   Id of the content section. Also the HTML id of the section.
-     * @param string $type
-     *   Type of content section
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function addLandingPageContentUsingPOSTWithHttpInfo(
-        int $id,
-        string $content_id,
-        string $type,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $top = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): array {
-        $request = $this->addLandingPageContentUsingPOSTRequest($id, $content_id, $type, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $left, $link_url, $opacity, $top, $value, $width, $z_index);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->addLandingPageContentUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Add Landing Page Content Section
-     *
-     * @param int $id
-     *   id
-     * @param string $content_id
-     *   Id of the content section. Also the HTML id of the section.
-     * @param string $type
-     *   Type of content section
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function addLandingPageContentUsingPOSTAsync(
-        int $id,
-        string $content_id,
-        string $type,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $top = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): PromiseInterface {
-        return $this->addLandingPageContentUsingPOSTAsyncWithHttpInfo($id, $content_id, $type, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $left, $link_url, $opacity, $top, $value, $width, $z_index)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Add Landing Page Content Section
-     *
-     * @param int $id
-     *   id
-     * @param string $content_id
-     *   Id of the content section. Also the HTML id of the section.
-     * @param string $type
-     *   Type of content section
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function addLandingPageContentUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $content_id,
-        string $type,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $top = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->addLandingPageContentUsingPOSTRequest($id, $content_id, $type, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $left, $link_url, $opacity, $top, $value, $width, $z_index),
-            [$this, 'addLandingPageContentUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'addLandingPageContentUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string $content_id
-     *   Id of the content section. Also the HTML id of the section.
-     * @param string $type
-     *   Type of content section
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function addLandingPageContentUsingPOSTRequest(
-        int $id,
-        string $content_id,
-        string $type,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $top = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/landingPage/{id}/content.json';
+        null|string $background_color = null,
+        null|string $border_color = null,
+        null|string $border_style = null,
+        null|string $border_width = null,
+        null|string $height = null,
+        null|bool $hide_desktop = null,
+        null|bool $hide_mobile = null,
+        null|string $image_open_new_window = null,
+        null|string $left = null,
+        null|string $link_url = null,
+        null|string $opacity = null,
+        null|string $top = null,
+        null|string $value = null,
+        null|string $width = null,
+        null|string $z_index = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/landingPage/{id}/content.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -513,70 +191,46 @@ class LandingPageContentApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'backgroundColor' => isset($background_color) ? ObjectSerializer::toFormValue($background_color) : null,
+                    'borderColor' => isset($border_color) ? ObjectSerializer::toFormValue($border_color) : null,
+                    'borderStyle' => isset($border_style) ? ObjectSerializer::toFormValue($border_style) : null,
+                    'borderWidth' => isset($border_width) ? ObjectSerializer::toFormValue($border_width) : null,
+                    'contentId' => ObjectSerializer::toFormValue($content_id),
+                    'height' => isset($height) ? ObjectSerializer::toFormValue($height) : null,
+                    'hideDesktop' => isset($hide_desktop) ? ObjectSerializer::toFormValue($hide_desktop) : null,
+                    'hideMobile' => isset($hide_mobile) ? ObjectSerializer::toFormValue($hide_mobile) : null,
+                    'imageOpenNewWindow' => isset($image_open_new_window) ? ObjectSerializer::toFormValue($image_open_new_window) : null,
+                    'left' => isset($left) ? ObjectSerializer::toFormValue($left) : null,
+                    'linkUrl' => isset($link_url) ? ObjectSerializer::toFormValue($link_url) : null,
+                    'opacity' => isset($opacity) ? ObjectSerializer::toFormValue($opacity) : null,
+                    'top' => isset($top) ? ObjectSerializer::toFormValue($top) : null,
+                    'type' => ObjectSerializer::toFormValue($type),
+                    'value' => isset($value) ? ObjectSerializer::toFormValue($value) : null,
+                    'width' => isset($width) ? ObjectSerializer::toFormValue($width) : null,
+                    'zIndex' => isset($z_index) ? ObjectSerializer::toFormValue($z_index) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'backgroundColor' => isset($background_color) ? ObjectSerializer::toFormValue($background_color) : null,
-                'borderColor' => isset($border_color) ? ObjectSerializer::toFormValue($border_color) : null,
-                'borderStyle' => isset($border_style) ? ObjectSerializer::toFormValue($border_style) : null,
-                'borderWidth' => isset($border_width) ? ObjectSerializer::toFormValue($border_width) : null,
-                'contentId' => ObjectSerializer::toFormValue($content_id),
-                'height' => isset($height) ? ObjectSerializer::toFormValue($height) : null,
-                'hideDesktop' => isset($hide_desktop) ? ObjectSerializer::toFormValue($hide_desktop) : null,
-                'hideMobile' => isset($hide_mobile) ? ObjectSerializer::toFormValue($hide_mobile) : null,
-                'imageOpenNewWindow' => isset($image_open_new_window) ? ObjectSerializer::toFormValue($image_open_new_window) : null,
-                'left' => isset($left) ? ObjectSerializer::toFormValue($left) : null,
-                'linkUrl' => isset($link_url) ? ObjectSerializer::toFormValue($link_url) : null,
-                'opacity' => isset($opacity) ? ObjectSerializer::toFormValue($opacity) : null,
-                'top' => isset($top) ? ObjectSerializer::toFormValue($top) : null,
-                'type' => ObjectSerializer::toFormValue($type),
-                'value' => isset($value) ? ObjectSerializer::toFormValue($value) : null,
-                'width' => isset($width) ? ObjectSerializer::toFormValue($width) : null,
-                'zIndex' => isset($z_index) ? ObjectSerializer::toFormValue($z_index) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getLandingPageContentUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getLandingPageContentUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -586,152 +240,25 @@ class LandingPageContentApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getLandingPageContentUsingGET(
         int $id,
-        ?string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse {
-        [$response] = $this->getLandingPageContentUsingGETWithHttpInfo($id, $status);
-        return $response;
-    }
-
-    /**
-     * Get Landing Page Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getLandingPageContentUsingGETWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): array {
-        $request = $this->getLandingPageContentUsingGETRequest($id, $status);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getLandingPageContentUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Landing Page Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getLandingPageContentUsingGETAsync(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->getLandingPageContentUsingGETAsyncWithHttpInfo($id, $status)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Landing Page Content
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getLandingPageContentUsingGETAsyncWithHttpInfo(
-        int $id,
-        ?string $status = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getLandingPageContentUsingGETRequest($id, $status),
-            [$this, 'getLandingPageContentUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getLandingPageContentUsingGET'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $status
-     *   Status filter for draft or approved versions
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getLandingPageContentUsingGETRequest(
-        int $id,
-        ?string $status = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/landingPage/{id}/content.json';
+        null|string $status = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/landingPage/{id}/content.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -739,54 +266,28 @@ class LandingPageContentApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getLandingPageDynamicContentsUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getLandingPageDynamicContentsUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -796,157 +297,27 @@ class LandingPageContentApi
      *   Id of landing page
      * @param string $content_id
      *   Id of landing page dynamic content section
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getLandingPageDynamicContentsUsingGET(
         int $id,
-        string $content_id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse {
-        [$response] = $this->getLandingPageDynamicContentsUsingGETWithHttpInfo($id, $content_id);
-        return $response;
-    }
-
-    /**
-     * Get Landing Page Dynamic Content
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page dynamic content section
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getLandingPageDynamicContentsUsingGETWithHttpInfo(
-        int $id,
-        string $content_id
-    ): array {
-        $request = $this->getLandingPageDynamicContentsUsingGETRequest($id, $content_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getLandingPageDynamicContentsUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Landing Page Dynamic Content
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page dynamic content section
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getLandingPageDynamicContentsUsingGETAsync(
-        int $id,
-        string $content_id
-    ): PromiseInterface {
-        return $this->getLandingPageDynamicContentsUsingGETAsyncWithHttpInfo($id, $content_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Landing Page Dynamic Content
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page dynamic content section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getLandingPageDynamicContentsUsingGETAsyncWithHttpInfo(
-        int $id,
-        string $content_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getLandingPageDynamicContentsUsingGETRequest($id, $content_id),
-            [$this, 'getLandingPageDynamicContentsUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getLandingPageDynamicContentsUsingGET'
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page dynamic content section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getLandingPageDynamicContentsUsingGETRequest(
-        int $id,
-        string $content_id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json';
+        string $content_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'contentId' . '}',
-            ObjectSerializer::toPathValue($content_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'contentId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($content_id),
+            ],
+            '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -954,53 +325,27 @@ class LandingPageContentApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for removeLandingPageContentUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function removeLandingPageContentUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1010,157 +355,27 @@ class LandingPageContentApi
      *   Id of landing page
      * @param string $content_id
      *   Id of landing page content section
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function removeLandingPageContentUsingPOST(
         int $id,
-        string $content_id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->removeLandingPageContentUsingPOSTWithHttpInfo($id, $content_id);
-        return $response;
-    }
-
-    /**
-     * Delete Landing Page Content Section
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page content section
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function removeLandingPageContentUsingPOSTWithHttpInfo(
-        int $id,
-        string $content_id
-    ): array {
-        $request = $this->removeLandingPageContentUsingPOSTRequest($id, $content_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->removeLandingPageContentUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Landing Page Content Section
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page content section
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function removeLandingPageContentUsingPOSTAsync(
-        int $id,
-        string $content_id
-    ): PromiseInterface {
-        return $this->removeLandingPageContentUsingPOSTAsyncWithHttpInfo($id, $content_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Delete Landing Page Content Section
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page content section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function removeLandingPageContentUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $content_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->removeLandingPageContentUsingPOSTRequest($id, $content_id),
-            [$this, 'removeLandingPageContentUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'removeLandingPageContentUsingPOST'
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page content section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function removeLandingPageContentUsingPOSTRequest(
-        int $id,
-        string $content_id
-    ): Request {
-        $resourcePath = '/rest/asset/v1/landingPage/{id}/content/{contentId}/delete.json';
+        string $content_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'contentId' . '}',
-            ObjectSerializer::toPathValue($content_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'contentId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($content_id),
+            ],
+            '/rest/asset/v1/landingPage/{id}/content/{contentId}/delete.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1168,53 +383,27 @@ class LandingPageContentApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateLandingPageContentUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateLandingPageContentUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1257,374 +446,44 @@ class LandingPageContentApi
      *   width property of the HTML section
      * @param string|null $z_index
      *   z-index property of the HTML section
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateLandingPageContentUsingPOST(
         int $id,
         string $content_id,
         string $type,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?int $index = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $top = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->updateLandingPageContentUsingPOSTWithHttpInfo($id, $content_id, $type, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $index, $left, $link_url, $opacity, $top, $value, $width, $z_index);
-        return $response;
-    }
-
-    /**
-     * Update Landing Page Content Section
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page content section
-     * @param string $type
-     *   Type of content section
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param int|null $index
-     *   Index of the content section. Determines the order of the section in the landing page
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateLandingPageContentUsingPOSTWithHttpInfo(
-        int $id,
-        string $content_id,
-        string $type,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?int $index = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $top = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): array {
-        $request = $this->updateLandingPageContentUsingPOSTRequest($id, $content_id, $type, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $index, $left, $link_url, $opacity, $top, $value, $width, $z_index);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateLandingPageContentUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Landing Page Content Section
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page content section
-     * @param string $type
-     *   Type of content section
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param int|null $index
-     *   Index of the content section. Determines the order of the section in the landing page
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateLandingPageContentUsingPOSTAsync(
-        int $id,
-        string $content_id,
-        string $type,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?int $index = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $top = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): PromiseInterface {
-        return $this->updateLandingPageContentUsingPOSTAsyncWithHttpInfo($id, $content_id, $type, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $index, $left, $link_url, $opacity, $top, $value, $width, $z_index)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Landing Page Content Section
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page content section
-     * @param string $type
-     *   Type of content section
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param int|null $index
-     *   Index of the content section. Determines the order of the section in the landing page
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateLandingPageContentUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $content_id,
-        string $type,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?int $index = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $top = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateLandingPageContentUsingPOSTRequest($id, $content_id, $type, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $index, $left, $link_url, $opacity, $top, $value, $width, $z_index),
-            [$this, 'updateLandingPageContentUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateLandingPageContentUsingPOST'
-     *
-     * @param int $id
-     *   Id of landing page
-     * @param string $content_id
-     *   Id of landing page content section
-     * @param string $type
-     *   Type of content section
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param int|null $index
-     *   Index of the content section. Determines the order of the section in the landing page
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateLandingPageContentUsingPOSTRequest(
-        int $id,
-        string $content_id,
-        string $type,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?int $index = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $top = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/landingPage/{id}/content/{contentId}.json';
+        null|string $background_color = null,
+        null|string $border_color = null,
+        null|string $border_style = null,
+        null|string $border_width = null,
+        null|string $height = null,
+        null|bool $hide_desktop = null,
+        null|bool $hide_mobile = null,
+        null|string $image_open_new_window = null,
+        null|int $index = null,
+        null|string $left = null,
+        null|string $link_url = null,
+        null|string $opacity = null,
+        null|string $top = null,
+        null|string $value = null,
+        null|string $width = null,
+        null|string $z_index = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'contentId' . '}',
-            ObjectSerializer::toPathValue($content_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'contentId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($content_id),
+            ],
+            '/rest/asset/v1/landingPage/{id}/content/{contentId}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -1632,70 +491,46 @@ class LandingPageContentApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'backgroundColor' => isset($background_color) ? ObjectSerializer::toFormValue($background_color) : null,
+                    'borderColor' => isset($border_color) ? ObjectSerializer::toFormValue($border_color) : null,
+                    'borderStyle' => isset($border_style) ? ObjectSerializer::toFormValue($border_style) : null,
+                    'borderWidth' => isset($border_width) ? ObjectSerializer::toFormValue($border_width) : null,
+                    'height' => isset($height) ? ObjectSerializer::toFormValue($height) : null,
+                    'hideDesktop' => isset($hide_desktop) ? ObjectSerializer::toFormValue($hide_desktop) : null,
+                    'hideMobile' => isset($hide_mobile) ? ObjectSerializer::toFormValue($hide_mobile) : null,
+                    'imageOpenNewWindow' => isset($image_open_new_window) ? ObjectSerializer::toFormValue($image_open_new_window) : null,
+                    'index' => isset($index) ? ObjectSerializer::toFormValue($index) : null,
+                    'left' => isset($left) ? ObjectSerializer::toFormValue($left) : null,
+                    'linkUrl' => isset($link_url) ? ObjectSerializer::toFormValue($link_url) : null,
+                    'opacity' => isset($opacity) ? ObjectSerializer::toFormValue($opacity) : null,
+                    'top' => isset($top) ? ObjectSerializer::toFormValue($top) : null,
+                    'type' => ObjectSerializer::toFormValue($type),
+                    'value' => isset($value) ? ObjectSerializer::toFormValue($value) : null,
+                    'width' => isset($width) ? ObjectSerializer::toFormValue($width) : null,
+                    'zIndex' => isset($z_index) ? ObjectSerializer::toFormValue($z_index) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'backgroundColor' => isset($background_color) ? ObjectSerializer::toFormValue($background_color) : null,
-                'borderColor' => isset($border_color) ? ObjectSerializer::toFormValue($border_color) : null,
-                'borderStyle' => isset($border_style) ? ObjectSerializer::toFormValue($border_style) : null,
-                'borderWidth' => isset($border_width) ? ObjectSerializer::toFormValue($border_width) : null,
-                'height' => isset($height) ? ObjectSerializer::toFormValue($height) : null,
-                'hideDesktop' => isset($hide_desktop) ? ObjectSerializer::toFormValue($hide_desktop) : null,
-                'hideMobile' => isset($hide_mobile) ? ObjectSerializer::toFormValue($hide_mobile) : null,
-                'imageOpenNewWindow' => isset($image_open_new_window) ? ObjectSerializer::toFormValue($image_open_new_window) : null,
-                'index' => isset($index) ? ObjectSerializer::toFormValue($index) : null,
-                'left' => isset($left) ? ObjectSerializer::toFormValue($left) : null,
-                'linkUrl' => isset($link_url) ? ObjectSerializer::toFormValue($link_url) : null,
-                'opacity' => isset($opacity) ? ObjectSerializer::toFormValue($opacity) : null,
-                'top' => isset($top) ? ObjectSerializer::toFormValue($top) : null,
-                'type' => ObjectSerializer::toFormValue($type),
-                'value' => isset($value) ? ObjectSerializer::toFormValue($value) : null,
-                'width' => isset($width) ? ObjectSerializer::toFormValue($width) : null,
-                'zIndex' => isset($z_index) ? ObjectSerializer::toFormValue($z_index) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for updateLandingPageDynamicContentUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function updateLandingPageDynamicContentUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -1738,374 +573,44 @@ class LandingPageContentApi
      *   width property of the HTML section
      * @param string|null $z_index
      *   z-index property of the HTML section
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function updateLandingPageDynamicContentUsingPOST(
         int $id,
         string $content_id,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $segment = null,
-        ?string $top = null,
-        ?string $type = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->updateLandingPageDynamicContentUsingPOSTWithHttpInfo($id, $content_id, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $left, $link_url, $opacity, $segment, $top, $type, $value, $width, $z_index);
-        return $response;
-    }
-
-    /**
-     * Update Landing Page Dynamic Content Section
-     *
-     * @param int $id
-     *   Id of the landing page
-     * @param string $content_id
-     *   Id of the landing page dynamic content
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $segment
-     *   Name of the segment to display content section for
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $type
-     *   Type of content section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function updateLandingPageDynamicContentUsingPOSTWithHttpInfo(
-        int $id,
-        string $content_id,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $segment = null,
-        ?string $top = null,
-        ?string $type = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): array {
-        $request = $this->updateLandingPageDynamicContentUsingPOSTRequest($id, $content_id, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $left, $link_url, $opacity, $segment, $top, $type, $value, $width, $z_index);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->updateLandingPageDynamicContentUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Update Landing Page Dynamic Content Section
-     *
-     * @param int $id
-     *   Id of the landing page
-     * @param string $content_id
-     *   Id of the landing page dynamic content
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $segment
-     *   Name of the segment to display content section for
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $type
-     *   Type of content section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function updateLandingPageDynamicContentUsingPOSTAsync(
-        int $id,
-        string $content_id,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $segment = null,
-        ?string $top = null,
-        ?string $type = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): PromiseInterface {
-        return $this->updateLandingPageDynamicContentUsingPOSTAsyncWithHttpInfo($id, $content_id, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $left, $link_url, $opacity, $segment, $top, $type, $value, $width, $z_index)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Update Landing Page Dynamic Content Section
-     *
-     * @param int $id
-     *   Id of the landing page
-     * @param string $content_id
-     *   Id of the landing page dynamic content
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $segment
-     *   Name of the segment to display content section for
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $type
-     *   Type of content section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateLandingPageDynamicContentUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $content_id,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $segment = null,
-        ?string $top = null,
-        ?string $type = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->updateLandingPageDynamicContentUsingPOSTRequest($id, $content_id, $background_color, $border_color, $border_style, $border_width, $height, $hide_desktop, $hide_mobile, $image_open_new_window, $left, $link_url, $opacity, $segment, $top, $type, $value, $width, $z_index),
-            [$this, 'updateLandingPageDynamicContentUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'updateLandingPageDynamicContentUsingPOST'
-     *
-     * @param int $id
-     *   Id of the landing page
-     * @param string $content_id
-     *   Id of the landing page dynamic content
-     * @param string|null $background_color
-     *   background-color property of the HTML section
-     * @param string|null $border_color
-     *   border-color property of the HTML section
-     * @param string|null $border_style
-     *   border-style property of the HTML section
-     * @param string|null $border_width
-     *   border-width property of the HTML section
-     * @param string|null $height
-     *   height property of the HTML section
-     * @param bool|null $hide_desktop
-     *   Hide the section when displayed on a desktop browser. Default false
-     * @param bool|null $hide_mobile
-     *   Hide the section when displayed on a mobile browser. Default false
-     * @param string|null $image_open_new_window
-     * @param string|null $left
-     *   left property of the HTML section
-     * @param string|null $link_url
-     *   URL parameter of a link type section
-     * @param string|null $opacity
-     *   opacity property of the HTML section
-     * @param string|null $segment
-     *   Name of the segment to display content section for
-     * @param string|null $top
-     *   top property of the HTML section
-     * @param string|null $type
-     *   Type of content section
-     * @param string|null $value
-     *   Type of content section
-     * @param string|null $width
-     *   width property of the HTML section
-     * @param string|null $z_index
-     *   z-index property of the HTML section
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateLandingPageDynamicContentUsingPOSTRequest(
-        int $id,
-        string $content_id,
-        ?string $background_color = null,
-        ?string $border_color = null,
-        ?string $border_style = null,
-        ?string $border_width = null,
-        ?string $height = null,
-        ?bool $hide_desktop = null,
-        ?bool $hide_mobile = null,
-        ?string $image_open_new_window = null,
-        ?string $left = null,
-        ?string $link_url = null,
-        ?string $opacity = null,
-        ?string $segment = null,
-        ?string $top = null,
-        ?string $type = null,
-        ?string $value = null,
-        ?string $width = null,
-        ?string $z_index = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json';
+        null|string $background_color = null,
+        null|string $border_color = null,
+        null|string $border_style = null,
+        null|string $border_width = null,
+        null|string $height = null,
+        null|bool $hide_desktop = null,
+        null|bool $hide_mobile = null,
+        null|string $image_open_new_window = null,
+        null|string $left = null,
+        null|string $link_url = null,
+        null|string $opacity = null,
+        null|string $segment = null,
+        null|string $top = null,
+        null|string $type = null,
+        null|string $value = null,
+        null|string $width = null,
+        null|string $z_index = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
-        );
-        $resourcePath = str_replace(
-            '{' . 'contentId' . '}',
-            ObjectSerializer::toPathValue($content_id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+                '{' . 'contentId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+                ObjectSerializer::toPathValue($content_id),
+            ],
+            '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -2113,44 +618,45 @@ class LandingPageContentApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'backgroundColor' => isset($background_color) ? ObjectSerializer::toFormValue($background_color) : null,
+                    'borderColor' => isset($border_color) ? ObjectSerializer::toFormValue($border_color) : null,
+                    'borderStyle' => isset($border_style) ? ObjectSerializer::toFormValue($border_style) : null,
+                    'borderWidth' => isset($border_width) ? ObjectSerializer::toFormValue($border_width) : null,
+                    'height' => isset($height) ? ObjectSerializer::toFormValue($height) : null,
+                    'hideDesktop' => isset($hide_desktop) ? ObjectSerializer::toFormValue($hide_desktop) : null,
+                    'hideMobile' => isset($hide_mobile) ? ObjectSerializer::toFormValue($hide_mobile) : null,
+                    'imageOpenNewWindow' => isset($image_open_new_window) ? ObjectSerializer::toFormValue($image_open_new_window) : null,
+                    'left' => isset($left) ? ObjectSerializer::toFormValue($left) : null,
+                    'linkUrl' => isset($link_url) ? ObjectSerializer::toFormValue($link_url) : null,
+                    'opacity' => isset($opacity) ? ObjectSerializer::toFormValue($opacity) : null,
+                    'segment' => isset($segment) ? ObjectSerializer::toFormValue($segment) : null,
+                    'top' => isset($top) ? ObjectSerializer::toFormValue($top) : null,
+                    'type' => isset($type) ? ObjectSerializer::toFormValue($type) : null,
+                    'value' => isset($value) ? ObjectSerializer::toFormValue($value) : null,
+                    'width' => isset($width) ? ObjectSerializer::toFormValue($width) : null,
+                    'zIndex' => isset($z_index) ? ObjectSerializer::toFormValue($z_index) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'backgroundColor' => isset($background_color) ? ObjectSerializer::toFormValue($background_color) : null,
-                'borderColor' => isset($border_color) ? ObjectSerializer::toFormValue($border_color) : null,
-                'borderStyle' => isset($border_style) ? ObjectSerializer::toFormValue($border_style) : null,
-                'borderWidth' => isset($border_width) ? ObjectSerializer::toFormValue($border_width) : null,
-                'height' => isset($height) ? ObjectSerializer::toFormValue($height) : null,
-                'hideDesktop' => isset($hide_desktop) ? ObjectSerializer::toFormValue($hide_desktop) : null,
-                'hideMobile' => isset($hide_mobile) ? ObjectSerializer::toFormValue($hide_mobile) : null,
-                'imageOpenNewWindow' => isset($image_open_new_window) ? ObjectSerializer::toFormValue($image_open_new_window) : null,
-                'left' => isset($left) ? ObjectSerializer::toFormValue($left) : null,
-                'linkUrl' => isset($link_url) ? ObjectSerializer::toFormValue($link_url) : null,
-                'opacity' => isset($opacity) ? ObjectSerializer::toFormValue($opacity) : null,
-                'segment' => isset($segment) ? ObjectSerializer::toFormValue($segment) : null,
-                'top' => isset($top) ? ObjectSerializer::toFormValue($top) : null,
-                'type' => isset($type) ? ObjectSerializer::toFormValue($type) : null,
-                'value' => isset($value) ? ObjectSerializer::toFormValue($value) : null,
-                'width' => isset($width) ? ObjectSerializer::toFormValue($width) : null,
-                'zIndex' => isset($z_index) ? ObjectSerializer::toFormValue($z_index) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 }

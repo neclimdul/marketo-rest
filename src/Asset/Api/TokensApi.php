@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Asset\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Asset\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Asset\Configuration;
 use NecLimDul\MarketoRest\Asset\HeaderSelector;
 use NecLimDul\MarketoRest\Asset\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class TokensApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Asset\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class TokensApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,228 +112,40 @@ class TokensApi
     }
 
     /**
-     * Exception handler for addTokenTOFolderUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function addTokenTOFolderUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Create Token
      *
      * @param int $id
      *   Id of the folder to which the token will be associated with
      * @param string $folder_type
-     *   Type of folder. &#39;Folder&#39; or &#39;Program&#39;
+     *   Type of folder. 'Folder' or 'Program'
      * @param string $name
      *   Name of the token. Max length is 50 characters)
      * @param string $type
      *   Type of the token
      * @param string $value
      *   Value of the token
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function addTokenTOFolderUsingPOST(
         int $id,
         string $folder_type,
         string $name,
         string $type,
-        string $value
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse {
-        [$response] = $this->addTokenTOFolderUsingPOSTWithHttpInfo($id, $folder_type, $name, $type, $value);
-        return $response;
-    }
-
-    /**
-     * Create Token
-     *
-     * @param int $id
-     *   Id of the folder to which the token will be associated with
-     * @param string $folder_type
-     *   Type of folder. &#39;Folder&#39; or &#39;Program&#39;
-     * @param string $name
-     *   Name of the token. Max length is 50 characters)
-     * @param string $type
-     *   Type of the token
-     * @param string $value
-     *   Value of the token
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function addTokenTOFolderUsingPOSTWithHttpInfo(
-        int $id,
-        string $folder_type,
-        string $name,
-        string $type,
-        string $value
-    ): array {
-        $request = $this->addTokenTOFolderUsingPOSTRequest($id, $folder_type, $name, $type, $value);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->addTokenTOFolderUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Create Token
-     *
-     * @param int $id
-     *   Id of the folder to which the token will be associated with
-     * @param string $folder_type
-     *   Type of folder. &#39;Folder&#39; or &#39;Program&#39;
-     * @param string $name
-     *   Name of the token. Max length is 50 characters)
-     * @param string $type
-     *   Type of the token
-     * @param string $value
-     *   Value of the token
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function addTokenTOFolderUsingPOSTAsync(
-        int $id,
-        string $folder_type,
-        string $name,
-        string $type,
-        string $value
-    ): PromiseInterface {
-        return $this->addTokenTOFolderUsingPOSTAsyncWithHttpInfo($id, $folder_type, $name, $type, $value)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse => $response[0]
-            );
-    }
-
-    /**
-     * Create Token
-     *
-     * @param int $id
-     *   Id of the folder to which the token will be associated with
-     * @param string $folder_type
-     *   Type of folder. &#39;Folder&#39; or &#39;Program&#39;
-     * @param string $name
-     *   Name of the token. Max length is 50 characters)
-     * @param string $type
-     *   Type of the token
-     * @param string $value
-     *   Value of the token
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function addTokenTOFolderUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        string $folder_type,
-        string $name,
-        string $type,
-        string $value
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->addTokenTOFolderUsingPOSTRequest($id, $folder_type, $name, $type, $value),
-            [$this, 'addTokenTOFolderUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'addTokenTOFolderUsingPOST'
-     *
-     * @param int $id
-     *   Id of the folder to which the token will be associated with
-     * @param string $folder_type
-     *   Type of folder. &#39;Folder&#39; or &#39;Program&#39;
-     * @param string $name
-     *   Name of the token. Max length is 50 characters)
-     * @param string $type
-     *   Type of the token
-     * @param string $value
-     *   Value of the token
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function addTokenTOFolderUsingPOSTRequest(
-        int $id,
-        string $folder_type,
-        string $name,
-        string $type,
-        string $value
-    ): Request {
-        $resourcePath = '/rest/asset/v1/folder/{id}/tokens.json';
+        string $value,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/folder/{id}/tokens.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -323,57 +153,33 @@ class TokensApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'folderType' => ObjectSerializer::toFormValue($folder_type),
+                    'name' => ObjectSerializer::toFormValue($name),
+                    'type' => ObjectSerializer::toFormValue($type),
+                    'value' => ObjectSerializer::toFormValue($value),
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'folderType' => ObjectSerializer::toFormValue($folder_type),
-                'name' => ObjectSerializer::toFormValue($name),
-                'type' => ObjectSerializer::toFormValue($type),
-                'value' => ObjectSerializer::toFormValue($value),
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for deleteTokenByNameUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function deleteTokenByNameUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -384,166 +190,27 @@ class TokensApi
      * @param string|null $folder_type
      * @param string|null $name
      * @param string|null $type
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function deleteTokenByNameUsingPOST(
         int $id,
-        ?string $folder_type = null,
-        ?string $name = null,
-        ?string $type = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
-        [$response] = $this->deleteTokenByNameUsingPOSTWithHttpInfo($id, $folder_type, $name, $type);
-        return $response;
-    }
-
-    /**
-     * Delete Token by Name
-     *
-     * @param int $id
-     *   id
-     * @param string|null $folder_type
-     * @param string|null $name
-     * @param string|null $type
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function deleteTokenByNameUsingPOSTWithHttpInfo(
-        int $id,
-        ?string $folder_type = null,
-        ?string $name = null,
-        ?string $type = null
-    ): array {
-        $request = $this->deleteTokenByNameUsingPOSTRequest($id, $folder_type, $name, $type);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->deleteTokenByNameUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Delete Token by Name
-     *
-     * @param int $id
-     *   id
-     * @param string|null $folder_type
-     * @param string|null $name
-     * @param string|null $type
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function deleteTokenByNameUsingPOSTAsync(
-        int $id,
-        ?string $folder_type = null,
-        ?string $name = null,
-        ?string $type = null
-    ): PromiseInterface {
-        return $this->deleteTokenByNameUsingPOSTAsyncWithHttpInfo($id, $folder_type, $name, $type)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse => $response[0]
-            );
-    }
-
-    /**
-     * Delete Token by Name
-     *
-     * @param int $id
-     *   id
-     * @param string|null $folder_type
-     * @param string|null $name
-     * @param string|null $type
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteTokenByNameUsingPOSTAsyncWithHttpInfo(
-        int $id,
-        ?string $folder_type = null,
-        ?string $name = null,
-        ?string $type = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->deleteTokenByNameUsingPOSTRequest($id, $folder_type, $name, $type),
-            [$this, 'deleteTokenByNameUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'deleteTokenByNameUsingPOST'
-     *
-     * @param int $id
-     *   id
-     * @param string|null $folder_type
-     * @param string|null $name
-     * @param string|null $type
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteTokenByNameUsingPOSTRequest(
-        int $id,
-        ?string $folder_type = null,
-        ?string $name = null,
-        ?string $type = null
-    ): Request {
-        $resourcePath = '/rest/asset/v1/folder/{id}/tokens/delete.json';
+        null|string $folder_type = null,
+        null|string $name = null,
+        null|string $type = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/folder/{id}/tokens/delete.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -551,56 +218,32 @@ class TokensApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            ['application/x-www-form-urlencoded']
+            ['application/x-www-form-urlencoded'],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'folderType' => isset($folder_type) ? ObjectSerializer::toFormValue($folder_type) : null,
+                    'name' => isset($name) ? ObjectSerializer::toFormValue($name) : null,
+                    'type' => isset($type) ? ObjectSerializer::toFormValue($type) : null,
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'folderType' => isset($folder_type) ? ObjectSerializer::toFormValue($folder_type) : null,
-                'name' => isset($name) ? ObjectSerializer::toFormValue($name) : null,
-                'type' => isset($type) ? ObjectSerializer::toFormValue($type) : null,
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getTokensByFolderIdUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Asset\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Asset\ApiException
-     *   Processed exception.
-     */
-    protected function getTokensByFolderIdUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -609,153 +252,26 @@ class TokensApi
      * @param int $id
      *   id
      * @param string|'Folder' $folder_type
-     *   Type of folder. &#39;Folder&#39; or &#39;Program&#39;
+     *   Type of folder. 'Folder' or 'Program'
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getTokensByFolderIdUsingGET(
         int $id,
-        string $folder_type = 'Folder'
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse {
-        [$response] = $this->getTokensByFolderIdUsingGETWithHttpInfo($id, $folder_type);
-        return $response;
-    }
-
-    /**
-     * Get Tokens by Folder Id
-     *
-     * @param int $id
-     *   id
-     * @param string|'Folder' $folder_type
-     *   Type of folder. &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getTokensByFolderIdUsingGETWithHttpInfo(
-        int $id,
-        string $folder_type = 'Folder'
-    ): array {
-        $request = $this->getTokensByFolderIdUsingGETRequest($id, $folder_type);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getTokensByFolderIdUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Tokens by Folder Id
-     *
-     * @param int $id
-     *   id
-     * @param string|'Folder' $folder_type
-     *   Type of folder. &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getTokensByFolderIdUsingGETAsync(
-        int $id,
-        string $folder_type = 'Folder'
-    ): PromiseInterface {
-        return $this->getTokensByFolderIdUsingGETAsyncWithHttpInfo($id, $folder_type)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Tokens by Folder Id
-     *
-     * @param int $id
-     *   id
-     * @param string|'Folder' $folder_type
-     *   Type of folder. &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getTokensByFolderIdUsingGETAsyncWithHttpInfo(
-        int $id,
-        string $folder_type = 'Folder'
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getTokensByFolderIdUsingGETRequest($id, $folder_type),
-            [$this, 'getTokensByFolderIdUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getTokensByFolderIdUsingGET'
-     *
-     * @param int $id
-     *   id
-     * @param string|'Folder' $folder_type
-     *   Type of folder. &#39;Folder&#39; or &#39;Program&#39;
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getTokensByFolderIdUsingGETRequest(
-        int $id,
-        string $folder_type = 'Folder'
-    ): Request {
-        $resourcePath = '/rest/asset/v1/folder/{id}/tokens.json';
+        string $folder_type = 'Folder',
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'id' . '}',
-            ObjectSerializer::toPathValue($id),
-            $resourcePath
+            [
+                '{' . 'id' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($id),
+            ],
+            '/rest/asset/v1/folder/{id}/tokens.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -763,28 +279,27 @@ class TokensApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'folderType' => ObjectSerializer::toQueryValue($folder_type),
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'folderType' => ObjectSerializer::toQueryValue($folder_type),
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 }

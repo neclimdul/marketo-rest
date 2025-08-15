@@ -33,7 +33,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @psalm-suppress MixedReturnStatement
  * @psalm-suppress MixedInferredReturnType
  */
-class RedirectFrom extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable, \Stringable
+class RedirectFrom extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     use AdditionalPropertiesTrait;
 
@@ -239,7 +239,6 @@ class RedirectFrom extends ModelBase implements ModelInterface, \ArrayAccess, \J
      * @return string
      * @throws \JsonException
      */
-    #[\Override]
     public function __toString(): string
     {
         return json_encode(

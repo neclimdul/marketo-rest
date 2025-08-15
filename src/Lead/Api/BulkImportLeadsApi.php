@@ -8,15 +8,19 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Lead\Api;
 
-use GuzzleHttp\Client;
+// Library Includes
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Request;
-use Neclimdul\OpenapiPhp\Helper\RequestHelperTrait;
-use Psr\Http\Message\ResponseInterface;
-use NecLimDul\MarketoRest\Lead\ApiException;
+use GuzzleHttp\Psr7\HttpFactory;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
+use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+// Package Includes
 use NecLimDul\MarketoRest\Lead\Configuration;
 use NecLimDul\MarketoRest\Lead\HeaderSelector;
 use NecLimDul\MarketoRest\Lead\ObjectSerializer;
@@ -36,14 +40,21 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class BulkImportLeadsApi
 {
-    /**
-     * @use RequestHelperTrait<ApiException,\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
-     */
-    use RequestHelperTrait;
-
     protected Configuration $config;
 
     protected HeaderSelector $headerSelector;
+
+    protected int $hostIndex;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     */
+    private Client $client;
+
+    /**
+     * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Lead\Model\ModelInterface>
+     */
+    private RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
@@ -56,14 +67,21 @@ class BulkImportLeadsApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        protected int $hostIndex = 0
+        int $hostIndex = 0
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->setSerializerForRequest(ObjectSerializer::getDefaultSerializer());
-        $this->setConfigForRequest($this->config);
-        $this->setClientForRequest($client ?: new Client());
-        $this->setExceptionForRequest(ApiException::class);
+        $this->hostIndex = $hostIndex;
+        // TODO Inject me.
+        $this->client = new Client(
+            $client ?: new GuzzleClient(),
+            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+        );
+        // TODO Inject me.
+        $this->requestFactory = new RequestFactory(
+            new HttpFactory(),
+            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+        );
     }
 
     /**
@@ -94,175 +112,28 @@ class BulkImportLeadsApi
     }
 
     /**
-     * Exception handler for getImportLeadFailuresUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getImportLeadFailuresUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                /**
-                 * Psalm doesn't understand what to do if we're hinting an array.
-                 *
-                 * @psalm-suppress ArgumentTypeCoercion
-                 * @psalm-suppress UndefinedClass
-                 * @psalm-suppress ReservedWord
-                 */
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        'object', // @phpstan-ignore argument.type
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
-    }
-
-    /**
      * Get Import Lead Failures
      *
      * @param int $batch_id
      *   Id of the import batch job.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return object
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getImportLeadFailuresUsingGET(
-        int $batch_id
-    ): object {
-        [$response] = $this->getImportLeadFailuresUsingGETWithHttpInfo($batch_id);
-        return $response;
-    }
-
-    /**
-     * Get Import Lead Failures
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     object,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getImportLeadFailuresUsingGETWithHttpInfo(
-        int $batch_id
-    ): array {
-        $request = $this->getImportLeadFailuresUsingGETRequest($batch_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getImportLeadFailuresUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                'object'
-            ),
-            default => $this->responseToReturn(
-                $response,
-                'object'
-            ),
-        };
-    }
-
-    /**
-     * Get Import Lead Failures
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getImportLeadFailuresUsingGETAsync(
-        int $batch_id
-    ): PromiseInterface {
-        return $this->getImportLeadFailuresUsingGETAsyncWithHttpInfo($batch_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     object,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): object => $response[0]
-            );
-    }
-
-    /**
-     * Get Import Lead Failures
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getImportLeadFailuresUsingGETAsyncWithHttpInfo(
-        int $batch_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getImportLeadFailuresUsingGETRequest($batch_id),
-            [$this, 'getImportLeadFailuresUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        'object'
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        'object'
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getImportLeadFailuresUsingGET'
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getImportLeadFailuresUsingGETRequest(
-        int $batch_id
-    ): Request {
-        $resourcePath = '/bulk/v1/leads/batch/{batchId}/failures.json';
+        int $batch_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'batchId' . '}',
-            ObjectSerializer::toPathValue($batch_id),
-            $resourcePath
+            [
+                '{' . 'batchId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($batch_id),
+            ],
+            '/bulk/v1/leads/batch/{batchId}/failures.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -270,53 +141,27 @@ class BulkImportLeadsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getImportLeadStatusUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getImportLeadStatusUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -324,139 +169,24 @@ class BulkImportLeadsApi
      *
      * @param int $batch_id
      *   Id of the import batch job.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getImportLeadStatusUsingGET(
-        int $batch_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse {
-        [$response] = $this->getImportLeadStatusUsingGETWithHttpInfo($batch_id);
-        return $response;
-    }
-
-    /**
-     * Get Import Lead Status
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getImportLeadStatusUsingGETWithHttpInfo(
-        int $batch_id
-    ): array {
-        $request = $this->getImportLeadStatusUsingGETRequest($batch_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getImportLeadStatusUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Get Import Lead Status
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getImportLeadStatusUsingGETAsync(
-        int $batch_id
-    ): PromiseInterface {
-        return $this->getImportLeadStatusUsingGETAsyncWithHttpInfo($batch_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse => $response[0]
-            );
-    }
-
-    /**
-     * Get Import Lead Status
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getImportLeadStatusUsingGETAsyncWithHttpInfo(
-        int $batch_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getImportLeadStatusUsingGETRequest($batch_id),
-            [$this, 'getImportLeadStatusUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getImportLeadStatusUsingGET'
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getImportLeadStatusUsingGETRequest(
-        int $batch_id
-    ): Request {
-        $resourcePath = '/bulk/v1/leads/batch/{batchId}.json';
+        int $batch_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'batchId' . '}',
-            ObjectSerializer::toPathValue($batch_id),
-            $resourcePath
+            [
+                '{' . 'batchId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($batch_id),
+            ],
+            '/bulk/v1/leads/batch/{batchId}.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -464,60 +194,27 @@ class BulkImportLeadsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for getImportLeadWarningsUsingGET.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function getImportLeadWarningsUsingGETHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                /**
-                 * Psalm doesn't understand what to do if we're hinting an array.
-                 *
-                 * @psalm-suppress ArgumentTypeCoercion
-                 * @psalm-suppress UndefinedClass
-                 * @psalm-suppress ReservedWord
-                 */
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        'object', // @phpstan-ignore argument.type
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -525,139 +222,24 @@ class BulkImportLeadsApi
      *
      * @param int $batch_id
      *   Id of the import batch job.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return object
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function getImportLeadWarningsUsingGET(
-        int $batch_id
-    ): object {
-        [$response] = $this->getImportLeadWarningsUsingGETWithHttpInfo($batch_id);
-        return $response;
-    }
-
-    /**
-     * Get Import Lead Warnings
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     object,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function getImportLeadWarningsUsingGETWithHttpInfo(
-        int $batch_id
-    ): array {
-        $request = $this->getImportLeadWarningsUsingGETRequest($batch_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->getImportLeadWarningsUsingGETHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                'object'
-            ),
-            default => $this->responseToReturn(
-                $response,
-                'object'
-            ),
-        };
-    }
-
-    /**
-     * Get Import Lead Warnings
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function getImportLeadWarningsUsingGETAsync(
-        int $batch_id
-    ): PromiseInterface {
-        return $this->getImportLeadWarningsUsingGETAsyncWithHttpInfo($batch_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     object,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): object => $response[0]
-            );
-    }
-
-    /**
-     * Get Import Lead Warnings
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getImportLeadWarningsUsingGETAsyncWithHttpInfo(
-        int $batch_id
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->getImportLeadWarningsUsingGETRequest($batch_id),
-            [$this, 'getImportLeadWarningsUsingGETHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        'object'
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        'object'
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'getImportLeadWarningsUsingGET'
-     *
-     * @param int $batch_id
-     *   Id of the import batch job.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getImportLeadWarningsUsingGETRequest(
-        int $batch_id
-    ): Request {
-        $resourcePath = '/bulk/v1/leads/batch/{batchId}/warnings.json';
+        int $batch_id,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = str_replace(
-            '{' . 'batchId' . '}',
-            ObjectSerializer::toPathValue($batch_id),
-            $resourcePath
+            [
+                '{' . 'batchId' . '}',
+            ],
+            [
+                ObjectSerializer::toPathValue($batch_id),
+            ],
+            '/bulk/v1/leads/batch/{batchId}/warnings.json',
         );
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -665,53 +247,27 @@ class BulkImportLeadsApi
         }
         $headers = array_merge($headers, $this->headerSelector->selectHeaders(
             ['application/json'],
-            []
+            [],
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'GET',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'GET',
+                $operationHost . $resourcePath,
+                // Query.
                 [
                 ],
-                $headers
+                $headers,
+                [],
+                '',
             ),
-            // Form Params
-            [
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
-    }
-
-    /**
-     * Exception handler for importLeadUsingPOST.
-     *
-     * @param \NecLimDul\MarketoRest\Lead\ApiException $e
-     *   Unprocessed exception.
-     *
-     * @return \NecLimDul\MarketoRest\Lead\ApiException
-     *   Processed exception.
-     */
-    protected function importLeadUsingPOSTHandleException(ApiException $e): ApiException
-    {
-        switch ($e->getCode()) {
-            case 200:
-                $e->setResponseObject(
-                    ObjectSerializer::deserialize(
-                        $e->getResponseBody() ?? '',
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class,
-                        $e->getResponseHeaders()
-                    )
-                );
-                break;
-        }
-        return $e;
     }
 
     /**
@@ -722,191 +278,25 @@ class BulkImportLeadsApi
      * @param \SplFileObject $file
      *   File containing the data records to import.
      * @param string|null $lookup_field
-     *   Field to use for deduplication. Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId. Default is email.&lt;br&gt;Note: You can use id for update only operations.
+     *   Field to use for deduplication. Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId. Default is email.<br>Note: You can use id for update only operations.
      * @param string|null $partition_name
      *   Name of the lead partition to import to.
      * @param int|null $list_id
      *   Id of the static list to import into.
+     * @param bool $async
+     *   Set to true to make an async request.
      *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse
+     * @return \Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface
      */
     public function importLeadUsingPOST(
         string $format,
         \SplFileObject $file,
-        ?string $lookup_field = null,
-        ?string $partition_name = null,
-        ?int $list_id = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse {
-        [$response] = $this->importLeadUsingPOSTWithHttpInfo($format, $file, $lookup_field, $partition_name, $list_id);
-        return $response;
-    }
-
-    /**
-     * Import Leads
-     *
-     * @param string $format
-     *   Import file format.
-     * @param \SplFileObject $file
-     *   File containing the data records to import.
-     * @param string|null $lookup_field
-     *   Field to use for deduplication. Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId. Default is email.&lt;br&gt;Note: You can use id for update only operations.
-     * @param string|null $partition_name
-     *   Name of the lead partition to import to.
-     * @param int|null $list_id
-     *   Id of the static list to import into.
-     *
-     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of the response, status code, and headers.
-     * @psalm-suppress MoreSpecificReturnType
-     * @psalm-suppress InvalidReturnType
-     * @phpstan-return array{
-     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse,
-     *     int,
-     *     array<array<string>>
-     * }
-     */
-    public function importLeadUsingPOSTWithHttpInfo(
-        string $format,
-        \SplFileObject $file,
-        ?string $lookup_field = null,
-        ?string $partition_name = null,
-        ?int $list_id = null
-    ): array {
-        $request = $this->importLeadUsingPOSTRequest($format, $file, $lookup_field, $partition_name, $list_id);
-        try {
-            $response = $this->makeRequest($request);
-        } catch (ApiException $e) {
-            throw $this->importLeadUsingPOSTHandleException($e);
-        }
-        /**
-         * @psalm-suppress LessSpecificReturnStatement
-         * @psalm-suppress InvalidReturnStatement
-         */
-        return match ($response->getStatusCode()) {
-            200 => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class
-            ),
-            default => $this->responseToReturn(
-                $response,
-                \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class
-            ),
-        };
-    }
-
-    /**
-     * Import Leads
-     *
-     * @param string $format
-     *   Import file format.
-     * @param \SplFileObject $file
-     *   File containing the data records to import.
-     * @param string|null $lookup_field
-     *   Field to use for deduplication. Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId. Default is email.&lt;br&gt;Note: You can use id for update only operations.
-     * @param string|null $partition_name
-     *   Name of the lead partition to import to.
-     * @param int|null $list_id
-     *   Id of the static list to import into.
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function importLeadUsingPOSTAsync(
-        string $format,
-        \SplFileObject $file,
-        ?string $lookup_field = null,
-        ?string $partition_name = null,
-        ?int $list_id = null
-    ): PromiseInterface {
-        return $this->importLeadUsingPOSTAsyncWithHttpInfo($format, $file, $lookup_field, $partition_name, $list_id)
-            ->then(
-                /**
-                 * @phpstan-param array{
-                 *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse,
-                 *     int,
-                 *     array<array<string>>
-                 * } $response
-                 */
-                fn(array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse => $response[0]
-            );
-    }
-
-    /**
-     * Import Leads
-     *
-     * @param string $format
-     *   Import file format.
-     * @param \SplFileObject $file
-     *   File containing the data records to import.
-     * @param string|null $lookup_field
-     *   Field to use for deduplication. Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId. Default is email.&lt;br&gt;Note: You can use id for update only operations.
-     * @param string|null $partition_name
-     *   Name of the lead partition to import to.
-     * @param int|null $list_id
-     *   Id of the static list to import into.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function importLeadUsingPOSTAsyncWithHttpInfo(
-        string $format,
-        \SplFileObject $file,
-        ?string $lookup_field = null,
-        ?string $partition_name = null,
-        ?int $list_id = null
-    ): PromiseInterface {
-        return $this->makeAsyncRequest(
-            $this->importLeadUsingPOSTRequest($format, $file, $lookup_field, $partition_name, $list_id),
-            [$this, 'importLeadUsingPOSTHandleException']
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface && $r->getStatusCode() == 200) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class
-                    );
-                }
-                return $r;
-            }
-        )->then(
-            function (mixed $r) {
-                if ($r instanceof ResponseInterface) {
-                    $r = $this->responseToReturn(
-                        $r,
-                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class
-                    );
-                }
-                return $r;
-            }
-        );
-    }
-
-    /**
-     * Create request for operation 'importLeadUsingPOST'
-     *
-     * @param string $format
-     *   Import file format.
-     * @param \SplFileObject $file
-     *   File containing the data records to import.
-     * @param string|null $lookup_field
-     *   Field to use for deduplication. Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId. Default is email.&lt;br&gt;Note: You can use id for update only operations.
-     * @param string|null $partition_name
-     *   Name of the lead partition to import to.
-     * @param int|null $list_id
-     *   Id of the static list to import into.
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function importLeadUsingPOSTRequest(
-        string $format,
-        \SplFileObject $file,
-        ?string $lookup_field = null,
-        ?string $partition_name = null,
-        ?int $list_id = null
-    ): Request {
+        null|string $lookup_field = null,
+        null|string $partition_name = null,
+        null|int $list_id = null,
+        bool $async = false,
+    ): ApiResponseInterface {
         $resourcePath = '/bulk/v1/leads.json';
         $headers = [];
         if ($this->config->getUserAgent()) {
@@ -917,28 +307,29 @@ class BulkImportLeadsApi
         ));
         $operationHost = $this->config->getHost();
 
-        // figure out header select logic.
-        return $this->createRequest(
-            'POST',
-            $operationHost . $resourcePath,
-            // Query.
-            [
-                'format' => ObjectSerializer::toQueryValue($format),
-                'lookupField' => isset($lookup_field) ? ObjectSerializer::toQueryValue($lookup_field) : null,
-                'partitionName' => isset($partition_name) ? ObjectSerializer::toQueryValue($partition_name) : null,
-                'listId' => isset($list_id) ? ObjectSerializer::toQueryValue($list_id) : null,
-            ],
-            // Headers.
-            array_merge(
+        $responseMap = new ResponseTypeMap([]);
+        $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse']);
+        // TODO figure out header select logic.
+        return $this->client->makeRequest(
+            $this->requestFactory->createRequest(
+                'POST',
+                $operationHost . $resourcePath,
+                // Query.
                 [
+                    'format' => ObjectSerializer::toQueryValue($format),
+                    'lookupField' => isset($lookup_field) ? ObjectSerializer::toQueryValue($lookup_field) : null,
+                    'partitionName' => isset($partition_name) ? ObjectSerializer::toQueryValue($partition_name) : null,
+                    'listId' => isset($list_id) ? ObjectSerializer::toQueryValue($list_id) : null,
                 ],
-                $headers
+                $headers,
+                // has form params
+                [
+                    'file' => ObjectSerializer::fileToFormValue($file),
+                ],
+                '',
             ),
-            // Form Params
-            [
-                'file' => ObjectSerializer::fileToFormValue($file),
-            ],
-            ''
+            $responseMap,
+            async: $async,
         );
     }
 }

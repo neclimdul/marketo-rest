@@ -119,7 +119,7 @@ class SmartCampaignsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class SmartCampaignsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class SmartCampaignsApiTest extends TestCase
     /**
      * @dataProvider provideActivateSmartCampaignUsingPOST
      * @covers ::activateSmartCampaignUsingPOST
-     * @covers ::activateSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testActivateSmartCampaignUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class SmartCampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'activateSmartCampaignUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideActivateSmartCampaignUsingPOST
-     * @covers ::activateSmartCampaignUsingPOSTWithHttpInfo
-     * @covers ::activateSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testActivateSmartCampaignUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'activateSmartCampaignUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideActivateSmartCampaignUsingPOST
-     * @covers ::activateSmartCampaignUsingPOSTAsync
-     * @covers ::activateSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testActivateSmartCampaignUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'activateSmartCampaignUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideActivateSmartCampaignUsingPOST
-     * @covers ::activateSmartCampaignUsingPOSTAsyncWithHttpInfo
-     * @covers ::activateSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testActivateSmartCampaignUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'activateSmartCampaignUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCloneSmartCampaignUsingPOST(): \Generator
@@ -233,7 +173,7 @@ class SmartCampaignsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -244,7 +184,7 @@ class SmartCampaignsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
     }
@@ -252,8 +192,6 @@ class SmartCampaignsApiTest extends TestCase
     /**
      * @dataProvider provideCloneSmartCampaignUsingPOST
      * @covers ::cloneSmartCampaignUsingPOST
-     * @covers ::cloneSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCloneSmartCampaignUsingPOST(
         int $code,
@@ -268,65 +206,7 @@ class SmartCampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'cloneSmartCampaignUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneSmartCampaignUsingPOST
-     * @covers ::cloneSmartCampaignUsingPOSTWithHttpInfo
-     * @covers ::cloneSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCloneSmartCampaignUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneSmartCampaignUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneSmartCampaignUsingPOST
-     * @covers ::cloneSmartCampaignUsingPOSTAsync
-     * @covers ::cloneSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneSmartCampaignUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneSmartCampaignUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCloneSmartCampaignUsingPOST
-     * @covers ::cloneSmartCampaignUsingPOSTAsyncWithHttpInfo
-     * @covers ::cloneSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCloneSmartCampaignUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'cloneSmartCampaignUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideCreateSmartCampaignUsingPOST(): \Generator
@@ -348,7 +228,7 @@ class SmartCampaignsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -358,7 +238,7 @@ class SmartCampaignsApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
     }
@@ -366,8 +246,6 @@ class SmartCampaignsApiTest extends TestCase
     /**
      * @dataProvider provideCreateSmartCampaignUsingPOST
      * @covers ::createSmartCampaignUsingPOST
-     * @covers ::createSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateSmartCampaignUsingPOST(
         int $code,
@@ -382,65 +260,7 @@ class SmartCampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createSmartCampaignUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateSmartCampaignUsingPOST
-     * @covers ::createSmartCampaignUsingPOSTWithHttpInfo
-     * @covers ::createSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateSmartCampaignUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createSmartCampaignUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateSmartCampaignUsingPOST
-     * @covers ::createSmartCampaignUsingPOSTAsync
-     * @covers ::createSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateSmartCampaignUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createSmartCampaignUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateSmartCampaignUsingPOST
-     * @covers ::createSmartCampaignUsingPOSTAsyncWithHttpInfo
-     * @covers ::createSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateSmartCampaignUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createSmartCampaignUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeactivateSmartCampaignUsingPOST(): \Generator
@@ -458,7 +278,7 @@ class SmartCampaignsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -466,7 +286,7 @@ class SmartCampaignsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -474,8 +294,6 @@ class SmartCampaignsApiTest extends TestCase
     /**
      * @dataProvider provideDeactivateSmartCampaignUsingPOST
      * @covers ::deactivateSmartCampaignUsingPOST
-     * @covers ::deactivateSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeactivateSmartCampaignUsingPOST(
         int $code,
@@ -490,65 +308,7 @@ class SmartCampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deactivateSmartCampaignUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeactivateSmartCampaignUsingPOST
-     * @covers ::deactivateSmartCampaignUsingPOSTWithHttpInfo
-     * @covers ::deactivateSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeactivateSmartCampaignUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deactivateSmartCampaignUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeactivateSmartCampaignUsingPOST
-     * @covers ::deactivateSmartCampaignUsingPOSTAsync
-     * @covers ::deactivateSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeactivateSmartCampaignUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deactivateSmartCampaignUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeactivateSmartCampaignUsingPOST
-     * @covers ::deactivateSmartCampaignUsingPOSTAsyncWithHttpInfo
-     * @covers ::deactivateSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeactivateSmartCampaignUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deactivateSmartCampaignUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteSmartCampaignUsingPOST(): \Generator
@@ -566,7 +326,7 @@ class SmartCampaignsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -574,7 +334,7 @@ class SmartCampaignsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -582,8 +342,6 @@ class SmartCampaignsApiTest extends TestCase
     /**
      * @dataProvider provideDeleteSmartCampaignUsingPOST
      * @covers ::deleteSmartCampaignUsingPOST
-     * @covers ::deleteSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteSmartCampaignUsingPOST(
         int $code,
@@ -598,65 +356,7 @@ class SmartCampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteSmartCampaignUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteSmartCampaignUsingPOST
-     * @covers ::deleteSmartCampaignUsingPOSTWithHttpInfo
-     * @covers ::deleteSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteSmartCampaignUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteSmartCampaignUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteSmartCampaignUsingPOST
-     * @covers ::deleteSmartCampaignUsingPOSTAsync
-     * @covers ::deleteSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteSmartCampaignUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteSmartCampaignUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteSmartCampaignUsingPOST
-     * @covers ::deleteSmartCampaignUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteSmartCampaignUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteSmartCampaignUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetAllSmartCampaignsGET(): \Generator
@@ -684,7 +384,7 @@ class SmartCampaignsApiTest extends TestCase
                 'string',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -697,7 +397,7 @@ class SmartCampaignsApiTest extends TestCase
                 'string',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
     }
@@ -705,8 +405,6 @@ class SmartCampaignsApiTest extends TestCase
     /**
      * @dataProvider provideGetAllSmartCampaignsGET
      * @covers ::getAllSmartCampaignsGET
-     * @covers ::getAllSmartCampaignsGETRequest
-     * @covers ::makeRequest
      */
     public function testGetAllSmartCampaignsGET(
         int $code,
@@ -721,65 +419,7 @@ class SmartCampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getAllSmartCampaignsGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllSmartCampaignsGET
-     * @covers ::getAllSmartCampaignsGETWithHttpInfo
-     * @covers ::getAllSmartCampaignsGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetAllSmartCampaignsGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllSmartCampaignsGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllSmartCampaignsGET
-     * @covers ::getAllSmartCampaignsGETAsync
-     * @covers ::getAllSmartCampaignsGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetAllSmartCampaignsGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllSmartCampaignsGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetAllSmartCampaignsGET
-     * @covers ::getAllSmartCampaignsGETAsyncWithHttpInfo
-     * @covers ::getAllSmartCampaignsGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetAllSmartCampaignsGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getAllSmartCampaignsGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetSmartCampaignByIdUsingGET(): \Generator
@@ -797,7 +437,7 @@ class SmartCampaignsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -805,7 +445,7 @@ class SmartCampaignsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
     }
@@ -813,8 +453,6 @@ class SmartCampaignsApiTest extends TestCase
     /**
      * @dataProvider provideGetSmartCampaignByIdUsingGET
      * @covers ::getSmartCampaignByIdUsingGET
-     * @covers ::getSmartCampaignByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSmartCampaignByIdUsingGET(
         int $code,
@@ -829,65 +467,7 @@ class SmartCampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSmartCampaignByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartCampaignByIdUsingGET
-     * @covers ::getSmartCampaignByIdUsingGETWithHttpInfo
-     * @covers ::getSmartCampaignByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSmartCampaignByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartCampaignByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartCampaignByIdUsingGET
-     * @covers ::getSmartCampaignByIdUsingGETAsync
-     * @covers ::getSmartCampaignByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartCampaignByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartCampaignByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartCampaignByIdUsingGET
-     * @covers ::getSmartCampaignByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getSmartCampaignByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartCampaignByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartCampaignByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetSmartCampaignByNameUsingGET(): \Generator
@@ -905,7 +485,7 @@ class SmartCampaignsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -913,7 +493,7 @@ class SmartCampaignsApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
     }
@@ -921,8 +501,6 @@ class SmartCampaignsApiTest extends TestCase
     /**
      * @dataProvider provideGetSmartCampaignByNameUsingGET
      * @covers ::getSmartCampaignByNameUsingGET
-     * @covers ::getSmartCampaignByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSmartCampaignByNameUsingGET(
         int $code,
@@ -937,65 +515,7 @@ class SmartCampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSmartCampaignByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartCampaignByNameUsingGET
-     * @covers ::getSmartCampaignByNameUsingGETWithHttpInfo
-     * @covers ::getSmartCampaignByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSmartCampaignByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartCampaignByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartCampaignByNameUsingGET
-     * @covers ::getSmartCampaignByNameUsingGETAsync
-     * @covers ::getSmartCampaignByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartCampaignByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartCampaignByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartCampaignByNameUsingGET
-     * @covers ::getSmartCampaignByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getSmartCampaignByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartCampaignByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartCampaignByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetSmartListBySmartCampaignIdUsingGET(): \Generator
@@ -1015,7 +535,7 @@ class SmartCampaignsApiTest extends TestCase
                 'int',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1024,7 +544,7 @@ class SmartCampaignsApiTest extends TestCase
                 'int',
                 'bool',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+            null,
             ['application/json']
         );
     }
@@ -1032,8 +552,6 @@ class SmartCampaignsApiTest extends TestCase
     /**
      * @dataProvider provideGetSmartListBySmartCampaignIdUsingGET
      * @covers ::getSmartListBySmartCampaignIdUsingGET
-     * @covers ::getSmartListBySmartCampaignIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetSmartListBySmartCampaignIdUsingGET(
         int $code,
@@ -1048,65 +566,7 @@ class SmartCampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getSmartListBySmartCampaignIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListBySmartCampaignIdUsingGET
-     * @covers ::getSmartListBySmartCampaignIdUsingGETWithHttpInfo
-     * @covers ::getSmartListBySmartCampaignIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetSmartListBySmartCampaignIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListBySmartCampaignIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListBySmartCampaignIdUsingGET
-     * @covers ::getSmartListBySmartCampaignIdUsingGETAsync
-     * @covers ::getSmartListBySmartCampaignIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartListBySmartCampaignIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListBySmartCampaignIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetSmartListBySmartCampaignIdUsingGET
-     * @covers ::getSmartListBySmartCampaignIdUsingGETAsyncWithHttpInfo
-     * @covers ::getSmartListBySmartCampaignIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetSmartListBySmartCampaignIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getSmartListBySmartCampaignIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateSmartCampaignUsingPOST(): \Generator
@@ -1126,7 +586,7 @@ class SmartCampaignsApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1135,7 +595,7 @@ class SmartCampaignsApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+            null,
             ['application/json']
         );
     }
@@ -1143,8 +603,6 @@ class SmartCampaignsApiTest extends TestCase
     /**
      * @dataProvider provideUpdateSmartCampaignUsingPOST
      * @covers ::updateSmartCampaignUsingPOST
-     * @covers ::updateSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateSmartCampaignUsingPOST(
         int $code,
@@ -1159,64 +617,6 @@ class SmartCampaignsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateSmartCampaignUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateSmartCampaignUsingPOST
-     * @covers ::updateSmartCampaignUsingPOSTWithHttpInfo
-     * @covers ::updateSmartCampaignUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateSmartCampaignUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateSmartCampaignUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateSmartCampaignUsingPOST
-     * @covers ::updateSmartCampaignUsingPOSTAsync
-     * @covers ::updateSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateSmartCampaignUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateSmartCampaignUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateSmartCampaignUsingPOST
-     * @covers ::updateSmartCampaignUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateSmartCampaignUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateSmartCampaignUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateSmartCampaignUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

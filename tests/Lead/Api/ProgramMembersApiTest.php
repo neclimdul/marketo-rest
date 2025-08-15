@@ -119,7 +119,7 @@ class ProgramMembersApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class ProgramMembersApiTest extends TestCase
             [
                 '\NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class ProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideCreateProgramMemberFieldUsingPOST
      * @covers ::createProgramMemberFieldUsingPOST
-     * @covers ::createProgramMemberFieldUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateProgramMemberFieldUsingPOST(
         int $code,
@@ -151,65 +149,7 @@ class ProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createProgramMemberFieldUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateProgramMemberFieldUsingPOST
-     * @covers ::createProgramMemberFieldUsingPOSTWithHttpInfo
-     * @covers ::createProgramMemberFieldUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateProgramMemberFieldUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createProgramMemberFieldUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateProgramMemberFieldUsingPOST
-     * @covers ::createProgramMemberFieldUsingPOSTAsync
-     * @covers ::createProgramMemberFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateProgramMemberFieldUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createProgramMemberFieldUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateProgramMemberFieldUsingPOST
-     * @covers ::createProgramMemberFieldUsingPOSTAsyncWithHttpInfo
-     * @covers ::createProgramMemberFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateProgramMemberFieldUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createProgramMemberFieldUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteProgramMemberUsingPOST(): \Generator
@@ -229,7 +169,7 @@ class ProgramMembersApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -238,7 +178,7 @@ class ProgramMembersApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete',
+            null,
             ['application/json']
         );
     }
@@ -246,8 +186,6 @@ class ProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideDeleteProgramMemberUsingPOST
      * @covers ::deleteProgramMemberUsingPOST
-     * @covers ::deleteProgramMemberUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteProgramMemberUsingPOST(
         int $code,
@@ -262,65 +200,7 @@ class ProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteProgramMemberUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteProgramMemberUsingPOST
-     * @covers ::deleteProgramMemberUsingPOSTWithHttpInfo
-     * @covers ::deleteProgramMemberUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteProgramMemberUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteProgramMemberUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteProgramMemberUsingPOST
-     * @covers ::deleteProgramMemberUsingPOSTAsync
-     * @covers ::deleteProgramMemberUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteProgramMemberUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteProgramMemberUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteProgramMemberUsingPOST
-     * @covers ::deleteProgramMemberUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteProgramMemberUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteProgramMemberUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteProgramMemberUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDescribeProgramMemberUsingGET2(): \Generator
@@ -336,14 +216,14 @@ class ProgramMembersApiTest extends TestCase
             299,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
             499,
             [
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2',
+            null,
             ['application/json']
         );
     }
@@ -351,8 +231,6 @@ class ProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideDescribeProgramMemberUsingGET2
      * @covers ::describeProgramMemberUsingGET2
-     * @covers ::describeProgramMemberUsingGET2Request
-     * @covers ::makeRequest
      */
     public function testDescribeProgramMemberUsingGET2(
         int $code,
@@ -367,65 +245,7 @@ class ProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'describeProgramMemberUsingGET2'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeProgramMemberUsingGET2
-     * @covers ::describeProgramMemberUsingGET2WithHttpInfo
-     * @covers ::describeProgramMemberUsingGET2Request
-     * @covers ::makeRequest
-     */
-    public function testDescribeProgramMemberUsingGET2WithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeProgramMemberUsingGET2WithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeProgramMemberUsingGET2
-     * @covers ::describeProgramMemberUsingGET2Async
-     * @covers ::describeProgramMemberUsingGET2Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeProgramMemberUsingGET2Async(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeProgramMemberUsingGET2Async'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDescribeProgramMemberUsingGET2
-     * @covers ::describeProgramMemberUsingGET2AsyncWithHttpInfo
-     * @covers ::describeProgramMemberUsingGET2Request
-     * @covers ::makeAsyncRequest
-     */
-    public function testDescribeProgramMemberUsingGET2AsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'describeProgramMemberUsingGET2AsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetProgramMemberFieldByNameUsingGET(): \Generator
@@ -443,7 +263,7 @@ class ProgramMembersApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -451,7 +271,7 @@ class ProgramMembersApiTest extends TestCase
             [
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
     }
@@ -459,8 +279,6 @@ class ProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideGetProgramMemberFieldByNameUsingGET
      * @covers ::getProgramMemberFieldByNameUsingGET
-     * @covers ::getProgramMemberFieldByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetProgramMemberFieldByNameUsingGET(
         int $code,
@@ -475,65 +293,7 @@ class ProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getProgramMemberFieldByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramMemberFieldByNameUsingGET
-     * @covers ::getProgramMemberFieldByNameUsingGETWithHttpInfo
-     * @covers ::getProgramMemberFieldByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetProgramMemberFieldByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramMemberFieldByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramMemberFieldByNameUsingGET
-     * @covers ::getProgramMemberFieldByNameUsingGETAsync
-     * @covers ::getProgramMemberFieldByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramMemberFieldByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramMemberFieldByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramMemberFieldByNameUsingGET
-     * @covers ::getProgramMemberFieldByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getProgramMemberFieldByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramMemberFieldByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramMemberFieldByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetProgramMemberFieldsUsingGET(): \Generator
@@ -553,7 +313,7 @@ class ProgramMembersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -562,7 +322,7 @@ class ProgramMembersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+            null,
             ['application/json']
         );
     }
@@ -570,8 +330,6 @@ class ProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideGetProgramMemberFieldsUsingGET
      * @covers ::getProgramMemberFieldsUsingGET
-     * @covers ::getProgramMemberFieldsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetProgramMemberFieldsUsingGET(
         int $code,
@@ -586,65 +344,7 @@ class ProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getProgramMemberFieldsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramMemberFieldsUsingGET
-     * @covers ::getProgramMemberFieldsUsingGETWithHttpInfo
-     * @covers ::getProgramMemberFieldsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetProgramMemberFieldsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramMemberFieldsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramMemberFieldsUsingGET
-     * @covers ::getProgramMemberFieldsUsingGETAsync
-     * @covers ::getProgramMemberFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramMemberFieldsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramMemberFieldsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramMemberFieldsUsingGET
-     * @covers ::getProgramMemberFieldsUsingGETAsyncWithHttpInfo
-     * @covers ::getProgramMemberFieldsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramMemberFieldsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramMemberFieldsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetProgramMembersUsingGET(): \Generator
@@ -676,7 +376,7 @@ class ProgramMembersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -691,7 +391,7 @@ class ProgramMembersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember',
+            null,
             ['application/json']
         );
     }
@@ -699,8 +399,6 @@ class ProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideGetProgramMembersUsingGET
      * @covers ::getProgramMembersUsingGET
-     * @covers ::getProgramMembersUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetProgramMembersUsingGET(
         int $code,
@@ -715,65 +413,7 @@ class ProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getProgramMembersUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramMembersUsingGET
-     * @covers ::getProgramMembersUsingGETWithHttpInfo
-     * @covers ::getProgramMembersUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetProgramMembersUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramMembersUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramMembersUsingGET
-     * @covers ::getProgramMembersUsingGETAsync
-     * @covers ::getProgramMembersUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramMembersUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramMembersUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetProgramMembersUsingGET
-     * @covers ::getProgramMembersUsingGETAsyncWithHttpInfo
-     * @covers ::getProgramMembersUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetProgramMembersUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getProgramMembersUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideSyncProgramMemberDataUsingPOST(): \Generator
@@ -793,7 +433,7 @@ class ProgramMembersApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -802,7 +442,7 @@ class ProgramMembersApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData',
+            null,
             ['application/json']
         );
     }
@@ -810,8 +450,6 @@ class ProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideSyncProgramMemberDataUsingPOST
      * @covers ::syncProgramMemberDataUsingPOST
-     * @covers ::syncProgramMemberDataUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testSyncProgramMemberDataUsingPOST(
         int $code,
@@ -826,65 +464,7 @@ class ProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'syncProgramMemberDataUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncProgramMemberDataUsingPOST
-     * @covers ::syncProgramMemberDataUsingPOSTWithHttpInfo
-     * @covers ::syncProgramMemberDataUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testSyncProgramMemberDataUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncProgramMemberDataUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncProgramMemberDataUsingPOST
-     * @covers ::syncProgramMemberDataUsingPOSTAsync
-     * @covers ::syncProgramMemberDataUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncProgramMemberDataUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncProgramMemberDataUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncProgramMemberDataUsingPOST
-     * @covers ::syncProgramMemberDataUsingPOSTAsyncWithHttpInfo
-     * @covers ::syncProgramMemberDataUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncProgramMemberDataUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncProgramMemberDataUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideSyncProgramMemberStatusUsingPOST(): \Generator
@@ -904,7 +484,7 @@ class ProgramMembersApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -913,7 +493,7 @@ class ProgramMembersApiTest extends TestCase
                 'int',
                 '\NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus',
+            null,
             ['application/json']
         );
     }
@@ -921,8 +501,6 @@ class ProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideSyncProgramMemberStatusUsingPOST
      * @covers ::syncProgramMemberStatusUsingPOST
-     * @covers ::syncProgramMemberStatusUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testSyncProgramMemberStatusUsingPOST(
         int $code,
@@ -937,65 +515,7 @@ class ProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'syncProgramMemberStatusUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncProgramMemberStatusUsingPOST
-     * @covers ::syncProgramMemberStatusUsingPOSTWithHttpInfo
-     * @covers ::syncProgramMemberStatusUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testSyncProgramMemberStatusUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncProgramMemberStatusUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncProgramMemberStatusUsingPOST
-     * @covers ::syncProgramMemberStatusUsingPOSTAsync
-     * @covers ::syncProgramMemberStatusUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncProgramMemberStatusUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncProgramMemberStatusUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideSyncProgramMemberStatusUsingPOST
-     * @covers ::syncProgramMemberStatusUsingPOSTAsyncWithHttpInfo
-     * @covers ::syncProgramMemberStatusUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testSyncProgramMemberStatusUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'syncProgramMemberStatusUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateProgramMemberFieldUsingPOST(): \Generator
@@ -1015,7 +535,7 @@ class ProgramMembersApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -1024,7 +544,7 @@ class ProgramMembersApiTest extends TestCase
                 'string',
                 '\NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField',
+            null,
             ['application/json']
         );
     }
@@ -1032,8 +552,6 @@ class ProgramMembersApiTest extends TestCase
     /**
      * @dataProvider provideUpdateProgramMemberFieldUsingPOST
      * @covers ::updateProgramMemberFieldUsingPOST
-     * @covers ::updateProgramMemberFieldUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateProgramMemberFieldUsingPOST(
         int $code,
@@ -1048,64 +566,6 @@ class ProgramMembersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateProgramMemberFieldUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateProgramMemberFieldUsingPOST
-     * @covers ::updateProgramMemberFieldUsingPOSTWithHttpInfo
-     * @covers ::updateProgramMemberFieldUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateProgramMemberFieldUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateProgramMemberFieldUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateProgramMemberFieldUsingPOST
-     * @covers ::updateProgramMemberFieldUsingPOSTAsync
-     * @covers ::updateProgramMemberFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateProgramMemberFieldUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateProgramMemberFieldUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateProgramMemberFieldUsingPOST
-     * @covers ::updateProgramMemberFieldUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateProgramMemberFieldUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateProgramMemberFieldUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateProgramMemberFieldUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

@@ -123,7 +123,7 @@ class FoldersApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\Folder',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -133,7 +133,7 @@ class FoldersApiTest extends TestCase
                 '\NecLimDul\MarketoRest\Asset\Model\Folder',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+            null,
             ['application/json']
         );
     }
@@ -141,8 +141,6 @@ class FoldersApiTest extends TestCase
     /**
      * @dataProvider provideCreateFolderUsingPOST
      * @covers ::createFolderUsingPOST
-     * @covers ::createFolderUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testCreateFolderUsingPOST(
         int $code,
@@ -157,65 +155,7 @@ class FoldersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'createFolderUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateFolderUsingPOST
-     * @covers ::createFolderUsingPOSTWithHttpInfo
-     * @covers ::createFolderUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testCreateFolderUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createFolderUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateFolderUsingPOST
-     * @covers ::createFolderUsingPOSTAsync
-     * @covers ::createFolderUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateFolderUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createFolderUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideCreateFolderUsingPOST
-     * @covers ::createFolderUsingPOSTAsyncWithHttpInfo
-     * @covers ::createFolderUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testCreateFolderUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'createFolderUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideDeleteFolderUsingPOST(): \Generator
@@ -235,7 +175,7 @@ class FoldersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -244,7 +184,7 @@ class FoldersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+            null,
             ['application/json']
         );
     }
@@ -252,8 +192,6 @@ class FoldersApiTest extends TestCase
     /**
      * @dataProvider provideDeleteFolderUsingPOST
      * @covers ::deleteFolderUsingPOST
-     * @covers ::deleteFolderUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testDeleteFolderUsingPOST(
         int $code,
@@ -268,65 +206,7 @@ class FoldersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'deleteFolderUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFolderUsingPOST
-     * @covers ::deleteFolderUsingPOSTWithHttpInfo
-     * @covers ::deleteFolderUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testDeleteFolderUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFolderUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFolderUsingPOST
-     * @covers ::deleteFolderUsingPOSTAsync
-     * @covers ::deleteFolderUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteFolderUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFolderUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideDeleteFolderUsingPOST
-     * @covers ::deleteFolderUsingPOSTAsyncWithHttpInfo
-     * @covers ::deleteFolderUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testDeleteFolderUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'deleteFolderUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetFolderByIdUsingGET(): \Generator
@@ -346,7 +226,7 @@ class FoldersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -355,7 +235,7 @@ class FoldersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+            null,
             ['application/json']
         );
     }
@@ -363,8 +243,6 @@ class FoldersApiTest extends TestCase
     /**
      * @dataProvider provideGetFolderByIdUsingGET
      * @covers ::getFolderByIdUsingGET
-     * @covers ::getFolderByIdUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetFolderByIdUsingGET(
         int $code,
@@ -379,65 +257,7 @@ class FoldersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getFolderByIdUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderByIdUsingGET
-     * @covers ::getFolderByIdUsingGETWithHttpInfo
-     * @covers ::getFolderByIdUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetFolderByIdUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderByIdUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderByIdUsingGET
-     * @covers ::getFolderByIdUsingGETAsync
-     * @covers ::getFolderByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFolderByIdUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderByIdUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderByIdUsingGET
-     * @covers ::getFolderByIdUsingGETAsyncWithHttpInfo
-     * @covers ::getFolderByIdUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFolderByIdUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderByIdUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetFolderByNameUsingGET(): \Generator
@@ -461,7 +281,7 @@ class FoldersApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -472,7 +292,7 @@ class FoldersApiTest extends TestCase
                 'string',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+            null,
             ['application/json']
         );
     }
@@ -480,8 +300,6 @@ class FoldersApiTest extends TestCase
     /**
      * @dataProvider provideGetFolderByNameUsingGET
      * @covers ::getFolderByNameUsingGET
-     * @covers ::getFolderByNameUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetFolderByNameUsingGET(
         int $code,
@@ -496,65 +314,7 @@ class FoldersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getFolderByNameUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderByNameUsingGET
-     * @covers ::getFolderByNameUsingGETWithHttpInfo
-     * @covers ::getFolderByNameUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetFolderByNameUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderByNameUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderByNameUsingGET
-     * @covers ::getFolderByNameUsingGETAsync
-     * @covers ::getFolderByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFolderByNameUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderByNameUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderByNameUsingGET
-     * @covers ::getFolderByNameUsingGETAsyncWithHttpInfo
-     * @covers ::getFolderByNameUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFolderByNameUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderByNameUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetFolderContentUsingGET(): \Generator
@@ -578,7 +338,7 @@ class FoldersApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -589,7 +349,7 @@ class FoldersApiTest extends TestCase
                 'int',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse',
+            null,
             ['application/json']
         );
     }
@@ -597,8 +357,6 @@ class FoldersApiTest extends TestCase
     /**
      * @dataProvider provideGetFolderContentUsingGET
      * @covers ::getFolderContentUsingGET
-     * @covers ::getFolderContentUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetFolderContentUsingGET(
         int $code,
@@ -613,65 +371,7 @@ class FoldersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getFolderContentUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderContentUsingGET
-     * @covers ::getFolderContentUsingGETWithHttpInfo
-     * @covers ::getFolderContentUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetFolderContentUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderContentUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderContentUsingGET
-     * @covers ::getFolderContentUsingGETAsync
-     * @covers ::getFolderContentUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFolderContentUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderContentUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderContentUsingGET
-     * @covers ::getFolderContentUsingGETAsyncWithHttpInfo
-     * @covers ::getFolderContentUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFolderContentUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderContentUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetFolderUsingGET(): \Generator
@@ -697,7 +397,7 @@ class FoldersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -709,7 +409,7 @@ class FoldersApiTest extends TestCase
                 'int',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+            null,
             ['application/json']
         );
     }
@@ -717,8 +417,6 @@ class FoldersApiTest extends TestCase
     /**
      * @dataProvider provideGetFolderUsingGET
      * @covers ::getFolderUsingGET
-     * @covers ::getFolderUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetFolderUsingGET(
         int $code,
@@ -733,65 +431,7 @@ class FoldersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getFolderUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderUsingGET
-     * @covers ::getFolderUsingGETWithHttpInfo
-     * @covers ::getFolderUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetFolderUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderUsingGET
-     * @covers ::getFolderUsingGETAsync
-     * @covers ::getFolderUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFolderUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetFolderUsingGET
-     * @covers ::getFolderUsingGETAsyncWithHttpInfo
-     * @covers ::getFolderUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetFolderUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getFolderUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideUpdateFolderUsingPOST(): \Generator
@@ -817,7 +457,7 @@ class FoldersApiTest extends TestCase
                 'bool',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -829,7 +469,7 @@ class FoldersApiTest extends TestCase
                 'bool',
                 'string',
             ],
-            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+            null,
             ['application/json']
         );
     }
@@ -837,8 +477,6 @@ class FoldersApiTest extends TestCase
     /**
      * @dataProvider provideUpdateFolderUsingPOST
      * @covers ::updateFolderUsingPOST
-     * @covers ::updateFolderUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testUpdateFolderUsingPOST(
         int $code,
@@ -853,64 +491,6 @@ class FoldersApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'updateFolderUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFolderUsingPOST
-     * @covers ::updateFolderUsingPOSTWithHttpInfo
-     * @covers ::updateFolderUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testUpdateFolderUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFolderUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFolderUsingPOST
-     * @covers ::updateFolderUsingPOSTAsync
-     * @covers ::updateFolderUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateFolderUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFolderUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideUpdateFolderUsingPOST
-     * @covers ::updateFolderUsingPOSTAsyncWithHttpInfo
-     * @covers ::updateFolderUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testUpdateFolderUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'updateFolderUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }

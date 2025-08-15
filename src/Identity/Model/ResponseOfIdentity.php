@@ -31,7 +31,7 @@ use NecLimDul\MarketoRest\Identity\ObjectSerializer;
  * @psalm-suppress MixedReturnStatement
  * @psalm-suppress MixedInferredReturnType
  */
-class ResponseOfIdentity extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable, \Stringable
+class ResponseOfIdentity extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSerializable
 {
     use AdditionalPropertiesTrait;
 
@@ -297,7 +297,6 @@ class ResponseOfIdentity extends ModelBase implements ModelInterface, \ArrayAcce
      * @return string
      * @throws \JsonException
      */
-    #[\Override]
     public function __toString(): string
     {
         return json_encode(

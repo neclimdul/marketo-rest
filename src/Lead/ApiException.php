@@ -11,6 +11,7 @@
 namespace NecLimDul\MarketoRest\Lead;
 
 use Neclimdul\OpenapiPhp\Helper\ApiExceptionBase;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
 
 /**
  * ApiException

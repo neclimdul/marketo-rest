@@ -119,7 +119,7 @@ class BulkImportLeadsApiTest extends TestCase
             [
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -127,7 +127,7 @@ class BulkImportLeadsApiTest extends TestCase
             [
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
     }
@@ -135,8 +135,6 @@ class BulkImportLeadsApiTest extends TestCase
     /**
      * @dataProvider provideGetImportLeadFailuresUsingGET
      * @covers ::getImportLeadFailuresUsingGET
-     * @covers ::getImportLeadFailuresUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetImportLeadFailuresUsingGET(
         int $code,
@@ -151,65 +149,7 @@ class BulkImportLeadsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getImportLeadFailuresUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportLeadFailuresUsingGET
-     * @covers ::getImportLeadFailuresUsingGETWithHttpInfo
-     * @covers ::getImportLeadFailuresUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetImportLeadFailuresUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportLeadFailuresUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportLeadFailuresUsingGET
-     * @covers ::getImportLeadFailuresUsingGETAsync
-     * @covers ::getImportLeadFailuresUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportLeadFailuresUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== 'object') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportLeadFailuresUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportLeadFailuresUsingGET
-     * @covers ::getImportLeadFailuresUsingGETAsyncWithHttpInfo
-     * @covers ::getImportLeadFailuresUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportLeadFailuresUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportLeadFailuresUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetImportLeadStatusUsingGET(): \Generator
@@ -227,7 +167,7 @@ class BulkImportLeadsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -235,7 +175,7 @@ class BulkImportLeadsApiTest extends TestCase
             [
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse',
+            null,
             ['application/json']
         );
     }
@@ -243,8 +183,6 @@ class BulkImportLeadsApiTest extends TestCase
     /**
      * @dataProvider provideGetImportLeadStatusUsingGET
      * @covers ::getImportLeadStatusUsingGET
-     * @covers ::getImportLeadStatusUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetImportLeadStatusUsingGET(
         int $code,
@@ -259,65 +197,7 @@ class BulkImportLeadsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getImportLeadStatusUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportLeadStatusUsingGET
-     * @covers ::getImportLeadStatusUsingGETWithHttpInfo
-     * @covers ::getImportLeadStatusUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetImportLeadStatusUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportLeadStatusUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportLeadStatusUsingGET
-     * @covers ::getImportLeadStatusUsingGETAsync
-     * @covers ::getImportLeadStatusUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportLeadStatusUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportLeadStatusUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportLeadStatusUsingGET
-     * @covers ::getImportLeadStatusUsingGETAsyncWithHttpInfo
-     * @covers ::getImportLeadStatusUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportLeadStatusUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportLeadStatusUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideGetImportLeadWarningsUsingGET(): \Generator
@@ -335,7 +215,7 @@ class BulkImportLeadsApiTest extends TestCase
             [
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -343,7 +223,7 @@ class BulkImportLeadsApiTest extends TestCase
             [
                 'int',
             ],
-            'object',
+            null,
             ['application/json']
         );
     }
@@ -351,8 +231,6 @@ class BulkImportLeadsApiTest extends TestCase
     /**
      * @dataProvider provideGetImportLeadWarningsUsingGET
      * @covers ::getImportLeadWarningsUsingGET
-     * @covers ::getImportLeadWarningsUsingGETRequest
-     * @covers ::makeRequest
      */
     public function testGetImportLeadWarningsUsingGET(
         int $code,
@@ -367,65 +245,7 @@ class BulkImportLeadsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'getImportLeadWarningsUsingGET'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportLeadWarningsUsingGET
-     * @covers ::getImportLeadWarningsUsingGETWithHttpInfo
-     * @covers ::getImportLeadWarningsUsingGETRequest
-     * @covers ::makeRequest
-     */
-    public function testGetImportLeadWarningsUsingGETWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportLeadWarningsUsingGETWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportLeadWarningsUsingGET
-     * @covers ::getImportLeadWarningsUsingGETAsync
-     * @covers ::getImportLeadWarningsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportLeadWarningsUsingGETAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== 'object') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportLeadWarningsUsingGETAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideGetImportLeadWarningsUsingGET
-     * @covers ::getImportLeadWarningsUsingGETAsyncWithHttpInfo
-     * @covers ::getImportLeadWarningsUsingGETRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testGetImportLeadWarningsUsingGETAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'getImportLeadWarningsUsingGETAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 
     public static function provideImportLeadUsingPOST(): \Generator
@@ -451,7 +271,7 @@ class BulkImportLeadsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse',
+            null,
             ['application/json']
         );
         yield from static::provideFakeRequests(
@@ -463,7 +283,7 @@ class BulkImportLeadsApiTest extends TestCase
                 'string',
                 'int',
             ],
-            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse',
+            null,
             ['application/json']
         );
     }
@@ -471,8 +291,6 @@ class BulkImportLeadsApiTest extends TestCase
     /**
      * @dataProvider provideImportLeadUsingPOST
      * @covers ::importLeadUsingPOST
-     * @covers ::importLeadUsingPOSTRequest
-     * @covers ::makeRequest
      */
     public function testImportLeadUsingPOST(
         int $code,
@@ -487,64 +305,6 @@ class BulkImportLeadsApiTest extends TestCase
         }
         $sot = $this->sot;
         $c = fn() => call_user_func_array([$sot, 'importLeadUsingPOST'], $params);
-        $this->assertRequest($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideImportLeadUsingPOST
-     * @covers ::importLeadUsingPOSTWithHttpInfo
-     * @covers ::importLeadUsingPOSTRequest
-     * @covers ::makeRequest
-     */
-    public function testImportLeadUsingPOSTWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'importLeadUsingPOSTWithHttpInfo'], $params);
-        $this->assertRequestWithHttpInfo($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideImportLeadUsingPOST
-     * @covers ::importLeadUsingPOSTAsync
-     * @covers ::importLeadUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testImportLeadUsingPOSTAsync(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type,
-        array $args
-    ): void {
-        if ($code <= 299 && $args[2] !== '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse') {
-            $this->markTestSkipped('Multiple return types do not really work...');
-        }
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'importLeadUsingPOSTAsync'], $params);
-        $this->assertAsync($c, $data, $code, $rt, $content_type);
-    }
-
-    /**
-     * @dataProvider provideImportLeadUsingPOST
-     * @covers ::importLeadUsingPOSTAsyncWithHttpInfo
-     * @covers ::importLeadUsingPOSTRequest
-     * @covers ::makeAsyncRequest
-     */
-    public function testImportLeadUsingPOSTAsyncWithHttpInfo(
-        int $code,
-        array $params,
-        $data,
-        bool $rt,
-        string $content_type
-    ): void {
-        $sot = $this->sot;
-        $c = fn() => call_user_func_array([$sot, 'importLeadUsingPOSTAsyncWithHttpInfo'], $params);
-        $this->assertAsyncWithHttpInfo($c, $data, $code, $rt, $content_type);
+        $this->assertApiRequest($c, $data, $code, $rt, $content_type);
     }
 }
