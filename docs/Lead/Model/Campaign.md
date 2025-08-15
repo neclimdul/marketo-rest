@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **bool** | Whether the campaign is active.  Only applicable to trigger campaigns | [optional]
+**active** | **bool** | Whether the campaign is active. Only applicable to trigger campaigns | [optional]
 **created_at** | **string** | Datetime when the campaign was created |
 **description** | **string** | Description of the Smart Campaign | [optional]
 **id** | **int** | Unique integer id of the Smart Campaign |

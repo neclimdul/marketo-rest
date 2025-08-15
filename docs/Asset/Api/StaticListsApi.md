@@ -20,14 +20,13 @@ createStaticListUsingPOST($name, $folder, $description): \NecLimDul\MarketoRest\
 
 Create Static List
 
-Creates a new Static List.  Required Permissions: Read-Write Assets
+Creates a new Static List. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
@@ -89,7 +88,6 @@ Deletes the designated Static List. Required Permissions: Read-Write Asset
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -143,7 +141,6 @@ Retrieves a Static List record by its id. Required Permissions: Read-Asset or Re
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
@@ -201,7 +198,6 @@ Retrieves a Static List record by its name. Required Permissions: Read-Asset or 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -257,7 +253,6 @@ Retrieves a list of Static List records. Required Permissions: Read-Asset or Rea
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -265,9 +260,9 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
 );
 $folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 $offset = 56; // int | Integer offset for paging
-$max_return = 56; // int | Maximum number of static lists to return.  Max 200, default 20.
-$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude static lists prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = 'latest_updated_at_example'; // string | Exclude static lists after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$max_return = 56; // int | Maximum number of static lists to return. Max 200, default 20.
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude static lists prior to this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude static lists after this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->getStaticListsUsingGET($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
@@ -283,9 +278,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
- **max_return** | **int**| Maximum number of static lists to return.  Max 200, default 20. | [optional]
- **earliest_updated_at** | **string**| Exclude static lists prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
- **latest_updated_at** | **string**| Exclude static lists after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **max_return** | **int**| Maximum number of static lists to return. Max 200, default 20. | [optional]
+ **earliest_updated_at** | **string**| Exclude static lists prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **latest_updated_at** | **string**| Exclude static lists after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
 
 ### Return type
 
@@ -312,14 +307,13 @@ updateStaticListUsingPOST($id, $description, $name): \NecLimDul\MarketoRest\Asse
 
 Update Static List Metadata
 
-Updates the metadata of a static list asset.  Required Permissions: Read-Write Assets
+Updates the metadata of a static list asset. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(

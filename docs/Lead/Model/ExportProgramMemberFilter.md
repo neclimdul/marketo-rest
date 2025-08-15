@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **program_ids** | **int[]** | Array of program ids to retrieve members from. Cannot be used in combination with \&quot;programId\&quot; filter |
 **is_exhausted** | **bool** | Filter program membership records for people who have exhausted content | [optional]
 **nurture_cadence** | **string** | Filter program membership records for a given nurture cadence | [optional]
-**status_names** | **string[]** | Array of program member status names.  Can be default and/or user-defined.  Multiple status names are ORed together. | [optional]
+**status_names** | **string[]** | Array of program member status names. Can be default and/or user-defined. Multiple status names are ORed together. | [optional]
 **updated_at** | [**\NecLimDul\MarketoRest\Lead\Model\DateRange**](DateRange.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

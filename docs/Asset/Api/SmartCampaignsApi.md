@@ -24,14 +24,13 @@ activateSmartCampaignUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\Response
 
 Activate Smart Campaign
 
-Activates a trigger smart campaign.  Required Permissions: Activate Campaign
+Activates a trigger smart campaign. Required Permissions: Activate Campaign
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
@@ -80,14 +79,13 @@ cloneSmartCampaignUsingPOST($id, $folder, $name, $description): \NecLimDul\Marke
 
 Clone Smart Campaign
 
-Clones a smart campaign.  Required Permissions: Read-Write Assets
+Clones a smart campaign. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
@@ -142,14 +140,13 @@ createSmartCampaignUsingPOST($folder, $name, $description): \NecLimDul\MarketoRe
 
 Create Smart Campaign
 
-Creates a new smart campaign.  Required Permissions: Read-Write Assets
+Creates a new smart campaign. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
@@ -202,14 +199,13 @@ deactivateSmartCampaignUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\Respon
 
 Deactivate Smart Campaign
 
-Deactivates a trigger smart campaign.  Required Permissions: Deactivate Campaign
+Deactivates a trigger smart campaign. Required Permissions: Deactivate Campaign
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
@@ -258,14 +254,13 @@ deleteSmartCampaignUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOf
 
 Delete Smart Campaign
 
-Deletes a smart campaign.  Required Permissions: Read-Write Assets
+Deletes a smart campaign. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
@@ -323,18 +318,17 @@ Retrieves all smart campaigns. Required Permissions: Read-Only Assets, Read-Writ
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$max_return = 56; // int | Maximum number of smart campaigns to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of smart campaigns to return. Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 $folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
-$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = 'latest_updated_at_example'; // string | Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$is_active = True; // bool | Set true to return only active campaigns.  Default false
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude smart campaigns prior to this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude smart campaigns after this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$is_active = True; // bool | Set true to return only active campaigns. Default false
 
 try {
     $result = $apiInstance->getAllSmartCampaignsGET($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at, $is_active);
@@ -348,12 +342,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_return** | **int**| Maximum number of smart campaigns to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of smart campaigns to return. Max 200, default 20 | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
  **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
- **earliest_updated_at** | **string**| Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
- **latest_updated_at** | **string**| Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
- **is_active** | **bool**| Set true to return only active campaigns.  Default false | [optional]
+ **earliest_updated_at** | **string**| Exclude smart campaigns prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **latest_updated_at** | **string**| Exclude smart campaigns after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **is_active** | **bool**| Set true to return only active campaigns. Default false | [optional]
 
 ### Return type
 
@@ -380,14 +374,13 @@ getSmartCampaignByIdUsingGET($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOf
 
 Get Smart Campaign by Id
 
-Returns the smart campaign for the given id.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns the smart campaign for the given id. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
@@ -436,14 +429,13 @@ getSmartCampaignByNameUsingGET($name): \NecLimDul\MarketoRest\Asset\Model\Respon
 
 Get Smart Campaign by Name
 
-Returns the smart campaign for the given name.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns the smart campaign for the given name. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
@@ -501,14 +493,13 @@ Retrieves a Smart List record by its Smart Campaign id. Required Permissions: Re
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id for the smart campaign containing smart list to retrieve
-$include_rules = True; // bool | Set true to populate smart list rules.  Default false
+$include_rules = True; // bool | Set true to populate smart list rules. Default false
 
 try {
     $result = $apiInstance->getSmartListBySmartCampaignIdUsingGET($id, $include_rules);
@@ -523,7 +514,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id for the smart campaign containing smart list to retrieve |
- **include_rules** | **bool**| Set true to populate smart list rules.  Default false | [optional]
+ **include_rules** | **bool**| Set true to populate smart list rules. Default false | [optional]
 
 ### Return type
 
@@ -550,14 +541,13 @@ updateSmartCampaignUsingPOST($id, $update_smart_campaign_request): \NecLimDul\Ma
 
 Update Smart Campaign
 
-Update the smart campaign for the given id.  Required Permissions: Read-Write Assets
+Update the smart campaign for the given id. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(

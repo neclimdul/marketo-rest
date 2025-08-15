@@ -21,14 +21,13 @@ addLeadsToListUsingPOST($list_id, $id, $list_operation_request): \NecLimDul\Mark
 
 Add to List
 
-Adds a given set of person records to a target static list.  There is a limit of 300 lead ids per request.  Required Permissions: Read-Write Lead
+Adds a given set of person records to a target static list. There is a limit of 300 lead ids per request. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
@@ -81,14 +80,13 @@ areLeadsMemberOfListUsingGET($list_id, $id, $list_operation_request): \NecLimDul
 
 Member of List
 
-Checks if leads are members of a given static list.  Required Permissions: Read-Write Lead
+Checks if leads are members of a given static list. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
@@ -141,7 +139,7 @@ getLeadsByListIdUsingGET($list_id, $fields, $batch_size, $next_page_token): \Nec
 
 Get Leads By List Id
 
-Retrieves person records which are members of the given static list.  Required Permissions: Read-Only Lead, Read-Write Lead
+Retrieves person records which are members of the given static list. Required Permissions: Read-Only Lead, Read-Write Lead
 
 ### Example
 
@@ -150,16 +148,15 @@ Retrieves person records which are members of the given static list.  Required P
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $list_id = 56; // int | Id of the static list to retrieve records from
-$fields = array('fields_example'); // string[] | Comma-separated list of lead fields to return for each record.  If unset will return email, updatedAt, createdAt, lastName, firstName and id
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$fields = array('fields_example'); // string[] | Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getLeadsByListIdUsingGET($list_id, $fields, $batch_size, $next_page_token);
@@ -174,9 +171,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **list_id** | **int**| Id of the static list to retrieve records from |
- **fields** | [**string[]**](../Model/string.md)| Comma-separated list of lead fields to return for each record.  If unset will return email, updatedAt, createdAt, lastName, firstName and id | [optional]
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **fields** | [**string[]**](../Model/string.md)| Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
 
 ### Return type
 
@@ -203,7 +200,7 @@ getLeadsByListIdUsingGET1($list_id, $fields, $batch_size, $next_page_token): \Ne
 
 Get Leads By List Id
 
-Retrieves person records which are members of the given static list.  Required Permissions: Read-Only Lead, Read-Write Lead
+Retrieves person records which are members of the given static list. Required Permissions: Read-Only Lead, Read-Write Lead
 
 ### Example
 
@@ -212,16 +209,15 @@ Retrieves person records which are members of the given static list.  Required P
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $list_id = 56; // int | Id of the static list to retrieve records from
-$fields = array('fields_example'); // string[] | Comma-separated list of lead fields to return for each record.  If unset will return email, updatedAt, createdAt, lastName, firstName and id
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$fields = array('fields_example'); // string[] | Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getLeadsByListIdUsingGET1($list_id, $fields, $batch_size, $next_page_token);
@@ -236,9 +232,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **list_id** | **int**| Id of the static list to retrieve records from |
- **fields** | [**string[]**](../Model/string.md)| Comma-separated list of lead fields to return for each record.  If unset will return email, updatedAt, createdAt, lastName, firstName and id | [optional]
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **fields** | [**string[]**](../Model/string.md)| Comma-separated list of lead fields to return for each record. If unset will return email, updatedAt, createdAt, lastName, firstName and id | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
 
 ### Return type
 
@@ -265,14 +261,13 @@ getListByIdUsingGET($list_id): \NecLimDul\MarketoRest\Lead\Model\ResponseOfStati
 
 Get List by Id
 
-Returns a list record by its id.  Required Permissions: Read-Only Lead, Read-Write Lead
+Returns a list record by its id. Required Permissions: Read-Only Lead, Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
@@ -330,7 +325,6 @@ Returns a set of static list records based on given filter parameters. Required 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -338,10 +332,10 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
 );
 $id = array(56); // int[] | Comma-separated list of static list ids to return
 $name = array('name_example'); // string[] | Comma-separated list of static list names to return
-$program_name = array('program_name_example'); // string[] | Comma-separated list of program names.  If set will return all static lists that are children of the given programs
-$workspace_name = array('workspace_name_example'); // string[] | Comma-separated list of workspace names.  If set will return all static lists that are children of the given workspaces
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$program_name = array('program_name_example'); // string[] | Comma-separated list of program names. If set will return all static lists that are children of the given programs
+$workspace_name = array('workspace_name_example'); // string[] | Comma-separated list of workspace names. If set will return all static lists that are children of the given workspaces
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getListsUsingGET($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token);
@@ -357,10 +351,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | [**int[]**](../Model/int.md)| Comma-separated list of static list ids to return | [optional]
  **name** | [**string[]**](../Model/string.md)| Comma-separated list of static list names to return | [optional]
- **program_name** | [**string[]**](../Model/string.md)| Comma-separated list of program names.  If set will return all static lists that are children of the given programs | [optional]
- **workspace_name** | [**string[]**](../Model/string.md)| Comma-separated list of workspace names.  If set will return all static lists that are children of the given workspaces | [optional]
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **program_name** | [**string[]**](../Model/string.md)| Comma-separated list of program names. If set will return all static lists that are children of the given programs | [optional]
+ **workspace_name** | [**string[]**](../Model/string.md)| Comma-separated list of workspace names. If set will return all static lists that are children of the given workspaces | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
 
 ### Return type
 
@@ -387,14 +381,13 @@ removeLeadsFromListUsingDELETE($list_id, $id, $list_operation_request): \NecLimD
 
 Remove from List
 
-Removes a given set of person records from a target static list.  Required Permissions: Read-Write Lead
+Removes a given set of person records from a target static list. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(

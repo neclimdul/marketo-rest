@@ -18,14 +18,13 @@ deleteSalesPersonUsingPOST($delete_sales_person_request): \NecLimDul\MarketoRest
 
 Delete SalesPersons
 
-Deletes a list of salesperson records from the target instance.  Input records should have only one member, based on the value of 'dedupeBy'.  Required Permissions: Read-Write Sales Person
+Deletes a list of salesperson records from the target instance. Input records should have only one member, based on the value of 'dedupeBy'. Required Permissions: Read-Write Sales Person
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
@@ -74,14 +73,13 @@ describeUsingGET5(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
 
 Describe SalesPersons
 
-Returns metadata about salespersons and the fields available for interaction via the API.  Required Permissions: Read-Only Sales Person, Read-Write Sales Person
+Returns metadata about salespersons and the fields available for interaction via the API. Required Permissions: Read-Only Sales Person, Read-Write Sales Person
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
@@ -127,14 +125,13 @@ getSalesPersonUsingGET($filter_type, $filter_values, $fields, $batch_size, $next
 
 Get SalesPersons
 
-Retrieves salesperson records from the destination instance based on the submitted filter.  Required Permissions: Read-Only Sales Person, Read-Write Sales Person
+Retrieves salesperson records from the destination instance based on the submitted filter. Required Permissions: Read-Only Sales Person, Read-Write Sales Person
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
@@ -145,8 +142,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
 $filter_type = 'filter_type_example'; // string | The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
 $filter_values = array('filter_values_example'); // string[] | Comma seperated list of search values.
 $fields = array('fields_example'); // string[] | Comma-separated list of fields to include in the response
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getSalesPersonUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
@@ -163,8 +160,8 @@ Name | Type | Description  | Notes
  **filter_type** | **string**| The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call. |
  **filter_values** | [**string[]**](../Model/string.md)| Comma seperated list of search values. |
  **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to include in the response | [optional]
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
 
 ### Return type
 
@@ -191,14 +188,13 @@ syncSalesPersonsUsingPOST($sync_sales_person_request): \NecLimDul\MarketoRest\Le
 
 Sync SalesPersons
 
-Allows inserts, updates, or upserts of salespersons to the target instance.  Required Permissions: Read-Write Sales Person
+Allows inserts, updates, or upserts of salespersons to the target instance. Required Permissions: Read-Write Sales Person
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(

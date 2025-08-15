@@ -27,14 +27,13 @@ approveLandingPageUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfI
 
 Approve Landing Page Draft
 
-Approves the current draft of the landing page.  Required Permissions: Approve Assets
+Approves the current draft of the landing page. Required Permissions: Approve Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
@@ -92,14 +91,13 @@ Retrieves a list of accessible landing pages from the target instance. Required 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $status = 'status_example'; // string | Status filter for draft or approved versions
-$max_return = 56; // int | Maximum number of landing pages to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of landing pages to return. Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 $folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 
@@ -116,7 +114,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **string**| Status filter for draft or approved versions | [optional]
- **max_return** | **int**| Maximum number of landing pages to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of landing pages to return. Max 200, default 20 | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
  **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
 
@@ -152,7 +150,6 @@ Clones the target landing page. Required Permissions: Read-Write Assets
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
@@ -209,14 +206,13 @@ createLandingPageUsingPOST($folder, $name, $template, $custom_head_html, $descri
 
 Create Landing Page
 
-Creates a new landing page.  Required Permissions: Read-Write Assets
+Creates a new landing page. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
@@ -231,11 +227,11 @@ $custom_head_html = 'custom_head_html_example'; // string | Any custom HTML to e
 $description = 'description_example'; // string | Description of the asset
 $facebook_og_tags = 'facebook_og_tags_example'; // string | Any OpenGraph meta tags to apply to the page
 $keywords = 'keywords_example'; // string
-$mobile_enabled = True; // bool | Whether the page has mobile viewing enabled.  Free-form pages only.  Default false
-$prefill_form = True; // bool | Boolean to toggle whether forms embedded in the page will prefill.  Default false
+$mobile_enabled = True; // bool | Whether the page has mobile viewing enabled. Free-form pages only. Default false
+$prefill_form = True; // bool | Boolean to toggle whether forms embedded in the page will prefill. Default false
 $robots = 'robots_example'; // string | Robots directives to apply to the pages meta tags
 $title = 'title_example'; // string | Title element of the landing page
-$url_page_name = 'url_page_name_example'; // string | URL path of the page.  Derived from the name field if unset
+$url_page_name = 'url_page_name_example'; // string | URL path of the page. Derived from the name field if unset
 $workspace = 'workspace_example'; // string | Name of the workspace
 
 try {
@@ -257,11 +253,11 @@ Name | Type | Description  | Notes
  **description** | **string**| Description of the asset | [optional]
  **facebook_og_tags** | **string**| Any OpenGraph meta tags to apply to the page | [optional]
  **keywords** | **string**|  | [optional]
- **mobile_enabled** | **bool**| Whether the page has mobile viewing enabled.  Free-form pages only.  Default false | [optional]
- **prefill_form** | **bool**| Boolean to toggle whether forms embedded in the page will prefill.  Default false | [optional]
+ **mobile_enabled** | **bool**| Whether the page has mobile viewing enabled. Free-form pages only. Default false | [optional]
+ **prefill_form** | **bool**| Boolean to toggle whether forms embedded in the page will prefill. Default false | [optional]
  **robots** | **string**| Robots directives to apply to the pages meta tags | [optional]
  **title** | **string**| Title element of the landing page | [optional]
- **url_page_name** | **string**| URL path of the page.  Derived from the name field if unset | [optional]
+ **url_page_name** | **string**| URL path of the page. Derived from the name field if unset | [optional]
  **workspace** | **string**| Name of the workspace | [optional]
 
 ### Return type
@@ -296,7 +292,6 @@ Deletes the target landing page. Required Permissions: Read-Write Assets
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
@@ -354,7 +349,6 @@ Discards the current draft of the landing page. Required Permissions: Read-Write
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -408,7 +402,6 @@ Returns the landing record for the given id. Required Permissions: Read-Only Ass
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
@@ -468,7 +461,6 @@ Returns the landing page record for the given name. Required Permissions: Read-O
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -476,7 +468,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
 );
 $name = 'name_example'; // string | Name of the landing page
 $status = 'status_example'; // string | Status filter for draft or approved versions
-$max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of channels to return. Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 
 try {
@@ -493,7 +485,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**| Name of the landing page |
  **status** | **string**| Status filter for draft or approved versions | [optional]
- **max_return** | **int**| Maximum number of channels to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of channels to return. Max 200, default 20 | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
 
 ### Return type
@@ -521,7 +513,7 @@ getLandingPageFullContentUsingGET($id, $lead_id, $segmentation): \NecLimDul\Mark
 
 Get Landing Page Full Content
 
-Returns the serialized HTML version of the landing page.  Required Permissions: Read-Only Assets, Read-Write Assets.  If leadId is passed in the request: Read-Only Lead, Read-Write Lead.
+Returns the serialized HTML version of the landing page. Required Permissions: Read-Only Assets, Read-Write Assets. If leadId is passed in the request: Read-Only Lead, Read-Write Lead.
 
 ### Example
 
@@ -530,15 +522,14 @@ Returns the serialized HTML version of the landing page.  Required Permissions: 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the landing page.
-$lead_id = 56; // int | The lead id to impersonate.  Landing page is rendered as though it was viewed by this lead.
-$segmentation = 'segmentation_example'; // string | JSON array of of segmentations.  Each segmentation must be a JSON object with members 'segmentationId', and 'segmentId'.<br>Example: [{\"segmentationId\":1030,\"segmentId\":1103}]
+$lead_id = 56; // int | The lead id to impersonate. Landing page is rendered as though it was viewed by this lead.
+$segmentation = 'segmentation_example'; // string | JSON array of of segmentations. Each segmentation must be a JSON object with members 'segmentationId', and 'segmentId'.<br>Example: [{\"segmentationId\":1030,\"segmentId\":1103}]
 
 try {
     $result = $apiInstance->getLandingPageFullContentUsingGET($id, $lead_id, $segmentation);
@@ -553,8 +544,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the landing page. |
- **lead_id** | **int**| The lead id to impersonate.  Landing page is rendered as though it was viewed by this lead. | [optional]
- **segmentation** | **string**| JSON array of of segmentations.  Each segmentation must be a JSON object with members &#39;segmentationId&#39;, and &#39;segmentId&#39;.&lt;br&gt;Example: [{\&quot;segmentationId\&quot;:1030,\&quot;segmentId\&quot;:1103}] | [optional]
+ **lead_id** | **int**| The lead id to impersonate. Landing page is rendered as though it was viewed by this lead. | [optional]
+ **segmentation** | **string**| JSON array of of segmentations. Each segmentation must be a JSON object with members &#39;segmentationId&#39;, and &#39;segmentId&#39;.&lt;br&gt;Example: [{\&quot;segmentationId\&quot;:1030,\&quot;segmentId\&quot;:1103}] | [optional]
 
 ### Return type
 
@@ -586,7 +577,6 @@ Get Landing Page Variables
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
@@ -646,7 +636,6 @@ Unapproves the landing page, reverting it to a draft-only state. Required Permis
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -693,14 +682,13 @@ updateLandingPageUsingPOST($id, $custom_head_html, $description, $facebook_og_ta
 
 Update Landing Page Metadata
 
-Updates the metadata for the targe landing page.  Required Permissions: Read-Write Assets
+Updates the metadata for the targe landing page. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
@@ -714,12 +702,12 @@ $description = 'description_example'; // string | Description of the asset
 $facebook_og_tags = 'facebook_og_tags_example'; // string | Any OpenGraph meta tags to apply to the page
 $keywords = 'keywords_example'; // string
 $meta_tags_description = 'meta_tags_description_example'; // string | Meta description property of the page
-$mobile_enabled = True; // bool | Whether the page has mobile viewing enabled.  Free-form pages only.  Default false
+$mobile_enabled = True; // bool | Whether the page has mobile viewing enabled. Free-form pages only. Default false
 $name = 'name_example'; // string | Name of the landing page
 $robots = 'robots_example'; // string | Robots directives to apply to the pages meta tags
 $style_over_ride = 'style_over_ride_example'; // string | Additional CSS styles to append to the landing page <head>
 $title = 'title_example'; // string | Title element of the landing page
-$url_page_name = 'url_page_name_example'; // string | URL path of the page.  Derived from the name field if unset
+$url_page_name = 'url_page_name_example'; // string | URL path of the page. Derived from the name field if unset
 
 try {
     $result = $apiInstance->updateLandingPageUsingPOST($id, $custom_head_html, $description, $facebook_og_tags, $keywords, $meta_tags_description, $mobile_enabled, $name, $robots, $style_over_ride, $title, $url_page_name);
@@ -739,12 +727,12 @@ Name | Type | Description  | Notes
  **facebook_og_tags** | **string**| Any OpenGraph meta tags to apply to the page | [optional]
  **keywords** | **string**|  | [optional]
  **meta_tags_description** | **string**| Meta description property of the page | [optional]
- **mobile_enabled** | **bool**| Whether the page has mobile viewing enabled.  Free-form pages only.  Default false | [optional]
+ **mobile_enabled** | **bool**| Whether the page has mobile viewing enabled. Free-form pages only. Default false | [optional]
  **name** | **string**| Name of the landing page | [optional]
  **robots** | **string**| Robots directives to apply to the pages meta tags | [optional]
  **style_over_ride** | **string**| Additional CSS styles to append to the landing page &lt;head&gt; | [optional]
  **title** | **string**| Title element of the landing page | [optional]
- **url_page_name** | **string**| URL path of the page.  Derived from the name field if unset | [optional]
+ **url_page_name** | **string**| URL path of the page. Derived from the name field if unset | [optional]
 
 ### Return type
 
@@ -771,14 +759,13 @@ updateLandingPageVariableUsingPOST($id, $variable_id, $value): \NecLimDul\Market
 
 Update Landing Page Variable
 
-Updates the value of the given variable.  Required Permissions: Read-Write Assets
+Updates the value of the given variable. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(

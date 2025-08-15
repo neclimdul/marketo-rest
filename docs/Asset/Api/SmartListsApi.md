@@ -28,7 +28,6 @@ Clones the designated Smart List. Required Permissions: Read-Write Asset
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -90,7 +89,6 @@ Deletes the designated Smart List. Required Permissions: Read-Write Asset
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -146,14 +144,13 @@ Retrieves a Smart List record by its id. Required Permissions: Read-Asset or Rea
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the smart list to retrieve
-$include_rules = True; // bool | Set true to populate smart list rules.  Default false
+$include_rules = True; // bool | Set true to populate smart list rules. Default false
 
 try {
     $result = $apiInstance->getSmartListByIdUsingGET($id, $include_rules);
@@ -168,7 +165,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the smart list to retrieve |
- **include_rules** | **bool**| Set true to populate smart list rules.  Default false | [optional]
+ **include_rules** | **bool**| Set true to populate smart list rules. Default false | [optional]
 
 ### Return type
 
@@ -202,7 +199,6 @@ Retrieves a Smart List record by its name. Required Permissions: Read-Asset or R
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
@@ -260,7 +256,6 @@ Retrieves a list of user created Smart List records. Required Permissions: Read-
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -268,9 +263,9 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
 );
 $folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 $offset = 56; // int | Integer offset for paging
-$max_return = 56; // int | Maximum number of smart lists to return.  Max 200, default 20.
-$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude smart lists prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = 'latest_updated_at_example'; // string | Exclude smart lists after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$max_return = 56; // int | Maximum number of smart lists to return. Max 200, default 20.
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude smart lists prior to this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude smart lists after this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->getSmartListsUsingGET($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
@@ -286,9 +281,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
- **max_return** | **int**| Maximum number of smart lists to return.  Max 200, default 20. | [optional]
- **earliest_updated_at** | **string**| Exclude smart lists prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
- **latest_updated_at** | **string**| Exclude smart lists after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **max_return** | **int**| Maximum number of smart lists to return. Max 200, default 20. | [optional]
+ **earliest_updated_at** | **string**| Exclude smart lists prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **latest_updated_at** | **string**| Exclude smart lists after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
 
 ### Return type
 

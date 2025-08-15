@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **from_name** | [**\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField**](EmailHeaderField.md) |  |
 **id** | **int** | Id of the asset | [optional]
 **name** | **string** | Name of the asset | [optional]
-**operational** | **bool** | Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false |
+**operational** | **bool** | Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false |
 **publish_to_msi** | **bool** | Whether the email is published to Marketo Sales Insight |
 **reply_email** | [**\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField**](EmailHeaderField.md) |  |
 **status** | **string** | Status filter for draft or approved versions |

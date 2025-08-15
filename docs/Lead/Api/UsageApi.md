@@ -18,14 +18,13 @@ getDailyErrorsUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData
 
 Get Daily Errors
 
-Retrieves a count of each error type they have encountered in the current day.  Required Permissions: None
+Retrieves a count of each error type they have encountered in the current day. Required Permissions: None
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(
@@ -71,14 +70,13 @@ getDailyUsageUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData
 
 Get Daily Usage
 
-Returns the number of calls consumed for the day.  Required Permissions: None
+Returns the number of calls consumed for the day. Required Permissions: None
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(
@@ -124,14 +122,13 @@ getLast7DaysErrorsUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrors
 
 Get Weekly Errors
 
-Returns a count of each error type they have encountered in the past 7 days.  Required Permissions: None
+Returns a count of each error type they have encountered in the past 7 days. Required Permissions: None
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(
@@ -177,14 +174,13 @@ getLast7DaysUsageUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageDa
 
 Get Weekly Usage
 
-Returns the number of calls consumed in the past 7 days.  Required Permissions: None
+Returns the number of calls consumed in the past 7 days. Required Permissions: None
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(

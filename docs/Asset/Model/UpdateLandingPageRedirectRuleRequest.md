@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hostname** | **string** | The hostname for the landing pages.  Branding domain or alias.  Max 255 characters | [optional]
+**hostname** | **string** | The hostname for the landing pages. Branding domain or alias. Max 255 characters | [optional]
 **redirect_from** | [**\NecLimDul\MarketoRest\Asset\Model\RedirectFrom**](RedirectFrom.md) |  | [optional]
 **redirect_to** | [**\NecLimDul\MarketoRest\Asset\Model\RedirectTo**](RedirectTo.md) |  | [optional]
 

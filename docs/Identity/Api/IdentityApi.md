@@ -16,14 +16,13 @@ identityUsingGET($client_id, $client_secret, $grant_type): \NecLimDul\MarketoRes
 
 Identity
 
-Retrieve an access token from Marketo.  Calls to this endpoint are not counted towards API call limit.
+Retrieve an access token from Marketo Engage. Calls to this endpoint are not counted towards API call limit.
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Identity\Api\IdentityApi(
@@ -76,14 +75,13 @@ identityUsingPOST($client_id, $client_secret, $grant_type): \NecLimDul\MarketoRe
 
 Identity
 
-Retrieve an access token from Marketo.  Calls to this endpoint are not counted towards API call limit.
+Retrieve an access token from Marketo. Calls to this endpoint are not counted towards API call limit.
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Identity\Api\IdentityApi(

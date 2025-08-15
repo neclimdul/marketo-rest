@@ -23,14 +23,13 @@ createProgramMemberFieldUsingPOST($create_lead_field_request): \NecLimDul\Market
 
 Create Program Member Fields
 
-Create program member fields in the target instance.  Required Permissions: Read-Write Schema Custom Field
+Create program member fields in the target instance. Required Permissions: Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
@@ -79,14 +78,13 @@ deleteProgramMemberUsingPOST($program_id, $delete_program_member_request): \NecL
 
 Delete Program Members
 
-Delete a list of members from the destination instance.  Required Permissions: Read-Write Lead
+Delete a list of members from the destination instance. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
@@ -137,14 +135,13 @@ describeProgramMemberUsingGET2(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfPr
 
 Describe Program Member
 
-Returns metadata about program member objects in the target instance, including a list of all fields available for interaction via the APIs.  Required Permissions: Read-Only Lead, Read-Write Lead
+Returns metadata about program member objects in the target instance, including a list of all fields available for interaction via the APIs. Required Permissions: Read-Only Lead, Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
@@ -190,14 +187,13 @@ getProgramMemberFieldByNameUsingGET($field_api_name): \NecLimDul\MarketoRest\Lea
 
 Get Program Member Field by Name
 
-Retrieves metadata for single program member field.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Retrieves metadata for single program member field. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
@@ -246,14 +242,13 @@ getProgramMemberFieldsUsingGET($batch_size, $next_page_token): \NecLimDul\Market
 
 Get Program Member Fields
 
-Retrieves metadata for all program member fields in the target instance.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Retrieves metadata for all program member fields in the target instance. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
@@ -304,7 +299,7 @@ getProgramMembersUsingGET($program_id, $filter_type, $filter_values, $start_at, 
 
 Get Program Members
 
-Returns a list of up to 300 program members on a list of values in a particular field.  If you specify a filterType that is a custom field, the custom field’s dataType must be either “string” or “integer”.  If you specify a filterType other than “leadId”, a maximum of 100,000 program member records can be processed by the request.  Required Permissions: Read-Only Lead, Read-Write Lead
+Returns a list of up to 300 program members on a list of values in a particular field. If you specify a filterType that is a custom field, the custom field’s dataType must be either “string” or “integer”. If you specify a filterType other than “leadId”, a maximum of 100,000 program member records can be processed by the request. Required Permissions: Read-Only Lead, Read-Write Lead
 
 ### Example
 
@@ -313,20 +308,19 @@ Returns a list of up to 300 program members on a list of values in a particular 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $program_id = 56; // int | The id of target program.
-$filter_type = 'filter_type_example'; // string | The program member field to filter on.  Any custom field (string or integer types only), \"updatedAt\", or any searchable field.  Searchable fields can be obtained via the <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint.
+$filter_type = 'filter_type_example'; // string | The program member field to filter on. Any custom field (string or integer types only), \"updatedAt\", or any searchable field. Searchable fields can be obtained via the <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint.
 $filter_values = array('filter_values_example'); // string[] | A comma-separated list of values to filter on in the specified fields.
 $start_at = 'start_at_example'; // string | When using filterType=updatedAt, the start of date range filter (ISO 8601-format)
 $end_at = 'end_at_example'; // string | When using filterType=updatedAt, the end of date range filter (ISO 8601-format)
 $fields = array('fields_example'); // string[] | A comma-separated list of lead fields to return for each record.
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getProgramMembersUsingGET($program_id, $filter_type, $filter_values, $start_at, $end_at, $fields, $batch_size, $next_page_token);
@@ -341,13 +335,13 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **program_id** | **int**| The id of target program. |
- **filter_type** | **string**| The program member field to filter on.  Any custom field (string or integer types only), \&quot;updatedAt\&quot;, or any searchable field.  Searchable fields can be obtained via the &lt;a href&#x3D;\&quot;/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\&quot;&gt;Describe Program Member&lt;/a&gt; endpoint. |
+ **filter_type** | **string**| The program member field to filter on. Any custom field (string or integer types only), \&quot;updatedAt\&quot;, or any searchable field. Searchable fields can be obtained via the &lt;a href&#x3D;\&quot;/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\&quot;&gt;Describe Program Member&lt;/a&gt; endpoint. |
  **filter_values** | [**string[]**](../Model/string.md)| A comma-separated list of values to filter on in the specified fields. |
  **start_at** | **string**| When using filterType&#x3D;updatedAt, the start of date range filter (ISO 8601-format) | [optional]
  **end_at** | **string**| When using filterType&#x3D;updatedAt, the end of date range filter (ISO 8601-format) | [optional]
  **fields** | [**string[]**](../Model/string.md)| A comma-separated list of lead fields to return for each record. | [optional]
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
 
 ### Return type
 
@@ -381,7 +375,6 @@ Changes the program member data of a list of leads in a target program. Only exi
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
@@ -432,14 +425,13 @@ syncProgramMemberStatusUsingPOST($program_id, $sync_program_member_status_reques
 
 Sync Program Member Status
 
-Changes the program member status of a list of leads in a target program.  If member is not part of the program, member is added to the program.  Required Permissions: Read-Write Lead
+Changes the program member status of a list of leads in a target program. If member is not part of the program, member is added to the program. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
@@ -490,14 +482,13 @@ updateProgramMemberFieldUsingPOST($field_api_name, $update_lead_field_request): 
 
 Update Program Member Field
 
-Update metadata for a program member field in the target instance.  See update rules <a href=\"https://developers.marketo.com/rest-api/lead-database/leads/#update_field\">here</a>.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Update metadata for a program member field in the target instance. See update rules <a href=\"https://developers.marketo.com/rest-api/lead-database/leads/#update_field\">here</a>. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(

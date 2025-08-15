@@ -20,14 +20,13 @@ cancelExportCustomObjectsUsingPOST($api_name, $export_id): \NecLimDul\MarketoRes
 
 Cancel Export Custom Object Job
 
-Cancel export job.  Required Permissions: Read-Only Custom Object
+Cancel export job. Required Permissions: Read-Only Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportCustomObjectsApi(
@@ -78,14 +77,13 @@ createExportCustomObjectsUsingPOST($api_name, $export_custom_object_request): \N
 
 Create Export Custom Object Job
 
-Create export job for search criteria defined via \"filter\" parameter.  Request returns the \"exportId\" which is passed as a parameter in subsequent calls to Bulk Export Custom Object endpoints.  Use Enqueue Export Custom Object Job endpoint to queue the export job for processing.  Use Get Export Custom Object Job Status endpoint to retrieve status of export job.  Required Permissions: Read-Only Custom Object
+Create export job for search criteria defined via \"filter\" parameter. Request returns the \"exportId\" which is passed as a parameter in subsequent calls to Bulk Export Custom Object endpoints. Use Enqueue Export Custom Object Job endpoint to queue the export job for processing. Use Get Export Custom Object Job Status endpoint to retrieve status of export job. Required Permissions: Read-Only Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportCustomObjectsApi(
@@ -136,14 +134,13 @@ enqueueExportCustomObjectsUsingPOST($api_name, $export_id): \NecLimDul\MarketoRe
 
 Enqueue Export Custom Object Job
 
-Enqueue export job. This will place export job in queue, and will start the job when computing resources become available.  The export job must be in \"Created\" state.  Use Get Export Custom Object Job Status endpoint to retrieve status of export job.  Required Permissions: Read-Only Custom Object
+Enqueue export job. This will place export job in queue, and will start the job when computing resources become available. The export job must be in \"Created\" state. Use Get Export Custom Object Job Status endpoint to retrieve status of export job. Required Permissions: Read-Only Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportCustomObjectsApi(
@@ -194,14 +191,13 @@ getExportCustomObjectsFileUsingGET($api_name, $export_id, $range): object
 
 Get Export Custom Object File
 
-Returns the file content of an export job.  The export job must be in \"Completed\" state.  Use Get Export Custom Object Job Status endpoint to retrieve status of export job.  Required Permissions: Read-Only Custom Object<br><br>The file format is specified by calling the Create Export Custom Object Job endpoint. The following is an example of the default file format (\"CSV\").<br><br><code>leadId,marketoGUID,itemName</code><br><code>11,c93f0494-bbd9-44e8-9c0e-dae9b525073f,Hoka One One Mach 4</code>
+Returns the file content of an export job. The export job must be in \"Completed\" state. Use Get Export Custom Object Job Status endpoint to retrieve status of export job. Required Permissions: Read-Only Custom Object<br><br>The file format is specified by calling the Create Export Custom Object Job endpoint. The following is an example of the default file format (\"CSV\").<br><br><code>leadId,marketoGUID,itemName</code><br><code>11,c93f0494-bbd9-44e8-9c0e-dae9b525073f,Hoka One One Mach 4</code>
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportCustomObjectsApi(
@@ -211,7 +207,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportCustomObjectsApi(
 );
 $api_name = 'api_name_example'; // string | API Name of the custom object for the export batch job.
 $export_id = 'export_id_example'; // string | Id of export batch job.
-$range = 'range_example'; // string | To support partial retrieval of extracted data, the HTTP header \"Range\" of type \"bytes\" may be specified.  See RFC 2616 \"Range Retrieval Requests\" for more information. If the header is not set, the entire contents will be returned.
+$range = 'range_example'; // string | To support partial retrieval of extracted data, the HTTP header \"Range\" of type \"bytes\" may be specified. See RFC 2616 \"Range Retrieval Requests\" for more information. If the header is not set, the entire contents will be returned.
 
 try {
     $result = $apiInstance->getExportCustomObjectsFileUsingGET($api_name, $export_id, $range);
@@ -227,7 +223,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **api_name** | **string**| API Name of the custom object for the export batch job. |
  **export_id** | **string**| Id of export batch job. |
- **range** | **string**| To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned. | [optional]
+ **range** | **string**| To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned. | [optional]
 
 ### Return type
 
@@ -254,14 +250,13 @@ getExportCustomObjectsStatusUsingGET($api_name, $export_id): \NecLimDul\MarketoR
 
 Get Export Custom Object Job Status
 
-Returns status of an export job.  Job status is available for 30 days after Completed or Failed status was reached. Required Permissions: Read-Only Custom Object
+Returns status of an export job. Job status is available for 30 days after Completed or Failed status was reached. Required Permissions: Read-Only Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportCustomObjectsApi(
@@ -312,14 +307,13 @@ getExportCustomObjectsUsingGET($api_name, $status, $batch_size, $next_page_token
 
 Get Export Custom Object Jobs
 
-Returns a list of export jobs that were created in the past 7 days.  Required Permissions: Read-Only Custom Object
+Returns a list of export jobs that were created in the past 7 days. Required Permissions: Read-Only Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportCustomObjectsApi(

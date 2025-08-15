@@ -11,10 +11,10 @@ Name | Type | Description | Notes
 **description** | **string** | Description of the asset | [optional]
 **facebook_og_tags** | **string** | Any OpenGraph meta tags to apply to the page |
 **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) |  | [optional]
-**form_prefill** | **bool** | Boolean to toggle whether forms embedded in the page will prefill.  Default false | [optional]
+**form_prefill** | **bool** | Boolean to toggle whether forms embedded in the page will prefill. Default false | [optional]
 **id** | **int** | Id of the asset | [optional]
 **keywords** | **string** |  | [optional]
-**mobile_enabled** | **bool** | Whether the page has mobile viewing enabled.  Free-form pages only.  Default false | [optional]
+**mobile_enabled** | **bool** | Whether the page has mobile viewing enabled. Free-form pages only. Default false | [optional]
 **name** | **string** | Name of the asset | [optional]
 **robots** | **string** | Robots directives to apply to the pages meta tags |
 **status** | **string** | Status filter for draft or approved versions | [optional]

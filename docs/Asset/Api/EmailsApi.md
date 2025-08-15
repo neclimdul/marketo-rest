@@ -40,14 +40,13 @@ addModuleUsingPOST($id, $module_id, $name, $index): \NecLimDul\MarketoRest\Asset
 
 Add Email Module
 
-Adds a new module to an email, with the given id.  Required Permissions: Read-Write Assets
+Adds a new module to an email, with the given id. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -58,7 +57,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
 $id = 56; // int | id
 $module_id = 'module_id_example'; // string | moduleId
 $name = 'name_example'; // string | Name of the module
-$index = 56; // int | Index of the module.  Determines the order of the module in the email.
+$index = 56; // int | Index of the module. Determines the order of the module in the email.
 
 try {
     $result = $apiInstance->addModuleUsingPOST($id, $module_id, $name, $index);
@@ -75,7 +74,7 @@ Name | Type | Description  | Notes
  **id** | **int**| id |
  **module_id** | **string**| moduleId |
  **name** | **string**| Name of the module |
- **index** | **int**| Index of the module.  Determines the order of the module in the email. |
+ **index** | **int**| Index of the module. Determines the order of the module in the email. |
 
 ### Return type
 
@@ -102,14 +101,13 @@ approveDraftUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdRespo
 
 Approve Email Draft
 
-Approves the current draft of an email.  Required Permissions: Approve Assets
+Approves the current draft of an email. Required Permissions: Approve Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -167,7 +165,6 @@ Clones the target email. Required Permissions: Read-Write Assets
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -177,7 +174,7 @@ $id = 56; // int | id
 $folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder
 $name = 'name_example'; // string | Name of the new email asset
 $description = 'description_example'; // string | Description of the asset
-$operational = True; // bool | Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
+$operational = True; // bool | Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
 
 try {
     $result = $apiInstance->cloneEmailUsingPOST($id, $folder, $name, $description, $operational);
@@ -195,7 +192,7 @@ Name | Type | Description  | Notes
  **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
  **name** | **string**| Name of the new email asset |
  **description** | **string**| Description of the asset | [optional]
- **operational** | **bool**| Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false | [optional]
+ **operational** | **bool**| Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false | [optional]
 
 ### Return type
 
@@ -222,7 +219,7 @@ createEmailFullContentUsingPOST($id, $content): \NecLimDul\MarketoRest\Asset\Mod
 
 Update Email Full Content
 
-Replaces the HTML of an Email that has had its relationship broken from its template.  Required Permissions: Read-Write Assets
+Replaces the HTML of an Email that has had its relationship broken from its template. Required Permissions: Read-Write Assets
 
 ### Example
 
@@ -231,14 +228,13 @@ Replaces the HTML of an Email that has had its relationship broken from its temp
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the email
-$content = 'content_example'; // string | Multipart file. File containing HTML document to update with.  File cannot include JavaScript or script tags.
+$content = 'content_example'; // string | Multipart file. File containing HTML document to update with. File cannot include JavaScript or script tags.
 
 try {
     $result = $apiInstance->createEmailFullContentUsingPOST($id, $content);
@@ -253,7 +249,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the email |
- **content** | **string**| Multipart file. File containing HTML document to update with.  File cannot include JavaScript or script tags. |
+ **content** | **string**| Multipart file. File containing HTML document to update with. File cannot include JavaScript or script tags. |
 
 ### Return type
 
@@ -280,14 +276,13 @@ createEmailUsingPOST($folder, $from_email, $from_name, $name, $reply_email, $sub
 
 Create Email
 
-Creates a new email asset.  Required Permissions: Read-Write Assets
+Creates a new email asset. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -303,7 +298,7 @@ $reply_email = 'reply_email_example'; // string | Reply-To address of the Email
 $subject = 'subject_example'; // string | Subject Line of the Email
 $template = 56; // int | Id of the parent template
 $description = 'description_example'; // string | Description of the asset
-$operational = True; // bool | Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
+$operational = True; // bool | Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
 $text_only = 'text_only_example'; // string | Setting to include text-only version of email when sent
 
 try {
@@ -326,7 +321,7 @@ Name | Type | Description  | Notes
  **subject** | **string**| Subject Line of the Email |
  **template** | **int**| Id of the parent template |
  **description** | **string**| Description of the asset | [optional]
- **operational** | **bool**| Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false | [optional]
+ **operational** | **bool**| Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false | [optional]
  **text_only** | **string**| Setting to include text-only version of email when sent | [optional]
 
 ### Return type
@@ -354,14 +349,13 @@ deleteEmailUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdRespon
 
 Delete Email
 
-Deletes the target email.  Required Permissions: Read-Write Assets
+Deletes the target email. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -410,14 +404,13 @@ deleteModuleUsingPOST($id, $module_id): \NecLimDul\MarketoRest\Asset\Model\Respo
 
 Delete Module
 
-Deletes the given module from the email.  Required Permissions: Read-Write Assets
+Deletes the given module from the email. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -468,14 +461,13 @@ discardDraftUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdRespo
 
 Discard Email Draft
 
-Discards the current draft of an email.  Required Permissions: Read-Write Assets
+Discards the current draft of an email. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -524,14 +516,13 @@ duplicateModuleUsingPOST($id, $module_id, $name): \NecLimDul\MarketoRest\Asset\M
 
 Duplicate Email Module
 
-Creates a copy of the designated module in an email.  Required Permissions: Read-Write Assets
+Creates a copy of the designated module in an email. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -584,14 +575,13 @@ getEmailByIdUsingGET($id, $status): \NecLimDul\MarketoRest\Asset\Model\ResponseO
 
 Get Email By Id
 
-Returns an email records by its id.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns an email records by its id. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -642,14 +632,13 @@ getEmailByNameUsingGET($name, $status, $folder): \NecLimDul\MarketoRest\Asset\Mo
 
 Get Email by Name
 
-Returns an email records based on the given name.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns an email records based on the given name. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -702,14 +691,13 @@ getEmailCCFieldsUsingGET(): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCC
 
 Get Email CC Fields
 
-Returns the set of fields enabled for Email CC in the target instance.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns the set of fields enabled for Email CC in the target instance. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -755,14 +743,13 @@ getEmailContentByIdUsingGET($id, $status): \NecLimDul\MarketoRest\Asset\Model\Re
 
 Get Email Content
 
-Returns the content of the designated email.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns the content of the designated email. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -813,14 +800,13 @@ getEmailDynamicContentUsingGET($id, $content_id, $status): \NecLimDul\MarketoRes
 
 Get Email Dynamic Content
 
-Retrieves the dyanmic content record for the given section.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves the dyanmic content record for the given section. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -873,7 +859,7 @@ getEmailFullContentUsingGET($id, $status, $lead_id, $type): \NecLimDul\MarketoRe
 
 Get Email Full Content
 
-Returns the serialized HTML version of the email.  Required Permissions: Read-Only Assets, Read-Write Assets.  If leadId is passed in the request: Read-Only Lead, Read-Write Lead.
+Returns the serialized HTML version of the email. Required Permissions: Read-Only Assets, Read-Write Assets. If leadId is passed in the request: Read-Only Lead, Read-Write Lead.
 
 ### Example
 
@@ -882,16 +868,15 @@ Returns the serialized HTML version of the email.  Required Permissions: Read-On
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the email
-$status = 'status_example'; // string | Status filter for draft or approved versions.  Defaults to approved if asset is approved, draft if not.
-$lead_id = 56; // int | The lead id to impersonate.  Email is rendered as though it was received by this lead.
-$type = 'type_example'; // string | Email content type to return.  Default is HTML.
+$status = 'status_example'; // string | Status filter for draft or approved versions. Defaults to approved if asset is approved, draft if not.
+$lead_id = 56; // int | The lead id to impersonate. Email is rendered as though it was received by this lead.
+$type = 'type_example'; // string | Email content type to return. Default is HTML.
 
 try {
     $result = $apiInstance->getEmailFullContentUsingGET($id, $status, $lead_id, $type);
@@ -906,9 +891,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the email |
- **status** | **string**| Status filter for draft or approved versions.  Defaults to approved if asset is approved, draft if not. | [optional]
- **lead_id** | **int**| The lead id to impersonate.  Email is rendered as though it was received by this lead. | [optional]
- **type** | **string**| Email content type to return.  Default is HTML. | [optional]
+ **status** | **string**| Status filter for draft or approved versions. Defaults to approved if asset is approved, draft if not. | [optional]
+ **lead_id** | **int**| The lead id to impersonate. Email is rendered as though it was received by this lead. | [optional]
+ **type** | **string**| Email content type to return. Default is HTML. | [optional]
 
 ### Return type
 
@@ -935,14 +920,13 @@ getEmailUsingGET($status, $folder, $offset, $max_return, $earliest_updated_at, $
 
 Get Emails
 
-Returns a list of emails matching the given filter parameters.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns a list of emails matching the given filter parameters. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -953,9 +937,9 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
 $status = 'status_example'; // string | Status filter for draft or approved versions
 $folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 $offset = 56; // int | Integer offset for paging
-$max_return = 56; // int | Maximum number of emails to return.  Max 200, default 20
-$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude emails prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = 'latest_updated_at_example'; // string | Exclude emails after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$max_return = 56; // int | Maximum number of emails to return. Max 200, default 20
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude emails prior to this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude emails after this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->getEmailUsingGET($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
@@ -972,9 +956,9 @@ Name | Type | Description  | Notes
  **status** | **string**| Status filter for draft or approved versions | [optional]
  **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
- **max_return** | **int**| Maximum number of emails to return.  Max 200, default 20 | [optional]
- **earliest_updated_at** | **string**| Exclude emails prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
- **latest_updated_at** | **string**| Exclude emails after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **max_return** | **int**| Maximum number of emails to return. Max 200, default 20 | [optional]
+ **earliest_updated_at** | **string**| Exclude emails prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **latest_updated_at** | **string**| Exclude emails after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
 
 ### Return type
 
@@ -1001,14 +985,13 @@ getEmailVariablesUsingGET($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEma
 
 Get Email Variables
 
-Returns a list of the available variables in an email.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns a list of the available variables in an email. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -1057,14 +1040,13 @@ rearrangeModulesUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEma
 
 Rearrange Email Modules
 
-Rearranges the modules in an email.  Required Permissions: Read-Write Assets
+Rearranges the modules in an email. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -1113,14 +1095,13 @@ renameUsingPOST($id, $module_id, $name): \NecLimDul\MarketoRest\Asset\Model\Resp
 
 Rename Email Module
 
-Renames a module.  Required Permissions: Read-Write Assets
+Renames a module. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -1173,14 +1154,13 @@ sendSampleEmailUsingPOST($id, $email_address, $lead_id, $text_only): \NecLimDul\
 
 Send Sample Email
 
-Sends a sample email to the given email address.  Leads may be impersonated to populate data for tokens and dynamic content. Required Permissions: Read-Write Assets
+Sends a sample email to the given email address. Leads may be impersonated to populate data for tokens and dynamic content. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -1190,8 +1170,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
 );
 $id = 56; // int | Id of the email
 $email_address = 'email_address_example'; // string | Email address to receive sample email
-$lead_id = 'lead_id_example'; // string | Id of a lead to impersonate.  Tokens and dynamic content will be populated as though it were sent to the lead.
-$text_only = True; // bool | Whether to send to text only version along with the HTML version.  Default false.
+$lead_id = 'lead_id_example'; // string | Id of a lead to impersonate. Tokens and dynamic content will be populated as though it were sent to the lead.
+$text_only = True; // bool | Whether to send to text only version along with the HTML version. Default false.
 
 try {
     $result = $apiInstance->sendSampleEmailUsingPOST($id, $email_address, $lead_id, $text_only);
@@ -1207,8 +1187,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the email |
  **email_address** | **string**| Email address to receive sample email |
- **lead_id** | **string**| Id of a lead to impersonate.  Tokens and dynamic content will be populated as though it were sent to the lead. | [optional]
- **text_only** | **bool**| Whether to send to text only version along with the HTML version.  Default false. | [optional]
+ **lead_id** | **string**| Id of a lead to impersonate. Tokens and dynamic content will be populated as though it were sent to the lead. | [optional]
+ **text_only** | **bool**| Whether to send to text only version along with the HTML version. Default false. | [optional]
 
 ### Return type
 
@@ -1235,14 +1215,13 @@ unapproveDraftUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdRes
 
 Unapprove Email
 
-Unapproves the email and reverts it to a draft-only state.  Required Permissions: Approve Assets
+Unapproves the email and reverts it to a draft-only state. Required Permissions: Approve Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -1291,14 +1270,13 @@ updateEmailComponentContentUsingPOST($id, $html_id, $type, $value, $alt_text, $e
 
 Update Email Content Section
 
-Updates the content in the given section.  Required Permissions: Read-Write Assets
+Updates the content in the given section. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -1309,17 +1287,17 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
 $id = 56; // int | id
 $html_id = 'html_id_example'; // string | htmlId
 $type = 'type_example'; // string | Type of content to set for the section.
-$value = 'value_example'; // string | Value to set for the section.  For type Text, the HTML content of the section.  For type DynamicContent, the id of the segmentation to use for the content.  For type Snippet, the id of the snippet to embed
+$value = 'value_example'; // string | Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed
 $alt_text = 'alt_text_example'; // string | Sets the value of the alt parameter for the resulting img element
 $external_url = 'external_url_example'; // string
-$height = 56; // int | Overrides naitve height of the image.  The resulting file will be resized to the given height
+$height = 56; // int | Overrides naitve height of the image. The resulting file will be resized to the given height
 $image = 'image_example'; // string | Multipart file that allows you to load an image from your computer
 $link_url = 'link_url_example'; // string
 $over_write = True; // bool | Allows overwriting of the existing image content section
 $style = 'style_example'; // string | Sets the value of the style parameter for the content section
 $text_value = 'text_value_example'; // string
-$video_url = 'video_url_example'; // string | Sets the Url of the video element.  Videos must be either from YouTube or Vimeo
-$width = 56; // int | Overrides native width of the image.  The resulting file will be resized to the given width
+$video_url = 'video_url_example'; // string | Sets the Url of the video element. Videos must be either from YouTube or Vimeo
+$width = 56; // int | Overrides native width of the image. The resulting file will be resized to the given width
 
 try {
     $result = $apiInstance->updateEmailComponentContentUsingPOST($id, $html_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $text_value, $video_url, $width);
@@ -1336,17 +1314,17 @@ Name | Type | Description  | Notes
  **id** | **int**| id |
  **html_id** | **string**| htmlId |
  **type** | **string**| Type of content to set for the section. |
- **value** | **string**| Value to set for the section.  For type Text, the HTML content of the section.  For type DynamicContent, the id of the segmentation to use for the content.  For type Snippet, the id of the snippet to embed |
+ **value** | **string**| Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed |
  **alt_text** | **string**| Sets the value of the alt parameter for the resulting img element | [optional]
  **external_url** | **string**|  | [optional]
- **height** | **int**| Overrides naitve height of the image.  The resulting file will be resized to the given height | [optional]
+ **height** | **int**| Overrides naitve height of the image. The resulting file will be resized to the given height | [optional]
  **image** | **string**| Multipart file that allows you to load an image from your computer | [optional]
  **link_url** | **string**|  | [optional]
  **over_write** | **bool**| Allows overwriting of the existing image content section | [optional]
  **style** | **string**| Sets the value of the style parameter for the content section | [optional]
  **text_value** | **string**|  | [optional]
- **video_url** | **string**| Sets the Url of the video element.  Videos must be either from YouTube or Vimeo | [optional]
- **width** | **int**| Overrides native width of the image.  The resulting file will be resized to the given width | [optional]
+ **video_url** | **string**| Sets the Url of the video element. Videos must be either from YouTube or Vimeo | [optional]
+ **width** | **int**| Overrides native width of the image. The resulting file will be resized to the given width | [optional]
 
 ### Return type
 
@@ -1373,14 +1351,13 @@ updateEmailContentUsingPOST($id, $from_email, $from_name, $reply_to, $subject): 
 
 Update Email Content
 
-Updates the content of an email.  Required Permissions: Read-Write Assets
+Updates the content of an email. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -1437,14 +1414,13 @@ updateEmailDynamicContentUsingPOST($id, $content_id, $type, $value, $alt_text, $
 
 Update Email Dynamic Content Section
 
-Updates dynamic content in the given section.  Required Permissions: Read-Write Assets
+Updates dynamic content in the given section. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -1455,16 +1431,16 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
 $id = 56; // int | Id of email
 $content_id = 'content_id_example'; // string | Id of email dynamic content section
 $type = 'type_example'; // string | Type of content to set for the section.
-$value = 'value_example'; // string | Value to set for the section.  For type Text, the HTML content of the section.  For type DynamicContent, the id of the segmentation to use for the content.  For type Snippet, the id of the snippet to embed
+$value = 'value_example'; // string | Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed
 $alt_text = 'alt_text_example'; // string | Sets the value of the alt parameter for the resulting img element
 $external_url = 'external_url_example'; // string
-$height = 56; // int | Overrides naitve height of the image.  The resulting file will be resized to the given height
+$height = 56; // int | Overrides naitve height of the image. The resulting file will be resized to the given height
 $image = 'image_example'; // string | Multipart file that allows you to add an image from your computer
 $link_url = 'link_url_example'; // string
 $over_write = True; // bool | Allows overwriting of the existing image content section
 $style = 'style_example'; // string | Sets the value of the style parameter for the content section
-$video_url = 'video_url_example'; // string | Sets the Url of the video element.  Videos must be either from YouTube or Vimeo
-$width = 56; // int | Overrides native width of the image.  The resulting file will be resized to the given width
+$video_url = 'video_url_example'; // string | Sets the Url of the video element. Videos must be either from YouTube or Vimeo
+$width = 56; // int | Overrides native width of the image. The resulting file will be resized to the given width
 
 try {
     $result = $apiInstance->updateEmailDynamicContentUsingPOST($id, $content_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $video_url, $width);
@@ -1481,16 +1457,16 @@ Name | Type | Description  | Notes
  **id** | **int**| Id of email |
  **content_id** | **string**| Id of email dynamic content section |
  **type** | **string**| Type of content to set for the section. |
- **value** | **string**| Value to set for the section.  For type Text, the HTML content of the section.  For type DynamicContent, the id of the segmentation to use for the content.  For type Snippet, the id of the snippet to embed |
+ **value** | **string**| Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed |
  **alt_text** | **string**| Sets the value of the alt parameter for the resulting img element | [optional]
  **external_url** | **string**|  | [optional]
- **height** | **int**| Overrides naitve height of the image.  The resulting file will be resized to the given height | [optional]
+ **height** | **int**| Overrides naitve height of the image. The resulting file will be resized to the given height | [optional]
  **image** | **string**| Multipart file that allows you to add an image from your computer | [optional]
  **link_url** | **string**|  | [optional]
  **over_write** | **bool**| Allows overwriting of the existing image content section | [optional]
  **style** | **string**| Sets the value of the style parameter for the content section | [optional]
- **video_url** | **string**| Sets the Url of the video element.  Videos must be either from YouTube or Vimeo | [optional]
- **width** | **int**| Overrides native width of the image.  The resulting file will be resized to the given width | [optional]
+ **video_url** | **string**| Sets the Url of the video element. Videos must be either from YouTube or Vimeo | [optional]
+ **width** | **int**| Overrides native width of the image. The resulting file will be resized to the given width | [optional]
 
 ### Return type
 
@@ -1517,14 +1493,13 @@ updateEmailUsingPOST($id, $description, $name, $pre_header, $operational, $publi
 
 Update Email Metadata
 
-Updates the metadata of an email asset.  Required Permissions: Read-Write Assets
+Updates the metadata of an email asset. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
@@ -1536,8 +1511,8 @@ $id = 56; // int | id
 $description = 'description_example'; // string | Description of the asset
 $name = 'name_example'; // string | Name of the Email
 $pre_header = 'pre_header_example'; // string | Preheader text for the email
-$operational = True; // bool | Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
-$published = True; // bool | Whether the email has been published to Sales Insight.  Default false
+$operational = True; // bool | Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
+$published = True; // bool | Whether the email has been published to Sales Insight. Default false
 $text_only = True; // bool | Setting to include text-only version of email when sent
 $web_view = True; // bool | Whether the email has been enabled to allow the 'View as Web Page' when received
 
@@ -1557,8 +1532,8 @@ Name | Type | Description  | Notes
  **description** | **string**| Description of the asset | [optional]
  **name** | **string**| Name of the Email | [optional]
  **pre_header** | **string**| Preheader text for the email | [optional]
- **operational** | **bool**| Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false | [optional]
- **published** | **bool**| Whether the email has been published to Sales Insight.  Default false | [optional]
+ **operational** | **bool**| Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false | [optional]
+ **published** | **bool**| Whether the email has been published to Sales Insight. Default false | [optional]
  **text_only** | **bool**| Setting to include text-only version of email when sent | [optional]
  **web_view** | **bool**| Whether the email has been enabled to allow the &#39;View as Web Page&#39; when received | [optional]
 
@@ -1587,14 +1562,13 @@ updateVariableUsingPOST($id, $name, $value, $module_id): \NecLimDul\MarketoRest\
 
 Update Email Variable
 
-Updates the value of a given variable in an email.  Required Permissions: Read-Write Assets
+Updates the value of a given variable in an email. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(

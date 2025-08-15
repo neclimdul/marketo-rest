@@ -26,14 +26,13 @@ approveLandingPageTemplateUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\Res
 
 Approve Landing Page Template Draft
 
-Approves the current landing page template draft.  This will delete the current approved version of the template if there is one.  Required Permissions: Approve Assets
+Approves the current landing page template draft. This will delete the current approved version of the template if there is one. Required Permissions: Approve Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
@@ -82,14 +81,13 @@ cloneLpTemplateUsingPOST($id, $folder, $name, $description): \NecLimDul\MarketoR
 
 Clone Landing Page Template
 
-Clones the target landing page template.  Required Permissions: Read-Write Assets
+Clones the target landing page template. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
@@ -144,14 +142,13 @@ createLpTemplateUsingPOST($folder, $name, $description, $enable_munchkin, $templ
 
 Create Landing Page Template
 
-Creates a new landing page template.  Required Permissions: Read-Write Assets
+Creates a new landing page template. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
@@ -162,8 +159,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
 $folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder
 $name = 'name_example'; // string | Name of the landing page template
 $description = 'description_example'; // string | Description of the landing page template
-$enable_munchkin = True; // bool | Whether to enable munchkin on the derived pages.  Defaults to true
-$template_type = 'template_type_example'; // string | Type of template to create.  Defaults to freeForm
+$enable_munchkin = True; // bool | Whether to enable munchkin on the derived pages. Defaults to true
+$template_type = 'template_type_example'; // string | Type of template to create. Defaults to freeForm
 
 try {
     $result = $apiInstance->createLpTemplateUsingPOST($folder, $name, $description, $enable_munchkin, $template_type);
@@ -180,8 +177,8 @@ Name | Type | Description  | Notes
  **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
  **name** | **string**| Name of the landing page template |
  **description** | **string**| Description of the landing page template | [optional]
- **enable_munchkin** | **bool**| Whether to enable munchkin on the derived pages.  Defaults to true | [optional]
- **template_type** | **string**| Type of template to create.  Defaults to freeForm | [optional]
+ **enable_munchkin** | **bool**| Whether to enable munchkin on the derived pages. Defaults to true | [optional]
+ **template_type** | **string**| Type of template to create. Defaults to freeForm | [optional]
 
 ### Return type
 
@@ -208,14 +205,13 @@ deleteLpTemplateUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdR
 
 Delete Landing Page Template
 
-Deletes the target landing page template.  Required Permissions: Read-Write Assets
+Deletes the target landing page template. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
@@ -264,14 +260,13 @@ discardDraftUsingPOST2($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResp
 
 Discard Landing Page Template Draft
 
-Discrads the current draft of the landing page template.  Required Permissions: Read-Write Assets
+Discrads the current draft of the landing page template. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
@@ -320,14 +315,13 @@ getLandingPageTemplateByIdUsingGET($id, $status): \NecLimDul\MarketoRest\Asset\M
 
 Get Landing Page Template by Id
 
-Retrieves the record for the target landing page template.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves the record for the target landing page template. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
@@ -378,14 +372,13 @@ getLandingPageTemplateByNameUsingGET($name): \NecLimDul\MarketoRest\Asset\Model\
 
 Get Landing Page Template by Name
 
-Retrieves the landing page template record for the given name.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves the landing page template record for the given name. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
@@ -434,14 +427,13 @@ getLandingPageTemplateContentUsingGET($id, $status): \NecLimDul\MarketoRest\Asse
 
 Get Landing Page Template Content
 
-Retrieves the content of the target landing page.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves the content of the target landing page. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
@@ -492,7 +484,7 @@ getLandingPageTemplatesUsingGET($max_return, $offset, $status, $folder): \NecLim
 
 Get Landing Page Templates
 
-Retrieves the list of accessible landing page templates from the target instance.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves the list of accessible landing page templates from the target instance. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
@@ -501,13 +493,12 @@ Retrieves the list of accessible landing page templates from the target instance
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of channels to return. Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 $status = 'status_example'; // string | Status filter for draft or approved versions
 $folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
@@ -524,7 +515,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_return** | **int**| Maximum number of channels to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of channels to return. Max 200, default 20 | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
  **status** | **string**| Status filter for draft or approved versions | [optional]
  **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
@@ -554,14 +545,13 @@ unapproveLandingPageTemplateUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\R
 
 Unapprove Landing Page Template
 
-Unapproves the landing page template and reverts it to a draft-only state.  Required Permissions: Approve Assets
+Unapproves the landing page template and reverts it to a draft-only state. Required Permissions: Approve Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
@@ -610,14 +600,13 @@ updateLandingPageTemplateContentUsingPOST($id, $content): \NecLimDul\MarketoRest
 
 Update Landing Page Template Content
 
-Updates the content for the target landing page template.  This update is destructive for the draft version of the template.  Required Permissions: Read-Write Assets
+Updates the content for the target landing page template. This update is destructive for the draft version of the template. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
@@ -668,14 +657,13 @@ updateLpTemplateUsingPOST($id, $description, $enable_munchkin, $name): \NecLimDu
 
 Update Landing Page Template Metadata
 
-Updates the metadata for the target landing page template.  Required Permissions: Read-Write Assets
+Updates the metadata for the target landing page template. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
@@ -685,7 +673,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
 );
 $id = 56; // int | id
 $description = 'description_example'; // string | Description of the landing page template
-$enable_munchkin = True; // bool | Whether to enable munchkin on the derived pages.  Defaults to true
+$enable_munchkin = True; // bool | Whether to enable munchkin on the derived pages. Defaults to true
 $name = 'name_example'; // string | Name of the landing page template
 
 try {
@@ -702,7 +690,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
  **description** | **string**| Description of the landing page template | [optional]
- **enable_munchkin** | **bool**| Whether to enable munchkin on the derived pages.  Defaults to true | [optional]
+ **enable_munchkin** | **bool**| Whether to enable munchkin on the derived pages. Defaults to true | [optional]
  **name** | **string**| Name of the landing page template | [optional]
 
 ### Return type

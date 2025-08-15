@@ -20,14 +20,13 @@ deleteNamedAccountsUsingPOST($delete_account_request): \NecLimDul\MarketoRest\Le
 
 Delete NamedAccounts
 
-Deletes a list of namedaccount records from the target instance.  Input records should have only one member, based on the value of 'dedupeBy'.  Required Permissions: Read-Write Named Account
+Deletes a list of namedaccount records from the target instance. Input records should have only one member, based on the value of 'dedupeBy'. Required Permissions: Read-Write Named Account
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
@@ -76,14 +75,13 @@ describeUsingGET3(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
 
 Describe NamedAccounts
 
-Returns metadata about namedaccounts and the fields available for interaction via the API.  Required Permissions: Read-Only Named Account, Read-Write Named Account
+Returns metadata about namedaccounts and the fields available for interaction via the API. Required Permissions: Read-Only Named Account, Read-Write Named Account
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
@@ -129,14 +127,13 @@ getNamedAccountFieldByNameUsingGET($field_api_name): \NecLimDul\MarketoRest\Lead
 
 Get Named Account Field by Name
 
-Retrieves metadata for single named account field.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Retrieves metadata for single named account field. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
@@ -185,14 +182,13 @@ getNamedAccountFieldsUsingGET($batch_size, $next_page_token): \NecLimDul\Marketo
 
 Get Named Account Fields
 
-Retrieves metadata for all named account fields in the target instance.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Retrieves metadata for all named account fields in the target instance. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
@@ -243,7 +239,7 @@ getNamedAccountsUsingGET($filter_type, $filter_values, $fields, $batch_size, $ne
 
 Get NamedAccounts
 
-Retrieves namedaccount records from the destination instance based on the submitted filter.  Required Permissions: Read-Only Named Account, Read-Write Named Account
+Retrieves namedaccount records from the destination instance based on the submitted filter. Required Permissions: Read-Only Named Account, Read-Write Named Account
 
 ### Example
 
@@ -252,17 +248,16 @@ Retrieves namedaccount records from the destination instance based on the submit
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filter_type = 'filter_type_example'; // string | NamedAccounts field to filter on.  Can be any searchable fields
+$filter_type = 'filter_type_example'; // string | NamedAccounts field to filter on. Can be any searchable fields
 $filter_values = array('filter_values_example'); // string[] | A comma-separated list of values to match against
 $fields = array('fields_example'); // string[] | Comma-separated list of fields to include in the response
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getNamedAccountsUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
@@ -276,11 +271,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter_type** | **string**| NamedAccounts field to filter on.  Can be any searchable fields |
+ **filter_type** | **string**| NamedAccounts field to filter on. Can be any searchable fields |
  **filter_values** | [**string[]**](../Model/string.md)| A comma-separated list of values to match against |
  **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to include in the response | [optional]
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
 
 ### Return type
 
@@ -307,14 +302,13 @@ syncNamedAccountsUsingPOST($sync_account_request): \NecLimDul\MarketoRest\Lead\M
 
 Sync NamedAccounts
 
-Allows inserts, updates, or upserts of namedaccounts to the target instance.  Required Permissions: Read-Write Named Account
+Allows inserts, updates, or upserts of namedaccounts to the target instance. Required Permissions: Read-Write Named Account
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(

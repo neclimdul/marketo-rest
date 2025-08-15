@@ -31,14 +31,13 @@ addCustomObjectTypeFieldsUsingPOST($api_name, $add_custom_object_type_fields_req
 
 Add Custom Object Type Fields
 
-Adds fields to custom object type.  Required Permissions: Read-Write Custom Object Type
+Adds fields to custom object type. Required Permissions: Read-Write Custom Object Type
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -89,14 +88,13 @@ approveCustomObjectTypeUsingPOST($api_name): \NecLimDul\MarketoRest\Lead\Model\R
 
 Approve Custom Object Type
 
-Approves the current draft of the type, and makes it the live version.  This will delete the current live version of the type.  Required Permissions: Read-Write Custom Object Type
+Approves the current draft of the type, and makes it the live version. This will delete the current live version of the type. Required Permissions: Read-Write Custom Object Type
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -145,14 +143,13 @@ deleteCustomObjectTypeFieldsUsingPOST($api_name, $delete_custom_object_type_fiel
 
 Delete Custom Object Type Fields
 
-Deletes fields from custom object type.  Required Permissions: Read-Write Custom Object Type
+Deletes fields from custom object type. Required Permissions: Read-Write Custom Object Type
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -203,14 +200,13 @@ deleteCustomObjectTypeUsingPOST($api_name): \NecLimDul\MarketoRest\Lead\Model\Re
 
 Delete Custom Object Type
 
-Deletes the target custom object type.  The type must first be removed from use by any assets, such as triggers or filters.  Required Permissions: Read-Write Custom Object Type
+Deletes the target custom object type. The type must first be removed from use by any assets, such as triggers or filters. Required Permissions: Read-Write Custom Object Type
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -259,14 +255,13 @@ deleteCustomObjectsUsingPOST($custom_object_name, $delete_custom_object_request)
 
 Delete Custom Objects
 
-Deletes a given set of custom object records.  Required Permissions: Read-Write Custom Object
+Deletes a given set of custom object records. Required Permissions: Read-Write Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -317,7 +312,7 @@ describeCustomObjectTypeUsingGET($api_name, $state): \NecLimDul\MarketoRest\Lead
 
 Describe Custom Object Type
 
-Returns metadata regarding a given custom object type (including relationships and fields).  Required Permissions: Read-Only Custom Object Type, Read-Write Custom Object Type
+Returns metadata regarding a given custom object type (including relationships and fields). Required Permissions: Read-Only Custom Object Type, Read-Write Custom Object Type
 
 ### Example
 
@@ -326,14 +321,13 @@ Returns metadata regarding a given custom object type (including relationships a
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $api_name = 'api_name_example'; // string | API name of custom object type to describe
-$state = 'state_example'; // string | State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
+$state = 'state_example'; // string | State of custom object type to filter on. By default, if an approved version exists, it is returned. Otherwise, the draft version is returned.
 
 try {
     $result = $apiInstance->describeCustomObjectTypeUsingGET($api_name, $state);
@@ -348,7 +342,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **api_name** | **string**| API name of custom object type to describe |
- **state** | **string**| State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. | [optional]
+ **state** | **string**| State of custom object type to filter on. By default, if an approved version exists, it is returned. Otherwise, the draft version is returned. | [optional]
 
 ### Return type
 
@@ -375,14 +369,13 @@ describeUsingGET1($custom_object_name): \NecLimDul\MarketoRest\Lead\Model\Respon
 
 Describe Custom Objects
 
-Returns metadata regarding a given custom object.  Required Permissions: Read-Only Custom Object, Read-Write Custom Object
+Returns metadata regarding a given custom object. Required Permissions: Read-Only Custom Object, Read-Write Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -431,14 +424,13 @@ discardCustomObjectTypeUsingPOST($api_name): \NecLimDul\MarketoRest\Lead\Model\R
 
 Discard Custom Object Type Draft
 
-Discards the current draft of the custom object type.  Required Permissions: Read-Write Custom Object Type
+Discards the current draft of the custom object type. Required Permissions: Read-Write Custom Object Type
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -487,14 +479,13 @@ getCustomObjectTypeDependentAssetsUsingGET($api_name): \NecLimDul\MarketoRest\Le
 
 Get Custom Object Dependent Assets
 
-Returns a list of dependent assets for a custom object type, including their in-instance location.  Required Permissions: Read-Only Custom Object Type, Read-Write Custom Object Type
+Returns a list of dependent assets for a custom object type, including their in-instance location. Required Permissions: Read-Only Custom Object Type, Read-Write Custom Object Type
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -543,14 +534,13 @@ getCustomObjectTypeFieldDataTypesUsingGET(): \NecLimDul\MarketoRest\Lead\Model\R
 
 Get Custom Object Type Field Data Types
 
-Returns a list of permissible data types that are assigned to custom object fields.  Required Permissions: Read-Only Custom Object Type, Read-Write Custom Object Type
+Returns a list of permissible data types that are assigned to custom object fields. Required Permissions: Read-Only Custom Object Type, Read-Write Custom Object Type
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -596,14 +586,13 @@ getCustomObjectTypeLinkableObjectsUsingGET(): \NecLimDul\MarketoRest\Lead\Model\
 
 Get Custom Object Linkable Objects
 
-Returns a list of linkable custom objects and their fields.  Required Permissions: Read-Only Custom Object Type, Read-Write Custom Object Type
+Returns a list of linkable custom objects and their fields. Required Permissions: Read-Only Custom Object Type, Read-Write Custom Object Type
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -649,14 +638,13 @@ getCustomObjectsUsingGET($custom_object_name, $filter_type, $filter_values, $fie
 
 Get Custom Objects
 
-Retrieves a list of custom objects records based on filter and set of values.  There are two unique types of requests for this endpoint: one is executed normally using a GET with URL parameters, the other is by passing a JSON object in the body of a POST and specifying _method=GET in the querystring.  The latter is used when dedupeFields attribute has more than one field, which is known as a \"compound key\".  Required Permissions: Read-Only Custom Object, Read-Write Custom Object
+Retrieves a list of custom objects records based on filter and set of values. There are two unique types of requests for this endpoint: one is executed normally using a GET with URL parameters, the other is by passing a JSON object in the body of a POST and specifying _method=GET in the querystring. The latter is used when dedupeFields attribute has more than one field, which is known as a \"compound key\". Required Permissions: Read-Only Custom Object, Read-Write Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -667,10 +655,10 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
 $custom_object_name = 'custom_object_name_example'; // string | Name of custom object type to retrieve records for
 $filter_type = 'filter_type_example'; // string | Field to filter on. Searchable fields can be retrieved with Describe Custom Object
 $filter_values = array('filter_values_example'); // string[] | Comma-separated list of field values to match against.
-$fields = array('fields_example'); // string[] | Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
-$custom_object_lookup_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | Optional JSON request for retrieving custom objects with compound keys.  Example:<br><code>{<br>\"filterType\":\"dedupeFields\",<br>\"fields\":[<br>\"marketoGuid\",<br>\"Bedrooms\",<br>\"yearBuilt\"<br>],<br>\"input\":[<br>{<br>\"mlsNum\":\"1962352\",<br>\"houseOwnerId\":\"42645756\"<br>},<br>{<br>\"mlsNum\":\"3962352\",<br>\"houseOwnerId\":\"62645756\"<br>}<br>]<br>}</code><br>
+$fields = array('fields_example'); // string[] | Comma-separated list of fields to return for each record. If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+$custom_object_lookup_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | Optional JSON request for retrieving custom objects with compound keys. Example:<br><code>{<br>\"filterType\":\"dedupeFields\",<br>\"fields\":[<br>\"marketoGuid\",<br>\"Bedrooms\",<br>\"yearBuilt\"<br>],<br>\"input\":[<br>{<br>\"mlsNum\":\"1962352\",<br>\"houseOwnerId\":\"42645756\"<br>},<br>{<br>\"mlsNum\":\"3962352\",<br>\"houseOwnerId\":\"62645756\"<br>}<br>]<br>}</code><br>
 
 try {
     $result = $apiInstance->getCustomObjectsUsingGET($custom_object_name, $filter_type, $filter_values, $fields, $batch_size, $next_page_token, $custom_object_lookup_request);
@@ -687,10 +675,10 @@ Name | Type | Description  | Notes
  **custom_object_name** | **string**| Name of custom object type to retrieve records for |
  **filter_type** | **string**| Field to filter on. Searchable fields can be retrieved with Describe Custom Object |
  **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of field values to match against. |
- **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned | [optional]
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
- **custom_object_lookup_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt; | [optional]
+ **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to return for each record. If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
+ **custom_object_lookup_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| Optional JSON request for retrieving custom objects with compound keys. Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt; | [optional]
 
 ### Return type
 
@@ -717,7 +705,7 @@ listCustomObjectTypesUsingGET($names, $state): \NecLimDul\MarketoRest\Lead\Model
 
 List Custom Object Types
 
-Returns a list of Custom Object Types available in the target instance, along with id, deduplication, relationship, and field information for each type.  Required Permissions: Read-Only Custom Object Type, Read-Write Custom Object Type
+Returns a list of Custom Object Types available in the target instance, along with id, deduplication, relationship, and field information for each type. Required Permissions: Read-Only Custom Object Type, Read-Write Custom Object Type
 
 ### Example
 
@@ -726,14 +714,13 @@ Returns a list of Custom Object Types available in the target instance, along wi
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $names = array('names_example'); // string[] | Comma-separated list of API names of custom object types to filter on
-$state = 'state_example'; // string | State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
+$state = 'state_example'; // string | State of custom object type to filter on. By default, if an approved version exists, it is returned. Otherwise, the draft version is returned.
 
 try {
     $result = $apiInstance->listCustomObjectTypesUsingGET($names, $state);
@@ -748,7 +735,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **names** | [**string[]**](../Model/string.md)| Comma-separated list of API names of custom object types to filter on | [optional]
- **state** | **string**| State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. | [optional]
+ **state** | **string**| State of custom object type to filter on. By default, if an approved version exists, it is returned. Otherwise, the draft version is returned. | [optional]
 
 ### Return type
 
@@ -775,14 +762,13 @@ listCustomObjectsUsingGET($names): \NecLimDul\MarketoRest\Lead\Model\ResponseOfO
 
 List Custom Objects
 
-Returns a list of Custom Object types available in the target instance, along with id and deduplication information for each type.  Required Permissions: Read-Only Custom Object, Read-Write Custom Object
+Returns a list of Custom Object types available in the target instance, along with id and deduplication information for each type. Required Permissions: Read-Only Custom Object, Read-Write Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -831,14 +817,13 @@ syncCustomObjectTypeUsingPOST($sync_custom_object_type_request): \NecLimDul\Mark
 
 Sync Custom Object Type
 
-Inserts, updates, or upserts custom object type record to the target instance.  Required Permissions: Read-Write Custom Object Type
+Inserts, updates, or upserts custom object type record to the target instance. Required Permissions: Read-Write Custom Object Type
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -887,14 +872,13 @@ syncCustomObjectsUsingPOST($custom_object_name, $sync_custom_object_request): \N
 
 Sync Custom Objects
 
-Inserts, updates, or upserts custom object records to the target instance.  Required Permissions: Read-Write Custom Object
+Inserts, updates, or upserts custom object records to the target instance. Required Permissions: Read-Write Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
@@ -945,14 +929,13 @@ updateCustomObjectTypeFieldUsingPOST($api_name, $field_api_name, $update_custom_
 
 Update Custom Object Type Field
 
-Updates a field in custom object type.  Required Permissions: Read-Write Custom Object Type
+Updates a field in custom object type. Required Permissions: Read-Write Custom Object Type
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(

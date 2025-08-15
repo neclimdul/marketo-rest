@@ -18,14 +18,13 @@ getCampaignByIdUsingGET($campaign_id): \NecLimDul\MarketoRest\Lead\Model\Respons
 
 Get Campaign By Id
 
-Returns the record of a campaign by its id.  Required Permissions: Read-Only Campaigns, Read-Write Campaigns<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/asset-endpoint-reference/#!/Smart_Campaigns/getSmartCampaignByIdUsingGET\">Get Smart Campaign by Id</a> endpoint instead.
+Returns the record of a campaign by its id. Required Permissions: Read-Only Campaigns, Read-Write Campaigns<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"https://developer.adobe.com/marketo-apis/api/asset/#operation/getSmartCampaignByIdUsingGET\">Get Smart Campaign by Id</a> endpoint instead.
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
@@ -74,14 +73,13 @@ getCampaignsUsingGET($id, $name, $program_name, $workspace_name, $batch_size, $n
 
 Get Campaigns
 
-Returns a list of campaign records.  Required Permissions: Read-Only Campaigns, Read-Write Campaigns<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/asset-endpoint-reference/#/Smart_Campaigns/getAllSmartCampaignsGET\">Get Smart Campaigns</a> endpoint instead.
+Returns a list of campaign records. Required Permissions: Read-Only Campaigns, Read-Write Campaigns<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"https://developer.adobe.com/marketo-apis/api/asset/#operation/getAllSmartCampaignsGET\">Get Smart Campaigns</a> endpoint instead.
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
@@ -91,10 +89,10 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
 );
 $id = array(56); // int[] | Comma-separated list of campaign ids to return records for
 $name = array('name_example'); // string[] | Comma-separated list of names to filter on
-$program_name = array('program_name_example'); // string[] | Comma-separated list of program names to filter on.  If set, will filter to only campaigns which are children of the designated programs.
-$workspace_name = array('workspace_name_example'); // string[] | Comma-separated list of workspace names to filter on.  If set, will only return campaigns in the given workspaces.
-$batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$program_name = array('program_name_example'); // string[] | Comma-separated list of program names to filter on. If set, will filter to only campaigns which are children of the designated programs.
+$workspace_name = array('workspace_name_example'); // string[] | Comma-separated list of workspace names to filter on. If set, will only return campaigns in the given workspaces.
+$batch_size = 56; // int | Maximum number of records to return. Maximum and default is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 $is_triggerable = True; // bool | Set to true to return active Campaigns which have a Campaign is Requested trigger and source is Web Service API
 
 try {
@@ -111,10 +109,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | [**int[]**](../Model/int.md)| Comma-separated list of campaign ids to return records for | [optional]
  **name** | [**string[]**](../Model/string.md)| Comma-separated list of names to filter on | [optional]
- **program_name** | [**string[]**](../Model/string.md)| Comma-separated list of program names to filter on.  If set, will filter to only campaigns which are children of the designated programs. | [optional]
- **workspace_name** | [**string[]**](../Model/string.md)| Comma-separated list of workspace names to filter on.  If set, will only return campaigns in the given workspaces. | [optional]
- **batch_size** | **int**| Maximum number of records to return.  Maximum and default is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **program_name** | [**string[]**](../Model/string.md)| Comma-separated list of program names to filter on. If set, will filter to only campaigns which are children of the designated programs. | [optional]
+ **workspace_name** | [**string[]**](../Model/string.md)| Comma-separated list of workspace names to filter on. If set, will only return campaigns in the given workspaces. | [optional]
+ **batch_size** | **int**| Maximum number of records to return. Maximum and default is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
  **is_triggerable** | **bool**| Set to true to return active Campaigns which have a Campaign is Requested trigger and source is Web Service API | [optional]
 
 ### Return type
@@ -142,14 +140,13 @@ scheduleCampaignUsingPOST($campaign_id, $schedule_campaign_request): \NecLimDul\
 
 Schedule Campaign
 
-Remotely schedules a batch campaign to run at a given time.  My tokens local to the campaign's parent program can be overridden for the run to customize content.  When using the \"cloneToProgramName\" parameter described below, this endpoint is limited to 20 calls per day. Required Permissions: Execute Campaign
+Remotely schedules a batch campaign to run at a given time. My tokens local to the campaign's parent program can be overridden for the run to customize content. When using the \"cloneToProgramName\" parameter described below, this endpoint is limited to 20 calls per day. Required Permissions: Execute Campaign
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
@@ -200,14 +197,13 @@ triggerCampaignUsingPOST($campaign_id, $trigger_campaign_request): \NecLimDul\Ma
 
 Request Campaign
 
-Passes a set of leads to a trigger campaign to run through the campaign's flow.  The designated campaign must have a Campaign is Requested: Web Service API trigger, and must be active.  My tokens local to the campaign's parent program can be overridden for the run to customize content. A maximum of 100 leads are allowed per call. Required Permissions: Execute Campaign
+Passes a set of leads to a trigger campaign to run through the campaign's flow. The designated campaign must have a Campaign is Requested: Web Service API trigger, and must be active. My tokens local to the campaign's parent program can be overridden for the run to customize content. A maximum of 100 leads are allowed per call. Required Permissions: Execute Campaign
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(

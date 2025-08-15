@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **\DateTime** | Datetime when the object type was created |
-**dedupe_fields** | **string[]** | List of dedupe fields.  Arrays with multiple members are compound keys |
+**dedupe_fields** | **string[]** | List of dedupe fields. Arrays with multiple members are compound keys |
 **description** | **string** | Description of the object type |
 **display_name** | **string** | UI display-name of the object type |
 **plural_name** | **string** | UI plural-name of the custom object type |

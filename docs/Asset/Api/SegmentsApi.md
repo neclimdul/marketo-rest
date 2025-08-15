@@ -16,14 +16,13 @@ getSegmentationUsingGET($status): \NecLimDul\MarketoRest\Asset\Model\ResponseOfS
 
 Get Segmentations
 
-Retrieves a list of accessible segmentations for the target instance.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves a list of accessible segmentations for the target instance. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
@@ -72,14 +71,13 @@ getSegmentsForSegmentationUsingGET($id, $status, $offset, $max_return): \NecLimD
 
 Get Segments For Segmentation
 
-Retrieves a list of segments inside the target segmentation.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves a list of segments inside the target segmentation. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
@@ -90,7 +88,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
 $id = 56; // int | id
 $status = 'status_example'; // string | Status filter for draft or approved versions
 $offset = 56; // int | Integer offset for paging
-$max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of channels to return. Max 200, default 20
 
 try {
     $result = $apiInstance->getSegmentsForSegmentationUsingGET($id, $status, $offset, $max_return);
@@ -107,7 +105,7 @@ Name | Type | Description  | Notes
  **id** | **int**| id |
  **status** | **string**| Status filter for draft or approved versions | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
- **max_return** | **int**| Maximum number of channels to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of channels to return. Max 200, default 20 | [optional]
 
 ### Return type
 

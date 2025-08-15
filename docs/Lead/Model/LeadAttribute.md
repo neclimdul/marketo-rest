@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **data_type** | **string** | Datatype of the field |
 **display_name** | **string** | UI display-name of the field |
 **id** | **int** | Unique integer id of the field |
-**length** | **int** | Max length of the field.  Only applicable to text, string, and text area. | [optional]
+**length** | **int** | Max length of the field. Only applicable to text, string, and text area. | [optional]
 **rest** | [**\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute**](LeadMapAttribute.md) |  | [optional]
 **soap** | [**\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute**](LeadMapAttribute.md) |  | [optional]
 

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **id** | **int** | Id of the folder |
 **is_archive** | **bool** | Archival status of the folder |
 **is_system** | **bool** | Whether the folder is system-managed | [optional]
-**name** | **string** | Name of the folder.  Not applicable for Programs |
+**name** | **string** | Name of the folder. Not applicable for Programs |
 **parent** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) |  |
 **path** | **string** | Path of the folder |
 **updated_at** | **\DateTime** | Datetime the folder was last updated |

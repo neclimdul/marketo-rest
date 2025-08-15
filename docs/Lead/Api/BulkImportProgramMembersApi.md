@@ -18,14 +18,13 @@ getImportProgramMemberFailuresUsingGET($batch_id): object
 
 Get Import Program Member Failures
 
-Returns the list of failures for the import batch job.  Required Permissions: Read-Write Lead
+Returns the list of failures for the import batch job. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportProgramMembersApi(
@@ -74,14 +73,13 @@ getImportProgramMemberStatusUsingGET($batch_id): \NecLimDul\MarketoRest\Lead\Mod
 
 Get Import Program Member Status
 
-Returns the status of an import batch job.  Required Permissions: Read-Write Lead
+Returns the status of an import batch job. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportProgramMembersApi(
@@ -130,14 +128,13 @@ getImportProgramMemberWarningsUsingGET($batch_id): object
 
 Get Import Program Member Warnings
 
-Returns the list of warnings for the import batch job.  Required Permissions: Read-Write Lead
+Returns the list of warnings for the import batch job. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportProgramMembersApi(
@@ -186,14 +183,13 @@ importProgramMemberUsingPOST($program_id, $program_member_status, $format, $file
 
 Import Program Members
 
-Imports a file containing data records into the target instance.  Required Permissions: Read-Write Lead
+Imports a file containing data records into the target instance. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportProgramMembersApi(
@@ -204,7 +200,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportProgramMembersApi(
 $program_id = 'program_id_example'; // string | Id of the program to add members to.
 $program_member_status = 'program_member_status_example'; // string | Program member status for members being added.
 $format = 'format_example'; // string | Import file format.
-$file = "/path/to/file.txt"; // \SplFileObject | File containing the data records to import.
+$file = '/path/to/file.txt'; // \SplFileObject | File containing the data records to import.
 
 try {
     $result = $apiInstance->importProgramMemberUsingPOST($program_id, $program_member_status, $format, $file);

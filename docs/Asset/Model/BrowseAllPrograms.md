@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **name** | **string** | Name of the asset | [optional]
 **sfdc_id** | **string** | SFDC id of the program if linked to an SFDC campaign | [optional]
 **sfdc_name** | **string** | Name of the linked SFDC campaign if applicable | [optional]
-**status** | **string** | Status of the program.  Only valid for Email and engagement program types. |
+**status** | **string** | Status of the program. Only valid for Email and engagement program types. |
 **type** | **string** | Type of the program |
 **updated_at** | **\DateTime** | Datetime the asset was most recently updated | [optional]
 **url** | **string** | Url of the asset in the Marketo UI | [optional]

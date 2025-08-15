@@ -29,13 +29,12 @@ Create a new landing page redirect rule. Required Permissions: Read Write Redire
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$hostname = 'hostname_example'; // string | The hostname for the landing pages.  Branding domain or alias.  Max 255 characters
+$hostname = 'hostname_example'; // string | The hostname for the landing pages. Branding domain or alias. Max 255 characters
 $redirect_from = new \NecLimDul\MarketoRest\Asset\Model\RedirectFrom(); // \NecLimDul\MarketoRest\Asset\Model\RedirectFrom
 $redirect_to = new \NecLimDul\MarketoRest\Asset\Model\RedirectTo(); // \NecLimDul\MarketoRest\Asset\Model\RedirectTo
 
@@ -51,7 +50,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **hostname** | **string**| The hostname for the landing pages.  Branding domain or alias.  Max 255 characters |
+ **hostname** | **string**| The hostname for the landing pages. Branding domain or alias. Max 255 characters |
  **redirect_from** | [**\NecLimDul\MarketoRest\Asset\Model\RedirectFrom**](../Model/RedirectFrom.md)|  |
  **redirect_to** | [**\NecLimDul\MarketoRest\Asset\Model\RedirectTo**](../Model/RedirectTo.md)|  |
 
@@ -87,7 +86,6 @@ Delete a landing page redirect rule. Required Permissions: Read Write Redirect R
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
@@ -145,13 +143,12 @@ Retrieves a list of landing page domain and domain aliases. Required Permissions
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$max_return = 56; // int | Maximum number of landing page domains and domain aliases to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of landing page domains and domain aliases to return. Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 
 try {
@@ -166,7 +163,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_return** | **int**| Maximum number of landing page domains and domain aliases to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of landing page domains and domain aliases to return. Max 200, default 20 | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
 
 ### Return type
@@ -201,7 +198,6 @@ Retrieves the landing page redirect rule record. Required Permissions: Read Only
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
@@ -259,18 +255,17 @@ Retrieves a list of landing page redirect rules from the target instance. Requir
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$max_return = 56; // int | Maximum number of landing page redirect rules to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of landing page redirect rules to return. Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 $redirect_tolanding_page_id = 'redirect_tolanding_page_id_example'; // string | Landing page id of landing page to redirect to
 $redirect_to_path = 'redirect_to_path_example'; // string | Path of landing page to redirect to
-$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = 'latest_updated_at_example'; // string | Exclude landing page redirect rules after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude landing page redirect rules after this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->getLandingPageRedirectRulesUsingGET($max_return, $offset, $redirect_tolanding_page_id, $redirect_to_path, $earliest_updated_at, $latest_updated_at);
@@ -284,12 +279,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_return** | **int**| Maximum number of landing page redirect rules to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of landing page redirect rules to return. Max 200, default 20 | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
  **redirect_tolanding_page_id** | **string**| Landing page id of landing page to redirect to | [optional]
  **redirect_to_path** | **string**| Path of landing page to redirect to | [optional]
- **earliest_updated_at** | **string**| Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
- **latest_updated_at** | **string**| Exclude landing page redirect rules after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **earliest_updated_at** | **string**| Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **latest_updated_at** | **string**| Exclude landing page redirect rules after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
 
 ### Return type
 
@@ -325,14 +320,13 @@ Update an existing landing page redirect rule. Required Permissions: Read Write 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of landing page redirect rule
-$hostname = 'hostname_example'; // string | The hostname for the landing pages.  Branding domain or alias.  Max 255 characters
+$hostname = 'hostname_example'; // string | The hostname for the landing pages. Branding domain or alias. Max 255 characters
 $redirect_from = new \NecLimDul\MarketoRest\Asset\Model\RedirectFrom(); // \NecLimDul\MarketoRest\Asset\Model\RedirectFrom
 $redirect_to = new \NecLimDul\MarketoRest\Asset\Model\RedirectTo(); // \NecLimDul\MarketoRest\Asset\Model\RedirectTo
 
@@ -349,7 +343,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of landing page redirect rule |
- **hostname** | **string**| The hostname for the landing pages.  Branding domain or alias.  Max 255 characters | [optional]
+ **hostname** | **string**| The hostname for the landing pages. Branding domain or alias. Max 255 characters | [optional]
  **redirect_from** | [**\NecLimDul\MarketoRest\Asset\Model\RedirectFrom**](../Model/RedirectFrom.md)|  | [optional]
  **redirect_to** | [**\NecLimDul\MarketoRest\Asset\Model\RedirectTo**](../Model/RedirectTo.md)|  | [optional]
 

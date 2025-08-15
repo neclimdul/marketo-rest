@@ -16,14 +16,13 @@ getTagByNameUsingGET($name): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagRes
 
 Get Tag By Name
 
-Retrieves a tag by its name.  This will also return the set of valid values for the tag.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves a tag by its name. This will also return the set of valid values for the tag. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\TagsApi(
@@ -72,7 +71,7 @@ getTagTypesUsingGET($max_return, $offset): \NecLimDul\MarketoRest\Asset\Model\Re
 
 Get Tag Types
 
-Retrieves a list of available tag types.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves a list of available tag types. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
@@ -81,13 +80,12 @@ Retrieves a list of available tag types.  Required Permissions: Read-Only Assets
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\TagsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of channels to return. Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 
 try {
@@ -102,7 +100,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_return** | **int**| Maximum number of channels to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of channels to return. Max 200, default 20 | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
 
 ### Return type

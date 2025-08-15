@@ -24,14 +24,13 @@ deleteOpportunitiesUsingPOST($delete_custom_object_request): \NecLimDul\MarketoR
 
 Delete Opportunities
 
-Deletes a list of opportunity records from the target instance.  Input records should only have one member, based on the value of 'dedupeBy'.  Required Permissions: Read-Write Named Opportunity
+Deletes a list of opportunity records from the target instance. Input records should only have one member, based on the value of 'dedupeBy'. Required Permissions: Read-Write Named Opportunity
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
@@ -80,14 +79,13 @@ deleteOpportunityRolesUsingPOST($delete_custom_object_request): \NecLimDul\Marke
 
 Delete Opportunity Roles
 
-Deletes a list of opportunities from the target instance.  Required Permissions: Read-Write Named Opportunity
+Deletes a list of opportunities from the target instance. Required Permissions: Read-Write Named Opportunity
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
@@ -136,14 +134,13 @@ describeOpportunityRoleUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfO
 
 Describe Opportunity Role
 
-Returns object and field metadata for Opportunity Roles in the target instance.  Required Permissions: Read-Only Opportunity, Read-Write Named Opportunity
+Returns object and field metadata for Opportunity Roles in the target instance. Required Permissions: Read-Only Opportunity, Read-Write Named Opportunity
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
@@ -189,14 +186,13 @@ describeUsingGET4(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
 
 Describe Opportunity
 
-Returns object and field metadata for Opportunity type records in the target instance.  Required Permissions: Read-Only Opportunity, Read-Write Named Opportunity
+Returns object and field metadata for Opportunity type records in the target instance. Required Permissions: Read-Only Opportunity, Read-Write Named Opportunity
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
@@ -242,14 +238,13 @@ getOpportunitiesUsingGET($filter_type, $filter_values, $fields, $batch_size, $ne
 
 Get Opportunities
 
-Returns a list of opportunities based on a filter and set of values.  Required Permissions: Read-Only Opportunity, Read-Write Named Opportunity
+Returns a list of opportunities based on a filter and set of values. Required Permissions: Read-Only Opportunity, Read-Write Named Opportunity
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
@@ -260,7 +255,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
 $filter_type = 'filter_type_example'; // string | Opportunities field to filter on
 $filter_values = array('filter_values_example'); // string[] | Comma-separated list of values to match against
 $fields = array('fields_example'); // string[] | Comma-separated list of fields to include in the response
-$batch_size = 56; // int | Maximum number of records to return in the response.  Max and default is 300
+$batch_size = 56; // int | Maximum number of records to return in the response. Max and default is 300
 $next_page_token = 'next_page_token_example'; // string | Paging token returned from a previous response
 $custom_object_lookup_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | customObjectLookupRequest
 
@@ -279,7 +274,7 @@ Name | Type | Description  | Notes
  **filter_type** | **string**| Opportunities field to filter on |
  **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of values to match against |
  **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to include in the response | [optional]
- **batch_size** | **int**| Maximum number of records to return in the response.  Max and default is 300 | [optional]
+ **batch_size** | **int**| Maximum number of records to return in the response. Max and default is 300 | [optional]
  **next_page_token** | **string**| Paging token returned from a previous response | [optional]
  **custom_object_lookup_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| customObjectLookupRequest | [optional]
 
@@ -308,14 +303,13 @@ getOpportunityFieldByNameUsingGET($field_api_name): \NecLimDul\MarketoRest\Lead\
 
 Get Opportunity Field by Name
 
-Retrieves metadata for single opportunity field.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Retrieves metadata for single opportunity field. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
@@ -364,14 +358,13 @@ getOpportunityFieldsUsingGET($batch_size, $next_page_token): \NecLimDul\MarketoR
 
 Get Opportunity Fields
 
-Retrieves metadata for all opportunity fields in the target instance.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Retrieves metadata for all opportunity fields in the target instance. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
@@ -422,7 +415,7 @@ getOpportunityRolesUsingGET($filter_type, $filter_values, $fields, $batch_size, 
 
 Get Opportunity Roles
 
-Returns a list of opportunity roles based on a filter and set of values.  Required Permissions: Read-Only Opportunity, Read-Write Named Opportunity
+Returns a list of opportunity roles based on a filter and set of values. Required Permissions: Read-Only Opportunity, Read-Write Named Opportunity
 
 ### Example
 
@@ -431,16 +424,15 @@ Returns a list of opportunity roles based on a filter and set of values.  Requir
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filter_type = 'filter_type_example'; // string | The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call.
+$filter_type = 'filter_type_example'; // string | The role field to filter on. Searchable fields can be retrieved with the Describe Opportunity call.
 $filter_values = array('filter_values_example'); // string[] | Comma-separated list of field values to return records for
 $fields = array('fields_example'); // string[] | Comma-separated list of fields to include in the response
-$batch_size = 56; // int | Maximum number of records to return in the response.  Max and default is 300
+$batch_size = 56; // int | Maximum number of records to return in the response. Max and default is 300
 $next_page_token = 'next_page_token_example'; // string | Paging token returned from a previous response
 $custom_object_lookup_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | Optional JSON request for retrieving opportunity roles with compound keys
 
@@ -456,10 +448,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter_type** | **string**| The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. |
+ **filter_type** | **string**| The role field to filter on. Searchable fields can be retrieved with the Describe Opportunity call. |
  **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of field values to return records for |
  **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to include in the response | [optional]
- **batch_size** | **int**| Maximum number of records to return in the response.  Max and default is 300 | [optional]
+ **batch_size** | **int**| Maximum number of records to return in the response. Max and default is 300 | [optional]
  **next_page_token** | **string**| Paging token returned from a previous response | [optional]
  **custom_object_lookup_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| Optional JSON request for retrieving opportunity roles with compound keys | [optional]
 
@@ -488,14 +480,13 @@ syncOpportunitiesUsingPOST($sync_custom_object_request): \NecLimDul\MarketoRest\
 
 Sync Opportunities
 
-Allows inserting, updating, or upserting of opportunity records into the target instance.  Required Permissions: Read-Write Named Opportunity
+Allows inserting, updating, or upserting of opportunity records into the target instance. Required Permissions: Read-Write Named Opportunity
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
@@ -544,14 +535,13 @@ syncOpportunityRolesUsingPOST($sync_custom_object_request): \NecLimDul\MarketoRe
 
 Sync Opportunity Roles
 
-Allows inserts, updates and upserts of Opportunity Role records in the target instance.  Required Permissions: Read-Write Named Opportunity
+Allows inserts, updates and upserts of Opportunity Role records in the target instance. Required Permissions: Read-Write Named Opportunity
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(

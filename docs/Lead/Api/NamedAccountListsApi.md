@@ -20,14 +20,13 @@ addNamedAccountListMembersUsingPOST($id, $add_named_account_list_member_request)
 
 Add Named Account List Members
 
-Adds named account records to a named account list.  Required Permissions: Read-Write Named Account
+Adds named account records to a named account list. Required Permissions: Read-Write Named Account
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
@@ -78,14 +77,13 @@ deleteNamedAccountListsUsingPOST($delete_named_account_list_request): \NecLimDul
 
 Delete Named Account Lists
 
-Delete named account lists by dedupe fields, or by id field.  Required Permissions: Read-Write Named Account List
+Delete named account lists by dedupe fields, or by id field. Required Permissions: Read-Write Named Account List
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
@@ -134,14 +132,13 @@ getNamedAccountListMembersUsingGET($id, $fields, $batch_size, $next_page_token):
 
 Get Named Account List Members
 
-Retrieves the named accounts which are members of the given list.  Required Permissions: Read-Only Named Account, Read-Write Named Account
+Retrieves the named accounts which are members of the given list. Required Permissions: Read-Only Named Account, Read-Write Named Account
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
@@ -151,8 +148,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
 );
 $id = 'id_example'; // string | Id of the named account list
 $fields = array('fields_example'); // string[] | Comma-separated list of fields to include in the response
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getNamedAccountListMembersUsingGET($id, $fields, $batch_size, $next_page_token);
@@ -168,8 +165,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| Id of the named account list |
  **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to include in the response | [optional]
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
 
 ### Return type
 
@@ -196,14 +193,13 @@ getNamedAccountListsUsingGET($filter_type, $filter_values, $batch_size, $next_pa
 
 Get Named Account Lists
 
-Retrieves a list of named account list records based on the filter type and values given.  Required Permissions: Read-Only Named Account List, Read-Write Named Account List
+Retrieves a list of named account list records based on the filter type and values given. Required Permissions: Read-Only Named Account List, Read-Write Named Account List
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
@@ -213,8 +209,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
 );
 $filter_type = 'filter_type_example'; // string | The named account list field to filter on (\"dedupeFields\" or \"idFields\").
 $filter_values = array('filter_values_example'); // string[] | Comma-separated list of values to match against
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getNamedAccountListsUsingGET($filter_type, $filter_values, $batch_size, $next_page_token);
@@ -230,8 +226,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter_type** | **string**| The named account list field to filter on (\&quot;dedupeFields\&quot; or \&quot;idFields\&quot;). |
  **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of values to match against |
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
 
 ### Return type
 
@@ -258,14 +254,13 @@ removeNamedAccountListMembersUsingPOST($id, $remove_named_account_list_member_re
 
 Remove Named Account List Members
 
-Removes named account members from a named account list.  Required Permissions: Read-Write Named Account
+Removes named account members from a named account list. Required Permissions: Read-Write Named Account
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
@@ -316,14 +311,13 @@ syncNamedAccountListsUsingPOST($sync_named_account_list_request): \NecLimDul\Mar
 
 Sync Named Account Lists
 
-Creates and/or updates named account list records.  Required Permissions: Read-Write Named Account List
+Creates and/or updates named account list records. Required Permissions: Read-Write Named Account List
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(

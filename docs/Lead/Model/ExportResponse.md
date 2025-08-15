@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **file_checksum** | **string** | SHA-256 hash of exported file. This will have a value only when status is \&quot;Completed\&quot;, otherwise null | [optional]
 **finished_at** | **\DateTime** | Finish time of export job. This will have value only when status is \&quot;Completed\&quot; or \&quot;Failed\&quot;, otherwise null | [optional]
 **format** | **string** | Format of file as given in the request (\&quot;CSV\&quot;, \&quot;TSV\&quot;, \&quot;SSV\&quot;) | [optional]
-**number_of_records** | **int** | Number of records in the export file.  This will have value only when status is \&quot;Completed\&quot;, otherwise null | [optional]
+**number_of_records** | **int** | Number of records in the export file. This will have value only when status is \&quot;Completed\&quot;, otherwise null | [optional]
 **queued_at** | **\DateTime** | Queue time of export job. This will have value when \&quot;Queued\&quot; status is reached, before that null | [optional]
 **started_at** | **\DateTime** | Start time of export job. This will have value when \&quot;Processing\&quot; status is reached, before that null | [optional]
 **status** | **string** | Status of the export job (\&quot;Created\&quot;,\&quot;Queued\&quot;,\&quot;Processing\&quot;,\&quot;Canceled\&quot;,\&quot;Completed\&quot;,\&quot;Failed\&quot;) |

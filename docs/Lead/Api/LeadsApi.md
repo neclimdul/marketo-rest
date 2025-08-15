@@ -36,14 +36,13 @@ associateLeadUsingPOST($lead_id, $cookie): \NecLimDul\MarketoRest\Lead\Model\Res
 
 Associate Lead
 
-Associates a known Marketo lead record to a munchkin cookie and its associated web acitvity history.  Required Permissions: Read-Write Lead
+Associates a known Marketo lead record to a munchkin cookie and its associated web acitvity history. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -94,14 +93,13 @@ changeLeadProgramStatusUsingPOST($program_id, $change_lead_program_status_reques
 
 Change Lead Program Status
 
-Changes the program status of a list of leads in a target program.  Only existing members of the program may have their status changed with this API.  Required Permissions: Read-Write Lead<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Program_Members/syncProgramMemberStatusUsingPOST\">Sync Program Member Status</a> endpoint instead.
+Changes the program status of a list of leads in a target program. Only existing members of the program may have their status changed with this API. Required Permissions: Read-Write Lead<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"https://developer.adobe.com/marketo-apis/api/mapi/#operation/syncProgramMemberStatusUsingPOST\">Sync Program Member Status</a> endpoint instead.
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -152,14 +150,13 @@ createLeadFieldUsingPOST($create_lead_field_request): \NecLimDul\MarketoRest\Lea
 
 Create Lead Fields
 
-Create lead fields in the target instance.  Required Permissions: Read-Write Schema Custom Field
+Create lead fields in the target instance. Required Permissions: Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -208,14 +205,13 @@ deleteLeadsUsingPOST($id, $delete_lead_request): \NecLimDul\MarketoRest\Lead\Mod
 
 Delete Leads
 
-Delete a list of leads from the destination instance.  Required Permissions: Read-Write Lead
+Delete a list of leads from the destination instance. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -266,14 +262,13 @@ describeProgramMemberUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfPro
 
 Describe Program Member
 
-Returns metadata about program member objects in the target instance, including a list of all fields available for interaction via the APIs.  Required Permissions: Read-Only Lead, Read-Write Lead<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Program_Members/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint instead.
+Returns metadata about program member objects in the target instance, including a list of all fields available for interaction via the APIs. Required Permissions: Read-Only Lead, Read-Write Lead<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"https://developer.adobe.com/marketo-apis/api/mapi/#operation/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint instead.
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -319,14 +314,13 @@ describeUsingGET2(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute
 
 Describe Lead
 
-Returns metadata about lead objects in the target instance, including a list of all fields available for interaction via the APIs.  Required Permissions: Read-Only Lead, Read-Write Lead<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Leads/describeUsingGET_6\">Describe Lead2</a> endpoint instead.
+Returns metadata about lead objects in the target instance, including a list of all fields available for interaction via the APIs. Required Permissions: Read-Only Lead, Read-Write Lead<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"https://developer.adobe.com/marketo-apis/api/mapi/#operation/describeUsingGET_6\">Describe Lead2</a> endpoint instead.
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -372,14 +366,13 @@ describeUsingGET6(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2
 
 Describe Lead2
 
-Returns list of searchable fields on lead objects in the target instance.  Required Permissions: Read-Only Lead, Read-Write Lead
+Returns list of searchable fields on lead objects in the target instance. Required Permissions: Read-Only Lead, Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -425,14 +418,13 @@ getLeadByIdUsingGET($lead_id, $fields): \NecLimDul\MarketoRest\Lead\Model\Respon
 
 Get Lead by Id
 
-Retrieves a single lead record through its Marketo id.  Required Permissions: Read-Only Lead, Read-Write Lead
+Retrieves a single lead record through its Marketo id. Required Permissions: Read-Only Lead, Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -483,14 +475,13 @@ getLeadFieldByNameUsingGET($field_api_name): \NecLimDul\MarketoRest\Lead\Model\R
 
 Get Lead Field by Name
 
-Retrieves metadata for single lead field.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Retrieves metadata for single lead field. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -539,14 +530,13 @@ getLeadFieldsUsingGET($batch_size, $next_page_token): \NecLimDul\MarketoRest\Lea
 
 Get Lead Fields
 
-Retrieves metadata for all lead fields in the target instance.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Retrieves metadata for all lead fields in the target instance. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -597,14 +587,13 @@ getLeadPartitionsUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPar
 
 Get Lead Partitions
 
-Returns a list of available partitions in the target instance.  Required Permissions: Read-Only Lead, Read-Write Lead
+Returns a list of available partitions in the target instance. Required Permissions: Read-Only Lead, Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -650,7 +639,7 @@ getLeadsByFilterUsingGET($filter_type, $filter_values, $fields, $batch_size, $ne
 
 Get Leads by Filter Type
 
-Returns a list of up to 300 leads based on a list of values in a particular field.  Required Permissions: Read-Only Lead, Read-Write Lead
+Returns a list of up to 300 leads based on a list of values in a particular field. Required Permissions: Read-Only Lead, Read-Write Lead
 
 ### Example
 
@@ -659,17 +648,16 @@ Returns a list of up to 300 leads based on a list of values in a particular fiel
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filter_type = 'filter_type_example'; // string | The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.<br><br>A comprehensive list of fields can be obtained via the <a href=\"http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\">Describe Lead2</a> endpoint.
+$filter_type = 'filter_type_example'; // string | The lead field to filter on. Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.<br><br>A comprehensive list of fields can be obtained via the <a href=\"http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\">Describe Lead2</a> endpoint.
 $filter_values = array('filter_values_example'); // string[] | A comma-separated list of values to filter on in the specified fields.
 $fields = array('fields_example'); // string[] | A comma-separated list of lead fields to return for each record
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getLeadsByFilterUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
@@ -683,11 +671,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter_type** | **string**| The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. |
+ **filter_type** | **string**| The lead field to filter on. Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. |
  **filter_values** | [**string[]**](../Model/string.md)| A comma-separated list of values to filter on in the specified fields. |
  **fields** | [**string[]**](../Model/string.md)| A comma-separated list of lead fields to return for each record | [optional]
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
 
 ### Return type
 
@@ -714,14 +702,13 @@ getLeadsByProgramIdUsingGET($program_id, $fields, $batch_size, $next_page_token)
 
 Get Leads by Program Id
 
-Retrieves a list of leads which are members of the designated program.  Required Permissions: Read-Only Lead, Read-Write Lead
+Retrieves a list of leads which are members of the designated program. Required Permissions: Read-Only Lead, Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -731,8 +718,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
 );
 $program_id = 56; // int | The id of the program to retrieve from
 $fields = array('fields_example'); // string[] | A comma-separated list of fields to be returned for each record
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getLeadsByProgramIdUsingGET($program_id, $fields, $batch_size, $next_page_token);
@@ -748,8 +735,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **program_id** | **int**| The id of the program to retrieve from |
  **fields** | [**string[]**](../Model/string.md)| A comma-separated list of fields to be returned for each record | [optional]
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
 
 ### Return type
 
@@ -776,7 +763,7 @@ getListMembershipUsingGET($lead_id, $next_page_token, $batch_size): \NecLimDul\M
 
 Get Lists by Lead Id
 
-Query static list membership for one lead.  Required Permissions: Read-Only Asset
+Query static list membership for one lead. Required Permissions: Read-Only Asset
 
 ### Example
 
@@ -785,15 +772,14 @@ Query static list membership for one lead.  Required Permissions: Read-Only Asse
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $lead_id = 56; // int | The Marketo lead id
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
-$batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+$batch_size = 56; // int | Maximum number of records to return. Maximum and default is 300.
 
 try {
     $result = $apiInstance->getListMembershipUsingGET($lead_id, $next_page_token, $batch_size);
@@ -808,8 +794,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **lead_id** | **int**| The Marketo lead id |
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
- **batch_size** | **int**| Maximum number of records to return.  Maximum and default is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
+ **batch_size** | **int**| Maximum number of records to return. Maximum and default is 300. | [optional]
 
 ### Return type
 
@@ -836,7 +822,7 @@ getProgramMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_
 
 Get Programs by Lead Id
 
-Query program membership for one lead.  Required Permissions: Read-Only Asset
+Query program membership for one lead. Required Permissions: Read-Only Asset
 
 ### Example
 
@@ -845,17 +831,16 @@ Query program membership for one lead.  Required Permissions: Read-Only Asset
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $lead_id = 56; // int | The Marketo lead id
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
-$batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
-$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude programs prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = 'latest_updated_at_example'; // string | Exclude programs after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+$batch_size = 56; // int | Maximum number of records to return. Maximum and default is 300.
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude programs prior to this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude programs after this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 $filter_type = 'filter_type_example'; // string | Set to \"programId\" to filter a set of programs.
 $filter_values = array('filter_values_example'); // string[] | Comma-separated list of program ids to match against
 
@@ -872,10 +857,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **lead_id** | **int**| The Marketo lead id |
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
- **batch_size** | **int**| Maximum number of records to return.  Maximum and default is 300. | [optional]
- **earliest_updated_at** | **string**| Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
- **latest_updated_at** | **string**| Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
+ **batch_size** | **int**| Maximum number of records to return. Maximum and default is 300. | [optional]
+ **earliest_updated_at** | **string**| Exclude programs prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **latest_updated_at** | **string**| Exclude programs after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
  **filter_type** | **string**| Set to \&quot;programId\&quot; to filter a set of programs. | [optional]
  **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of program ids to match against | [optional]
 
@@ -904,7 +889,7 @@ getSmartCampaignMembershipUsingGET($lead_id, $next_page_token, $batch_size, $ear
 
 Get Smart Campaigns by Lead Id
 
-Query smart campaign membership for one lead.  Required Permissions: Read-Only Asset
+Query smart campaign membership for one lead. Required Permissions: Read-Only Asset
 
 ### Example
 
@@ -913,17 +898,16 @@ Query smart campaign membership for one lead.  Required Permissions: Read-Only A
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $lead_id = 56; // int | The Marketo lead id
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
-$batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
-$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = 'latest_updated_at_example'; // string | Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+$batch_size = 56; // int | Maximum number of records to return. Maximum and default is 300.
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude smart campaigns prior to this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude smart campaigns after this date. Must be valid ISO-8601 string. See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->getSmartCampaignMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
@@ -938,10 +922,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **lead_id** | **int**| The Marketo lead id |
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
- **batch_size** | **int**| Maximum number of records to return.  Maximum and default is 300. | [optional]
- **earliest_updated_at** | **string**| Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
- **latest_updated_at** | **string**| Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
+ **batch_size** | **int**| Maximum number of records to return. Maximum and default is 300. | [optional]
+ **earliest_updated_at** | **string**| Exclude smart campaigns prior to this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **latest_updated_at** | **string**| Exclude smart campaigns after this date. Must be valid ISO-8601 string. See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
 
 ### Return type
 
@@ -968,14 +952,13 @@ mergeLeadsUsingPOST($lead_id, $lead_id2, $lead_ids, $merge_in_crm): \NecLimDul\M
 
 Merge Leads
 
-Merges two or more known lead records into a single lead record.  Required Permissions: Read-Write Lead
+Merges two or more known lead records into a single lead record. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -986,7 +969,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
 $lead_id = 56; // int | The id of the winning lead record
 $lead_id2 = 56; // int | The id of the losing record
 $lead_ids = array(56); // int[] | A comma-separated list of ids of losing records
-$merge_in_crm = True; // bool | If set, will attempt to merge the designated records in a natively-synched CRM.  Only valid for instances with are natively synched to SFDC.
+$merge_in_crm = True; // bool | If set, will attempt to merge the designated records in a natively-synched CRM. Only valid for instances with are natively synched to SFDC.
 
 try {
     $result = $apiInstance->mergeLeadsUsingPOST($lead_id, $lead_id2, $lead_ids, $merge_in_crm);
@@ -1003,7 +986,7 @@ Name | Type | Description  | Notes
  **lead_id** | **int**| The id of the winning lead record |
  **lead_id2** | **int**| The id of the losing record | [optional]
  **lead_ids** | [**int[]**](../Model/int.md)| A comma-separated list of ids of losing records | [optional]
- **merge_in_crm** | **bool**| If set, will attempt to merge the designated records in a natively-synched CRM.  Only valid for instances with are natively synched to SFDC. | [optional]
+ **merge_in_crm** | **bool**| If set, will attempt to merge the designated records in a natively-synched CRM. Only valid for instances with are natively synched to SFDC. | [optional]
 
 ### Return type
 
@@ -1030,14 +1013,13 @@ pushToMarketoUsingPOST($push_lead_to_marketo_request): \NecLimDul\MarketoRest\Le
 
 Push Lead to Marketo
 
-Upserts a lead and generates a Push Lead to Marketo activity.  Required Permissions: Read-Write Lead
+Upserts a lead and generates a Push Lead to Marketo activity. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -1086,14 +1068,13 @@ submitFormUsingPOST($submit_form_request): \NecLimDul\MarketoRest\Lead\Model\Res
 
 Submit Form
 
-Upserts a lead and generates a \"Fill out Form\" activity which is associated back to program and/or campaign.  Required Permissions: Read-Write Lead
+Upserts a lead and generates a \"Fill out Form\" activity which is associated back to program and/or campaign. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -1142,14 +1123,13 @@ syncLeadUsingPOST($sync_lead_request): \NecLimDul\MarketoRest\Lead\Model\Respons
 
 Sync Leads
 
-Syncs a list of leads to the target instance.  Required Permissions: Read-Write Lead
+Syncs a list of leads to the target instance. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -1198,14 +1178,13 @@ updateLeadFieldUsingPOST($field_api_name, $update_lead_field_request): \NecLimDu
 
 Update Lead Field
 
-Update metadata for a lead field in the target instance.  See update rules <a href=\"https://developers.marketo.com/rest-api/lead-database/leads/#update_field\">here</a>.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Update metadata for a lead field in the target instance. See update rules <a href=\"https://developers.marketo.com/rest-api/lead-database/leads/#update_field\">here</a>. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
@@ -1256,14 +1235,13 @@ updatePartitionsUsingPOST($update_lead_partition_request): \NecLimDul\MarketoRes
 
 Update Lead Partition
 
-Updates the lead partition for a list of leads.  Required Permissions: Read-Write Lead
+Updates the lead partition for a list of leads. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(

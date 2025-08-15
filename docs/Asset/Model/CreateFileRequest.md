@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **string** | Description of the asset | [optional]
-**file** | **string** | Multipart file.  Content of the file. |
+**file** | **string** | Multipart file. Content of the file. |
 **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) |  |
 **insert_only** | **bool** | Whether the calls hould fail if there is already an existing file with the same name | [optional]
 **name** | **string** | Name of the File |

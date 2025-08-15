@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **from_email** | **string** | From-address of the Email |
 **from_name** | **string** | From-name of the Email |
 **name** | **string** | Name of the email |
-**operational** | **bool** | Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false | [optional]
+**operational** | **bool** | Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false | [optional]
 **reply_email** | **string** | Reply-To address of the Email |
 **subject** | **string** | Subject Line of the Email |
 **template** | **int** | Id of the parent template |

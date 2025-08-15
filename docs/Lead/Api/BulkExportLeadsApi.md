@@ -20,14 +20,13 @@ cancelExportLeadsUsingPOST($export_id): \NecLimDul\MarketoRest\Lead\Model\Respon
 
 Cancel Export Lead Job
 
-Cancel export job.  Required Permissions: Read-Only Lead
+Cancel export job. Required Permissions: Read-Only Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportLeadsApi(
@@ -76,14 +75,13 @@ createExportLeadsUsingPOST($export_lead_request): \NecLimDul\MarketoRest\Lead\Mo
 
 Create Export Lead Job
 
-Create export job for search criteria defined via \"filter\" parameter.  Request returns the \"exportId\" which is passed as a parameter in subsequent calls to Bulk Export Leads endpoints.  Use Enqueue Export Lead Job endpoint to queue the export job for processing.  Use Get Export Lead Job Status endpoint to retrieve status of export job.  Required Permissions: Read-Only Lead
+Create export job for search criteria defined via \"filter\" parameter. Request returns the \"exportId\" which is passed as a parameter in subsequent calls to Bulk Export Leads endpoints. Use Enqueue Export Lead Job endpoint to queue the export job for processing. Use Get Export Lead Job Status endpoint to retrieve status of export job. Required Permissions: Read-Only Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportLeadsApi(
@@ -132,14 +130,13 @@ enqueueExportLeadsUsingPOST($export_id): \NecLimDul\MarketoRest\Lead\Model\Respo
 
 Enqueue Export Lead Job
 
-Enqueue export job. This will place export job in queue, and will start the job when computing resources become available.  The export job must be in \"Created\" state.  Use Get Export Lead Job Status endpoint to retrieve status of export job.  Required Permissions: Read-Only Lead
+Enqueue export job. This will place export job in queue, and will start the job when computing resources become available. The export job must be in \"Created\" state. Use Get Export Lead Job Status endpoint to retrieve status of export job. Required Permissions: Read-Only Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportLeadsApi(
@@ -188,7 +185,7 @@ getExportLeadsFileUsingGET($export_id, $range): object
 
 Get Export Lead File
 
-Returns the file content of an export job.  The export job must be in \"Completed\" state.  Use Get Export Lead Job Status endpoint to retrieve status of export job.  Required Permissions: Read-Only Lead<br><br>The file format is specified by calling the Create Export Lead Job endpoint. The following is an example of the default file format (\"CSV\").<br><br><code>firstName,lastName,email</code><br><code>Marvin,Gaye,marvin.gaye@motown.com</code>
+Returns the file content of an export job. The export job must be in \"Completed\" state. Use Get Export Lead Job Status endpoint to retrieve status of export job. Required Permissions: Read-Only Lead<br><br>The file format is specified by calling the Create Export Lead Job endpoint. The following is an example of the default file format (\"CSV\").<br><br><code>firstName,lastName,email</code><br><code>Marvin,Gaye,marvin.gaye@motown.com</code>
 
 ### Example
 
@@ -197,14 +194,13 @@ Returns the file content of an export job.  The export job must be in \"Complete
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportLeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $export_id = 'export_id_example'; // string | Id of export batch job.
-$range = 'range_example'; // string | To support partial retrieval of extracted data, the HTTP header \"Range\" of type \"bytes\" may be specified.  See RFC 2616 \"Range Retrieval Requests\" for more information. If the header is not set, the entire contents will be returned.
+$range = 'range_example'; // string | To support partial retrieval of extracted data, the HTTP header \"Range\" of type \"bytes\" may be specified. See RFC 2616 \"Range Retrieval Requests\" for more information. If the header is not set, the entire contents will be returned.
 
 try {
     $result = $apiInstance->getExportLeadsFileUsingGET($export_id, $range);
@@ -219,7 +215,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **export_id** | **string**| Id of export batch job. |
- **range** | **string**| To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned. | [optional]
+ **range** | **string**| To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified. See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned. | [optional]
 
 ### Return type
 
@@ -246,14 +242,13 @@ getExportLeadsStatusUsingGET($export_id): \NecLimDul\MarketoRest\Lead\Model\Resp
 
 Get Export Lead Job Status
 
-Returns status of an export job.  Job status is available for 30 days after Completed or Failed status was reached. Required Permissions: Read-Only Lead
+Returns status of an export job. Job status is available for 30 days after Completed or Failed status was reached. Required Permissions: Read-Only Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportLeadsApi(
@@ -302,14 +297,13 @@ getExportLeadsUsingGET($status, $batch_size, $next_page_token): \NecLimDul\Marke
 
 Get Export Lead Jobs
 
-Returns a list of export jobs that were created in the past 7 days.  Required Permissions: Read-Only Lead
+Returns a list of export jobs that were created in the past 7 days. Required Permissions: Read-Only Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportLeadsApi(

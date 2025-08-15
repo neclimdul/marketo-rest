@@ -27,14 +27,13 @@ approveSnippetUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnipp
 
 Approve Snippet Draft
 
-Approves the current draft of the snippet.  Required Permissions: Approve Assets
+Approves the current draft of the snippet. Required Permissions: Approve Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
@@ -83,14 +82,13 @@ cloneSnippetUsingPOST($id, $name, $folder, $description): \NecLimDul\MarketoRest
 
 Clone Snippet
 
-Clones the target snippet.  Required Permissions: Read-Write Assets
+Clones the target snippet. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
@@ -145,14 +143,13 @@ createSnippetUsingPOST($folder, $name, $description): \NecLimDul\MarketoRest\Ass
 
 Create Snippet
 
-Creates a new snippet.  Required Permissions: Read-Write Assets
+Creates a new snippet. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
@@ -205,14 +202,13 @@ deleteSnippetUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResp
 
 Delete Snippet
 
-Deletes the target snippet.  The snippet may not be in use by emails or landing pages.  Required Permissions: Read-Write Assets
+Deletes the target snippet. The snippet may not be in use by emails or landing pages. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
@@ -261,14 +257,13 @@ discardSnippetUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdRes
 
 Discard Snippet Draft
 
-Discards the current draft of the snippet.  Required Permissions: Read-Write Assets
+Discards the current draft of the snippet. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
@@ -317,14 +312,13 @@ getDynamicContentUsingGET($id, $status): object
 
 Get Dynamic Content
 
-Gets the list of dynamic content sections for the snippet.  Required Permissions: Read-Only Assets, Read-Write Assets
+Gets the list of dynamic content sections for the snippet. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
@@ -375,14 +369,13 @@ getSnippetByIdUsingGET($id, $status): \NecLimDul\MarketoRest\Asset\Model\Respons
 
 Get Snippet by Id
 
-Retrieves the target snippet record.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves the target snippet record. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
@@ -433,14 +426,13 @@ getSnippetContentByIdUsingGET($id, $status): \NecLimDul\MarketoRest\Asset\Model\
 
 Get Snippet Content
 
-Retrieves the content of the target snippet.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves the content of the target snippet. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
@@ -491,7 +483,7 @@ getSnippetUsingGET($status, $max_return, $offset): \NecLimDul\MarketoRest\Asset\
 
 Get Snippets
 
-Retrieves a list of accessible snippets from the target instance.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves a list of accessible snippets from the target instance. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
@@ -500,14 +492,13 @@ Retrieves a list of accessible snippets from the target instance.  Required Perm
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $status = 'status_example'; // string | Status filter for draft or approved versions
-$max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of channels to return. Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 
 try {
@@ -523,7 +514,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **string**| Status filter for draft or approved versions | [optional]
- **max_return** | **int**| Maximum number of channels to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of channels to return. Max 200, default 20 | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
 
 ### Return type
@@ -551,14 +542,13 @@ unapproveSnippetUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSni
 
 Unapprove Snippet
 
-Unapproves the current version of the snippet.  The snippet may not be in use.  The snippet will be reverted to a draft-only state.  Required Permissions: Approve Assets
+Unapproves the current version of the snippet. The snippet may not be in use. The snippet will be reverted to a draft-only state. Required Permissions: Approve Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
@@ -607,14 +597,13 @@ updateContentUsingPOST1($id, $content, $type): \NecLimDul\MarketoRest\Asset\Mode
 
 Update Snippet Content
 
-Updates the content of the target snippet.  Required Permissions: Read-Write Assets
+Updates the content of the target snippet. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
@@ -667,14 +656,13 @@ updateDynamicContentUsingPOST($id, $segment_id, $type, $value): \NecLimDul\Marke
 
 Update Snippet Dynamic Content
 
-Updates the target dynamic content section.  Required Permissions: Read-Write Assets
+Updates the target dynamic content section. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
@@ -729,14 +717,13 @@ updateSnippetUsingPOST($id, $description, $is_archive, $name): \NecLimDul\Market
 
 Update Snippet Metadata
 
-Updates the metadata of the snippet.  Required Permissions: Read-Write Assets
+Updates the metadata of the snippet. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(

@@ -27,14 +27,13 @@ approveDraftUsingPOST1($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailT
 
 Approve Email Template Draft
 
-Approves the current draft of the email template.  Required Permissions: Approve Assets
+Approves the current draft of the email template. Required Permissions: Approve Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
@@ -83,14 +82,13 @@ cloneTemplateUsingPOST($id, $folder, $name, $description): \NecLimDul\MarketoRes
 
 Clone Email Template
 
-Clones the designated email template.  Required Permissions: Read-Write Assets
+Clones the designated email template. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
@@ -145,7 +143,7 @@ createEmailTemplateUsingPOST($name, $folder, $content, $description): \NecLimDul
 
 Create Email Template
 
-Creates a new email template.  Required Permissions: Read-Write Assets
+Creates a new email template. Required Permissions: Read-Write Assets
 
 ### Example
 
@@ -154,15 +152,14 @@ Creates a new email template.  Required Permissions: Read-Write Assets
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = 'name_example'; // string | Name of the Email Template.  Must be unique under the parent folder.
+$name = 'name_example'; // string | Name of the Email Template. Must be unique under the parent folder.
 $folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder
-$content = 'content_example'; // string | HTML content for template.  Multipart file.
+$content = 'content_example'; // string | HTML content for template. Multipart file.
 $description = 'description_example'; // string | Description of the email template
 
 try {
@@ -177,9 +174,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the Email Template.  Must be unique under the parent folder. |
+ **name** | **string**| Name of the Email Template. Must be unique under the parent folder. |
  **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
- **content** | **string**| HTML content for template.  Multipart file. |
+ **content** | **string**| HTML content for template. Multipart file. |
  **description** | **string**| Description of the email template | [optional]
 
 ### Return type
@@ -207,14 +204,13 @@ deleteTemplateUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdRes
 
 Delete Email Template
 
-Deletes the designated email template.  Required Permissions: Read-Write Assets
+Deletes the designated email template. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
@@ -263,14 +259,13 @@ discardDraftUsingPOST1($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResp
 
 Discard Email Template Draft
 
-Discards the current draft of the email template.  Required Permissions: Read-Write Assets
+Discards the current draft of the email template. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
@@ -319,14 +314,13 @@ getEmailTemplateUsedByUsingGET($id, $offset, $max_return): \NecLimDul\MarketoRes
 
 Get Email Template Used By
 
-Returns a list of email records which depend on a given email template.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns a list of email records which depend on a given email template. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
@@ -336,7 +330,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
 );
 $id = 56; // int | Id of the email template
 $offset = 56; // int | Integer offset for paging
-$max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of channels to return. Max 200, default 20
 
 try {
     $result = $apiInstance->getEmailTemplateUsedByUsingGET($id, $offset, $max_return);
@@ -352,7 +346,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the email template |
  **offset** | **int**| Integer offset for paging | [optional]
- **max_return** | **int**| Maximum number of channels to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of channels to return. Max 200, default 20 | [optional]
 
 ### Return type
 
@@ -379,7 +373,7 @@ getEmailTemplatesUsingGET($offset, $max_return, $status): \NecLimDul\MarketoRest
 
 Get Email Templates
 
-Returns a list of email template records accessible in the target instance.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns a list of email template records accessible in the target instance. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
@@ -388,14 +382,13 @@ Returns a list of email template records accessible in the target instance.  Req
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $offset = 56; // int | Integer offset for paging
-$max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of channels to return. Max 200, default 20
 $status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
@@ -411,7 +404,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **offset** | **int**| Integer offset for paging | [optional]
- **max_return** | **int**| Maximum number of channels to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of channels to return. Max 200, default 20 | [optional]
  **status** | **string**| Status filter for draft or approved versions | [optional]
 
 ### Return type
@@ -446,7 +439,6 @@ Returns an email template record by its id. Required Permissions: Read-Only Asse
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
@@ -497,14 +489,13 @@ getTemplateByNameUsingGET($name, $status): \NecLimDul\MarketoRest\Asset\Model\Re
 
 Get Email Template by Name
 
-Retrieves and email template record by the given name.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves and email template record by the given name. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
@@ -555,14 +546,13 @@ getTemplateContentByIdUsingGET($id, $status): \NecLimDul\MarketoRest\Asset\Model
 
 Get Email Template Content by Id
 
-Returns the content for a given email template.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns the content for a given email template. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
@@ -613,14 +603,13 @@ unapproveDraftUsingPOST1($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmai
 
 Unapprove Email Template Draft
 
-Unapproves the current approved version of the Email Template.  Required Permissions: Approve Assets
+Unapproves the current approved version of the Email Template. Required Permissions: Approve Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
@@ -669,7 +658,7 @@ updateEmailTemplateContentUsingPOST($id, $content): \NecLimDul\MarketoRest\Asset
 
 Update Email Template Content
 
-Updates the content of the given email template.  Required Permissions: Read-Write Assets
+Updates the content of the given email template. Required Permissions: Read-Write Assets
 
 ### Example
 
@@ -678,14 +667,13 @@ Updates the content of the given email template.  Required Permissions: Read-Wri
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$content = 'content_example'; // string | Content for the email template.  Multipart file.
+$content = 'content_example'; // string | Content for the email template. Multipart file.
 
 try {
     $result = $apiInstance->updateEmailTemplateContentUsingPOST($id, $content);
@@ -700,7 +688,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **content** | **string**| Content for the email template.  Multipart file. | [optional]
+ **content** | **string**| Content for the email template. Multipart file. | [optional]
 
 ### Return type
 
@@ -727,14 +715,13 @@ updateEmailTemplateUsingPOST($id, $description, $name): \NecLimDul\MarketoRest\A
 
 Update Email Template Metadata
 
-Updates the metadata for the designated email template.  Required Permissions: Read-Write Assets
+Updates the metadata for the designated email template. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(

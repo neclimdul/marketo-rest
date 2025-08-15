@@ -18,14 +18,13 @@ getImportLeadFailuresUsingGET($batch_id): object
 
 Get Import Lead Failures
 
-Returns the list of failures for the import batch job.  Required Permissions: Read-Write Lead
+Returns the list of failures for the import batch job. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
@@ -74,14 +73,13 @@ getImportLeadStatusUsingGET($batch_id): \NecLimDul\MarketoRest\Lead\Model\Respon
 
 Get Import Lead Status
 
-Returns the status of an import batch job.  Required Permissions: Read-Write Lead
+Returns the status of an import batch job. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
@@ -130,14 +128,13 @@ getImportLeadWarningsUsingGET($batch_id): object
 
 Get Import Lead Warnings
 
-Returns the list of warnings for the import batch job.  Required Permissions: Read-Write Lead
+Returns the list of warnings for the import batch job. Required Permissions: Read-Write Lead
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
@@ -186,7 +183,7 @@ importLeadUsingPOST($format, $file, $lookup_field, $partition_name, $list_id): \
 
 Import Leads
 
-Imports a file containing data records into the target instance.  Required Permissions: Read-Write Lead
+Imports a file containing data records into the target instance. Required Permissions: Read-Write Lead
 
 ### Example
 
@@ -195,15 +192,14 @@ Imports a file containing data records into the target instance.  Required Permi
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $format = 'format_example'; // string | Import file format.
-$file = "/path/to/file.txt"; // \SplFileObject | File containing the data records to import.
-$lookup_field = 'lookup_field_example'; // string | Field to use for deduplication.  Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId.  Default is email.<br>Note: You can use id for update only operations.
+$file = '/path/to/file.txt'; // \SplFileObject | File containing the data records to import.
+$lookup_field = 'lookup_field_example'; // string | Field to use for deduplication. Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId. Default is email.<br>Note: You can use id for update only operations.
 $partition_name = 'partition_name_example'; // string | Name of the lead partition to import to.
 $list_id = 56; // int | Id of the static list to import into.
 
@@ -221,7 +217,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **format** | **string**| Import file format. |
  **file** | **\SplFileObject****\SplFileObject**| File containing the data records to import. |
- **lookup_field** | **string**| Field to use for deduplication.  Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId.  Default is email.&lt;br&gt;Note: You can use id for update only operations. | [optional]
+ **lookup_field** | **string**| Field to use for deduplication. Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId. Default is email.&lt;br&gt;Note: You can use id for update only operations. | [optional]
  **partition_name** | **string**| Name of the lead partition to import to. | [optional]
  **list_id** | **int**| Id of the static list to import into. | [optional]
 

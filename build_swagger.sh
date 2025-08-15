@@ -1,7 +1,7 @@
 #!/bin/bash
-LEAD_SWAGGER="https://developers.marketo.com/swagger/swagger-mapi.json"
-ASSET_SWAGGER="https://developers.marketo.com/swagger/swagger-asset.json"
-IDENTITY_SWAGGER="https://developers.marketo.com/swagger/swagger-identity.json"
+LEAD_SWAGGER="https://developer.adobe.com/marketo-apis/swagger-mapi.json"
+ASSET_SWAGGER="https://developer.adobe.com/marketo-apis/swagger-asset.json"
+IDENTITY_SWAGGER="https://developer.adobe.com/marketo-apis/swagger-identity.json"
 
 MakeSwagger() {
   # Cleanup any lingering temporary directory so we're in a good state for the code generation.
@@ -39,9 +39,9 @@ function build_swagger() {
     --namespace="NecLimDul\\MarketoRest\\${NAMESPACE}" \
     --psr4-base="NecLimDul\\MarketoRest" \
     --service-file=${SERVICE} \
-    --docs-directory="${PWD}/docs/${NAMESPACE}" \
-    --src-directory="${PWD}/src/" \
-    --tests-directory="${PWD}/tests/"
+    --docs-directory="docs/${NAMESPACE}" \
+    --src-directory="src/" \
+    --tests-directory="tests/"
 }
 
 if [ ! -d "$PWD/openapi-php" ]; then

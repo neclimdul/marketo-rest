@@ -20,14 +20,13 @@ deleteCompaniesUsingPOST($delete_company_request): \NecLimDul\MarketoRest\Lead\M
 
 Delete Companies
 
-Deletes the included list of company records from the destination instance.  Required Permissions: Read-Write Company
+Deletes the included list of company records from the destination instance. Required Permissions: Read-Write Company
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
@@ -76,14 +75,13 @@ describeUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
 
 Describe Companies
 
-Returns metadata about companies and the fields available for interaction via the API.  Required Permissions: Read-Only Company, Read-Write Company
+Returns metadata about companies and the fields available for interaction via the API. Required Permissions: Read-Only Company, Read-Write Company
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
@@ -129,7 +127,7 @@ getCompaniesUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_p
 
 Get Companies
 
-Retrieves company records from the destination instance based on the submitted filter.  Required Permissions: Read-Only Company, Read-Write Company
+Retrieves company records from the destination instance based on the submitted filter. Required Permissions: Read-Only Company, Read-Write Company
 
 ### Example
 
@@ -138,17 +136,16 @@ Retrieves company records from the destination instance based on the submitted f
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filter_type = 'filter_type_example'; // string | The company field to filter on.  Searchable fields can be retrieved with the Describe Company call.
+$filter_type = 'filter_type_example'; // string | The company field to filter on. Searchable fields can be retrieved with the Describe Company call.
 $filter_values = array('filter_values_example'); // string[] | Comma-separated list of values to match against
 $fields = array('fields_example'); // string[] | Comma-separated list of fields to include in the response
-$batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getCompaniesUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
@@ -162,11 +159,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter_type** | **string**| The company field to filter on.  Searchable fields can be retrieved with the Describe Company call. |
+ **filter_type** | **string**| The company field to filter on. Searchable fields can be retrieved with the Describe Company call. |
  **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of values to match against |
  **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to include in the response | [optional]
- **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
- **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
 
 ### Return type
 
@@ -193,14 +190,13 @@ getCompanyFieldByNameUsingGET($field_api_name): \NecLimDul\MarketoRest\Lead\Mode
 
 Get Company Field by Name
 
-Retrieves metadata for single company field.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Retrieves metadata for single company field. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
@@ -249,14 +245,13 @@ getCompanyFieldsUsingGET($batch_size, $next_page_token): \NecLimDul\MarketoRest\
 
 Get Company Fields
 
-Retrieves metadata for all company fields in the target instance.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+Retrieves metadata for all company fields in the target instance. Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
@@ -314,7 +309,6 @@ Allows inserting, updating, or upserting of company records into Marketo. Requir
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(

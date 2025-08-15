@@ -21,14 +21,13 @@ createFolderUsingPOST($name, $parent, $description): \NecLimDul\MarketoRest\Asse
 
 Create Folder
 
-Creates a new folder.  Required Permissions: Read-Write Assets
+Creates a new folder. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
@@ -81,14 +80,13 @@ deleteFolderUsingPOST($id, $type): \NecLimDul\MarketoRest\Asset\Model\ResponseOf
 
 Delete Folder
 
-Deletes the designated folder.  Deletion will fail if the folder has content.  Required Permissions: Read-Write Assets
+Deletes the designated folder. Deletion will fail if the folder has content. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
@@ -139,7 +137,7 @@ getFolderByIdUsingGET($id, $type): \NecLimDul\MarketoRest\Asset\Model\ResponseOf
 
 Get Folder by Id
 
-Returns the folder record with the given id.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns the folder record with the given id. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
@@ -148,14 +146,13 @@ Returns the folder record with the given id.  Required Permissions: Read-Only As
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the folder to retrieve
-$type = 'Folder'; // string | Type of folder.  'Folder' or 'Program'
+$type = 'Folder'; // string | Type of folder. 'Folder' or 'Program'
 
 try {
     $result = $apiInstance->getFolderByIdUsingGET($id, $type);
@@ -170,7 +167,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the folder to retrieve |
- **type** | **string**| Type of folder.  &#39;Folder&#39; or &#39;Program&#39; | [default to &#39;Folder&#39;]
+ **type** | **string**| Type of folder. &#39;Folder&#39; or &#39;Program&#39; | [default to &#39;Folder&#39;]
 
 ### Return type
 
@@ -197,7 +194,7 @@ getFolderByNameUsingGET($name, $type, $root, $work_space): \NecLimDul\MarketoRes
 
 Get Folder by Name
 
-Returns a folder record for the given name.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns a folder record for the given name. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
@@ -206,14 +203,13 @@ Returns a folder record for the given name.  Required Permissions: Read-Only Ass
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = 'name_example'; // string | Name of the folder.  Not applicable for Programs
-$type = 'type_example'; // string | Type of folder.  'Folder' or 'Program'
+$name = 'name_example'; // string | Name of the folder. Not applicable for Programs
+$type = 'type_example'; // string | Type of folder. 'Folder' or 'Program'
 $root = 'root_example'; // string | Parent folder reference
 $work_space = 'work_space_example'; // string | Name of the workspace
 
@@ -229,8 +225,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the folder.  Not applicable for Programs |
- **type** | **string**| Type of folder.  &#39;Folder&#39; or &#39;Program&#39; | [optional]
+ **name** | **string**| Name of the folder. Not applicable for Programs |
+ **type** | **string**| Type of folder. &#39;Folder&#39; or &#39;Program&#39; | [optional]
  **root** | **string**| Parent folder reference | [optional]
  **work_space** | **string**| Name of the workspace | [optional]
 
@@ -259,7 +255,7 @@ getFolderContentUsingGET($id, $type, $max_return, $offset): \NecLimDul\MarketoRe
 
 Get Folder Contents
 
-Returns records for the contents of a given folder.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns records for the contents of a given folder. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
@@ -268,15 +264,14 @@ Returns records for the contents of a given folder.  Required Permissions: Read-
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the folder to retrieve
-$type = 'type_example'; // string | Type of folder.  'Folder' or 'Program'.  Default is 'Folder'
-$max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
+$type = 'type_example'; // string | Type of folder. 'Folder' or 'Program'. Default is 'Folder'
+$max_return = 56; // int | Maximum number of channels to return. Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 
 try {
@@ -292,8 +287,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the folder to retrieve |
- **type** | **string**| Type of folder.  &#39;Folder&#39; or &#39;Program&#39;.  Default is &#39;Folder&#39; |
- **max_return** | **int**| Maximum number of channels to return.  Max 200, default 20 | [optional]
+ **type** | **string**| Type of folder. &#39;Folder&#39; or &#39;Program&#39;. Default is &#39;Folder&#39; |
+ **max_return** | **int**| Maximum number of channels to return. Max 200, default 20 | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
 
 ### Return type
@@ -321,14 +316,13 @@ getFolderUsingGET($root, $max_depth, $max_return, $offset, $work_space): \NecLim
 
 Get Folders
 
-Retrieves child folders from within a given root folder.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves child folders from within a given root folder. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
@@ -339,7 +333,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
 $root = 'root_example'; // string | Parent folder reference
 $max_depth = 56; // int | Maximum folder depth to traverse, Default 2
 $max_return = 56; // int | Maximum number of folders to return. Default 20, maximum 200
-$offset = 56; // int | Integer offset for paging.  Default 0
+$offset = 56; // int | Integer offset for paging. Default 0
 $work_space = 'work_space_example'; // string | Name of the workspace
 
 try {
@@ -357,7 +351,7 @@ Name | Type | Description  | Notes
  **root** | **string**| Parent folder reference | [optional]
  **max_depth** | **int**| Maximum folder depth to traverse, Default 2 | [optional]
  **max_return** | **int**| Maximum number of folders to return. Default 20, maximum 200 | [optional]
- **offset** | **int**| Integer offset for paging.  Default 0 | [optional]
+ **offset** | **int**| Integer offset for paging. Default 0 | [optional]
  **work_space** | **string**| Name of the workspace | [optional]
 
 ### Return type
@@ -385,7 +379,7 @@ updateFolderUsingPOST($id, $type, $description, $is_archive, $name): \NecLimDul\
 
 Update Folder Metadata
 
-Updates the metadata for a given folder.  Required Permissions: Read-Write Assets
+Updates the metadata for a given folder. Required Permissions: Read-Write Assets
 
 ### Example
 
@@ -394,16 +388,15 @@ Updates the metadata for a given folder.  Required Permissions: Read-Write Asset
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the folder to update
-$type = 'type_example'; // string | Type of folder.  'Folder' or 'Program'
+$type = 'type_example'; // string | Type of folder. 'Folder' or 'Program'
 $description = 'description_example'; // string | Description of the asset
-$is_archive = True; // bool | Whether the folder is archived or not.  Toggling this value will change the archival status of the folder
+$is_archive = True; // bool | Whether the folder is archived or not. Toggling this value will change the archival status of the folder
 $name = 'name_example'; // string | Name of the Folder
 
 try {
@@ -419,9 +412,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the folder to update |
- **type** | **string**| Type of folder.  &#39;Folder&#39; or &#39;Program&#39; |
+ **type** | **string**| Type of folder. &#39;Folder&#39; or &#39;Program&#39; |
  **description** | **string**| Description of the asset | [optional]
- **is_archive** | **bool**| Whether the folder is archived or not.  Toggling this value will change the archival status of the folder | [optional]
+ **is_archive** | **bool**| Whether the folder is archived or not. Toggling this value will change the archival status of the folder | [optional]
  **name** | **string**| Name of the Folder | [optional]
 
 ### Return type

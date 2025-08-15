@@ -18,14 +18,13 @@ getImportCustomObjectFailuresUsingGET($api_name, $batch_id): object
 
 Get Import Custom Object Failures
 
-Returns the list of failures for the import batch job.  Required Permissions: Read-Write Custom Object
+Returns the list of failures for the import batch job. Required Permissions: Read-Write Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
@@ -76,14 +75,13 @@ getImportCustomObjectStatusUsingGET($api_name, $batch_id): \NecLimDul\MarketoRes
 
 Get Import Custom Object Status
 
-Returns the status of an import batch job.  Required Permissions: Read-Write Custom Object
+Returns the status of an import batch job. Required Permissions: Read-Write Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
@@ -134,14 +132,13 @@ getImportCustomObjectWarningsUsingGET($api_name, $batch_id): object
 
 Get Import Custom Object Warnings
 
-Returns the list of warnings for the import batch job.  Required Permissions: Read-Write Custom Object
+Returns the list of warnings for the import batch job. Required Permissions: Read-Write Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
@@ -192,14 +189,13 @@ importCustomObjectUsingPOST($api_name, $format, $file): \NecLimDul\MarketoRest\L
 
 Import Custom Objects
 
-Imports a file containing data records into the target instance.  Required Permissions: Read-Write Custom Object
+Imports a file containing data records into the target instance. Required Permissions: Read-Write Custom Object
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
@@ -209,7 +205,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
 );
 $api_name = 'api_name_example'; // string | API Name of the custom object for the import batch job.
 $format = 'format_example'; // string | Import file format.
-$file = "/path/to/file.txt"; // \SplFileObject | File containing the data records to import.
+$file = '/path/to/file.txt'; // \SplFileObject | File containing the data records to import.
 
 try {
     $result = $apiInstance->importCustomObjectUsingPOST($api_name, $format, $file);

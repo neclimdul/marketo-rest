@@ -27,14 +27,13 @@ approveFromUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormRe
 
 Approve Form Draft
 
-Approves the current draft of the form.  This will delete the current approved version of the form.  Required Permissions: Approve Assets
+Approves the current draft of the form. This will delete the current approved version of the form. Required Permissions: Approve Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
@@ -78,12 +77,12 @@ No authorization required
 ## `browseForms2UsingGET()`
 
 ```php
-browseForms2UsingGET($folder, $status, $max_return, $offset): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
+browseForms2UsingGET($status, $folder, $max_return, $offset): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
 ```
 
 Get Forms
 
-Retrieves a list of accessible form records from the target instance.  Required Permissions: Read-Only Assets, Read-Write Assets
+Retrieves a list of accessible form records from the target instance. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
@@ -92,19 +91,18 @@ Retrieves a list of accessible form records from the target instance.  Required 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 $status = 'status_example'; // string | Status filter for draft or approved versions
-$max_return = 'max_return_example'; // string | Maximum number of channels to return.  Max 200, default 20
+$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$max_return = 'max_return_example'; // string | Maximum number of channels to return. Max 200, default 20
 $offset = 'offset_example'; // string | Integer offset for paging
 
 try {
-    $result = $apiInstance->browseForms2UsingGET($folder, $status, $max_return, $offset);
+    $result = $apiInstance->browseForms2UsingGET($status, $folder, $max_return, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->browseForms2UsingGET: ', $e->getMessage(), PHP_EOL;
@@ -115,9 +113,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; |
  **status** | **string**| Status filter for draft or approved versions | [optional]
- **max_return** | **string**| Maximum number of channels to return.  Max 200, default 20 | [optional]
+ **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
+ **max_return** | **string**| Maximum number of channels to return. Max 200, default 20 | [optional]
  **offset** | **string**| Integer offset for paging | [optional]
 
 ### Return type
@@ -145,14 +143,13 @@ cloneLpFormsUsingPOST($id, $name, $folder, $description): \NecLimDul\MarketoRest
 
 Clone Form
 
-Clones the target form.  Required Permissions: Read-Write Assets
+Clones the target form. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
@@ -207,14 +204,13 @@ createLpFormsUsingPOST($folder, $description, $font_family, $font_size, $known_v
 
 Create Form
 
-Creates a new form.  Required Permissions: Read-Write Assets
+Creates a new form. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
@@ -283,14 +279,13 @@ deleteFormByIdUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdRes
 
 Delete Form
 
-Deletes the target form.  Forms which are in use by landing pages may not be deleted until they are removed from all landing pages.  Required Permissions: Read-Write Assets
+Deletes the target form. Forms which are in use by landing pages may not be deleted until they are removed from all landing pages. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
@@ -339,14 +334,13 @@ discardFormByIdUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdRe
 
 Discard Form Draft
 
-Discards the current draft of the form.  Required Permissions: Read-Write Assets
+Discards the current draft of the form. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
@@ -395,14 +389,13 @@ getFormUsedByUsingGET($id, $offset, $max_return): \NecLimDul\MarketoRest\Asset\M
 
 Get Form Used By
 
-Returns a list of asset records which depend on a given form.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns a list of asset records which depend on a given form. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
@@ -412,7 +405,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
 );
 $id = 56; // int | Id of the form
 $offset = 56; // int | Integer offset for paging
-$max_return = 56; // int | Maximum number of assets to return.  Max 200, default 20
+$max_return = 56; // int | Maximum number of assets to return. Max 200, default 20
 
 try {
     $result = $apiInstance->getFormUsedByUsingGET($id, $offset, $max_return);
@@ -428,7 +421,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the form |
  **offset** | **int**| Integer offset for paging | [optional]
- **max_return** | **int**| Maximum number of assets to return.  Max 200, default 20 | [optional]
+ **max_return** | **int**| Maximum number of assets to return. Max 200, default 20 | [optional]
 
 ### Return type
 
@@ -462,7 +455,6 @@ Retrieves a form record by its id. Required Permissions: Read-Only Assets, Read-
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
@@ -522,7 +514,6 @@ Retrieves a form record by its name. Required Permissions: Read-Only Assets, Rea
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -573,14 +564,13 @@ getThankYouPageByIdUsingGET($id, $status): \NecLimDul\MarketoRest\Asset\Model\Re
 
 Get Thank You Page by Form Id
 
-Returns the thank you page configuration for a given form.  Required Permissions: Read-Only Assets, Read-Write Assets
+Returns the thank you page configuration for a given form. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
@@ -631,14 +621,13 @@ updateFormSubmitButtonUsingPOST($id, $button_position, $button_style, $label, $w
 
 Update Submit Button
 
-Updates the submit button configuration for the target form.  Required Permissions: Read-Write Assets
+Updates the submit button configuration for the target form. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
@@ -695,14 +684,13 @@ updateFormsUsingPOST($id, $custom_css, $description, $font_family, $font_size, $
 
 Update Form Metadata
 
-Updates the metadata of the target form.  Required Permissions: Read-Write Assets
+Updates the metadata of the target form. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
@@ -773,14 +761,13 @@ updateThankYouPageByIdUsingPOST($id, $thankyou): \NecLimDul\MarketoRest\Asset\Mo
 
 Update Thank You Page
 
-Updates the thank you page configuration for a given form.  This update is destructive and the resulting draft will not have any memory of the previous configuration.  Required Permissions: Read-Only Assets, Read-Write Assets
+Updates the thank you page configuration for a given form. This update is destructive and the resulting draft will not have any memory of the previous configuration. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(

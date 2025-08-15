@@ -15,14 +15,13 @@ updateContentUsingPOST($id, $file, $id2): \NecLimDul\MarketoRest\Asset\Model\Res
 
 Update File Content
 
-Replaces the current content of the file with the included payload.  Required Permissions: Read-Write Assets
+Replaces the current content of the file with the included payload. Required Permissions: Read-Write Assets
 
 ### Example
 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FileContentsApi(
