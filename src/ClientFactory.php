@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
@@ -13,7 +15,7 @@ use Softonic\OAuth2\Guzzle\Middleware\AccessTokenCacheHandler;
 use Softonic\OAuth2\Guzzle\Middleware\AddAuthorizationHeader;
 use Softonic\OAuth2\Guzzle\Middleware\RetryOnAuthorizationError;
 
-class ClientFactory
+final readonly class ClientFactory
 {
     /**
      * Create a basic guzzle client.
@@ -25,7 +27,7 @@ class ClientFactory
      * @return \GuzzleHttp\Client
      *   A configured guzzle client.
      */
-    public static function create(Configuration $config, array $guzzleOptions = [])
+    public static function create(Configuration $config, array $guzzleOptions = []): GuzzleHttpClient
     {
         $guzzleOptions += [
             'base_uri' => $config->getBaseUrl(),
@@ -43,12 +45,19 @@ class ClientFactory
      * @return \GuzzleHttp\Client
      *   A configured guzzle client.
      */
-    public static function createOauthClient(Configuration $config, ?CacheItemPoolInterface $cache = null)
+    public static function createOauthClient(Configuration $config, ?CacheItemPoolInterface $cache = null, ?callable $handler = null): GuzzleHttpClient
     {
+        $handler ??= new CurlHandler();
+        $stack = HandlerStack::create($handler);
+
         $oauthProvider = new Marketo([
             'clientId' => $config->getClientId(),
             'clientSecret' => $config->getClientSecret(),
             'baseUrl' => $config->getBaseUrl(),
+        ], [
+            'httpClient' => self::create($config, [
+                'handler' => clone $stack,
+            ]),
         ]);
 
         $tokenOptions = [
@@ -59,8 +68,6 @@ class ClientFactory
         }
         $cacheHandler = new AccessTokenCacheHandler($cache);
 
-        $stack = HandlerStack::create();
-        $stack->setHandler(new CurlHandler());
         $stack->push(Middleware::mapRequest(new AddAuthorizationHeader(
             $oauthProvider,
             $tokenOptions,
@@ -72,7 +79,7 @@ class ClientFactory
             $cacheHandler
         )));
 
-        return static::create($config, [
+        return self::create($config, [
             'handler' => $stack,
         ]);
     }
