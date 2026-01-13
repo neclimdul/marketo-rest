@@ -1,7 +1,6 @@
 #!/bin/bash
 LEAD_SWAGGER="https://developer.adobe.com/marketo-apis/swagger-mapi.json"
 ASSET_SWAGGER="https://developer.adobe.com/marketo-apis/swagger-asset.json"
-IDENTITY_SWAGGER="https://developer.adobe.com/marketo-apis/swagger-identity.json"
 
 MakeSwagger() {
   # Cleanup any lingering temporary directory so we're in a good state for the code generation.
@@ -44,7 +43,6 @@ fi
 
 MakeSwagger ${LEAD_SWAGGER} Lead
 MakeSwagger ${ASSET_SWAGGER} Asset
-#build_swagger ${IDENTITY_SWAGGER} Identity
 
 # Fix broken codegen.
 # https://github.com/swagger-api/swagger-codegen/issues/8599

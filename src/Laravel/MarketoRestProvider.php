@@ -27,8 +27,6 @@ use NecLimDul\MarketoRest\Asset\Api\TokensApi;
 use NecLimDul\MarketoRest\Asset\Configuration as AssetConfiguration;
 use NecLimDul\MarketoRest\ClientFactory;
 use NecLimDul\MarketoRest\Configuration;
-use NecLimDul\MarketoRest\Identity\Api\IdentityApi;
-use NecLimDul\MarketoRest\Identity\Configuration as IdentityConfiguration;
 use NecLimDul\MarketoRest\Lead\Api\ActivitiesApi;
 use NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi;
 use NecLimDul\MarketoRest\Lead\Api\BulkExportCustomObjectsApi;
@@ -85,12 +83,6 @@ class MarketoRestProvider extends ServiceProvider
         ]);
         $client = ClientFactory::create($configuration);
         $oauthClient = ClientFactory::createOauthClient($configuration);
-
-        // Identity API works different so don't register it the same. Also,
-        // with our oauth wrapper, it shouldn't be needed.
-        $config = IdentityConfiguration::getDefaultConfiguration();
-        $config->setHost($system_config['marketo_rest.baseUrl']);
-        $this->registerSingleton(IdentityApi::class, $client, $config);
 
         // Asset APIs
         $config = AssetConfiguration::getDefaultConfiguration();
@@ -170,8 +162,6 @@ class MarketoRestProvider extends ServiceProvider
             StaticListsApi::class,
             TagsApi::class,
             TokensApi::class,
-
-            IdentityApi::class,
 
             // Lead APIs
             ActivitiesApi::class,
