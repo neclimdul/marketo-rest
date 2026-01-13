@@ -21,28 +21,27 @@ class StaticCachePool implements CacheItemPoolInterface
      */
     public function getItem(string $key): CacheItemInterface
     {
-        if ($this->deferred) {
-            $this->commit();
-        }
-
-        if (isset($this->cache[$key])) {
-            return $this->cache[$key];
-        }
-
-        return new CacheItem($key);
+        return $this->getItems([$key])->current();
     }
 
     /**
      * @inheritDoc
      *
-     * @phpstan-return array<string, \Psr\Cache\CacheItemInterface>
+     * @phpstan-return \Generator<\Psr\Cache\CacheItemInterface>
      */
-    public function getItems(array $keys = []): iterable
+    public function getItems(array $keys = []): \Generator
     {
         if ($this->deferred) {
             $this->commit();
         }
-        return $this->cache;
+        foreach ($keys as $key) {
+            if (isset($this->cache[$key])) {
+                yield $this->cache[$key];
+            }
+            else {
+                yield new CacheItem($key);
+            }
+        }
     }
 
     /**
@@ -71,9 +70,7 @@ class StaticCachePool implements CacheItemPoolInterface
      */
     public function deleteItem(string $key): bool
     {
-        unset($this->cache[$key]);
-        unset($this->deferred[$key]);
-        return true;
+        return $this->deleteItems([$key]);
     }
 
     /**
@@ -93,7 +90,11 @@ class StaticCachePool implements CacheItemPoolInterface
      */
     public function save(CacheItemInterface $item): bool
     {
-        $this->cache[$item->getKey()] = $item;
+        $this->cache[$item->getKey()] = new CacheItem(
+            $item->getKey(),
+            $item->get(),
+            true,
+        );
         return $this->commit();
     }
 
@@ -102,7 +103,11 @@ class StaticCachePool implements CacheItemPoolInterface
      */
     public function saveDeferred(CacheItemInterface $item): bool
     {
-        $this->deferred[$item->getKey()] = $item;
+        $this->deferred[$item->getKey()] = new CacheItem(
+            $item->getKey(),
+            $item->get(),
+            true,
+        );
         return true;
     }
 
