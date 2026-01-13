@@ -28,7 +28,6 @@ Create a new landing page redirect rule. Required Permissions: Read Write Redire
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -87,7 +86,6 @@ Delete a landing page redirect rule. Required Permissions: Read Write Redirect R
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -141,7 +139,6 @@ Retrieves a list of landing page domain and domain aliases. Required Permissions
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -199,7 +196,6 @@ Retrieves the landing page redirect rule record. Required Permissions: Read Only
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -253,7 +249,6 @@ Retrieves a list of landing page redirect rules from the target instance. Requir
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -318,7 +313,6 @@ Update an existing landing page redirect rule. Required Permissions: Read Write 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

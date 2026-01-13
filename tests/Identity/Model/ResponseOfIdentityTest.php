@@ -8,9 +8,12 @@
  * Please update the test case below to test the model.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Identity\Test\Model;
 
-use Faker\Factory;
+use Faker\Factory as FakerFactory;
+use Faker\Generator as FakerGenerator;
 use NecLimDul\MarketoRest\Identity\Model\ModelInterface;
 use NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity;
 use PHPUnit\Framework\TestCase;
@@ -33,7 +36,9 @@ use PHPUnit\Framework\TestCase;
  */
 class ResponseOfIdentityTest extends TestCase
 {
-    private \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity $sot;
+    private ResponseOfIdentity $sot;
+
+    private FakerGenerator $faker;
 
     /**
      * @var string[]
@@ -45,7 +50,6 @@ class ResponseOfIdentityTest extends TestCase
         'token_type' => 'string',
     ];
 
-    private \Faker\Generator $faker;
     private array $data;
 
     /**
@@ -60,7 +64,7 @@ class ResponseOfIdentityTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->faker = \Faker\Factory::create();
+        $this->faker = FakerFactory::create();
         $this->data = [];
         foreach ($this->types as $field => $type) {
             $this->data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
@@ -136,15 +140,27 @@ class ResponseOfIdentityTest extends TestCase
     }
 
     /**
+     * @covers ::openAPIRequired
+     */
+    public function testOpenAPIRequired(): void
+    {
+        $required = $this->sot->openAPIRequired();
+        $this->assertEquals('access_token', $required['access_token']);
+        $this->assertEquals('scope', $required['scope']);
+        $this->assertEquals('expires_in', $required['expires_in']);
+        $this->assertEquals('token_type', $required['token_type']);
+    }
+
+    /**
      * @covers ::openAPIFormats
      */
     public function testOpenAPIFormats(): void
     {
         $formats = $this->sot->openAPIFormats();
-        $this->assertEquals(null, $formats['access_token']);
-        $this->assertEquals(null, $formats['scope']);
-        $this->assertEquals(null, $formats['expires_in']);
-        $this->assertEquals(null, $formats['token_type']);
+        $this->assertNotContains('access_token', $formats);
+        $this->assertNotContains('scope', $formats);
+        $this->assertNotContains('expires_in', $formats);
+        $this->assertNotContains('token_type', $formats);
     }
 
     /**

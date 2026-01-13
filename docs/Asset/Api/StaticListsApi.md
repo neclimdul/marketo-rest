@@ -28,7 +28,6 @@ Creates a new Static List. Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -87,7 +86,6 @@ Deletes the designated Static List. Required Permissions: Read-Write Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -141,7 +139,6 @@ Retrieves a Static List record by its id. Required Permissions: Read-Asset or Re
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -197,7 +194,6 @@ Retrieves a Static List record by its name. Required Permissions: Read-Asset or 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -251,7 +247,6 @@ Retrieves a list of Static List records. Required Permissions: Read-Asset or Rea
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -314,7 +309,6 @@ Updates the metadata of a static list asset. Required Permissions: Read-Write As
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

@@ -8,6 +8,8 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Identity;
 
 use Neclimdul\OpenapiPhp\Helper\Configuration as BaseConfiguration;

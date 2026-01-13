@@ -26,7 +26,6 @@ Deletes a list of salesperson records from the target instance. Input records sh
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -81,7 +80,6 @@ Returns metadata about salespersons and the fields available for interaction via
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -132,7 +130,6 @@ Retrieves salesperson records from the destination instance based on the submitt
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -195,7 +192,6 @@ Allows inserts, updates, or upserts of salespersons to the target instance. Requ
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

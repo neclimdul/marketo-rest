@@ -24,7 +24,6 @@ Retrieves a list of accessible segmentations for the target instance. Required P
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -78,7 +77,6 @@ Retrieves a list of segments inside the target segmentation. Required Permission
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

@@ -26,7 +26,6 @@ Returns the list of failures for the import batch job. Required Permissions: Rea
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -80,7 +79,6 @@ Returns the status of an import batch job. Required Permissions: Read-Write Lead
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -136,7 +134,6 @@ Returns the list of warnings for the import batch job. Required Permissions: Rea
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -190,7 +187,6 @@ Imports a file containing data records into the target instance. Required Permis
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

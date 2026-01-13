@@ -8,9 +8,12 @@
  * Please update the test case below to test the model.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Identity\Test\Model;
 
-use Faker\Factory;
+use Faker\Factory as FakerFactory;
+use Faker\Generator as FakerGenerator;
 use NecLimDul\MarketoRest\Identity\Model\ModelInterface;
 use NecLimDul\MarketoRest\Identity\Model\IdentityRequest;
 use PHPUnit\Framework\TestCase;
@@ -33,7 +36,9 @@ use PHPUnit\Framework\TestCase;
  */
 class IdentityRequestTest extends TestCase
 {
-    private \NecLimDul\MarketoRest\Identity\Model\IdentityRequest $sot;
+    private IdentityRequest $sot;
+
+    private FakerGenerator $faker;
 
     /**
      * @var string[]
@@ -44,7 +49,6 @@ class IdentityRequestTest extends TestCase
         'grant_type' => 'string',
     ];
 
-    private \Faker\Generator $faker;
     private array $data;
 
     /**
@@ -59,7 +63,7 @@ class IdentityRequestTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->faker = \Faker\Factory::create();
+        $this->faker = FakerFactory::create();
         $this->data = [];
         foreach ($this->types as $field => $type) {
             $this->data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
@@ -135,14 +139,25 @@ class IdentityRequestTest extends TestCase
     }
 
     /**
+     * @covers ::openAPIRequired
+     */
+    public function testOpenAPIRequired(): void
+    {
+        $required = $this->sot->openAPIRequired();
+        $this->assertEquals('client_id', $required['client_id']);
+        $this->assertEquals('client_secret', $required['client_secret']);
+        $this->assertEquals('grant_type', $required['grant_type']);
+    }
+
+    /**
      * @covers ::openAPIFormats
      */
     public function testOpenAPIFormats(): void
     {
         $formats = $this->sot->openAPIFormats();
-        $this->assertEquals(null, $formats['client_id']);
-        $this->assertEquals(null, $formats['client_secret']);
-        $this->assertEquals(null, $formats['grant_type']);
+        $this->assertNotContains('client_id', $formats);
+        $this->assertNotContains('client_secret', $formats);
+        $this->assertNotContains('grant_type', $formats);
     }
 
     /**

@@ -8,6 +8,8 @@
  * Please update the test case below to test the endpoint.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Identity\Test\Api;
 
 use NecLimDul\MarketoRest\Identity\ApiException;

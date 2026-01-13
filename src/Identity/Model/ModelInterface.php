@@ -18,6 +18,8 @@
  * Do not edit the class manually.
  */
 
+declare(strict_types=1);
+
 namespace NecLimDul\MarketoRest\Identity\Model;
 
 use Neclimdul\OpenapiPhp\Helper\Model\ModelInterface as BaseModelInterface;

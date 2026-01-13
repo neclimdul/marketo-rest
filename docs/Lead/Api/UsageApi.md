@@ -26,7 +26,6 @@ Retrieves a count of each error type they have encountered in the current day. R
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -77,7 +76,6 @@ Returns the number of calls consumed for the day. Required Permissions: None
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -130,7 +128,6 @@ Returns a count of each error type they have encountered in the past 7 days. Req
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -181,7 +178,6 @@ Returns the number of calls consumed in the past 7 days. Required Permissions: N
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

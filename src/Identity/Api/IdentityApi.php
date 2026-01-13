@@ -20,6 +20,8 @@ use Neclimdul\OpenapiPhp\Helper\Client;
 use Neclimdul\OpenapiPhp\Helper\RequestFactory;
 use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
 use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
+use Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface;
+use Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface;
 // Package Includes
 use NecLimDul\MarketoRest\Identity\Configuration;
 use NecLimDul\MarketoRest\Identity\HeaderSelector;
@@ -40,47 +42,54 @@ use NecLimDul\MarketoRest\Identity\ObjectSerializer;
  */
 class IdentityApi
 {
-    protected Configuration $config;
+    protected readonly Configuration $config;
 
-    protected HeaderSelector $headerSelector;
-
-    protected int $hostIndex;
+    protected readonly HeaderSelector $headerSelector;
 
     /**
-     * @var \Neclimdul\OpenapiPhp\Helper\Client
+     * @var \Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface<\NecLimDul\MarketoRest\Identity\Model\ModelInterface>
      */
-    private Client $client;
+    private readonly SerializerInterface $serializer;
+
+    private readonly Client $client;
 
     /**
      * @var \Neclimdul\OpenapiPhp\Helper\RequestFactory<\NecLimDul\MarketoRest\Identity\Model\ModelInterface>
      */
-    private RequestFactory $requestFactory;
+    private readonly RequestFactory $requestFactory;
 
     /**
      * @param (\GuzzleHttp\ClientInterface&\Psr\Http\Client\ClientInterface)|null $client
+     *   Request client.
      * @param Configuration|null $config
+     *   API Configuration.
      * @param HeaderSelector|null $selector
+     *   HeaderSelect helper.
      * @param int $hostIndex
      *   (Optional) Host index to select the list of hosts if defined in the spec.
+     * @param \Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface<\NecLimDul\MarketoRest\Identity\Model\ModelInterface>|null $serializer
+     *   Serialization service.
+     * @param \Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface|null $deserializer
+     *   Deserialization service.
      */
     public function __construct(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        protected int $hostIndex = 0,
+        ?SerializerInterface $serializer = null,
+        ?DeserializerInterface $deserializer = null,
     ) {
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->hostIndex = $hostIndex;
-        // TODO Inject me.
+        $this->serializer = $serializer ?: ObjectSerializer::getDefaultSerializer();
         $this->client = new Client(
             $client ?: new GuzzleClient(),
-            ObjectSerializer::getDefaultSerializer()->getDeserializer(),
+            $deserializer ?: ObjectSerializer::getDefaultDeserializer(),
         );
-        // TODO Inject me.
         $this->requestFactory = new RequestFactory(
             new HttpFactory(),
-            ObjectSerializer::getDefaultSerializer()->getSerializer(),
+            $this->serializer,
         );
     }
 
@@ -152,9 +161,9 @@ class IdentityApi
                 $operationHost . $resourcePath,
                 // Query.
                 [
-                    'client_id' => ObjectSerializer::toQueryValue($client_id),
-                    'client_secret' => ObjectSerializer::toQueryValue($client_secret),
-                    'grant_type' => ObjectSerializer::toQueryValue($grant_type),
+                    'client_id' => $this->serializer->toQueryValue($client_id),
+                    'client_secret' => $this->serializer->toQueryValue($client_secret),
+                    'grant_type' => $this->serializer->toQueryValue($grant_type),
                 ],
                 $headers,
                 [],
@@ -206,9 +215,9 @@ class IdentityApi
                 $operationHost . $resourcePath,
                 // Query.
                 [
-                    'client_id' => ObjectSerializer::toQueryValue($client_id),
-                    'client_secret' => ObjectSerializer::toQueryValue($client_secret),
-                    'grant_type' => ObjectSerializer::toQueryValue($grant_type),
+                    'client_id' => $this->serializer->toQueryValue($client_id),
+                    'client_secret' => $this->serializer->toQueryValue($client_secret),
+                    'grant_type' => $this->serializer->toQueryValue($grant_type),
                 ],
                 $headers,
                 [],

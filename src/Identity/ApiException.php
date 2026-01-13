@@ -8,10 +8,9 @@
  * Do not edit the class manually.
  */
 
-namespace NecLimDul\MarketoRest\Identity;
+declare(strict_types=1);
 
-use Neclimdul\OpenapiPhp\Helper\ApiExceptionBase;
-use NecLimDul\MarketoRest\Identity\Model\ModelInterface;
+namespace NecLimDul\MarketoRest\Identity;
 
 /**
  * ApiException
@@ -26,6 +25,6 @@ use NecLimDul\MarketoRest\Identity\Model\ModelInterface;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ApiException extends ApiExceptionBase
+class ApiException extends \Exception implements \Throwable
 {
 }
