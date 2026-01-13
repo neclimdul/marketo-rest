@@ -7,9 +7,9 @@ MakeSwagger() {
   sudo find .build/ -mindepth 1 -not -name .gitignore -delete
 
   SERVICE=${1}
-  NAME=${2}\
+  NAME=${2}
   NAMESPACE="NecLimDul\\MarketoRest\\${NAME}"
-  FULL_OUTPUT_PATH="$PWD/.build/${NAME}"
+  FULL_OUTPUT_PATH="${PWD}/.build/${NAME}"
   shift 2
   EXTRA="${*}"
   sudo python3 ./openapi-php/build.py \
@@ -21,18 +21,18 @@ MakeSwagger() {
   sudo chown "${USER}": .build/ -R
 
   mkdir -p "docs/${NAME}"
-  rsync -a --delete ".build/$NAME/docs/" "./docs/${NAME}/"
+  rsync -a --delete ".build/${NAME}/docs/" "./docs/${NAME}/"
 
   mkdir -p "src/${NAME}"
-  rsync -a --delete ".build/$NAME/src/" "./src/${NAME}/"
+  rsync -a --delete ".build/${NAME}/src/" "./src/${NAME}/"
 
   mkdir -p "tests/${NAME}"
-  rsync -a --delete ".build/$NAME/tests/" "./tests/${NAME}/"
+  rsync -a --delete ".build/${NAME}/tests/" "./tests/${NAME}/"
 
   find .build/ -mindepth 1 -not -name .gitignore -delete
 }
 
-if [ ! -d "$PWD/openapi-php" ]; then
+if [ ! -d "${PWD}/openapi-php" ]; then
   git clone git@gitlab.com:neclimdul/openapi-php.git -b 3.x
 else
   cd openapi-php || exit
