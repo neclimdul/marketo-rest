@@ -19,6 +19,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function getItem(string $key): CacheItemInterface
     {
         return $this->getItems([$key])->current();
@@ -29,6 +30,7 @@ class StaticCachePool implements CacheItemPoolInterface
      *
      * @phpstan-return \Generator<\Psr\Cache\CacheItemInterface>
      */
+    #[\Override]
     public function getItems(array $keys = []): \Generator
     {
         if ($this->deferred) {
@@ -47,6 +49,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function hasItem(string $key): bool
     {
         if (isset($this->deferred[$key])) {
@@ -58,6 +61,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function clear(): bool
     {
         $this->deferred = [];
@@ -68,6 +72,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function deleteItem(string $key): bool
     {
         return $this->deleteItems([$key]);
@@ -76,6 +81,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function deleteItems(array $keys): bool
     {
         foreach ($keys as $key) {
@@ -88,6 +94,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function save(CacheItemInterface $item): bool
     {
         $this->cache[$item->getKey()] = new CacheItem(
@@ -101,6 +108,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function saveDeferred(CacheItemInterface $item): bool
     {
         $this->deferred[$item->getKey()] = new CacheItem(
@@ -114,6 +122,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function commit(): bool
     {
         foreach ($this->deferred as $k => $v) {
