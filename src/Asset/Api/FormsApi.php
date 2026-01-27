@@ -908,7 +908,7 @@ readonly class FormsApi
             [],
             $headers,
             [
-                'thankyou' => isset($thankyou) ? $this->serializer->toFormValue($thankyou) : null,
+                'thankyou' => isset($thankyou) ? $this->serializer->toFormValue($thankyou, "csv") : null,
             ],
             '',
         );

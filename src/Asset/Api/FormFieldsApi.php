@@ -741,7 +741,7 @@ readonly class FormFieldsApi
             [],
             $headers,
             [
-                'positions' => isset($positions) ? $this->serializer->toFormValue($positions) : null,
+                'positions' => isset($positions) ? $this->serializer->toFormValue($positions, "csv") : null,
             ],
             '',
         );
