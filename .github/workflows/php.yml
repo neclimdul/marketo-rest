@@ -10,12 +10,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - uses: ./.github/workflows/setup
 
   lint:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - uses: ./.github/workflows/setup
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
@@ -25,6 +27,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - uses: ./.github/workflows/setup
       - name: Run style check
         run: composer phpcs
@@ -33,6 +36,7 @@ jobs:
     needs: [lint, cs]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - uses: ./.github/workflows/setup
       - name: Run test suite
         uses: php-actions/phpunit@v4

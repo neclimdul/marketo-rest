@@ -1,7 +1,6 @@
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v5
     - name: Cache Composer packages
       id: composer-cache
       uses: actions/cache@v5
