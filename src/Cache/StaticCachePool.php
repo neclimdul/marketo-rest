@@ -39,8 +39,7 @@ class StaticCachePool implements CacheItemPoolInterface
         foreach ($keys as $key) {
             if (isset($this->cache[$key])) {
                 yield $this->cache[$key];
-            }
-            else {
+            } else {
                 yield new CacheItem($key);
             }
         }
