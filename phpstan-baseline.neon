@@ -7,30 +7,6 @@ parameters:
 			path: src/Asset/Api/ChannelsApi.php
 
 		-
-			message: '#^Parameter \#1 \$value of method Neclimdul\\OpenapiPhp\\Helper\\Serialization\\SerializerInterface\<NecLimDul\\MarketoRest\\Asset\\Model\\ModelInterface\>\:\:toFormValue\(\) expects bool\|float\|int\|Neclimdul\\OpenapiPhp\\Helper\\Model\\ModelInterface\|SplFileObject\|string, array\<NecLimDul\\MarketoRest\\Asset\\Model\\UpdateFieldPosition\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Asset/Api/FormFieldsApi.php
-
-		-
-			message: '#^Parameter \#1 \$value of method Neclimdul\\OpenapiPhp\\Helper\\Serialization\\SerializerInterface\<NecLimDul\\MarketoRest\\Asset\\Model\\ModelInterface\>\:\:toFormValue\(\) expects bool\|float\|int\|Neclimdul\\OpenapiPhp\\Helper\\Model\\ModelInterface\|SplFileObject\|string, array\<NecLimDul\\MarketoRest\\Asset\\Model\\ThankYouPageRequest\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Asset/Api/FormsApi.php
-
-		-
-			message: '#^Parameter \#1 \$value of method Neclimdul\\OpenapiPhp\\Helper\\Serialization\\SerializerInterface\<NecLimDul\\MarketoRest\\Asset\\Model\\ModelInterface\>\:\:toFormValue\(\) expects bool\|float\|int\|Neclimdul\\OpenapiPhp\\Helper\\Model\\ModelInterface\|SplFileObject\|string, array\<NecLimDul\\MarketoRest\\Asset\\Model\\CostRequest\> given\.$#'
-			identifier: argument.type
-			count: 2
-			path: src/Asset/Api/ProgramsApi.php
-
-		-
-			message: '#^Parameter \#1 \$value of method Neclimdul\\OpenapiPhp\\Helper\\Serialization\\SerializerInterface\<NecLimDul\\MarketoRest\\Asset\\Model\\ModelInterface\>\:\:toFormValue\(\) expects bool\|float\|int\|Neclimdul\\OpenapiPhp\\Helper\\Model\\ModelInterface\|SplFileObject\|string, array\<NecLimDul\\MarketoRest\\Asset\\Model\\TagRequest\> given\.$#'
-			identifier: argument.type
-			count: 2
-			path: src/Asset/Api/ProgramsApi.php
-
-		-
 			message: '#^Property NecLimDul\\MarketoRest\\Asset\\Api\\TagsApi\:\:\$serializer is never read, only written\.$#'
 			identifier: property.onlyWritten
 			count: 1
