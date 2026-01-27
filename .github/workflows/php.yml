@@ -2,38 +2,46 @@ name: PHP Composer
 
 on:
   push:
-    branches: [ main, '2.0', '3.0', '4.0']
+    branches: [ main, '2.0', '3.0', '4.0' ]
   pull_request:
-    branches: [ main, '2.0', '3.0', '4.0']
+    branches: [ main, '2.0', '3.0', '4.0' ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v5
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v5
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      - uses: actions/checkout@v5
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v5
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
-    - uses: php-actions/composer@v6
+      - uses: php-actions/composer@v6
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+  lint:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+      - name: Run static analysis
+        run: composer static
+  cs:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run style check
+        run: composer phpcs
 
-    - name: Run static analysis
-      run: composer static
-
-    - name: Run style check
-      run: composer phpcs
-
-    - name: Run test suite
-      uses: php-actions/phpunit@v4
-      with:
-        memory_limit: 256M
+  test:
+    needs: [lint, cs]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run test suite
+        uses: php-actions/phpunit@v4
+        with:
+          memory_limit: 256M
