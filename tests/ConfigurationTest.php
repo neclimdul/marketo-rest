@@ -3,18 +3,17 @@
 namespace NecLimDul\MarketoRest\Tests;
 
 use NecLimDul\MarketoRest\Configuration;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @coversDefaultClass \NecLimDul\MarketoRest\Configuration
- */
+#[CoversClass(Configuration::class)]
 class ConfigurationTest extends TestCase
 {
 
     /**
-     * @covers ::__construct
-     * @covers ::setBaseUrl
-     * @covers ::getBaseUrl
+     * @legacy-covers ::__construct
+     * @legacy-covers ::setBaseUrl
+     * @legacy-covers ::getBaseUrl
      */
     public function testGetBaseUrl(): void
     {
@@ -27,9 +26,9 @@ class ConfigurationTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
-     * @covers ::setClientId
-     * @covers ::getClientId
+     * @legacy-covers ::__construct
+     * @legacy-covers ::setClientId
+     * @legacy-covers ::getClientId
      */
     public function testGetClientId(): void
     {
@@ -42,9 +41,9 @@ class ConfigurationTest extends TestCase
     }
 
     /**
-     * @covers ::__construct
-     * @covers ::setClientId
-     * @covers ::setClientSecret
+     * @legacy-covers ::__construct
+     * @legacy-covers ::setClientId
+     * @legacy-covers ::setClientSecret
      */
     public function testGetClientSecret(): void
     {

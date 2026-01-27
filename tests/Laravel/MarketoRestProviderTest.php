@@ -5,25 +5,21 @@ namespace NecLimDul\MarketoRest\Tests\Laravel;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Foundation\CachesConfiguration;
 use NecLimDul\MarketoRest\Laravel\MarketoRestProvider;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
-/**
- * @coversDefaultClass \NecLimDul\MarketoRest\Laravel\MarketoRestProvider
- */
+#[CoversClass(MarketoRestProvider::class)]
 class MarketoRestProviderTest extends TestCase
 {
 
     use ProphecyTrait;
 
-    /**
-     * @var MarketoRestProvider
-     */
-    protected $provider;
+    protected MarketoRestProvider $provider;
 
     /**
-     * @var Application|\Prophecy\Prophecy\ObjectProphecy
+     * @var \Illuminate\Contracts\Foundation\Application&\Prophecy\Prophecy\ObjectProphecy
      */
     protected $app;
 
@@ -71,7 +67,7 @@ class MarketoRestProviderTest extends TestCase
     }
 
     /**
-     * @covers ::register
+     * @legacy-covers ::register
      */
     public function testRegister(): void
     {
