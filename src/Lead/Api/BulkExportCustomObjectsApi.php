@@ -131,9 +131,6 @@ readonly class BulkExportCustomObjectsApi
             '/bulk/v1/customobjects/{apiName}/export/{exportId}/cancel.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
@@ -187,9 +184,6 @@ readonly class BulkExportCustomObjectsApi
             '/bulk/v1/customobjects/{apiName}/export/create.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
@@ -245,9 +239,6 @@ readonly class BulkExportCustomObjectsApi
             '/bulk/v1/customobjects/{apiName}/export/{exportId}/enqueue.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
@@ -306,9 +297,6 @@ readonly class BulkExportCustomObjectsApi
             '/bulk/v1/customobjects/{apiName}/export/{exportId}/file.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
@@ -369,9 +357,6 @@ readonly class BulkExportCustomObjectsApi
             '/bulk/v1/customobjects/{apiName}/export/{exportId}/status.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse']);
@@ -431,9 +416,6 @@ readonly class BulkExportCustomObjectsApi
             '/bulk/v1/customobjects/{apiName}/export.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken']);

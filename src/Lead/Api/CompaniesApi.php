@@ -118,9 +118,6 @@ readonly class CompaniesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/companies/delete.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany']);
@@ -157,9 +154,6 @@ readonly class CompaniesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/companies/describe.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData']);
@@ -220,9 +214,6 @@ readonly class CompaniesApi
         }
         $resourcePath = '/rest/v1/companies.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany']);
@@ -279,9 +270,6 @@ readonly class CompaniesApi
             '/rest/v1/companies/schema/fields/{fieldApiName}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField']);
@@ -327,9 +315,6 @@ readonly class CompaniesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/companies/schema/fields.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField']);
@@ -375,9 +360,6 @@ readonly class CompaniesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/companies.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany']);

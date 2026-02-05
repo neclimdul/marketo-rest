@@ -118,9 +118,6 @@ readonly class SegmentsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/segmentation.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse']);
@@ -182,9 +179,6 @@ readonly class SegmentsApi
             '/rest/asset/v1/segmentation/{id}/segments.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse']);

@@ -129,9 +129,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/schema/{apiName}/addField.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType']);
@@ -182,9 +179,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/schema/{apiName}/approve.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType']);
@@ -238,9 +232,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/schema/{apiName}/deleteField.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType']);
@@ -291,9 +282,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/schema/{apiName}/delete.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType']);
@@ -347,9 +335,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/{customObjectName}/delete.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
@@ -403,9 +388,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/schema/{apiName}/describe.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData']);
@@ -458,9 +440,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/{customObjectName}/describe.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData']);
@@ -511,9 +490,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/schema/{apiName}/discardDraft.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType']);
@@ -564,9 +540,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/schema/{apiName}/dependentAssets.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets']);
@@ -603,9 +576,6 @@ readonly class CustomObjectsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/customobjects/schema/fieldDataTypes.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes']);
@@ -642,9 +612,6 @@ readonly class CustomObjectsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/customobjects/schema/linkableObjects.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject']);
@@ -719,9 +686,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/{customObjectName}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
@@ -773,9 +737,6 @@ readonly class CustomObjectsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/customobjects/schema.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData']);
@@ -821,9 +782,6 @@ readonly class CustomObjectsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/customobjects.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData']);
@@ -868,9 +826,6 @@ readonly class CustomObjectsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/customobjects/schema.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType']);
@@ -924,9 +879,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/{customObjectName}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
@@ -985,9 +937,6 @@ readonly class CustomObjectsApi
             '/rest/v1/customobjects/schema/{apiName}/{fieldApiName}/updateField.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType']);

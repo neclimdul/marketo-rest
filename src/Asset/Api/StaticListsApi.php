@@ -123,9 +123,6 @@ readonly class StaticListsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/staticLists.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse']);
@@ -180,9 +177,6 @@ readonly class StaticListsApi
             '/rest/asset/v1/staticList/{id}/delete.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
@@ -233,9 +227,6 @@ readonly class StaticListsApi
             '/rest/asset/v1/staticList/{id}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse']);
@@ -278,9 +269,6 @@ readonly class StaticListsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/staticList/byName.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse']);
@@ -337,9 +325,6 @@ readonly class StaticListsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/staticLists.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse']);
@@ -402,9 +387,6 @@ readonly class StaticListsApi
             '/rest/asset/v1/staticList/{id}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse']);

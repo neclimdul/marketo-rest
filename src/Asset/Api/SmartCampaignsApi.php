@@ -126,9 +126,6 @@ readonly class SmartCampaignsApi
             '/rest/asset/v1/smartCampaign/{id}/activate.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
@@ -187,9 +184,6 @@ readonly class SmartCampaignsApi
             '/rest/asset/v1/smartCampaign/{id}/clone.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse']);
@@ -241,9 +235,6 @@ readonly class SmartCampaignsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/smartCampaigns.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse']);
@@ -298,9 +289,6 @@ readonly class SmartCampaignsApi
             '/rest/asset/v1/smartCampaign/{id}/deactivate.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
@@ -351,9 +339,6 @@ readonly class SmartCampaignsApi
             '/rest/asset/v1/smartCampaign/{id}/delete.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
@@ -411,9 +396,6 @@ readonly class SmartCampaignsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/smartCampaigns.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse']);
@@ -471,9 +453,6 @@ readonly class SmartCampaignsApi
             '/rest/asset/v1/smartCampaign/{id}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse']);
@@ -516,9 +495,6 @@ readonly class SmartCampaignsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/smartCampaign/byName.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse']);
@@ -574,9 +550,6 @@ readonly class SmartCampaignsApi
             '/rest/asset/v1/smartCampaign/{id}/smartList.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules']);
@@ -632,9 +605,6 @@ readonly class SmartCampaignsApi
             '/rest/asset/v1/smartCampaign/{id}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse']);

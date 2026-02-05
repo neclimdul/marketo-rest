@@ -129,9 +129,6 @@ readonly class LeadsApi
             '/rest/v1/leads/{leadId}/associate.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult']);
@@ -187,9 +184,6 @@ readonly class LeadsApi
             '/rest/v1/leads/programs/{programId}/status.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData']);
@@ -232,9 +226,6 @@ readonly class LeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/leads/schema/fields.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField']);
@@ -280,9 +271,6 @@ readonly class LeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/leads/delete.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead']);
@@ -321,9 +309,6 @@ readonly class LeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/program/members/describe.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes']);
@@ -360,9 +345,6 @@ readonly class LeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/leads/describe.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute']);
@@ -399,9 +381,6 @@ readonly class LeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/leads/describe2.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2']);
@@ -455,9 +434,6 @@ readonly class LeadsApi
             '/rest/v1/lead/{leadId}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead']);
@@ -510,9 +486,6 @@ readonly class LeadsApi
             '/rest/v1/leads/schema/fields/{fieldApiName}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField']);
@@ -558,9 +531,6 @@ readonly class LeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/leads/schema/fields.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField']);
@@ -600,9 +570,6 @@ readonly class LeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/leads/partitions.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition']);
@@ -663,9 +630,6 @@ readonly class LeadsApi
         }
         $resourcePath = '/rest/v1/leads.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead']);
@@ -731,9 +695,6 @@ readonly class LeadsApi
             '/rest/v1/leads/programs/{programId}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead']);
@@ -794,9 +755,6 @@ readonly class LeadsApi
             '/rest/v1/leads/{leadId}/listMembership.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLists']);
@@ -868,9 +826,6 @@ readonly class LeadsApi
             '/rest/v1/leads/{leadId}/programMembership.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms']);
@@ -940,9 +895,6 @@ readonly class LeadsApi
             '/rest/v1/leads/{leadId}/smartCampaignMembership.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns']);
@@ -1007,9 +959,6 @@ readonly class LeadsApi
             '/rest/v1/leads/{leadId}/merge.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult']);
@@ -1056,9 +1005,6 @@ readonly class LeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/leads/push.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo']);
@@ -1101,9 +1047,6 @@ readonly class LeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/leads/submitForm.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm']);
@@ -1146,9 +1089,6 @@ readonly class LeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/leads.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead']);
@@ -1202,9 +1142,6 @@ readonly class LeadsApi
             '/rest/v1/leads/schema/fields/{fieldApiName}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField']);
@@ -1247,9 +1184,6 @@ readonly class LeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/leads/partitions.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead']);

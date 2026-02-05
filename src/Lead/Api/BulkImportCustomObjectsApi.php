@@ -131,9 +131,6 @@ readonly class BulkImportCustomObjectsApi
             '/bulk/v1/customobjects/{apiName}/import/{batchId}/failures.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
@@ -189,9 +186,6 @@ readonly class BulkImportCustomObjectsApi
             '/bulk/v1/customobjects/{apiName}/import/{batchId}/status.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse']);
@@ -247,9 +241,6 @@ readonly class BulkImportCustomObjectsApi
             '/bulk/v1/customobjects/{apiName}/import/{batchId}/warnings.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
@@ -306,9 +297,6 @@ readonly class BulkImportCustomObjectsApi
             '/bulk/v1/customobjects/{apiName}/import.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse']);

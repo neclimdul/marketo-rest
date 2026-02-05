@@ -126,9 +126,6 @@ readonly class BulkImportLeadsApi
             '/bulk/v1/leads/batch/{batchId}/failures.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
@@ -179,9 +176,6 @@ readonly class BulkImportLeadsApi
             '/bulk/v1/leads/batch/{batchId}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse']);
@@ -232,9 +226,6 @@ readonly class BulkImportLeadsApi
             '/bulk/v1/leads/batch/{batchId}/warnings.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
@@ -289,9 +280,6 @@ readonly class BulkImportLeadsApi
     ): ApiResponseInterface {
         $resourcePath = '/bulk/v1/leads.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse']);

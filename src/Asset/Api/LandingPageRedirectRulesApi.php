@@ -122,9 +122,6 @@ readonly class LandingPageRedirectRulesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/redirectRules.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules']);
@@ -179,9 +176,6 @@ readonly class LandingPageRedirectRulesApi
             '/rest/asset/v1/redirectRule/{id}/delete.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
@@ -227,9 +221,6 @@ readonly class LandingPageRedirectRulesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/landingPageDomains.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDomains']);
@@ -283,9 +274,6 @@ readonly class LandingPageRedirectRulesApi
             '/rest/asset/v1/redirectRule/{id}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules']);
@@ -343,9 +331,6 @@ readonly class LandingPageRedirectRulesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/redirectRules.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules']);
@@ -410,9 +395,6 @@ readonly class LandingPageRedirectRulesApi
             '/rest/asset/v1/redirectRule/{id}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules']);

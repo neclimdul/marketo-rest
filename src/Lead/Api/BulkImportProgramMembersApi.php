@@ -126,9 +126,6 @@ readonly class BulkImportProgramMembersApi
             '/bulk/v1/program/members/import/{batchId}/failures.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
@@ -179,9 +176,6 @@ readonly class BulkImportProgramMembersApi
             '/bulk/v1/program/members/import/{batchId}/status.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse']);
@@ -232,9 +226,6 @@ readonly class BulkImportProgramMembersApi
             '/bulk/v1/program/members/import/{batchId}/warnings.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => 'object']);
@@ -294,9 +285,6 @@ readonly class BulkImportProgramMembersApi
             '/bulk/v1/program/{programId}/members/import.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse']);

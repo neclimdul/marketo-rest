@@ -129,9 +129,6 @@ readonly class NamedAccountListsApi
             '/rest/v1/namedAccountList/{id}/namedAccounts.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount']);
@@ -174,9 +171,6 @@ readonly class NamedAccountListsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/namedAccountLists/delete.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList']);
@@ -236,9 +230,6 @@ readonly class NamedAccountListsApi
             '/rest/v1/namedAccountList/{id}/namedAccounts.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount']);
@@ -300,9 +291,6 @@ readonly class NamedAccountListsApi
         }
         $resourcePath = '/rest/v1/namedAccountLists.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList']);
@@ -361,9 +349,6 @@ readonly class NamedAccountListsApi
             '/rest/v1/namedAccountList/{id}/namedAccounts/remove.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount']);
@@ -406,9 +391,6 @@ readonly class NamedAccountListsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/namedAccountLists.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList']);

@@ -112,9 +112,6 @@ readonly class UsageApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/stats/errors.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData']);
@@ -151,9 +148,6 @@ readonly class UsageApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/stats/usage.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData']);
@@ -190,9 +184,6 @@ readonly class UsageApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/stats/errors/last7days.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData']);
@@ -229,9 +220,6 @@ readonly class UsageApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/stats/usage/last7days.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData']);

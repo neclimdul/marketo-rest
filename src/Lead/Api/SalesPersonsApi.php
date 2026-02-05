@@ -118,9 +118,6 @@ readonly class SalesPersonsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/salespersons/delete.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson']);
@@ -157,9 +154,6 @@ readonly class SalesPersonsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/salespersons/describe.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData']);
@@ -220,9 +214,6 @@ readonly class SalesPersonsApi
         }
         $resourcePath = '/rest/v1/salespersons.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson']);
@@ -271,9 +262,6 @@ readonly class SalesPersonsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/salespersons.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson']);

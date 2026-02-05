@@ -126,9 +126,6 @@ readonly class EmailTemplatesApi
             '/rest/asset/v1/emailTemplate/{id}/approveDraft.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse']);
@@ -187,9 +184,6 @@ readonly class EmailTemplatesApi
             '/rest/asset/v1/emailTemplate/{id}/clone.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse']);
@@ -244,9 +238,6 @@ readonly class EmailTemplatesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/emailTemplates.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse']);
@@ -303,9 +294,6 @@ readonly class EmailTemplatesApi
             '/rest/asset/v1/emailTemplate/{id}/delete.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
@@ -356,9 +344,6 @@ readonly class EmailTemplatesApi
             '/rest/asset/v1/emailTemplate/{id}/discardDraft.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
@@ -415,9 +400,6 @@ readonly class EmailTemplatesApi
             '/rest/asset/v1/emailTemplates/{id}/usedBy.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse']);
@@ -469,9 +451,6 @@ readonly class EmailTemplatesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/emailTemplates.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse']);
@@ -529,9 +508,6 @@ readonly class EmailTemplatesApi
             '/rest/asset/v1/emailTemplate/{id}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse']);
@@ -579,9 +555,6 @@ readonly class EmailTemplatesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/emailTemplate/byName.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse']);
@@ -638,9 +611,6 @@ readonly class EmailTemplatesApi
             '/rest/asset/v1/emailTemplate/{id}/content',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse']);
@@ -693,9 +663,6 @@ readonly class EmailTemplatesApi
             '/rest/asset/v1/emailTemplate/{id}/unapprove.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse']);
@@ -749,9 +716,6 @@ readonly class EmailTemplatesApi
             '/rest/asset/v1/emailTemplate/{id}/content.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
@@ -811,9 +775,6 @@ readonly class EmailTemplatesApi
             '/rest/asset/v1/emailTemplate/{id}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse']);

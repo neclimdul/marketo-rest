@@ -118,9 +118,6 @@ readonly class OpportunitiesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/delete.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
@@ -163,9 +160,6 @@ readonly class OpportunitiesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/roles/delete.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
@@ -202,9 +196,6 @@ readonly class OpportunitiesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/roles/describe.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData']);
@@ -241,9 +232,6 @@ readonly class OpportunitiesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/describe.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData']);
@@ -307,9 +295,6 @@ readonly class OpportunitiesApi
         }
         $resourcePath = '/rest/v1/opportunities.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
@@ -366,9 +351,6 @@ readonly class OpportunitiesApi
             '/rest/v1/opportunities/schema/fields/{fieldApiName}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField']);
@@ -414,9 +396,6 @@ readonly class OpportunitiesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/schema/fields.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField']);
@@ -483,9 +462,6 @@ readonly class OpportunitiesApi
         }
         $resourcePath = '/rest/v1/opportunities/roles.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
@@ -534,9 +510,6 @@ readonly class OpportunitiesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);
@@ -579,9 +552,6 @@ readonly class OpportunitiesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/v1/opportunities/roles.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject']);

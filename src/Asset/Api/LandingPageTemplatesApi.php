@@ -126,9 +126,6 @@ readonly class LandingPageTemplatesApi
             '/rest/asset/v1/landingPageTemplate/{id}/approveDraft.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse']);
@@ -187,9 +184,6 @@ readonly class LandingPageTemplatesApi
             '/rest/asset/v1/landingPageTemplate/{id}/clone.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse']);
@@ -247,9 +241,6 @@ readonly class LandingPageTemplatesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/landingPageTemplates.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse']);
@@ -306,9 +297,6 @@ readonly class LandingPageTemplatesApi
             '/rest/asset/v1/landingPageTemplate/{id}/delete.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
@@ -359,9 +347,6 @@ readonly class LandingPageTemplatesApi
             '/rest/asset/v1/landingPageTemplate/{id}/discardDraft.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
@@ -415,9 +400,6 @@ readonly class LandingPageTemplatesApi
             '/rest/asset/v1/landingPageTemplate/{id}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse']);
@@ -462,9 +444,6 @@ readonly class LandingPageTemplatesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/landingPageTemplate/byName.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse']);
@@ -520,9 +499,6 @@ readonly class LandingPageTemplatesApi
             '/rest/asset/v1/landingPageTemplate/{id}/content.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse']);
@@ -576,9 +552,6 @@ readonly class LandingPageTemplatesApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/landingPageTemplates.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse']);
@@ -634,9 +607,6 @@ readonly class LandingPageTemplatesApi
             '/rest/asset/v1/landingPageTemplate/{id}/unapprove.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse']);
@@ -690,9 +660,6 @@ readonly class LandingPageTemplatesApi
             '/rest/asset/v1/landingPageTemplate/{id}/content.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse']);
@@ -755,9 +722,6 @@ readonly class LandingPageTemplatesApi
             '/rest/asset/v1/landingPageTemplate/{id}.json',
         );
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse']);

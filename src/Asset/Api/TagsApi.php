@@ -118,9 +118,6 @@ readonly class TagsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/tagType/byName.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse']);
@@ -168,9 +165,6 @@ readonly class TagsApi
     ): ApiResponseInterface {
         $resourcePath = '/rest/asset/v1/tagTypes.json';
         $headers = [];
-        if ($this->config->getUserAgent()) {
-            $headers['User-Agent'] = $this->config->getUserAgent();
-        }
 
         $responseMap = new ResponseTypeMap([]);
         $responseMap->setSchema('200', 'application/json', ['type' => '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll']);
