@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type UpdateLeadFieldRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\UpdateLeadField[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\UpdateLeadField[] getInput()
+ * @method UpdateLeadFieldRequest setInput(\NecLimDul\MarketoRest\Lead\Model\UpdateLeadField[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateLeadFieldRequestArray>
  * @implements \ArrayAccess<key-of<UpdateLeadFieldRequestArray>, value-of<UpdateLeadFieldRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class UpdateLeadFieldRequest extends ModelBase implements ModelInterface, \Array
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\UpdateLeadField[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\UpdateLeadField[] $input Single lead field for input
-     *
-     * @return self
-     */
-    public function setInput(array $input): UpdateLeadFieldRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

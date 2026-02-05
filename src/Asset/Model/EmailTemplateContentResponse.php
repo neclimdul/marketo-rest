@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     id: int,
  *     status: string,
  * }
+ *
+ * @method string getContent()
+ * @method EmailTemplateContentResponse setContent(string $content)
+ * @method int getId()
+ * @method EmailTemplateContentResponse setId(int $id)
+ * @method string getStatus()
+ * @method EmailTemplateContentResponse setStatus(string $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<EmailTemplateContentResponseArray>
  * @implements \ArrayAccess<key-of<EmailTemplateContentResponseArray>, value-of<EmailTemplateContentResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -138,85 +146,6 @@ class EmailTemplateContentResponse extends ModelBase implements ModelInterface, 
         ];
     }
 
-    /**
-     * Gets content
-     *
-     * @return string
-     */
-    public function getContent(): string
-    {
-        return $this->container['content'];
-    }
-
-    /**
-     * Sets content
-     *
-     * @param string $content HTML content of the template
-     *
-     * @return self
-     */
-    public function setContent(string $content): EmailTemplateContentResponse
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the email template
-     *
-     * @return self
-     */
-    public function setId(int $id): EmailTemplateContentResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status filter for draft or approved versions
-     *
-     * @return self
-     */
-    public function setStatus(string $status): EmailTemplateContentResponse
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

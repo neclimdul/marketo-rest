@@ -31,6 +31,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type LeadFormFieldsArray array{
  *     email: string,
  * }
+ *
+ * @method string getEmail()
+ * @method LeadFormFields setEmail(string $email)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadFormFieldsArray>
  * @implements \ArrayAccess<key-of<LeadFormFieldsArray>, value-of<LeadFormFieldsArray>>
  * @psalm-suppress MixedReturnStatement
@@ -101,29 +105,6 @@ class LeadFormFields extends ModelBase implements ModelInterface, \ArrayAccess, 
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets email
-     *
-     * @return string
-     */
-    public function getEmail(): string
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     *
-     * @param string $email Email address used as primary key during lead upsert
-     *
-     * @return self
-     */
-    public function setEmail(string $email): LeadFormFields
-    {
-        $this->container['email'] = $email;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

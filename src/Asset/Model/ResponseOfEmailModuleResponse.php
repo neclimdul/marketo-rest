@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     success?: ?bool,
  *     warnings?: ?string[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Asset\Model\Error[]|null getErrors()
+ * @method ResponseOfEmailModuleResponse setErrors(\NecLimDul\MarketoRest\Asset\Model\Error[]|null $errors)
+ * @method string|null getRequestId()
+ * @method ResponseOfEmailModuleResponse setRequestId(string|null $request_id)
+ * @method \NecLimDul\MarketoRest\Asset\Model\EmailModuleResponse[]|null getResult()
+ * @method ResponseOfEmailModuleResponse setResult(\NecLimDul\MarketoRest\Asset\Model\EmailModuleResponse[]|null $result)
+ * @method bool|null getSuccess()
+ * @method ResponseOfEmailModuleResponse setSuccess(bool|null $success)
+ * @method string[]|null getWarnings()
+ * @method ResponseOfEmailModuleResponse setWarnings(string[]|null $warnings)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ResponseOfEmailModuleResponseArray>
  * @implements \ArrayAccess<key-of<ResponseOfEmailModuleResponseArray>, value-of<ResponseOfEmailModuleResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -118,121 +130,6 @@ class ResponseOfEmailModuleResponse extends ModelBase implements ModelInterface,
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets errors
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]|null
-     */
-    public function getErrors(): ?array
-    {
-        return $this->container['errors'] ?? null;
-    }
-
-    /**
-     * Sets errors
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Error[]|null $errors errors
-     *
-     * @return self
-     */
-    public function setErrors(?array $errors): ResponseOfEmailModuleResponse
-    {
-        $this->container['errors'] = $errors;
-
-        return $this;
-    }
-    /**
-     * Gets request_id
-     *
-     * @return string|null
-     */
-    public function getRequestId(): ?string
-    {
-        return $this->container['request_id'] ?? null;
-    }
-
-    /**
-     * Sets request_id
-     *
-     * @param string|null $request_id request_id
-     *
-     * @return self
-     */
-    public function setRequestId(?string $request_id): ResponseOfEmailModuleResponse
-    {
-        $this->container['request_id'] = $request_id;
-
-        return $this;
-    }
-    /**
-     * Gets result
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailModuleResponse[]|null
-     */
-    public function getResult(): ?array
-    {
-        return $this->container['result'] ?? null;
-    }
-
-    /**
-     * Sets result
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailModuleResponse[]|null $result result
-     *
-     * @return self
-     */
-    public function setResult(?array $result): ResponseOfEmailModuleResponse
-    {
-        $this->container['result'] = $result;
-
-        return $this;
-    }
-    /**
-     * Gets success
-     *
-     * @return bool|null
-     */
-    public function getSuccess(): ?bool
-    {
-        return $this->container['success'] ?? null;
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool|null $success success
-     *
-     * @return self
-     */
-    public function setSuccess(?bool $success): ResponseOfEmailModuleResponse
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-    /**
-     * Gets warnings
-     *
-     * @return string[]|null
-     */
-    public function getWarnings(): ?array
-    {
-        return $this->container['warnings'] ?? null;
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param string[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings): ResponseOfEmailModuleResponse
-    {
-        $this->container['warnings'] = $warnings;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

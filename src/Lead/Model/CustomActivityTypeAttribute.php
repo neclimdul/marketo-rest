@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     is_primary?: ?bool,
  *     name: string,
  * }
+ *
+ * @method string getApiName()
+ * @method CustomActivityTypeAttribute setApiName(string $api_name)
+ * @method string|null getDataType()
+ * @method CustomActivityTypeAttribute setDataType(string|null $data_type)
+ * @method string|null getDescription()
+ * @method CustomActivityTypeAttribute setDescription(string|null $description)
+ * @method bool|null getIsPrimary()
+ * @method CustomActivityTypeAttribute setIsPrimary(bool|null $is_primary)
+ * @method string getName()
+ * @method CustomActivityTypeAttribute setName(string $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CustomActivityTypeAttributeArray>
  * @implements \ArrayAccess<key-of<CustomActivityTypeAttributeArray>, value-of<CustomActivityTypeAttributeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -164,131 +176,6 @@ class CustomActivityTypeAttribute extends ModelBase implements ModelInterface, \
         ];
     }
 
-    /**
-     * Gets api_name
-     *
-     * @return string
-     */
-    public function getApiName(): string
-    {
-        return $this->container['api_name'];
-    }
-
-    /**
-     * Sets api_name
-     *
-     * @param string $api_name API Name of the attribute
-     *
-     * @return self
-     */
-    public function setApiName(string $api_name): CustomActivityTypeAttribute
-    {
-        $this->container['api_name'] = $api_name;
-
-        return $this;
-    }
-    /**
-     * Gets data_type
-     *
-     * @return string|null
-     */
-    public function getDataType(): ?string
-    {
-        return $this->container['data_type'] ?? null;
-    }
-
-    /**
-     * Sets data_type
-     *
-     * @param string|null $data_type Data type of the attribute
-     *
-     * @return self
-     */
-    public function setDataType(?string $data_type): CustomActivityTypeAttribute
-    {
-        $allowedValues = $this->getDataTypeAllowableValues();
-        if (!is_null($data_type) && !in_array($data_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'data_type', must be one of '%s'",
-                    $data_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['data_type'] = $data_type;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the attribute
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CustomActivityTypeAttribute
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets is_primary
-     *
-     * @return bool|null
-     */
-    public function getIsPrimary(): ?bool
-    {
-        return $this->container['is_primary'] ?? null;
-    }
-
-    /**
-     * Sets is_primary
-     *
-     * @param bool|null $is_primary Whether the attribute is the primary attribute of the activity type. There may only be one primary attribute at a time
-     *
-     * @return self
-     */
-    public function setIsPrimary(?bool $is_primary): CustomActivityTypeAttribute
-    {
-        $this->container['is_primary'] = $is_primary;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Human-readable display name of the attribute
-     *
-     * @return self
-     */
-    public function setName(string $name): CustomActivityTypeAttribute
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

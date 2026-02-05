@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     name?: ?string,
  *     type?: ?string,
  * }
+ *
+ * @method string|null getFolderType()
+ * @method DeleteTokenRequest setFolderType(string|null $folder_type)
+ * @method string|null getName()
+ * @method DeleteTokenRequest setName(string|null $name)
+ * @method string|null getType()
+ * @method DeleteTokenRequest setType(string|null $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<DeleteTokenRequestArray>
  * @implements \ArrayAccess<key-of<DeleteTokenRequestArray>, value-of<DeleteTokenRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -134,85 +142,6 @@ class DeleteTokenRequest extends ModelBase implements ModelInterface, \ArrayAcce
         ];
     }
 
-    /**
-     * Gets folder_type
-     *
-     * @return string|null
-     */
-    public function getFolderType(): ?string
-    {
-        return $this->container['folder_type'] ?? null;
-    }
-
-    /**
-     * Sets folder_type
-     *
-     * @param string|null $folder_type folder_type
-     *
-     * @return self
-     */
-    public function setFolderType(?string $folder_type): DeleteTokenRequest
-    {
-        $allowedValues = $this->getFolderTypeAllowableValues();
-        if (!is_null($folder_type) && !in_array($folder_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'folder_type', must be one of '%s'",
-                    $folder_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['folder_type'] = $folder_type;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name name
-     *
-     * @return self
-     */
-    public function setName(?string $name): DeleteTokenRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType(): ?string
-    {
-        return $this->container['type'] ?? null;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type type
-     *
-     * @return self
-     */
-    public function setType(?string $type): DeleteTokenRequest
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

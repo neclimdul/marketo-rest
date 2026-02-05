@@ -33,10 +33,10 @@ MakeSwagger() {
 }
 
 if [ ! -d "${PWD}/openapi-php" ]; then
-  git clone git@gitlab.com:neclimdul/openapi-php.git -b 3.x
+  git clone git@gitlab.com:neclimdul/openapi-php.git -b method-overloading
 else
   cd openapi-php || exit
-  git checkout 3.x
+  git checkout method-overloading
   git pull
   cd - || exit
 fi

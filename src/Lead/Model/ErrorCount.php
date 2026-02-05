@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     count: int,
  *     error_code: string,
  * }
+ *
+ * @method int getCount()
+ * @method ErrorCount setCount(int $count)
+ * @method string getErrorCode()
+ * @method ErrorCount setErrorCode(string $error_code)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ErrorCountArray>
  * @implements \ArrayAccess<key-of<ErrorCountArray>, value-of<ErrorCountArray>>
  * @psalm-suppress MixedReturnStatement
@@ -106,52 +112,6 @@ class ErrorCount extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets count
-     *
-     * @return int
-     */
-    public function getCount(): int
-    {
-        return $this->container['count'];
-    }
-
-    /**
-     * Sets count
-     *
-     * @param int $count Number of occurences of the error
-     *
-     * @return self
-     */
-    public function setCount(int $count): ErrorCount
-    {
-        $this->container['count'] = $count;
-
-        return $this;
-    }
-    /**
-     * Gets error_code
-     *
-     * @return string
-     */
-    public function getErrorCode(): string
-    {
-        return $this->container['error_code'];
-    }
-
-    /**
-     * Sets error_code
-     *
-     * @param string $error_code Integer error code of the error
-     *
-     * @return self
-     */
-    public function setErrorCode(string $error_code): ErrorCount
-    {
-        $this->container['error_code'] = $error_code;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

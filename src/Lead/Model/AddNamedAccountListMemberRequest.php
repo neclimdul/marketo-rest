@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type AddNamedAccountListMemberRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\NamedAccount[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\NamedAccount[] getInput()
+ * @method AddNamedAccountListMemberRequest setInput(\NecLimDul\MarketoRest\Lead\Model\NamedAccount[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<AddNamedAccountListMemberRequestArray>
  * @implements \ArrayAccess<key-of<AddNamedAccountListMemberRequestArray>, value-of<AddNamedAccountListMemberRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class AddNamedAccountListMemberRequest extends ModelBase implements ModelInterfa
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\NamedAccount[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\NamedAccount[] $input List of input records
-     *
-     * @return self
-     */
-    public function setInput(array $input): AddNamedAccountListMemberRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

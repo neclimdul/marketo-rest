@@ -32,6 +32,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     name: string,
  *     status: string,
  * }
+ *
+ * @method string getName()
+ * @method LeadFieldStatus setName(string $name)
+ * @method string getStatus()
+ * @method LeadFieldStatus setStatus(string $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadFieldStatusArray>
  * @implements \ArrayAccess<key-of<LeadFieldStatusArray>, value-of<LeadFieldStatusArray>>
  * @psalm-suppress MixedReturnStatement
@@ -133,62 +139,6 @@ class LeadFieldStatus extends ModelBase implements ModelInterface, \ArrayAccess,
         ];
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name API name of the field
-     *
-     * @return self
-     */
-    public function setName(string $name): LeadFieldStatus
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status of the operation performed on the record
-     *
-     * @return self
-     */
-    public function setStatus(string $status): LeadFieldStatus
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

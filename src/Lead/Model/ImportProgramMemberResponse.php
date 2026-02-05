@@ -33,6 +33,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     import_id: string,
  *     status: string,
  * }
+ *
+ * @method int getBatchId()
+ * @method ImportProgramMemberResponse setBatchId(int $batch_id)
+ * @method string getImportId()
+ * @method ImportProgramMemberResponse setImportId(string $import_id)
+ * @method string getStatus()
+ * @method ImportProgramMemberResponse setStatus(string $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ImportProgramMemberResponseArray>
  * @implements \ArrayAccess<key-of<ImportProgramMemberResponseArray>, value-of<ImportProgramMemberResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -114,75 +122,6 @@ class ImportProgramMemberResponse extends ModelBase implements ModelInterface, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets batch_id
-     *
-     * @return int
-     */
-    public function getBatchId(): int
-    {
-        return $this->container['batch_id'];
-    }
-
-    /**
-     * Sets batch_id
-     *
-     * @param int $batch_id Unique integer id of the import job
-     *
-     * @return self
-     */
-    public function setBatchId(int $batch_id): ImportProgramMemberResponse
-    {
-        $this->container['batch_id'] = $batch_id;
-
-        return $this;
-    }
-    /**
-     * Gets import_id
-     *
-     * @return string
-     */
-    public function getImportId(): string
-    {
-        return $this->container['import_id'];
-    }
-
-    /**
-     * Sets import_id
-     *
-     * @param string $import_id Unique integer id of the import job
-     *
-     * @return self
-     */
-    public function setImportId(string $import_id): ImportProgramMemberResponse
-    {
-        $this->container['import_id'] = $import_id;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status of the import job
-     *
-     * @return self
-     */
-    public function setStatus(string $status): ImportProgramMemberResponse
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

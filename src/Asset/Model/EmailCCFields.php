@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     display_name: string,
  *     api_name: string,
  * }
+ *
+ * @method string getAttributeId()
+ * @method EmailCCFields setAttributeId(string $attribute_id)
+ * @method string getObjectName()
+ * @method EmailCCFields setObjectName(string $object_name)
+ * @method string getDisplayName()
+ * @method EmailCCFields setDisplayName(string $display_name)
+ * @method string getApiName()
+ * @method EmailCCFields setApiName(string $api_name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<EmailCCFieldsArray>
  * @implements \ArrayAccess<key-of<EmailCCFieldsArray>, value-of<EmailCCFieldsArray>>
  * @psalm-suppress MixedReturnStatement
@@ -117,98 +127,6 @@ class EmailCCFields extends ModelBase implements ModelInterface, \ArrayAccess, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets attribute_id
-     *
-     * @return string
-     */
-    public function getAttributeId(): string
-    {
-        return $this->container['attribute_id'];
-    }
-
-    /**
-     * Sets attribute_id
-     *
-     * @param string $attribute_id Attribute identifier
-     *
-     * @return self
-     */
-    public function setAttributeId(string $attribute_id): EmailCCFields
-    {
-        $this->container['attribute_id'] = $attribute_id;
-
-        return $this;
-    }
-    /**
-     * Gets object_name
-     *
-     * @return string
-     */
-    public function getObjectName(): string
-    {
-        return $this->container['object_name'];
-    }
-
-    /**
-     * Sets object_name
-     *
-     * @param string $object_name Object name. 'lead' or 'company'
-     *
-     * @return self
-     */
-    public function setObjectName(string $object_name): EmailCCFields
-    {
-        $this->container['object_name'] = $object_name;
-
-        return $this;
-    }
-    /**
-     * Gets display_name
-     *
-     * @return string
-     */
-    public function getDisplayName(): string
-    {
-        return $this->container['display_name'];
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string $display_name Display name
-     *
-     * @return self
-     */
-    public function setDisplayName(string $display_name): EmailCCFields
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets api_name
-     *
-     * @return string
-     */
-    public function getApiName(): string
-    {
-        return $this->container['api_name'];
-    }
-
-    /**
-     * Sets api_name
-     *
-     * @param string $api_name API name
-     *
-     * @return self
-     */
-    public function setApiName(string $api_name): EmailCCFields
-    {
-        $this->container['api_name'] = $api_name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

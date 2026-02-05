@@ -39,6 +39,30 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     trigger_name?: ?string,
  *     updated_at?: ?string,
  * }
+ *
+ * @method string|null getApiName()
+ * @method CustomActivityType setApiName(string|null $api_name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null getAttributes()
+ * @method CustomActivityType setAttributes(\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null $attributes)
+ * @method string|null getCreatedAt()
+ * @method CustomActivityType setCreatedAt(string|null $created_at)
+ * @method string|null getDescription()
+ * @method CustomActivityType setDescription(string|null $description)
+ * @method string|null getFilterName()
+ * @method CustomActivityType setFilterName(string|null $filter_name)
+ * @method int|null getId()
+ * @method CustomActivityType setId(int|null $id)
+ * @method string|null getName()
+ * @method CustomActivityType setName(string|null $name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute|null getPrimaryAttribute()
+ * @method CustomActivityType setPrimaryAttribute(\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute|null $primary_attribute)
+ * @method string|null getStatus()
+ * @method CustomActivityType setStatus(string|null $status)
+ * @method string|null getTriggerName()
+ * @method CustomActivityType setTriggerName(string|null $trigger_name)
+ * @method string|null getUpdatedAt()
+ * @method CustomActivityType setUpdatedAt(string|null $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CustomActivityTypeArray>
  * @implements \ArrayAccess<key-of<CustomActivityTypeArray>, value-of<CustomActivityTypeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -179,269 +203,6 @@ class CustomActivityType extends ModelBase implements ModelInterface, \ArrayAcce
         ];
     }
 
-    /**
-     * Gets api_name
-     *
-     * @return string|null
-     */
-    public function getApiName(): ?string
-    {
-        return $this->container['api_name'] ?? null;
-    }
-
-    /**
-     * Sets api_name
-     *
-     * @param string|null $api_name API Name of the type. The API name must be unique and alphanumeric, containing at least one letter. It is highly recommended to prepend a unique namespace of up to sixteen characters to the API name. Required on creation
-     *
-     * @return self
-     */
-    public function setApiName(?string $api_name): CustomActivityType
-    {
-        $this->container['api_name'] = $api_name;
-
-        return $this;
-    }
-    /**
-     * Gets attributes
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->container['attributes'] ?? null;
-    }
-
-    /**
-     * Sets attributes
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null $attributes List of attributes for the activity type. May only be added or update through Create or Update Custom Activity Type Attributes
-     *
-     * @return self
-     */
-    public function setAttributes(?array $attributes): CustomActivityType
-    {
-        $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return string|null
-     */
-    public function getCreatedAt(): ?string
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string|null $created_at Datetime when the activity type was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?string $created_at): CustomActivityType
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the activity type
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CustomActivityType
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets filter_name
-     *
-     * @return string|null
-     */
-    public function getFilterName(): ?string
-    {
-        return $this->container['filter_name'] ?? null;
-    }
-
-    /**
-     * Sets filter_name
-     *
-     * @param string|null $filter_name Human-readable name for the associated filter of the activity type. Required on creation
-     *
-     * @return self
-     */
-    public function setFilterName(?string $filter_name): CustomActivityType
-    {
-        $this->container['filter_name'] = $filter_name;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id id
-     *
-     * @return self
-     */
-    public function setId(?int $id): CustomActivityType
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Human-readable display name of the type. Required on creation
-     *
-     * @return self
-     */
-    public function setName(?string $name): CustomActivityType
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets primary_attribute
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute|null
-     */
-    public function getPrimaryAttribute(): ?\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute
-    {
-        return $this->container['primary_attribute'] ?? null;
-    }
-
-    /**
-     * Sets primary_attribute
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute|null $primary_attribute primary_attribute
-     *
-     * @return self
-     */
-    public function setPrimaryAttribute(?\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute $primary_attribute): CustomActivityType
-    {
-        $this->container['primary_attribute'] = $primary_attribute;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus(): ?string
-    {
-        return $this->container['status'] ?? null;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status State of the activity type
-     *
-     * @return self
-     */
-    public function setStatus(?string $status): CustomActivityType
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets trigger_name
-     *
-     * @return string|null
-     */
-    public function getTriggerName(): ?string
-    {
-        return $this->container['trigger_name'] ?? null;
-    }
-
-    /**
-     * Sets trigger_name
-     *
-     * @param string|null $trigger_name Human-readable name for the associated trigger of the activity type. Required on creation
-     *
-     * @return self
-     */
-    public function setTriggerName(?string $trigger_name): CustomActivityType
-    {
-        $this->container['trigger_name'] = $trigger_name;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return string|null
-     */
-    public function getUpdatedAt(): ?string
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param string|null $updated_at Datetime when the activity type was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?string $updated_at): CustomActivityType
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

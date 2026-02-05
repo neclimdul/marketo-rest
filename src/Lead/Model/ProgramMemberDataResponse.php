@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     lead_id: int,
  *     seq: int,
  * }
+ *
+ * @method string getStatus()
+ * @method ProgramMemberDataResponse setStatus(string $status)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Reason[]|null getReasons()
+ * @method ProgramMemberDataResponse setReasons(\NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons)
+ * @method int getLeadId()
+ * @method ProgramMemberDataResponse setLeadId(int $lead_id)
+ * @method int getSeq()
+ * @method ProgramMemberDataResponse setSeq(int $seq)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ProgramMemberDataResponseArray>
  * @implements \ArrayAccess<key-of<ProgramMemberDataResponseArray>, value-of<ProgramMemberDataResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -146,108 +156,6 @@ class ProgramMemberDataResponse extends ModelBase implements ModelInterface, \Ar
         ];
     }
 
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status of the operation performed on the record
-     *
-     * @return self
-     */
-    public function setStatus(string $status): ProgramMemberDataResponse
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets reasons
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
-     */
-    public function getReasons(): ?array
-    {
-        return $this->container['reasons'] ?? null;
-    }
-
-    /**
-     * Sets reasons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed. Reasons are only present in API responses and should not be submitted
-     *
-     * @return self
-     */
-    public function setReasons(?array $reasons): ProgramMemberDataResponse
-    {
-        $this->container['reasons'] = $reasons;
-
-        return $this;
-    }
-    /**
-     * Gets lead_id
-     *
-     * @return int
-     */
-    public function getLeadId(): int
-    {
-        return $this->container['lead_id'];
-    }
-
-    /**
-     * Sets lead_id
-     *
-     * @param int $lead_id Id of the lead associated to the program member
-     *
-     * @return self
-     */
-    public function setLeadId(int $lead_id): ProgramMemberDataResponse
-    {
-        $this->container['lead_id'] = $lead_id;
-
-        return $this;
-    }
-    /**
-     * Gets seq
-     *
-     * @return int
-     */
-    public function getSeq(): int
-    {
-        return $this->container['seq'];
-    }
-
-    /**
-     * Sets seq
-     *
-     * @param int $seq Integer indicating the sequence of the record in response. This value is correlated to the order of the records included in the request input. Seq should only be part of responses and should not be submitted.
-     *
-     * @return self
-     */
-    public function setSeq(int $seq): ProgramMemberDataResponse
-    {
-        $this->container['seq'] = $seq;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

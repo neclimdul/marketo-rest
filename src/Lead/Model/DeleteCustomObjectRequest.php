@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     delete_by?: ?string,
  *     input: \NecLimDul\MarketoRest\Lead\Model\CustomObject[],
  * }
+ *
+ * @method string|null getDeleteBy()
+ * @method DeleteCustomObjectRequest setDeleteBy(string|null $delete_by)
+ * @method \NecLimDul\MarketoRest\Lead\Model\CustomObject[] getInput()
+ * @method DeleteCustomObjectRequest setInput(\NecLimDul\MarketoRest\Lead\Model\CustomObject[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<DeleteCustomObjectRequestArray>
  * @implements \ArrayAccess<key-of<DeleteCustomObjectRequestArray>, value-of<DeleteCustomObjectRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -104,52 +110,6 @@ class DeleteCustomObjectRequest extends ModelBase implements ModelInterface, \Ar
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets delete_by
-     *
-     * @return string|null
-     */
-    public function getDeleteBy(): ?string
-    {
-        return $this->container['delete_by'] ?? null;
-    }
-
-    /**
-     * Sets delete_by
-     *
-     * @param string|null $delete_by Field to delete records by. Permissible values are idField or dedupeFields as indicated by the result of the corresponding describe record
-     *
-     * @return self
-     */
-    public function setDeleteBy(?string $delete_by): DeleteCustomObjectRequest
-    {
-        $this->container['delete_by'] = $delete_by;
-
-        return $this;
-    }
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObject[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CustomObject[] $input List of input records
-     *
-     * @return self
-     */
-    public function setInput(array $input): DeleteCustomObjectRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

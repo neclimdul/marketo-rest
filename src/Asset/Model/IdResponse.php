@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type IdResponseArray array{
  *     id: int,
  * }
+ *
+ * @method int getId()
+ * @method IdResponse setId(int $id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<IdResponseArray>
  * @implements \ArrayAccess<key-of<IdResponseArray>, value-of<IdResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -100,29 +104,6 @@ class IdResponse extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the asset
-     *
-     * @return self
-     */
-    public function setId(int $id): IdResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type ProgramMemberStatusArray array{
  *     lead_id: int,
  * }
+ *
+ * @method int getLeadId()
+ * @method ProgramMemberStatus setLeadId(int $lead_id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ProgramMemberStatusArray>
  * @implements \ArrayAccess<key-of<ProgramMemberStatusArray>, value-of<ProgramMemberStatusArray>>
  * @psalm-suppress MixedReturnStatement
@@ -100,29 +104,6 @@ class ProgramMemberStatus extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets lead_id
-     *
-     * @return int
-     */
-    public function getLeadId(): int
-    {
-        return $this->container['lead_id'];
-    }
-
-    /**
-     * Sets lead_id
-     *
-     * @param int $lead_id Unique integer id of a lead record
-     *
-     * @return self
-     */
-    public function setLeadId(int $lead_id): ProgramMemberStatus
-    {
-        $this->container['lead_id'] = $lead_id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

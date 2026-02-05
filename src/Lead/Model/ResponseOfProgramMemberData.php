@@ -35,6 +35,22 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     success: bool,
  *     warnings: \NecLimDul\MarketoRest\Lead\Model\Warning[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\Error[] getErrors()
+ * @method ResponseOfProgramMemberData setErrors(\NecLimDul\MarketoRest\Lead\Model\Error[] $errors)
+ * @method bool|null getMoreResult()
+ * @method ResponseOfProgramMemberData setMoreResult(bool|null $more_result)
+ * @method string|null getNextPageToken()
+ * @method ResponseOfProgramMemberData setNextPageToken(string|null $next_page_token)
+ * @method string getRequestId()
+ * @method ResponseOfProgramMemberData setRequestId(string $request_id)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ProgramMemberStatusResponse[] getResult()
+ * @method ResponseOfProgramMemberData setResult(\NecLimDul\MarketoRest\Lead\Model\ProgramMemberStatusResponse[] $result)
+ * @method bool getSuccess()
+ * @method ResponseOfProgramMemberData setSuccess(bool $success)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Warning[] getWarnings()
+ * @method ResponseOfProgramMemberData setWarnings(\NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ResponseOfProgramMemberDataArray>
  * @implements \ArrayAccess<key-of<ResponseOfProgramMemberDataArray>, value-of<ResponseOfProgramMemberDataArray>>
  * @psalm-suppress MixedReturnStatement
@@ -133,167 +149,6 @@ class ResponseOfProgramMemberData extends ModelBase implements ModelInterface, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets errors
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
-     */
-    public function getErrors(): array
-    {
-        return $this->container['errors'];
-    }
-
-    /**
-     * Sets errors
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
-     *
-     * @return self
-     */
-    public function setErrors(array $errors): ResponseOfProgramMemberData
-    {
-        $this->container['errors'] = $errors;
-
-        return $this;
-    }
-    /**
-     * Gets more_result
-     *
-     * @return bool|null
-     */
-    public function getMoreResult(): ?bool
-    {
-        return $this->container['more_result'] ?? null;
-    }
-
-    /**
-     * Sets more_result
-     *
-     * @param bool|null $more_result Boolean indicating if there are more results in subsequent pages
-     *
-     * @return self
-     */
-    public function setMoreResult(?bool $more_result): ResponseOfProgramMemberData
-    {
-        $this->container['more_result'] = $more_result;
-
-        return $this;
-    }
-    /**
-     * Gets next_page_token
-     *
-     * @return string|null
-     */
-    public function getNextPageToken(): ?string
-    {
-        return $this->container['next_page_token'] ?? null;
-    }
-
-    /**
-     * Sets next_page_token
-     *
-     * @param string|null $next_page_token Paging token given if the result set exceeded the allowed batch size
-     *
-     * @return self
-     */
-    public function setNextPageToken(?string $next_page_token): ResponseOfProgramMemberData
-    {
-        $this->container['next_page_token'] = $next_page_token;
-
-        return $this;
-    }
-    /**
-     * Gets request_id
-     *
-     * @return string
-     */
-    public function getRequestId(): string
-    {
-        return $this->container['request_id'];
-    }
-
-    /**
-     * Sets request_id
-     *
-     * @param string $request_id Id of the request made
-     *
-     * @return self
-     */
-    public function setRequestId(string $request_id): ResponseOfProgramMemberData
-    {
-        $this->container['request_id'] = $request_id;
-
-        return $this;
-    }
-    /**
-     * Gets result
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMemberStatusResponse[]
-     */
-    public function getResult(): array
-    {
-        return $this->container['result'];
-    }
-
-    /**
-     * Sets result
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ProgramMemberStatusResponse[] $result Array of results for individual records in the operation, may be empty
-     *
-     * @return self
-     */
-    public function setResult(array $result): ResponseOfProgramMemberData
-    {
-        $this->container['result'] = $result;
-
-        return $this;
-    }
-    /**
-     * Gets success
-     *
-     * @return bool
-     */
-    public function getSuccess(): bool
-    {
-        return $this->container['success'];
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool $success Whether the request succeeded
-     *
-     * @return self
-     */
-    public function setSuccess(bool $success): ResponseOfProgramMemberData
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-    /**
-     * Gets warnings
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]
-     */
-    public function getWarnings(): array
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
-     *
-     * @return self
-     */
-    public function setWarnings(array $warnings): ResponseOfProgramMemberData
-    {
-        $this->container['warnings'] = $warnings;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

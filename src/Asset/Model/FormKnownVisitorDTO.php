@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     template?: ?string,
  *     type?: ?string,
  * }
+ *
+ * @method string|null getTemplate()
+ * @method FormKnownVisitorDTO setTemplate(string|null $template)
+ * @method string|null getType()
+ * @method FormKnownVisitorDTO setType(string|null $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FormKnownVisitorDTOArray>
  * @implements \ArrayAccess<key-of<FormKnownVisitorDTOArray>, value-of<FormKnownVisitorDTOArray>>
  * @psalm-suppress MixedReturnStatement
@@ -103,52 +109,6 @@ class FormKnownVisitorDTO extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets template
-     *
-     * @return string|null
-     */
-    public function getTemplate(): ?string
-    {
-        return $this->container['template'] ?? null;
-    }
-
-    /**
-     * Sets template
-     *
-     * @param string|null $template template
-     *
-     * @return self
-     */
-    public function setTemplate(?string $template): FormKnownVisitorDTO
-    {
-        $this->container['template'] = $template;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType(): ?string
-    {
-        return $this->container['type'] ?? null;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type type
-     *
-     * @return self
-     */
-    public function setType(?string $type): FormKnownVisitorDTO
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

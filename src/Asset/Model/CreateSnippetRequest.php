@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     folder: \NecLimDul\MarketoRest\Asset\Model\Folder,
  *     name: string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method CreateSnippetRequest setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CreateSnippetRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string getName()
+ * @method CreateSnippetRequest setName(string $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateSnippetRequestArray>
  * @implements \ArrayAccess<key-of<CreateSnippetRequestArray>, value-of<CreateSnippetRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -110,75 +118,6 @@ class CreateSnippetRequest extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the snippet
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CreateSnippetRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateSnippetRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the snippet
-     *
-     * @return self
-     */
-    public function setName(string $name): CreateSnippetRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

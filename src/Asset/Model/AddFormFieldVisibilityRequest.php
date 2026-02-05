@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type AddFormFieldVisibilityRequestArray array{
  *     visibility_rule?: ?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null getVisibilityRule()
+ * @method AddFormFieldVisibilityRequest setVisibilityRule(\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null $visibility_rule)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<AddFormFieldVisibilityRequestArray>
  * @implements \ArrayAccess<key-of<AddFormFieldVisibilityRequestArray>, value-of<AddFormFieldVisibilityRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -98,29 +102,6 @@ class AddFormFieldVisibilityRequest extends ModelBase implements ModelInterface,
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets visibility_rule
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null
-     */
-    public function getVisibilityRule(): ?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest
-    {
-        return $this->container['visibility_rule'] ?? null;
-    }
-
-    /**
-     * Sets visibility_rule
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null $visibility_rule visibility_rule
-     *
-     * @return self
-     */
-    public function setVisibilityRule(?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest $visibility_rule): AddFormFieldVisibilityRequest
-    {
-        $this->container['visibility_rule'] = $visibility_rule;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

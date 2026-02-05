@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type TriggerCampaignRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignData,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignData getInput()
+ * @method TriggerCampaignRequest setInput(\NecLimDul\MarketoRest\Lead\Model\TriggerCampaignData $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<TriggerCampaignRequestArray>
  * @implements \ArrayAccess<key-of<TriggerCampaignRequestArray>, value-of<TriggerCampaignRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class TriggerCampaignRequest extends ModelBase implements ModelInterface, \Array
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignData
-     */
-    public function getInput(): \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignData
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignData $input input
-     *
-     * @return self
-     */
-    public function setInput(\NecLimDul\MarketoRest\Lead\Model\TriggerCampaignData $input): TriggerCampaignRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

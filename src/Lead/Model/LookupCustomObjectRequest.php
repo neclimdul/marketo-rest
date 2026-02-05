@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     input: \NecLimDul\MarketoRest\Lead\Model\CustomObject[],
  *     next_page_token?: ?string,
  * }
+ *
+ * @method int|null getBatchSize()
+ * @method LookupCustomObjectRequest setBatchSize(int|null $batch_size)
+ * @method string[]|null getFields()
+ * @method LookupCustomObjectRequest setFields(string[]|null $fields)
+ * @method string|null getFilterType()
+ * @method LookupCustomObjectRequest setFilterType(string|null $filter_type)
+ * @method \NecLimDul\MarketoRest\Lead\Model\CustomObject[] getInput()
+ * @method LookupCustomObjectRequest setInput(\NecLimDul\MarketoRest\Lead\Model\CustomObject[] $input)
+ * @method string|null getNextPageToken()
+ * @method LookupCustomObjectRequest setNextPageToken(string|null $next_page_token)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LookupCustomObjectRequestArray>
  * @implements \ArrayAccess<key-of<LookupCustomObjectRequestArray>, value-of<LookupCustomObjectRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -120,121 +132,6 @@ class LookupCustomObjectRequest extends ModelBase implements ModelInterface, \Ar
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets batch_size
-     *
-     * @return int|null
-     */
-    public function getBatchSize(): ?int
-    {
-        return $this->container['batch_size'] ?? null;
-    }
-
-    /**
-     * Sets batch_size
-     *
-     * @param int|null $batch_size Maximum number of records to return in the response. Max and default is 300
-     *
-     * @return self
-     */
-    public function setBatchSize(?int $batch_size): LookupCustomObjectRequest
-    {
-        $this->container['batch_size'] = $batch_size;
-
-        return $this;
-    }
-    /**
-     * Gets fields
-     *
-     * @return string[]|null
-     */
-    public function getFields(): ?array
-    {
-        return $this->container['fields'] ?? null;
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param string[]|null $fields List of fields to return. If not specified, will return the following fields: marketoGuid, dedupeFields, updatedAt, createdAt, filterType
-     *
-     * @return self
-     */
-    public function setFields(?array $fields): LookupCustomObjectRequest
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-    /**
-     * Gets filter_type
-     *
-     * @return string|null
-     */
-    public function getFilterType(): ?string
-    {
-        return $this->container['filter_type'] ?? null;
-    }
-
-    /**
-     * Sets filter_type
-     *
-     * @param string|null $filter_type Field to search on. Valid values are: dedupeFields, idFields, and any field defined in searchableFields attribute of Describe endpoint. Default is dedupeFields
-     *
-     * @return self
-     */
-    public function setFilterType(?string $filter_type): LookupCustomObjectRequest
-    {
-        $this->container['filter_type'] = $filter_type;
-
-        return $this;
-    }
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObject[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CustomObject[] $input Search values when using a compound key. Each element must include each of the fields in the compound key. Compound keys are determined by the contents of \"dedupeFields\" in the Describe result for the object
-     *
-     * @return self
-     */
-    public function setInput(array $input): LookupCustomObjectRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
-    /**
-     * Gets next_page_token
-     *
-     * @return string|null
-     */
-    public function getNextPageToken(): ?string
-    {
-        return $this->container['next_page_token'] ?? null;
-    }
-
-    /**
-     * Sets next_page_token
-     *
-     * @param string|null $next_page_token Paging token returned from a previous response
-     *
-     * @return self
-     */
-    public function setNextPageToken(?string $next_page_token): LookupCustomObjectRequest
-    {
-        $this->container['next_page_token'] = $next_page_token;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

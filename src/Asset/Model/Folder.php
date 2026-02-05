@@ -32,6 +32,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     id: int,
  *     type: string,
  * }
+ *
+ * @method int getId()
+ * @method Folder setId(int $id)
+ * @method string getType()
+ * @method Folder setType(string $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FolderArray>
  * @implements \ArrayAccess<key-of<FolderArray>, value-of<FolderArray>>
  * @psalm-suppress MixedReturnStatement
@@ -134,62 +140,6 @@ class Folder extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSer
         ];
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the folder
-     *
-     * @return self
-     */
-    public function setId(int $id): Folder
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of folder
-     *
-     * @return self
-     */
-    public function setType(string $type): Folder
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

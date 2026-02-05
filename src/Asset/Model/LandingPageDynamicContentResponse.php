@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     segmentation?: ?int,
  *     updated_at?: ?\DateTime,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Asset\Model\SegmentContent[]|null getContent()
+ * @method LandingPageDynamicContentResponse setContent(\NecLimDul\MarketoRest\Asset\Model\SegmentContent[]|null $content)
+ * @method \DateTime|null getCreatedAt()
+ * @method LandingPageDynamicContentResponse setCreatedAt(\DateTime|null $created_at)
+ * @method int|null getId()
+ * @method LandingPageDynamicContentResponse setId(int|null $id)
+ * @method int|null getSegmentation()
+ * @method LandingPageDynamicContentResponse setSegmentation(int|null $segmentation)
+ * @method \DateTime|null getUpdatedAt()
+ * @method LandingPageDynamicContentResponse setUpdatedAt(\DateTime|null $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LandingPageDynamicContentResponseArray>
  * @implements \ArrayAccess<key-of<LandingPageDynamicContentResponseArray>, value-of<LandingPageDynamicContentResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -122,121 +134,6 @@ class LandingPageDynamicContentResponse extends ModelBase implements ModelInterf
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\SegmentContent[]|null
-     */
-    public function getContent(): ?array
-    {
-        return $this->container['content'] ?? null;
-    }
-
-    /**
-     * Sets content
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\SegmentContent[]|null $content List of variations in the section
-     *
-     * @return self
-     */
-    public function setContent(?array $content): LandingPageDynamicContentResponse
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at Datetime when the section was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?\DateTime $created_at): LandingPageDynamicContentResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Id of the dnamic content section
-     *
-     * @return self
-     */
-    public function setId(?int $id): LandingPageDynamicContentResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets segmentation
-     *
-     * @return int|null
-     */
-    public function getSegmentation(): ?int
-    {
-        return $this->container['segmentation'] ?? null;
-    }
-
-    /**
-     * Sets segmentation
-     *
-     * @param int|null $segmentation Segmentation to which the section is linked
-     *
-     * @return self
-     */
-    public function setSegmentation(?int $segmentation): LandingPageDynamicContentResponse
-    {
-        $this->container['segmentation'] = $segmentation;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at Datetime when the section was last updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?\DateTime $updated_at): LandingPageDynamicContentResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

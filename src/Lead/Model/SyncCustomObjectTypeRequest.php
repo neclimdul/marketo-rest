@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     description?: ?string,
  *     show_in_lead_detail?: ?bool,
  * }
+ *
+ * @method string|null getAction()
+ * @method SyncCustomObjectTypeRequest setAction(string|null $action)
+ * @method string getDisplayName()
+ * @method SyncCustomObjectTypeRequest setDisplayName(string $display_name)
+ * @method string getApiName()
+ * @method SyncCustomObjectTypeRequest setApiName(string $api_name)
+ * @method string|null getPluralName()
+ * @method SyncCustomObjectTypeRequest setPluralName(string|null $plural_name)
+ * @method string|null getDescription()
+ * @method SyncCustomObjectTypeRequest setDescription(string|null $description)
+ * @method bool|null getShowInLeadDetail()
+ * @method SyncCustomObjectTypeRequest setShowInLeadDetail(bool|null $show_in_lead_detail)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SyncCustomObjectTypeRequestArray>
  * @implements \ArrayAccess<key-of<SyncCustomObjectTypeRequestArray>, value-of<SyncCustomObjectTypeRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -153,154 +167,6 @@ class SyncCustomObjectTypeRequest extends ModelBase implements ModelInterface, \
         ];
     }
 
-    /**
-     * Gets action
-     *
-     * @return string|null
-     */
-    public function getAction(): ?string
-    {
-        return $this->container['action'] ?? null;
-    }
-
-    /**
-     * Sets action
-     *
-     * @param string|null $action Type of sync operation to perform. Default is createOrUpdate.
-     *
-     * @return self
-     */
-    public function setAction(?string $action): SyncCustomObjectTypeRequest
-    {
-        $allowedValues = $this->getActionAllowableValues();
-        if (!is_null($action) && !in_array($action, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'action', must be one of '%s'",
-                    $action,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['action'] = $action;
-
-        return $this;
-    }
-    /**
-     * Gets display_name
-     *
-     * @return string
-     */
-    public function getDisplayName(): string
-    {
-        return $this->container['display_name'];
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string $display_name UI display-name of the custom object type
-     *
-     * @return self
-     */
-    public function setDisplayName(string $display_name): SyncCustomObjectTypeRequest
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets api_name
-     *
-     * @return string
-     */
-    public function getApiName(): string
-    {
-        return $this->container['api_name'];
-    }
-
-    /**
-     * Sets api_name
-     *
-     * @param string $api_name API name of the custom object type
-     *
-     * @return self
-     */
-    public function setApiName(string $api_name): SyncCustomObjectTypeRequest
-    {
-        $this->container['api_name'] = $api_name;
-
-        return $this;
-    }
-    /**
-     * Gets plural_name
-     *
-     * @return string|null
-     */
-    public function getPluralName(): ?string
-    {
-        return $this->container['plural_name'] ?? null;
-    }
-
-    /**
-     * Sets plural_name
-     *
-     * @param string|null $plural_name UI plural-name of the custom object type
-     *
-     * @return self
-     */
-    public function setPluralName(?string $plural_name): SyncCustomObjectTypeRequest
-    {
-        $this->container['plural_name'] = $plural_name;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the custom object type
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): SyncCustomObjectTypeRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets show_in_lead_detail
-     *
-     * @return bool|null
-     */
-    public function getShowInLeadDetail(): ?bool
-    {
-        return $this->container['show_in_lead_detail'] ?? null;
-    }
-
-    /**
-     * Sets show_in_lead_detail
-     *
-     * @param bool|null $show_in_lead_detail Whether to show custom object type in lead detail of UI. Default is false
-     *
-     * @return self
-     */
-    public function setShowInLeadDetail(?bool $show_in_lead_detail): SyncCustomObjectTypeRequest
-    {
-        $this->container['show_in_lead_detail'] = $show_in_lead_detail;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

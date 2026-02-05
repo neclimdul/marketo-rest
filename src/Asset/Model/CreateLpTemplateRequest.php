@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     name: string,
  *     template_type?: ?string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method CreateLpTemplateRequest setDescription(string|null $description)
+ * @method bool|null getEnableMunchkin()
+ * @method CreateLpTemplateRequest setEnableMunchkin(bool|null $enable_munchkin)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CreateLpTemplateRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string getName()
+ * @method CreateLpTemplateRequest setName(string $name)
+ * @method string|null getTemplateType()
+ * @method CreateLpTemplateRequest setTemplateType(string|null $template_type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateLpTemplateRequestArray>
  * @implements \ArrayAccess<key-of<CreateLpTemplateRequestArray>, value-of<CreateLpTemplateRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -146,131 +158,6 @@ class CreateLpTemplateRequest extends ModelBase implements ModelInterface, \Arra
         ];
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the landing page template
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CreateLpTemplateRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets enable_munchkin
-     *
-     * @return bool|null
-     */
-    public function getEnableMunchkin(): ?bool
-    {
-        return $this->container['enable_munchkin'] ?? null;
-    }
-
-    /**
-     * Sets enable_munchkin
-     *
-     * @param bool|null $enable_munchkin Whether to enable munchkin on the derived pages. Defaults to true
-     *
-     * @return self
-     */
-    public function setEnableMunchkin(?bool $enable_munchkin): CreateLpTemplateRequest
-    {
-        $this->container['enable_munchkin'] = $enable_munchkin;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateLpTemplateRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the landing page template
-     *
-     * @return self
-     */
-    public function setName(string $name): CreateLpTemplateRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets template_type
-     *
-     * @return string|null
-     */
-    public function getTemplateType(): ?string
-    {
-        return $this->container['template_type'] ?? null;
-    }
-
-    /**
-     * Sets template_type
-     *
-     * @param string|null $template_type Type of template to create. Defaults to freeForm
-     *
-     * @return self
-     */
-    public function setTemplateType(?string $template_type): CreateLpTemplateRequest
-    {
-        $allowedValues = $this->getTemplateTypeAllowableValues();
-        if (!is_null($template_type) && !in_array($template_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'template_type', must be one of '%s'",
-                    $template_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['template_type'] = $template_type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

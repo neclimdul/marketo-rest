@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     subject_field?: ?string,
  *     values?: ?string[],
  * }
+ *
+ * @method string|null getAltLabel()
+ * @method FormVisibilityRuleDTO setAltLabel(string|null $alt_label)
+ * @method string|null getOperator()
+ * @method FormVisibilityRuleDTO setOperator(string|null $operator)
+ * @method \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null getPicklistFilterValues()
+ * @method FormVisibilityRuleDTO setPicklistFilterValues(\NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null $picklist_filter_values)
+ * @method string|null getSubjectField()
+ * @method FormVisibilityRuleDTO setSubjectField(string|null $subject_field)
+ * @method string[]|null getValues()
+ * @method FormVisibilityRuleDTO setValues(string[]|null $values)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FormVisibilityRuleDTOArray>
  * @implements \ArrayAccess<key-of<FormVisibilityRuleDTOArray>, value-of<FormVisibilityRuleDTOArray>>
  * @psalm-suppress MixedReturnStatement
@@ -118,121 +130,6 @@ class FormVisibilityRuleDTO extends ModelBase implements ModelInterface, \ArrayA
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets alt_label
-     *
-     * @return string|null
-     */
-    public function getAltLabel(): ?string
-    {
-        return $this->container['alt_label'] ?? null;
-    }
-
-    /**
-     * Sets alt_label
-     *
-     * @param string|null $alt_label alt_label
-     *
-     * @return self
-     */
-    public function setAltLabel(?string $alt_label): FormVisibilityRuleDTO
-    {
-        $this->container['alt_label'] = $alt_label;
-
-        return $this;
-    }
-    /**
-     * Gets operator
-     *
-     * @return string|null
-     */
-    public function getOperator(): ?string
-    {
-        return $this->container['operator'] ?? null;
-    }
-
-    /**
-     * Sets operator
-     *
-     * @param string|null $operator operator
-     *
-     * @return self
-     */
-    public function setOperator(?string $operator): FormVisibilityRuleDTO
-    {
-        $this->container['operator'] = $operator;
-
-        return $this;
-    }
-    /**
-     * Gets picklist_filter_values
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null
-     */
-    public function getPicklistFilterValues(): ?array
-    {
-        return $this->container['picklist_filter_values'] ?? null;
-    }
-
-    /**
-     * Sets picklist_filter_values
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null $picklist_filter_values picklist_filter_values
-     *
-     * @return self
-     */
-    public function setPicklistFilterValues(?array $picklist_filter_values): FormVisibilityRuleDTO
-    {
-        $this->container['picklist_filter_values'] = $picklist_filter_values;
-
-        return $this;
-    }
-    /**
-     * Gets subject_field
-     *
-     * @return string|null
-     */
-    public function getSubjectField(): ?string
-    {
-        return $this->container['subject_field'] ?? null;
-    }
-
-    /**
-     * Sets subject_field
-     *
-     * @param string|null $subject_field subject_field
-     *
-     * @return self
-     */
-    public function setSubjectField(?string $subject_field): FormVisibilityRuleDTO
-    {
-        $this->container['subject_field'] = $subject_field;
-
-        return $this;
-    }
-    /**
-     * Gets values
-     *
-     * @return string[]|null
-     */
-    public function getValues(): ?array
-    {
-        return $this->container['values'] ?? null;
-    }
-
-    /**
-     * Sets values
-     *
-     * @param string[]|null $values values
-     *
-     * @return self
-     */
-    public function setValues(?array $values): FormVisibilityRuleDTO
-    {
-        $this->container['values'] = $values;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -45,6 +45,42 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     url?: ?string,
  *     workspace?: ?string,
  * }
+ *
+ * @method string getChannel()
+ * @method ProgramResponse setChannel(string $channel)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Costs[] getCosts()
+ * @method ProgramResponse setCosts(\NecLimDul\MarketoRest\Asset\Model\Costs[] $costs)
+ * @method \DateTime|null getCreatedAt()
+ * @method ProgramResponse setCreatedAt(\DateTime|null $created_at)
+ * @method string|null getDescription()
+ * @method ProgramResponse setDescription(string|null $description)
+ * @method \DateTime|null getEndDate()
+ * @method ProgramResponse setEndDate(\DateTime|null $end_date)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method ProgramResponse setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method int|null getId()
+ * @method ProgramResponse setId(int|null $id)
+ * @method string|null getName()
+ * @method ProgramResponse setName(string|null $name)
+ * @method string|null getSfdcId()
+ * @method ProgramResponse setSfdcId(string|null $sfdc_id)
+ * @method string|null getSfdcName()
+ * @method ProgramResponse setSfdcName(string|null $sfdc_name)
+ * @method \DateTime|null getStartDate()
+ * @method ProgramResponse setStartDate(\DateTime|null $start_date)
+ * @method string getStatus()
+ * @method ProgramResponse setStatus(string $status)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Tags[] getTags()
+ * @method ProgramResponse setTags(\NecLimDul\MarketoRest\Asset\Model\Tags[] $tags)
+ * @method string getType()
+ * @method ProgramResponse setType(string $type)
+ * @method \DateTime|null getUpdatedAt()
+ * @method ProgramResponse setUpdatedAt(\DateTime|null $updated_at)
+ * @method string|null getUrl()
+ * @method ProgramResponse setUrl(string|null $url)
+ * @method string|null getWorkspace()
+ * @method ProgramResponse setWorkspace(string|null $workspace)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ProgramResponseArray>
  * @implements \ArrayAccess<key-of<ProgramResponseArray>, value-of<ProgramResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -249,417 +285,6 @@ class ProgramResponse extends ModelBase implements ModelInterface, \ArrayAccess,
         ];
     }
 
-    /**
-     * Gets channel
-     *
-     * @return string
-     */
-    public function getChannel(): string
-    {
-        return $this->container['channel'];
-    }
-
-    /**
-     * Sets channel
-     *
-     * @param string $channel Channel of the program
-     *
-     * @return self
-     */
-    public function setChannel(string $channel): ProgramResponse
-    {
-        $this->container['channel'] = $channel;
-
-        return $this;
-    }
-    /**
-     * Gets costs
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Costs[]
-     */
-    public function getCosts(): array
-    {
-        return $this->container['costs'];
-    }
-
-    /**
-     * Sets costs
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Costs[] $costs Lists of associated period costs
-     *
-     * @return self
-     */
-    public function setCosts(array $costs): ProgramResponse
-    {
-        $this->container['costs'] = $costs;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at Datetime the asset was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?\DateTime $created_at): ProgramResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): ProgramResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets end_date
-     *
-     * @return \DateTime|null
-     */
-    public function getEndDate(): ?\DateTime
-    {
-        return $this->container['end_date'] ?? null;
-    }
-
-    /**
-     * Sets end_date
-     *
-     * @param \DateTime|null $end_date End date of the program. Applicable to event, email, and webinar type programs
-     *
-     * @return self
-     */
-    public function setEndDate(?\DateTime $end_date): ProgramResponse
-    {
-        $this->container['end_date'] = $end_date;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): ProgramResponse
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Id of the asset
-     *
-     * @return self
-     */
-    public function setId(?int $id): ProgramResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the asset
-     *
-     * @return self
-     */
-    public function setName(?string $name): ProgramResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets sfdc_id
-     *
-     * @return string|null
-     */
-    public function getSfdcId(): ?string
-    {
-        return $this->container['sfdc_id'] ?? null;
-    }
-
-    /**
-     * Sets sfdc_id
-     *
-     * @param string|null $sfdc_id SFDC id of the program if linked to an SFDC campaign
-     *
-     * @return self
-     */
-    public function setSfdcId(?string $sfdc_id): ProgramResponse
-    {
-        $this->container['sfdc_id'] = $sfdc_id;
-
-        return $this;
-    }
-    /**
-     * Gets sfdc_name
-     *
-     * @return string|null
-     */
-    public function getSfdcName(): ?string
-    {
-        return $this->container['sfdc_name'] ?? null;
-    }
-
-    /**
-     * Sets sfdc_name
-     *
-     * @param string|null $sfdc_name Name of the linked SFDC campaign if applicable
-     *
-     * @return self
-     */
-    public function setSfdcName(?string $sfdc_name): ProgramResponse
-    {
-        $this->container['sfdc_name'] = $sfdc_name;
-
-        return $this;
-    }
-    /**
-     * Gets start_date
-     *
-     * @return \DateTime|null
-     */
-    public function getStartDate(): ?\DateTime
-    {
-        return $this->container['start_date'] ?? null;
-    }
-
-    /**
-     * Sets start_date
-     *
-     * @param \DateTime|null $start_date Start date of program. Applicable to event, email and webinar type programs
-     *
-     * @return self
-     */
-    public function setStartDate(?\DateTime $start_date): ProgramResponse
-    {
-        $this->container['start_date'] = $start_date;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status of the program. Only valid for Email and engagement program types.
-     *
-     * @return self
-     */
-    public function setStatus(string $status): ProgramResponse
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets tags
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Tags[]
-     */
-    public function getTags(): array
-    {
-        return $this->container['tags'];
-    }
-
-    /**
-     * Sets tags
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Tags[] $tags List of associated program tags
-     *
-     * @return self
-     */
-    public function setTags(array $tags): ProgramResponse
-    {
-        $this->container['tags'] = $tags;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of the program
-     *
-     * @return self
-     */
-    public function setType(string $type): ProgramResponse
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at Datetime the asset was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?\DateTime $updated_at): ProgramResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl(): ?string
-    {
-        return $this->container['url'] ?? null;
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url Url of the asset in the Marketo UI
-     *
-     * @return self
-     */
-    public function setUrl(?string $url): ProgramResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-    /**
-     * Gets workspace
-     *
-     * @return string|null
-     */
-    public function getWorkspace(): ?string
-    {
-        return $this->container['workspace'] ?? null;
-    }
-
-    /**
-     * Sets workspace
-     *
-     * @param string|null $workspace Name of the workspace
-     *
-     * @return self
-     */
-    public function setWorkspace(?string $workspace): ProgramResponse
-    {
-        $this->container['workspace'] = $workspace;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

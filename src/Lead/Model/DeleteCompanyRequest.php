@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     delete_by?: ?string,
  *     input?: ?\NecLimDul\MarketoRest\Lead\Model\Company[],
  * }
+ *
+ * @method string|null getDeleteBy()
+ * @method DeleteCompanyRequest setDeleteBy(string|null $delete_by)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Company[]|null getInput()
+ * @method DeleteCompanyRequest setInput(\NecLimDul\MarketoRest\Lead\Model\Company[]|null $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<DeleteCompanyRequestArray>
  * @implements \ArrayAccess<key-of<DeleteCompanyRequestArray>, value-of<DeleteCompanyRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -103,52 +109,6 @@ class DeleteCompanyRequest extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets delete_by
-     *
-     * @return string|null
-     */
-    public function getDeleteBy(): ?string
-    {
-        return $this->container['delete_by'] ?? null;
-    }
-
-    /**
-     * Sets delete_by
-     *
-     * @param string|null $delete_by Field to delete company records by. Key may be \"dedupeFields\" or \"idField\"
-     *
-     * @return self
-     */
-    public function setDeleteBy(?string $delete_by): DeleteCompanyRequest
-    {
-        $this->container['delete_by'] = $delete_by;
-
-        return $this;
-    }
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Company[]|null
-     */
-    public function getInput(): ?array
-    {
-        return $this->container['input'] ?? null;
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Company[]|null $input List of company objects. Companies in the list should only contain a member matching the dedupeBy value. Each 'Company' object contains a 'searchableField' for lookup purposes which can be retrieved using the Describe Companies endpoint
-     *
-     * @return self
-     */
-    public function setInput(?array $input): DeleteCompanyRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

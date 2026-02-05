@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type UpdateLandingPageTemplateContentUsingPOSTRequestArray array{
  *     content: string,
  * }
+ *
+ * @method string getContent()
+ * @method UpdateLandingPageTemplateContentUsingPOSTRequest setContent(string $content)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateLandingPageTemplateContentUsingPOSTRequestArray>
  * @implements \ArrayAccess<key-of<UpdateLandingPageTemplateContentUsingPOSTRequestArray>, value-of<UpdateLandingPageTemplateContentUsingPOSTRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class UpdateLandingPageTemplateContentUsingPOSTRequest extends ModelBase impleme
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content
-     *
-     * @return string
-     */
-    public function getContent(): string
-    {
-        return $this->container['content'];
-    }
-
-    /**
-     * Sets content
-     *
-     * @param string $content content
-     *
-     * @return self
-     */
-    public function setContent(string $content): UpdateLandingPageTemplateContentUsingPOSTRequest
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

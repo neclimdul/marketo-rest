@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     end_at?: ?string,
  *     start_at?: ?string,
  * }
+ *
+ * @method string|null getEndAt()
+ * @method DateRange setEndAt(string|null $end_at)
+ * @method string|null getStartAt()
+ * @method DateRange setStartAt(string|null $start_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<DateRangeArray>
  * @implements \ArrayAccess<key-of<DateRangeArray>, value-of<DateRangeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -103,52 +109,6 @@ class DateRange extends ModelBase implements ModelInterface, \ArrayAccess, \Json
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets end_at
-     *
-     * @return string|null
-     */
-    public function getEndAt(): ?string
-    {
-        return $this->container['end_at'] ?? null;
-    }
-
-    /**
-     * Sets end_at
-     *
-     * @param string|null $end_at End of date range filter (ISO 8601-format)
-     *
-     * @return self
-     */
-    public function setEndAt(?string $end_at): DateRange
-    {
-        $this->container['end_at'] = $end_at;
-
-        return $this;
-    }
-    /**
-     * Gets start_at
-     *
-     * @return string|null
-     */
-    public function getStartAt(): ?string
-    {
-        return $this->container['start_at'] ?? null;
-    }
-
-    /**
-     * Sets start_at
-     *
-     * @param string|null $start_at Start of date range filter (ISO-8601 format)
-     *
-     * @return self
-     */
-    public function setStartAt(?string $start_at): DateRange
-    {
-        $this->container['start_at'] = $start_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

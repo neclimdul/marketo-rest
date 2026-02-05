@@ -33,6 +33,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     id?: ?int,
  *     company?: ?string,
  * }
+ *
+ * @method string|null getExternalCompanyId()
+ * @method Company setExternalCompanyId(string|null $external_company_id)
+ * @method int|null getId()
+ * @method Company setId(int|null $id)
+ * @method string|null getCompany()
+ * @method Company setCompany(string|null $company)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CompanyArray>
  * @implements \ArrayAccess<key-of<CompanyArray>, value-of<CompanyArray>>
  * @psalm-suppress MixedReturnStatement
@@ -110,75 +118,6 @@ class Company extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSe
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets external_company_id
-     *
-     * @return string|null
-     */
-    public function getExternalCompanyId(): ?string
-    {
-        return $this->container['external_company_id'] ?? null;
-    }
-
-    /**
-     * Sets external_company_id
-     *
-     * @param string|null $external_company_id Unique id of the company record
-     *
-     * @return self
-     */
-    public function setExternalCompanyId(?string $external_company_id): Company
-    {
-        $this->container['external_company_id'] = $external_company_id;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Unique integer id of the company record
-     *
-     * @return self
-     */
-    public function setId(?int $id): Company
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets company
-     *
-     * @return string|null
-     */
-    public function getCompany(): ?string
-    {
-        return $this->container['company'] ?? null;
-    }
-
-    /**
-     * Sets company
-     *
-     * @param string|null $company Unique name of the company record
-     *
-     * @return self
-     */
-    public function setCompany(?string $company): Company
-    {
-        $this->container['company'] = $company;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

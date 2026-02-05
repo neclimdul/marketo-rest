@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     lookup_field?: ?string,
  *     partition_name?: ?string,
  * }
+ *
+ * @method string|null getAction()
+ * @method SyncLeadRequest setAction(string|null $action)
+ * @method bool|null getAsyncProcessing()
+ * @method SyncLeadRequest setAsyncProcessing(bool|null $async_processing)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Lead[] getInput()
+ * @method SyncLeadRequest setInput(\NecLimDul\MarketoRest\Lead\Model\Lead[] $input)
+ * @method string|null getLookupField()
+ * @method SyncLeadRequest setLookupField(string|null $lookup_field)
+ * @method string|null getPartitionName()
+ * @method SyncLeadRequest setPartitionName(string|null $partition_name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SyncLeadRequestArray>
  * @implements \ArrayAccess<key-of<SyncLeadRequestArray>, value-of<SyncLeadRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -149,131 +161,6 @@ class SyncLeadRequest extends ModelBase implements ModelInterface, \ArrayAccess,
         ];
     }
 
-    /**
-     * Gets action
-     *
-     * @return string|null
-     */
-    public function getAction(): ?string
-    {
-        return $this->container['action'] ?? null;
-    }
-
-    /**
-     * Sets action
-     *
-     * @param string|null $action Type of sync operation to perform. Defaults to createOrUpdate if unset
-     *
-     * @return self
-     */
-    public function setAction(?string $action): SyncLeadRequest
-    {
-        $allowedValues = $this->getActionAllowableValues();
-        if (!is_null($action) && !in_array($action, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'action', must be one of '%s'",
-                    $action,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['action'] = $action;
-
-        return $this;
-    }
-    /**
-     * Gets async_processing
-     *
-     * @return bool|null
-     */
-    public function getAsyncProcessing(): ?bool
-    {
-        return $this->container['async_processing'] ?? null;
-    }
-
-    /**
-     * Sets async_processing
-     *
-     * @param bool|null $async_processing If set to true, the call will return immediately
-     *
-     * @return self
-     */
-    public function setAsyncProcessing(?bool $async_processing): SyncLeadRequest
-    {
-        $this->container['async_processing'] = $async_processing;
-
-        return $this;
-    }
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Lead[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Lead[] $input List of leads for input
-     *
-     * @return self
-     */
-    public function setInput(array $input): SyncLeadRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
-    /**
-     * Gets lookup_field
-     *
-     * @return string|null
-     */
-    public function getLookupField(): ?string
-    {
-        return $this->container['lookup_field'] ?? null;
-    }
-
-    /**
-     * Sets lookup_field
-     *
-     * @param string|null $lookup_field Field to deduplicate on. The field must be present in each lead record of the input. Defaults to email if unset
-     *
-     * @return self
-     */
-    public function setLookupField(?string $lookup_field): SyncLeadRequest
-    {
-        $this->container['lookup_field'] = $lookup_field;
-
-        return $this;
-    }
-    /**
-     * Gets partition_name
-     *
-     * @return string|null
-     */
-    public function getPartitionName(): ?string
-    {
-        return $this->container['partition_name'] ?? null;
-    }
-
-    /**
-     * Sets partition_name
-     *
-     * @param string|null $partition_name Name of the partition to operate on, if applicable. Should be set whenever possible, when interacting with an instance where partitions are enabled.
-     *
-     * @return self
-     */
-    public function setPartitionName(?string $partition_name): SyncLeadRequest
-    {
-        $this->container['partition_name'] = $partition_name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

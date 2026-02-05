@@ -48,6 +48,48 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     validation_message?: ?object,
  *     visibility_rules?: ?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse,
  * }
+ *
+ * @method int|null getBlankFields()
+ * @method LpFormFieldResponse setBlankFields(int|null $blank_fields)
+ * @method int|null getColumnNumber()
+ * @method LpFormFieldResponse setColumnNumber(int|null $column_number)
+ * @method string|null getDataType()
+ * @method LpFormFieldResponse setDataType(string|null $data_type)
+ * @method string|null getDefaultValue()
+ * @method LpFormFieldResponse setDefaultValue(string|null $default_value)
+ * @method object|null getFieldMetaData()
+ * @method LpFormFieldResponse setFieldMetaData(object|null $field_meta_data)
+ * @method int|null getFieldWidth()
+ * @method LpFormFieldResponse setFieldWidth(int|null $field_width)
+ * @method string[]|null getFields()
+ * @method LpFormFieldResponse setFields(string[]|null $fields)
+ * @method bool|null getFormPrefill()
+ * @method LpFormFieldResponse setFormPrefill(bool|null $form_prefill)
+ * @method bool|null getIsSensitive()
+ * @method LpFormFieldResponse setIsSensitive(bool|null $is_sensitive)
+ * @method string|null getHintText()
+ * @method LpFormFieldResponse setHintText(string|null $hint_text)
+ * @method string|null getId()
+ * @method LpFormFieldResponse setId(string|null $id)
+ * @method string|null getInstructions()
+ * @method LpFormFieldResponse setInstructions(string|null $instructions)
+ * @method string|null getLabel()
+ * @method LpFormFieldResponse setLabel(string|null $label)
+ * @method int|null getLabelWidth()
+ * @method LpFormFieldResponse setLabelWidth(int|null $label_width)
+ * @method int|null getMaxLength()
+ * @method LpFormFieldResponse setMaxLength(int|null $max_length)
+ * @method bool|null getRequired()
+ * @method LpFormFieldResponse setRequired(bool|null $required)
+ * @method int|null getRowNumber()
+ * @method LpFormFieldResponse setRowNumber(int|null $row_number)
+ * @method string|null getText()
+ * @method LpFormFieldResponse setText(string|null $text)
+ * @method object|null getValidationMessage()
+ * @method LpFormFieldResponse setValidationMessage(object|null $validation_message)
+ * @method \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse|null getVisibilityRules()
+ * @method LpFormFieldResponse setVisibilityRules(\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse|null $visibility_rules)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LpFormFieldResponseArray>
  * @implements \ArrayAccess<key-of<LpFormFieldResponseArray>, value-of<LpFormFieldResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -199,466 +241,6 @@ class LpFormFieldResponse extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets blank_fields
-     *
-     * @return int|null
-     */
-    public function getBlankFields(): ?int
-    {
-        return $this->container['blank_fields'] ?? null;
-    }
-
-    /**
-     * Sets blank_fields
-     *
-     * @param int|null $blank_fields blank_fields
-     *
-     * @return self
-     */
-    public function setBlankFields(?int $blank_fields): LpFormFieldResponse
-    {
-        $this->container['blank_fields'] = $blank_fields;
-
-        return $this;
-    }
-    /**
-     * Gets column_number
-     *
-     * @return int|null
-     */
-    public function getColumnNumber(): ?int
-    {
-        return $this->container['column_number'] ?? null;
-    }
-
-    /**
-     * Sets column_number
-     *
-     * @param int|null $column_number column_number
-     *
-     * @return self
-     */
-    public function setColumnNumber(?int $column_number): LpFormFieldResponse
-    {
-        $this->container['column_number'] = $column_number;
-
-        return $this;
-    }
-    /**
-     * Gets data_type
-     *
-     * @return string|null
-     */
-    public function getDataType(): ?string
-    {
-        return $this->container['data_type'] ?? null;
-    }
-
-    /**
-     * Sets data_type
-     *
-     * @param string|null $data_type data_type
-     *
-     * @return self
-     */
-    public function setDataType(?string $data_type): LpFormFieldResponse
-    {
-        $this->container['data_type'] = $data_type;
-
-        return $this;
-    }
-    /**
-     * Gets default_value
-     *
-     * @return string|null
-     */
-    public function getDefaultValue(): ?string
-    {
-        return $this->container['default_value'] ?? null;
-    }
-
-    /**
-     * Sets default_value
-     *
-     * @param string|null $default_value default_value
-     *
-     * @return self
-     */
-    public function setDefaultValue(?string $default_value): LpFormFieldResponse
-    {
-        $this->container['default_value'] = $default_value;
-
-        return $this;
-    }
-    /**
-     * Gets field_meta_data
-     *
-     * @return object|null
-     */
-    public function getFieldMetaData(): ?object
-    {
-        return $this->container['field_meta_data'] ?? null;
-    }
-
-    /**
-     * Sets field_meta_data
-     *
-     * @param object|null $field_meta_data field_meta_data
-     *
-     * @return self
-     */
-    public function setFieldMetaData(?object $field_meta_data): LpFormFieldResponse
-    {
-        $this->container['field_meta_data'] = $field_meta_data;
-
-        return $this;
-    }
-    /**
-     * Gets field_width
-     *
-     * @return int|null
-     */
-    public function getFieldWidth(): ?int
-    {
-        return $this->container['field_width'] ?? null;
-    }
-
-    /**
-     * Sets field_width
-     *
-     * @param int|null $field_width field_width
-     *
-     * @return self
-     */
-    public function setFieldWidth(?int $field_width): LpFormFieldResponse
-    {
-        $this->container['field_width'] = $field_width;
-
-        return $this;
-    }
-    /**
-     * Gets fields
-     *
-     * @return string[]|null
-     */
-    public function getFields(): ?array
-    {
-        return $this->container['fields'] ?? null;
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param string[]|null $fields fields
-     *
-     * @return self
-     */
-    public function setFields(?array $fields): LpFormFieldResponse
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-    /**
-     * Gets form_prefill
-     *
-     * @return bool|null
-     */
-    public function getFormPrefill(): ?bool
-    {
-        return $this->container['form_prefill'] ?? null;
-    }
-
-    /**
-     * Sets form_prefill
-     *
-     * @param bool|null $form_prefill form_prefill
-     *
-     * @return self
-     */
-    public function setFormPrefill(?bool $form_prefill): LpFormFieldResponse
-    {
-        $this->container['form_prefill'] = $form_prefill;
-
-        return $this;
-    }
-    /**
-     * Gets is_sensitive
-     *
-     * @return bool|null
-     */
-    public function getIsSensitive(): ?bool
-    {
-        return $this->container['is_sensitive'] ?? null;
-    }
-
-    /**
-     * Sets is_sensitive
-     *
-     * @param bool|null $is_sensitive is_sensitive
-     *
-     * @return self
-     */
-    public function setIsSensitive(?bool $is_sensitive): LpFormFieldResponse
-    {
-        $this->container['is_sensitive'] = $is_sensitive;
-
-        return $this;
-    }
-    /**
-     * Gets hint_text
-     *
-     * @return string|null
-     */
-    public function getHintText(): ?string
-    {
-        return $this->container['hint_text'] ?? null;
-    }
-
-    /**
-     * Sets hint_text
-     *
-     * @param string|null $hint_text hint_text
-     *
-     * @return self
-     */
-    public function setHintText(?string $hint_text): LpFormFieldResponse
-    {
-        $this->container['hint_text'] = $hint_text;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string|null $id id
-     *
-     * @return self
-     */
-    public function setId(?string $id): LpFormFieldResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets instructions
-     *
-     * @return string|null
-     */
-    public function getInstructions(): ?string
-    {
-        return $this->container['instructions'] ?? null;
-    }
-
-    /**
-     * Sets instructions
-     *
-     * @param string|null $instructions instructions
-     *
-     * @return self
-     */
-    public function setInstructions(?string $instructions): LpFormFieldResponse
-    {
-        $this->container['instructions'] = $instructions;
-
-        return $this;
-    }
-    /**
-     * Gets label
-     *
-     * @return string|null
-     */
-    public function getLabel(): ?string
-    {
-        return $this->container['label'] ?? null;
-    }
-
-    /**
-     * Sets label
-     *
-     * @param string|null $label label
-     *
-     * @return self
-     */
-    public function setLabel(?string $label): LpFormFieldResponse
-    {
-        $this->container['label'] = $label;
-
-        return $this;
-    }
-    /**
-     * Gets label_width
-     *
-     * @return int|null
-     */
-    public function getLabelWidth(): ?int
-    {
-        return $this->container['label_width'] ?? null;
-    }
-
-    /**
-     * Sets label_width
-     *
-     * @param int|null $label_width label_width
-     *
-     * @return self
-     */
-    public function setLabelWidth(?int $label_width): LpFormFieldResponse
-    {
-        $this->container['label_width'] = $label_width;
-
-        return $this;
-    }
-    /**
-     * Gets max_length
-     *
-     * @return int|null
-     */
-    public function getMaxLength(): ?int
-    {
-        return $this->container['max_length'] ?? null;
-    }
-
-    /**
-     * Sets max_length
-     *
-     * @param int|null $max_length max_length
-     *
-     * @return self
-     */
-    public function setMaxLength(?int $max_length): LpFormFieldResponse
-    {
-        $this->container['max_length'] = $max_length;
-
-        return $this;
-    }
-    /**
-     * Gets required
-     *
-     * @return bool|null
-     */
-    public function getRequired(): ?bool
-    {
-        return $this->container['required'] ?? null;
-    }
-
-    /**
-     * Sets required
-     *
-     * @param bool|null $required required
-     *
-     * @return self
-     */
-    public function setRequired(?bool $required): LpFormFieldResponse
-    {
-        $this->container['required'] = $required;
-
-        return $this;
-    }
-    /**
-     * Gets row_number
-     *
-     * @return int|null
-     */
-    public function getRowNumber(): ?int
-    {
-        return $this->container['row_number'] ?? null;
-    }
-
-    /**
-     * Sets row_number
-     *
-     * @param int|null $row_number row_number
-     *
-     * @return self
-     */
-    public function setRowNumber(?int $row_number): LpFormFieldResponse
-    {
-        $this->container['row_number'] = $row_number;
-
-        return $this;
-    }
-    /**
-     * Gets text
-     *
-     * @return string|null
-     */
-    public function getText(): ?string
-    {
-        return $this->container['text'] ?? null;
-    }
-
-    /**
-     * Sets text
-     *
-     * @param string|null $text text
-     *
-     * @return self
-     */
-    public function setText(?string $text): LpFormFieldResponse
-    {
-        $this->container['text'] = $text;
-
-        return $this;
-    }
-    /**
-     * Gets validation_message
-     *
-     * @return object|null
-     */
-    public function getValidationMessage(): ?object
-    {
-        return $this->container['validation_message'] ?? null;
-    }
-
-    /**
-     * Sets validation_message
-     *
-     * @param object|null $validation_message validation_message
-     *
-     * @return self
-     */
-    public function setValidationMessage(?object $validation_message): LpFormFieldResponse
-    {
-        $this->container['validation_message'] = $validation_message;
-
-        return $this;
-    }
-    /**
-     * Gets visibility_rules
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse|null
-     */
-    public function getVisibilityRules(): ?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse
-    {
-        return $this->container['visibility_rules'] ?? null;
-    }
-
-    /**
-     * Sets visibility_rules
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse|null $visibility_rules visibility_rules
-     *
-     * @return self
-     */
-    public function setVisibilityRules(?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse $visibility_rules): LpFormFieldResponse
-    {
-        $this->container['visibility_rules'] = $visibility_rules;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

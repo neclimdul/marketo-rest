@@ -35,6 +35,22 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     updated_at?: ?\DateTime,
  *     url?: ?string,
  * }
+ *
+ * @method \DateTime|null getCreatedAt()
+ * @method SegmentsResponse setCreatedAt(\DateTime|null $created_at)
+ * @method string|null getDescription()
+ * @method SegmentsResponse setDescription(string|null $description)
+ * @method int|null getId()
+ * @method SegmentsResponse setId(int|null $id)
+ * @method string|null getName()
+ * @method SegmentsResponse setName(string|null $name)
+ * @method int getSegmentationId()
+ * @method SegmentsResponse setSegmentationId(int $segmentation_id)
+ * @method \DateTime|null getUpdatedAt()
+ * @method SegmentsResponse setUpdatedAt(\DateTime|null $updated_at)
+ * @method string|null getUrl()
+ * @method SegmentsResponse setUrl(string|null $url)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SegmentsResponseArray>
  * @implements \ArrayAccess<key-of<SegmentsResponseArray>, value-of<SegmentsResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -133,167 +149,6 @@ class SegmentsResponse extends ModelBase implements ModelInterface, \ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at Datetime the asset was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?\DateTime $created_at): SegmentsResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): SegmentsResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Id of the asset
-     *
-     * @return self
-     */
-    public function setId(?int $id): SegmentsResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the asset
-     *
-     * @return self
-     */
-    public function setName(?string $name): SegmentsResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets segmentation_id
-     *
-     * @return int
-     */
-    public function getSegmentationId(): int
-    {
-        return $this->container['segmentation_id'];
-    }
-
-    /**
-     * Sets segmentation_id
-     *
-     * @param int $segmentation_id Id of the Segmentation
-     *
-     * @return self
-     */
-    public function setSegmentationId(int $segmentation_id): SegmentsResponse
-    {
-        $this->container['segmentation_id'] = $segmentation_id;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at Datetime the asset was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?\DateTime $updated_at): SegmentsResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl(): ?string
-    {
-        return $this->container['url'] ?? null;
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url Url of the asset in the Marketo UI
-     *
-     * @return self
-     */
-    public function setUrl(?string $url): SegmentsResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

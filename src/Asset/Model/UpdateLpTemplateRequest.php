@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     enable_munchkin?: ?bool,
  *     name?: ?string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method UpdateLpTemplateRequest setDescription(string|null $description)
+ * @method bool|null getEnableMunchkin()
+ * @method UpdateLpTemplateRequest setEnableMunchkin(bool|null $enable_munchkin)
+ * @method string|null getName()
+ * @method UpdateLpTemplateRequest setName(string|null $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateLpTemplateRequestArray>
  * @implements \ArrayAccess<key-of<UpdateLpTemplateRequestArray>, value-of<UpdateLpTemplateRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -108,75 +116,6 @@ class UpdateLpTemplateRequest extends ModelBase implements ModelInterface, \Arra
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the landing page template
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): UpdateLpTemplateRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets enable_munchkin
-     *
-     * @return bool|null
-     */
-    public function getEnableMunchkin(): ?bool
-    {
-        return $this->container['enable_munchkin'] ?? null;
-    }
-
-    /**
-     * Sets enable_munchkin
-     *
-     * @param bool|null $enable_munchkin Whether to enable munchkin on the derived pages. Defaults to true
-     *
-     * @return self
-     */
-    public function setEnableMunchkin(?bool $enable_munchkin): UpdateLpTemplateRequest
-    {
-        $this->container['enable_munchkin'] = $enable_munchkin;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the landing page template
-     *
-     * @return self
-     */
-    public function setName(?string $name): UpdateLpTemplateRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

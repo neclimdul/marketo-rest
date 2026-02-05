@@ -37,6 +37,26 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     url?: ?string,
  *     workspace?: ?string,
  * }
+ *
+ * @method \DateTime|null getCreatedAt()
+ * @method SegmentationResponse setCreatedAt(\DateTime|null $created_at)
+ * @method string|null getDescription()
+ * @method SegmentationResponse setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method SegmentationResponse setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method int|null getId()
+ * @method SegmentationResponse setId(int|null $id)
+ * @method string|null getName()
+ * @method SegmentationResponse setName(string|null $name)
+ * @method string getStatus()
+ * @method SegmentationResponse setStatus(string $status)
+ * @method \DateTime|null getUpdatedAt()
+ * @method SegmentationResponse setUpdatedAt(\DateTime|null $updated_at)
+ * @method string|null getUrl()
+ * @method SegmentationResponse setUrl(string|null $url)
+ * @method string|null getWorkspace()
+ * @method SegmentationResponse setWorkspace(string|null $workspace)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SegmentationResponseArray>
  * @implements \ArrayAccess<key-of<SegmentationResponseArray>, value-of<SegmentationResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -143,213 +163,6 @@ class SegmentationResponse extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at Datetime the asset was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?\DateTime $created_at): SegmentationResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): SegmentationResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): SegmentationResponse
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Id of the asset
-     *
-     * @return self
-     */
-    public function setId(?int $id): SegmentationResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the asset
-     *
-     * @return self
-     */
-    public function setName(?string $name): SegmentationResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status filter for draft or approved versions
-     *
-     * @return self
-     */
-    public function setStatus(string $status): SegmentationResponse
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at Datetime the asset was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?\DateTime $updated_at): SegmentationResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl(): ?string
-    {
-        return $this->container['url'] ?? null;
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url Url of the asset in the Marketo UI
-     *
-     * @return self
-     */
-    public function setUrl(?string $url): SegmentationResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-    /**
-     * Gets workspace
-     *
-     * @return string|null
-     */
-    public function getWorkspace(): ?string
-    {
-        return $this->container['workspace'] ?? null;
-    }
-
-    /**
-     * Sets workspace
-     *
-     * @param string|null $workspace Name of the workspace
-     *
-     * @return self
-     */
-    public function setWorkspace(?string $workspace): SegmentationResponse
-    {
-        $this->container['workspace'] = $workspace;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

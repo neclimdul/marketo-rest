@@ -34,6 +34,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     lead_client_ip_address?: ?string,
  *     user_agent_string?: ?string,
  * }
+ *
+ * @method string|null getPageUrl()
+ * @method VisitorData setPageUrl(string|null $page_url)
+ * @method string|null getQueryString()
+ * @method VisitorData setQueryString(string|null $query_string)
+ * @method string|null getLeadClientIpAddress()
+ * @method VisitorData setLeadClientIpAddress(string|null $lead_client_ip_address)
+ * @method string|null getUserAgentString()
+ * @method VisitorData setUserAgentString(string|null $user_agent_string)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<VisitorDataArray>
  * @implements \ArrayAccess<key-of<VisitorDataArray>, value-of<VisitorDataArray>>
  * @psalm-suppress MixedReturnStatement
@@ -115,98 +125,6 @@ class VisitorData extends ModelBase implements ModelInterface, \ArrayAccess, \Js
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets page_url
-     *
-     * @return string|null
-     */
-    public function getPageUrl(): ?string
-    {
-        return $this->container['page_url'] ?? null;
-    }
-
-    /**
-     * Sets page_url
-     *
-     * @param string|null $page_url Web page that hosts the form. Must be a fully formed URL
-     *
-     * @return self
-     */
-    public function setPageUrl(?string $page_url): VisitorData
-    {
-        $this->container['page_url'] = $page_url;
-
-        return $this;
-    }
-    /**
-     * Gets query_string
-     *
-     * @return string|null
-     */
-    public function getQueryString(): ?string
-    {
-        return $this->container['query_string'] ?? null;
-    }
-
-    /**
-     * Sets query_string
-     *
-     * @param string|null $query_string Web page query string. Contains one or more ampersand delimited key=value pairs
-     *
-     * @return self
-     */
-    public function setQueryString(?string $query_string): VisitorData
-    {
-        $this->container['query_string'] = $query_string;
-
-        return $this;
-    }
-    /**
-     * Gets lead_client_ip_address
-     *
-     * @return string|null
-     */
-    public function getLeadClientIpAddress(): ?string
-    {
-        return $this->container['lead_client_ip_address'] ?? null;
-    }
-
-    /**
-     * Sets lead_client_ip_address
-     *
-     * @param string|null $lead_client_ip_address Client IP address. IPv4 format. Used to populate inferred fields on upserted lead record.
-     *
-     * @return self
-     */
-    public function setLeadClientIpAddress(?string $lead_client_ip_address): VisitorData
-    {
-        $this->container['lead_client_ip_address'] = $lead_client_ip_address;
-
-        return $this;
-    }
-    /**
-     * Gets user_agent_string
-     *
-     * @return string|null
-     */
-    public function getUserAgentString(): ?string
-    {
-        return $this->container['user_agent_string'] ?? null;
-    }
-
-    /**
-     * Sets user_agent_string
-     *
-     * @param string|null $user_agent_string User agent of browser hosting the form
-     *
-     * @return self
-     */
-    public function setUserAgentString(?string $user_agent_string): VisitorData
-    {
-        $this->container['user_agent_string'] = $user_agent_string;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

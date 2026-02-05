@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type AddCustomObjectTypeFieldsRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeField[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeField[] getInput()
+ * @method AddCustomObjectTypeFieldsRequest setInput(\NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeField[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<AddCustomObjectTypeFieldsRequestArray>
  * @implements \ArrayAccess<key-of<AddCustomObjectTypeFieldsRequestArray>, value-of<AddCustomObjectTypeFieldsRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class AddCustomObjectTypeFieldsRequest extends ModelBase implements ModelInterfa
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeField[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeField[] $input List of fields to add to custom object type
-     *
-     * @return self
-     */
-    public function setInput(array $input): AddCustomObjectTypeFieldsRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

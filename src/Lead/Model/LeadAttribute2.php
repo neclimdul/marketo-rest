@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     searchable_fields: array[],
  *     fields: \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[],
  * }
+ *
+ * @method string getName()
+ * @method LeadAttribute2 setName(string $name)
+ * @method array[] getSearchableFields()
+ * @method LeadAttribute2 setSearchableFields(array[] $searchable_fields)
+ * @method \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[] getFields()
+ * @method LeadAttribute2 setFields(\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[] $fields)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadAttribute2Array>
  * @implements \ArrayAccess<key-of<LeadAttribute2Array>, value-of<LeadAttribute2Array>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class LeadAttribute2 extends ModelBase implements ModelInterface, \ArrayAccess, 
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name \"API Lead\"
-     *
-     * @return self
-     */
-    public function setName(string $name): LeadAttribute2
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets searchable_fields
-     *
-     * @return array[]
-     */
-    public function getSearchableFields(): array
-    {
-        return $this->container['searchable_fields'];
-    }
-
-    /**
-     * Sets searchable_fields
-     *
-     * @param array[] $searchable_fields List of searchable fields
-     *
-     * @return self
-     */
-    public function setSearchableFields(array $searchable_fields): LeadAttribute2
-    {
-        $this->container['searchable_fields'] = $searchable_fields;
-
-        return $this;
-    }
-    /**
-     * Gets fields
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[]
-     */
-    public function getFields(): array
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[] $fields Description of searchable fields
-     *
-     * @return self
-     */
-    public function setFields(array $fields): LeadAttribute2
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

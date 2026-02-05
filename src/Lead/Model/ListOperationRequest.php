@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type ListOperationRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\LeadInputData[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\LeadInputData[] getInput()
+ * @method ListOperationRequest setInput(\NecLimDul\MarketoRest\Lead\Model\LeadInputData[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ListOperationRequestArray>
  * @implements \ArrayAccess<key-of<ListOperationRequestArray>, value-of<ListOperationRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class ListOperationRequest extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadInputData[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\LeadInputData[] $input List of leads for input
-     *
-     * @return self
-     */
-    public function setInput(array $input): ListOperationRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

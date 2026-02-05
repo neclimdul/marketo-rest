@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     folder: \NecLimDul\MarketoRest\Asset\Model\Folder,
  *     name: string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method CloneSmartCampaignRequest setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CloneSmartCampaignRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string getName()
+ * @method CloneSmartCampaignRequest setName(string $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CloneSmartCampaignRequestArray>
  * @implements \ArrayAccess<key-of<CloneSmartCampaignRequestArray>, value-of<CloneSmartCampaignRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -110,75 +118,6 @@ class CloneSmartCampaignRequest extends ModelBase implements ModelInterface, \Ar
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the smart campaign
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CloneSmartCampaignRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CloneSmartCampaignRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the smart campaign
-     *
-     * @return self
-     */
-    public function setName(string $name): CloneSmartCampaignRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

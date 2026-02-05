@@ -33,6 +33,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     type: string,
  *     folder_name: string,
  * }
+ *
+ * @method int getValue()
+ * @method SnippetFolder setValue(int $value)
+ * @method string getType()
+ * @method SnippetFolder setType(string $type)
+ * @method string getFolderName()
+ * @method SnippetFolder setFolderName(string $folder_name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SnippetFolderArray>
  * @implements \ArrayAccess<key-of<SnippetFolderArray>, value-of<SnippetFolderArray>>
  * @psalm-suppress MixedReturnStatement
@@ -140,85 +148,6 @@ class SnippetFolder extends ModelBase implements ModelInterface, \ArrayAccess, \
         ];
     }
 
-    /**
-     * Gets value
-     *
-     * @return int
-     */
-    public function getValue(): int
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param int $value Id of the folder
-     *
-     * @return self
-     */
-    public function setValue(int $value): SnippetFolder
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of folder
-     *
-     * @return self
-     */
-    public function setType(string $type): SnippetFolder
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets folder_name
-     *
-     * @return string
-     */
-    public function getFolderName(): string
-    {
-        return $this->container['folder_name'];
-    }
-
-    /**
-     * Sets folder_name
-     *
-     * @param string $folder_name Name of folder
-     *
-     * @return self
-     */
-    public function setFolderName(string $folder_name): SnippetFolder
-    {
-        $this->container['folder_name'] = $folder_name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

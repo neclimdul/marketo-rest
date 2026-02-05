@@ -40,6 +40,28 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     is_custom: bool,
  *     is_api_created: bool,
  * }
+ *
+ * @method string getDisplayName()
+ * @method LeadField setDisplayName(string $display_name)
+ * @method string getName()
+ * @method LeadField setName(string $name)
+ * @method string getDescription()
+ * @method LeadField setDescription(string $description)
+ * @method string getDataType()
+ * @method LeadField setDataType(string $data_type)
+ * @method int|null getLength()
+ * @method LeadField setLength(int|null $length)
+ * @method bool getIsHidden()
+ * @method LeadField setIsHidden(bool $is_hidden)
+ * @method bool getIsHtmlEncodingInEmail()
+ * @method LeadField setIsHtmlEncodingInEmail(bool $is_html_encoding_in_email)
+ * @method bool getIsSensitive()
+ * @method LeadField setIsSensitive(bool $is_sensitive)
+ * @method bool getIsCustom()
+ * @method LeadField setIsCustom(bool $is_custom)
+ * @method bool getIsApiCreated()
+ * @method LeadField setIsApiCreated(bool $is_api_created)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadFieldArray>
  * @implements \ArrayAccess<key-of<LeadFieldArray>, value-of<LeadFieldArray>>
  * @psalm-suppress MixedReturnStatement
@@ -155,236 +177,6 @@ class LeadField extends ModelBase implements ModelInterface, \ArrayAccess, \Json
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets display_name
-     *
-     * @return string
-     */
-    public function getDisplayName(): string
-    {
-        return $this->container['display_name'];
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string $display_name UI display-name of the field
-     *
-     * @return self
-     */
-    public function setDisplayName(string $display_name): LeadField
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name API name of the field
-     *
-     * @return self
-     */
-    public function setName(string $name): LeadField
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string $description Description of the field
-     *
-     * @return self
-     */
-    public function setDescription(string $description): LeadField
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets data_type
-     *
-     * @return string
-     */
-    public function getDataType(): string
-    {
-        return $this->container['data_type'];
-    }
-
-    /**
-     * Sets data_type
-     *
-     * @param string $data_type Datatype of the field
-     *
-     * @return self
-     */
-    public function setDataType(string $data_type): LeadField
-    {
-        $this->container['data_type'] = $data_type;
-
-        return $this;
-    }
-    /**
-     * Gets length
-     *
-     * @return int|null
-     */
-    public function getLength(): ?int
-    {
-        return $this->container['length'] ?? null;
-    }
-
-    /**
-     * Sets length
-     *
-     * @param int|null $length Max length of the field. Only applicable to text, string, and text area.
-     *
-     * @return self
-     */
-    public function setLength(?int $length): LeadField
-    {
-        $this->container['length'] = $length;
-
-        return $this;
-    }
-    /**
-     * Gets is_hidden
-     *
-     * @return bool
-     */
-    public function getIsHidden(): bool
-    {
-        return $this->container['is_hidden'];
-    }
-
-    /**
-     * Sets is_hidden
-     *
-     * @param bool $is_hidden If set to true, the field is hidden
-     *
-     * @return self
-     */
-    public function setIsHidden(bool $is_hidden): LeadField
-    {
-        $this->container['is_hidden'] = $is_hidden;
-
-        return $this;
-    }
-    /**
-     * Gets is_html_encoding_in_email
-     *
-     * @return bool
-     */
-    public function getIsHtmlEncodingInEmail(): bool
-    {
-        return $this->container['is_html_encoding_in_email'];
-    }
-
-    /**
-     * Sets is_html_encoding_in_email
-     *
-     * @param bool $is_html_encoding_in_email If set to true, field is encoded as HTML in email
-     *
-     * @return self
-     */
-    public function setIsHtmlEncodingInEmail(bool $is_html_encoding_in_email): LeadField
-    {
-        $this->container['is_html_encoding_in_email'] = $is_html_encoding_in_email;
-
-        return $this;
-    }
-    /**
-     * Gets is_sensitive
-     *
-     * @return bool
-     */
-    public function getIsSensitive(): bool
-    {
-        return $this->container['is_sensitive'];
-    }
-
-    /**
-     * Sets is_sensitive
-     *
-     * @param bool $is_sensitive If set to true, field is marked as sensitive
-     *
-     * @return self
-     */
-    public function setIsSensitive(bool $is_sensitive): LeadField
-    {
-        $this->container['is_sensitive'] = $is_sensitive;
-
-        return $this;
-    }
-    /**
-     * Gets is_custom
-     *
-     * @return bool
-     */
-    public function getIsCustom(): bool
-    {
-        return $this->container['is_custom'];
-    }
-
-    /**
-     * Sets is_custom
-     *
-     * @param bool $is_custom If set to true, field is custom
-     *
-     * @return self
-     */
-    public function setIsCustom(bool $is_custom): LeadField
-    {
-        $this->container['is_custom'] = $is_custom;
-
-        return $this;
-    }
-    /**
-     * Gets is_api_created
-     *
-     * @return bool
-     */
-    public function getIsApiCreated(): bool
-    {
-        return $this->container['is_api_created'];
-    }
-
-    /**
-     * Sets is_api_created
-     *
-     * @param bool $is_api_created If set to true, field was created using REST API
-     *
-     * @return self
-     */
-    public function setIsApiCreated(bool $is_api_created): LeadField
-    {
-        $this->container['is_api_created'] = $is_api_created;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

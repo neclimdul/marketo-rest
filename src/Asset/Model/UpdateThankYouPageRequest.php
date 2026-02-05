@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type UpdateThankYouPageRequestArray array{
  *     thankyou?: ?\NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]|null getThankyou()
+ * @method UpdateThankYouPageRequest setThankyou(\NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]|null $thankyou)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateThankYouPageRequestArray>
  * @implements \ArrayAccess<key-of<UpdateThankYouPageRequestArray>, value-of<UpdateThankYouPageRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -98,29 +102,6 @@ class UpdateThankYouPageRequest extends ModelBase implements ModelInterface, \Ar
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets thankyou
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]|null
-     */
-    public function getThankyou(): ?array
-    {
-        return $this->container['thankyou'] ?? null;
-    }
-
-    /**
-     * Sets thankyou
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]|null $thankyou JSON array of followup rules
-     *
-     * @return self
-     */
-    public function setThankyou(?array $thankyou): UpdateThankYouPageRequest
-    {
-        $this->container['thankyou'] = $thankyou;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

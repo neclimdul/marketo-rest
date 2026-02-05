@@ -39,6 +39,26 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     operation: string,
  *     status: string,
  * }
+ *
+ * @method int getBatchId()
+ * @method ImportCustomObjectResponse setBatchId(int $batch_id)
+ * @method string|null getImportTime()
+ * @method ImportCustomObjectResponse setImportTime(string|null $import_time)
+ * @method string|null getMessage()
+ * @method ImportCustomObjectResponse setMessage(string|null $message)
+ * @method int|null getNumOfObjectsProcessed()
+ * @method ImportCustomObjectResponse setNumOfObjectsProcessed(int|null $num_of_objects_processed)
+ * @method int|null getNumOfRowsFailed()
+ * @method ImportCustomObjectResponse setNumOfRowsFailed(int|null $num_of_rows_failed)
+ * @method int|null getNumOfRowsWithWarning()
+ * @method ImportCustomObjectResponse setNumOfRowsWithWarning(int|null $num_of_rows_with_warning)
+ * @method string getObjectApiName()
+ * @method ImportCustomObjectResponse setObjectApiName(string $object_api_name)
+ * @method string getOperation()
+ * @method ImportCustomObjectResponse setOperation(string $operation)
+ * @method string getStatus()
+ * @method ImportCustomObjectResponse setStatus(string $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ImportCustomObjectResponseArray>
  * @implements \ArrayAccess<key-of<ImportCustomObjectResponseArray>, value-of<ImportCustomObjectResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -148,213 +168,6 @@ class ImportCustomObjectResponse extends ModelBase implements ModelInterface, \A
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets batch_id
-     *
-     * @return int
-     */
-    public function getBatchId(): int
-    {
-        return $this->container['batch_id'];
-    }
-
-    /**
-     * Sets batch_id
-     *
-     * @param int $batch_id Unique integer id of the import batch
-     *
-     * @return self
-     */
-    public function setBatchId(int $batch_id): ImportCustomObjectResponse
-    {
-        $this->container['batch_id'] = $batch_id;
-
-        return $this;
-    }
-    /**
-     * Gets import_time
-     *
-     * @return string|null
-     */
-    public function getImportTime(): ?string
-    {
-        return $this->container['import_time'] ?? null;
-    }
-
-    /**
-     * Sets import_time
-     *
-     * @param string|null $import_time Time spent on the batch
-     *
-     * @return self
-     */
-    public function setImportTime(?string $import_time): ImportCustomObjectResponse
-    {
-        $this->container['import_time'] = $import_time;
-
-        return $this;
-    }
-    /**
-     * Gets message
-     *
-     * @return string|null
-     */
-    public function getMessage(): ?string
-    {
-        return $this->container['message'] ?? null;
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string|null $message Status message of the batch
-     *
-     * @return self
-     */
-    public function setMessage(?string $message): ImportCustomObjectResponse
-    {
-        $this->container['message'] = $message;
-
-        return $this;
-    }
-    /**
-     * Gets num_of_objects_processed
-     *
-     * @return int|null
-     */
-    public function getNumOfObjectsProcessed(): ?int
-    {
-        return $this->container['num_of_objects_processed'] ?? null;
-    }
-
-    /**
-     * Sets num_of_objects_processed
-     *
-     * @param int|null $num_of_objects_processed Number of rows processed so far
-     *
-     * @return self
-     */
-    public function setNumOfObjectsProcessed(?int $num_of_objects_processed): ImportCustomObjectResponse
-    {
-        $this->container['num_of_objects_processed'] = $num_of_objects_processed;
-
-        return $this;
-    }
-    /**
-     * Gets num_of_rows_failed
-     *
-     * @return int|null
-     */
-    public function getNumOfRowsFailed(): ?int
-    {
-        return $this->container['num_of_rows_failed'] ?? null;
-    }
-
-    /**
-     * Sets num_of_rows_failed
-     *
-     * @param int|null $num_of_rows_failed Number of rows failed so far
-     *
-     * @return self
-     */
-    public function setNumOfRowsFailed(?int $num_of_rows_failed): ImportCustomObjectResponse
-    {
-        $this->container['num_of_rows_failed'] = $num_of_rows_failed;
-
-        return $this;
-    }
-    /**
-     * Gets num_of_rows_with_warning
-     *
-     * @return int|null
-     */
-    public function getNumOfRowsWithWarning(): ?int
-    {
-        return $this->container['num_of_rows_with_warning'] ?? null;
-    }
-
-    /**
-     * Sets num_of_rows_with_warning
-     *
-     * @param int|null $num_of_rows_with_warning Number of rows with a warning so far
-     *
-     * @return self
-     */
-    public function setNumOfRowsWithWarning(?int $num_of_rows_with_warning): ImportCustomObjectResponse
-    {
-        $this->container['num_of_rows_with_warning'] = $num_of_rows_with_warning;
-
-        return $this;
-    }
-    /**
-     * Gets object_api_name
-     *
-     * @return string
-     */
-    public function getObjectApiName(): string
-    {
-        return $this->container['object_api_name'];
-    }
-
-    /**
-     * Sets object_api_name
-     *
-     * @param string $object_api_name Object API Name
-     *
-     * @return self
-     */
-    public function setObjectApiName(string $object_api_name): ImportCustomObjectResponse
-    {
-        $this->container['object_api_name'] = $object_api_name;
-
-        return $this;
-    }
-    /**
-     * Gets operation
-     *
-     * @return string
-     */
-    public function getOperation(): string
-    {
-        return $this->container['operation'];
-    }
-
-    /**
-     * Sets operation
-     *
-     * @param string $operation Bulk operation type. Can be import or export
-     *
-     * @return self
-     */
-    public function setOperation(string $operation): ImportCustomObjectResponse
-    {
-        $this->container['operation'] = $operation;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status of the batch
-     *
-     * @return self
-     */
-    public function setStatus(string $status): ImportCustomObjectResponse
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

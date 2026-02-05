@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     smart_campaign_id: int,
  *     updated_at: string,
  * }
+ *
+ * @method string getCreatedAt()
+ * @method SmartCampaign setCreatedAt(string $created_at)
+ * @method int getSmartCampaignId()
+ * @method SmartCampaign setSmartCampaignId(int $smart_campaign_id)
+ * @method string getUpdatedAt()
+ * @method SmartCampaign setUpdatedAt(string $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SmartCampaignArray>
  * @implements \ArrayAccess<key-of<SmartCampaignArray>, value-of<SmartCampaignArray>>
  * @psalm-suppress MixedReturnStatement
@@ -112,75 +120,6 @@ class SmartCampaign extends ModelBase implements ModelInterface, \ArrayAccess, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return string
-     */
-    public function getCreatedAt(): string
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string $created_at Datetime when the smart campaign was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(string $created_at): SmartCampaign
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets smart_campaign_id
-     *
-     * @return int
-     */
-    public function getSmartCampaignId(): int
-    {
-        return $this->container['smart_campaign_id'];
-    }
-
-    /**
-     * Sets smart_campaign_id
-     *
-     * @param int $smart_campaign_id Unique integer id of the smart campaign
-     *
-     * @return self
-     */
-    public function setSmartCampaignId(int $smart_campaign_id): SmartCampaign
-    {
-        $this->container['smart_campaign_id'] = $smart_campaign_id;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return string
-     */
-    public function getUpdatedAt(): string
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param string $updated_at Datetime when the smart campaign was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(string $updated_at): SmartCampaign
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

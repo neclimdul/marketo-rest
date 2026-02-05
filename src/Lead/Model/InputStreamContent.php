@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     content_type?: ?string,
  *     input_stream?: ?object,
  * }
+ *
+ * @method string|null getContentType()
+ * @method InputStreamContent setContentType(string|null $content_type)
+ * @method object|null getInputStream()
+ * @method InputStreamContent setInputStream(object|null $input_stream)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<InputStreamContentArray>
  * @implements \ArrayAccess<key-of<InputStreamContentArray>, value-of<InputStreamContentArray>>
  * @psalm-suppress MixedReturnStatement
@@ -103,52 +109,6 @@ class InputStreamContent extends ModelBase implements ModelInterface, \ArrayAcce
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content_type
-     *
-     * @return string|null
-     */
-    public function getContentType(): ?string
-    {
-        return $this->container['content_type'] ?? null;
-    }
-
-    /**
-     * Sets content_type
-     *
-     * @param string|null $content_type content_type
-     *
-     * @return self
-     */
-    public function setContentType(?string $content_type): InputStreamContent
-    {
-        $this->container['content_type'] = $content_type;
-
-        return $this;
-    }
-    /**
-     * Gets input_stream
-     *
-     * @return object|null
-     */
-    public function getInputStream(): ?object
-    {
-        return $this->container['input_stream'] ?? null;
-    }
-
-    /**
-     * Sets input_stream
-     *
-     * @param object|null $input_stream input_stream
-     *
-     * @return self
-     */
-    public function setInputStream(?object $input_stream): InputStreamContent
-    {
-        $this->container['input_stream'] = $input_stream;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     segmentation?: ?int,
  *     updated_at?: ?\DateTime,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Asset\Model\EmailDynamicContentItem[]|null getContent()
+ * @method EmailDynamicContentResponse setContent(\NecLimDul\MarketoRest\Asset\Model\EmailDynamicContentItem[]|null $content)
+ * @method \DateTime|null getCreatedAt()
+ * @method EmailDynamicContentResponse setCreatedAt(\DateTime|null $created_at)
+ * @method int|null getId()
+ * @method EmailDynamicContentResponse setId(int|null $id)
+ * @method int|null getSegmentation()
+ * @method EmailDynamicContentResponse setSegmentation(int|null $segmentation)
+ * @method \DateTime|null getUpdatedAt()
+ * @method EmailDynamicContentResponse setUpdatedAt(\DateTime|null $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<EmailDynamicContentResponseArray>
  * @implements \ArrayAccess<key-of<EmailDynamicContentResponseArray>, value-of<EmailDynamicContentResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -122,121 +134,6 @@ class EmailDynamicContentResponse extends ModelBase implements ModelInterface, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailDynamicContentItem[]|null
-     */
-    public function getContent(): ?array
-    {
-        return $this->container['content'] ?? null;
-    }
-
-    /**
-     * Sets content
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailDynamicContentItem[]|null $content List of variations in the section
-     *
-     * @return self
-     */
-    public function setContent(?array $content): EmailDynamicContentResponse
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at Datetime when the section was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?\DateTime $created_at): EmailDynamicContentResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Id of the dnamic content section
-     *
-     * @return self
-     */
-    public function setId(?int $id): EmailDynamicContentResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets segmentation
-     *
-     * @return int|null
-     */
-    public function getSegmentation(): ?int
-    {
-        return $this->container['segmentation'] ?? null;
-    }
-
-    /**
-     * Sets segmentation
-     *
-     * @param int|null $segmentation Segmentation to which the section is linked
-     *
-     * @return self
-     */
-    public function setSegmentation(?int $segmentation): EmailDynamicContentResponse
-    {
-        $this->container['segmentation'] = $segmentation;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at Datetime when the section was last updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?\DateTime $updated_at): EmailDynamicContentResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

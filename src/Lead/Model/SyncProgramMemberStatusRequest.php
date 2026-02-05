@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     status_name: string,
  *     input: \NecLimDul\MarketoRest\Lead\Model\ProgramMemberStatus[],
  * }
+ *
+ * @method string getStatusName()
+ * @method SyncProgramMemberStatusRequest setStatusName(string $status_name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ProgramMemberStatus[] getInput()
+ * @method SyncProgramMemberStatusRequest setInput(\NecLimDul\MarketoRest\Lead\Model\ProgramMemberStatus[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SyncProgramMemberStatusRequestArray>
  * @implements \ArrayAccess<key-of<SyncProgramMemberStatusRequestArray>, value-of<SyncProgramMemberStatusRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -105,52 +111,6 @@ class SyncProgramMemberStatusRequest extends ModelBase implements ModelInterface
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets status_name
-     *
-     * @return string
-     */
-    public function getStatusName(): string
-    {
-        return $this->container['status_name'];
-    }
-
-    /**
-     * Sets status_name
-     *
-     * @param string $status_name Program member status
-     *
-     * @return self
-     */
-    public function setStatusName(string $status_name): SyncProgramMemberStatusRequest
-    {
-        $this->container['status_name'] = $status_name;
-
-        return $this;
-    }
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMemberStatus[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ProgramMemberStatus[] $input List of input records
-     *
-     * @return self
-     */
-    public function setInput(array $input): SyncProgramMemberStatusRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

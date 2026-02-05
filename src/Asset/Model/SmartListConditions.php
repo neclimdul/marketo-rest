@@ -35,6 +35,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     values: string[],
  *     is_primary: bool,
  * }
+ *
+ * @method int getActivityAttributeId()
+ * @method SmartListConditions setActivityAttributeId(int $activity_attribute_id)
+ * @method string getActivityAttributeName()
+ * @method SmartListConditions setActivityAttributeName(string $activity_attribute_name)
+ * @method string getOperator()
+ * @method SmartListConditions setOperator(string $operator)
+ * @method string[] getValues()
+ * @method SmartListConditions setValues(string[] $values)
+ * @method bool getIsPrimary()
+ * @method SmartListConditions setIsPrimary(bool $is_primary)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SmartListConditionsArray>
  * @implements \ArrayAccess<key-of<SmartListConditionsArray>, value-of<SmartListConditionsArray>>
  * @psalm-suppress MixedReturnStatement
@@ -126,121 +138,6 @@ class SmartListConditions extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets activity_attribute_id
-     *
-     * @return int
-     */
-    public function getActivityAttributeId(): int
-    {
-        return $this->container['activity_attribute_id'];
-    }
-
-    /**
-     * Sets activity_attribute_id
-     *
-     * @param int $activity_attribute_id Id of the activity attribute
-     *
-     * @return self
-     */
-    public function setActivityAttributeId(int $activity_attribute_id): SmartListConditions
-    {
-        $this->container['activity_attribute_id'] = $activity_attribute_id;
-
-        return $this;
-    }
-    /**
-     * Gets activity_attribute_name
-     *
-     * @return string
-     */
-    public function getActivityAttributeName(): string
-    {
-        return $this->container['activity_attribute_name'];
-    }
-
-    /**
-     * Sets activity_attribute_name
-     *
-     * @param string $activity_attribute_name Name of activity attribute
-     *
-     * @return self
-     */
-    public function setActivityAttributeName(string $activity_attribute_name): SmartListConditions
-    {
-        $this->container['activity_attribute_name'] = $activity_attribute_name;
-
-        return $this;
-    }
-    /**
-     * Gets operator
-     *
-     * @return string
-     */
-    public function getOperator(): string
-    {
-        return $this->container['operator'];
-    }
-
-    /**
-     * Sets operator
-     *
-     * @param string $operator Value of operator
-     *
-     * @return self
-     */
-    public function setOperator(string $operator): SmartListConditions
-    {
-        $this->container['operator'] = $operator;
-
-        return $this;
-    }
-    /**
-     * Gets values
-     *
-     * @return string[]
-     */
-    public function getValues(): array
-    {
-        return $this->container['values'];
-    }
-
-    /**
-     * Sets values
-     *
-     * @param string[] $values List of values
-     *
-     * @return self
-     */
-    public function setValues(array $values): SmartListConditions
-    {
-        $this->container['values'] = $values;
-
-        return $this;
-    }
-    /**
-     * Gets is_primary
-     *
-     * @return bool
-     */
-    public function getIsPrimary(): bool
-    {
-        return $this->container['is_primary'];
-    }
-
-    /**
-     * Sets is_primary
-     *
-     * @param bool $is_primary Whether the condition is primary or not (first condition of the smart list)
-     *
-     * @return self
-     */
-    public function setIsPrimary(bool $is_primary): SmartListConditions
-    {
-        $this->container['is_primary'] = $is_primary;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

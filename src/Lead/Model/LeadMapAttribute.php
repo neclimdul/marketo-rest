@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     name: string,
  *     read_only?: ?bool,
  * }
+ *
+ * @method string getName()
+ * @method LeadMapAttribute setName(string $name)
+ * @method bool|null getReadOnly()
+ * @method LeadMapAttribute setReadOnly(bool|null $read_only)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadMapAttributeArray>
  * @implements \ArrayAccess<key-of<LeadMapAttributeArray>, value-of<LeadMapAttributeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -104,52 +110,6 @@ class LeadMapAttribute extends ModelBase implements ModelInterface, \ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the attribute
-     *
-     * @return self
-     */
-    public function setName(string $name): LeadMapAttribute
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets read_only
-     *
-     * @return bool|null
-     */
-    public function getReadOnly(): ?bool
-    {
-        return $this->container['read_only'] ?? null;
-    }
-
-    /**
-     * Sets read_only
-     *
-     * @param bool|null $read_only Whether the attribute is read only
-     *
-     * @return self
-     */
-    public function setReadOnly(?bool $read_only): LeadMapAttribute
-    {
-        $this->container['read_only'] = $read_only;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

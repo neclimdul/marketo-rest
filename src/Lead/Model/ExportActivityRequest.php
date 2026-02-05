@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     filter: \NecLimDul\MarketoRest\Lead\Model\ExportActivityFilter,
  *     format?: ?string,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null getColumnHeaderNames()
+ * @method ExportActivityRequest setColumnHeaderNames(\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null $column_header_names)
+ * @method string[] getFields()
+ * @method ExportActivityRequest setFields(string[] $fields)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ExportActivityFilter getFilter()
+ * @method ExportActivityRequest setFilter(\NecLimDul\MarketoRest\Lead\Model\ExportActivityFilter $filter)
+ * @method string|null getFormat()
+ * @method ExportActivityRequest setFormat(string|null $format)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ExportActivityRequestArray>
  * @implements \ArrayAccess<key-of<ExportActivityRequestArray>, value-of<ExportActivityRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -115,98 +125,6 @@ class ExportActivityRequest extends ModelBase implements ModelInterface, \ArrayA
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets column_header_names
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null
-     */
-    public function getColumnHeaderNames(): ?\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames
-    {
-        return $this->container['column_header_names'] ?? null;
-    }
-
-    /**
-     * Sets column_header_names
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null $column_header_names column_header_names
-     *
-     * @return self
-     */
-    public function setColumnHeaderNames(?\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames $column_header_names): ExportActivityRequest
-    {
-        $this->container['column_header_names'] = $column_header_names;
-
-        return $this;
-    }
-    /**
-     * Gets fields
-     *
-     * @return string[]
-     */
-    public function getFields(): array
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param string[] $fields Array of strings containing field values. Used to reduce the number of fields contained in export file. Select one or more of: marketoGUID, leadId, activityDate, activityTypeId, campaignId, primaryAttributeValueId, primaryAttributeValue, actionResult
-     *
-     * @return self
-     */
-    public function setFields(array $fields): ExportActivityRequest
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-    /**
-     * Gets filter
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ExportActivityFilter
-     */
-    public function getFilter(): \NecLimDul\MarketoRest\Lead\Model\ExportActivityFilter
-    {
-        return $this->container['filter'];
-    }
-
-    /**
-     * Sets filter
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportActivityFilter $filter filter
-     *
-     * @return self
-     */
-    public function setFilter(\NecLimDul\MarketoRest\Lead\Model\ExportActivityFilter $filter): ExportActivityRequest
-    {
-        $this->container['filter'] = $filter;
-
-        return $this;
-    }
-    /**
-     * Gets format
-     *
-     * @return string|null
-     */
-    public function getFormat(): ?string
-    {
-        return $this->container['format'] ?? null;
-    }
-
-    /**
-     * Sets format
-     *
-     * @param string|null $format File format to create(\"CSV\", \"TSV\", \"SSV\"). Default is \"CSV\"
-     *
-     * @return self
-     */
-    public function setFormat(?string $format): ExportActivityRequest
-    {
-        $this->container['format'] = $format;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -36,6 +36,24 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     lead_id: int,
  *     marketo_guid?: ?string,
  * }
+ *
+ * @method \DateTime getActivityDate()
+ * @method LeadChange setActivityDate(\DateTime $activity_date)
+ * @method int getActivityTypeId()
+ * @method LeadChange setActivityTypeId(int $activity_type_id)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Attribute[] getAttributes()
+ * @method LeadChange setAttributes(\NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes)
+ * @method int|null getCampaignId()
+ * @method LeadChange setCampaignId(int|null $campaign_id)
+ * @method \NecLimDul\MarketoRest\Lead\Model\LeadChangeField[]|null getFields()
+ * @method LeadChange setFields(\NecLimDul\MarketoRest\Lead\Model\LeadChangeField[]|null $fields)
+ * @method int getId()
+ * @method LeadChange setId(int $id)
+ * @method int getLeadId()
+ * @method LeadChange setLeadId(int $lead_id)
+ * @method string|null getMarketoGuid()
+ * @method LeadChange setMarketoGuid(string|null $marketo_guid)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadChangeArray>
  * @implements \ArrayAccess<key-of<LeadChangeArray>, value-of<LeadChangeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -143,190 +161,6 @@ class LeadChange extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets activity_date
-     *
-     * @return \DateTime
-     */
-    public function getActivityDate(): \DateTime
-    {
-        return $this->container['activity_date'];
-    }
-
-    /**
-     * Sets activity_date
-     *
-     * @param \DateTime $activity_date Datetime of the activity
-     *
-     * @return self
-     */
-    public function setActivityDate(\DateTime $activity_date): LeadChange
-    {
-        $this->container['activity_date'] = $activity_date;
-
-        return $this;
-    }
-    /**
-     * Gets activity_type_id
-     *
-     * @return int
-     */
-    public function getActivityTypeId(): int
-    {
-        return $this->container['activity_type_id'];
-    }
-
-    /**
-     * Sets activity_type_id
-     *
-     * @param int $activity_type_id Id of the activity type
-     *
-     * @return self
-     */
-    public function setActivityTypeId(int $activity_type_id): LeadChange
-    {
-        $this->container['activity_type_id'] = $activity_type_id;
-
-        return $this;
-    }
-    /**
-     * Gets attributes
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Attribute[]
-     */
-    public function getAttributes(): array
-    {
-        return $this->container['attributes'];
-    }
-
-    /**
-     * Sets attributes
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
-     *
-     * @return self
-     */
-    public function setAttributes(array $attributes): LeadChange
-    {
-        $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
-    /**
-     * Gets campaign_id
-     *
-     * @return int|null
-     */
-    public function getCampaignId(): ?int
-    {
-        return $this->container['campaign_id'] ?? null;
-    }
-
-    /**
-     * Sets campaign_id
-     *
-     * @param int|null $campaign_id campaign_id
-     *
-     * @return self
-     */
-    public function setCampaignId(?int $campaign_id): LeadChange
-    {
-        $this->container['campaign_id'] = $campaign_id;
-
-        return $this;
-    }
-    /**
-     * Gets fields
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadChangeField[]|null
-     */
-    public function getFields(): ?array
-    {
-        return $this->container['fields'] ?? null;
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\LeadChangeField[]|null $fields fields
-     *
-     * @return self
-     */
-    public function setFields(?array $fields): LeadChange
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Integer id of the activity. For instances which have been migrated to Activity Service, this field may not be present, and should not be treated as unique.
-     *
-     * @return self
-     */
-    public function setId(int $id): LeadChange
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets lead_id
-     *
-     * @return int
-     */
-    public function getLeadId(): int
-    {
-        return $this->container['lead_id'];
-    }
-
-    /**
-     * Sets lead_id
-     *
-     * @param int $lead_id Id of the lead associated to the activity
-     *
-     * @return self
-     */
-    public function setLeadId(int $lead_id): LeadChange
-    {
-        $this->container['lead_id'] = $lead_id;
-
-        return $this;
-    }
-    /**
-     * Gets marketo_guid
-     *
-     * @return string|null
-     */
-    public function getMarketoGuid(): ?string
-    {
-        return $this->container['marketo_guid'] ?? null;
-    }
-
-    /**
-     * Sets marketo_guid
-     *
-     * @param string|null $marketo_guid Unique id of the activity (128 character string)
-     *
-     * @return self
-     */
-    public function setMarketoGuid(?string $marketo_guid): LeadChange
-    {
-        $this->container['marketo_guid'] = $marketo_guid;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

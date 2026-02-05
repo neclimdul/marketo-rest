@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type AddRichTextRequestArray array{
  *     text: string,
  * }
+ *
+ * @method string getText()
+ * @method AddRichTextRequest setText(string $text)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<AddRichTextRequestArray>
  * @implements \ArrayAccess<key-of<AddRichTextRequestArray>, value-of<AddRichTextRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class AddRichTextRequest extends ModelBase implements ModelInterface, \ArrayAcce
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets text
-     *
-     * @return string
-     */
-    public function getText(): string
-    {
-        return $this->container['text'];
-    }
-
-    /**
-     * Sets text
-     *
-     * @param string $text Multipart file. HTML Content for the rich text field.
-     *
-     * @return self
-     */
-    public function setText(string $text): AddRichTextRequest
-    {
-        $this->container['text'] = $text;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -35,6 +35,18 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     is_html_encoding_in_email?: ?bool,
  *     is_sensitive?: ?bool,
  * }
+ *
+ * @method string|null getDisplayName()
+ * @method UpdateLeadField setDisplayName(string|null $display_name)
+ * @method string|null getDescription()
+ * @method UpdateLeadField setDescription(string|null $description)
+ * @method bool|null getIsHidden()
+ * @method UpdateLeadField setIsHidden(bool|null $is_hidden)
+ * @method bool|null getIsHtmlEncodingInEmail()
+ * @method UpdateLeadField setIsHtmlEncodingInEmail(bool|null $is_html_encoding_in_email)
+ * @method bool|null getIsSensitive()
+ * @method UpdateLeadField setIsSensitive(bool|null $is_sensitive)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateLeadFieldArray>
  * @implements \ArrayAccess<key-of<UpdateLeadFieldArray>, value-of<UpdateLeadFieldArray>>
  * @psalm-suppress MixedReturnStatement
@@ -120,121 +132,6 @@ class UpdateLeadField extends ModelBase implements ModelInterface, \ArrayAccess,
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets display_name
-     *
-     * @return string|null
-     */
-    public function getDisplayName(): ?string
-    {
-        return $this->container['display_name'] ?? null;
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string|null $display_name UI display-name of the field
-     *
-     * @return self
-     */
-    public function setDisplayName(?string $display_name): UpdateLeadField
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the field
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): UpdateLeadField
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets is_hidden
-     *
-     * @return bool|null
-     */
-    public function getIsHidden(): ?bool
-    {
-        return $this->container['is_hidden'] ?? null;
-    }
-
-    /**
-     * Sets is_hidden
-     *
-     * @param bool|null $is_hidden If set to true, the field is hidden. Default is false
-     *
-     * @return self
-     */
-    public function setIsHidden(?bool $is_hidden): UpdateLeadField
-    {
-        $this->container['is_hidden'] = $is_hidden;
-
-        return $this;
-    }
-    /**
-     * Gets is_html_encoding_in_email
-     *
-     * @return bool|null
-     */
-    public function getIsHtmlEncodingInEmail(): ?bool
-    {
-        return $this->container['is_html_encoding_in_email'] ?? null;
-    }
-
-    /**
-     * Sets is_html_encoding_in_email
-     *
-     * @param bool|null $is_html_encoding_in_email If set to true, field is encoded as HTML in email. Default is true
-     *
-     * @return self
-     */
-    public function setIsHtmlEncodingInEmail(?bool $is_html_encoding_in_email): UpdateLeadField
-    {
-        $this->container['is_html_encoding_in_email'] = $is_html_encoding_in_email;
-
-        return $this;
-    }
-    /**
-     * Gets is_sensitive
-     *
-     * @return bool|null
-     */
-    public function getIsSensitive(): ?bool
-    {
-        return $this->container['is_sensitive'] ?? null;
-    }
-
-    /**
-     * Sets is_sensitive
-     *
-     * @param bool|null $is_sensitive If set to true, field is marked as sensitive. Default is false
-     *
-     * @return self
-     */
-    public function setIsSensitive(?bool $is_sensitive): UpdateLeadField
-    {
-        $this->container['is_sensitive'] = $is_sensitive;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

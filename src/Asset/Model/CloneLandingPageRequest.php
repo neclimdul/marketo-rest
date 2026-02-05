@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     name: string,
  *     template?: ?int,
  * }
+ *
+ * @method string|null getDescription()
+ * @method CloneLandingPageRequest setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CloneLandingPageRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string getName()
+ * @method CloneLandingPageRequest setName(string $name)
+ * @method int|null getTemplate()
+ * @method CloneLandingPageRequest setTemplate(int|null $template)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CloneLandingPageRequestArray>
  * @implements \ArrayAccess<key-of<CloneLandingPageRequestArray>, value-of<CloneLandingPageRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -116,98 +126,6 @@ class CloneLandingPageRequest extends ModelBase implements ModelInterface, \Arra
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CloneLandingPageRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CloneLandingPageRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the landing page
-     *
-     * @return self
-     */
-    public function setName(string $name): CloneLandingPageRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets template
-     *
-     * @return int|null
-     */
-    public function getTemplate(): ?int
-    {
-        return $this->container['template'] ?? null;
-    }
-
-    /**
-     * Sets template
-     *
-     * @param int|null $template Id of the template used
-     *
-     * @return self
-     */
-    public function setTemplate(?int $template): CloneLandingPageRequest
-    {
-        $this->container['template'] = $template;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -36,6 +36,20 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     acquired_by: bool,
  *     membership_date: string,
  * }
+ *
+ * @method int getSeq()
+ * @method ProgramMember setSeq(int $seq)
+ * @method int getLeadId()
+ * @method ProgramMember setLeadId(int $lead_id)
+ * @method bool getReachedSuccess()
+ * @method ProgramMember setReachedSuccess(bool $reached_success)
+ * @method int getProgramId()
+ * @method ProgramMember setProgramId(int $program_id)
+ * @method bool getAcquiredBy()
+ * @method ProgramMember setAcquiredBy(bool $acquired_by)
+ * @method string getMembershipDate()
+ * @method ProgramMember setMembershipDate(string $membership_date)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ProgramMemberArray>
  * @implements \ArrayAccess<key-of<ProgramMemberArray>, value-of<ProgramMemberArray>>
  * @psalm-suppress MixedReturnStatement
@@ -134,144 +148,6 @@ class ProgramMember extends ModelBase implements ModelInterface, \ArrayAccess, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets seq
-     *
-     * @return int
-     */
-    public function getSeq(): int
-    {
-        return $this->container['seq'];
-    }
-
-    /**
-     * Sets seq
-     *
-     * @param int $seq Integer indicating the sequence of the record in response. This value is correlated to the order of the records included in the request input. Seq should only be part of responses and should not be submitted.
-     *
-     * @return self
-     */
-    public function setSeq(int $seq): ProgramMember
-    {
-        $this->container['seq'] = $seq;
-
-        return $this;
-    }
-    /**
-     * Gets lead_id
-     *
-     * @return int
-     */
-    public function getLeadId(): int
-    {
-        return $this->container['lead_id'];
-    }
-
-    /**
-     * Sets lead_id
-     *
-     * @param int $lead_id Unique integer id of a lead record
-     *
-     * @return self
-     */
-    public function setLeadId(int $lead_id): ProgramMember
-    {
-        $this->container['lead_id'] = $lead_id;
-
-        return $this;
-    }
-    /**
-     * Gets reached_success
-     *
-     * @return bool
-     */
-    public function getReachedSuccess(): bool
-    {
-        return $this->container['reached_success'];
-    }
-
-    /**
-     * Sets reached_success
-     *
-     * @param bool $reached_success Boolean indicating if program member has reached success criteria for program
-     *
-     * @return self
-     */
-    public function setReachedSuccess(bool $reached_success): ProgramMember
-    {
-        $this->container['reached_success'] = $reached_success;
-
-        return $this;
-    }
-    /**
-     * Gets program_id
-     *
-     * @return int
-     */
-    public function getProgramId(): int
-    {
-        return $this->container['program_id'];
-    }
-
-    /**
-     * Sets program_id
-     *
-     * @param int $program_id Unique integer id of a program
-     *
-     * @return self
-     */
-    public function setProgramId(int $program_id): ProgramMember
-    {
-        $this->container['program_id'] = $program_id;
-
-        return $this;
-    }
-    /**
-     * Gets acquired_by
-     *
-     * @return bool
-     */
-    public function getAcquiredBy(): bool
-    {
-        return $this->container['acquired_by'];
-    }
-
-    /**
-     * Sets acquired_by
-     *
-     * @param bool $acquired_by Boolean indicating if program member was acquired by program
-     *
-     * @return self
-     */
-    public function setAcquiredBy(bool $acquired_by): ProgramMember
-    {
-        $this->container['acquired_by'] = $acquired_by;
-
-        return $this;
-    }
-    /**
-     * Gets membership_date
-     *
-     * @return string
-     */
-    public function getMembershipDate(): string
-    {
-        return $this->container['membership_date'];
-    }
-
-    /**
-     * Sets membership_date
-     *
-     * @param string $membership_date Date the lead first became a member of the program
-     *
-     * @return self
-     */
-    public function setMembershipDate(string $membership_date): ProgramMember
-    {
-        $this->container['membership_date'] = $membership_date;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

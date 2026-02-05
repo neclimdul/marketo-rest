@@ -37,6 +37,26 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     stream?: ?string,
  *     updated_at: string,
  * }
+ *
+ * @method int getId()
+ * @method Program setId(int $id)
+ * @method bool getAcquiredBy()
+ * @method Program setAcquiredBy(bool $acquired_by)
+ * @method bool getIsExhausted()
+ * @method Program setIsExhausted(bool $is_exhausted)
+ * @method string getMembershipDate()
+ * @method Program setMembershipDate(string $membership_date)
+ * @method string|null getNurtureCadence()
+ * @method Program setNurtureCadence(string|null $nurture_cadence)
+ * @method string getProgressionStatus()
+ * @method Program setProgressionStatus(string $progression_status)
+ * @method bool getReachedSuccess()
+ * @method Program setReachedSuccess(bool $reached_success)
+ * @method string|null getStream()
+ * @method Program setStream(string|null $stream)
+ * @method string getUpdatedAt()
+ * @method Program setUpdatedAt(string $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ProgramArray>
  * @implements \ArrayAccess<key-of<ProgramArray>, value-of<ProgramArray>>
  * @psalm-suppress MixedReturnStatement
@@ -146,213 +166,6 @@ class Program extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSe
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of a program record
-     *
-     * @return self
-     */
-    public function setId(int $id): Program
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets acquired_by
-     *
-     * @return bool
-     */
-    public function getAcquiredBy(): bool
-    {
-        return $this->container['acquired_by'];
-    }
-
-    /**
-     * Sets acquired_by
-     *
-     * @param bool $acquired_by Whether the lead was acquired by the parent program
-     *
-     * @return self
-     */
-    public function setAcquiredBy(bool $acquired_by): Program
-    {
-        $this->container['acquired_by'] = $acquired_by;
-
-        return $this;
-    }
-    /**
-     * Gets is_exhausted
-     *
-     * @return bool
-     */
-    public function getIsExhausted(): bool
-    {
-        return $this->container['is_exhausted'];
-    }
-
-    /**
-     * Sets is_exhausted
-     *
-     * @param bool $is_exhausted Whether the lead is currently exhausted in the stream, if applicable
-     *
-     * @return self
-     */
-    public function setIsExhausted(bool $is_exhausted): Program
-    {
-        $this->container['is_exhausted'] = $is_exhausted;
-
-        return $this;
-    }
-    /**
-     * Gets membership_date
-     *
-     * @return string
-     */
-    public function getMembershipDate(): string
-    {
-        return $this->container['membership_date'];
-    }
-
-    /**
-     * Sets membership_date
-     *
-     * @param string $membership_date Date the lead first became a member of the program
-     *
-     * @return self
-     */
-    public function setMembershipDate(string $membership_date): Program
-    {
-        $this->container['membership_date'] = $membership_date;
-
-        return $this;
-    }
-    /**
-     * Gets nurture_cadence
-     *
-     * @return string|null
-     */
-    public function getNurtureCadence(): ?string
-    {
-        return $this->container['nurture_cadence'] ?? null;
-    }
-
-    /**
-     * Sets nurture_cadence
-     *
-     * @param string|null $nurture_cadence Cadence of the parent stream if applicable
-     *
-     * @return self
-     */
-    public function setNurtureCadence(?string $nurture_cadence): Program
-    {
-        $this->container['nurture_cadence'] = $nurture_cadence;
-
-        return $this;
-    }
-    /**
-     * Gets progression_status
-     *
-     * @return string
-     */
-    public function getProgressionStatus(): string
-    {
-        return $this->container['progression_status'];
-    }
-
-    /**
-     * Sets progression_status
-     *
-     * @param string $progression_status Program status of the lead in the parent program
-     *
-     * @return self
-     */
-    public function setProgressionStatus(string $progression_status): Program
-    {
-        $this->container['progression_status'] = $progression_status;
-
-        return $this;
-    }
-    /**
-     * Gets reached_success
-     *
-     * @return bool
-     */
-    public function getReachedSuccess(): bool
-    {
-        return $this->container['reached_success'];
-    }
-
-    /**
-     * Sets reached_success
-     *
-     * @param bool $reached_success Whether the lead is in a success-status in the parent program
-     *
-     * @return self
-     */
-    public function setReachedSuccess(bool $reached_success): Program
-    {
-        $this->container['reached_success'] = $reached_success;
-
-        return $this;
-    }
-    /**
-     * Gets stream
-     *
-     * @return string|null
-     */
-    public function getStream(): ?string
-    {
-        return $this->container['stream'] ?? null;
-    }
-
-    /**
-     * Sets stream
-     *
-     * @param string|null $stream Stream that the lead is a member of, if the parent program is an engagement program
-     *
-     * @return self
-     */
-    public function setStream(?string $stream): Program
-    {
-        $this->container['stream'] = $stream;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return string
-     */
-    public function getUpdatedAt(): string
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param string $updated_at Datetime when the program was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(string $updated_at): Program
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

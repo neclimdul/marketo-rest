@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     delete_by?: ?string,
  *     input: \NecLimDul\MarketoRest\Lead\Model\NamedAccount[],
  * }
+ *
+ * @method string|null getDeleteBy()
+ * @method DeleteNamedAccountRequest setDeleteBy(string|null $delete_by)
+ * @method \NecLimDul\MarketoRest\Lead\Model\NamedAccount[] getInput()
+ * @method DeleteNamedAccountRequest setInput(\NecLimDul\MarketoRest\Lead\Model\NamedAccount[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<DeleteNamedAccountRequestArray>
  * @implements \ArrayAccess<key-of<DeleteNamedAccountRequestArray>, value-of<DeleteNamedAccountRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -104,52 +110,6 @@ class DeleteNamedAccountRequest extends ModelBase implements ModelInterface, \Ar
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets delete_by
-     *
-     * @return string|null
-     */
-    public function getDeleteBy(): ?string
-    {
-        return $this->container['delete_by'] ?? null;
-    }
-
-    /**
-     * Sets delete_by
-     *
-     * @param string|null $delete_by Key to use for deletion of the record
-     *
-     * @return self
-     */
-    public function setDeleteBy(?string $delete_by): DeleteNamedAccountRequest
-    {
-        $this->container['delete_by'] = $delete_by;
-
-        return $this;
-    }
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\NamedAccount[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\NamedAccount[] $input List of input records
-     *
-     * @return self
-     */
-    public function setInput(array $input): DeleteNamedAccountRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

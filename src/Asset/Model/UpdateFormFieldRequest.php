@@ -49,6 +49,50 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     values?: ?string,
  *     visible_lines?: ?int,
  * }
+ *
+ * @method int|null getBlankFields()
+ * @method UpdateFormFieldRequest setBlankFields(int|null $blank_fields)
+ * @method string|null getDefaultValue()
+ * @method UpdateFormFieldRequest setDefaultValue(string|null $default_value)
+ * @method string|null getFieldType()
+ * @method UpdateFormFieldRequest setFieldType(string|null $field_type)
+ * @method int|null getFieldWidth()
+ * @method UpdateFormFieldRequest setFieldWidth(int|null $field_width)
+ * @method bool|null getFormPrefill()
+ * @method UpdateFormFieldRequest setFormPrefill(bool|null $form_prefill)
+ * @method bool|null getIsSensitive()
+ * @method UpdateFormFieldRequest setIsSensitive(bool|null $is_sensitive)
+ * @method string|null getHintText()
+ * @method UpdateFormFieldRequest setHintText(string|null $hint_text)
+ * @method bool|null getInitiallyChecked()
+ * @method UpdateFormFieldRequest setInitiallyChecked(bool|null $initially_checked)
+ * @method string|null getInstructions()
+ * @method UpdateFormFieldRequest setInstructions(string|null $instructions)
+ * @method string|null getLabel()
+ * @method UpdateFormFieldRequest setLabel(string|null $label)
+ * @method bool|null getLabelToRight()
+ * @method UpdateFormFieldRequest setLabelToRight(bool|null $label_to_right)
+ * @method int|null getLabelWidth()
+ * @method UpdateFormFieldRequest setLabelWidth(int|null $label_width)
+ * @method string|null getMaskInput()
+ * @method UpdateFormFieldRequest setMaskInput(string|null $mask_input)
+ * @method int|null getMaxLength()
+ * @method UpdateFormFieldRequest setMaxLength(int|null $max_length)
+ * @method float|null getMaxValue()
+ * @method UpdateFormFieldRequest setMaxValue(float|null $max_value)
+ * @method float|null getMinValue()
+ * @method UpdateFormFieldRequest setMinValue(float|null $min_value)
+ * @method bool|null getMultiSelect()
+ * @method UpdateFormFieldRequest setMultiSelect(bool|null $multi_select)
+ * @method bool|null getRequired()
+ * @method UpdateFormFieldRequest setRequired(bool|null $required)
+ * @method string|null getValidationMessage()
+ * @method UpdateFormFieldRequest setValidationMessage(string|null $validation_message)
+ * @method string|null getValues()
+ * @method UpdateFormFieldRequest setValues(string|null $values)
+ * @method int|null getVisibleLines()
+ * @method UpdateFormFieldRequest setVisibleLines(int|null $visible_lines)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateFormFieldRequestArray>
  * @implements \ArrayAccess<key-of<UpdateFormFieldRequestArray>, value-of<UpdateFormFieldRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -205,489 +249,6 @@ class UpdateFormFieldRequest extends ModelBase implements ModelInterface, \Array
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets blank_fields
-     *
-     * @return int|null
-     */
-    public function getBlankFields(): ?int
-    {
-        return $this->container['blank_fields'] ?? null;
-    }
-
-    /**
-     * Sets blank_fields
-     *
-     * @param int|null $blank_fields Number of blank fields to show when progressive profiling is enabled
-     *
-     * @return self
-     */
-    public function setBlankFields(?int $blank_fields): UpdateFormFieldRequest
-    {
-        $this->container['blank_fields'] = $blank_fields;
-
-        return $this;
-    }
-    /**
-     * Gets default_value
-     *
-     * @return string|null
-     */
-    public function getDefaultValue(): ?string
-    {
-        return $this->container['default_value'] ?? null;
-    }
-
-    /**
-     * Sets default_value
-     *
-     * @param string|null $default_value Optional default value for the field
-     *
-     * @return self
-     */
-    public function setDefaultValue(?string $default_value): UpdateFormFieldRequest
-    {
-        $this->container['default_value'] = $default_value;
-
-        return $this;
-    }
-    /**
-     * Gets field_type
-     *
-     * @return string|null
-     */
-    public function getFieldType(): ?string
-    {
-        return $this->container['field_type'] ?? null;
-    }
-
-    /**
-     * Sets field_type
-     *
-     * @param string|null $field_type Type of field
-     *
-     * @return self
-     */
-    public function setFieldType(?string $field_type): UpdateFormFieldRequest
-    {
-        $this->container['field_type'] = $field_type;
-
-        return $this;
-    }
-    /**
-     * Gets field_width
-     *
-     * @return int|null
-     */
-    public function getFieldWidth(): ?int
-    {
-        return $this->container['field_width'] ?? null;
-    }
-
-    /**
-     * Sets field_width
-     *
-     * @param int|null $field_width Width of the input or select element
-     *
-     * @return self
-     */
-    public function setFieldWidth(?int $field_width): UpdateFormFieldRequest
-    {
-        $this->container['field_width'] = $field_width;
-
-        return $this;
-    }
-    /**
-     * Gets form_prefill
-     *
-     * @return bool|null
-     */
-    public function getFormPrefill(): ?bool
-    {
-        return $this->container['form_prefill'] ?? null;
-    }
-
-    /**
-     * Sets form_prefill
-     *
-     * @param bool|null $form_prefill Whether the field should prefill. Default true
-     *
-     * @return self
-     */
-    public function setFormPrefill(?bool $form_prefill): UpdateFormFieldRequest
-    {
-        $this->container['form_prefill'] = $form_prefill;
-
-        return $this;
-    }
-    /**
-     * Gets is_sensitive
-     *
-     * @return bool|null
-     */
-    public function getIsSensitive(): ?bool
-    {
-        return $this->container['is_sensitive'] ?? null;
-    }
-
-    /**
-     * Sets is_sensitive
-     *
-     * @param bool|null $is_sensitive Whether the field is marked as sensitive. Default false
-     *
-     * @return self
-     */
-    public function setIsSensitive(?bool $is_sensitive): UpdateFormFieldRequest
-    {
-        $this->container['is_sensitive'] = $is_sensitive;
-
-        return $this;
-    }
-    /**
-     * Gets hint_text
-     *
-     * @return string|null
-     */
-    public function getHintText(): ?string
-    {
-        return $this->container['hint_text'] ?? null;
-    }
-
-    /**
-     * Sets hint_text
-     *
-     * @param string|null $hint_text Hint text for the field
-     *
-     * @return self
-     */
-    public function setHintText(?string $hint_text): UpdateFormFieldRequest
-    {
-        $this->container['hint_text'] = $hint_text;
-
-        return $this;
-    }
-    /**
-     * Gets initially_checked
-     *
-     * @return bool|null
-     */
-    public function getInitiallyChecked(): ?bool
-    {
-        return $this->container['initially_checked'] ?? null;
-    }
-
-    /**
-     * Sets initially_checked
-     *
-     * @param bool|null $initially_checked Whether the field should be checked upon loading. Default false
-     *
-     * @return self
-     */
-    public function setInitiallyChecked(?bool $initially_checked): UpdateFormFieldRequest
-    {
-        $this->container['initially_checked'] = $initially_checked;
-
-        return $this;
-    }
-    /**
-     * Gets instructions
-     *
-     * @return string|null
-     */
-    public function getInstructions(): ?string
-    {
-        return $this->container['instructions'] ?? null;
-    }
-
-    /**
-     * Sets instructions
-     *
-     * @param string|null $instructions Instructions for the field
-     *
-     * @return self
-     */
-    public function setInstructions(?string $instructions): UpdateFormFieldRequest
-    {
-        $this->container['instructions'] = $instructions;
-
-        return $this;
-    }
-    /**
-     * Gets label
-     *
-     * @return string|null
-     */
-    public function getLabel(): ?string
-    {
-        return $this->container['label'] ?? null;
-    }
-
-    /**
-     * Sets label
-     *
-     * @param string|null $label Label of the field
-     *
-     * @return self
-     */
-    public function setLabel(?string $label): UpdateFormFieldRequest
-    {
-        $this->container['label'] = $label;
-
-        return $this;
-    }
-    /**
-     * Gets label_to_right
-     *
-     * @return bool|null
-     */
-    public function getLabelToRight(): ?bool
-    {
-        return $this->container['label_to_right'] ?? null;
-    }
-
-    /**
-     * Sets label_to_right
-     *
-     * @param bool|null $label_to_right Whether the field label should be displayed to the right of the input/select element. Default false
-     *
-     * @return self
-     */
-    public function setLabelToRight(?bool $label_to_right): UpdateFormFieldRequest
-    {
-        $this->container['label_to_right'] = $label_to_right;
-
-        return $this;
-    }
-    /**
-     * Gets label_width
-     *
-     * @return int|null
-     */
-    public function getLabelWidth(): ?int
-    {
-        return $this->container['label_width'] ?? null;
-    }
-
-    /**
-     * Sets label_width
-     *
-     * @param int|null $label_width Width of the field label element
-     *
-     * @return self
-     */
-    public function setLabelWidth(?int $label_width): UpdateFormFieldRequest
-    {
-        $this->container['label_width'] = $label_width;
-
-        return $this;
-    }
-    /**
-     * Gets mask_input
-     *
-     * @return string|null
-     */
-    public function getMaskInput(): ?string
-    {
-        return $this->container['mask_input'] ?? null;
-    }
-
-    /**
-     * Sets mask_input
-     *
-     * @param string|null $mask_input Optional input mask for the field
-     *
-     * @return self
-     */
-    public function setMaskInput(?string $mask_input): UpdateFormFieldRequest
-    {
-        $this->container['mask_input'] = $mask_input;
-
-        return $this;
-    }
-    /**
-     * Gets max_length
-     *
-     * @return int|null
-     */
-    public function getMaxLength(): ?int
-    {
-        return $this->container['max_length'] ?? null;
-    }
-
-    /**
-     * Sets max_length
-     *
-     * @param int|null $max_length Maximum length for text type fields
-     *
-     * @return self
-     */
-    public function setMaxLength(?int $max_length): UpdateFormFieldRequest
-    {
-        $this->container['max_length'] = $max_length;
-
-        return $this;
-    }
-    /**
-     * Gets max_value
-     *
-     * @return float|null
-     */
-    public function getMaxValue(): ?float
-    {
-        return $this->container['max_value'] ?? null;
-    }
-
-    /**
-     * Sets max_value
-     *
-     * @param float|null $max_value Maximum value accepted by the field
-     *
-     * @return self
-     */
-    public function setMaxValue(?float $max_value): UpdateFormFieldRequest
-    {
-        $this->container['max_value'] = $max_value;
-
-        return $this;
-    }
-    /**
-     * Gets min_value
-     *
-     * @return float|null
-     */
-    public function getMinValue(): ?float
-    {
-        return $this->container['min_value'] ?? null;
-    }
-
-    /**
-     * Sets min_value
-     *
-     * @param float|null $min_value Minimum value accepted by the field
-     *
-     * @return self
-     */
-    public function setMinValue(?float $min_value): UpdateFormFieldRequest
-    {
-        $this->container['min_value'] = $min_value;
-
-        return $this;
-    }
-    /**
-     * Gets multi_select
-     *
-     * @return bool|null
-     */
-    public function getMultiSelect(): ?bool
-    {
-        return $this->container['multi_select'] ?? null;
-    }
-
-    /**
-     * Sets multi_select
-     *
-     * @param bool|null $multi_select Whether the field should allow multiple selections. Default false
-     *
-     * @return self
-     */
-    public function setMultiSelect(?bool $multi_select): UpdateFormFieldRequest
-    {
-        $this->container['multi_select'] = $multi_select;
-
-        return $this;
-    }
-    /**
-     * Gets required
-     *
-     * @return bool|null
-     */
-    public function getRequired(): ?bool
-    {
-        return $this->container['required'] ?? null;
-    }
-
-    /**
-     * Sets required
-     *
-     * @param bool|null $required Whether the field is required to submit the form. Default false
-     *
-     * @return self
-     */
-    public function setRequired(?bool $required): UpdateFormFieldRequest
-    {
-        $this->container['required'] = $required;
-
-        return $this;
-    }
-    /**
-     * Gets validation_message
-     *
-     * @return string|null
-     */
-    public function getValidationMessage(): ?string
-    {
-        return $this->container['validation_message'] ?? null;
-    }
-
-    /**
-     * Sets validation_message
-     *
-     * @param string|null $validation_message Validation message to display on failed validation
-     *
-     * @return self
-     */
-    public function setValidationMessage(?string $validation_message): UpdateFormFieldRequest
-    {
-        $this->container['validation_message'] = $validation_message;
-
-        return $this;
-    }
-    /**
-     * Gets values
-     *
-     * @return string|null
-     */
-    public function getValues(): ?string
-    {
-        return $this->container['values'] ?? null;
-    }
-
-    /**
-     * Sets values
-     *
-     * @param string|null $values Array of JSON objects that contain field attributes. Only for select-field types. Example: values=[{'label':'Select...','value':'','isDefault':true,'selected':true}, {'label':'MR','value':'Mr'}, {'label':'MS','value':'Ms'}, {'label':'MRS','value':'Mrs'}, {'label':'DR','value':'Dr'}, {'label':'PROF','value':'Prof'}]
-     *
-     * @return self
-     */
-    public function setValues(?string $values): UpdateFormFieldRequest
-    {
-        $this->container['values'] = $values;
-
-        return $this;
-    }
-    /**
-     * Gets visible_lines
-     *
-     * @return int|null
-     */
-    public function getVisibleLines(): ?int
-    {
-        return $this->container['visible_lines'] ?? null;
-    }
-
-    /**
-     * Sets visible_lines
-     *
-     * @param int|null $visible_lines Number of lines to display for the field element
-     *
-     * @return self
-     */
-    public function setVisibleLines(?int $visible_lines): UpdateFormFieldRequest
-    {
-        $this->container['visible_lines'] = $visible_lines;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     name?: ?string,
  *     type: string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method UpdateFolderRequest setDescription(string|null $description)
+ * @method bool|null getIsArchive()
+ * @method UpdateFolderRequest setIsArchive(bool|null $is_archive)
+ * @method string|null getName()
+ * @method UpdateFolderRequest setName(string|null $name)
+ * @method string getType()
+ * @method UpdateFolderRequest setType(string $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateFolderRequestArray>
  * @implements \ArrayAccess<key-of<UpdateFolderRequestArray>, value-of<UpdateFolderRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -140,108 +150,6 @@ class UpdateFolderRequest extends ModelBase implements ModelInterface, \ArrayAcc
         ];
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): UpdateFolderRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets is_archive
-     *
-     * @return bool|null
-     */
-    public function getIsArchive(): ?bool
-    {
-        return $this->container['is_archive'] ?? null;
-    }
-
-    /**
-     * Sets is_archive
-     *
-     * @param bool|null $is_archive Whether the folder is archived or not. Toggling this value will change the archival status of the folder
-     *
-     * @return self
-     */
-    public function setIsArchive(?bool $is_archive): UpdateFolderRequest
-    {
-        $this->container['is_archive'] = $is_archive;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the Folder
-     *
-     * @return self
-     */
-    public function setName(?string $name): UpdateFolderRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of folder. 'Folder' or 'Program'
-     *
-     * @return self
-     */
-    public function setType(string $type): UpdateFolderRequest
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

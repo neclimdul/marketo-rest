@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     required: bool,
  *     tag_type: string,
  * }
+ *
+ * @method string|null getAllowableValues()
+ * @method TagResponse setAllowableValues(string|null $allowable_values)
+ * @method string getApplicableProgramTypes()
+ * @method TagResponse setApplicableProgramTypes(string $applicable_program_types)
+ * @method bool getRequired()
+ * @method TagResponse setRequired(bool $required)
+ * @method string getTagType()
+ * @method TagResponse setTagType(string $tag_type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<TagResponseArray>
  * @implements \ArrayAccess<key-of<TagResponseArray>, value-of<TagResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -116,98 +126,6 @@ class TagResponse extends ModelBase implements ModelInterface, \ArrayAccess, \Js
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets allowable_values
-     *
-     * @return string|null
-     */
-    public function getAllowableValues(): ?string
-    {
-        return $this->container['allowable_values'] ?? null;
-    }
-
-    /**
-     * Sets allowable_values
-     *
-     * @param string|null $allowable_values The list of acceptable values for the tag type
-     *
-     * @return self
-     */
-    public function setAllowableValues(?string $allowable_values): TagResponse
-    {
-        $this->container['allowable_values'] = $allowable_values;
-
-        return $this;
-    }
-    /**
-     * Gets applicable_program_types
-     *
-     * @return string
-     */
-    public function getApplicableProgramTypes(): string
-    {
-        return $this->container['applicable_program_types'];
-    }
-
-    /**
-     * Sets applicable_program_types
-     *
-     * @param string $applicable_program_types Types of programs to which the tag can apply
-     *
-     * @return self
-     */
-    public function setApplicableProgramTypes(string $applicable_program_types): TagResponse
-    {
-        $this->container['applicable_program_types'] = $applicable_program_types;
-
-        return $this;
-    }
-    /**
-     * Gets required
-     *
-     * @return bool
-     */
-    public function getRequired(): bool
-    {
-        return $this->container['required'];
-    }
-
-    /**
-     * Sets required
-     *
-     * @param bool $required Whether the tag is required for its applicable program types
-     *
-     * @return self
-     */
-    public function setRequired(bool $required): TagResponse
-    {
-        $this->container['required'] = $required;
-
-        return $this;
-    }
-    /**
-     * Gets tag_type
-     *
-     * @return string
-     */
-    public function getTagType(): string
-    {
-        return $this->container['tag_type'];
-    }
-
-    /**
-     * Sets tag_type
-     *
-     * @param string $tag_type Name of the tag
-     *
-     * @return self
-     */
-    public function setTagType(string $tag_type): TagResponse
-    {
-        $this->container['tag_type'] = $tag_type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

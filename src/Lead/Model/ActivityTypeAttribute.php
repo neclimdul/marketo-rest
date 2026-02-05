@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     data_type: string,
  *     name: string,
  * }
+ *
+ * @method string|null getApiName()
+ * @method ActivityTypeAttribute setApiName(string|null $api_name)
+ * @method string getDataType()
+ * @method ActivityTypeAttribute setDataType(string $data_type)
+ * @method string getName()
+ * @method ActivityTypeAttribute setName(string $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ActivityTypeAttributeArray>
  * @implements \ArrayAccess<key-of<ActivityTypeAttributeArray>, value-of<ActivityTypeAttributeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -110,75 +118,6 @@ class ActivityTypeAttribute extends ModelBase implements ModelInterface, \ArrayA
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets api_name
-     *
-     * @return string|null
-     */
-    public function getApiName(): ?string
-    {
-        return $this->container['api_name'] ?? null;
-    }
-
-    /**
-     * Sets api_name
-     *
-     * @param string|null $api_name api_name
-     *
-     * @return self
-     */
-    public function setApiName(?string $api_name): ActivityTypeAttribute
-    {
-        $this->container['api_name'] = $api_name;
-
-        return $this;
-    }
-    /**
-     * Gets data_type
-     *
-     * @return string
-     */
-    public function getDataType(): string
-    {
-        return $this->container['data_type'];
-    }
-
-    /**
-     * Sets data_type
-     *
-     * @param string $data_type Datatype of the Attribute
-     *
-     * @return self
-     */
-    public function setDataType(string $data_type): ActivityTypeAttribute
-    {
-        $this->container['data_type'] = $data_type;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the attribute
-     *
-     * @return self
-     */
-    public function setName(string $name): ActivityTypeAttribute
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

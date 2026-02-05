@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     description?: ?string,
  *     name?: ?string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method UpdateSmartCampaignRequest setDescription(string|null $description)
+ * @method string|null getName()
+ * @method UpdateSmartCampaignRequest setName(string|null $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateSmartCampaignRequestArray>
  * @implements \ArrayAccess<key-of<UpdateSmartCampaignRequestArray>, value-of<UpdateSmartCampaignRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -103,52 +109,6 @@ class UpdateSmartCampaignRequest extends ModelBase implements ModelInterface, \A
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the smart campaign
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): UpdateSmartCampaignRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the smart campaign
-     *
-     * @return self
-     */
-    public function setName(?string $name): UpdateSmartCampaignRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     success: bool,
  *     warnings: \NecLimDul\MarketoRest\Lead\Model\Warning[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\Error[] getErrors()
+ * @method ResponseOfCustomObjectType setErrors(\NecLimDul\MarketoRest\Lead\Model\Error[] $errors)
+ * @method string getRequestId()
+ * @method ResponseOfCustomObjectType setRequestId(string $request_id)
+ * @method object[] getResult()
+ * @method ResponseOfCustomObjectType setResult(object[] $result)
+ * @method bool getSuccess()
+ * @method ResponseOfCustomObjectType setSuccess(bool $success)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Warning[] getWarnings()
+ * @method ResponseOfCustomObjectType setWarnings(\NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ResponseOfCustomObjectTypeArray>
  * @implements \ArrayAccess<key-of<ResponseOfCustomObjectTypeArray>, value-of<ResponseOfCustomObjectTypeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -123,121 +135,6 @@ class ResponseOfCustomObjectType extends ModelBase implements ModelInterface, \A
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets errors
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
-     */
-    public function getErrors(): array
-    {
-        return $this->container['errors'];
-    }
-
-    /**
-     * Sets errors
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
-     *
-     * @return self
-     */
-    public function setErrors(array $errors): ResponseOfCustomObjectType
-    {
-        $this->container['errors'] = $errors;
-
-        return $this;
-    }
-    /**
-     * Gets request_id
-     *
-     * @return string
-     */
-    public function getRequestId(): string
-    {
-        return $this->container['request_id'];
-    }
-
-    /**
-     * Sets request_id
-     *
-     * @param string $request_id Id of the request made
-     *
-     * @return self
-     */
-    public function setRequestId(string $request_id): ResponseOfCustomObjectType
-    {
-        $this->container['request_id'] = $request_id;
-
-        return $this;
-    }
-    /**
-     * Gets result
-     *
-     * @return object[]
-     */
-    public function getResult(): array
-    {
-        return $this->container['result'];
-    }
-
-    /**
-     * Sets result
-     *
-     * @param object[] $result Empty array
-     *
-     * @return self
-     */
-    public function setResult(array $result): ResponseOfCustomObjectType
-    {
-        $this->container['result'] = $result;
-
-        return $this;
-    }
-    /**
-     * Gets success
-     *
-     * @return bool
-     */
-    public function getSuccess(): bool
-    {
-        return $this->container['success'];
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool $success Whether the request succeeded
-     *
-     * @return self
-     */
-    public function setSuccess(bool $success): ResponseOfCustomObjectType
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-    /**
-     * Gets warnings
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]
-     */
-    public function getWarnings(): array
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
-     *
-     * @return self
-     */
-    public function setWarnings(array $warnings): ResponseOfCustomObjectType
-    {
-        $this->container['warnings'] = $warnings;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

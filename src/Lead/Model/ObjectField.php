@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     updateable?: ?bool,
  *     crm_managed?: ?bool,
  * }
+ *
+ * @method string|null getDataType()
+ * @method ObjectField setDataType(string|null $data_type)
+ * @method string|null getDisplayName()
+ * @method ObjectField setDisplayName(string|null $display_name)
+ * @method int|null getLength()
+ * @method ObjectField setLength(int|null $length)
+ * @method string|null getName()
+ * @method ObjectField setName(string|null $name)
+ * @method bool|null getUpdateable()
+ * @method ObjectField setUpdateable(bool|null $updateable)
+ * @method bool|null getCrmManaged()
+ * @method ObjectField setCrmManaged(bool|null $crm_managed)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ObjectFieldArray>
  * @implements \ArrayAccess<key-of<ObjectFieldArray>, value-of<ObjectFieldArray>>
  * @psalm-suppress MixedReturnStatement
@@ -124,144 +138,6 @@ class ObjectField extends ModelBase implements ModelInterface, \ArrayAccess, \Js
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets data_type
-     *
-     * @return string|null
-     */
-    public function getDataType(): ?string
-    {
-        return $this->container['data_type'] ?? null;
-    }
-
-    /**
-     * Sets data_type
-     *
-     * @param string|null $data_type Datatype of the field
-     *
-     * @return self
-     */
-    public function setDataType(?string $data_type): ObjectField
-    {
-        $this->container['data_type'] = $data_type;
-
-        return $this;
-    }
-    /**
-     * Gets display_name
-     *
-     * @return string|null
-     */
-    public function getDisplayName(): ?string
-    {
-        return $this->container['display_name'] ?? null;
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string|null $display_name UI display-name of the field
-     *
-     * @return self
-     */
-    public function setDisplayName(?string $display_name): ObjectField
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets length
-     *
-     * @return int|null
-     */
-    public function getLength(): ?int
-    {
-        return $this->container['length'] ?? null;
-    }
-
-    /**
-     * Sets length
-     *
-     * @param int|null $length Max length of the field. Only applicable to text, string, and text area.
-     *
-     * @return self
-     */
-    public function setLength(?int $length): ObjectField
-    {
-        $this->container['length'] = $length;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the field
-     *
-     * @return self
-     */
-    public function setName(?string $name): ObjectField
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets updateable
-     *
-     * @return bool|null
-     */
-    public function getUpdateable(): ?bool
-    {
-        return $this->container['updateable'] ?? null;
-    }
-
-    /**
-     * Sets updateable
-     *
-     * @param bool|null $updateable Whether the field is updateable
-     *
-     * @return self
-     */
-    public function setUpdateable(?bool $updateable): ObjectField
-    {
-        $this->container['updateable'] = $updateable;
-
-        return $this;
-    }
-    /**
-     * Gets crm_managed
-     *
-     * @return bool|null
-     */
-    public function getCrmManaged(): ?bool
-    {
-        return $this->container['crm_managed'] ?? null;
-    }
-
-    /**
-     * Sets crm_managed
-     *
-     * @param bool|null $crm_managed Whether the field is managed by CRM (native sync)
-     *
-     * @return self
-     */
-    public function setCrmManaged(?bool $crm_managed): ObjectField
-    {
-        $this->container['crm_managed'] = $crm_managed;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

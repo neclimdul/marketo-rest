@@ -33,6 +33,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     visitor_data?: ?\NecLimDul\MarketoRest\Lead\Model\VisitorData,
  *     cookie?: ?string,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\LeadFormFields getLeadFormFields()
+ * @method Form setLeadFormFields(\NecLimDul\MarketoRest\Lead\Model\LeadFormFields $lead_form_fields)
+ * @method \NecLimDul\MarketoRest\Lead\Model\VisitorData|null getVisitorData()
+ * @method Form setVisitorData(\NecLimDul\MarketoRest\Lead\Model\VisitorData|null $visitor_data)
+ * @method string|null getCookie()
+ * @method Form setCookie(string|null $cookie)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FormArray>
  * @implements \ArrayAccess<key-of<FormArray>, value-of<FormArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class Form extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSeria
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets lead_form_fields
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadFormFields
-     */
-    public function getLeadFormFields(): \NecLimDul\MarketoRest\Lead\Model\LeadFormFields
-    {
-        return $this->container['lead_form_fields'];
-    }
-
-    /**
-     * Sets lead_form_fields
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\LeadFormFields $lead_form_fields lead_form_fields
-     *
-     * @return self
-     */
-    public function setLeadFormFields(\NecLimDul\MarketoRest\Lead\Model\LeadFormFields $lead_form_fields): Form
-    {
-        $this->container['lead_form_fields'] = $lead_form_fields;
-
-        return $this;
-    }
-    /**
-     * Gets visitor_data
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\VisitorData|null
-     */
-    public function getVisitorData(): ?\NecLimDul\MarketoRest\Lead\Model\VisitorData
-    {
-        return $this->container['visitor_data'] ?? null;
-    }
-
-    /**
-     * Sets visitor_data
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\VisitorData|null $visitor_data visitor_data
-     *
-     * @return self
-     */
-    public function setVisitorData(?\NecLimDul\MarketoRest\Lead\Model\VisitorData $visitor_data): Form
-    {
-        $this->container['visitor_data'] = $visitor_data;
-
-        return $this;
-    }
-    /**
-     * Gets cookie
-     *
-     * @return string|null
-     */
-    public function getCookie(): ?string
-    {
-        return $this->container['cookie'] ?? null;
-    }
-
-    /**
-     * Sets cookie
-     *
-     * @param string|null $cookie Munchkin cookie value used to associate new lead with anonymous activities. e.g. id:123-XYZ-456&tooken:_mch-marketo.com-1594662481190-60776
-     *
-     * @return self
-     */
-    public function setCookie(?string $cookie): Form
-    {
-        $this->container['cookie'] = $cookie;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

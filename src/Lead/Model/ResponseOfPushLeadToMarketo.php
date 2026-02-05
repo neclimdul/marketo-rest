@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     success: bool,
  *     warnings: \NecLimDul\MarketoRest\Lead\Model\Warning[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\Error[] getErrors()
+ * @method ResponseOfPushLeadToMarketo setErrors(\NecLimDul\MarketoRest\Lead\Model\Error[] $errors)
+ * @method string getRequestId()
+ * @method ResponseOfPushLeadToMarketo setRequestId(string $request_id)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Lead[] getResult()
+ * @method ResponseOfPushLeadToMarketo setResult(\NecLimDul\MarketoRest\Lead\Model\Lead[] $result)
+ * @method bool getSuccess()
+ * @method ResponseOfPushLeadToMarketo setSuccess(bool $success)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Warning[] getWarnings()
+ * @method ResponseOfPushLeadToMarketo setWarnings(\NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ResponseOfPushLeadToMarketoArray>
  * @implements \ArrayAccess<key-of<ResponseOfPushLeadToMarketoArray>, value-of<ResponseOfPushLeadToMarketoArray>>
  * @psalm-suppress MixedReturnStatement
@@ -123,121 +135,6 @@ class ResponseOfPushLeadToMarketo extends ModelBase implements ModelInterface, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets errors
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
-     */
-    public function getErrors(): array
-    {
-        return $this->container['errors'];
-    }
-
-    /**
-     * Sets errors
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
-     *
-     * @return self
-     */
-    public function setErrors(array $errors): ResponseOfPushLeadToMarketo
-    {
-        $this->container['errors'] = $errors;
-
-        return $this;
-    }
-    /**
-     * Gets request_id
-     *
-     * @return string
-     */
-    public function getRequestId(): string
-    {
-        return $this->container['request_id'];
-    }
-
-    /**
-     * Sets request_id
-     *
-     * @param string $request_id Id of the request made
-     *
-     * @return self
-     */
-    public function setRequestId(string $request_id): ResponseOfPushLeadToMarketo
-    {
-        $this->container['request_id'] = $request_id;
-
-        return $this;
-    }
-    /**
-     * Gets result
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Lead[]
-     */
-    public function getResult(): array
-    {
-        return $this->container['result'];
-    }
-
-    /**
-     * Sets result
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Lead[] $result Array of results for individual records in the operation, may be empty
-     *
-     * @return self
-     */
-    public function setResult(array $result): ResponseOfPushLeadToMarketo
-    {
-        $this->container['result'] = $result;
-
-        return $this;
-    }
-    /**
-     * Gets success
-     *
-     * @return bool
-     */
-    public function getSuccess(): bool
-    {
-        return $this->container['success'];
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool $success Whether the request succeeded
-     *
-     * @return self
-     */
-    public function setSuccess(bool $success): ResponseOfPushLeadToMarketo
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-    /**
-     * Gets warnings
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]
-     */
-    public function getWarnings(): array
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
-     *
-     * @return self
-     */
-    public function setWarnings(array $warnings): ResponseOfPushLeadToMarketo
-    {
-        $this->container['warnings'] = $warnings;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

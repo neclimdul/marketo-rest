@@ -33,6 +33,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     name: string,
  *     value: object,
  * }
+ *
+ * @method string|null getApiName()
+ * @method Attribute setApiName(string|null $api_name)
+ * @method string getName()
+ * @method Attribute setName(string $name)
+ * @method object getValue()
+ * @method Attribute setValue(object $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<AttributeArray>
  * @implements \ArrayAccess<key-of<AttributeArray>, value-of<AttributeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -112,75 +120,6 @@ class Attribute extends ModelBase implements ModelInterface, \ArrayAccess, \Json
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets api_name
-     *
-     * @return string|null
-     */
-    public function getApiName(): ?string
-    {
-        return $this->container['api_name'] ?? null;
-    }
-
-    /**
-     * Sets api_name
-     *
-     * @param string|null $api_name api_name
-     *
-     * @return self
-     */
-    public function setApiName(?string $api_name): Attribute
-    {
-        $this->container['api_name'] = $api_name;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the attribute
-     *
-     * @return self
-     */
-    public function setName(string $name): Attribute
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return object
-     */
-    public function getValue(): object
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param object $value Value of the attribute
-     *
-     * @return self
-     */
-    public function setValue(object $value): Attribute
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

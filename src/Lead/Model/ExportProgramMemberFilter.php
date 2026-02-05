@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     status_names?: ?string[],
  *     updated_at?: ?\NecLimDul\MarketoRest\Lead\Model\DateRange,
  * }
+ *
+ * @method int getProgramId()
+ * @method ExportProgramMemberFilter setProgramId(int $program_id)
+ * @method int[] getProgramIds()
+ * @method ExportProgramMemberFilter setProgramIds(int[] $program_ids)
+ * @method bool|null getIsExhausted()
+ * @method ExportProgramMemberFilter setIsExhausted(bool|null $is_exhausted)
+ * @method string|null getNurtureCadence()
+ * @method ExportProgramMemberFilter setNurtureCadence(string|null $nurture_cadence)
+ * @method string[]|null getStatusNames()
+ * @method ExportProgramMemberFilter setStatusNames(string[]|null $status_names)
+ * @method \NecLimDul\MarketoRest\Lead\Model\DateRange|null getUpdatedAt()
+ * @method ExportProgramMemberFilter setUpdatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange|null $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ExportProgramMemberFilterArray>
  * @implements \ArrayAccess<key-of<ExportProgramMemberFilterArray>, value-of<ExportProgramMemberFilterArray>>
  * @psalm-suppress MixedReturnStatement
@@ -153,154 +167,6 @@ class ExportProgramMemberFilter extends ModelBase implements ModelInterface, \Ar
         ];
     }
 
-    /**
-     * Gets program_id
-     *
-     * @return int
-     */
-    public function getProgramId(): int
-    {
-        return $this->container['program_id'];
-    }
-
-    /**
-     * Sets program_id
-     *
-     * @param int $program_id Id of program to retrieve members from. Cannot be used in combination with \"programIds\" filter
-     *
-     * @return self
-     */
-    public function setProgramId(int $program_id): ExportProgramMemberFilter
-    {
-        $this->container['program_id'] = $program_id;
-
-        return $this;
-    }
-    /**
-     * Gets program_ids
-     *
-     * @return int[]
-     */
-    public function getProgramIds(): array
-    {
-        return $this->container['program_ids'];
-    }
-
-    /**
-     * Sets program_ids
-     *
-     * @param int[] $program_ids Array of program ids to retrieve members from. Cannot be used in combination with \"programId\" filter
-     *
-     * @return self
-     */
-    public function setProgramIds(array $program_ids): ExportProgramMemberFilter
-    {
-        $this->container['program_ids'] = $program_ids;
-
-        return $this;
-    }
-    /**
-     * Gets is_exhausted
-     *
-     * @return bool|null
-     */
-    public function getIsExhausted(): ?bool
-    {
-        return $this->container['is_exhausted'] ?? null;
-    }
-
-    /**
-     * Sets is_exhausted
-     *
-     * @param bool|null $is_exhausted Filter program membership records for people who have exhausted content
-     *
-     * @return self
-     */
-    public function setIsExhausted(?bool $is_exhausted): ExportProgramMemberFilter
-    {
-        $this->container['is_exhausted'] = $is_exhausted;
-
-        return $this;
-    }
-    /**
-     * Gets nurture_cadence
-     *
-     * @return string|null
-     */
-    public function getNurtureCadence(): ?string
-    {
-        return $this->container['nurture_cadence'] ?? null;
-    }
-
-    /**
-     * Sets nurture_cadence
-     *
-     * @param string|null $nurture_cadence Filter program membership records for a given nurture cadence
-     *
-     * @return self
-     */
-    public function setNurtureCadence(?string $nurture_cadence): ExportProgramMemberFilter
-    {
-        $allowedValues = $this->getNurtureCadenceAllowableValues();
-        if (!is_null($nurture_cadence) && !in_array($nurture_cadence, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'nurture_cadence', must be one of '%s'",
-                    $nurture_cadence,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['nurture_cadence'] = $nurture_cadence;
-
-        return $this;
-    }
-    /**
-     * Gets status_names
-     *
-     * @return string[]|null
-     */
-    public function getStatusNames(): ?array
-    {
-        return $this->container['status_names'] ?? null;
-    }
-
-    /**
-     * Sets status_names
-     *
-     * @param string[]|null $status_names Array of program member status names. Can be default and/or user-defined. Multiple status names are ORed together.
-     *
-     * @return self
-     */
-    public function setStatusNames(?array $status_names): ExportProgramMemberFilter
-    {
-        $this->container['status_names'] = $status_names;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\DateRange|null
-     */
-    public function getUpdatedAt(): ?\NecLimDul\MarketoRest\Lead\Model\DateRange
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DateRange|null $updated_at updated_at
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?\NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at): ExportProgramMemberFilter
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

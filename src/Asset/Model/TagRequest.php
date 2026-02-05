@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     tag_type?: ?string,
  *     tag_value?: ?string,
  * }
+ *
+ * @method string|null getTagType()
+ * @method TagRequest setTagType(string|null $tag_type)
+ * @method string|null getTagValue()
+ * @method TagRequest setTagValue(string|null $tag_value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<TagRequestArray>
  * @implements \ArrayAccess<key-of<TagRequestArray>, value-of<TagRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -103,52 +109,6 @@ class TagRequest extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets tag_type
-     *
-     * @return string|null
-     */
-    public function getTagType(): ?string
-    {
-        return $this->container['tag_type'] ?? null;
-    }
-
-    /**
-     * Sets tag_type
-     *
-     * @param string|null $tag_type Type of program tag
-     *
-     * @return self
-     */
-    public function setTagType(?string $tag_type): TagRequest
-    {
-        $this->container['tag_type'] = $tag_type;
-
-        return $this;
-    }
-    /**
-     * Gets tag_value
-     *
-     * @return string|null
-     */
-    public function getTagValue(): ?string
-    {
-        return $this->container['tag_value'] ?? null;
-    }
-
-    /**
-     * Sets tag_value
-     *
-     * @param string|null $tag_value Value of the tag
-     *
-     * @return self
-     */
-    public function setTagValue(?string $tag_value): TagRequest
-    {
-        $this->container['tag_value'] = $tag_value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

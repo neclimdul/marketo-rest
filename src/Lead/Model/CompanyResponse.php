@@ -34,6 +34,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     seq: int,
  *     status?: ?string,
  * }
+ *
+ * @method int getId()
+ * @method CompanyResponse setId(int $id)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Reason[]|null getReasons()
+ * @method CompanyResponse setReasons(\NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons)
+ * @method int getSeq()
+ * @method CompanyResponse setSeq(int $seq)
+ * @method string|null getStatus()
+ * @method CompanyResponse setStatus(string|null $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CompanyResponseArray>
  * @implements \ArrayAccess<key-of<CompanyResponseArray>, value-of<CompanyResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -153,108 +163,6 @@ class CompanyResponse extends ModelBase implements ModelInterface, \ArrayAccess,
         ];
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the company record
-     *
-     * @return self
-     */
-    public function setId(int $id): CompanyResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets reasons
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
-     */
-    public function getReasons(): ?array
-    {
-        return $this->container['reasons'] ?? null;
-    }
-
-    /**
-     * Sets reasons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed. Reasons are only present in API responses and should not be submitted
-     *
-     * @return self
-     */
-    public function setReasons(?array $reasons): CompanyResponse
-    {
-        $this->container['reasons'] = $reasons;
-
-        return $this;
-    }
-    /**
-     * Gets seq
-     *
-     * @return int
-     */
-    public function getSeq(): int
-    {
-        return $this->container['seq'];
-    }
-
-    /**
-     * Sets seq
-     *
-     * @param int $seq Integer indicating the sequence of the record in response. This value is correlated to the order of the records included in the request input. Seq should only be part of responses and should not be submitted.
-     *
-     * @return self
-     */
-    public function setSeq(int $seq): CompanyResponse
-    {
-        $this->container['seq'] = $seq;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus(): ?string
-    {
-        return $this->container['status'] ?? null;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status Status of the operation performed on the record
-     *
-     * @return self
-     */
-    public function setStatus(?string $status): CompanyResponse
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     service: string,
  *     result: bool,
  * }
+ *
+ * @method string getService()
+ * @method SendSampleResponse setService(string $service)
+ * @method bool getResult()
+ * @method SendSampleResponse setResult(bool $result)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SendSampleResponseArray>
  * @implements \ArrayAccess<key-of<SendSampleResponseArray>, value-of<SendSampleResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -129,62 +135,6 @@ class SendSampleResponse extends ModelBase implements ModelInterface, \ArrayAcce
         ];
     }
 
-    /**
-     * Gets service
-     *
-     * @return string
-     */
-    public function getService(): string
-    {
-        return $this->container['service'];
-    }
-
-    /**
-     * Sets service
-     *
-     * @param string $service API call name
-     *
-     * @return self
-     */
-    public function setService(string $service): SendSampleResponse
-    {
-        $allowedValues = $this->getServiceAllowableValues();
-        if (!in_array($service, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'service', must be one of '%s'",
-                    $service,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['service'] = $service;
-
-        return $this;
-    }
-    /**
-     * Gets result
-     *
-     * @return bool
-     */
-    public function getResult(): bool
-    {
-        return $this->container['result'];
-    }
-
-    /**
-     * Sets result
-     *
-     * @param bool $result Whether call was successful
-     *
-     * @return self
-     */
-    public function setResult(bool $result): SendSampleResponse
-    {
-        $this->container['result'] = $result;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

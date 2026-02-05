@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     required: bool,
  *     tag_type: string,
  * }
+ *
+ * @method string getApplicableProgramTypes()
+ * @method TagResponseGetAll setApplicableProgramTypes(string $applicable_program_types)
+ * @method bool getRequired()
+ * @method TagResponseGetAll setRequired(bool $required)
+ * @method string getTagType()
+ * @method TagResponseGetAll setTagType(string $tag_type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<TagResponseGetAllArray>
  * @implements \ArrayAccess<key-of<TagResponseGetAllArray>, value-of<TagResponseGetAllArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class TagResponseGetAll extends ModelBase implements ModelInterface, \ArrayAcces
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets applicable_program_types
-     *
-     * @return string
-     */
-    public function getApplicableProgramTypes(): string
-    {
-        return $this->container['applicable_program_types'];
-    }
-
-    /**
-     * Sets applicable_program_types
-     *
-     * @param string $applicable_program_types Types of programs to which the tag can apply
-     *
-     * @return self
-     */
-    public function setApplicableProgramTypes(string $applicable_program_types): TagResponseGetAll
-    {
-        $this->container['applicable_program_types'] = $applicable_program_types;
-
-        return $this;
-    }
-    /**
-     * Gets required
-     *
-     * @return bool
-     */
-    public function getRequired(): bool
-    {
-        return $this->container['required'];
-    }
-
-    /**
-     * Sets required
-     *
-     * @param bool $required Whether the tag is required for its applicable program types
-     *
-     * @return self
-     */
-    public function setRequired(bool $required): TagResponseGetAll
-    {
-        $this->container['required'] = $required;
-
-        return $this;
-    }
-    /**
-     * Gets tag_type
-     *
-     * @return string
-     */
-    public function getTagType(): string
-    {
-        return $this->container['tag_type'];
-    }
-
-    /**
-     * Sets tag_type
-     *
-     * @param string $tag_type Name of the tag
-     *
-     * @return self
-     */
-    public function setTagType(string $tag_type): TagResponseGetAll
-    {
-        $this->container['tag_type'] = $tag_type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

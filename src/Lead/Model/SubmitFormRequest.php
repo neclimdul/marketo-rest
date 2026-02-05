@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     form_id: int,
  *     program_id?: ?int,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\Form[] getInput()
+ * @method SubmitFormRequest setInput(\NecLimDul\MarketoRest\Lead\Model\Form[] $input)
+ * @method int getFormId()
+ * @method SubmitFormRequest setFormId(int $form_id)
+ * @method int|null getProgramId()
+ * @method SubmitFormRequest setProgramId(int|null $program_id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SubmitFormRequestArray>
  * @implements \ArrayAccess<key-of<SubmitFormRequestArray>, value-of<SubmitFormRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -112,75 +120,6 @@ class SubmitFormRequest extends ModelBase implements ModelInterface, \ArrayAcces
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Form[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Form[] $input Single array item that contains form fields and visitor data to use during a form submittal
-     *
-     * @return self
-     */
-    public function setInput(array $input): SubmitFormRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
-    /**
-     * Gets form_id
-     *
-     * @return int
-     */
-    public function getFormId(): int
-    {
-        return $this->container['form_id'];
-    }
-
-    /**
-     * Sets form_id
-     *
-     * @param int $form_id Id of the form
-     *
-     * @return self
-     */
-    public function setFormId(int $form_id): SubmitFormRequest
-    {
-        $this->container['form_id'] = $form_id;
-
-        return $this;
-    }
-    /**
-     * Gets program_id
-     *
-     * @return int|null
-     */
-    public function getProgramId(): ?int
-    {
-        return $this->container['program_id'] ?? null;
-    }
-
-    /**
-     * Sets program_id
-     *
-     * @param int|null $program_id Id of the program to add lead and/or program member custom fields to
-     *
-     * @return self
-     */
-    public function setProgramId(?int $program_id): SubmitFormRequest
-    {
-        $this->container['program_id'] = $program_id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

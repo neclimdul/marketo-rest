@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     name: string,
  *     primary_attribute: \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute,
  * }
+ *
+ * @method string|null getApiName()
+ * @method ActivityType setApiName(string|null $api_name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute[] getAttributes()
+ * @method ActivityType setAttributes(\NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute[] $attributes)
+ * @method string|null getDescription()
+ * @method ActivityType setDescription(string|null $description)
+ * @method int getId()
+ * @method ActivityType setId(int $id)
+ * @method string getName()
+ * @method ActivityType setName(string $name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute getPrimaryAttribute()
+ * @method ActivityType setPrimaryAttribute(\NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute $primary_attribute)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ActivityTypeArray>
  * @implements \ArrayAccess<key-of<ActivityTypeArray>, value-of<ActivityTypeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -128,144 +142,6 @@ class ActivityType extends ModelBase implements ModelInterface, \ArrayAccess, \J
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets api_name
-     *
-     * @return string|null
-     */
-    public function getApiName(): ?string
-    {
-        return $this->container['api_name'] ?? null;
-    }
-
-    /**
-     * Sets api_name
-     *
-     * @param string|null $api_name api_name
-     *
-     * @return self
-     */
-    public function setApiName(?string $api_name): ActivityType
-    {
-        $this->container['api_name'] = $api_name;
-
-        return $this;
-    }
-    /**
-     * Gets attributes
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute[]
-     */
-    public function getAttributes(): array
-    {
-        return $this->container['attributes'];
-    }
-
-    /**
-     * Sets attributes
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute[] $attributes List of secondary attributes of the type
-     *
-     * @return self
-     */
-    public function setAttributes(array $attributes): ActivityType
-    {
-        $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the activity type
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): ActivityType
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the activity type
-     *
-     * @return self
-     */
-    public function setId(int $id): ActivityType
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the activity type
-     *
-     * @return self
-     */
-    public function setName(string $name): ActivityType
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets primary_attribute
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute
-     */
-    public function getPrimaryAttribute(): \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute
-    {
-        return $this->container['primary_attribute'];
-    }
-
-    /**
-     * Sets primary_attribute
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute $primary_attribute primary_attribute
-     *
-     * @return self
-     */
-    public function setPrimaryAttribute(\NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute $primary_attribute): ActivityType
-    {
-        $this->container['primary_attribute'] = $primary_attribute;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

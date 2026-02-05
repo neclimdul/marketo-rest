@@ -38,6 +38,28 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     template: int,
  *     text_only?: ?string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method CreateEmailRequest setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CreateEmailRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string getFromEmail()
+ * @method CreateEmailRequest setFromEmail(string $from_email)
+ * @method string getFromName()
+ * @method CreateEmailRequest setFromName(string $from_name)
+ * @method string getName()
+ * @method CreateEmailRequest setName(string $name)
+ * @method bool|null getOperational()
+ * @method CreateEmailRequest setOperational(bool|null $operational)
+ * @method string getReplyEmail()
+ * @method CreateEmailRequest setReplyEmail(string $reply_email)
+ * @method string getSubject()
+ * @method CreateEmailRequest setSubject(string $subject)
+ * @method int getTemplate()
+ * @method CreateEmailRequest setTemplate(int $template)
+ * @method string|null getTextOnly()
+ * @method CreateEmailRequest setTextOnly(string|null $text_only)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateEmailRequestArray>
  * @implements \ArrayAccess<key-of<CreateEmailRequestArray>, value-of<CreateEmailRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -151,236 +173,6 @@ class CreateEmailRequest extends ModelBase implements ModelInterface, \ArrayAcce
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CreateEmailRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateEmailRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets from_email
-     *
-     * @return string
-     */
-    public function getFromEmail(): string
-    {
-        return $this->container['from_email'];
-    }
-
-    /**
-     * Sets from_email
-     *
-     * @param string $from_email From-address of the Email
-     *
-     * @return self
-     */
-    public function setFromEmail(string $from_email): CreateEmailRequest
-    {
-        $this->container['from_email'] = $from_email;
-
-        return $this;
-    }
-    /**
-     * Gets from_name
-     *
-     * @return string
-     */
-    public function getFromName(): string
-    {
-        return $this->container['from_name'];
-    }
-
-    /**
-     * Sets from_name
-     *
-     * @param string $from_name From-name of the Email
-     *
-     * @return self
-     */
-    public function setFromName(string $from_name): CreateEmailRequest
-    {
-        $this->container['from_name'] = $from_name;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the email
-     *
-     * @return self
-     */
-    public function setName(string $name): CreateEmailRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets operational
-     *
-     * @return bool|null
-     */
-    public function getOperational(): ?bool
-    {
-        return $this->container['operational'] ?? null;
-    }
-
-    /**
-     * Sets operational
-     *
-     * @param bool|null $operational Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     *
-     * @return self
-     */
-    public function setOperational(?bool $operational): CreateEmailRequest
-    {
-        $this->container['operational'] = $operational;
-
-        return $this;
-    }
-    /**
-     * Gets reply_email
-     *
-     * @return string
-     */
-    public function getReplyEmail(): string
-    {
-        return $this->container['reply_email'];
-    }
-
-    /**
-     * Sets reply_email
-     *
-     * @param string $reply_email Reply-To address of the Email
-     *
-     * @return self
-     */
-    public function setReplyEmail(string $reply_email): CreateEmailRequest
-    {
-        $this->container['reply_email'] = $reply_email;
-
-        return $this;
-    }
-    /**
-     * Gets subject
-     *
-     * @return string
-     */
-    public function getSubject(): string
-    {
-        return $this->container['subject'];
-    }
-
-    /**
-     * Sets subject
-     *
-     * @param string $subject Subject Line of the Email
-     *
-     * @return self
-     */
-    public function setSubject(string $subject): CreateEmailRequest
-    {
-        $this->container['subject'] = $subject;
-
-        return $this;
-    }
-    /**
-     * Gets template
-     *
-     * @return int
-     */
-    public function getTemplate(): int
-    {
-        return $this->container['template'];
-    }
-
-    /**
-     * Sets template
-     *
-     * @param int $template Id of the parent template
-     *
-     * @return self
-     */
-    public function setTemplate(int $template): CreateEmailRequest
-    {
-        $this->container['template'] = $template;
-
-        return $this;
-    }
-    /**
-     * Gets text_only
-     *
-     * @return string|null
-     */
-    public function getTextOnly(): ?string
-    {
-        return $this->container['text_only'] ?? null;
-    }
-
-    /**
-     * Sets text_only
-     *
-     * @param string|null $text_only Setting to include text-only version of email when sent
-     *
-     * @return self
-     */
-    public function setTextOnly(?string $text_only): CreateEmailRequest
-    {
-        $this->container['text_only'] = $text_only;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

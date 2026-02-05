@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     note?: ?string,
  *     start_date: \DateTime,
  * }
+ *
+ * @method int getCost()
+ * @method CostRequest setCost(int $cost)
+ * @method string|null getNote()
+ * @method CostRequest setNote(string|null $note)
+ * @method \DateTime getStartDate()
+ * @method CostRequest setStartDate(\DateTime $start_date)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CostRequestArray>
  * @implements \ArrayAccess<key-of<CostRequestArray>, value-of<CostRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -112,75 +120,6 @@ class CostRequest extends ModelBase implements ModelInterface, \ArrayAccess, \Js
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets cost
-     *
-     * @return int
-     */
-    public function getCost(): int
-    {
-        return $this->container['cost'];
-    }
-
-    /**
-     * Sets cost
-     *
-     * @param int $cost Amount of the cost
-     *
-     * @return self
-     */
-    public function setCost(int $cost): CostRequest
-    {
-        $this->container['cost'] = $cost;
-
-        return $this;
-    }
-    /**
-     * Gets note
-     *
-     * @return string|null
-     */
-    public function getNote(): ?string
-    {
-        return $this->container['note'] ?? null;
-    }
-
-    /**
-     * Sets note
-     *
-     * @param string|null $note Notes on the cost
-     *
-     * @return self
-     */
-    public function setNote(?string $note): CostRequest
-    {
-        $this->container['note'] = $note;
-
-        return $this;
-    }
-    /**
-     * Gets start_date
-     *
-     * @return \DateTime
-     */
-    public function getStartDate(): \DateTime
-    {
-        return $this->container['start_date'];
-    }
-
-    /**
-     * Sets start_date
-     *
-     * @param \DateTime $start_date Start date of the period cost
-     *
-     * @return self
-     */
-    public function setStartDate(\DateTime $start_date): CostRequest
-    {
-        $this->container['start_date'] = $start_date;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

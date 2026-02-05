@@ -37,6 +37,26 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     primary_attribute_value?: ?string,
  *     primary_attribute_value_id?: ?int,
  * }
+ *
+ * @method \DateTime getActivityDate()
+ * @method Activity setActivityDate(\DateTime $activity_date)
+ * @method int getActivityTypeId()
+ * @method Activity setActivityTypeId(int $activity_type_id)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Attribute[] getAttributes()
+ * @method Activity setAttributes(\NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes)
+ * @method int|null getCampaignId()
+ * @method Activity setCampaignId(int|null $campaign_id)
+ * @method int getId()
+ * @method Activity setId(int $id)
+ * @method int getLeadId()
+ * @method Activity setLeadId(int $lead_id)
+ * @method string|null getMarketoGuid()
+ * @method Activity setMarketoGuid(string|null $marketo_guid)
+ * @method string|null getPrimaryAttributeValue()
+ * @method Activity setPrimaryAttributeValue(string|null $primary_attribute_value)
+ * @method int|null getPrimaryAttributeValueId()
+ * @method Activity setPrimaryAttributeValueId(int|null $primary_attribute_value_id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ActivityArray>
  * @implements \ArrayAccess<key-of<ActivityArray>, value-of<ActivityArray>>
  * @psalm-suppress MixedReturnStatement
@@ -149,213 +169,6 @@ class Activity extends ModelBase implements ModelInterface, \ArrayAccess, \JsonS
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets activity_date
-     *
-     * @return \DateTime
-     */
-    public function getActivityDate(): \DateTime
-    {
-        return $this->container['activity_date'];
-    }
-
-    /**
-     * Sets activity_date
-     *
-     * @param \DateTime $activity_date Datetime of the activity
-     *
-     * @return self
-     */
-    public function setActivityDate(\DateTime $activity_date): Activity
-    {
-        $this->container['activity_date'] = $activity_date;
-
-        return $this;
-    }
-    /**
-     * Gets activity_type_id
-     *
-     * @return int
-     */
-    public function getActivityTypeId(): int
-    {
-        return $this->container['activity_type_id'];
-    }
-
-    /**
-     * Sets activity_type_id
-     *
-     * @param int $activity_type_id Id of the activity type
-     *
-     * @return self
-     */
-    public function setActivityTypeId(int $activity_type_id): Activity
-    {
-        $this->container['activity_type_id'] = $activity_type_id;
-
-        return $this;
-    }
-    /**
-     * Gets attributes
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Attribute[]
-     */
-    public function getAttributes(): array
-    {
-        return $this->container['attributes'];
-    }
-
-    /**
-     * Sets attributes
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
-     *
-     * @return self
-     */
-    public function setAttributes(array $attributes): Activity
-    {
-        $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
-    /**
-     * Gets campaign_id
-     *
-     * @return int|null
-     */
-    public function getCampaignId(): ?int
-    {
-        return $this->container['campaign_id'] ?? null;
-    }
-
-    /**
-     * Sets campaign_id
-     *
-     * @param int|null $campaign_id Id of the associated Smart Campaign, if applicable
-     *
-     * @return self
-     */
-    public function setCampaignId(?int $campaign_id): Activity
-    {
-        $this->container['campaign_id'] = $campaign_id;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Integer id of the activity. This value could exceed Int.MAX. For instances which have been migrated to Activity Service, this field may not be present, and should not be treated as unique.
-     *
-     * @return self
-     */
-    public function setId(int $id): Activity
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets lead_id
-     *
-     * @return int
-     */
-    public function getLeadId(): int
-    {
-        return $this->container['lead_id'];
-    }
-
-    /**
-     * Sets lead_id
-     *
-     * @param int $lead_id Id of the lead associated to the activity
-     *
-     * @return self
-     */
-    public function setLeadId(int $lead_id): Activity
-    {
-        $this->container['lead_id'] = $lead_id;
-
-        return $this;
-    }
-    /**
-     * Gets marketo_guid
-     *
-     * @return string|null
-     */
-    public function getMarketoGuid(): ?string
-    {
-        return $this->container['marketo_guid'] ?? null;
-    }
-
-    /**
-     * Sets marketo_guid
-     *
-     * @param string|null $marketo_guid Unique id of the activity (128 character string)
-     *
-     * @return self
-     */
-    public function setMarketoGuid(?string $marketo_guid): Activity
-    {
-        $this->container['marketo_guid'] = $marketo_guid;
-
-        return $this;
-    }
-    /**
-     * Gets primary_attribute_value
-     *
-     * @return string|null
-     */
-    public function getPrimaryAttributeValue(): ?string
-    {
-        return $this->container['primary_attribute_value'] ?? null;
-    }
-
-    /**
-     * Sets primary_attribute_value
-     *
-     * @param string|null $primary_attribute_value Value of the primary attribute
-     *
-     * @return self
-     */
-    public function setPrimaryAttributeValue(?string $primary_attribute_value): Activity
-    {
-        $this->container['primary_attribute_value'] = $primary_attribute_value;
-
-        return $this;
-    }
-    /**
-     * Gets primary_attribute_value_id
-     *
-     * @return int|null
-     */
-    public function getPrimaryAttributeValueId(): ?int
-    {
-        return $this->container['primary_attribute_value_id'] ?? null;
-    }
-
-    /**
-     * Sets primary_attribute_value_id
-     *
-     * @param int|null $primary_attribute_value_id Id of the primary attribute field
-     *
-     * @return self
-     */
-    public function setPrimaryAttributeValueId(?int $primary_attribute_value_id): Activity
-    {
-        $this->container['primary_attribute_value_id'] = $primary_attribute_value_id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

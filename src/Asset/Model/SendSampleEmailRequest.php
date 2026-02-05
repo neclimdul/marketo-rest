@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     lead_id?: ?string,
  *     text_only?: ?bool,
  * }
+ *
+ * @method string getEmailAddress()
+ * @method SendSampleEmailRequest setEmailAddress(string $email_address)
+ * @method string|null getLeadId()
+ * @method SendSampleEmailRequest setLeadId(string|null $lead_id)
+ * @method bool|null getTextOnly()
+ * @method SendSampleEmailRequest setTextOnly(bool|null $text_only)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SendSampleEmailRequestArray>
  * @implements \ArrayAccess<key-of<SendSampleEmailRequestArray>, value-of<SendSampleEmailRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -109,75 +117,6 @@ class SendSampleEmailRequest extends ModelBase implements ModelInterface, \Array
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets email_address
-     *
-     * @return string
-     */
-    public function getEmailAddress(): string
-    {
-        return $this->container['email_address'];
-    }
-
-    /**
-     * Sets email_address
-     *
-     * @param string $email_address Email address to receive sample email
-     *
-     * @return self
-     */
-    public function setEmailAddress(string $email_address): SendSampleEmailRequest
-    {
-        $this->container['email_address'] = $email_address;
-
-        return $this;
-    }
-    /**
-     * Gets lead_id
-     *
-     * @return string|null
-     */
-    public function getLeadId(): ?string
-    {
-        return $this->container['lead_id'] ?? null;
-    }
-
-    /**
-     * Sets lead_id
-     *
-     * @param string|null $lead_id Id of a lead to impersonate. Tokens and dynamic content will be populated as though it were sent to the lead.
-     *
-     * @return self
-     */
-    public function setLeadId(?string $lead_id): SendSampleEmailRequest
-    {
-        $this->container['lead_id'] = $lead_id;
-
-        return $this;
-    }
-    /**
-     * Gets text_only
-     *
-     * @return bool|null
-     */
-    public function getTextOnly(): ?bool
-    {
-        return $this->container['text_only'] ?? null;
-    }
-
-    /**
-     * Sets text_only
-     *
-     * @param bool|null $text_only Whether to send to text only version along with the HTML version. Default false.
-     *
-     * @return self
-     */
-    public function setTextOnly(?bool $text_only): SendSampleEmailRequest
-    {
-        $this->container['text_only'] = $text_only;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

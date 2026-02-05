@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     related_to: \NecLimDul\MarketoRest\Lead\Model\RelatedObject,
  *     type: string,
  * }
+ *
+ * @method string getField()
+ * @method ObjectRelation setField(string $field)
+ * @method \NecLimDul\MarketoRest\Lead\Model\RelatedObject getRelatedTo()
+ * @method ObjectRelation setRelatedTo(\NecLimDul\MarketoRest\Lead\Model\RelatedObject $related_to)
+ * @method string getType()
+ * @method ObjectRelation setType(string $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ObjectRelationArray>
  * @implements \ArrayAccess<key-of<ObjectRelationArray>, value-of<ObjectRelationArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class ObjectRelation extends ModelBase implements ModelInterface, \ArrayAccess, 
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets field
-     *
-     * @return string
-     */
-    public function getField(): string
-    {
-        return $this->container['field'];
-    }
-
-    /**
-     * Sets field
-     *
-     * @param string $field API Name of link field
-     *
-     * @return self
-     */
-    public function setField(string $field): ObjectRelation
-    {
-        $this->container['field'] = $field;
-
-        return $this;
-    }
-    /**
-     * Gets related_to
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\RelatedObject
-     */
-    public function getRelatedTo(): \NecLimDul\MarketoRest\Lead\Model\RelatedObject
-    {
-        return $this->container['related_to'];
-    }
-
-    /**
-     * Sets related_to
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\RelatedObject $related_to related_to
-     *
-     * @return self
-     */
-    public function setRelatedTo(\NecLimDul\MarketoRest\Lead\Model\RelatedObject $related_to): ObjectRelation
-    {
-        $this->container['related_to'] = $related_to;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of the relationship field
-     *
-     * @return self
-     */
-    public function setType(string $type): ObjectRelation
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

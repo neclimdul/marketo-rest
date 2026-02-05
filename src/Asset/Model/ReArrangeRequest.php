@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type ReArrangeRequestArray array{
  *     positions?: ?\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null getPositions()
+ * @method ReArrangeRequest setPositions(\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null $positions)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ReArrangeRequestArray>
  * @implements \ArrayAccess<key-of<ReArrangeRequestArray>, value-of<ReArrangeRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -98,29 +102,6 @@ class ReArrangeRequest extends ModelBase implements ModelInterface, \ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets positions
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null
-     */
-    public function getPositions(): ?array
-    {
-        return $this->container['positions'] ?? null;
-    }
-
-    /**
-     * Sets positions
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null $positions positions
-     *
-     * @return self
-     */
-    public function setPositions(?array $positions): ReArrangeRequest
-    {
-        $this->container['positions'] = $positions;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

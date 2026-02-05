@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     module_scope: bool,
  *     module_id?: ?string,
  * }
+ *
+ * @method string getName()
+ * @method EmailVariableResponse setName(string $name)
+ * @method string getValue()
+ * @method EmailVariableResponse setValue(string $value)
+ * @method bool getModuleScope()
+ * @method EmailVariableResponse setModuleScope(bool $module_scope)
+ * @method string|null getModuleId()
+ * @method EmailVariableResponse setModuleId(string|null $module_id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<EmailVariableResponseArray>
  * @implements \ArrayAccess<key-of<EmailVariableResponseArray>, value-of<EmailVariableResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -116,98 +126,6 @@ class EmailVariableResponse extends ModelBase implements ModelInterface, \ArrayA
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the email variable
-     *
-     * @return self
-     */
-    public function setName(string $name): EmailVariableResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value Value of the email variable
-     *
-     * @return self
-     */
-    public function setValue(string $value): EmailVariableResponse
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
-    /**
-     * Gets module_scope
-     *
-     * @return bool
-     */
-    public function getModuleScope(): bool
-    {
-        return $this->container['module_scope'];
-    }
-
-    /**
-     * Sets module_scope
-     *
-     * @param bool $module_scope Returns true for local variables else returns false
-     *
-     * @return self
-     */
-    public function setModuleScope(bool $module_scope): EmailVariableResponse
-    {
-        $this->container['module_scope'] = $module_scope;
-
-        return $this;
-    }
-    /**
-     * Gets module_id
-     *
-     * @return string|null
-     */
-    public function getModuleId(): ?string
-    {
-        return $this->container['module_id'] ?? null;
-    }
-
-    /**
-     * Sets module_id
-     *
-     * @param string|null $module_id Returns the moduleId associated with the variable, only in case of local variable
-     *
-     * @return self
-     */
-    public function setModuleId(?string $module_id): EmailVariableResponse
-    {
-        $this->container['module_id'] = $module_id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

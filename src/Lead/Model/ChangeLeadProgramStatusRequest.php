@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     input: \NecLimDul\MarketoRest\Lead\Model\LeadLookupInputData[],
  *     status: string,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\LeadLookupInputData[] getInput()
+ * @method ChangeLeadProgramStatusRequest setInput(\NecLimDul\MarketoRest\Lead\Model\LeadLookupInputData[] $input)
+ * @method string getStatus()
+ * @method ChangeLeadProgramStatusRequest setStatus(string $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ChangeLeadProgramStatusRequestArray>
  * @implements \ArrayAccess<key-of<ChangeLeadProgramStatusRequestArray>, value-of<ChangeLeadProgramStatusRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -105,52 +111,6 @@ class ChangeLeadProgramStatusRequest extends ModelBase implements ModelInterface
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadLookupInputData[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\LeadLookupInputData[] $input List of leads for input
-     *
-     * @return self
-     */
-    public function setInput(array $input): ChangeLeadProgramStatusRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Program status of the record. Permissible values can be retrieve from the Get Channel by Name API for the designated program's channel
-     *
-     * @return self
-     */
-    public function setStatus(string $status): ChangeLeadProgramStatusRequest
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

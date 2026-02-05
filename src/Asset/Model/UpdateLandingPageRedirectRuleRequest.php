@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     redirect_from?: ?\NecLimDul\MarketoRest\Asset\Model\RedirectFrom,
  *     redirect_to?: ?\NecLimDul\MarketoRest\Asset\Model\RedirectTo,
  * }
+ *
+ * @method string|null getHostname()
+ * @method UpdateLandingPageRedirectRuleRequest setHostname(string|null $hostname)
+ * @method \NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null getRedirectFrom()
+ * @method UpdateLandingPageRedirectRuleRequest setRedirectFrom(\NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null $redirect_from)
+ * @method \NecLimDul\MarketoRest\Asset\Model\RedirectTo|null getRedirectTo()
+ * @method UpdateLandingPageRedirectRuleRequest setRedirectTo(\NecLimDul\MarketoRest\Asset\Model\RedirectTo|null $redirect_to)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateLandingPageRedirectRuleRequestArray>
  * @implements \ArrayAccess<key-of<UpdateLandingPageRedirectRuleRequestArray>, value-of<UpdateLandingPageRedirectRuleRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -108,75 +116,6 @@ class UpdateLandingPageRedirectRuleRequest extends ModelBase implements ModelInt
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets hostname
-     *
-     * @return string|null
-     */
-    public function getHostname(): ?string
-    {
-        return $this->container['hostname'] ?? null;
-    }
-
-    /**
-     * Sets hostname
-     *
-     * @param string|null $hostname The hostname for the landing pages. Branding domain or alias. Max 255 characters
-     *
-     * @return self
-     */
-    public function setHostname(?string $hostname): UpdateLandingPageRedirectRuleRequest
-    {
-        $this->container['hostname'] = $hostname;
-
-        return $this;
-    }
-    /**
-     * Gets redirect_from
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null
-     */
-    public function getRedirectFrom(): ?\NecLimDul\MarketoRest\Asset\Model\RedirectFrom
-    {
-        return $this->container['redirect_from'] ?? null;
-    }
-
-    /**
-     * Sets redirect_from
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null $redirect_from redirect_from
-     *
-     * @return self
-     */
-    public function setRedirectFrom(?\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from): UpdateLandingPageRedirectRuleRequest
-    {
-        $this->container['redirect_from'] = $redirect_from;
-
-        return $this;
-    }
-    /**
-     * Gets redirect_to
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectTo|null
-     */
-    public function getRedirectTo(): ?\NecLimDul\MarketoRest\Asset\Model\RedirectTo
-    {
-        return $this->container['redirect_to'] ?? null;
-    }
-
-    /**
-     * Sets redirect_to
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo|null $redirect_to redirect_to
-     *
-     * @return self
-     */
-    public function setRedirectTo(?\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to): UpdateLandingPageRedirectRuleRequest
-    {
-        $this->container['redirect_to'] = $redirect_to;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

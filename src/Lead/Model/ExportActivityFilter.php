@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     primary_attribute_values?: ?string[],
  *     created_at: \NecLimDul\MarketoRest\Lead\Model\DateRange,
  * }
+ *
+ * @method int[]|null getActivityTypeIds()
+ * @method ExportActivityFilter setActivityTypeIds(int[]|null $activity_type_ids)
+ * @method int[]|null getPrimaryAttributeValueIds()
+ * @method ExportActivityFilter setPrimaryAttributeValueIds(int[]|null $primary_attribute_value_ids)
+ * @method string[]|null getPrimaryAttributeValues()
+ * @method ExportActivityFilter setPrimaryAttributeValues(string[]|null $primary_attribute_values)
+ * @method \NecLimDul\MarketoRest\Lead\Model\DateRange getCreatedAt()
+ * @method ExportActivityFilter setCreatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $created_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ExportActivityFilterArray>
  * @implements \ArrayAccess<key-of<ExportActivityFilterArray>, value-of<ExportActivityFilterArray>>
  * @psalm-suppress MixedReturnStatement
@@ -116,98 +126,6 @@ class ExportActivityFilter extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets activity_type_ids
-     *
-     * @return int[]|null
-     */
-    public function getActivityTypeIds(): ?array
-    {
-        return $this->container['activity_type_ids'] ?? null;
-    }
-
-    /**
-     * Sets activity_type_ids
-     *
-     * @param int[]|null $activity_type_ids List of activity type ids to filter on
-     *
-     * @return self
-     */
-    public function setActivityTypeIds(?array $activity_type_ids): ExportActivityFilter
-    {
-        $this->container['activity_type_ids'] = $activity_type_ids;
-
-        return $this;
-    }
-    /**
-     * Gets primary_attribute_value_ids
-     *
-     * @return int[]|null
-     */
-    public function getPrimaryAttributeValueIds(): ?array
-    {
-        return $this->container['primary_attribute_value_ids'] ?? null;
-    }
-
-    /**
-     * Sets primary_attribute_value_ids
-     *
-     * @param int[]|null $primary_attribute_value_ids List of primary attribute ids to filter on
-     *
-     * @return self
-     */
-    public function setPrimaryAttributeValueIds(?array $primary_attribute_value_ids): ExportActivityFilter
-    {
-        $this->container['primary_attribute_value_ids'] = $primary_attribute_value_ids;
-
-        return $this;
-    }
-    /**
-     * Gets primary_attribute_values
-     *
-     * @return string[]|null
-     */
-    public function getPrimaryAttributeValues(): ?array
-    {
-        return $this->container['primary_attribute_values'] ?? null;
-    }
-
-    /**
-     * Sets primary_attribute_values
-     *
-     * @param string[]|null $primary_attribute_values List of primary attribute values to filter on
-     *
-     * @return self
-     */
-    public function setPrimaryAttributeValues(?array $primary_attribute_values): ExportActivityFilter
-    {
-        $this->container['primary_attribute_values'] = $primary_attribute_values;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\DateRange
-     */
-    public function getCreatedAt(): \NecLimDul\MarketoRest\Lead\Model\DateRange
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $created_at created_at
-     *
-     * @return self
-     */
-    public function setCreatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $created_at): ExportActivityFilter
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

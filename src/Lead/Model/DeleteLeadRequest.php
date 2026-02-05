@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type DeleteLeadRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\LeadInputData[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\LeadInputData[] getInput()
+ * @method DeleteLeadRequest setInput(\NecLimDul\MarketoRest\Lead\Model\LeadInputData[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<DeleteLeadRequestArray>
  * @implements \ArrayAccess<key-of<DeleteLeadRequestArray>, value-of<DeleteLeadRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class DeleteLeadRequest extends ModelBase implements ModelInterface, \ArrayAcces
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadInputData[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\LeadInputData[] $input List of leads for input
-     *
-     * @return self
-     */
-    public function setInput(array $input): DeleteLeadRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

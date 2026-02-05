@@ -41,6 +41,34 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     url_page_name?: ?string,
  *     workspace?: ?string,
  * }
+ *
+ * @method string|null getCustomHeadHtml()
+ * @method CreateLandingPageRequest setCustomHeadHtml(string|null $custom_head_html)
+ * @method string|null getDescription()
+ * @method CreateLandingPageRequest setDescription(string|null $description)
+ * @method string|null getFacebookOgTags()
+ * @method CreateLandingPageRequest setFacebookOgTags(string|null $facebook_og_tags)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CreateLandingPageRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string|null getKeywords()
+ * @method CreateLandingPageRequest setKeywords(string|null $keywords)
+ * @method bool|null getMobileEnabled()
+ * @method CreateLandingPageRequest setMobileEnabled(bool|null $mobile_enabled)
+ * @method string getName()
+ * @method CreateLandingPageRequest setName(string $name)
+ * @method bool|null getPrefillForm()
+ * @method CreateLandingPageRequest setPrefillForm(bool|null $prefill_form)
+ * @method string|null getRobots()
+ * @method CreateLandingPageRequest setRobots(string|null $robots)
+ * @method int getTemplate()
+ * @method CreateLandingPageRequest setTemplate(int $template)
+ * @method string|null getTitle()
+ * @method CreateLandingPageRequest setTitle(string|null $title)
+ * @method string|null getUrlPageName()
+ * @method CreateLandingPageRequest setUrlPageName(string|null $url_page_name)
+ * @method string|null getWorkspace()
+ * @method CreateLandingPageRequest setWorkspace(string|null $workspace)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateLandingPageRequestArray>
  * @implements \ArrayAccess<key-of<CreateLandingPageRequestArray>, value-of<CreateLandingPageRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -162,305 +190,6 @@ class CreateLandingPageRequest extends ModelBase implements ModelInterface, \Arr
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets custom_head_html
-     *
-     * @return string|null
-     */
-    public function getCustomHeadHtml(): ?string
-    {
-        return $this->container['custom_head_html'] ?? null;
-    }
-
-    /**
-     * Sets custom_head_html
-     *
-     * @param string|null $custom_head_html Any custom HTML to embed in the <head> tag of the page
-     *
-     * @return self
-     */
-    public function setCustomHeadHtml(?string $custom_head_html): CreateLandingPageRequest
-    {
-        $this->container['custom_head_html'] = $custom_head_html;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CreateLandingPageRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets facebook_og_tags
-     *
-     * @return string|null
-     */
-    public function getFacebookOgTags(): ?string
-    {
-        return $this->container['facebook_og_tags'] ?? null;
-    }
-
-    /**
-     * Sets facebook_og_tags
-     *
-     * @param string|null $facebook_og_tags Any OpenGraph meta tags to apply to the page
-     *
-     * @return self
-     */
-    public function setFacebookOgTags(?string $facebook_og_tags): CreateLandingPageRequest
-    {
-        $this->container['facebook_og_tags'] = $facebook_og_tags;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateLandingPageRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets keywords
-     *
-     * @return string|null
-     */
-    public function getKeywords(): ?string
-    {
-        return $this->container['keywords'] ?? null;
-    }
-
-    /**
-     * Sets keywords
-     *
-     * @param string|null $keywords keywords
-     *
-     * @return self
-     */
-    public function setKeywords(?string $keywords): CreateLandingPageRequest
-    {
-        $this->container['keywords'] = $keywords;
-
-        return $this;
-    }
-    /**
-     * Gets mobile_enabled
-     *
-     * @return bool|null
-     */
-    public function getMobileEnabled(): ?bool
-    {
-        return $this->container['mobile_enabled'] ?? null;
-    }
-
-    /**
-     * Sets mobile_enabled
-     *
-     * @param bool|null $mobile_enabled Whether the page has mobile viewing enabled. Free-form pages only. Default false
-     *
-     * @return self
-     */
-    public function setMobileEnabled(?bool $mobile_enabled): CreateLandingPageRequest
-    {
-        $this->container['mobile_enabled'] = $mobile_enabled;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the landing page
-     *
-     * @return self
-     */
-    public function setName(string $name): CreateLandingPageRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets prefill_form
-     *
-     * @return bool|null
-     */
-    public function getPrefillForm(): ?bool
-    {
-        return $this->container['prefill_form'] ?? null;
-    }
-
-    /**
-     * Sets prefill_form
-     *
-     * @param bool|null $prefill_form Boolean to toggle whether forms embedded in the page will prefill. Default false
-     *
-     * @return self
-     */
-    public function setPrefillForm(?bool $prefill_form): CreateLandingPageRequest
-    {
-        $this->container['prefill_form'] = $prefill_form;
-
-        return $this;
-    }
-    /**
-     * Gets robots
-     *
-     * @return string|null
-     */
-    public function getRobots(): ?string
-    {
-        return $this->container['robots'] ?? null;
-    }
-
-    /**
-     * Sets robots
-     *
-     * @param string|null $robots Robots directives to apply to the pages meta tags
-     *
-     * @return self
-     */
-    public function setRobots(?string $robots): CreateLandingPageRequest
-    {
-        $this->container['robots'] = $robots;
-
-        return $this;
-    }
-    /**
-     * Gets template
-     *
-     * @return int
-     */
-    public function getTemplate(): int
-    {
-        return $this->container['template'];
-    }
-
-    /**
-     * Sets template
-     *
-     * @param int $template Id of the template used
-     *
-     * @return self
-     */
-    public function setTemplate(int $template): CreateLandingPageRequest
-    {
-        $this->container['template'] = $template;
-
-        return $this;
-    }
-    /**
-     * Gets title
-     *
-     * @return string|null
-     */
-    public function getTitle(): ?string
-    {
-        return $this->container['title'] ?? null;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title Title element of the landing page
-     *
-     * @return self
-     */
-    public function setTitle(?string $title): CreateLandingPageRequest
-    {
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-    /**
-     * Gets url_page_name
-     *
-     * @return string|null
-     */
-    public function getUrlPageName(): ?string
-    {
-        return $this->container['url_page_name'] ?? null;
-    }
-
-    /**
-     * Sets url_page_name
-     *
-     * @param string|null $url_page_name URL path of the page. Derived from the name field if unset
-     *
-     * @return self
-     */
-    public function setUrlPageName(?string $url_page_name): CreateLandingPageRequest
-    {
-        $this->container['url_page_name'] = $url_page_name;
-
-        return $this;
-    }
-    /**
-     * Gets workspace
-     *
-     * @return string|null
-     */
-    public function getWorkspace(): ?string
-    {
-        return $this->container['workspace'] ?? null;
-    }
-
-    /**
-     * Sets workspace
-     *
-     * @param string|null $workspace Name of the workspace
-     *
-     * @return self
-     */
-    public function setWorkspace(?string $workspace): CreateLandingPageRequest
-    {
-        $this->container['workspace'] = $workspace;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

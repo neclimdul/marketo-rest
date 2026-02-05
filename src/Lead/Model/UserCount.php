@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     count: int,
  *     user_id: string,
  * }
+ *
+ * @method int getCount()
+ * @method UserCount setCount(int $count)
+ * @method string getUserId()
+ * @method UserCount setUserId(string $user_id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UserCountArray>
  * @implements \ArrayAccess<key-of<UserCountArray>, value-of<UserCountArray>>
  * @psalm-suppress MixedReturnStatement
@@ -106,52 +112,6 @@ class UserCount extends ModelBase implements ModelInterface, \ArrayAccess, \Json
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets count
-     *
-     * @return int
-     */
-    public function getCount(): int
-    {
-        return $this->container['count'];
-    }
-
-    /**
-     * Sets count
-     *
-     * @param int $count Number of calls made in the time period
-     *
-     * @return self
-     */
-    public function setCount(int $count): UserCount
-    {
-        $this->container['count'] = $count;
-
-        return $this;
-    }
-    /**
-     * Gets user_id
-     *
-     * @return string
-     */
-    public function getUserId(): string
-    {
-        return $this->container['user_id'];
-    }
-
-    /**
-     * Sets user_id
-     *
-     * @param string $user_id Id of the user
-     *
-     * @return self
-     */
-    public function setUserId(string $user_id): UserCount
-    {
-        $this->container['user_id'] = $user_id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

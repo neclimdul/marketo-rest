@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type UpdateLeadPartitionRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartition[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartition[] getInput()
+ * @method UpdateLeadPartitionRequest setInput(\NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartition[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateLeadPartitionRequestArray>
  * @implements \ArrayAccess<key-of<UpdateLeadPartitionRequestArray>, value-of<UpdateLeadPartitionRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class UpdateLeadPartitionRequest extends ModelBase implements ModelInterface, \A
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartition[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartition[] $input List of leads for input
-     *
-     * @return self
-     */
-    public function setInput(array $input): UpdateLeadPartitionRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

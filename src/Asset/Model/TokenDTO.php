@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     type?: ?string,
  *     value?: ?string,
  * }
+ *
+ * @method string|null getComputedUrl()
+ * @method TokenDTO setComputedUrl(string|null $computed_url)
+ * @method string|null getName()
+ * @method TokenDTO setName(string|null $name)
+ * @method string|null getType()
+ * @method TokenDTO setType(string|null $type)
+ * @method string|null getValue()
+ * @method TokenDTO setValue(string|null $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<TokenDTOArray>
  * @implements \ArrayAccess<key-of<TokenDTOArray>, value-of<TokenDTOArray>>
  * @psalm-suppress MixedReturnStatement
@@ -113,98 +123,6 @@ class TokenDTO extends ModelBase implements ModelInterface, \ArrayAccess, \JsonS
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets computed_url
-     *
-     * @return string|null
-     */
-    public function getComputedUrl(): ?string
-    {
-        return $this->container['computed_url'] ?? null;
-    }
-
-    /**
-     * Sets computed_url
-     *
-     * @param string|null $computed_url computed_url
-     *
-     * @return self
-     */
-    public function setComputedUrl(?string $computed_url): TokenDTO
-    {
-        $this->container['computed_url'] = $computed_url;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name name
-     *
-     * @return self
-     */
-    public function setName(?string $name): TokenDTO
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType(): ?string
-    {
-        return $this->container['type'] ?? null;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type type
-     *
-     * @return self
-     */
-    public function setType(?string $type): TokenDTO
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string|null
-     */
-    public function getValue(): ?string
-    {
-        return $this->container['value'] ?? null;
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string|null $value value
-     *
-     * @return self
-     */
-    public function setValue(?string $value): TokenDTO
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     display_name: string,
  *     data_type: string,
  * }
+ *
+ * @method string getName()
+ * @method ObjectLinkableObjectField setName(string $name)
+ * @method string getDisplayName()
+ * @method ObjectLinkableObjectField setDisplayName(string $display_name)
+ * @method string getDataType()
+ * @method ObjectLinkableObjectField setDataType(string $data_type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ObjectLinkableObjectFieldArray>
  * @implements \ArrayAccess<key-of<ObjectLinkableObjectFieldArray>, value-of<ObjectLinkableObjectFieldArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class ObjectLinkableObjectField extends ModelBase implements ModelInterface, \Ar
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Link field API name
-     *
-     * @return self
-     */
-    public function setName(string $name): ObjectLinkableObjectField
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets display_name
-     *
-     * @return string
-     */
-    public function getDisplayName(): string
-    {
-        return $this->container['display_name'];
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string $display_name Link field name
-     *
-     * @return self
-     */
-    public function setDisplayName(string $display_name): ObjectLinkableObjectField
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets data_type
-     *
-     * @return string
-     */
-    public function getDataType(): string
-    {
-        return $this->container['data_type'];
-    }
-
-    /**
-     * Sets data_type
-     *
-     * @param string $data_type Link field data type
-     *
-     * @return self
-     */
-    public function setDataType(string $data_type): ObjectLinkableObjectField
-    {
-        $this->container['data_type'] = $data_type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     rule_type: string,
  *     rules: \NecLimDul\MarketoRest\Asset\Model\VisibilityRuleRequest[],
  * }
+ *
+ * @method string getRuleType()
+ * @method FormFieldVisibilityRequest setRuleType(string $rule_type)
+ * @method \NecLimDul\MarketoRest\Asset\Model\VisibilityRuleRequest[] getRules()
+ * @method FormFieldVisibilityRequest setRules(\NecLimDul\MarketoRest\Asset\Model\VisibilityRuleRequest[] $rules)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FormFieldVisibilityRequestArray>
  * @implements \ArrayAccess<key-of<FormFieldVisibilityRequestArray>, value-of<FormFieldVisibilityRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -133,62 +139,6 @@ class FormFieldVisibilityRequest extends ModelBase implements ModelInterface, \A
         ];
     }
 
-    /**
-     * Gets rule_type
-     *
-     * @return string
-     */
-    public function getRuleType(): string
-    {
-        return $this->container['rule_type'];
-    }
-
-    /**
-     * Sets rule_type
-     *
-     * @param string $rule_type Type of rule to apply
-     *
-     * @return self
-     */
-    public function setRuleType(string $rule_type): FormFieldVisibilityRequest
-    {
-        $allowedValues = $this->getRuleTypeAllowableValues();
-        if (!in_array($rule_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'rule_type', must be one of '%s'",
-                    $rule_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['rule_type'] = $rule_type;
-
-        return $this;
-    }
-    /**
-     * Gets rules
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\VisibilityRuleRequest[]
-     */
-    public function getRules(): array
-    {
-        return $this->container['rules'];
-    }
-
-    /**
-     * Sets rules
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\VisibilityRuleRequest[] $rules JSON Array of rules
-     *
-     * @return self
-     */
-    public function setRules(array $rules): FormFieldVisibilityRequest
-    {
-        $this->container['rules'] = $rules;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

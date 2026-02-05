@@ -34,6 +34,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     new_value: string,
  *     old_value?: ?string,
  * }
+ *
+ * @method int getId()
+ * @method LeadChangeField setId(int $id)
+ * @method string getName()
+ * @method LeadChangeField setName(string $name)
+ * @method string getNewValue()
+ * @method LeadChangeField setNewValue(string $new_value)
+ * @method string|null getOldValue()
+ * @method LeadChangeField setOldValue(string|null $old_value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadChangeFieldArray>
  * @implements \ArrayAccess<key-of<LeadChangeFieldArray>, value-of<LeadChangeFieldArray>>
  * @psalm-suppress MixedReturnStatement
@@ -119,98 +129,6 @@ class LeadChangeField extends ModelBase implements ModelInterface, \ArrayAccess,
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the change record
-     *
-     * @return self
-     */
-    public function setId(int $id): LeadChangeField
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the field which was changed
-     *
-     * @return self
-     */
-    public function setName(string $name): LeadChangeField
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets new_value
-     *
-     * @return string
-     */
-    public function getNewValue(): string
-    {
-        return $this->container['new_value'];
-    }
-
-    /**
-     * Sets new_value
-     *
-     * @param string $new_value New value after the change
-     *
-     * @return self
-     */
-    public function setNewValue(string $new_value): LeadChangeField
-    {
-        $this->container['new_value'] = $new_value;
-
-        return $this;
-    }
-    /**
-     * Gets old_value
-     *
-     * @return string|null
-     */
-    public function getOldValue(): ?string
-    {
-        return $this->container['old_value'] ?? null;
-    }
-
-    /**
-     * Sets old_value
-     *
-     * @param string|null $old_value Old value before the change
-     *
-     * @return self
-     */
-    public function setOldValue(?string $old_value): LeadChangeField
-    {
-        $this->container['old_value'] = $old_value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

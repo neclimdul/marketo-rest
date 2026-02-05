@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     tag_type: string,
  *     tag_value: string,
  * }
+ *
+ * @method string getTagType()
+ * @method Tags setTagType(string $tag_type)
+ * @method string getTagValue()
+ * @method Tags setTagValue(string $tag_value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<TagsArray>
  * @implements \ArrayAccess<key-of<TagsArray>, value-of<TagsArray>>
  * @psalm-suppress MixedReturnStatement
@@ -105,52 +111,6 @@ class Tags extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSeria
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets tag_type
-     *
-     * @return string
-     */
-    public function getTagType(): string
-    {
-        return $this->container['tag_type'];
-    }
-
-    /**
-     * Sets tag_type
-     *
-     * @param string $tag_type Name of the tag
-     *
-     * @return self
-     */
-    public function setTagType(string $tag_type): Tags
-    {
-        $this->container['tag_type'] = $tag_type;
-
-        return $this;
-    }
-    /**
-     * Gets tag_value
-     *
-     * @return string
-     */
-    public function getTagValue(): string
-    {
-        return $this->container['tag_value'];
-    }
-
-    /**
-     * Sets tag_value
-     *
-     * @param string $tag_value Value of the tag
-     *
-     * @return self
-     */
-    public function setTagValue(string $tag_value): Tags
-    {
-        $this->container['tag_value'] = $tag_value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

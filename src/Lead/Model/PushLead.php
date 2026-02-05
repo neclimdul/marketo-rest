@@ -33,6 +33,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     reason?: ?\NecLimDul\MarketoRest\Lead\Model\Reason,
  *     status?: ?string,
  * }
+ *
+ * @method int|null getId()
+ * @method PushLead setId(int|null $id)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Reason|null getReason()
+ * @method PushLead setReason(\NecLimDul\MarketoRest\Lead\Model\Reason|null $reason)
+ * @method string|null getStatus()
+ * @method PushLead setStatus(string|null $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<PushLeadArray>
  * @implements \ArrayAccess<key-of<PushLeadArray>, value-of<PushLeadArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class PushLead extends ModelBase implements ModelInterface, \ArrayAccess, \JsonS
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Unique integer id of a lead record
-     *
-     * @return self
-     */
-    public function setId(?int $id): PushLead
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets reason
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason|null
-     */
-    public function getReason(): ?\NecLimDul\MarketoRest\Lead\Model\Reason
-    {
-        return $this->container['reason'] ?? null;
-    }
-
-    /**
-     * Sets reason
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason|null $reason reason
-     *
-     * @return self
-     */
-    public function setReason(?\NecLimDul\MarketoRest\Lead\Model\Reason $reason): PushLead
-    {
-        $this->container['reason'] = $reason;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus(): ?string
-    {
-        return $this->container['status'] ?? null;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status Status of the operation performed on the record
-     *
-     * @return self
-     */
-    public function setStatus(?string $status): PushLead
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

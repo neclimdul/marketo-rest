@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     success?: ?bool,
  *     warnings?: ?string[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Asset\Model\Error[]|null getErrors()
+ * @method ResponseOfLandingPageDynamicContentResponse setErrors(\NecLimDul\MarketoRest\Asset\Model\Error[]|null $errors)
+ * @method string|null getRequestId()
+ * @method ResponseOfLandingPageDynamicContentResponse setRequestId(string|null $request_id)
+ * @method \NecLimDul\MarketoRest\Asset\Model\LandingPageDynamicContentResponse[]|null getResult()
+ * @method ResponseOfLandingPageDynamicContentResponse setResult(\NecLimDul\MarketoRest\Asset\Model\LandingPageDynamicContentResponse[]|null $result)
+ * @method bool|null getSuccess()
+ * @method ResponseOfLandingPageDynamicContentResponse setSuccess(bool|null $success)
+ * @method string[]|null getWarnings()
+ * @method ResponseOfLandingPageDynamicContentResponse setWarnings(string[]|null $warnings)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ResponseOfLandingPageDynamicContentResponseArray>
  * @implements \ArrayAccess<key-of<ResponseOfLandingPageDynamicContentResponseArray>, value-of<ResponseOfLandingPageDynamicContentResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -118,121 +130,6 @@ class ResponseOfLandingPageDynamicContentResponse extends ModelBase implements M
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets errors
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]|null
-     */
-    public function getErrors(): ?array
-    {
-        return $this->container['errors'] ?? null;
-    }
-
-    /**
-     * Sets errors
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Error[]|null $errors errors
-     *
-     * @return self
-     */
-    public function setErrors(?array $errors): ResponseOfLandingPageDynamicContentResponse
-    {
-        $this->container['errors'] = $errors;
-
-        return $this;
-    }
-    /**
-     * Gets request_id
-     *
-     * @return string|null
-     */
-    public function getRequestId(): ?string
-    {
-        return $this->container['request_id'] ?? null;
-    }
-
-    /**
-     * Sets request_id
-     *
-     * @param string|null $request_id request_id
-     *
-     * @return self
-     */
-    public function setRequestId(?string $request_id): ResponseOfLandingPageDynamicContentResponse
-    {
-        $this->container['request_id'] = $request_id;
-
-        return $this;
-    }
-    /**
-     * Gets result
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\LandingPageDynamicContentResponse[]|null
-     */
-    public function getResult(): ?array
-    {
-        return $this->container['result'] ?? null;
-    }
-
-    /**
-     * Sets result
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\LandingPageDynamicContentResponse[]|null $result result
-     *
-     * @return self
-     */
-    public function setResult(?array $result): ResponseOfLandingPageDynamicContentResponse
-    {
-        $this->container['result'] = $result;
-
-        return $this;
-    }
-    /**
-     * Gets success
-     *
-     * @return bool|null
-     */
-    public function getSuccess(): ?bool
-    {
-        return $this->container['success'] ?? null;
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool|null $success success
-     *
-     * @return self
-     */
-    public function setSuccess(?bool $success): ResponseOfLandingPageDynamicContentResponse
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-    /**
-     * Gets warnings
-     *
-     * @return string[]|null
-     */
-    public function getWarnings(): ?array
-    {
-        return $this->container['warnings'] ?? null;
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param string[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings): ResponseOfLandingPageDynamicContentResponse
-    {
-        $this->container['warnings'] = $warnings;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

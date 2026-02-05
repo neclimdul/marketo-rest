@@ -37,6 +37,22 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     is_html_encoding_in_email?: ?bool,
  *     is_sensitive?: ?bool,
  * }
+ *
+ * @method string getDisplayName()
+ * @method CreateLeadField setDisplayName(string $display_name)
+ * @method string getName()
+ * @method CreateLeadField setName(string $name)
+ * @method string|null getDescription()
+ * @method CreateLeadField setDescription(string|null $description)
+ * @method string getDataType()
+ * @method CreateLeadField setDataType(string $data_type)
+ * @method bool|null getIsHidden()
+ * @method CreateLeadField setIsHidden(bool|null $is_hidden)
+ * @method bool|null getIsHtmlEncodingInEmail()
+ * @method CreateLeadField setIsHtmlEncodingInEmail(bool|null $is_html_encoding_in_email)
+ * @method bool|null getIsSensitive()
+ * @method CreateLeadField setIsSensitive(bool|null $is_sensitive)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateLeadFieldArray>
  * @implements \ArrayAccess<key-of<CreateLeadFieldArray>, value-of<CreateLeadFieldArray>>
  * @psalm-suppress MixedReturnStatement
@@ -179,177 +195,6 @@ class CreateLeadField extends ModelBase implements ModelInterface, \ArrayAccess,
         ];
     }
 
-    /**
-     * Gets display_name
-     *
-     * @return string
-     */
-    public function getDisplayName(): string
-    {
-        return $this->container['display_name'];
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string $display_name UI display-name of the field. Must be unique, cannot contain special characters
-     *
-     * @return self
-     */
-    public function setDisplayName(string $display_name): CreateLeadField
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name API name of the field. Must be unique, start with a letter, and only contain letters, numbers, or underscore
-     *
-     * @return self
-     */
-    public function setName(string $name): CreateLeadField
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the field. Default is no description
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CreateLeadField
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets data_type
-     *
-     * @return string
-     */
-    public function getDataType(): string
-    {
-        return $this->container['data_type'];
-    }
-
-    /**
-     * Sets data_type
-     *
-     * @param string $data_type Datatype of the field
-     *
-     * @return self
-     */
-    public function setDataType(string $data_type): CreateLeadField
-    {
-        $allowedValues = $this->getDataTypeAllowableValues();
-        if (!in_array($data_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'data_type', must be one of '%s'",
-                    $data_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['data_type'] = $data_type;
-
-        return $this;
-    }
-    /**
-     * Gets is_hidden
-     *
-     * @return bool|null
-     */
-    public function getIsHidden(): ?bool
-    {
-        return $this->container['is_hidden'] ?? null;
-    }
-
-    /**
-     * Sets is_hidden
-     *
-     * @param bool|null $is_hidden If set to true, the field is hidden. Default is false
-     *
-     * @return self
-     */
-    public function setIsHidden(?bool $is_hidden): CreateLeadField
-    {
-        $this->container['is_hidden'] = $is_hidden;
-
-        return $this;
-    }
-    /**
-     * Gets is_html_encoding_in_email
-     *
-     * @return bool|null
-     */
-    public function getIsHtmlEncodingInEmail(): ?bool
-    {
-        return $this->container['is_html_encoding_in_email'] ?? null;
-    }
-
-    /**
-     * Sets is_html_encoding_in_email
-     *
-     * @param bool|null $is_html_encoding_in_email If set to true, field is encoded as HTML in email. Default is true
-     *
-     * @return self
-     */
-    public function setIsHtmlEncodingInEmail(?bool $is_html_encoding_in_email): CreateLeadField
-    {
-        $this->container['is_html_encoding_in_email'] = $is_html_encoding_in_email;
-
-        return $this;
-    }
-    /**
-     * Gets is_sensitive
-     *
-     * @return bool|null
-     */
-    public function getIsSensitive(): ?bool
-    {
-        return $this->container['is_sensitive'] ?? null;
-    }
-
-    /**
-     * Sets is_sensitive
-     *
-     * @param bool|null $is_sensitive If set to true, field is marked as sensitive. Default is false
-     *
-     * @return self
-     */
-    public function setIsSensitive(?bool $is_sensitive): CreateLeadField
-    {
-        $this->container['is_sensitive'] = $is_sensitive;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

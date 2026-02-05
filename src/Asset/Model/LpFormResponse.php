@@ -48,6 +48,48 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     url?: ?string,
  *     waiting_label: string,
  * }
+ *
+ * @method string getButtonLabel()
+ * @method LpFormResponse setButtonLabel(string $button_label)
+ * @method int getButtonLocation()
+ * @method LpFormResponse setButtonLocation(int $button_location)
+ * @method \DateTime|null getCreatedAt()
+ * @method LpFormResponse setCreatedAt(\DateTime|null $created_at)
+ * @method string|null getDescription()
+ * @method LpFormResponse setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method LpFormResponse setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string getFontFamily()
+ * @method LpFormResponse setFontFamily(string $font_family)
+ * @method string getFontSize()
+ * @method LpFormResponse setFontSize(string $font_size)
+ * @method int|null getId()
+ * @method LpFormResponse setId(int|null $id)
+ * @method \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO getKnownVisitor()
+ * @method LpFormResponse setKnownVisitor(\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor)
+ * @method string getLabelPosition()
+ * @method LpFormResponse setLabelPosition(string $label_position)
+ * @method string getLanguage()
+ * @method LpFormResponse setLanguage(string $language)
+ * @method string getLocale()
+ * @method LpFormResponse setLocale(string $locale)
+ * @method string|null getName()
+ * @method LpFormResponse setName(string|null $name)
+ * @method bool getProgressiveProfiling()
+ * @method LpFormResponse setProgressiveProfiling(bool $progressive_profiling)
+ * @method string getStatus()
+ * @method LpFormResponse setStatus(string $status)
+ * @method \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[] getThankYouList()
+ * @method LpFormResponse setThankYouList(\NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[] $thank_you_list)
+ * @method string getTheme()
+ * @method LpFormResponse setTheme(string $theme)
+ * @method \DateTime|null getUpdatedAt()
+ * @method LpFormResponse setUpdatedAt(\DateTime|null $updated_at)
+ * @method string|null getUrl()
+ * @method LpFormResponse setUrl(string|null $url)
+ * @method string getWaitingLabel()
+ * @method LpFormResponse setWaitingLabel(string $waiting_label)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LpFormResponseArray>
  * @implements \ArrayAccess<key-of<LpFormResponseArray>, value-of<LpFormResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -237,476 +279,6 @@ class LpFormResponse extends ModelBase implements ModelInterface, \ArrayAccess, 
         ];
     }
 
-    /**
-     * Gets button_label
-     *
-     * @return string
-     */
-    public function getButtonLabel(): string
-    {
-        return $this->container['button_label'];
-    }
-
-    /**
-     * Sets button_label
-     *
-     * @param string $button_label Label text of the button
-     *
-     * @return self
-     */
-    public function setButtonLabel(string $button_label): LpFormResponse
-    {
-        $this->container['button_label'] = $button_label;
-
-        return $this;
-    }
-    /**
-     * Gets button_location
-     *
-     * @return int
-     */
-    public function getButtonLocation(): int
-    {
-        return $this->container['button_location'];
-    }
-
-    /**
-     * Sets button_location
-     *
-     * @param int $button_location Location in pixels of the button relative to the left of the form
-     *
-     * @return self
-     */
-    public function setButtonLocation(int $button_location): LpFormResponse
-    {
-        $this->container['button_location'] = $button_location;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at Datetime the asset was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?\DateTime $created_at): LpFormResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): LpFormResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): LpFormResponse
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets font_family
-     *
-     * @return string
-     */
-    public function getFontFamily(): string
-    {
-        return $this->container['font_family'];
-    }
-
-    /**
-     * Sets font_family
-     *
-     * @param string $font_family font-family property for the form
-     *
-     * @return self
-     */
-    public function setFontFamily(string $font_family): LpFormResponse
-    {
-        $this->container['font_family'] = $font_family;
-
-        return $this;
-    }
-    /**
-     * Gets font_size
-     *
-     * @return string
-     */
-    public function getFontSize(): string
-    {
-        return $this->container['font_size'];
-    }
-
-    /**
-     * Sets font_size
-     *
-     * @param string $font_size font-size property of the form
-     *
-     * @return self
-     */
-    public function setFontSize(string $font_size): LpFormResponse
-    {
-        $this->container['font_size'] = $font_size;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Id of the asset
-     *
-     * @return self
-     */
-    public function setId(?int $id): LpFormResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets known_visitor
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
-     */
-    public function getKnownVisitor(): \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
-    {
-        return $this->container['known_visitor'];
-    }
-
-    /**
-     * Sets known_visitor
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor known_visitor
-     *
-     * @return self
-     */
-    public function setKnownVisitor(\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor): LpFormResponse
-    {
-        $this->container['known_visitor'] = $known_visitor;
-
-        return $this;
-    }
-    /**
-     * Gets label_position
-     *
-     * @return string
-     */
-    public function getLabelPosition(): string
-    {
-        return $this->container['label_position'];
-    }
-
-    /**
-     * Sets label_position
-     *
-     * @param string $label_position Default positioning of labels.
-     *
-     * @return self
-     */
-    public function setLabelPosition(string $label_position): LpFormResponse
-    {
-        $this->container['label_position'] = $label_position;
-
-        return $this;
-    }
-    /**
-     * Gets language
-     *
-     * @return string
-     */
-    public function getLanguage(): string
-    {
-        return $this->container['language'];
-    }
-
-    /**
-     * Sets language
-     *
-     * @param string $language Language of the form
-     *
-     * @return self
-     */
-    public function setLanguage(string $language): LpFormResponse
-    {
-        $this->container['language'] = $language;
-
-        return $this;
-    }
-    /**
-     * Gets locale
-     *
-     * @return string
-     */
-    public function getLocale(): string
-    {
-        return $this->container['locale'];
-    }
-
-    /**
-     * Sets locale
-     *
-     * @param string $locale Locale of the form
-     *
-     * @return self
-     */
-    public function setLocale(string $locale): LpFormResponse
-    {
-        $this->container['locale'] = $locale;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the asset
-     *
-     * @return self
-     */
-    public function setName(?string $name): LpFormResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets progressive_profiling
-     *
-     * @return bool
-     */
-    public function getProgressiveProfiling(): bool
-    {
-        return $this->container['progressive_profiling'];
-    }
-
-    /**
-     * Sets progressive_profiling
-     *
-     * @param bool $progressive_profiling Whether progressive profiling is enabled for the form
-     *
-     * @return self
-     */
-    public function setProgressiveProfiling(bool $progressive_profiling): LpFormResponse
-    {
-        $this->container['progressive_profiling'] = $progressive_profiling;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status filter for draft or approved versions
-     *
-     * @return self
-     */
-    public function setStatus(string $status): LpFormResponse
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets thank_you_list
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]
-     */
-    public function getThankYouList(): array
-    {
-        return $this->container['thank_you_list'];
-    }
-
-    /**
-     * Sets thank_you_list
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[] $thank_you_list List of thank you page behaviors for the form
-     *
-     * @return self
-     */
-    public function setThankYouList(array $thank_you_list): LpFormResponse
-    {
-        $this->container['thank_you_list'] = $thank_you_list;
-
-        return $this;
-    }
-    /**
-     * Gets theme
-     *
-     * @return string
-     */
-    public function getTheme(): string
-    {
-        return $this->container['theme'];
-    }
-
-    /**
-     * Sets theme
-     *
-     * @param string $theme CSS theme for the form to use
-     *
-     * @return self
-     */
-    public function setTheme(string $theme): LpFormResponse
-    {
-        $this->container['theme'] = $theme;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at Datetime the asset was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?\DateTime $updated_at): LpFormResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl(): ?string
-    {
-        return $this->container['url'] ?? null;
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url Url of the asset in the Marketo UI
-     *
-     * @return self
-     */
-    public function setUrl(?string $url): LpFormResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-    /**
-     * Gets waiting_label
-     *
-     * @return string
-     */
-    public function getWaitingLabel(): string
-    {
-        return $this->container['waiting_label'];
-    }
-
-    /**
-     * Sets waiting_label
-     *
-     * @param string $waiting_label Waiting text of the button
-     *
-     * @return self
-     */
-    public function setWaitingLabel(string $waiting_label): LpFormResponse
-    {
-        $this->container['waiting_label'] = $waiting_label;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

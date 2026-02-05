@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     display_name: string,
  *     fields: \NecLimDul\MarketoRest\Lead\Model\ObjectLinkableObjectField[],
  * }
+ *
+ * @method string getName()
+ * @method ObjectLinkableObject setName(string $name)
+ * @method string getDisplayName()
+ * @method ObjectLinkableObject setDisplayName(string $display_name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ObjectLinkableObjectField[] getFields()
+ * @method ObjectLinkableObject setFields(\NecLimDul\MarketoRest\Lead\Model\ObjectLinkableObjectField[] $fields)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ObjectLinkableObjectArray>
  * @implements \ArrayAccess<key-of<ObjectLinkableObjectArray>, value-of<ObjectLinkableObjectArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class ObjectLinkableObject extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Link object API name
-     *
-     * @return self
-     */
-    public function setName(string $name): ObjectLinkableObject
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets display_name
-     *
-     * @return string
-     */
-    public function getDisplayName(): string
-    {
-        return $this->container['display_name'];
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string $display_name Link object UI display-name
-     *
-     * @return self
-     */
-    public function setDisplayName(string $display_name): ObjectLinkableObject
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets fields
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ObjectLinkableObjectField[]
-     */
-    public function getFields(): array
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ObjectLinkableObjectField[] $fields List of fields available on the link object
-     *
-     * @return self
-     */
-    public function setFields(array $fields): ObjectLinkableObject
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

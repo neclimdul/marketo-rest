@@ -39,6 +39,30 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     progressive_profiling?: ?bool,
  *     theme?: ?string,
  * }
+ *
+ * @method string|null getCustomCss()
+ * @method UpdateFormMetaDataRequest setCustomCss(string|null $custom_css)
+ * @method string|null getDescription()
+ * @method UpdateFormMetaDataRequest setDescription(string|null $description)
+ * @method string|null getFontFamily()
+ * @method UpdateFormMetaDataRequest setFontFamily(string|null $font_family)
+ * @method string|null getFontSize()
+ * @method UpdateFormMetaDataRequest setFontSize(string|null $font_size)
+ * @method \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null getKnownVisitor()
+ * @method UpdateFormMetaDataRequest setKnownVisitor(\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor)
+ * @method string|null getLabelPosition()
+ * @method UpdateFormMetaDataRequest setLabelPosition(string|null $label_position)
+ * @method string|null getLanguage()
+ * @method UpdateFormMetaDataRequest setLanguage(string|null $language)
+ * @method string|null getLocale()
+ * @method UpdateFormMetaDataRequest setLocale(string|null $locale)
+ * @method string|null getName()
+ * @method UpdateFormMetaDataRequest setName(string|null $name)
+ * @method bool|null getProgressiveProfiling()
+ * @method UpdateFormMetaDataRequest setProgressiveProfiling(bool|null $progressive_profiling)
+ * @method string|null getTheme()
+ * @method UpdateFormMetaDataRequest setTheme(string|null $theme)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateFormMetaDataRequestArray>
  * @implements \ArrayAccess<key-of<UpdateFormMetaDataRequestArray>, value-of<UpdateFormMetaDataRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -148,259 +172,6 @@ class UpdateFormMetaDataRequest extends ModelBase implements ModelInterface, \Ar
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets custom_css
-     *
-     * @return string|null
-     */
-    public function getCustomCss(): ?string
-    {
-        return $this->container['custom_css'] ?? null;
-    }
-
-    /**
-     * Sets custom_css
-     *
-     * @param string|null $custom_css Custom CSS to apply to the form
-     *
-     * @return self
-     */
-    public function setCustomCss(?string $custom_css): UpdateFormMetaDataRequest
-    {
-        $this->container['custom_css'] = $custom_css;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the form
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): UpdateFormMetaDataRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets font_family
-     *
-     * @return string|null
-     */
-    public function getFontFamily(): ?string
-    {
-        return $this->container['font_family'] ?? null;
-    }
-
-    /**
-     * Sets font_family
-     *
-     * @param string|null $font_family font-family property for the form
-     *
-     * @return self
-     */
-    public function setFontFamily(?string $font_family): UpdateFormMetaDataRequest
-    {
-        $this->container['font_family'] = $font_family;
-
-        return $this;
-    }
-    /**
-     * Gets font_size
-     *
-     * @return string|null
-     */
-    public function getFontSize(): ?string
-    {
-        return $this->container['font_size'] ?? null;
-    }
-
-    /**
-     * Sets font_size
-     *
-     * @param string|null $font_size font-size property of the form
-     *
-     * @return self
-     */
-    public function setFontSize(?string $font_size): UpdateFormMetaDataRequest
-    {
-        $this->container['font_size'] = $font_size;
-
-        return $this;
-    }
-    /**
-     * Gets known_visitor
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null
-     */
-    public function getKnownVisitor(): ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
-    {
-        return $this->container['known_visitor'] ?? null;
-    }
-
-    /**
-     * Sets known_visitor
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor known_visitor
-     *
-     * @return self
-     */
-    public function setKnownVisitor(?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor): UpdateFormMetaDataRequest
-    {
-        $this->container['known_visitor'] = $known_visitor;
-
-        return $this;
-    }
-    /**
-     * Gets label_position
-     *
-     * @return string|null
-     */
-    public function getLabelPosition(): ?string
-    {
-        return $this->container['label_position'] ?? null;
-    }
-
-    /**
-     * Sets label_position
-     *
-     * @param string|null $label_position Default positioning of labels.
-     *
-     * @return self
-     */
-    public function setLabelPosition(?string $label_position): UpdateFormMetaDataRequest
-    {
-        $this->container['label_position'] = $label_position;
-
-        return $this;
-    }
-    /**
-     * Gets language
-     *
-     * @return string|null
-     */
-    public function getLanguage(): ?string
-    {
-        return $this->container['language'] ?? null;
-    }
-
-    /**
-     * Sets language
-     *
-     * @param string|null $language Language of the form
-     *
-     * @return self
-     */
-    public function setLanguage(?string $language): UpdateFormMetaDataRequest
-    {
-        $this->container['language'] = $language;
-
-        return $this;
-    }
-    /**
-     * Gets locale
-     *
-     * @return string|null
-     */
-    public function getLocale(): ?string
-    {
-        return $this->container['locale'] ?? null;
-    }
-
-    /**
-     * Sets locale
-     *
-     * @param string|null $locale Locale of the form
-     *
-     * @return self
-     */
-    public function setLocale(?string $locale): UpdateFormMetaDataRequest
-    {
-        $this->container['locale'] = $locale;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the form
-     *
-     * @return self
-     */
-    public function setName(?string $name): UpdateFormMetaDataRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets progressive_profiling
-     *
-     * @return bool|null
-     */
-    public function getProgressiveProfiling(): ?bool
-    {
-        return $this->container['progressive_profiling'] ?? null;
-    }
-
-    /**
-     * Sets progressive_profiling
-     *
-     * @param bool|null $progressive_profiling Whether progressive profiling is enabled for the form
-     *
-     * @return self
-     */
-    public function setProgressiveProfiling(?bool $progressive_profiling): UpdateFormMetaDataRequest
-    {
-        $this->container['progressive_profiling'] = $progressive_profiling;
-
-        return $this;
-    }
-    /**
-     * Gets theme
-     *
-     * @return string|null
-     */
-    public function getTheme(): ?string
-    {
-        return $this->container['theme'] ?? null;
-    }
-
-    /**
-     * Sets theme
-     *
-     * @param string|null $theme CSS theme for the form to use
-     *
-     * @return self
-     */
-    public function setTheme(?string $theme): UpdateFormMetaDataRequest
-    {
-        $this->container['theme'] = $theme;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

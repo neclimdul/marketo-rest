@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     filter: \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter,
  *     format?: ?string,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null getColumnHeaderNames()
+ * @method ExportCustomObjectRequest setColumnHeaderNames(\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null $column_header_names)
+ * @method string[] getFields()
+ * @method ExportCustomObjectRequest setFields(string[] $fields)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter getFilter()
+ * @method ExportCustomObjectRequest setFilter(\NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter $filter)
+ * @method string|null getFormat()
+ * @method ExportCustomObjectRequest setFormat(string|null $format)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ExportCustomObjectRequestArray>
  * @implements \ArrayAccess<key-of<ExportCustomObjectRequestArray>, value-of<ExportCustomObjectRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -115,98 +125,6 @@ class ExportCustomObjectRequest extends ModelBase implements ModelInterface, \Ar
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets column_header_names
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null
-     */
-    public function getColumnHeaderNames(): ?\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames
-    {
-        return $this->container['column_header_names'] ?? null;
-    }
-
-    /**
-     * Sets column_header_names
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null $column_header_names column_header_names
-     *
-     * @return self
-     */
-    public function setColumnHeaderNames(?\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames $column_header_names): ExportCustomObjectRequest
-    {
-        $this->container['column_header_names'] = $column_header_names;
-
-        return $this;
-    }
-    /**
-     * Gets fields
-     *
-     * @return string[]
-     */
-    public function getFields(): array
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param string[] $fields Comma-separated list of custom object attributes to include in the file
-     *
-     * @return self
-     */
-    public function setFields(array $fields): ExportCustomObjectRequest
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-    /**
-     * Gets filter
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter
-     */
-    public function getFilter(): \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter
-    {
-        return $this->container['filter'];
-    }
-
-    /**
-     * Sets filter
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter $filter filter
-     *
-     * @return self
-     */
-    public function setFilter(\NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter $filter): ExportCustomObjectRequest
-    {
-        $this->container['filter'] = $filter;
-
-        return $this;
-    }
-    /**
-     * Gets format
-     *
-     * @return string|null
-     */
-    public function getFormat(): ?string
-    {
-        return $this->container['format'] ?? null;
-    }
-
-    /**
-     * Sets format
-     *
-     * @param string|null $format File format to create(\"CSV\", \"TSV\", \"SSV\"). Default is \"CSV\"
-     *
-     * @return self
-     */
-    public function setFormat(?string $format): ExportCustomObjectRequest
-    {
-        $this->container['format'] = $format;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type EmailModuleResponseArray array{
  *     id: int,
  * }
+ *
+ * @method int getId()
+ * @method EmailModuleResponse setId(int $id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<EmailModuleResponseArray>
  * @implements \ArrayAccess<key-of<EmailModuleResponseArray>, value-of<EmailModuleResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -100,29 +104,6 @@ class EmailModuleResponse extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the email module
-     *
-     * @return self
-     */
-    public function setId(int $id): EmailModuleResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

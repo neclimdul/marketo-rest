@@ -33,6 +33,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     triggers: string[],
  *     filters: \NecLimDul\MarketoRest\Asset\Model\SmartListFilters[],
  * }
+ *
+ * @method string getFilterMatchType()
+ * @method SmartListRules setFilterMatchType(string $filter_match_type)
+ * @method string[] getTriggers()
+ * @method SmartListRules setTriggers(string[] $triggers)
+ * @method \NecLimDul\MarketoRest\Asset\Model\SmartListFilters[] getFilters()
+ * @method SmartListRules setFilters(\NecLimDul\MarketoRest\Asset\Model\SmartListFilters[] $filters)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SmartListRulesArray>
  * @implements \ArrayAccess<key-of<SmartListRulesArray>, value-of<SmartListRulesArray>>
  * @psalm-suppress MixedReturnStatement
@@ -141,85 +149,6 @@ class SmartListRules extends ModelBase implements ModelInterface, \ArrayAccess, 
         ];
     }
 
-    /**
-     * Gets filter_match_type
-     *
-     * @return string
-     */
-    public function getFilterMatchType(): string
-    {
-        return $this->container['filter_match_type'];
-    }
-
-    /**
-     * Sets filter_match_type
-     *
-     * @param string $filter_match_type Smart list filter match type (rule logic)
-     *
-     * @return self
-     */
-    public function setFilterMatchType(string $filter_match_type): SmartListRules
-    {
-        $allowedValues = $this->getFilterMatchTypeAllowableValues();
-        if (!in_array($filter_match_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'filter_match_type', must be one of '%s'",
-                    $filter_match_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['filter_match_type'] = $filter_match_type;
-
-        return $this;
-    }
-    /**
-     * Gets triggers
-     *
-     * @return string[]
-     */
-    public function getTriggers(): array
-    {
-        return $this->container['triggers'];
-    }
-
-    /**
-     * Sets triggers
-     *
-     * @param string[] $triggers List of smart list triggers
-     *
-     * @return self
-     */
-    public function setTriggers(array $triggers): SmartListRules
-    {
-        $this->container['triggers'] = $triggers;
-
-        return $this;
-    }
-    /**
-     * Gets filters
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\SmartListFilters[]
-     */
-    public function getFilters(): array
-    {
-        return $this->container['filters'];
-    }
-
-    /**
-     * Sets filters
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\SmartListFilters[] $filters List of smart list filters
-     *
-     * @return self
-     */
-    public function setFilters(array $filters): SmartListRules
-    {
-        $this->container['filters'] = $filters;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

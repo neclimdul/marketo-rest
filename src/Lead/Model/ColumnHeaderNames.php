@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     name: string,
  *     value: string,
  * }
+ *
+ * @method string getName()
+ * @method ColumnHeaderNames setName(string $name)
+ * @method string getValue()
+ * @method ColumnHeaderNames setValue(string $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ColumnHeaderNamesArray>
  * @implements \ArrayAccess<key-of<ColumnHeaderNamesArray>, value-of<ColumnHeaderNamesArray>>
  * @psalm-suppress MixedReturnStatement
@@ -105,52 +111,6 @@ class ColumnHeaderNames extends ModelBase implements ModelInterface, \ArrayAcces
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name REST API name for header field
-     *
-     * @return self
-     */
-    public function setName(string $name): ColumnHeaderNames
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value Value for header field
-     *
-     * @return self
-     */
-    public function setValue(string $value): ColumnHeaderNames
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

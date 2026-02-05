@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     filter: \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter,
  *     format?: ?string,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null getColumnHeaderNames()
+ * @method ExportProgramMemberRequest setColumnHeaderNames(\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null $column_header_names)
+ * @method string[] getFields()
+ * @method ExportProgramMemberRequest setFields(string[] $fields)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter getFilter()
+ * @method ExportProgramMemberRequest setFilter(\NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter $filter)
+ * @method string|null getFormat()
+ * @method ExportProgramMemberRequest setFormat(string|null $format)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ExportProgramMemberRequestArray>
  * @implements \ArrayAccess<key-of<ExportProgramMemberRequestArray>, value-of<ExportProgramMemberRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -115,98 +125,6 @@ class ExportProgramMemberRequest extends ModelBase implements ModelInterface, \A
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets column_header_names
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null
-     */
-    public function getColumnHeaderNames(): ?\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames
-    {
-        return $this->container['column_header_names'] ?? null;
-    }
-
-    /**
-     * Sets column_header_names
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null $column_header_names column_header_names
-     *
-     * @return self
-     */
-    public function setColumnHeaderNames(?\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames $column_header_names): ExportProgramMemberRequest
-    {
-        $this->container['column_header_names'] = $column_header_names;
-
-        return $this;
-    }
-    /**
-     * Gets fields
-     *
-     * @return string[]
-     */
-    public function getFields(): array
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param string[] $fields Comma-separated list of fields to include in the file
-     *
-     * @return self
-     */
-    public function setFields(array $fields): ExportProgramMemberRequest
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-    /**
-     * Gets filter
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter
-     */
-    public function getFilter(): \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter
-    {
-        return $this->container['filter'];
-    }
-
-    /**
-     * Sets filter
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter $filter filter
-     *
-     * @return self
-     */
-    public function setFilter(\NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter $filter): ExportProgramMemberRequest
-    {
-        $this->container['filter'] = $filter;
-
-        return $this;
-    }
-    /**
-     * Gets format
-     *
-     * @return string|null
-     */
-    public function getFormat(): ?string
-    {
-        return $this->container['format'] ?? null;
-    }
-
-    /**
-     * Sets format
-     *
-     * @param string|null $format File format to create(\"CSV\", \"TSV\", \"SSV\"). Default is \"CSV\"
-     *
-     * @return self
-     */
-    public function setFormat(?string $format): ExportProgramMemberRequest
-    {
-        $this->container['format'] = $format;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

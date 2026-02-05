@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     subject_field?: ?string,
  *     values?: ?string[],
  * }
+ *
+ * @method bool|null getDefault()
+ * @method FormThankYouPageDTO setDefault(bool|null $default)
+ * @method string|null getFollowupType()
+ * @method FormThankYouPageDTO setFollowupType(string|null $followup_type)
+ * @method object|null getFollowupValue()
+ * @method FormThankYouPageDTO setFollowupValue(object|null $followup_value)
+ * @method string|null getOperator()
+ * @method FormThankYouPageDTO setOperator(string|null $operator)
+ * @method string|null getSubjectField()
+ * @method FormThankYouPageDTO setSubjectField(string|null $subject_field)
+ * @method string[]|null getValues()
+ * @method FormThankYouPageDTO setValues(string[]|null $values)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FormThankYouPageDTOArray>
  * @implements \ArrayAccess<key-of<FormThankYouPageDTOArray>, value-of<FormThankYouPageDTOArray>>
  * @psalm-suppress MixedReturnStatement
@@ -123,144 +137,6 @@ class FormThankYouPageDTO extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets default
-     *
-     * @return bool|null
-     */
-    public function getDefault(): ?bool
-    {
-        return $this->container['default'] ?? null;
-    }
-
-    /**
-     * Sets default
-     *
-     * @param bool|null $default default
-     *
-     * @return self
-     */
-    public function setDefault(?bool $default): FormThankYouPageDTO
-    {
-        $this->container['default'] = $default;
-
-        return $this;
-    }
-    /**
-     * Gets followup_type
-     *
-     * @return string|null
-     */
-    public function getFollowupType(): ?string
-    {
-        return $this->container['followup_type'] ?? null;
-    }
-
-    /**
-     * Sets followup_type
-     *
-     * @param string|null $followup_type followup_type
-     *
-     * @return self
-     */
-    public function setFollowupType(?string $followup_type): FormThankYouPageDTO
-    {
-        $this->container['followup_type'] = $followup_type;
-
-        return $this;
-    }
-    /**
-     * Gets followup_value
-     *
-     * @return object|null
-     */
-    public function getFollowupValue(): ?object
-    {
-        return $this->container['followup_value'] ?? null;
-    }
-
-    /**
-     * Sets followup_value
-     *
-     * @param object|null $followup_value followup_value
-     *
-     * @return self
-     */
-    public function setFollowupValue(?object $followup_value): FormThankYouPageDTO
-    {
-        $this->container['followup_value'] = $followup_value;
-
-        return $this;
-    }
-    /**
-     * Gets operator
-     *
-     * @return string|null
-     */
-    public function getOperator(): ?string
-    {
-        return $this->container['operator'] ?? null;
-    }
-
-    /**
-     * Sets operator
-     *
-     * @param string|null $operator operator
-     *
-     * @return self
-     */
-    public function setOperator(?string $operator): FormThankYouPageDTO
-    {
-        $this->container['operator'] = $operator;
-
-        return $this;
-    }
-    /**
-     * Gets subject_field
-     *
-     * @return string|null
-     */
-    public function getSubjectField(): ?string
-    {
-        return $this->container['subject_field'] ?? null;
-    }
-
-    /**
-     * Sets subject_field
-     *
-     * @param string|null $subject_field subject_field
-     *
-     * @return self
-     */
-    public function setSubjectField(?string $subject_field): FormThankYouPageDTO
-    {
-        $this->container['subject_field'] = $subject_field;
-
-        return $this;
-    }
-    /**
-     * Gets values
-     *
-     * @return string[]|null
-     */
-    public function getValues(): ?array
-    {
-        return $this->container['values'] ?? null;
-    }
-
-    /**
-     * Sets values
-     *
-     * @param string[]|null $values values
-     *
-     * @return self
-     */
-    public function setValues(?array $values): FormThankYouPageDTO
-    {
-        $this->container['values'] = $values;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

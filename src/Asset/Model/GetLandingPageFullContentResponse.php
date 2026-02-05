@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     content: string,
  *     id: int,
  * }
+ *
+ * @method string getContent()
+ * @method GetLandingPageFullContentResponse setContent(string $content)
+ * @method int getId()
+ * @method GetLandingPageFullContentResponse setId(int $id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<GetLandingPageFullContentResponseArray>
  * @implements \ArrayAccess<key-of<GetLandingPageFullContentResponseArray>, value-of<GetLandingPageFullContentResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -106,52 +112,6 @@ class GetLandingPageFullContentResponse extends ModelBase implements ModelInterf
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content
-     *
-     * @return string
-     */
-    public function getContent(): string
-    {
-        return $this->container['content'];
-    }
-
-    /**
-     * Sets content
-     *
-     * @param string $content HTML content of the landing page
-     *
-     * @return self
-     */
-    public function setContent(string $content): GetLandingPageFullContentResponse
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the landing page
-     *
-     * @return self
-     */
-    public function setId(int $id): GetLandingPageFullContentResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

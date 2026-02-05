@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type DeleteCustomObjectTypeFieldsRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeField[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeField[] getInput()
+ * @method DeleteCustomObjectTypeFieldsRequest setInput(\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeField[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<DeleteCustomObjectTypeFieldsRequestArray>
  * @implements \ArrayAccess<key-of<DeleteCustomObjectTypeFieldsRequestArray>, value-of<DeleteCustomObjectTypeFieldsRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class DeleteCustomObjectTypeFieldsRequest extends ModelBase implements ModelInte
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeField[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeField[] $input List of fields to delete from the custom object type
-     *
-     * @return self
-     */
-    public function setInput(array $input): DeleteCustomObjectTypeFieldsRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

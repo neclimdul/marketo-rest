@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     success?: ?bool,
  *     warnings?: ?string[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Asset\Model\Error[]|null getErrors()
+ * @method ResponseOfobject setErrors(\NecLimDul\MarketoRest\Asset\Model\Error[]|null $errors)
+ * @method string|null getRequestId()
+ * @method ResponseOfobject setRequestId(string|null $request_id)
+ * @method object[]|null getResult()
+ * @method ResponseOfobject setResult(object[]|null $result)
+ * @method bool|null getSuccess()
+ * @method ResponseOfobject setSuccess(bool|null $success)
+ * @method string[]|null getWarnings()
+ * @method ResponseOfobject setWarnings(string[]|null $warnings)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ResponseOfobjectArray>
  * @implements \ArrayAccess<key-of<ResponseOfobjectArray>, value-of<ResponseOfobjectArray>>
  * @psalm-suppress MixedReturnStatement
@@ -118,121 +130,6 @@ class ResponseOfobject extends ModelBase implements ModelInterface, \ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets errors
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]|null
-     */
-    public function getErrors(): ?array
-    {
-        return $this->container['errors'] ?? null;
-    }
-
-    /**
-     * Sets errors
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Error[]|null $errors errors
-     *
-     * @return self
-     */
-    public function setErrors(?array $errors): ResponseOfobject
-    {
-        $this->container['errors'] = $errors;
-
-        return $this;
-    }
-    /**
-     * Gets request_id
-     *
-     * @return string|null
-     */
-    public function getRequestId(): ?string
-    {
-        return $this->container['request_id'] ?? null;
-    }
-
-    /**
-     * Sets request_id
-     *
-     * @param string|null $request_id request_id
-     *
-     * @return self
-     */
-    public function setRequestId(?string $request_id): ResponseOfobject
-    {
-        $this->container['request_id'] = $request_id;
-
-        return $this;
-    }
-    /**
-     * Gets result
-     *
-     * @return object[]|null
-     */
-    public function getResult(): ?array
-    {
-        return $this->container['result'] ?? null;
-    }
-
-    /**
-     * Sets result
-     *
-     * @param object[]|null $result result
-     *
-     * @return self
-     */
-    public function setResult(?array $result): ResponseOfobject
-    {
-        $this->container['result'] = $result;
-
-        return $this;
-    }
-    /**
-     * Gets success
-     *
-     * @return bool|null
-     */
-    public function getSuccess(): ?bool
-    {
-        return $this->container['success'] ?? null;
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool|null $success success
-     *
-     * @return self
-     */
-    public function setSuccess(?bool $success): ResponseOfobject
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-    /**
-     * Gets warnings
-     *
-     * @return string[]|null
-     */
-    public function getWarnings(): ?array
-    {
-        return $this->container['warnings'] ?? null;
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param string[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings): ResponseOfobject
-    {
-        $this->container['warnings'] = $warnings;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -39,6 +39,30 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     progressive_profiling?: ?bool,
  *     theme?: ?string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method CreateLpFormRequest setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CreateLpFormRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string|null getFontFamily()
+ * @method CreateLpFormRequest setFontFamily(string|null $font_family)
+ * @method string|null getFontSize()
+ * @method CreateLpFormRequest setFontSize(string|null $font_size)
+ * @method \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null getKnownVisitor()
+ * @method CreateLpFormRequest setKnownVisitor(\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor)
+ * @method string|null getLabelPosition()
+ * @method CreateLpFormRequest setLabelPosition(string|null $label_position)
+ * @method string|null getLanguage()
+ * @method CreateLpFormRequest setLanguage(string|null $language)
+ * @method string|null getLocale()
+ * @method CreateLpFormRequest setLocale(string|null $locale)
+ * @method string|null getName()
+ * @method CreateLpFormRequest setName(string|null $name)
+ * @method bool|null getProgressiveProfiling()
+ * @method CreateLpFormRequest setProgressiveProfiling(bool|null $progressive_profiling)
+ * @method string|null getTheme()
+ * @method CreateLpFormRequest setTheme(string|null $theme)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateLpFormRequestArray>
  * @implements \ArrayAccess<key-of<CreateLpFormRequestArray>, value-of<CreateLpFormRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -149,259 +173,6 @@ class CreateLpFormRequest extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the form
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CreateLpFormRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateLpFormRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets font_family
-     *
-     * @return string|null
-     */
-    public function getFontFamily(): ?string
-    {
-        return $this->container['font_family'] ?? null;
-    }
-
-    /**
-     * Sets font_family
-     *
-     * @param string|null $font_family font-family property for the form
-     *
-     * @return self
-     */
-    public function setFontFamily(?string $font_family): CreateLpFormRequest
-    {
-        $this->container['font_family'] = $font_family;
-
-        return $this;
-    }
-    /**
-     * Gets font_size
-     *
-     * @return string|null
-     */
-    public function getFontSize(): ?string
-    {
-        return $this->container['font_size'] ?? null;
-    }
-
-    /**
-     * Sets font_size
-     *
-     * @param string|null $font_size font-size property of the form
-     *
-     * @return self
-     */
-    public function setFontSize(?string $font_size): CreateLpFormRequest
-    {
-        $this->container['font_size'] = $font_size;
-
-        return $this;
-    }
-    /**
-     * Gets known_visitor
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null
-     */
-    public function getKnownVisitor(): ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
-    {
-        return $this->container['known_visitor'] ?? null;
-    }
-
-    /**
-     * Sets known_visitor
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor known_visitor
-     *
-     * @return self
-     */
-    public function setKnownVisitor(?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor): CreateLpFormRequest
-    {
-        $this->container['known_visitor'] = $known_visitor;
-
-        return $this;
-    }
-    /**
-     * Gets label_position
-     *
-     * @return string|null
-     */
-    public function getLabelPosition(): ?string
-    {
-        return $this->container['label_position'] ?? null;
-    }
-
-    /**
-     * Sets label_position
-     *
-     * @param string|null $label_position Default positioning of labels.
-     *
-     * @return self
-     */
-    public function setLabelPosition(?string $label_position): CreateLpFormRequest
-    {
-        $this->container['label_position'] = $label_position;
-
-        return $this;
-    }
-    /**
-     * Gets language
-     *
-     * @return string|null
-     */
-    public function getLanguage(): ?string
-    {
-        return $this->container['language'] ?? null;
-    }
-
-    /**
-     * Sets language
-     *
-     * @param string|null $language Language of the form
-     *
-     * @return self
-     */
-    public function setLanguage(?string $language): CreateLpFormRequest
-    {
-        $this->container['language'] = $language;
-
-        return $this;
-    }
-    /**
-     * Gets locale
-     *
-     * @return string|null
-     */
-    public function getLocale(): ?string
-    {
-        return $this->container['locale'] ?? null;
-    }
-
-    /**
-     * Sets locale
-     *
-     * @param string|null $locale Locale of the form
-     *
-     * @return self
-     */
-    public function setLocale(?string $locale): CreateLpFormRequest
-    {
-        $this->container['locale'] = $locale;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the form
-     *
-     * @return self
-     */
-    public function setName(?string $name): CreateLpFormRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets progressive_profiling
-     *
-     * @return bool|null
-     */
-    public function getProgressiveProfiling(): ?bool
-    {
-        return $this->container['progressive_profiling'] ?? null;
-    }
-
-    /**
-     * Sets progressive_profiling
-     *
-     * @param bool|null $progressive_profiling Whether progressive profiling is enabled for the form
-     *
-     * @return self
-     */
-    public function setProgressiveProfiling(?bool $progressive_profiling): CreateLpFormRequest
-    {
-        $this->container['progressive_profiling'] = $progressive_profiling;
-
-        return $this;
-    }
-    /**
-     * Gets theme
-     *
-     * @return string|null
-     */
-    public function getTheme(): ?string
-    {
-        return $this->container['theme'] ?? null;
-    }
-
-    /**
-     * Sets theme
-     *
-     * @param string|null $theme CSS theme for the form to use
-     *
-     * @return self
-     */
-    public function setTheme(?string $theme): CreateLpFormRequest
-    {
-        $this->container['theme'] = $theme;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

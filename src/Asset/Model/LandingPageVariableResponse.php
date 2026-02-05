@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     type?: ?string,
  *     value?: ?object,
  * }
+ *
+ * @method string getId()
+ * @method LandingPageVariableResponse setId(string $id)
+ * @method string|null getType()
+ * @method LandingPageVariableResponse setType(string|null $type)
+ * @method object|null getValue()
+ * @method LandingPageVariableResponse setValue(object|null $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LandingPageVariableResponseArray>
  * @implements \ArrayAccess<key-of<LandingPageVariableResponseArray>, value-of<LandingPageVariableResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -109,75 +117,6 @@ class LandingPageVariableResponse extends ModelBase implements ModelInterface, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return string
-     */
-    public function getId(): string
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string $id Integer id of the variable
-     *
-     * @return self
-     */
-    public function setId(string $id): LandingPageVariableResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType(): ?string
-    {
-        return $this->container['type'] ?? null;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type Type of the variable
-     *
-     * @return self
-     */
-    public function setType(?string $type): LandingPageVariableResponse
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return object|null
-     */
-    public function getValue(): ?object
-    {
-        return $this->container['value'] ?? null;
-    }
-
-    /**
-     * Sets value
-     *
-     * @param object|null $value Value of the variable
-     *
-     * @return self
-     */
-    public function setValue(?object $value): LandingPageVariableResponse
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

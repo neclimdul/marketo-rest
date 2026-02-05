@@ -41,6 +41,34 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     state?: ?string,
  *     version: string,
  * }
+ *
+ * @method \DateTime getCreatedAt()
+ * @method ObjectMetaData setCreatedAt(\DateTime $created_at)
+ * @method string[] getDedupeFields()
+ * @method ObjectMetaData setDedupeFields(string[] $dedupe_fields)
+ * @method string getDescription()
+ * @method ObjectMetaData setDescription(string $description)
+ * @method string getDisplayName()
+ * @method ObjectMetaData setDisplayName(string $display_name)
+ * @method string getPluralName()
+ * @method ObjectMetaData setPluralName(string $plural_name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ObjectField[] getFields()
+ * @method ObjectMetaData setFields(\NecLimDul\MarketoRest\Lead\Model\ObjectField[] $fields)
+ * @method string getIdField()
+ * @method ObjectMetaData setIdField(string $id_field)
+ * @method string getApiName()
+ * @method ObjectMetaData setApiName(string $api_name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ObjectRelation[] getRelationships()
+ * @method ObjectMetaData setRelationships(\NecLimDul\MarketoRest\Lead\Model\ObjectRelation[] $relationships)
+ * @method string[][] getSearchableFields()
+ * @method ObjectMetaData setSearchableFields(string[][] $searchable_fields)
+ * @method \DateTime getUpdatedAt()
+ * @method ObjectMetaData setUpdatedAt(\DateTime $updated_at)
+ * @method string|null getState()
+ * @method ObjectMetaData setState(string|null $state)
+ * @method string getVersion()
+ * @method ObjectMetaData setVersion(string $version)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ObjectMetaDataArray>
  * @implements \ArrayAccess<key-of<ObjectMetaDataArray>, value-of<ObjectMetaDataArray>>
  * @psalm-suppress MixedReturnStatement
@@ -226,325 +254,6 @@ class ObjectMetaData extends ModelBase implements ModelInterface, \ArrayAccess, 
         ];
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime $created_at Datetime when the object type was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $created_at): ObjectMetaData
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets dedupe_fields
-     *
-     * @return string[]
-     */
-    public function getDedupeFields(): array
-    {
-        return $this->container['dedupe_fields'];
-    }
-
-    /**
-     * Sets dedupe_fields
-     *
-     * @param string[] $dedupe_fields List of dedupe fields. Arrays with multiple members are compound keys
-     *
-     * @return self
-     */
-    public function setDedupeFields(array $dedupe_fields): ObjectMetaData
-    {
-        $this->container['dedupe_fields'] = $dedupe_fields;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string $description Description of the object type
-     *
-     * @return self
-     */
-    public function setDescription(string $description): ObjectMetaData
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets display_name
-     *
-     * @return string
-     */
-    public function getDisplayName(): string
-    {
-        return $this->container['display_name'];
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string $display_name UI display-name of the object type
-     *
-     * @return self
-     */
-    public function setDisplayName(string $display_name): ObjectMetaData
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets plural_name
-     *
-     * @return string
-     */
-    public function getPluralName(): string
-    {
-        return $this->container['plural_name'];
-    }
-
-    /**
-     * Sets plural_name
-     *
-     * @param string $plural_name UI plural-name of the custom object type
-     *
-     * @return self
-     */
-    public function setPluralName(string $plural_name): ObjectMetaData
-    {
-        $this->container['plural_name'] = $plural_name;
-
-        return $this;
-    }
-    /**
-     * Gets fields
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ObjectField[]
-     */
-    public function getFields(): array
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ObjectField[] $fields List of fields available on the object type
-     *
-     * @return self
-     */
-    public function setFields(array $fields): ObjectMetaData
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
-    /**
-     * Gets id_field
-     *
-     * @return string
-     */
-    public function getIdField(): string
-    {
-        return $this->container['id_field'];
-    }
-
-    /**
-     * Sets id_field
-     *
-     * @param string $id_field Primary id key of the object type
-     *
-     * @return self
-     */
-    public function setIdField(string $id_field): ObjectMetaData
-    {
-        $this->container['id_field'] = $id_field;
-
-        return $this;
-    }
-    /**
-     * Gets api_name
-     *
-     * @return string
-     */
-    public function getApiName(): string
-    {
-        return $this->container['api_name'];
-    }
-
-    /**
-     * Sets api_name
-     *
-     * @param string $api_name Name of the object type
-     *
-     * @return self
-     */
-    public function setApiName(string $api_name): ObjectMetaData
-    {
-        $this->container['api_name'] = $api_name;
-
-        return $this;
-    }
-    /**
-     * Gets relationships
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ObjectRelation[]
-     */
-    public function getRelationships(): array
-    {
-        return $this->container['relationships'];
-    }
-
-    /**
-     * Sets relationships
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ObjectRelation[] $relationships List of relationships which the object has
-     *
-     * @return self
-     */
-    public function setRelationships(array $relationships): ObjectMetaData
-    {
-        $this->container['relationships'] = $relationships;
-
-        return $this;
-    }
-    /**
-     * Gets searchable_fields
-     *
-     * @return string[][]
-     */
-    public function getSearchableFields(): array
-    {
-        return $this->container['searchable_fields'];
-    }
-
-    /**
-     * Sets searchable_fields
-     *
-     * @param string[][] $searchable_fields List of fields valid for use as a filter type in a query
-     *
-     * @return self
-     */
-    public function setSearchableFields(array $searchable_fields): ObjectMetaData
-    {
-        $this->container['searchable_fields'] = $searchable_fields;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime $updated_at Datetime when the object type was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(\DateTime $updated_at): ObjectMetaData
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets state
-     *
-     * @return string|null
-     */
-    public function getState(): ?string
-    {
-        return $this->container['state'] ?? null;
-    }
-
-    /**
-     * Sets state
-     *
-     * @param string|null $state Approval state of object type
-     *
-     * @return self
-     */
-    public function setState(?string $state): ObjectMetaData
-    {
-        $allowedValues = $this->getStateAllowableValues();
-        if (!is_null($state) && !in_array($state, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'state', must be one of '%s'",
-                    $state,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['state'] = $state;
-
-        return $this;
-    }
-    /**
-     * Gets version
-     *
-     * @return string
-     */
-    public function getVersion(): string
-    {
-        return $this->container['version'];
-    }
-
-    /**
-     * Sets version
-     *
-     * @param string $version Version of object type that is returned in response
-     *
-     * @return self
-     */
-    public function setVersion(string $version): ObjectMetaData
-    {
-        $allowedValues = $this->getVersionAllowableValues();
-        if (!in_array($version, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'version', must be one of '%s'",
-                    $version,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['version'] = $version;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

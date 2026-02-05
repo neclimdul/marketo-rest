@@ -33,6 +33,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     status: string,
  *     reasons?: ?\NecLimDul\MarketoRest\Lead\Model\Reason[],
  * }
+ *
+ * @method int getId()
+ * @method FormResponse setId(int $id)
+ * @method string getStatus()
+ * @method FormResponse setStatus(string $status)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Reason[]|null getReasons()
+ * @method FormResponse setReasons(\NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FormResponseArray>
  * @implements \ArrayAccess<key-of<FormResponseArray>, value-of<FormResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -141,85 +149,6 @@ class FormResponse extends ModelBase implements ModelInterface, \ArrayAccess, \J
         ];
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of lead
-     *
-     * @return self
-     */
-    public function setId(int $id): FormResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status status
-     *
-     * @return self
-     */
-    public function setStatus(string $status): FormResponse
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets reasons
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
-     */
-    public function getReasons(): ?array
-    {
-        return $this->container['reasons'] ?? null;
-    }
-
-    /**
-     * Sets reasons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed. Reasons are only present in API responses and should not be submitted
-     *
-     * @return self
-     */
-    public function setReasons(?array $reasons): FormResponse
-    {
-        $this->container['reasons'] = $reasons;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

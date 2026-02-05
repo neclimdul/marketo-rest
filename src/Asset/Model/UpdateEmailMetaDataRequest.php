@@ -35,6 +35,22 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     text_only?: ?bool,
  *     web_view?: ?bool,
  * }
+ *
+ * @method string|null getDescription()
+ * @method UpdateEmailMetaDataRequest setDescription(string|null $description)
+ * @method string|null getName()
+ * @method UpdateEmailMetaDataRequest setName(string|null $name)
+ * @method string|null getPreHeader()
+ * @method UpdateEmailMetaDataRequest setPreHeader(string|null $pre_header)
+ * @method bool|null getOperational()
+ * @method UpdateEmailMetaDataRequest setOperational(bool|null $operational)
+ * @method bool|null getPublished()
+ * @method UpdateEmailMetaDataRequest setPublished(bool|null $published)
+ * @method bool|null getTextOnly()
+ * @method UpdateEmailMetaDataRequest setTextOnly(bool|null $text_only)
+ * @method bool|null getWebView()
+ * @method UpdateEmailMetaDataRequest setWebView(bool|null $web_view)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateEmailMetaDataRequestArray>
  * @implements \ArrayAccess<key-of<UpdateEmailMetaDataRequestArray>, value-of<UpdateEmailMetaDataRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -128,167 +144,6 @@ class UpdateEmailMetaDataRequest extends ModelBase implements ModelInterface, \A
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): UpdateEmailMetaDataRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the Email
-     *
-     * @return self
-     */
-    public function setName(?string $name): UpdateEmailMetaDataRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets pre_header
-     *
-     * @return string|null
-     */
-    public function getPreHeader(): ?string
-    {
-        return $this->container['pre_header'] ?? null;
-    }
-
-    /**
-     * Sets pre_header
-     *
-     * @param string|null $pre_header Preheader text for the email
-     *
-     * @return self
-     */
-    public function setPreHeader(?string $pre_header): UpdateEmailMetaDataRequest
-    {
-        $this->container['pre_header'] = $pre_header;
-
-        return $this;
-    }
-    /**
-     * Gets operational
-     *
-     * @return bool|null
-     */
-    public function getOperational(): ?bool
-    {
-        return $this->container['operational'] ?? null;
-    }
-
-    /**
-     * Sets operational
-     *
-     * @param bool|null $operational Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     *
-     * @return self
-     */
-    public function setOperational(?bool $operational): UpdateEmailMetaDataRequest
-    {
-        $this->container['operational'] = $operational;
-
-        return $this;
-    }
-    /**
-     * Gets published
-     *
-     * @return bool|null
-     */
-    public function getPublished(): ?bool
-    {
-        return $this->container['published'] ?? null;
-    }
-
-    /**
-     * Sets published
-     *
-     * @param bool|null $published Whether the email has been published to Sales Insight. Default false
-     *
-     * @return self
-     */
-    public function setPublished(?bool $published): UpdateEmailMetaDataRequest
-    {
-        $this->container['published'] = $published;
-
-        return $this;
-    }
-    /**
-     * Gets text_only
-     *
-     * @return bool|null
-     */
-    public function getTextOnly(): ?bool
-    {
-        return $this->container['text_only'] ?? null;
-    }
-
-    /**
-     * Sets text_only
-     *
-     * @param bool|null $text_only Setting to include text-only version of email when sent
-     *
-     * @return self
-     */
-    public function setTextOnly(?bool $text_only): UpdateEmailMetaDataRequest
-    {
-        $this->container['text_only'] = $text_only;
-
-        return $this;
-    }
-    /**
-     * Gets web_view
-     *
-     * @return bool|null
-     */
-    public function getWebView(): ?bool
-    {
-        return $this->container['web_view'] ?? null;
-    }
-
-    /**
-     * Sets web_view
-     *
-     * @param bool|null $web_view Whether the email has been enabled to allow the 'View as Web Page' when received
-     *
-     * @return self
-     */
-    public function setWebView(?bool $web_view): UpdateEmailMetaDataRequest
-    {
-        $this->container['web_view'] = $web_view;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

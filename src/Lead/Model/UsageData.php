@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     total?: ?int,
  *     users?: ?\NecLimDul\MarketoRest\Lead\Model\UserCount[],
  * }
+ *
+ * @method \DateTime getDate()
+ * @method UsageData setDate(\DateTime $date)
+ * @method int|null getTotal()
+ * @method UsageData setTotal(int|null $total)
+ * @method \NecLimDul\MarketoRest\Lead\Model\UserCount[]|null getUsers()
+ * @method UsageData setUsers(\NecLimDul\MarketoRest\Lead\Model\UserCount[]|null $users)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UsageDataArray>
  * @implements \ArrayAccess<key-of<UsageDataArray>, value-of<UsageDataArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class UsageData extends ModelBase implements ModelInterface, \ArrayAccess, \Json
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets date
-     *
-     * @return \DateTime
-     */
-    public function getDate(): \DateTime
-    {
-        return $this->container['date'];
-    }
-
-    /**
-     * Sets date
-     *
-     * @param \DateTime $date Date of the collected calls
-     *
-     * @return self
-     */
-    public function setDate(\DateTime $date): UsageData
-    {
-        $this->container['date'] = $date;
-
-        return $this;
-    }
-    /**
-     * Gets total
-     *
-     * @return int|null
-     */
-    public function getTotal(): ?int
-    {
-        return $this->container['total'] ?? null;
-    }
-
-    /**
-     * Sets total
-     *
-     * @param int|null $total Total number of errors in the time period
-     *
-     * @return self
-     */
-    public function setTotal(?int $total): UsageData
-    {
-        $this->container['total'] = $total;
-
-        return $this;
-    }
-    /**
-     * Gets users
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\UserCount[]|null
-     */
-    public function getUsers(): ?array
-    {
-        return $this->container['users'] ?? null;
-    }
-
-    /**
-     * Sets users
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\UserCount[]|null $users Counts for individual users
-     *
-     * @return self
-     */
-    public function setUsers(?array $users): UsageData
-    {
-        $this->container['users'] = $users;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

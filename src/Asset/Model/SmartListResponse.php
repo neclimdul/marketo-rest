@@ -36,6 +36,24 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     folder: \NecLimDul\MarketoRest\Asset\Model\Folder,
  *     workspace: string,
  * }
+ *
+ * @method int getId()
+ * @method SmartListResponse setId(int $id)
+ * @method string getName()
+ * @method SmartListResponse setName(string $name)
+ * @method string getDescription()
+ * @method SmartListResponse setDescription(string $description)
+ * @method \DateTime getCreatedAt()
+ * @method SmartListResponse setCreatedAt(\DateTime $created_at)
+ * @method \DateTime getUpdatedAt()
+ * @method SmartListResponse setUpdatedAt(\DateTime $updated_at)
+ * @method string getUrl()
+ * @method SmartListResponse setUrl(string $url)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method SmartListResponse setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string getWorkspace()
+ * @method SmartListResponse setWorkspace(string $workspace)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SmartListResponseArray>
  * @implements \ArrayAccess<key-of<SmartListResponseArray>, value-of<SmartListResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -144,190 +162,6 @@ class SmartListResponse extends ModelBase implements ModelInterface, \ArrayAcces
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the smart list
-     *
-     * @return self
-     */
-    public function setId(int $id): SmartListResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the smart list
-     *
-     * @return self
-     */
-    public function setName(string $name): SmartListResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string $description Description of the smart list
-     *
-     * @return self
-     */
-    public function setDescription(string $description): SmartListResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime $created_at Datetime the smart list was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $created_at): SmartListResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime $updated_at Datetime the smart list was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(\DateTime $updated_at): SmartListResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string $url Url of the smart list in the Marketo UI
-     *
-     * @return self
-     */
-    public function setUrl(string $url): SmartListResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): SmartListResponse
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets workspace
-     *
-     * @return string
-     */
-    public function getWorkspace(): string
-    {
-        return $this->container['workspace'];
-    }
-
-    /**
-     * Sets workspace
-     *
-     * @param string $workspace Name of the workspace
-     *
-     * @return self
-     */
-    public function setWorkspace(string $workspace): SmartListResponse
-    {
-        $this->container['workspace'] = $workspace;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

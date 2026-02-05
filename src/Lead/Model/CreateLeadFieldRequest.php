@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type CreateLeadFieldRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\CreateLeadField[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\CreateLeadField[] getInput()
+ * @method CreateLeadFieldRequest setInput(\NecLimDul\MarketoRest\Lead\Model\CreateLeadField[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateLeadFieldRequestArray>
  * @implements \ArrayAccess<key-of<CreateLeadFieldRequestArray>, value-of<CreateLeadFieldRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class CreateLeadFieldRequest extends ModelBase implements ModelInterface, \Array
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CreateLeadField[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CreateLeadField[] $input List of lead fields for input
-     *
-     * @return self
-     */
-    public function setInput(array $input): CreateLeadFieldRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

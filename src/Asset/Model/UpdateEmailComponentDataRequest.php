@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     reply_to?: ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField,
  *     subject?: ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null getFromEmail()
+ * @method UpdateEmailComponentDataRequest setFromEmail(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_email)
+ * @method \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null getFromName()
+ * @method UpdateEmailComponentDataRequest setFromName(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_name)
+ * @method \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null getReplyTo()
+ * @method UpdateEmailComponentDataRequest setReplyTo(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $reply_to)
+ * @method \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null getSubject()
+ * @method UpdateEmailComponentDataRequest setSubject(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $subject)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateEmailComponentDataRequestArray>
  * @implements \ArrayAccess<key-of<UpdateEmailComponentDataRequestArray>, value-of<UpdateEmailComponentDataRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -113,98 +123,6 @@ class UpdateEmailComponentDataRequest extends ModelBase implements ModelInterfac
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets from_email
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
-     */
-    public function getFromEmail(): ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-    {
-        return $this->container['from_email'] ?? null;
-    }
-
-    /**
-     * Sets from_email
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_email from_email
-     *
-     * @return self
-     */
-    public function setFromEmail(?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email): UpdateEmailComponentDataRequest
-    {
-        $this->container['from_email'] = $from_email;
-
-        return $this;
-    }
-    /**
-     * Gets from_name
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
-     */
-    public function getFromName(): ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-    {
-        return $this->container['from_name'] ?? null;
-    }
-
-    /**
-     * Sets from_name
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_name from_name
-     *
-     * @return self
-     */
-    public function setFromName(?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name): UpdateEmailComponentDataRequest
-    {
-        $this->container['from_name'] = $from_name;
-
-        return $this;
-    }
-    /**
-     * Gets reply_to
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
-     */
-    public function getReplyTo(): ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-    {
-        return $this->container['reply_to'] ?? null;
-    }
-
-    /**
-     * Sets reply_to
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $reply_to reply_to
-     *
-     * @return self
-     */
-    public function setReplyTo(?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_to): UpdateEmailComponentDataRequest
-    {
-        $this->container['reply_to'] = $reply_to;
-
-        return $this;
-    }
-    /**
-     * Gets subject
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
-     */
-    public function getSubject(): ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-    {
-        return $this->container['subject'] ?? null;
-    }
-
-    /**
-     * Sets subject
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $subject subject
-     *
-     * @return self
-     */
-    public function setSubject(?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject): UpdateEmailComponentDataRequest
-    {
-        $this->container['subject'] = $subject;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

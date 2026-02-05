@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     name?: ?string,
  *     fields: \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[],
  * }
+ *
+ * @method string|null getName()
+ * @method ProgramMemberAttribute setName(string|null $name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[] getFields()
+ * @method ProgramMemberAttribute setFields(\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[] $fields)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ProgramMemberAttributeArray>
  * @implements \ArrayAccess<key-of<ProgramMemberAttributeArray>, value-of<ProgramMemberAttributeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -104,52 +110,6 @@ class ProgramMemberAttribute extends ModelBase implements ModelInterface, \Array
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name \"API Program Member\"
-     *
-     * @return self
-     */
-    public function setName(?string $name): ProgramMemberAttribute
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets fields
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[]
-     */
-    public function getFields(): array
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[] $fields Description of searchable fields
-     *
-     * @return self
-     */
-    public function setFields(array $fields): ProgramMemberAttribute
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

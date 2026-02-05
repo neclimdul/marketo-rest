@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     content?: ?string,
  *     type: string,
  * }
+ *
+ * @method string|null getContent()
+ * @method SnippetContentResponse setContent(string|null $content)
+ * @method string getType()
+ * @method SnippetContentResponse setType(string $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SnippetContentResponseArray>
  * @implements \ArrayAccess<key-of<SnippetContentResponseArray>, value-of<SnippetContentResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -104,52 +110,6 @@ class SnippetContentResponse extends ModelBase implements ModelInterface, \Array
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content
-     *
-     * @return string|null
-     */
-    public function getContent(): ?string
-    {
-        return $this->container['content'] ?? null;
-    }
-
-    /**
-     * Sets content
-     *
-     * @param string|null $content Content of the snippet
-     *
-     * @return self
-     */
-    public function setContent(?string $content): SnippetContentResponse
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of snippet content
-     *
-     * @return self
-     */
-    public function setType(string $type): SnippetContentResponse
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     id: int,
  *     partition_name: string,
  * }
+ *
+ * @method int getId()
+ * @method UpdateLeadPartition setId(int $id)
+ * @method string getPartitionName()
+ * @method UpdateLeadPartition setPartitionName(string $partition_name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateLeadPartitionArray>
  * @implements \ArrayAccess<key-of<UpdateLeadPartitionArray>, value-of<UpdateLeadPartitionArray>>
  * @psalm-suppress MixedReturnStatement
@@ -106,52 +112,6 @@ class UpdateLeadPartition extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of a lead record
-     *
-     * @return self
-     */
-    public function setId(int $id): UpdateLeadPartition
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets partition_name
-     *
-     * @return string
-     */
-    public function getPartitionName(): string
-    {
-        return $this->container['partition_name'];
-    }
-
-    /**
-     * Sets partition_name
-     *
-     * @param string $partition_name Name of the partition
-     *
-     * @return self
-     */
-    public function setPartitionName(string $partition_name): UpdateLeadPartition
-    {
-        $this->container['partition_name'] = $partition_name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

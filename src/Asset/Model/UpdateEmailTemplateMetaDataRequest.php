@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     description?: ?string,
  *     name?: ?string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method UpdateEmailTemplateMetaDataRequest setDescription(string|null $description)
+ * @method string|null getName()
+ * @method UpdateEmailTemplateMetaDataRequest setName(string|null $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateEmailTemplateMetaDataRequestArray>
  * @implements \ArrayAccess<key-of<UpdateEmailTemplateMetaDataRequestArray>, value-of<UpdateEmailTemplateMetaDataRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -103,52 +109,6 @@ class UpdateEmailTemplateMetaDataRequest extends ModelBase implements ModelInter
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): UpdateEmailTemplateMetaDataRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the Email Template
-     *
-     * @return self
-     */
-    public function setName(?string $name): UpdateEmailTemplateMetaDataRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -35,6 +35,22 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     success: bool,
  *     warnings: \NecLimDul\MarketoRest\Lead\Model\Warning[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\Error[] getErrors()
+ * @method ResponseOfNamedAccountList setErrors(\NecLimDul\MarketoRest\Lead\Model\Error[] $errors)
+ * @method bool|null getMoreResult()
+ * @method ResponseOfNamedAccountList setMoreResult(bool|null $more_result)
+ * @method string|null getNextPageToken()
+ * @method ResponseOfNamedAccountList setNextPageToken(string|null $next_page_token)
+ * @method string getRequestId()
+ * @method ResponseOfNamedAccountList setRequestId(string $request_id)
+ * @method \NecLimDul\MarketoRest\Lead\Model\NamedAccountList[] getResult()
+ * @method ResponseOfNamedAccountList setResult(\NecLimDul\MarketoRest\Lead\Model\NamedAccountList[] $result)
+ * @method bool getSuccess()
+ * @method ResponseOfNamedAccountList setSuccess(bool $success)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Warning[] getWarnings()
+ * @method ResponseOfNamedAccountList setWarnings(\NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ResponseOfNamedAccountListArray>
  * @implements \ArrayAccess<key-of<ResponseOfNamedAccountListArray>, value-of<ResponseOfNamedAccountListArray>>
  * @psalm-suppress MixedReturnStatement
@@ -133,167 +149,6 @@ class ResponseOfNamedAccountList extends ModelBase implements ModelInterface, \A
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets errors
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
-     */
-    public function getErrors(): array
-    {
-        return $this->container['errors'];
-    }
-
-    /**
-     * Sets errors
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
-     *
-     * @return self
-     */
-    public function setErrors(array $errors): ResponseOfNamedAccountList
-    {
-        $this->container['errors'] = $errors;
-
-        return $this;
-    }
-    /**
-     * Gets more_result
-     *
-     * @return bool|null
-     */
-    public function getMoreResult(): ?bool
-    {
-        return $this->container['more_result'] ?? null;
-    }
-
-    /**
-     * Sets more_result
-     *
-     * @param bool|null $more_result Boolean indicating if there are more results in subsequent pages
-     *
-     * @return self
-     */
-    public function setMoreResult(?bool $more_result): ResponseOfNamedAccountList
-    {
-        $this->container['more_result'] = $more_result;
-
-        return $this;
-    }
-    /**
-     * Gets next_page_token
-     *
-     * @return string|null
-     */
-    public function getNextPageToken(): ?string
-    {
-        return $this->container['next_page_token'] ?? null;
-    }
-
-    /**
-     * Sets next_page_token
-     *
-     * @param string|null $next_page_token Paging token given if the result set exceeded the allowed batch size
-     *
-     * @return self
-     */
-    public function setNextPageToken(?string $next_page_token): ResponseOfNamedAccountList
-    {
-        $this->container['next_page_token'] = $next_page_token;
-
-        return $this;
-    }
-    /**
-     * Gets request_id
-     *
-     * @return string
-     */
-    public function getRequestId(): string
-    {
-        return $this->container['request_id'];
-    }
-
-    /**
-     * Sets request_id
-     *
-     * @param string $request_id Id of the request made
-     *
-     * @return self
-     */
-    public function setRequestId(string $request_id): ResponseOfNamedAccountList
-    {
-        $this->container['request_id'] = $request_id;
-
-        return $this;
-    }
-    /**
-     * Gets result
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\NamedAccountList[]
-     */
-    public function getResult(): array
-    {
-        return $this->container['result'];
-    }
-
-    /**
-     * Sets result
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\NamedAccountList[] $result Array of results for individual records in the operation, may be empty
-     *
-     * @return self
-     */
-    public function setResult(array $result): ResponseOfNamedAccountList
-    {
-        $this->container['result'] = $result;
-
-        return $this;
-    }
-    /**
-     * Gets success
-     *
-     * @return bool
-     */
-    public function getSuccess(): bool
-    {
-        return $this->container['success'];
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool $success Whether the request succeeded
-     *
-     * @return self
-     */
-    public function setSuccess(bool $success): ResponseOfNamedAccountList
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-    /**
-     * Gets warnings
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]
-     */
-    public function getWarnings(): array
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
-     *
-     * @return self
-     */
-    public function setWarnings(array $warnings): ResponseOfNamedAccountList
-    {
-        $this->container['warnings'] = $warnings;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

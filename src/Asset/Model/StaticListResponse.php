@@ -37,6 +37,26 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     workspace: string,
  *     computed_url?: ?string,
  * }
+ *
+ * @method int getId()
+ * @method StaticListResponse setId(int $id)
+ * @method string getName()
+ * @method StaticListResponse setName(string $name)
+ * @method string getDescription()
+ * @method StaticListResponse setDescription(string $description)
+ * @method \DateTime getCreatedAt()
+ * @method StaticListResponse setCreatedAt(\DateTime $created_at)
+ * @method \DateTime getUpdatedAt()
+ * @method StaticListResponse setUpdatedAt(\DateTime $updated_at)
+ * @method string getUrl()
+ * @method StaticListResponse setUrl(string $url)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method StaticListResponse setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string getWorkspace()
+ * @method StaticListResponse setWorkspace(string $workspace)
+ * @method string|null getComputedUrl()
+ * @method StaticListResponse setComputedUrl(string|null $computed_url)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<StaticListResponseArray>
  * @implements \ArrayAccess<key-of<StaticListResponseArray>, value-of<StaticListResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -149,213 +169,6 @@ class StaticListResponse extends ModelBase implements ModelInterface, \ArrayAcce
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the static list
-     *
-     * @return self
-     */
-    public function setId(int $id): StaticListResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the static list
-     *
-     * @return self
-     */
-    public function setName(string $name): StaticListResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string $description Description of the static list
-     *
-     * @return self
-     */
-    public function setDescription(string $description): StaticListResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime $created_at Datetime the static list was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $created_at): StaticListResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime $updated_at Datetime the static list was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(\DateTime $updated_at): StaticListResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string $url Url of the static list in the Marketo UI
-     *
-     * @return self
-     */
-    public function setUrl(string $url): StaticListResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): StaticListResponse
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets workspace
-     *
-     * @return string
-     */
-    public function getWorkspace(): string
-    {
-        return $this->container['workspace'];
-    }
-
-    /**
-     * Sets workspace
-     *
-     * @param string $workspace Name of the workspace
-     *
-     * @return self
-     */
-    public function setWorkspace(string $workspace): StaticListResponse
-    {
-        $this->container['workspace'] = $workspace;
-
-        return $this;
-    }
-    /**
-     * Gets computed_url
-     *
-     * @return string|null
-     */
-    public function getComputedUrl(): ?string
-    {
-        return $this->container['computed_url'] ?? null;
-    }
-
-    /**
-     * Sets computed_url
-     *
-     * @param string|null $computed_url computed_url
-     *
-     * @return self
-     */
-    public function setComputedUrl(?string $computed_url): StaticListResponse
-    {
-        $this->container['computed_url'] = $computed_url;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

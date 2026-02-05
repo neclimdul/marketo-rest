@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     folder: \NecLimDul\MarketoRest\Asset\Model\Folder,
  *     description?: ?string,
  * }
+ *
+ * @method string getName()
+ * @method CloneSnippetRequest setName(string $name)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CloneSnippetRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string|null getDescription()
+ * @method CloneSnippetRequest setDescription(string|null $description)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CloneSnippetRequestArray>
  * @implements \ArrayAccess<key-of<CloneSnippetRequestArray>, value-of<CloneSnippetRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -110,75 +118,6 @@ class CloneSnippetRequest extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name for the cloned snippet
-     *
-     * @return self
-     */
-    public function setName(string $name): CloneSnippetRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CloneSnippetRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the cloned snippet
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CloneSnippetRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     static_list_name: string,
  *     updated_at: \NecLimDul\MarketoRest\Lead\Model\DateRange,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\DateRange getCreatedAt()
+ * @method ExportLeadFilter setCreatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $created_at)
+ * @method int getSmartListId()
+ * @method ExportLeadFilter setSmartListId(int $smart_list_id)
+ * @method string getSmartListName()
+ * @method ExportLeadFilter setSmartListName(string $smart_list_name)
+ * @method int getStaticListId()
+ * @method ExportLeadFilter setStaticListId(int $static_list_id)
+ * @method string getStaticListName()
+ * @method ExportLeadFilter setStaticListName(string $static_list_name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\DateRange getUpdatedAt()
+ * @method ExportLeadFilter setUpdatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ExportLeadFilterArray>
  * @implements \ArrayAccess<key-of<ExportLeadFilterArray>, value-of<ExportLeadFilterArray>>
  * @psalm-suppress MixedReturnStatement
@@ -131,144 +145,6 @@ class ExportLeadFilter extends ModelBase implements ModelInterface, \ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\DateRange
-     */
-    public function getCreatedAt(): \NecLimDul\MarketoRest\Lead\Model\DateRange
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $created_at created_at
-     *
-     * @return self
-     */
-    public function setCreatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $created_at): ExportLeadFilter
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets smart_list_id
-     *
-     * @return int
-     */
-    public function getSmartListId(): int
-    {
-        return $this->container['smart_list_id'];
-    }
-
-    /**
-     * Sets smart_list_id
-     *
-     * @param int $smart_list_id Id of smart list to retrieve leads from
-     *
-     * @return self
-     */
-    public function setSmartListId(int $smart_list_id): ExportLeadFilter
-    {
-        $this->container['smart_list_id'] = $smart_list_id;
-
-        return $this;
-    }
-    /**
-     * Gets smart_list_name
-     *
-     * @return string
-     */
-    public function getSmartListName(): string
-    {
-        return $this->container['smart_list_name'];
-    }
-
-    /**
-     * Sets smart_list_name
-     *
-     * @param string $smart_list_name Name of smart list to retrieve leads from
-     *
-     * @return self
-     */
-    public function setSmartListName(string $smart_list_name): ExportLeadFilter
-    {
-        $this->container['smart_list_name'] = $smart_list_name;
-
-        return $this;
-    }
-    /**
-     * Gets static_list_id
-     *
-     * @return int
-     */
-    public function getStaticListId(): int
-    {
-        return $this->container['static_list_id'];
-    }
-
-    /**
-     * Sets static_list_id
-     *
-     * @param int $static_list_id Id of static list to retrieve leads from
-     *
-     * @return self
-     */
-    public function setStaticListId(int $static_list_id): ExportLeadFilter
-    {
-        $this->container['static_list_id'] = $static_list_id;
-
-        return $this;
-    }
-    /**
-     * Gets static_list_name
-     *
-     * @return string
-     */
-    public function getStaticListName(): string
-    {
-        return $this->container['static_list_name'];
-    }
-
-    /**
-     * Sets static_list_name
-     *
-     * @param string $static_list_name Name of static list to retrieve leads from
-     *
-     * @return self
-     */
-    public function setStaticListName(string $static_list_name): ExportLeadFilter
-    {
-        $this->container['static_list_name'] = $static_list_name;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\DateRange
-     */
-    public function getUpdatedAt(): \NecLimDul\MarketoRest\Lead\Model\DateRange
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at updated_at
-     *
-     * @return self
-     */
-    public function setUpdatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at): ExportLeadFilter
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type SyncProgramMemberDataRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\ProgramMemberData[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\ProgramMemberData[] getInput()
+ * @method SyncProgramMemberDataRequest setInput(\NecLimDul\MarketoRest\Lead\Model\ProgramMemberData[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SyncProgramMemberDataRequestArray>
  * @implements \ArrayAccess<key-of<SyncProgramMemberDataRequestArray>, value-of<SyncProgramMemberDataRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class SyncProgramMemberDataRequest extends ModelBase implements ModelInterface, 
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMemberData[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ProgramMemberData[] $input List of input records
-     *
-     * @return self
-     */
-    public function setInput(array $input): SyncProgramMemberDataRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

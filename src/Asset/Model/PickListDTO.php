@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     selected?: ?bool,
  *     value?: ?string,
  * }
+ *
+ * @method bool|null getIsDefault()
+ * @method PickListDTO setIsDefault(bool|null $is_default)
+ * @method string|null getLabel()
+ * @method PickListDTO setLabel(string|null $label)
+ * @method bool|null getSelected()
+ * @method PickListDTO setSelected(bool|null $selected)
+ * @method string|null getValue()
+ * @method PickListDTO setValue(string|null $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<PickListDTOArray>
  * @implements \ArrayAccess<key-of<PickListDTOArray>, value-of<PickListDTOArray>>
  * @psalm-suppress MixedReturnStatement
@@ -113,98 +123,6 @@ class PickListDTO extends ModelBase implements ModelInterface, \ArrayAccess, \Js
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets is_default
-     *
-     * @return bool|null
-     */
-    public function getIsDefault(): ?bool
-    {
-        return $this->container['is_default'] ?? null;
-    }
-
-    /**
-     * Sets is_default
-     *
-     * @param bool|null $is_default is_default
-     *
-     * @return self
-     */
-    public function setIsDefault(?bool $is_default): PickListDTO
-    {
-        $this->container['is_default'] = $is_default;
-
-        return $this;
-    }
-    /**
-     * Gets label
-     *
-     * @return string|null
-     */
-    public function getLabel(): ?string
-    {
-        return $this->container['label'] ?? null;
-    }
-
-    /**
-     * Sets label
-     *
-     * @param string|null $label label
-     *
-     * @return self
-     */
-    public function setLabel(?string $label): PickListDTO
-    {
-        $this->container['label'] = $label;
-
-        return $this;
-    }
-    /**
-     * Gets selected
-     *
-     * @return bool|null
-     */
-    public function getSelected(): ?bool
-    {
-        return $this->container['selected'] ?? null;
-    }
-
-    /**
-     * Sets selected
-     *
-     * @param bool|null $selected selected
-     *
-     * @return self
-     */
-    public function setSelected(?bool $selected): PickListDTO
-    {
-        $this->container['selected'] = $selected;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string|null
-     */
-    public function getValue(): ?string
-    {
-        return $this->container['value'] ?? null;
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string|null $value value
-     *
-     * @return self
-     */
-    public function setValue(?string $value): PickListDTO
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

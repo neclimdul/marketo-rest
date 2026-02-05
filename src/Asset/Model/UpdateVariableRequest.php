@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     value?: ?string,
  *     module_id?: ?string,
  * }
+ *
+ * @method string|null getValue()
+ * @method UpdateVariableRequest setValue(string|null $value)
+ * @method string|null getModuleId()
+ * @method UpdateVariableRequest setModuleId(string|null $module_id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateVariableRequestArray>
  * @implements \ArrayAccess<key-of<UpdateVariableRequestArray>, value-of<UpdateVariableRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -103,52 +109,6 @@ class UpdateVariableRequest extends ModelBase implements ModelInterface, \ArrayA
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets value
-     *
-     * @return string|null
-     */
-    public function getValue(): ?string
-    {
-        return $this->container['value'] ?? null;
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string|null $value Value to update variable with
-     *
-     * @return self
-     */
-    public function setValue(?string $value): UpdateVariableRequest
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
-    /**
-     * Gets module_id
-     *
-     * @return string|null
-     */
-    public function getModuleId(): ?string
-    {
-        return $this->container['module_id'] ?? null;
-    }
-
-    /**
-     * Sets module_id
-     *
-     * @param string|null $module_id Module that variable is associated with. Required for updating module variables. Not needed for global variables.
-     *
-     * @return self
-     */
-    public function setModuleId(?string $module_id): UpdateVariableRequest
-    {
-        $this->container['module_id'] = $module_id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

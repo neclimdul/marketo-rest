@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     id: int,
  *     name: string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method LeadPartition setDescription(string|null $description)
+ * @method int getId()
+ * @method LeadPartition setId(int $id)
+ * @method string getName()
+ * @method LeadPartition setName(string $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadPartitionArray>
  * @implements \ArrayAccess<key-of<LeadPartitionArray>, value-of<LeadPartitionArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class LeadPartition extends ModelBase implements ModelInterface, \ArrayAccess, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the partition
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): LeadPartition
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the partition
-     *
-     * @return self
-     */
-    public function setId(int $id): LeadPartition
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the partition
-     *
-     * @return self
-     */
-    public function setName(string $name): LeadPartition
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

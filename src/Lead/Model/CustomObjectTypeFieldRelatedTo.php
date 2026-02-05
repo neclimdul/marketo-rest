@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     name: string,
  *     field: string,
  * }
+ *
+ * @method string getName()
+ * @method CustomObjectTypeFieldRelatedTo setName(string $name)
+ * @method string getField()
+ * @method CustomObjectTypeFieldRelatedTo setField(string $field)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CustomObjectTypeFieldRelatedToArray>
  * @implements \ArrayAccess<key-of<CustomObjectTypeFieldRelatedToArray>, value-of<CustomObjectTypeFieldRelatedToArray>>
  * @psalm-suppress MixedReturnStatement
@@ -105,52 +111,6 @@ class CustomObjectTypeFieldRelatedTo extends ModelBase implements ModelInterface
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of linkable object type
-     *
-     * @return self
-     */
-    public function setName(string $name): CustomObjectTypeFieldRelatedTo
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets field
-     *
-     * @return string
-     */
-    public function getField(): string
-    {
-        return $this->container['field'];
-    }
-
-    /**
-     * Sets field
-     *
-     * @param string $field Foreign field to which the parent is linked
-     *
-     * @return self
-     */
-    public function setField(string $field): CustomObjectTypeFieldRelatedTo
-    {
-        $this->container['field'] = $field;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

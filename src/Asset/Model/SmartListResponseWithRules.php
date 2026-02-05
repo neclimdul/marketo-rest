@@ -37,6 +37,26 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     workspace: string,
  *     rules?: ?\NecLimDul\MarketoRest\Asset\Model\SmartListRules,
  * }
+ *
+ * @method int getId()
+ * @method SmartListResponseWithRules setId(int $id)
+ * @method string getName()
+ * @method SmartListResponseWithRules setName(string $name)
+ * @method string getDescription()
+ * @method SmartListResponseWithRules setDescription(string $description)
+ * @method \DateTime getCreatedAt()
+ * @method SmartListResponseWithRules setCreatedAt(\DateTime $created_at)
+ * @method \DateTime getUpdatedAt()
+ * @method SmartListResponseWithRules setUpdatedAt(\DateTime $updated_at)
+ * @method string getUrl()
+ * @method SmartListResponseWithRules setUrl(string $url)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method SmartListResponseWithRules setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string getWorkspace()
+ * @method SmartListResponseWithRules setWorkspace(string $workspace)
+ * @method \NecLimDul\MarketoRest\Asset\Model\SmartListRules|null getRules()
+ * @method SmartListResponseWithRules setRules(\NecLimDul\MarketoRest\Asset\Model\SmartListRules|null $rules)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SmartListResponseWithRulesArray>
  * @implements \ArrayAccess<key-of<SmartListResponseWithRulesArray>, value-of<SmartListResponseWithRulesArray>>
  * @psalm-suppress MixedReturnStatement
@@ -149,213 +169,6 @@ class SmartListResponseWithRules extends ModelBase implements ModelInterface, \A
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the smart list
-     *
-     * @return self
-     */
-    public function setId(int $id): SmartListResponseWithRules
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the smart list
-     *
-     * @return self
-     */
-    public function setName(string $name): SmartListResponseWithRules
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string $description Description of the smart list
-     *
-     * @return self
-     */
-    public function setDescription(string $description): SmartListResponseWithRules
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime $created_at Datetime the smart list was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $created_at): SmartListResponseWithRules
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime $updated_at Datetime the smart list was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(\DateTime $updated_at): SmartListResponseWithRules
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string $url Url of the smart list in the Marketo UI
-     *
-     * @return self
-     */
-    public function setUrl(string $url): SmartListResponseWithRules
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): SmartListResponseWithRules
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets workspace
-     *
-     * @return string
-     */
-    public function getWorkspace(): string
-    {
-        return $this->container['workspace'];
-    }
-
-    /**
-     * Sets workspace
-     *
-     * @param string $workspace Name of the workspace
-     *
-     * @return self
-     */
-    public function setWorkspace(string $workspace): SmartListResponseWithRules
-    {
-        $this->container['workspace'] = $workspace;
-
-        return $this;
-    }
-    /**
-     * Gets rules
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\SmartListRules|null
-     */
-    public function getRules(): ?\NecLimDul\MarketoRest\Asset\Model\SmartListRules
-    {
-        return $this->container['rules'] ?? null;
-    }
-
-    /**
-     * Sets rules
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\SmartListRules|null $rules rules
-     *
-     * @return self
-     */
-    public function setRules(?\NecLimDul\MarketoRest\Asset\Model\SmartListRules $rules): SmartListResponseWithRules
-    {
-        $this->container['rules'] = $rules;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

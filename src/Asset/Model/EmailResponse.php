@@ -50,6 +50,52 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     pre_header: string,
  *     cc_fields?: ?\NecLimDul\MarketoRest\Asset\Model\EmailCCFields[],
  * }
+ *
+ * @method \DateTime|null getCreatedAt()
+ * @method EmailResponse setCreatedAt(\DateTime|null $created_at)
+ * @method string|null getDescription()
+ * @method EmailResponse setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method EmailResponse setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField getFromEmail()
+ * @method EmailResponse setFromEmail(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email)
+ * @method \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField getFromName()
+ * @method EmailResponse setFromName(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name)
+ * @method int|null getId()
+ * @method EmailResponse setId(int|null $id)
+ * @method string|null getName()
+ * @method EmailResponse setName(string|null $name)
+ * @method bool getOperational()
+ * @method EmailResponse setOperational(bool $operational)
+ * @method bool getPublishToMsi()
+ * @method EmailResponse setPublishToMsi(bool $publish_to_msi)
+ * @method \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField getReplyEmail()
+ * @method EmailResponse setReplyEmail(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_email)
+ * @method string getStatus()
+ * @method EmailResponse setStatus(string $status)
+ * @method \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField getSubject()
+ * @method EmailResponse setSubject(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject)
+ * @method int getTemplate()
+ * @method EmailResponse setTemplate(int $template)
+ * @method bool getTextOnly()
+ * @method EmailResponse setTextOnly(bool $text_only)
+ * @method \DateTime|null getUpdatedAt()
+ * @method EmailResponse setUpdatedAt(\DateTime|null $updated_at)
+ * @method string|null getUrl()
+ * @method EmailResponse setUrl(string|null $url)
+ * @method int|null getVersion()
+ * @method EmailResponse setVersion(int|null $version)
+ * @method bool getWebView()
+ * @method EmailResponse setWebView(bool $web_view)
+ * @method string|null getWorkspace()
+ * @method EmailResponse setWorkspace(string|null $workspace)
+ * @method bool getAutoCopyToText()
+ * @method EmailResponse setAutoCopyToText(bool $auto_copy_to_text)
+ * @method string getPreHeader()
+ * @method EmailResponse setPreHeader(string $pre_header)
+ * @method \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]|null getCcFields()
+ * @method EmailResponse setCcFields(\NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]|null $cc_fields)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<EmailResponseArray>
  * @implements \ArrayAccess<key-of<EmailResponseArray>, value-of<EmailResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -247,522 +293,6 @@ class EmailResponse extends ModelBase implements ModelInterface, \ArrayAccess, \
         ];
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at Datetime the asset was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?\DateTime $created_at): EmailResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): EmailResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): EmailResponse
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets from_email
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-     */
-    public function getFromEmail(): \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-    {
-        return $this->container['from_email'];
-    }
-
-    /**
-     * Sets from_email
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email from_email
-     *
-     * @return self
-     */
-    public function setFromEmail(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email): EmailResponse
-    {
-        $this->container['from_email'] = $from_email;
-
-        return $this;
-    }
-    /**
-     * Gets from_name
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-     */
-    public function getFromName(): \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-    {
-        return $this->container['from_name'];
-    }
-
-    /**
-     * Sets from_name
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name from_name
-     *
-     * @return self
-     */
-    public function setFromName(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name): EmailResponse
-    {
-        $this->container['from_name'] = $from_name;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Id of the asset
-     *
-     * @return self
-     */
-    public function setId(?int $id): EmailResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the asset
-     *
-     * @return self
-     */
-    public function setName(?string $name): EmailResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets operational
-     *
-     * @return bool
-     */
-    public function getOperational(): bool
-    {
-        return $this->container['operational'];
-    }
-
-    /**
-     * Sets operational
-     *
-     * @param bool $operational Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     *
-     * @return self
-     */
-    public function setOperational(bool $operational): EmailResponse
-    {
-        $this->container['operational'] = $operational;
-
-        return $this;
-    }
-    /**
-     * Gets publish_to_msi
-     *
-     * @return bool
-     */
-    public function getPublishToMsi(): bool
-    {
-        return $this->container['publish_to_msi'];
-    }
-
-    /**
-     * Sets publish_to_msi
-     *
-     * @param bool $publish_to_msi Whether the email is published to Marketo Sales Insight
-     *
-     * @return self
-     */
-    public function setPublishToMsi(bool $publish_to_msi): EmailResponse
-    {
-        $this->container['publish_to_msi'] = $publish_to_msi;
-
-        return $this;
-    }
-    /**
-     * Gets reply_email
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-     */
-    public function getReplyEmail(): \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-    {
-        return $this->container['reply_email'];
-    }
-
-    /**
-     * Sets reply_email
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_email reply_email
-     *
-     * @return self
-     */
-    public function setReplyEmail(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_email): EmailResponse
-    {
-        $this->container['reply_email'] = $reply_email;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status filter for draft or approved versions
-     *
-     * @return self
-     */
-    public function setStatus(string $status): EmailResponse
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets subject
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-     */
-    public function getSubject(): \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
-    {
-        return $this->container['subject'];
-    }
-
-    /**
-     * Sets subject
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject subject
-     *
-     * @return self
-     */
-    public function setSubject(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject): EmailResponse
-    {
-        $this->container['subject'] = $subject;
-
-        return $this;
-    }
-    /**
-     * Gets template
-     *
-     * @return int
-     */
-    public function getTemplate(): int
-    {
-        return $this->container['template'];
-    }
-
-    /**
-     * Sets template
-     *
-     * @param int $template Id of the parent template
-     *
-     * @return self
-     */
-    public function setTemplate(int $template): EmailResponse
-    {
-        $this->container['template'] = $template;
-
-        return $this;
-    }
-    /**
-     * Gets text_only
-     *
-     * @return bool
-     */
-    public function getTextOnly(): bool
-    {
-        return $this->container['text_only'];
-    }
-
-    /**
-     * Sets text_only
-     *
-     * @param bool $text_only Setting to include text-only version of email when sent
-     *
-     * @return self
-     */
-    public function setTextOnly(bool $text_only): EmailResponse
-    {
-        $this->container['text_only'] = $text_only;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at Datetime the asset was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?\DateTime $updated_at): EmailResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl(): ?string
-    {
-        return $this->container['url'] ?? null;
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url Url of the asset in the Marketo UI
-     *
-     * @return self
-     */
-    public function setUrl(?string $url): EmailResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-    /**
-     * Gets version
-     *
-     * @return int|null
-     */
-    public function getVersion(): ?int
-    {
-        return $this->container['version'] ?? null;
-    }
-
-    /**
-     * Sets version
-     *
-     * @param int|null $version The type version of the email
-     *
-     * @return self
-     */
-    public function setVersion(?int $version): EmailResponse
-    {
-        $allowedValues = $this->getVersionAllowableValues();
-        if (!is_null($version) && !in_array($version, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'version', must be one of '%s'",
-                    $version,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['version'] = $version;
-
-        return $this;
-    }
-    /**
-     * Gets web_view
-     *
-     * @return bool
-     */
-    public function getWebView(): bool
-    {
-        return $this->container['web_view'];
-    }
-
-    /**
-     * Sets web_view
-     *
-     * @param bool $web_view Whether 'View as Webpage' function is enabled for the email
-     *
-     * @return self
-     */
-    public function setWebView(bool $web_view): EmailResponse
-    {
-        $this->container['web_view'] = $web_view;
-
-        return $this;
-    }
-    /**
-     * Gets workspace
-     *
-     * @return string|null
-     */
-    public function getWorkspace(): ?string
-    {
-        return $this->container['workspace'] ?? null;
-    }
-
-    /**
-     * Sets workspace
-     *
-     * @param string|null $workspace Name of the workspace
-     *
-     * @return self
-     */
-    public function setWorkspace(?string $workspace): EmailResponse
-    {
-        $this->container['workspace'] = $workspace;
-
-        return $this;
-    }
-    /**
-     * Gets auto_copy_to_text
-     *
-     * @return bool
-     */
-    public function getAutoCopyToText(): bool
-    {
-        return $this->container['auto_copy_to_text'];
-    }
-
-    /**
-     * Sets auto_copy_to_text
-     *
-     * @param bool $auto_copy_to_text Setting to automatically copy HTML version to Text version
-     *
-     * @return self
-     */
-    public function setAutoCopyToText(bool $auto_copy_to_text): EmailResponse
-    {
-        $this->container['auto_copy_to_text'] = $auto_copy_to_text;
-
-        return $this;
-    }
-    /**
-     * Gets pre_header
-     *
-     * @return string
-     */
-    public function getPreHeader(): string
-    {
-        return $this->container['pre_header'];
-    }
-
-    /**
-     * Sets pre_header
-     *
-     * @param string $pre_header The email preheader text (max 1024 characters)
-     *
-     * @return self
-     */
-    public function setPreHeader(string $pre_header): EmailResponse
-    {
-        $this->container['pre_header'] = $pre_header;
-
-        return $this;
-    }
-    /**
-     * Gets cc_fields
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]|null
-     */
-    public function getCcFields(): ?array
-    {
-        return $this->container['cc_fields'] ?? null;
-    }
-
-    /**
-     * Sets cc_fields
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]|null $cc_fields cc_fields
-     *
-     * @return self
-     */
-    public function setCcFields(?array $cc_fields): EmailResponse
-    {
-        $this->container['cc_fields'] = $cc_fields;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     hostname: string,
  *     type: string,
  * }
+ *
+ * @method string getHostname()
+ * @method LandingPageDomain setHostname(string $hostname)
+ * @method string getType()
+ * @method LandingPageDomain setType(string $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LandingPageDomainArray>
  * @implements \ArrayAccess<key-of<LandingPageDomainArray>, value-of<LandingPageDomainArray>>
  * @psalm-suppress MixedReturnStatement
@@ -131,62 +137,6 @@ class LandingPageDomain extends ModelBase implements ModelInterface, \ArrayAcces
         ];
     }
 
-    /**
-     * Gets hostname
-     *
-     * @return string
-     */
-    public function getHostname(): string
-    {
-        return $this->container['hostname'];
-    }
-
-    /**
-     * Sets hostname
-     *
-     * @param string $hostname The hostname for the landing pages
-     *
-     * @return self
-     */
-    public function setHostname(string $hostname): LandingPageDomain
-    {
-        $this->container['hostname'] = $hostname;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Specifies type of hostname
-     *
-     * @return self
-     */
-    public function setType(string $type): LandingPageDomain
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

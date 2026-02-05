@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     subject_field: string,
  *     values: string[],
  * }
+ *
+ * @method bool|null getDefault()
+ * @method ThankYouPageRequest setDefault(bool|null $default)
+ * @method string getFollowupType()
+ * @method ThankYouPageRequest setFollowupType(string $followup_type)
+ * @method string getFollowupValue()
+ * @method ThankYouPageRequest setFollowupValue(string $followup_value)
+ * @method string getOperator()
+ * @method ThankYouPageRequest setOperator(string $operator)
+ * @method string getSubjectField()
+ * @method ThankYouPageRequest setSubjectField(string $subject_field)
+ * @method string[] getValues()
+ * @method ThankYouPageRequest setValues(string[] $values)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ThankYouPageRequestArray>
  * @implements \ArrayAccess<key-of<ThankYouPageRequestArray>, value-of<ThankYouPageRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -128,144 +142,6 @@ class ThankYouPageRequest extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets default
-     *
-     * @return bool|null
-     */
-    public function getDefault(): ?bool
-    {
-        return $this->container['default'] ?? null;
-    }
-
-    /**
-     * Sets default
-     *
-     * @param bool|null $default When true, this is the default rule, and will be applied when a user does not qualify for any of the other rules
-     *
-     * @return self
-     */
-    public function setDefault(?bool $default): ThankYouPageRequest
-    {
-        $this->container['default'] = $default;
-
-        return $this;
-    }
-    /**
-     * Gets followup_type
-     *
-     * @return string
-     */
-    public function getFollowupType(): string
-    {
-        return $this->container['followup_type'];
-    }
-
-    /**
-     * Sets followup_type
-     *
-     * @param string $followup_type Type of followup. When set to url, will follow to the url set in followupValue. When set to lp, will follow to the Landing page with the id given in followupValue
-     *
-     * @return self
-     */
-    public function setFollowupType(string $followup_type): ThankYouPageRequest
-    {
-        $this->container['followup_type'] = $followup_type;
-
-        return $this;
-    }
-    /**
-     * Gets followup_value
-     *
-     * @return string
-     */
-    public function getFollowupValue(): string
-    {
-        return $this->container['followup_value'];
-    }
-
-    /**
-     * Sets followup_value
-     *
-     * @param string $followup_value Where to follow to on submission. Given as a URL or and Integer depending on followupType
-     *
-     * @return self
-     */
-    public function setFollowupValue(string $followup_value): ThankYouPageRequest
-    {
-        $this->container['followup_value'] = $followup_value;
-
-        return $this;
-    }
-    /**
-     * Gets operator
-     *
-     * @return string
-     */
-    public function getOperator(): string
-    {
-        return $this->container['operator'];
-    }
-
-    /**
-     * Sets operator
-     *
-     * @param string $operator Operator to evaluate aginst the subject field
-     *
-     * @return self
-     */
-    public function setOperator(string $operator): ThankYouPageRequest
-    {
-        $this->container['operator'] = $operator;
-
-        return $this;
-    }
-    /**
-     * Gets subject_field
-     *
-     * @return string
-     */
-    public function getSubjectField(): string
-    {
-        return $this->container['subject_field'];
-    }
-
-    /**
-     * Sets subject_field
-     *
-     * @param string $subject_field Field to apply to operator to
-     *
-     * @return self
-     */
-    public function setSubjectField(string $subject_field): ThankYouPageRequest
-    {
-        $this->container['subject_field'] = $subject_field;
-
-        return $this;
-    }
-    /**
-     * Gets values
-     *
-     * @return string[]
-     */
-    public function getValues(): array
-    {
-        return $this->container['values'];
-    }
-
-    /**
-     * Sets values
-     *
-     * @param string[] $values Comma-separated list of values to compare to with the operator
-     *
-     * @return self
-     */
-    public function setValues(array $values): ThankYouPageRequest
-    {
-        $this->container['values'] = $values;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

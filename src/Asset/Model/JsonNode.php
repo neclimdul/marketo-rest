@@ -49,6 +49,50 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     textual?: ?bool,
  *     value_node?: ?bool,
  * }
+ *
+ * @method bool|null getArray()
+ * @method JsonNode setArray(bool|null $array)
+ * @method bool|null getBigDecimal()
+ * @method JsonNode setBigDecimal(bool|null $big_decimal)
+ * @method bool|null getBigInteger()
+ * @method JsonNode setBigInteger(bool|null $big_integer)
+ * @method bool|null getBinary()
+ * @method JsonNode setBinary(bool|null $binary)
+ * @method bool|null getBoolean()
+ * @method JsonNode setBoolean(bool|null $boolean)
+ * @method bool|null getContainerNode()
+ * @method JsonNode setContainerNode(bool|null $container_node)
+ * @method bool|null getDouble()
+ * @method JsonNode setDouble(bool|null $double)
+ * @method bool|null getFloat()
+ * @method JsonNode setFloat(bool|null $float)
+ * @method bool|null getFloatingPointNumber()
+ * @method JsonNode setFloatingPointNumber(bool|null $floating_point_number)
+ * @method bool|null getInt()
+ * @method JsonNode setInt(bool|null $int)
+ * @method bool|null getIntegralNumber()
+ * @method JsonNode setIntegralNumber(bool|null $integral_number)
+ * @method bool|null getLong()
+ * @method JsonNode setLong(bool|null $long)
+ * @method bool|null getMissingNode()
+ * @method JsonNode setMissingNode(bool|null $missing_node)
+ * @method string|null getNodeType()
+ * @method JsonNode setNodeType(string|null $node_type)
+ * @method bool|null getNull()
+ * @method JsonNode setNull(bool|null $null)
+ * @method bool|null getNumber()
+ * @method JsonNode setNumber(bool|null $number)
+ * @method bool|null getObject()
+ * @method JsonNode setObject(bool|null $object)
+ * @method bool|null getPojo()
+ * @method JsonNode setPojo(bool|null $pojo)
+ * @method bool|null getShort()
+ * @method JsonNode setShort(bool|null $short)
+ * @method bool|null getTextual()
+ * @method JsonNode setTextual(bool|null $textual)
+ * @method bool|null getValueNode()
+ * @method JsonNode setValueNode(bool|null $value_node)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<JsonNodeArray>
  * @implements \ArrayAccess<key-of<JsonNodeArray>, value-of<JsonNodeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -238,499 +282,6 @@ class JsonNode extends ModelBase implements ModelInterface, \ArrayAccess, \JsonS
         ];
     }
 
-    /**
-     * Gets array
-     *
-     * @return bool|null
-     */
-    public function getArray(): ?bool
-    {
-        return $this->container['array'] ?? null;
-    }
-
-    /**
-     * Sets array
-     *
-     * @param bool|null $array array
-     *
-     * @return self
-     */
-    public function setArray(?bool $array): JsonNode
-    {
-        $this->container['array'] = $array;
-
-        return $this;
-    }
-    /**
-     * Gets big_decimal
-     *
-     * @return bool|null
-     */
-    public function getBigDecimal(): ?bool
-    {
-        return $this->container['big_decimal'] ?? null;
-    }
-
-    /**
-     * Sets big_decimal
-     *
-     * @param bool|null $big_decimal big_decimal
-     *
-     * @return self
-     */
-    public function setBigDecimal(?bool $big_decimal): JsonNode
-    {
-        $this->container['big_decimal'] = $big_decimal;
-
-        return $this;
-    }
-    /**
-     * Gets big_integer
-     *
-     * @return bool|null
-     */
-    public function getBigInteger(): ?bool
-    {
-        return $this->container['big_integer'] ?? null;
-    }
-
-    /**
-     * Sets big_integer
-     *
-     * @param bool|null $big_integer big_integer
-     *
-     * @return self
-     */
-    public function setBigInteger(?bool $big_integer): JsonNode
-    {
-        $this->container['big_integer'] = $big_integer;
-
-        return $this;
-    }
-    /**
-     * Gets binary
-     *
-     * @return bool|null
-     */
-    public function getBinary(): ?bool
-    {
-        return $this->container['binary'] ?? null;
-    }
-
-    /**
-     * Sets binary
-     *
-     * @param bool|null $binary binary
-     *
-     * @return self
-     */
-    public function setBinary(?bool $binary): JsonNode
-    {
-        $this->container['binary'] = $binary;
-
-        return $this;
-    }
-    /**
-     * Gets boolean
-     *
-     * @return bool|null
-     */
-    public function getBoolean(): ?bool
-    {
-        return $this->container['boolean'] ?? null;
-    }
-
-    /**
-     * Sets boolean
-     *
-     * @param bool|null $boolean boolean
-     *
-     * @return self
-     */
-    public function setBoolean(?bool $boolean): JsonNode
-    {
-        $this->container['boolean'] = $boolean;
-
-        return $this;
-    }
-    /**
-     * Gets container_node
-     *
-     * @return bool|null
-     */
-    public function getContainerNode(): ?bool
-    {
-        return $this->container['container_node'] ?? null;
-    }
-
-    /**
-     * Sets container_node
-     *
-     * @param bool|null $container_node container_node
-     *
-     * @return self
-     */
-    public function setContainerNode(?bool $container_node): JsonNode
-    {
-        $this->container['container_node'] = $container_node;
-
-        return $this;
-    }
-    /**
-     * Gets double
-     *
-     * @return bool|null
-     */
-    public function getDouble(): ?bool
-    {
-        return $this->container['double'] ?? null;
-    }
-
-    /**
-     * Sets double
-     *
-     * @param bool|null $double double
-     *
-     * @return self
-     */
-    public function setDouble(?bool $double): JsonNode
-    {
-        $this->container['double'] = $double;
-
-        return $this;
-    }
-    /**
-     * Gets float
-     *
-     * @return bool|null
-     */
-    public function getFloat(): ?bool
-    {
-        return $this->container['float'] ?? null;
-    }
-
-    /**
-     * Sets float
-     *
-     * @param bool|null $float float
-     *
-     * @return self
-     */
-    public function setFloat(?bool $float): JsonNode
-    {
-        $this->container['float'] = $float;
-
-        return $this;
-    }
-    /**
-     * Gets floating_point_number
-     *
-     * @return bool|null
-     */
-    public function getFloatingPointNumber(): ?bool
-    {
-        return $this->container['floating_point_number'] ?? null;
-    }
-
-    /**
-     * Sets floating_point_number
-     *
-     * @param bool|null $floating_point_number floating_point_number
-     *
-     * @return self
-     */
-    public function setFloatingPointNumber(?bool $floating_point_number): JsonNode
-    {
-        $this->container['floating_point_number'] = $floating_point_number;
-
-        return $this;
-    }
-    /**
-     * Gets int
-     *
-     * @return bool|null
-     */
-    public function getInt(): ?bool
-    {
-        return $this->container['int'] ?? null;
-    }
-
-    /**
-     * Sets int
-     *
-     * @param bool|null $int int
-     *
-     * @return self
-     */
-    public function setInt(?bool $int): JsonNode
-    {
-        $this->container['int'] = $int;
-
-        return $this;
-    }
-    /**
-     * Gets integral_number
-     *
-     * @return bool|null
-     */
-    public function getIntegralNumber(): ?bool
-    {
-        return $this->container['integral_number'] ?? null;
-    }
-
-    /**
-     * Sets integral_number
-     *
-     * @param bool|null $integral_number integral_number
-     *
-     * @return self
-     */
-    public function setIntegralNumber(?bool $integral_number): JsonNode
-    {
-        $this->container['integral_number'] = $integral_number;
-
-        return $this;
-    }
-    /**
-     * Gets long
-     *
-     * @return bool|null
-     */
-    public function getLong(): ?bool
-    {
-        return $this->container['long'] ?? null;
-    }
-
-    /**
-     * Sets long
-     *
-     * @param bool|null $long long
-     *
-     * @return self
-     */
-    public function setLong(?bool $long): JsonNode
-    {
-        $this->container['long'] = $long;
-
-        return $this;
-    }
-    /**
-     * Gets missing_node
-     *
-     * @return bool|null
-     */
-    public function getMissingNode(): ?bool
-    {
-        return $this->container['missing_node'] ?? null;
-    }
-
-    /**
-     * Sets missing_node
-     *
-     * @param bool|null $missing_node missing_node
-     *
-     * @return self
-     */
-    public function setMissingNode(?bool $missing_node): JsonNode
-    {
-        $this->container['missing_node'] = $missing_node;
-
-        return $this;
-    }
-    /**
-     * Gets node_type
-     *
-     * @return string|null
-     */
-    public function getNodeType(): ?string
-    {
-        return $this->container['node_type'] ?? null;
-    }
-
-    /**
-     * Sets node_type
-     *
-     * @param string|null $node_type node_type
-     *
-     * @return self
-     */
-    public function setNodeType(?string $node_type): JsonNode
-    {
-        $allowedValues = $this->getNodeTypeAllowableValues();
-        if (!is_null($node_type) && !in_array($node_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'node_type', must be one of '%s'",
-                    $node_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['node_type'] = $node_type;
-
-        return $this;
-    }
-    /**
-     * Gets null
-     *
-     * @return bool|null
-     */
-    public function getNull(): ?bool
-    {
-        return $this->container['null'] ?? null;
-    }
-
-    /**
-     * Sets null
-     *
-     * @param bool|null $null null
-     *
-     * @return self
-     */
-    public function setNull(?bool $null): JsonNode
-    {
-        $this->container['null'] = $null;
-
-        return $this;
-    }
-    /**
-     * Gets number
-     *
-     * @return bool|null
-     */
-    public function getNumber(): ?bool
-    {
-        return $this->container['number'] ?? null;
-    }
-
-    /**
-     * Sets number
-     *
-     * @param bool|null $number number
-     *
-     * @return self
-     */
-    public function setNumber(?bool $number): JsonNode
-    {
-        $this->container['number'] = $number;
-
-        return $this;
-    }
-    /**
-     * Gets object
-     *
-     * @return bool|null
-     */
-    public function getObject(): ?bool
-    {
-        return $this->container['object'] ?? null;
-    }
-
-    /**
-     * Sets object
-     *
-     * @param bool|null $object object
-     *
-     * @return self
-     */
-    public function setObject(?bool $object): JsonNode
-    {
-        $this->container['object'] = $object;
-
-        return $this;
-    }
-    /**
-     * Gets pojo
-     *
-     * @return bool|null
-     */
-    public function getPojo(): ?bool
-    {
-        return $this->container['pojo'] ?? null;
-    }
-
-    /**
-     * Sets pojo
-     *
-     * @param bool|null $pojo pojo
-     *
-     * @return self
-     */
-    public function setPojo(?bool $pojo): JsonNode
-    {
-        $this->container['pojo'] = $pojo;
-
-        return $this;
-    }
-    /**
-     * Gets short
-     *
-     * @return bool|null
-     */
-    public function getShort(): ?bool
-    {
-        return $this->container['short'] ?? null;
-    }
-
-    /**
-     * Sets short
-     *
-     * @param bool|null $short short
-     *
-     * @return self
-     */
-    public function setShort(?bool $short): JsonNode
-    {
-        $this->container['short'] = $short;
-
-        return $this;
-    }
-    /**
-     * Gets textual
-     *
-     * @return bool|null
-     */
-    public function getTextual(): ?bool
-    {
-        return $this->container['textual'] ?? null;
-    }
-
-    /**
-     * Sets textual
-     *
-     * @param bool|null $textual textual
-     *
-     * @return self
-     */
-    public function setTextual(?bool $textual): JsonNode
-    {
-        $this->container['textual'] = $textual;
-
-        return $this;
-    }
-    /**
-     * Gets value_node
-     *
-     * @return bool|null
-     */
-    public function getValueNode(): ?bool
-    {
-        return $this->container['value_node'] ?? null;
-    }
-
-    /**
-     * Sets value_node
-     *
-     * @param bool|null $value_node value_node
-     *
-     * @return self
-     */
-    public function setValueNode(?bool $value_node): JsonNode
-    {
-        $this->container['value_node'] = $value_node;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

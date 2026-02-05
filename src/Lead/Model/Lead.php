@@ -34,6 +34,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     reason?: ?\NecLimDul\MarketoRest\Lead\Model\Reason,
  *     status?: ?string,
  * }
+ *
+ * @method int|null getId()
+ * @method Lead setId(int|null $id)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ProgramMembership|null getMembership()
+ * @method Lead setMembership(\NecLimDul\MarketoRest\Lead\Model\ProgramMembership|null $membership)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Reason|null getReason()
+ * @method Lead setReason(\NecLimDul\MarketoRest\Lead\Model\Reason|null $reason)
+ * @method string|null getStatus()
+ * @method Lead setStatus(string|null $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadArray>
  * @implements \ArrayAccess<key-of<LeadArray>, value-of<LeadArray>>
  * @psalm-suppress MixedReturnStatement
@@ -116,98 +126,6 @@ class Lead extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSeria
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Unique integer id of a lead record
-     *
-     * @return self
-     */
-    public function setId(?int $id): Lead
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets membership
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMembership|null
-     */
-    public function getMembership(): ?\NecLimDul\MarketoRest\Lead\Model\ProgramMembership
-    {
-        return $this->container['membership'] ?? null;
-    }
-
-    /**
-     * Sets membership
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ProgramMembership|null $membership membership
-     *
-     * @return self
-     */
-    public function setMembership(?\NecLimDul\MarketoRest\Lead\Model\ProgramMembership $membership): Lead
-    {
-        $this->container['membership'] = $membership;
-
-        return $this;
-    }
-    /**
-     * Gets reason
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason|null
-     */
-    public function getReason(): ?\NecLimDul\MarketoRest\Lead\Model\Reason
-    {
-        return $this->container['reason'] ?? null;
-    }
-
-    /**
-     * Sets reason
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason|null $reason reason
-     *
-     * @return self
-     */
-    public function setReason(?\NecLimDul\MarketoRest\Lead\Model\Reason $reason): Lead
-    {
-        $this->container['reason'] = $reason;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus(): ?string
-    {
-        return $this->container['status'] ?? null;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status Status of the operation performed on the record
-     *
-     * @return self
-     */
-    public function setStatus(?string $status): Lead
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     max_return?: ?int,
  *     offset?: ?int,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder|null getFolder()
+ * @method GetFilesRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder|null $folder)
+ * @method int|null getMaxReturn()
+ * @method GetFilesRequest setMaxReturn(int|null $max_return)
+ * @method int|null getOffset()
+ * @method GetFilesRequest setOffset(int|null $offset)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<GetFilesRequestArray>
  * @implements \ArrayAccess<key-of<GetFilesRequestArray>, value-of<GetFilesRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -110,75 +118,6 @@ class GetFilesRequest extends ModelBase implements ModelInterface, \ArrayAccess,
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder|null
-     */
-    public function getFolder(): ?\NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'] ?? null;
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder|null $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(?\NecLimDul\MarketoRest\Asset\Model\Folder $folder): GetFilesRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets max_return
-     *
-     * @return int|null
-     */
-    public function getMaxReturn(): ?int
-    {
-        return $this->container['max_return'] ?? null;
-    }
-
-    /**
-     * Sets max_return
-     *
-     * @param int|null $max_return Maximum number of channels to return. Max 200, default 20
-     *
-     * @return self
-     */
-    public function setMaxReturn(?int $max_return): GetFilesRequest
-    {
-        $this->container['max_return'] = $max_return;
-
-        return $this;
-    }
-    /**
-     * Gets offset
-     *
-     * @return int|null
-     */
-    public function getOffset(): ?int
-    {
-        return $this->container['offset'] ?? null;
-    }
-
-    /**
-     * Sets offset
-     *
-     * @param int|null $offset Integer offset for paging
-     *
-     * @return self
-     */
-    public function setOffset(?int $offset): GetFilesRequest
-    {
-        $this->container['offset'] = $offset;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

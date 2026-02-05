@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     progression_statuses?: ?\NecLimDul\MarketoRest\Asset\Model\ChannelProgression[],
  *     updated_at: \DateTime,
  * }
+ *
+ * @method string getApplicableProgramType()
+ * @method ChannelResponse setApplicableProgramType(string $applicable_program_type)
+ * @method \DateTime getCreatedAt()
+ * @method ChannelResponse setCreatedAt(\DateTime $created_at)
+ * @method int getId()
+ * @method ChannelResponse setId(int $id)
+ * @method string getName()
+ * @method ChannelResponse setName(string $name)
+ * @method \NecLimDul\MarketoRest\Asset\Model\ChannelProgression[]|null getProgressionStatuses()
+ * @method ChannelResponse setProgressionStatuses(\NecLimDul\MarketoRest\Asset\Model\ChannelProgression[]|null $progression_statuses)
+ * @method \DateTime getUpdatedAt()
+ * @method ChannelResponse setUpdatedAt(\DateTime $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ChannelResponseArray>
  * @implements \ArrayAccess<key-of<ChannelResponseArray>, value-of<ChannelResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -131,144 +145,6 @@ class ChannelResponse extends ModelBase implements ModelInterface, \ArrayAccess,
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets applicable_program_type
-     *
-     * @return string
-     */
-    public function getApplicableProgramType(): string
-    {
-        return $this->container['applicable_program_type'];
-    }
-
-    /**
-     * Sets applicable_program_type
-     *
-     * @param string $applicable_program_type Types of programs to which the channel can apply
-     *
-     * @return self
-     */
-    public function setApplicableProgramType(string $applicable_program_type): ChannelResponse
-    {
-        $this->container['applicable_program_type'] = $applicable_program_type;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime $created_at Datetime when the channel was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $created_at): ChannelResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the Channel
-     *
-     * @return self
-     */
-    public function setId(int $id): ChannelResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the Channel
-     *
-     * @return self
-     */
-    public function setName(string $name): ChannelResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets progression_statuses
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\ChannelProgression[]|null
-     */
-    public function getProgressionStatuses(): ?array
-    {
-        return $this->container['progression_statuses'] ?? null;
-    }
-
-    /**
-     * Sets progression_statuses
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\ChannelProgression[]|null $progression_statuses List of available statuses for members of programs with the channel
-     *
-     * @return self
-     */
-    public function setProgressionStatuses(?array $progression_statuses): ChannelResponse
-    {
-        $this->container['progression_statuses'] = $progression_statuses;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime $updated_at Datetime when the channel was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(\DateTime $updated_at): ChannelResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

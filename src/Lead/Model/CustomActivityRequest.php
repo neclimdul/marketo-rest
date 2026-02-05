@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type CustomActivityRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\CustomActivity[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\CustomActivity[] getInput()
+ * @method CustomActivityRequest setInput(\NecLimDul\MarketoRest\Lead\Model\CustomActivity[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CustomActivityRequestArray>
  * @implements \ArrayAccess<key-of<CustomActivityRequestArray>, value-of<CustomActivityRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class CustomActivityRequest extends ModelBase implements ModelInterface, \ArrayA
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivity[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivity[] $input List of custom activities to insert
-     *
-     * @return self
-     */
-    public function setInput(array $input): CustomActivityRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     updateable: bool,
  *     crm_managed: bool,
  * }
+ *
+ * @method string getName()
+ * @method LeadAttribute2Fields2 setName(string $name)
+ * @method string getDisplayName()
+ * @method LeadAttribute2Fields2 setDisplayName(string $display_name)
+ * @method string getDataType()
+ * @method LeadAttribute2Fields2 setDataType(string $data_type)
+ * @method int|null getLength()
+ * @method LeadAttribute2Fields2 setLength(int|null $length)
+ * @method bool getUpdateable()
+ * @method LeadAttribute2Fields2 setUpdateable(bool $updateable)
+ * @method bool getCrmManaged()
+ * @method LeadAttribute2Fields2 setCrmManaged(bool $crm_managed)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadAttribute2Fields2Array>
  * @implements \ArrayAccess<key-of<LeadAttribute2Fields2Array>, value-of<LeadAttribute2Fields2Array>>
  * @psalm-suppress MixedReturnStatement
@@ -128,144 +142,6 @@ class LeadAttribute2Fields2 extends ModelBase implements ModelInterface, \ArrayA
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name REST API name of field
-     *
-     * @return self
-     */
-    public function setName(string $name): LeadAttribute2Fields2
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets display_name
-     *
-     * @return string
-     */
-    public function getDisplayName(): string
-    {
-        return $this->container['display_name'];
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string $display_name Display name of field (friendly name)
-     *
-     * @return self
-     */
-    public function setDisplayName(string $display_name): LeadAttribute2Fields2
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets data_type
-     *
-     * @return string
-     */
-    public function getDataType(): string
-    {
-        return $this->container['data_type'];
-    }
-
-    /**
-     * Sets data_type
-     *
-     * @param string $data_type Data type of field
-     *
-     * @return self
-     */
-    public function setDataType(string $data_type): LeadAttribute2Fields2
-    {
-        $this->container['data_type'] = $data_type;
-
-        return $this;
-    }
-    /**
-     * Gets length
-     *
-     * @return int|null
-     */
-    public function getLength(): ?int
-    {
-        return $this->container['length'] ?? null;
-    }
-
-    /**
-     * Sets length
-     *
-     * @param int|null $length Length of field
-     *
-     * @return self
-     */
-    public function setLength(?int $length): LeadAttribute2Fields2
-    {
-        $this->container['length'] = $length;
-
-        return $this;
-    }
-    /**
-     * Gets updateable
-     *
-     * @return bool
-     */
-    public function getUpdateable(): bool
-    {
-        return $this->container['updateable'];
-    }
-
-    /**
-     * Sets updateable
-     *
-     * @param bool $updateable Is field updateable
-     *
-     * @return self
-     */
-    public function setUpdateable(bool $updateable): LeadAttribute2Fields2
-    {
-        $this->container['updateable'] = $updateable;
-
-        return $this;
-    }
-    /**
-     * Gets crm_managed
-     *
-     * @return bool
-     */
-    public function getCrmManaged(): bool
-    {
-        return $this->container['crm_managed'];
-    }
-
-    /**
-     * Sets crm_managed
-     *
-     * @param bool $crm_managed Is field managed by CRM
-     *
-     * @return self
-     */
-    public function setCrmManaged(bool $crm_managed): LeadAttribute2Fields2
-    {
-        $this->container['crm_managed'] = $crm_managed;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

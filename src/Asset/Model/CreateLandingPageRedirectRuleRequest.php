@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     redirect_from: \NecLimDul\MarketoRest\Asset\Model\RedirectFrom,
  *     redirect_to: \NecLimDul\MarketoRest\Asset\Model\RedirectTo,
  * }
+ *
+ * @method string getHostname()
+ * @method CreateLandingPageRedirectRuleRequest setHostname(string $hostname)
+ * @method \NecLimDul\MarketoRest\Asset\Model\RedirectFrom getRedirectFrom()
+ * @method CreateLandingPageRedirectRuleRequest setRedirectFrom(\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from)
+ * @method \NecLimDul\MarketoRest\Asset\Model\RedirectTo getRedirectTo()
+ * @method CreateLandingPageRedirectRuleRequest setRedirectTo(\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateLandingPageRedirectRuleRequestArray>
  * @implements \ArrayAccess<key-of<CreateLandingPageRedirectRuleRequestArray>, value-of<CreateLandingPageRedirectRuleRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class CreateLandingPageRedirectRuleRequest extends ModelBase implements ModelInt
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets hostname
-     *
-     * @return string
-     */
-    public function getHostname(): string
-    {
-        return $this->container['hostname'];
-    }
-
-    /**
-     * Sets hostname
-     *
-     * @param string $hostname The hostname for the landing pages. Branding domain or alias. Max 255 characters
-     *
-     * @return self
-     */
-    public function setHostname(string $hostname): CreateLandingPageRedirectRuleRequest
-    {
-        $this->container['hostname'] = $hostname;
-
-        return $this;
-    }
-    /**
-     * Gets redirect_from
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectFrom
-     */
-    public function getRedirectFrom(): \NecLimDul\MarketoRest\Asset\Model\RedirectFrom
-    {
-        return $this->container['redirect_from'];
-    }
-
-    /**
-     * Sets redirect_from
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from redirect_from
-     *
-     * @return self
-     */
-    public function setRedirectFrom(\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from): CreateLandingPageRedirectRuleRequest
-    {
-        $this->container['redirect_from'] = $redirect_from;
-
-        return $this;
-    }
-    /**
-     * Gets redirect_to
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectTo
-     */
-    public function getRedirectTo(): \NecLimDul\MarketoRest\Asset\Model\RedirectTo
-    {
-        return $this->container['redirect_to'];
-    }
-
-    /**
-     * Sets redirect_to
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to redirect_to
-     *
-     * @return self
-     */
-    public function setRedirectTo(\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to): CreateLandingPageRedirectRuleRequest
-    {
-        $this->container['redirect_to'] = $redirect_to;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

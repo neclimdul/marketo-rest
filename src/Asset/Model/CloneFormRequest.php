@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     folder: \NecLimDul\MarketoRest\Asset\Model\Folder,
  *     description?: ?string,
  * }
+ *
+ * @method string getName()
+ * @method CloneFormRequest setName(string $name)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CloneFormRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string|null getDescription()
+ * @method CloneFormRequest setDescription(string|null $description)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CloneFormRequestArray>
  * @implements \ArrayAccess<key-of<CloneFormRequestArray>, value-of<CloneFormRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -110,75 +118,6 @@ class CloneFormRequest extends ModelBase implements ModelInterface, \ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name for the cloned form
-     *
-     * @return self
-     */
-    public function setName(string $name): CloneFormRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CloneFormRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the cloned form
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CloneFormRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

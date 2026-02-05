@@ -37,6 +37,22 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     num_of_rows_with_warning?: ?int,
  *     status: string,
  * }
+ *
+ * @method int getBatchId()
+ * @method ImportLeadResponse setBatchId(int $batch_id)
+ * @method string|null getImportId()
+ * @method ImportLeadResponse setImportId(string|null $import_id)
+ * @method string|null getMessage()
+ * @method ImportLeadResponse setMessage(string|null $message)
+ * @method int getNumOfLeadsProcessed()
+ * @method ImportLeadResponse setNumOfLeadsProcessed(int $num_of_leads_processed)
+ * @method int|null getNumOfRowsFailed()
+ * @method ImportLeadResponse setNumOfRowsFailed(int|null $num_of_rows_failed)
+ * @method int|null getNumOfRowsWithWarning()
+ * @method ImportLeadResponse setNumOfRowsWithWarning(int|null $num_of_rows_with_warning)
+ * @method string getStatus()
+ * @method ImportLeadResponse setStatus(string $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ImportLeadResponseArray>
  * @implements \ArrayAccess<key-of<ImportLeadResponseArray>, value-of<ImportLeadResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -137,167 +153,6 @@ class ImportLeadResponse extends ModelBase implements ModelInterface, \ArrayAcce
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets batch_id
-     *
-     * @return int
-     */
-    public function getBatchId(): int
-    {
-        return $this->container['batch_id'];
-    }
-
-    /**
-     * Sets batch_id
-     *
-     * @param int $batch_id Unique integer id of the import batch
-     *
-     * @return self
-     */
-    public function setBatchId(int $batch_id): ImportLeadResponse
-    {
-        $this->container['batch_id'] = $batch_id;
-
-        return $this;
-    }
-    /**
-     * Gets import_id
-     *
-     * @return string|null
-     */
-    public function getImportId(): ?string
-    {
-        return $this->container['import_id'] ?? null;
-    }
-
-    /**
-     * Sets import_id
-     *
-     * @param string|null $import_id import_id
-     *
-     * @return self
-     */
-    public function setImportId(?string $import_id): ImportLeadResponse
-    {
-        $this->container['import_id'] = $import_id;
-
-        return $this;
-    }
-    /**
-     * Gets message
-     *
-     * @return string|null
-     */
-    public function getMessage(): ?string
-    {
-        return $this->container['message'] ?? null;
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string|null $message message
-     *
-     * @return self
-     */
-    public function setMessage(?string $message): ImportLeadResponse
-    {
-        $this->container['message'] = $message;
-
-        return $this;
-    }
-    /**
-     * Gets num_of_leads_processed
-     *
-     * @return int
-     */
-    public function getNumOfLeadsProcessed(): int
-    {
-        return $this->container['num_of_leads_processed'];
-    }
-
-    /**
-     * Sets num_of_leads_processed
-     *
-     * @param int $num_of_leads_processed Number of rows processed so far
-     *
-     * @return self
-     */
-    public function setNumOfLeadsProcessed(int $num_of_leads_processed): ImportLeadResponse
-    {
-        $this->container['num_of_leads_processed'] = $num_of_leads_processed;
-
-        return $this;
-    }
-    /**
-     * Gets num_of_rows_failed
-     *
-     * @return int|null
-     */
-    public function getNumOfRowsFailed(): ?int
-    {
-        return $this->container['num_of_rows_failed'] ?? null;
-    }
-
-    /**
-     * Sets num_of_rows_failed
-     *
-     * @param int|null $num_of_rows_failed Number of rows failed so far
-     *
-     * @return self
-     */
-    public function setNumOfRowsFailed(?int $num_of_rows_failed): ImportLeadResponse
-    {
-        $this->container['num_of_rows_failed'] = $num_of_rows_failed;
-
-        return $this;
-    }
-    /**
-     * Gets num_of_rows_with_warning
-     *
-     * @return int|null
-     */
-    public function getNumOfRowsWithWarning(): ?int
-    {
-        return $this->container['num_of_rows_with_warning'] ?? null;
-    }
-
-    /**
-     * Sets num_of_rows_with_warning
-     *
-     * @param int|null $num_of_rows_with_warning Number of rows with a warning so far
-     *
-     * @return self
-     */
-    public function setNumOfRowsWithWarning(?int $num_of_rows_with_warning): ImportLeadResponse
-    {
-        $this->container['num_of_rows_with_warning'] = $num_of_rows_with_warning;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status of the batch
-     *
-     * @return self
-     */
-    public function setStatus(string $status): ImportLeadResponse
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     is_dedupe_field?: ?bool,
  *     related_to?: ?\NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo,
  * }
+ *
+ * @method string getName()
+ * @method AddCustomObjectTypeField setName(string $name)
+ * @method string getDisplayName()
+ * @method AddCustomObjectTypeField setDisplayName(string $display_name)
+ * @method string getDataType()
+ * @method AddCustomObjectTypeField setDataType(string $data_type)
+ * @method string|null getDescription()
+ * @method AddCustomObjectTypeField setDescription(string|null $description)
+ * @method bool|null getIsDedupeField()
+ * @method AddCustomObjectTypeField setIsDedupeField(bool|null $is_dedupe_field)
+ * @method \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo|null getRelatedTo()
+ * @method AddCustomObjectTypeField setRelatedTo(\NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo|null $related_to)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<AddCustomObjectTypeFieldArray>
  * @implements \ArrayAccess<key-of<AddCustomObjectTypeFieldArray>, value-of<AddCustomObjectTypeFieldArray>>
  * @psalm-suppress MixedReturnStatement
@@ -126,144 +140,6 @@ class AddCustomObjectTypeField extends ModelBase implements ModelInterface, \Arr
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name API Name of custom object field
-     *
-     * @return self
-     */
-    public function setName(string $name): AddCustomObjectTypeField
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets display_name
-     *
-     * @return string
-     */
-    public function getDisplayName(): string
-    {
-        return $this->container['display_name'];
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string $display_name UI display-name of the custom object field
-     *
-     * @return self
-     */
-    public function setDisplayName(string $display_name): AddCustomObjectTypeField
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets data_type
-     *
-     * @return string
-     */
-    public function getDataType(): string
-    {
-        return $this->container['data_type'];
-    }
-
-    /**
-     * Sets data_type
-     *
-     * @param string $data_type Datatype of the custom object field
-     *
-     * @return self
-     */
-    public function setDataType(string $data_type): AddCustomObjectTypeField
-    {
-        $this->container['data_type'] = $data_type;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the custom object field
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): AddCustomObjectTypeField
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets is_dedupe_field
-     *
-     * @return bool|null
-     */
-    public function getIsDedupeField(): ?bool
-    {
-        return $this->container['is_dedupe_field'] ?? null;
-    }
-
-    /**
-     * Sets is_dedupe_field
-     *
-     * @param bool|null $is_dedupe_field Set to true to enable field as unique identifier for deduplicating records. Default is false
-     *
-     * @return self
-     */
-    public function setIsDedupeField(?bool $is_dedupe_field): AddCustomObjectTypeField
-    {
-        $this->container['is_dedupe_field'] = $is_dedupe_field;
-
-        return $this;
-    }
-    /**
-     * Gets related_to
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo|null
-     */
-    public function getRelatedTo(): ?\NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo
-    {
-        return $this->container['related_to'] ?? null;
-    }
-
-    /**
-     * Sets related_to
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo|null $related_to related_to
-     *
-     * @return self
-     */
-    public function setRelatedTo(?\NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo $related_to): AddCustomObjectTypeField
-    {
-        $this->container['related_to'] = $related_to;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

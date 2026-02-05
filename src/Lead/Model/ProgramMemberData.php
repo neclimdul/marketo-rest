@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     field_api_name: string,
  *     field_api_name2?: ?string,
  * }
+ *
+ * @method int getLeadId()
+ * @method ProgramMemberData setLeadId(int $lead_id)
+ * @method string getFieldApiName()
+ * @method ProgramMemberData setFieldApiName(string $field_api_name)
+ * @method string|null getFieldApiName2()
+ * @method ProgramMemberData setFieldApiName2(string|null $field_api_name2)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ProgramMemberDataArray>
  * @implements \ArrayAccess<key-of<ProgramMemberDataArray>, value-of<ProgramMemberDataArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class ProgramMemberData extends ModelBase implements ModelInterface, \ArrayAcces
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets lead_id
-     *
-     * @return int
-     */
-    public function getLeadId(): int
-    {
-        return $this->container['lead_id'];
-    }
-
-    /**
-     * Sets lead_id
-     *
-     * @param int $lead_id Unique integer id of a lead record
-     *
-     * @return self
-     */
-    public function setLeadId(int $lead_id): ProgramMemberData
-    {
-        $this->container['lead_id'] = $lead_id;
-
-        return $this;
-    }
-    /**
-     * Gets field_api_name
-     *
-     * @return string
-     */
-    public function getFieldApiName(): string
-    {
-        return $this->container['field_api_name'];
-    }
-
-    /**
-     * Sets field_api_name
-     *
-     * @param string $field_api_name API Name of field to update. Must be updateable as described by <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint.
-     *
-     * @return self
-     */
-    public function setFieldApiName(string $field_api_name): ProgramMemberData
-    {
-        $this->container['field_api_name'] = $field_api_name;
-
-        return $this;
-    }
-    /**
-     * Gets field_api_name2
-     *
-     * @return string|null
-     */
-    public function getFieldApiName2(): ?string
-    {
-        return $this->container['field_api_name2'] ?? null;
-    }
-
-    /**
-     * Sets field_api_name2
-     *
-     * @param string|null $field_api_name2 API Name of another field to update (and so forth). Must be updateable as described by <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint.
-     *
-     * @return self
-     */
-    public function setFieldApiName2(?string $field_api_name2): ProgramMemberData
-    {
-        $this->container['field_api_name2'] = $field_api_name2;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

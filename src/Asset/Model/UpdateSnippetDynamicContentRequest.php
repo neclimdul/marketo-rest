@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     type?: ?string,
  *     value?: ?string,
  * }
+ *
+ * @method string|null getType()
+ * @method UpdateSnippetDynamicContentRequest setType(string|null $type)
+ * @method string|null getValue()
+ * @method UpdateSnippetDynamicContentRequest setValue(string|null $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateSnippetDynamicContentRequestArray>
  * @implements \ArrayAccess<key-of<UpdateSnippetDynamicContentRequestArray>, value-of<UpdateSnippetDynamicContentRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -127,62 +133,6 @@ class UpdateSnippetDynamicContentRequest extends ModelBase implements ModelInter
         ];
     }
 
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType(): ?string
-    {
-        return $this->container['type'] ?? null;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type Type of dynamic content section
-     *
-     * @return self
-     */
-    public function setType(?string $type): UpdateSnippetDynamicContentRequest
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string|null
-     */
-    public function getValue(): ?string
-    {
-        return $this->container['value'] ?? null;
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string|null $value Value of the dynamic content section
-     *
-     * @return self
-     */
-    public function setValue(?string $value): UpdateSnippetDynamicContentRequest
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

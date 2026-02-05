@@ -35,6 +35,22 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     updated_at: string,
  *     workspace_name?: ?string,
  * }
+ *
+ * @method string getCreatedAt()
+ * @method StaticList setCreatedAt(string $created_at)
+ * @method string|null getDescription()
+ * @method StaticList setDescription(string|null $description)
+ * @method int getId()
+ * @method StaticList setId(int $id)
+ * @method string getName()
+ * @method StaticList setName(string $name)
+ * @method string|null getProgramName()
+ * @method StaticList setProgramName(string|null $program_name)
+ * @method string getUpdatedAt()
+ * @method StaticList setUpdatedAt(string $updated_at)
+ * @method string|null getWorkspaceName()
+ * @method StaticList setWorkspaceName(string|null $workspace_name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<StaticListArray>
  * @implements \ArrayAccess<key-of<StaticListArray>, value-of<StaticListArray>>
  * @psalm-suppress MixedReturnStatement
@@ -133,167 +149,6 @@ class StaticList extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return string
-     */
-    public function getCreatedAt(): string
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string $created_at Datetime when the list was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(string $created_at): StaticList
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the static list
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): StaticList
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the static list
-     *
-     * @return self
-     */
-    public function setId(int $id): StaticList
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the static list
-     *
-     * @return self
-     */
-    public function setName(string $name): StaticList
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets program_name
-     *
-     * @return string|null
-     */
-    public function getProgramName(): ?string
-    {
-        return $this->container['program_name'] ?? null;
-    }
-
-    /**
-     * Sets program_name
-     *
-     * @param string|null $program_name Name of the program
-     *
-     * @return self
-     */
-    public function setProgramName(?string $program_name): StaticList
-    {
-        $this->container['program_name'] = $program_name;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return string
-     */
-    public function getUpdatedAt(): string
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param string $updated_at Datetime when the list was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(string $updated_at): StaticList
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets workspace_name
-     *
-     * @return string|null
-     */
-    public function getWorkspaceName(): ?string
-    {
-        return $this->container['workspace_name'] ?? null;
-    }
-
-    /**
-     * Sets workspace_name
-     *
-     * @param string|null $workspace_name Name of the parent workspace, if applicable
-     *
-     * @return self
-     */
-    public function setWorkspaceName(?string $workspace_name): StaticList
-    {
-        $this->container['workspace_name'] = $workspace_name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

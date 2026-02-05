@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     end?: ?int,
  *     start?: ?int,
  * }
+ *
+ * @method int|null getEnd()
+ * @method FileRange setEnd(int|null $end)
+ * @method int|null getStart()
+ * @method FileRange setStart(int|null $start)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FileRangeArray>
  * @implements \ArrayAccess<key-of<FileRangeArray>, value-of<FileRangeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -105,52 +111,6 @@ class FileRange extends ModelBase implements ModelInterface, \ArrayAccess, \Json
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets end
-     *
-     * @return int|null
-     */
-    public function getEnd(): ?int
-    {
-        return $this->container['end'] ?? null;
-    }
-
-    /**
-     * Sets end
-     *
-     * @param int|null $end end
-     *
-     * @return self
-     */
-    public function setEnd(?int $end): FileRange
-    {
-        $this->container['end'] = $end;
-
-        return $this;
-    }
-    /**
-     * Gets start
-     *
-     * @return int|null
-     */
-    public function getStart(): ?int
-    {
-        return $this->container['start'] ?? null;
-    }
-
-    /**
-     * Sets start
-     *
-     * @param int|null $start start
-     *
-     * @return self
-     */
-    public function setStart(?int $start): FileRange
-    {
-        $this->container['start'] = $start;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

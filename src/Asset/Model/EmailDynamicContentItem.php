@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     segment_name?: ?string,
  *     type?: ?string,
  * }
+ *
+ * @method string|null getContent()
+ * @method EmailDynamicContentItem setContent(string|null $content)
+ * @method string|null getId()
+ * @method EmailDynamicContentItem setId(string|null $id)
+ * @method string|null getSegmentId()
+ * @method EmailDynamicContentItem setSegmentId(string|null $segment_id)
+ * @method string|null getSegmentName()
+ * @method EmailDynamicContentItem setSegmentName(string|null $segment_name)
+ * @method string|null getType()
+ * @method EmailDynamicContentItem setType(string|null $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<EmailDynamicContentItemArray>
  * @implements \ArrayAccess<key-of<EmailDynamicContentItemArray>, value-of<EmailDynamicContentItemArray>>
  * @psalm-suppress MixedReturnStatement
@@ -118,121 +130,6 @@ class EmailDynamicContentItem extends ModelBase implements ModelInterface, \Arra
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content
-     *
-     * @return string|null
-     */
-    public function getContent(): ?string
-    {
-        return $this->container['content'] ?? null;
-    }
-
-    /**
-     * Sets content
-     *
-     * @param string|null $content content
-     *
-     * @return self
-     */
-    public function setContent(?string $content): EmailDynamicContentItem
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string|null $id id
-     *
-     * @return self
-     */
-    public function setId(?string $id): EmailDynamicContentItem
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets segment_id
-     *
-     * @return string|null
-     */
-    public function getSegmentId(): ?string
-    {
-        return $this->container['segment_id'] ?? null;
-    }
-
-    /**
-     * Sets segment_id
-     *
-     * @param string|null $segment_id segment_id
-     *
-     * @return self
-     */
-    public function setSegmentId(?string $segment_id): EmailDynamicContentItem
-    {
-        $this->container['segment_id'] = $segment_id;
-
-        return $this;
-    }
-    /**
-     * Gets segment_name
-     *
-     * @return string|null
-     */
-    public function getSegmentName(): ?string
-    {
-        return $this->container['segment_name'] ?? null;
-    }
-
-    /**
-     * Sets segment_name
-     *
-     * @param string|null $segment_name segment_name
-     *
-     * @return self
-     */
-    public function setSegmentName(?string $segment_name): EmailDynamicContentItem
-    {
-        $this->container['segment_name'] = $segment_name;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType(): ?string
-    {
-        return $this->container['type'] ?? null;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type type
-     *
-     * @return self
-     */
-    public function setType(?string $type): EmailDynamicContentItem
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

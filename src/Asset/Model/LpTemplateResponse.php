@@ -39,6 +39,30 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     url?: ?string,
  *     workspace?: ?string,
  * }
+ *
+ * @method \DateTime|null getCreatedAt()
+ * @method LpTemplateResponse setCreatedAt(\DateTime|null $created_at)
+ * @method string|null getDescription()
+ * @method LpTemplateResponse setDescription(string|null $description)
+ * @method bool getEnableMunchkin()
+ * @method LpTemplateResponse setEnableMunchkin(bool $enable_munchkin)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method LpTemplateResponse setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method int|null getId()
+ * @method LpTemplateResponse setId(int|null $id)
+ * @method string|null getName()
+ * @method LpTemplateResponse setName(string|null $name)
+ * @method string getStatus()
+ * @method LpTemplateResponse setStatus(string $status)
+ * @method string getTemplateType()
+ * @method LpTemplateResponse setTemplateType(string $template_type)
+ * @method \DateTime|null getUpdatedAt()
+ * @method LpTemplateResponse setUpdatedAt(\DateTime|null $updated_at)
+ * @method string|null getUrl()
+ * @method LpTemplateResponse setUrl(string|null $url)
+ * @method string|null getWorkspace()
+ * @method LpTemplateResponse setWorkspace(string|null $workspace)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LpTemplateResponseArray>
  * @implements \ArrayAccess<key-of<LpTemplateResponseArray>, value-of<LpTemplateResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -181,269 +205,6 @@ class LpTemplateResponse extends ModelBase implements ModelInterface, \ArrayAcce
         ];
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at Datetime the asset was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?\DateTime $created_at): LpTemplateResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): LpTemplateResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets enable_munchkin
-     *
-     * @return bool
-     */
-    public function getEnableMunchkin(): bool
-    {
-        return $this->container['enable_munchkin'];
-    }
-
-    /**
-     * Sets enable_munchkin
-     *
-     * @param bool $enable_munchkin Whether to enable munchkin on the derived pages. Defaults to true
-     *
-     * @return self
-     */
-    public function setEnableMunchkin(bool $enable_munchkin): LpTemplateResponse
-    {
-        $this->container['enable_munchkin'] = $enable_munchkin;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): LpTemplateResponse
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Id of the asset
-     *
-     * @return self
-     */
-    public function setId(?int $id): LpTemplateResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the asset
-     *
-     * @return self
-     */
-    public function setName(?string $name): LpTemplateResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status filter for draft or approved versions
-     *
-     * @return self
-     */
-    public function setStatus(string $status): LpTemplateResponse
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets template_type
-     *
-     * @return string
-     */
-    public function getTemplateType(): string
-    {
-        return $this->container['template_type'];
-    }
-
-    /**
-     * Sets template_type
-     *
-     * @param string $template_type Type of template to create. Defaults to freeForm
-     *
-     * @return self
-     */
-    public function setTemplateType(string $template_type): LpTemplateResponse
-    {
-        $allowedValues = $this->getTemplateTypeAllowableValues();
-        if (!in_array($template_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'template_type', must be one of '%s'",
-                    $template_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['template_type'] = $template_type;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at Datetime the asset was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?\DateTime $updated_at): LpTemplateResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl(): ?string
-    {
-        return $this->container['url'] ?? null;
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url Url of the asset in the Marketo UI
-     *
-     * @return self
-     */
-    public function setUrl(?string $url): LpTemplateResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-    /**
-     * Gets workspace
-     *
-     * @return string|null
-     */
-    public function getWorkspace(): ?string
-    {
-        return $this->container['workspace'] ?? null;
-    }
-
-    /**
-     * Sets workspace
-     *
-     * @param string|null $workspace Name of the workspace. Max 255 characters
-     *
-     * @return self
-     */
-    public function setWorkspace(?string $workspace): LpTemplateResponse
-    {
-        $this->container['workspace'] = $workspace;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

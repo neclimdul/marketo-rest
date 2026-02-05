@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     step?: ?int,
  *     success?: ?bool,
  * }
+ *
+ * @method string|null getDescription()
+ * @method ChannelProgression setDescription(string|null $description)
+ * @method bool|null getHidden()
+ * @method ChannelProgression setHidden(bool|null $hidden)
+ * @method string|null getName()
+ * @method ChannelProgression setName(string|null $name)
+ * @method string|null getType()
+ * @method ChannelProgression setType(string|null $type)
+ * @method int|null getStep()
+ * @method ChannelProgression setStep(int|null $step)
+ * @method bool|null getSuccess()
+ * @method ChannelProgression setSuccess(bool|null $success)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ChannelProgressionArray>
  * @implements \ArrayAccess<key-of<ChannelProgressionArray>, value-of<ChannelProgressionArray>>
  * @psalm-suppress MixedReturnStatement
@@ -124,144 +138,6 @@ class ChannelProgression extends ModelBase implements ModelInterface, \ArrayAcce
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the program status
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): ChannelProgression
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets hidden
-     *
-     * @return bool|null
-     */
-    public function getHidden(): ?bool
-    {
-        return $this->container['hidden'] ?? null;
-    }
-
-    /**
-     * Sets hidden
-     *
-     * @param bool|null $hidden Whether the status has been hidden
-     *
-     * @return self
-     */
-    public function setHidden(?bool $hidden): ChannelProgression
-    {
-        $this->container['hidden'] = $hidden;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the status
-     *
-     * @return self
-     */
-    public function setName(?string $name): ChannelProgression
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType(): ?string
-    {
-        return $this->container['type'] ?? null;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type Type of the status
-     *
-     * @return self
-     */
-    public function setType(?string $type): ChannelProgression
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets step
-     *
-     * @return int|null
-     */
-    public function getStep(): ?int
-    {
-        return $this->container['step'] ?? null;
-    }
-
-    /**
-     * Sets step
-     *
-     * @param int|null $step Step number of the status
-     *
-     * @return self
-     */
-    public function setStep(?int $step): ChannelProgression
-    {
-        $this->container['step'] = $step;
-
-        return $this;
-    }
-    /**
-     * Gets success
-     *
-     * @return bool|null
-     */
-    public function getSuccess(): ?bool
-    {
-        return $this->container['success'] ?? null;
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool|null $success Whether this status is a success step for program members
-     *
-     * @return self
-     */
-    public function setSuccess(?bool $success): ChannelProgression
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

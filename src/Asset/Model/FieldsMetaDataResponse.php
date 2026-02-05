@@ -47,6 +47,46 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     validation_message?: ?string,
  *     visible_rows?: ?int,
  * }
+ *
+ * @method string|null getDataType()
+ * @method FieldsMetaDataResponse setDataType(string|null $data_type)
+ * @method string|null getDefaultValue()
+ * @method FieldsMetaDataResponse setDefaultValue(string|null $default_value)
+ * @method string|null getDescription()
+ * @method FieldsMetaDataResponse setDescription(string|null $description)
+ * @method string|null getFieldMaskValues()
+ * @method FieldsMetaDataResponse setFieldMaskValues(string|null $field_mask_values)
+ * @method int|null getFieldWidth()
+ * @method FieldsMetaDataResponse setFieldWidth(int|null $field_width)
+ * @method string getId()
+ * @method FieldsMetaDataResponse setId(string $id)
+ * @method bool|null getInitiallyChecked()
+ * @method FieldsMetaDataResponse setInitiallyChecked(bool|null $initially_checked)
+ * @method bool|null getIsLabelToRight()
+ * @method FieldsMetaDataResponse setIsLabelToRight(bool|null $is_label_to_right)
+ * @method bool|null getIsMultiselect()
+ * @method FieldsMetaDataResponse setIsMultiselect(bool|null $is_multiselect)
+ * @method bool|null getIsRequired()
+ * @method FieldsMetaDataResponse setIsRequired(bool|null $is_required)
+ * @method bool|null getIsSensitive()
+ * @method FieldsMetaDataResponse setIsSensitive(bool|null $is_sensitive)
+ * @method int|null getLabelWidth()
+ * @method FieldsMetaDataResponse setLabelWidth(int|null $label_width)
+ * @method int|null getMaxLength()
+ * @method FieldsMetaDataResponse setMaxLength(int|null $max_length)
+ * @method float|null getMaximumNumber()
+ * @method FieldsMetaDataResponse setMaximumNumber(float|null $maximum_number)
+ * @method float|null getMinimumNumber()
+ * @method FieldsMetaDataResponse setMinimumNumber(float|null $minimum_number)
+ * @method string|null getPicklistValues()
+ * @method FieldsMetaDataResponse setPicklistValues(string|null $picklist_values)
+ * @method string|null getPlaceholderText()
+ * @method FieldsMetaDataResponse setPlaceholderText(string|null $placeholder_text)
+ * @method string|null getValidationMessage()
+ * @method FieldsMetaDataResponse setValidationMessage(string|null $validation_message)
+ * @method int|null getVisibleRows()
+ * @method FieldsMetaDataResponse setVisibleRows(int|null $visible_rows)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FieldsMetaDataResponseArray>
  * @implements \ArrayAccess<key-of<FieldsMetaDataResponseArray>, value-of<FieldsMetaDataResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -195,443 +235,6 @@ class FieldsMetaDataResponse extends ModelBase implements ModelInterface, \Array
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets data_type
-     *
-     * @return string|null
-     */
-    public function getDataType(): ?string
-    {
-        return $this->container['data_type'] ?? null;
-    }
-
-    /**
-     * Sets data_type
-     *
-     * @param string|null $data_type Type of field
-     *
-     * @return self
-     */
-    public function setDataType(?string $data_type): FieldsMetaDataResponse
-    {
-        $this->container['data_type'] = $data_type;
-
-        return $this;
-    }
-    /**
-     * Gets default_value
-     *
-     * @return string|null
-     */
-    public function getDefaultValue(): ?string
-    {
-        return $this->container['default_value'] ?? null;
-    }
-
-    /**
-     * Sets default_value
-     *
-     * @param string|null $default_value Optional default value for the field
-     *
-     * @return self
-     */
-    public function setDefaultValue(?string $default_value): FieldsMetaDataResponse
-    {
-        $this->container['default_value'] = $default_value;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the field
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): FieldsMetaDataResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets field_mask_values
-     *
-     * @return string|null
-     */
-    public function getFieldMaskValues(): ?string
-    {
-        return $this->container['field_mask_values'] ?? null;
-    }
-
-    /**
-     * Sets field_mask_values
-     *
-     * @param string|null $field_mask_values Optional input mask for the field
-     *
-     * @return self
-     */
-    public function setFieldMaskValues(?string $field_mask_values): FieldsMetaDataResponse
-    {
-        $this->container['field_mask_values'] = $field_mask_values;
-
-        return $this;
-    }
-    /**
-     * Gets field_width
-     *
-     * @return int|null
-     */
-    public function getFieldWidth(): ?int
-    {
-        return $this->container['field_width'] ?? null;
-    }
-
-    /**
-     * Sets field_width
-     *
-     * @param int|null $field_width Width of the input or select element
-     *
-     * @return self
-     */
-    public function setFieldWidth(?int $field_width): FieldsMetaDataResponse
-    {
-        $this->container['field_width'] = $field_width;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return string
-     */
-    public function getId(): string
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param string $id Id of the field
-     *
-     * @return self
-     */
-    public function setId(string $id): FieldsMetaDataResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets initially_checked
-     *
-     * @return bool|null
-     */
-    public function getInitiallyChecked(): ?bool
-    {
-        return $this->container['initially_checked'] ?? null;
-    }
-
-    /**
-     * Sets initially_checked
-     *
-     * @param bool|null $initially_checked Whether the field should be checked upon loading. Default false
-     *
-     * @return self
-     */
-    public function setInitiallyChecked(?bool $initially_checked): FieldsMetaDataResponse
-    {
-        $this->container['initially_checked'] = $initially_checked;
-
-        return $this;
-    }
-    /**
-     * Gets is_label_to_right
-     *
-     * @return bool|null
-     */
-    public function getIsLabelToRight(): ?bool
-    {
-        return $this->container['is_label_to_right'] ?? null;
-    }
-
-    /**
-     * Sets is_label_to_right
-     *
-     * @param bool|null $is_label_to_right Whether the field label should be displayed to the right of the input/select element. Default false
-     *
-     * @return self
-     */
-    public function setIsLabelToRight(?bool $is_label_to_right): FieldsMetaDataResponse
-    {
-        $this->container['is_label_to_right'] = $is_label_to_right;
-
-        return $this;
-    }
-    /**
-     * Gets is_multiselect
-     *
-     * @return bool|null
-     */
-    public function getIsMultiselect(): ?bool
-    {
-        return $this->container['is_multiselect'] ?? null;
-    }
-
-    /**
-     * Sets is_multiselect
-     *
-     * @param bool|null $is_multiselect Whether the field should allow multiple selections. Default false
-     *
-     * @return self
-     */
-    public function setIsMultiselect(?bool $is_multiselect): FieldsMetaDataResponse
-    {
-        $this->container['is_multiselect'] = $is_multiselect;
-
-        return $this;
-    }
-    /**
-     * Gets is_required
-     *
-     * @return bool|null
-     */
-    public function getIsRequired(): ?bool
-    {
-        return $this->container['is_required'] ?? null;
-    }
-
-    /**
-     * Sets is_required
-     *
-     * @param bool|null $is_required Whether the field is required to submit the form. Default false
-     *
-     * @return self
-     */
-    public function setIsRequired(?bool $is_required): FieldsMetaDataResponse
-    {
-        $this->container['is_required'] = $is_required;
-
-        return $this;
-    }
-    /**
-     * Gets is_sensitive
-     *
-     * @return bool|null
-     */
-    public function getIsSensitive(): ?bool
-    {
-        return $this->container['is_sensitive'] ?? null;
-    }
-
-    /**
-     * Sets is_sensitive
-     *
-     * @param bool|null $is_sensitive Whether the field is marked as sensitive. Default false
-     *
-     * @return self
-     */
-    public function setIsSensitive(?bool $is_sensitive): FieldsMetaDataResponse
-    {
-        $this->container['is_sensitive'] = $is_sensitive;
-
-        return $this;
-    }
-    /**
-     * Gets label_width
-     *
-     * @return int|null
-     */
-    public function getLabelWidth(): ?int
-    {
-        return $this->container['label_width'] ?? null;
-    }
-
-    /**
-     * Sets label_width
-     *
-     * @param int|null $label_width Width of the field label element
-     *
-     * @return self
-     */
-    public function setLabelWidth(?int $label_width): FieldsMetaDataResponse
-    {
-        $this->container['label_width'] = $label_width;
-
-        return $this;
-    }
-    /**
-     * Gets max_length
-     *
-     * @return int|null
-     */
-    public function getMaxLength(): ?int
-    {
-        return $this->container['max_length'] ?? null;
-    }
-
-    /**
-     * Sets max_length
-     *
-     * @param int|null $max_length Maximum length for text type fields
-     *
-     * @return self
-     */
-    public function setMaxLength(?int $max_length): FieldsMetaDataResponse
-    {
-        $this->container['max_length'] = $max_length;
-
-        return $this;
-    }
-    /**
-     * Gets maximum_number
-     *
-     * @return float|null
-     */
-    public function getMaximumNumber(): ?float
-    {
-        return $this->container['maximum_number'] ?? null;
-    }
-
-    /**
-     * Sets maximum_number
-     *
-     * @param float|null $maximum_number Maximum value accepted by the field
-     *
-     * @return self
-     */
-    public function setMaximumNumber(?float $maximum_number): FieldsMetaDataResponse
-    {
-        $this->container['maximum_number'] = $maximum_number;
-
-        return $this;
-    }
-    /**
-     * Gets minimum_number
-     *
-     * @return float|null
-     */
-    public function getMinimumNumber(): ?float
-    {
-        return $this->container['minimum_number'] ?? null;
-    }
-
-    /**
-     * Sets minimum_number
-     *
-     * @param float|null $minimum_number Minimum value accepted by the field
-     *
-     * @return self
-     */
-    public function setMinimumNumber(?float $minimum_number): FieldsMetaDataResponse
-    {
-        $this->container['minimum_number'] = $minimum_number;
-
-        return $this;
-    }
-    /**
-     * Gets picklist_values
-     *
-     * @return string|null
-     */
-    public function getPicklistValues(): ?string
-    {
-        return $this->container['picklist_values'] ?? null;
-    }
-
-    /**
-     * Sets picklist_values
-     *
-     * @param string|null $picklist_values Comma-separated list of available picklist values for the field
-     *
-     * @return self
-     */
-    public function setPicklistValues(?string $picklist_values): FieldsMetaDataResponse
-    {
-        $this->container['picklist_values'] = $picklist_values;
-
-        return $this;
-    }
-    /**
-     * Gets placeholder_text
-     *
-     * @return string|null
-     */
-    public function getPlaceholderText(): ?string
-    {
-        return $this->container['placeholder_text'] ?? null;
-    }
-
-    /**
-     * Sets placeholder_text
-     *
-     * @param string|null $placeholder_text Placeholder text for the field
-     *
-     * @return self
-     */
-    public function setPlaceholderText(?string $placeholder_text): FieldsMetaDataResponse
-    {
-        $this->container['placeholder_text'] = $placeholder_text;
-
-        return $this;
-    }
-    /**
-     * Gets validation_message
-     *
-     * @return string|null
-     */
-    public function getValidationMessage(): ?string
-    {
-        return $this->container['validation_message'] ?? null;
-    }
-
-    /**
-     * Sets validation_message
-     *
-     * @param string|null $validation_message Validation message to display on failed validation
-     *
-     * @return self
-     */
-    public function setValidationMessage(?string $validation_message): FieldsMetaDataResponse
-    {
-        $this->container['validation_message'] = $validation_message;
-
-        return $this;
-    }
-    /**
-     * Gets visible_rows
-     *
-     * @return int|null
-     */
-    public function getVisibleRows(): ?int
-    {
-        return $this->container['visible_rows'] ?? null;
-    }
-
-    /**
-     * Sets visible_rows
-     *
-     * @param int|null $visible_rows Number of rows visible for progressive profiling
-     *
-     * @return self
-     */
-    public function setVisibleRows(?int $visible_rows): FieldsMetaDataResponse
-    {
-        $this->container['visible_rows'] = $visible_rows;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

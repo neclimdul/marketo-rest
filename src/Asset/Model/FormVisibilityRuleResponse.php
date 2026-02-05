@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     rule_type?: ?string,
  *     rules?: ?\NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[],
  * }
+ *
+ * @method string|null getFormFieldId()
+ * @method FormVisibilityRuleResponse setFormFieldId(string|null $form_field_id)
+ * @method string|null getRuleType()
+ * @method FormVisibilityRuleResponse setRuleType(string|null $rule_type)
+ * @method \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]|null getRules()
+ * @method FormVisibilityRuleResponse setRules(\NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]|null $rules)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FormVisibilityRuleResponseArray>
  * @implements \ArrayAccess<key-of<FormVisibilityRuleResponseArray>, value-of<FormVisibilityRuleResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -108,75 +116,6 @@ class FormVisibilityRuleResponse extends ModelBase implements ModelInterface, \A
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets form_field_id
-     *
-     * @return string|null
-     */
-    public function getFormFieldId(): ?string
-    {
-        return $this->container['form_field_id'] ?? null;
-    }
-
-    /**
-     * Sets form_field_id
-     *
-     * @param string|null $form_field_id form_field_id
-     *
-     * @return self
-     */
-    public function setFormFieldId(?string $form_field_id): FormVisibilityRuleResponse
-    {
-        $this->container['form_field_id'] = $form_field_id;
-
-        return $this;
-    }
-    /**
-     * Gets rule_type
-     *
-     * @return string|null
-     */
-    public function getRuleType(): ?string
-    {
-        return $this->container['rule_type'] ?? null;
-    }
-
-    /**
-     * Sets rule_type
-     *
-     * @param string|null $rule_type rule_type
-     *
-     * @return self
-     */
-    public function setRuleType(?string $rule_type): FormVisibilityRuleResponse
-    {
-        $this->container['rule_type'] = $rule_type;
-
-        return $this;
-    }
-    /**
-     * Gets rules
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]|null
-     */
-    public function getRules(): ?array
-    {
-        return $this->container['rules'] ?? null;
-    }
-
-    /**
-     * Sets rules
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]|null $rules rules
-     *
-     * @return self
-     */
-    public function setRules(?array $rules): FormVisibilityRuleResponse
-    {
-        $this->container['rules'] = $rules;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

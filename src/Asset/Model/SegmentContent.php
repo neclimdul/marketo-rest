@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     segment_name: string,
  *     type: string,
  * }
+ *
+ * @method object getContent()
+ * @method SegmentContent setContent(object $content)
+ * @method string|null getFollowupType()
+ * @method SegmentContent setFollowupType(string|null $followup_type)
+ * @method string|null getFollowupValue()
+ * @method SegmentContent setFollowupValue(string|null $followup_value)
+ * @method int getSegmentId()
+ * @method SegmentContent setSegmentId(int $segment_id)
+ * @method string getSegmentName()
+ * @method SegmentContent setSegmentName(string $segment_name)
+ * @method string getType()
+ * @method SegmentContent setType(string $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SegmentContentArray>
  * @implements \ArrayAccess<key-of<SegmentContentArray>, value-of<SegmentContentArray>>
  * @psalm-suppress MixedReturnStatement
@@ -128,144 +142,6 @@ class SegmentContent extends ModelBase implements ModelInterface, \ArrayAccess, 
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content
-     *
-     * @return object
-     */
-    public function getContent(): object
-    {
-        return $this->container['content'];
-    }
-
-    /**
-     * Sets content
-     *
-     * @param object $content Type of content section
-     *
-     * @return self
-     */
-    public function setContent(object $content): SegmentContent
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
-    /**
-     * Gets followup_type
-     *
-     * @return string|null
-     */
-    public function getFollowupType(): ?string
-    {
-        return $this->container['followup_type'] ?? null;
-    }
-
-    /**
-     * Sets followup_type
-     *
-     * @param string|null $followup_type followup_type
-     *
-     * @return self
-     */
-    public function setFollowupType(?string $followup_type): SegmentContent
-    {
-        $this->container['followup_type'] = $followup_type;
-
-        return $this;
-    }
-    /**
-     * Gets followup_value
-     *
-     * @return string|null
-     */
-    public function getFollowupValue(): ?string
-    {
-        return $this->container['followup_value'] ?? null;
-    }
-
-    /**
-     * Sets followup_value
-     *
-     * @param string|null $followup_value followup_value
-     *
-     * @return self
-     */
-    public function setFollowupValue(?string $followup_value): SegmentContent
-    {
-        $this->container['followup_value'] = $followup_value;
-
-        return $this;
-    }
-    /**
-     * Gets segment_id
-     *
-     * @return int
-     */
-    public function getSegmentId(): int
-    {
-        return $this->container['segment_id'];
-    }
-
-    /**
-     * Sets segment_id
-     *
-     * @param int $segment_id Segmentation to which the section is linked
-     *
-     * @return self
-     */
-    public function setSegmentId(int $segment_id): SegmentContent
-    {
-        $this->container['segment_id'] = $segment_id;
-
-        return $this;
-    }
-    /**
-     * Gets segment_name
-     *
-     * @return string
-     */
-    public function getSegmentName(): string
-    {
-        return $this->container['segment_name'];
-    }
-
-    /**
-     * Sets segment_name
-     *
-     * @param string $segment_name Name of the segment to display content section for
-     *
-     * @return self
-     */
-    public function setSegmentName(string $segment_name): SegmentContent
-    {
-        $this->container['segment_name'] = $segment_name;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of content section
-     *
-     * @return self
-     */
-    public function setType(string $type): SegmentContent
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

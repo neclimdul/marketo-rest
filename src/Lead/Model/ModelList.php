@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     list_id: int,
  *     updated_at: string,
  * }
+ *
+ * @method string getCreatedAt()
+ * @method ModelList setCreatedAt(string $created_at)
+ * @method int getListId()
+ * @method ModelList setListId(int $list_id)
+ * @method string getUpdatedAt()
+ * @method ModelList setUpdatedAt(string $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ModelListArray>
  * @implements \ArrayAccess<key-of<ModelListArray>, value-of<ModelListArray>>
  * @psalm-suppress MixedReturnStatement
@@ -112,75 +120,6 @@ class ModelList extends ModelBase implements ModelInterface, \ArrayAccess, \Json
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return string
-     */
-    public function getCreatedAt(): string
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string $created_at Datetime when the static list was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(string $created_at): ModelList
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets list_id
-     *
-     * @return int
-     */
-    public function getListId(): int
-    {
-        return $this->container['list_id'];
-    }
-
-    /**
-     * Sets list_id
-     *
-     * @param int $list_id Unique integer id of the static list
-     *
-     * @return self
-     */
-    public function setListId(int $list_id): ModelList
-    {
-        $this->container['list_id'] = $list_id;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return string
-     */
-    public function getUpdatedAt(): string
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param string $updated_at Datetime when the static list was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(string $updated_at): ModelList
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

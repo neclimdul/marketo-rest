@@ -38,6 +38,28 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     version?: ?int,
  *     workspace?: ?string,
  * }
+ *
+ * @method \DateTime|null getCreatedAt()
+ * @method EmailTemplateResponse setCreatedAt(\DateTime|null $created_at)
+ * @method string|null getDescription()
+ * @method EmailTemplateResponse setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method EmailTemplateResponse setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method int|null getId()
+ * @method EmailTemplateResponse setId(int|null $id)
+ * @method string|null getName()
+ * @method EmailTemplateResponse setName(string|null $name)
+ * @method string getStatus()
+ * @method EmailTemplateResponse setStatus(string $status)
+ * @method \DateTime|null getUpdatedAt()
+ * @method EmailTemplateResponse setUpdatedAt(\DateTime|null $updated_at)
+ * @method string|null getUrl()
+ * @method EmailTemplateResponse setUrl(string|null $url)
+ * @method int|null getVersion()
+ * @method EmailTemplateResponse setVersion(int|null $version)
+ * @method string|null getWorkspace()
+ * @method EmailTemplateResponse setWorkspace(string|null $workspace)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<EmailTemplateResponseArray>
  * @implements \ArrayAccess<key-of<EmailTemplateResponseArray>, value-of<EmailTemplateResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -175,246 +197,6 @@ class EmailTemplateResponse extends ModelBase implements ModelInterface, \ArrayA
         ];
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at Datetime the asset was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?\DateTime $created_at): EmailTemplateResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): EmailTemplateResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): EmailTemplateResponse
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Id of the asset
-     *
-     * @return self
-     */
-    public function setId(?int $id): EmailTemplateResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the asset
-     *
-     * @return self
-     */
-    public function setName(?string $name): EmailTemplateResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status filter for draft or approved versions
-     *
-     * @return self
-     */
-    public function setStatus(string $status): EmailTemplateResponse
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at Datetime the asset was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?\DateTime $updated_at): EmailTemplateResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl(): ?string
-    {
-        return $this->container['url'] ?? null;
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url Url of the asset in the Marketo UI
-     *
-     * @return self
-     */
-    public function setUrl(?string $url): EmailTemplateResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-    /**
-     * Gets version
-     *
-     * @return int|null
-     */
-    public function getVersion(): ?int
-    {
-        return $this->container['version'] ?? null;
-    }
-
-    /**
-     * Sets version
-     *
-     * @param int|null $version Template version type
-     *
-     * @return self
-     */
-    public function setVersion(?int $version): EmailTemplateResponse
-    {
-        $allowedValues = $this->getVersionAllowableValues();
-        if (!is_null($version) && !in_array($version, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'version', must be one of '%s'",
-                    $version,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['version'] = $version;
-
-        return $this;
-    }
-    /**
-     * Gets workspace
-     *
-     * @return string|null
-     */
-    public function getWorkspace(): ?string
-    {
-        return $this->container['workspace'] ?? null;
-    }
-
-    /**
-     * Sets workspace
-     *
-     * @param string|null $workspace Name of the workspace
-     *
-     * @return self
-     */
-    public function setWorkspace(?string $workspace): EmailTemplateResponse
-    {
-        $this->container['workspace'] = $workspace;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

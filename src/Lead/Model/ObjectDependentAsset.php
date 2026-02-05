@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     asset_name: string,
  *     used_fields?: ?string[],
  * }
+ *
+ * @method string getAssetType()
+ * @method ObjectDependentAsset setAssetType(string $asset_type)
+ * @method int getAssetId()
+ * @method ObjectDependentAsset setAssetId(int $asset_id)
+ * @method string getAssetName()
+ * @method ObjectDependentAsset setAssetName(string $asset_name)
+ * @method string[]|null getUsedFields()
+ * @method ObjectDependentAsset setUsedFields(string[]|null $used_fields)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ObjectDependentAssetArray>
  * @implements \ArrayAccess<key-of<ObjectDependentAssetArray>, value-of<ObjectDependentAssetArray>>
  * @psalm-suppress MixedReturnStatement
@@ -117,98 +127,6 @@ class ObjectDependentAsset extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets asset_type
-     *
-     * @return string
-     */
-    public function getAssetType(): string
-    {
-        return $this->container['asset_type'];
-    }
-
-    /**
-     * Sets asset_type
-     *
-     * @param string $asset_type Type of asset
-     *
-     * @return self
-     */
-    public function setAssetType(string $asset_type): ObjectDependentAsset
-    {
-        $this->container['asset_type'] = $asset_type;
-
-        return $this;
-    }
-    /**
-     * Gets asset_id
-     *
-     * @return int
-     */
-    public function getAssetId(): int
-    {
-        return $this->container['asset_id'];
-    }
-
-    /**
-     * Sets asset_id
-     *
-     * @param int $asset_id ID of asset
-     *
-     * @return self
-     */
-    public function setAssetId(int $asset_id): ObjectDependentAsset
-    {
-        $this->container['asset_id'] = $asset_id;
-
-        return $this;
-    }
-    /**
-     * Gets asset_name
-     *
-     * @return string
-     */
-    public function getAssetName(): string
-    {
-        return $this->container['asset_name'];
-    }
-
-    /**
-     * Sets asset_name
-     *
-     * @param string $asset_name Name of asset
-     *
-     * @return self
-     */
-    public function setAssetName(string $asset_name): ObjectDependentAsset
-    {
-        $this->container['asset_name'] = $asset_name;
-
-        return $this;
-    }
-    /**
-     * Gets used_fields
-     *
-     * @return string[]|null
-     */
-    public function getUsedFields(): ?array
-    {
-        return $this->container['used_fields'] ?? null;
-    }
-
-    /**
-     * Sets used_fields
-     *
-     * @param string[]|null $used_fields List of associated fields
-     *
-     * @return self
-     */
-    public function setUsedFields(?array $used_fields): ObjectDependentAsset
-    {
-        $this->container['used_fields'] = $used_fields;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

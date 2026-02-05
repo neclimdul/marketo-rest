@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     dedupe_by?: ?string,
  *     input: \NecLimDul\MarketoRest\Lead\Model\NamedAccount[],
  * }
+ *
+ * @method string|null getAction()
+ * @method SyncNamedAccountRequest setAction(string|null $action)
+ * @method string|null getDedupeBy()
+ * @method SyncNamedAccountRequest setDedupeBy(string|null $dedupe_by)
+ * @method \NecLimDul\MarketoRest\Lead\Model\NamedAccount[] getInput()
+ * @method SyncNamedAccountRequest setInput(\NecLimDul\MarketoRest\Lead\Model\NamedAccount[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SyncNamedAccountRequestArray>
  * @implements \ArrayAccess<key-of<SyncNamedAccountRequestArray>, value-of<SyncNamedAccountRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -137,85 +145,6 @@ class SyncNamedAccountRequest extends ModelBase implements ModelInterface, \Arra
         ];
     }
 
-    /**
-     * Gets action
-     *
-     * @return string|null
-     */
-    public function getAction(): ?string
-    {
-        return $this->container['action'] ?? null;
-    }
-
-    /**
-     * Sets action
-     *
-     * @param string|null $action Type of sync operation to perform
-     *
-     * @return self
-     */
-    public function setAction(?string $action): SyncNamedAccountRequest
-    {
-        $allowedValues = $this->getActionAllowableValues();
-        if (!is_null($action) && !in_array($action, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'action', must be one of '%s'",
-                    $action,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['action'] = $action;
-
-        return $this;
-    }
-    /**
-     * Gets dedupe_by
-     *
-     * @return string|null
-     */
-    public function getDedupeBy(): ?string
-    {
-        return $this->container['dedupe_by'] ?? null;
-    }
-
-    /**
-     * Sets dedupe_by
-     *
-     * @param string|null $dedupe_by Field to deduplicate on. If the value in the field for a given record is not unique, an error will be returned for the individual record.
-     *
-     * @return self
-     */
-    public function setDedupeBy(?string $dedupe_by): SyncNamedAccountRequest
-    {
-        $this->container['dedupe_by'] = $dedupe_by;
-
-        return $this;
-    }
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\NamedAccount[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\NamedAccount[] $input List of input records
-     *
-     * @return self
-     */
-    public function setInput(array $input): SyncNamedAccountRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

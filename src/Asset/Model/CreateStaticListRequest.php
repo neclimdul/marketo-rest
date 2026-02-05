@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     name: string,
  *     folder: \NecLimDul\MarketoRest\Asset\Model\Folder,
  * }
+ *
+ * @method string|null getDescription()
+ * @method CreateStaticListRequest setDescription(string|null $description)
+ * @method string getName()
+ * @method CreateStaticListRequest setName(string $name)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CreateStaticListRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateStaticListRequestArray>
  * @implements \ArrayAccess<key-of<CreateStaticListRequestArray>, value-of<CreateStaticListRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -110,75 +118,6 @@ class CreateStaticListRequest extends ModelBase implements ModelInterface, \Arra
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the static list
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CreateStaticListRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the static list
-     *
-     * @return self
-     */
-    public function setName(string $name): CreateStaticListRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateStaticListRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

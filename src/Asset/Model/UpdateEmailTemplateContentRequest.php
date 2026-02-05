@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type UpdateEmailTemplateContentRequestArray array{
  *     content?: ?string,
  * }
+ *
+ * @method string|null getContent()
+ * @method UpdateEmailTemplateContentRequest setContent(string|null $content)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateEmailTemplateContentRequestArray>
  * @implements \ArrayAccess<key-of<UpdateEmailTemplateContentRequestArray>, value-of<UpdateEmailTemplateContentRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -98,29 +102,6 @@ class UpdateEmailTemplateContentRequest extends ModelBase implements ModelInterf
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content
-     *
-     * @return string|null
-     */
-    public function getContent(): ?string
-    {
-        return $this->container['content'] ?? null;
-    }
-
-    /**
-     * Sets content
-     *
-     * @param string|null $content Content for the email template. Multipart file.
-     *
-     * @return self
-     */
-    public function setContent(?string $content): UpdateEmailTemplateContentRequest
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

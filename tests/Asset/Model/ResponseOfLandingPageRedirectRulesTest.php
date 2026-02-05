@@ -128,14 +128,6 @@ class ResponseOfLandingPageRedirectRulesTest extends TestCase
         foreach (array_keys($this->types) as $field) {
             $this->assertTrue(isset($setters[$field]));
             $this->assertTrue(isset($getters[$field]));
-            $this->assertTrue(
-                method_exists($this->sot, $getters[$field]),
-                'Getter exists on model.'
-            );
-            $this->assertTrue(
-                method_exists($this->sot, $setters[$field]),
-                'Setter exists on model.'
-            );
         }
     }
 

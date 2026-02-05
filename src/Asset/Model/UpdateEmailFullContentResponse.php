@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type UpdateEmailFullContentResponseArray array{
  *     id: int,
  * }
+ *
+ * @method int getId()
+ * @method UpdateEmailFullContentResponse setId(int $id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateEmailFullContentResponseArray>
  * @implements \ArrayAccess<key-of<UpdateEmailFullContentResponseArray>, value-of<UpdateEmailFullContentResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -100,29 +104,6 @@ class UpdateEmailFullContentResponse extends ModelBase implements ModelInterface
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the email
-     *
-     * @return self
-     */
-    public function setId(int $id): UpdateEmailFullContentResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     success: bool,
  *     warnings?: ?\NecLimDul\MarketoRest\Lead\Model\Warning[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\Error[]|null getErrors()
+ * @method ResponseWithoutResult setErrors(\NecLimDul\MarketoRest\Lead\Model\Error[]|null $errors)
+ * @method string|null getNextPageToken()
+ * @method ResponseWithoutResult setNextPageToken(string|null $next_page_token)
+ * @method string getRequestId()
+ * @method ResponseWithoutResult setRequestId(string $request_id)
+ * @method bool getSuccess()
+ * @method ResponseWithoutResult setSuccess(bool $success)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Warning[]|null getWarnings()
+ * @method ResponseWithoutResult setWarnings(\NecLimDul\MarketoRest\Lead\Model\Warning[]|null $warnings)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ResponseWithoutResultArray>
  * @implements \ArrayAccess<key-of<ResponseWithoutResultArray>, value-of<ResponseWithoutResultArray>>
  * @psalm-suppress MixedReturnStatement
@@ -120,121 +132,6 @@ class ResponseWithoutResult extends ModelBase implements ModelInterface, \ArrayA
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets errors
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]|null
-     */
-    public function getErrors(): ?array
-    {
-        return $this->container['errors'] ?? null;
-    }
-
-    /**
-     * Sets errors
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Error[]|null $errors Array of errors that occurred if the request was unsuccessful
-     *
-     * @return self
-     */
-    public function setErrors(?array $errors): ResponseWithoutResult
-    {
-        $this->container['errors'] = $errors;
-
-        return $this;
-    }
-    /**
-     * Gets next_page_token
-     *
-     * @return string|null
-     */
-    public function getNextPageToken(): ?string
-    {
-        return $this->container['next_page_token'] ?? null;
-    }
-
-    /**
-     * Sets next_page_token
-     *
-     * @param string|null $next_page_token Paging token returned from a previous response
-     *
-     * @return self
-     */
-    public function setNextPageToken(?string $next_page_token): ResponseWithoutResult
-    {
-        $this->container['next_page_token'] = $next_page_token;
-
-        return $this;
-    }
-    /**
-     * Gets request_id
-     *
-     * @return string
-     */
-    public function getRequestId(): string
-    {
-        return $this->container['request_id'];
-    }
-
-    /**
-     * Sets request_id
-     *
-     * @param string $request_id Id of the request made
-     *
-     * @return self
-     */
-    public function setRequestId(string $request_id): ResponseWithoutResult
-    {
-        $this->container['request_id'] = $request_id;
-
-        return $this;
-    }
-    /**
-     * Gets success
-     *
-     * @return bool
-     */
-    public function getSuccess(): bool
-    {
-        return $this->container['success'];
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool $success Whether the request succeeded
-     *
-     * @return self
-     */
-    public function setSuccess(bool $success): ResponseWithoutResult
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-    /**
-     * Gets warnings
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]|null
-     */
-    public function getWarnings(): ?array
-    {
-        return $this->container['warnings'] ?? null;
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Warning[]|null $warnings Array of warnings given for the operation
-     *
-     * @return self
-     */
-    public function setWarnings(?array $warnings): ResponseWithoutResult
-    {
-        $this->container['warnings'] = $warnings;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

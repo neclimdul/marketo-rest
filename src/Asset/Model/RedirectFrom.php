@@ -32,6 +32,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     type: string,
  *     value: string,
  * }
+ *
+ * @method string getType()
+ * @method RedirectFrom setType(string $type)
+ * @method string getValue()
+ * @method RedirectFrom setValue(string $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<RedirectFromArray>
  * @implements \ArrayAccess<key-of<RedirectFromArray>, value-of<RedirectFromArray>>
  * @psalm-suppress MixedReturnStatement
@@ -133,62 +139,6 @@ class RedirectFrom extends ModelBase implements ModelInterface, \ArrayAccess, \J
         ];
     }
 
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of redirect landing page
-     *
-     * @return self
-     */
-    public function setType(string $type): RedirectFrom
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value Value for redirect landing page. If type is 'path' this must not begin with forward slash
-     *
-     * @return self
-     */
-    public function setValue(string $value): RedirectFrom
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

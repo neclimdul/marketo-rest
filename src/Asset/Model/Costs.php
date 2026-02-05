@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     note?: ?string,
  *     start_date: \DateTime,
  * }
+ *
+ * @method int getCost()
+ * @method Costs setCost(int $cost)
+ * @method string|null getNote()
+ * @method Costs setNote(string|null $note)
+ * @method \DateTime getStartDate()
+ * @method Costs setStartDate(\DateTime $start_date)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CostsArray>
  * @implements \ArrayAccess<key-of<CostsArray>, value-of<CostsArray>>
  * @psalm-suppress MixedReturnStatement
@@ -112,75 +120,6 @@ class Costs extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSeri
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets cost
-     *
-     * @return int
-     */
-    public function getCost(): int
-    {
-        return $this->container['cost'];
-    }
-
-    /**
-     * Sets cost
-     *
-     * @param int $cost Amount of the cost
-     *
-     * @return self
-     */
-    public function setCost(int $cost): Costs
-    {
-        $this->container['cost'] = $cost;
-
-        return $this;
-    }
-    /**
-     * Gets note
-     *
-     * @return string|null
-     */
-    public function getNote(): ?string
-    {
-        return $this->container['note'] ?? null;
-    }
-
-    /**
-     * Sets note
-     *
-     * @param string|null $note Notes on the cost
-     *
-     * @return self
-     */
-    public function setNote(?string $note): Costs
-    {
-        $this->container['note'] = $note;
-
-        return $this;
-    }
-    /**
-     * Gets start_date
-     *
-     * @return \DateTime
-     */
-    public function getStartDate(): \DateTime
-    {
-        return $this->container['start_date'];
-    }
-
-    /**
-     * Sets start_date
-     *
-     * @param \DateTime $start_date Start date of the period cost
-     *
-     * @return self
-     */
-    public function setStartDate(\DateTime $start_date): Costs
-    {
-        $this->container['start_date'] = $start_date;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

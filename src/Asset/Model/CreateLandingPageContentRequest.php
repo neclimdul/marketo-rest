@@ -45,6 +45,42 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     width?: ?string,
  *     z_index?: ?string,
  * }
+ *
+ * @method string|null getBackgroundColor()
+ * @method CreateLandingPageContentRequest setBackgroundColor(string|null $background_color)
+ * @method string|null getBorderColor()
+ * @method CreateLandingPageContentRequest setBorderColor(string|null $border_color)
+ * @method string|null getBorderStyle()
+ * @method CreateLandingPageContentRequest setBorderStyle(string|null $border_style)
+ * @method string|null getBorderWidth()
+ * @method CreateLandingPageContentRequest setBorderWidth(string|null $border_width)
+ * @method string getContentId()
+ * @method CreateLandingPageContentRequest setContentId(string $content_id)
+ * @method string|null getHeight()
+ * @method CreateLandingPageContentRequest setHeight(string|null $height)
+ * @method bool|null getHideDesktop()
+ * @method CreateLandingPageContentRequest setHideDesktop(bool|null $hide_desktop)
+ * @method bool|null getHideMobile()
+ * @method CreateLandingPageContentRequest setHideMobile(bool|null $hide_mobile)
+ * @method string|null getImageOpenNewWindow()
+ * @method CreateLandingPageContentRequest setImageOpenNewWindow(string|null $image_open_new_window)
+ * @method string|null getLeft()
+ * @method CreateLandingPageContentRequest setLeft(string|null $left)
+ * @method string|null getLinkUrl()
+ * @method CreateLandingPageContentRequest setLinkUrl(string|null $link_url)
+ * @method string|null getOpacity()
+ * @method CreateLandingPageContentRequest setOpacity(string|null $opacity)
+ * @method string|null getTop()
+ * @method CreateLandingPageContentRequest setTop(string|null $top)
+ * @method string getType()
+ * @method CreateLandingPageContentRequest setType(string $type)
+ * @method string|null getValue()
+ * @method CreateLandingPageContentRequest setValue(string|null $value)
+ * @method string|null getWidth()
+ * @method CreateLandingPageContentRequest setWidth(string|null $width)
+ * @method string|null getZIndex()
+ * @method CreateLandingPageContentRequest setZIndex(string|null $z_index)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateLandingPageContentRequestArray>
  * @implements \ArrayAccess<key-of<CreateLandingPageContentRequestArray>, value-of<CreateLandingPageContentRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -214,407 +250,6 @@ class CreateLandingPageContentRequest extends ModelBase implements ModelInterfac
         ];
     }
 
-    /**
-     * Gets background_color
-     *
-     * @return string|null
-     */
-    public function getBackgroundColor(): ?string
-    {
-        return $this->container['background_color'] ?? null;
-    }
-
-    /**
-     * Sets background_color
-     *
-     * @param string|null $background_color background-color property of the HTML section
-     *
-     * @return self
-     */
-    public function setBackgroundColor(?string $background_color): CreateLandingPageContentRequest
-    {
-        $this->container['background_color'] = $background_color;
-
-        return $this;
-    }
-    /**
-     * Gets border_color
-     *
-     * @return string|null
-     */
-    public function getBorderColor(): ?string
-    {
-        return $this->container['border_color'] ?? null;
-    }
-
-    /**
-     * Sets border_color
-     *
-     * @param string|null $border_color border-color property of the HTML section
-     *
-     * @return self
-     */
-    public function setBorderColor(?string $border_color): CreateLandingPageContentRequest
-    {
-        $this->container['border_color'] = $border_color;
-
-        return $this;
-    }
-    /**
-     * Gets border_style
-     *
-     * @return string|null
-     */
-    public function getBorderStyle(): ?string
-    {
-        return $this->container['border_style'] ?? null;
-    }
-
-    /**
-     * Sets border_style
-     *
-     * @param string|null $border_style border-style property of the HTML section
-     *
-     * @return self
-     */
-    public function setBorderStyle(?string $border_style): CreateLandingPageContentRequest
-    {
-        $this->container['border_style'] = $border_style;
-
-        return $this;
-    }
-    /**
-     * Gets border_width
-     *
-     * @return string|null
-     */
-    public function getBorderWidth(): ?string
-    {
-        return $this->container['border_width'] ?? null;
-    }
-
-    /**
-     * Sets border_width
-     *
-     * @param string|null $border_width border-width property of the HTML section
-     *
-     * @return self
-     */
-    public function setBorderWidth(?string $border_width): CreateLandingPageContentRequest
-    {
-        $this->container['border_width'] = $border_width;
-
-        return $this;
-    }
-    /**
-     * Gets content_id
-     *
-     * @return string
-     */
-    public function getContentId(): string
-    {
-        return $this->container['content_id'];
-    }
-
-    /**
-     * Sets content_id
-     *
-     * @param string $content_id Id of the content section. Also the HTML id of the section.
-     *
-     * @return self
-     */
-    public function setContentId(string $content_id): CreateLandingPageContentRequest
-    {
-        $this->container['content_id'] = $content_id;
-
-        return $this;
-    }
-    /**
-     * Gets height
-     *
-     * @return string|null
-     */
-    public function getHeight(): ?string
-    {
-        return $this->container['height'] ?? null;
-    }
-
-    /**
-     * Sets height
-     *
-     * @param string|null $height height property of the HTML section
-     *
-     * @return self
-     */
-    public function setHeight(?string $height): CreateLandingPageContentRequest
-    {
-        $this->container['height'] = $height;
-
-        return $this;
-    }
-    /**
-     * Gets hide_desktop
-     *
-     * @return bool|null
-     */
-    public function getHideDesktop(): ?bool
-    {
-        return $this->container['hide_desktop'] ?? null;
-    }
-
-    /**
-     * Sets hide_desktop
-     *
-     * @param bool|null $hide_desktop Hide the section when displayed on a desktop browser. Default false
-     *
-     * @return self
-     */
-    public function setHideDesktop(?bool $hide_desktop): CreateLandingPageContentRequest
-    {
-        $this->container['hide_desktop'] = $hide_desktop;
-
-        return $this;
-    }
-    /**
-     * Gets hide_mobile
-     *
-     * @return bool|null
-     */
-    public function getHideMobile(): ?bool
-    {
-        return $this->container['hide_mobile'] ?? null;
-    }
-
-    /**
-     * Sets hide_mobile
-     *
-     * @param bool|null $hide_mobile Hide the section when displayed on a mobile browser. Default false
-     *
-     * @return self
-     */
-    public function setHideMobile(?bool $hide_mobile): CreateLandingPageContentRequest
-    {
-        $this->container['hide_mobile'] = $hide_mobile;
-
-        return $this;
-    }
-    /**
-     * Gets image_open_new_window
-     *
-     * @return string|null
-     */
-    public function getImageOpenNewWindow(): ?string
-    {
-        return $this->container['image_open_new_window'] ?? null;
-    }
-
-    /**
-     * Sets image_open_new_window
-     *
-     * @param string|null $image_open_new_window image_open_new_window
-     *
-     * @return self
-     */
-    public function setImageOpenNewWindow(?string $image_open_new_window): CreateLandingPageContentRequest
-    {
-        $this->container['image_open_new_window'] = $image_open_new_window;
-
-        return $this;
-    }
-    /**
-     * Gets left
-     *
-     * @return string|null
-     */
-    public function getLeft(): ?string
-    {
-        return $this->container['left'] ?? null;
-    }
-
-    /**
-     * Sets left
-     *
-     * @param string|null $left left property of the HTML section
-     *
-     * @return self
-     */
-    public function setLeft(?string $left): CreateLandingPageContentRequest
-    {
-        $this->container['left'] = $left;
-
-        return $this;
-    }
-    /**
-     * Gets link_url
-     *
-     * @return string|null
-     */
-    public function getLinkUrl(): ?string
-    {
-        return $this->container['link_url'] ?? null;
-    }
-
-    /**
-     * Sets link_url
-     *
-     * @param string|null $link_url URL parameter of a link type section
-     *
-     * @return self
-     */
-    public function setLinkUrl(?string $link_url): CreateLandingPageContentRequest
-    {
-        $this->container['link_url'] = $link_url;
-
-        return $this;
-    }
-    /**
-     * Gets opacity
-     *
-     * @return string|null
-     */
-    public function getOpacity(): ?string
-    {
-        return $this->container['opacity'] ?? null;
-    }
-
-    /**
-     * Sets opacity
-     *
-     * @param string|null $opacity opacity property of the HTML section
-     *
-     * @return self
-     */
-    public function setOpacity(?string $opacity): CreateLandingPageContentRequest
-    {
-        $this->container['opacity'] = $opacity;
-
-        return $this;
-    }
-    /**
-     * Gets top
-     *
-     * @return string|null
-     */
-    public function getTop(): ?string
-    {
-        return $this->container['top'] ?? null;
-    }
-
-    /**
-     * Sets top
-     *
-     * @param string|null $top top property of the HTML section
-     *
-     * @return self
-     */
-    public function setTop(?string $top): CreateLandingPageContentRequest
-    {
-        $this->container['top'] = $top;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of content section
-     *
-     * @return self
-     */
-    public function setType(string $type): CreateLandingPageContentRequest
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string|null
-     */
-    public function getValue(): ?string
-    {
-        return $this->container['value'] ?? null;
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string|null $value Type of content section
-     *
-     * @return self
-     */
-    public function setValue(?string $value): CreateLandingPageContentRequest
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
-    /**
-     * Gets width
-     *
-     * @return string|null
-     */
-    public function getWidth(): ?string
-    {
-        return $this->container['width'] ?? null;
-    }
-
-    /**
-     * Sets width
-     *
-     * @param string|null $width width property of the HTML section
-     *
-     * @return self
-     */
-    public function setWidth(?string $width): CreateLandingPageContentRequest
-    {
-        $this->container['width'] = $width;
-
-        return $this;
-    }
-    /**
-     * Gets z_index
-     *
-     * @return string|null
-     */
-    public function getZIndex(): ?string
-    {
-        return $this->container['z_index'] ?? null;
-    }
-
-    /**
-     * Sets z_index
-     *
-     * @param string|null $z_index z-index property of the HTML section
-     *
-     * @return self
-     */
-    public function setZIndex(?string $z_index): CreateLandingPageContentRequest
-    {
-        $this->container['z_index'] = $z_index;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

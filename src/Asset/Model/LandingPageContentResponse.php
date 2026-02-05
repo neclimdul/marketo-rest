@@ -35,6 +35,22 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     index?: ?int,
  *     type: string,
  * }
+ *
+ * @method object|null getContent()
+ * @method LandingPageContentResponse setContent(object|null $content)
+ * @method string|null getFollowupType()
+ * @method LandingPageContentResponse setFollowupType(string|null $followup_type)
+ * @method string|null getFollowupValue()
+ * @method LandingPageContentResponse setFollowupValue(string|null $followup_value)
+ * @method \NecLimDul\MarketoRest\Asset\Model\JsonNode|null getFormattingOptions()
+ * @method LandingPageContentResponse setFormattingOptions(\NecLimDul\MarketoRest\Asset\Model\JsonNode|null $formatting_options)
+ * @method object getId()
+ * @method LandingPageContentResponse setId(object $id)
+ * @method int|null getIndex()
+ * @method LandingPageContentResponse setIndex(int|null $index)
+ * @method string getType()
+ * @method LandingPageContentResponse setType(string $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LandingPageContentResponseArray>
  * @implements \ArrayAccess<key-of<LandingPageContentResponseArray>, value-of<LandingPageContentResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -205,187 +221,6 @@ class LandingPageContentResponse extends ModelBase implements ModelInterface, \A
         ];
     }
 
-    /**
-     * Gets content
-     *
-     * @return object|null
-     */
-    public function getContent(): ?object
-    {
-        return $this->container['content'] ?? null;
-    }
-
-    /**
-     * Sets content
-     *
-     * @param object|null $content Content of the section. Expected values vary based on type. Image: An image URL. RichText: HTML Content. HTML: HTML Content. Form: A form id. Rectangle: Empty. Snippet: A snippet id.
-     *
-     * @return self
-     */
-    public function setContent(?object $content): LandingPageContentResponse
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
-    /**
-     * Gets followup_type
-     *
-     * @return string|null
-     */
-    public function getFollowupType(): ?string
-    {
-        return $this->container['followup_type'] ?? null;
-    }
-
-    /**
-     * Sets followup_type
-     *
-     * @param string|null $followup_type Follow-up behavior of a form. Only available for form-type content sections. Defaults to form defined behavior.
-     *
-     * @return self
-     */
-    public function setFollowupType(?string $followup_type): LandingPageContentResponse
-    {
-        $allowedValues = $this->getFollowupTypeAllowableValues();
-        if (!is_null($followup_type) && !in_array($followup_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'followup_type', must be one of '%s'",
-                    $followup_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['followup_type'] = $followup_type;
-
-        return $this;
-    }
-    /**
-     * Gets followup_value
-     *
-     * @return string|null
-     */
-    public function getFollowupValue(): ?string
-    {
-        return $this->container['followup_value'] ?? null;
-    }
-
-    /**
-     * Sets followup_value
-     *
-     * @param string|null $followup_value Where to follow-up on form submission. When followupType is lp, accepts the integer id of a landing page. For url, it accepts a url string.
-     *
-     * @return self
-     */
-    public function setFollowupValue(?string $followup_value): LandingPageContentResponse
-    {
-        $this->container['followup_value'] = $followup_value;
-
-        return $this;
-    }
-    /**
-     * Gets formatting_options
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\JsonNode|null
-     */
-    public function getFormattingOptions(): ?\NecLimDul\MarketoRest\Asset\Model\JsonNode
-    {
-        return $this->container['formatting_options'] ?? null;
-    }
-
-    /**
-     * Sets formatting_options
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\JsonNode|null $formatting_options formatting_options
-     *
-     * @return self
-     */
-    public function setFormattingOptions(?\NecLimDul\MarketoRest\Asset\Model\JsonNode $formatting_options): LandingPageContentResponse
-    {
-        $this->container['formatting_options'] = $formatting_options;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return object
-     */
-    public function getId(): object
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param object $id Id of the content section, may be a string or an int
-     *
-     * @return self
-     */
-    public function setId(object $id): LandingPageContentResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets index
-     *
-     * @return int|null
-     */
-    public function getIndex(): ?int
-    {
-        return $this->container['index'] ?? null;
-    }
-
-    /**
-     * Sets index
-     *
-     * @param int|null $index Index of the content section. Index orients the elements from lowest to highest
-     *
-     * @return self
-     */
-    public function setIndex(?int $index): LandingPageContentResponse
-    {
-        $this->container['index'] = $index;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of content section
-     *
-     * @return self
-     */
-    public function setType(string $type): LandingPageContentResponse
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

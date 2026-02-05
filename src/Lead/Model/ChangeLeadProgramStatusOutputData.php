@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     reasons?: ?\NecLimDul\MarketoRest\Lead\Model\Reason[],
  *     status: string,
  * }
+ *
+ * @method int getId()
+ * @method ChangeLeadProgramStatusOutputData setId(int $id)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Reason[]|null getReasons()
+ * @method ChangeLeadProgramStatusOutputData setReasons(\NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons)
+ * @method string getStatus()
+ * @method ChangeLeadProgramStatusOutputData setStatus(string $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ChangeLeadProgramStatusOutputDataArray>
  * @implements \ArrayAccess<key-of<ChangeLeadProgramStatusOutputDataArray>, value-of<ChangeLeadProgramStatusOutputDataArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class ChangeLeadProgramStatusOutputData extends ModelBase implements ModelInterf
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of a lead record
-     *
-     * @return self
-     */
-    public function setId(int $id): ChangeLeadProgramStatusOutputData
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets reasons
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
-     */
-    public function getReasons(): ?array
-    {
-        return $this->container['reasons'] ?? null;
-    }
-
-    /**
-     * Sets reasons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed. Reasons are only present in API responses and should not be submitted
-     *
-     * @return self
-     */
-    public function setReasons(?array $reasons): ChangeLeadProgramStatusOutputData
-    {
-        $this->container['reasons'] = $reasons;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Program status of the record. Permissible values can be retrieve from the Get Channel by Name API for the designated program's channel
-     *
-     * @return self
-     */
-    public function setStatus(string $status): ChangeLeadProgramStatusOutputData
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

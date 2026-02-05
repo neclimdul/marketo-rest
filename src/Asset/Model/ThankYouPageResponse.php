@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     id?: ?int,
  *     thank_you_list?: ?\NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[],
  * }
+ *
+ * @method int|null getId()
+ * @method ThankYouPageResponse setId(int|null $id)
+ * @method \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]|null getThankYouList()
+ * @method ThankYouPageResponse setThankYouList(\NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]|null $thank_you_list)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ThankYouPageResponseArray>
  * @implements \ArrayAccess<key-of<ThankYouPageResponseArray>, value-of<ThankYouPageResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -104,52 +110,6 @@ class ThankYouPageResponse extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id id
-     *
-     * @return self
-     */
-    public function setId(?int $id): ThankYouPageResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets thank_you_list
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]|null
-     */
-    public function getThankYouList(): ?array
-    {
-        return $this->container['thank_you_list'] ?? null;
-    }
-
-    /**
-     * Sets thank_you_list
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]|null $thank_you_list thank_you_list
-     *
-     * @return self
-     */
-    public function setThankYouList(?array $thank_you_list): ThankYouPageResponse
-    {
-        $this->container['thank_you_list'] = $thank_you_list;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

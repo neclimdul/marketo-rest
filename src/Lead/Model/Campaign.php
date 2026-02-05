@@ -40,6 +40,28 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     updated_at: string,
  *     workspace_name?: ?string,
  * }
+ *
+ * @method bool|null getActive()
+ * @method Campaign setActive(bool|null $active)
+ * @method string getCreatedAt()
+ * @method Campaign setCreatedAt(string $created_at)
+ * @method string|null getDescription()
+ * @method Campaign setDescription(string|null $description)
+ * @method int getId()
+ * @method Campaign setId(int $id)
+ * @method string getName()
+ * @method Campaign setName(string $name)
+ * @method int|null getProgramId()
+ * @method Campaign setProgramId(int|null $program_id)
+ * @method string|null getProgramName()
+ * @method Campaign setProgramName(string|null $program_name)
+ * @method string getType()
+ * @method Campaign setType(string $type)
+ * @method string getUpdatedAt()
+ * @method Campaign setUpdatedAt(string $updated_at)
+ * @method string|null getWorkspaceName()
+ * @method Campaign setWorkspaceName(string|null $workspace_name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CampaignArray>
  * @implements \ArrayAccess<key-of<CampaignArray>, value-of<CampaignArray>>
  * @psalm-suppress MixedReturnStatement
@@ -178,246 +200,6 @@ class Campaign extends ModelBase implements ModelInterface, \ArrayAccess, \JsonS
         ];
     }
 
-    /**
-     * Gets active
-     *
-     * @return bool|null
-     */
-    public function getActive(): ?bool
-    {
-        return $this->container['active'] ?? null;
-    }
-
-    /**
-     * Sets active
-     *
-     * @param bool|null $active Whether the campaign is active. Only applicable to trigger campaigns
-     *
-     * @return self
-     */
-    public function setActive(?bool $active): Campaign
-    {
-        $this->container['active'] = $active;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return string
-     */
-    public function getCreatedAt(): string
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string $created_at Datetime when the campaign was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(string $created_at): Campaign
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the Smart Campaign
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): Campaign
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the Smart Campaign
-     *
-     * @return self
-     */
-    public function setId(int $id): Campaign
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the Smart Campaign
-     *
-     * @return self
-     */
-    public function setName(string $name): Campaign
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets program_id
-     *
-     * @return int|null
-     */
-    public function getProgramId(): ?int
-    {
-        return $this->container['program_id'] ?? null;
-    }
-
-    /**
-     * Sets program_id
-     *
-     * @param int|null $program_id Id of the parent program if applicable
-     *
-     * @return self
-     */
-    public function setProgramId(?int $program_id): Campaign
-    {
-        $this->container['program_id'] = $program_id;
-
-        return $this;
-    }
-    /**
-     * Gets program_name
-     *
-     * @return string|null
-     */
-    public function getProgramName(): ?string
-    {
-        return $this->container['program_name'] ?? null;
-    }
-
-    /**
-     * Sets program_name
-     *
-     * @param string|null $program_name Name of the parent program if applicable
-     *
-     * @return self
-     */
-    public function setProgramName(?string $program_name): Campaign
-    {
-        $this->container['program_name'] = $program_name;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of the Smart Campaign
-     *
-     * @return self
-     */
-    public function setType(string $type): Campaign
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return string
-     */
-    public function getUpdatedAt(): string
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param string $updated_at Datetime when the campaign was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(string $updated_at): Campaign
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets workspace_name
-     *
-     * @return string|null
-     */
-    public function getWorkspaceName(): ?string
-    {
-        return $this->container['workspace_name'] ?? null;
-    }
-
-    /**
-     * Sets workspace_name
-     *
-     * @param string|null $workspace_name Name of the parent workspace if applicable
-     *
-     * @return self
-     */
-    public function setWorkspaceName(?string $workspace_name): Campaign
-    {
-        $this->container['workspace_name'] = $workspace_name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

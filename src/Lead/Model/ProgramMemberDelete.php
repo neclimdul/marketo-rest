@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type ProgramMemberDeleteArray array{
  *     lead_id: int,
  * }
+ *
+ * @method int getLeadId()
+ * @method ProgramMemberDelete setLeadId(int $lead_id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ProgramMemberDeleteArray>
  * @implements \ArrayAccess<key-of<ProgramMemberDeleteArray>, value-of<ProgramMemberDeleteArray>>
  * @psalm-suppress MixedReturnStatement
@@ -100,29 +104,6 @@ class ProgramMemberDelete extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets lead_id
-     *
-     * @return int
-     */
-    public function getLeadId(): int
-    {
-        return $this->container['lead_id'];
-    }
-
-    /**
-     * Sets lead_id
-     *
-     * @param int $lead_id Unique integer id of a lead record
-     *
-     * @return self
-     */
-    public function setLeadId(int $lead_id): ProgramMemberDelete
-    {
-        $this->container['lead_id'] = $lead_id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

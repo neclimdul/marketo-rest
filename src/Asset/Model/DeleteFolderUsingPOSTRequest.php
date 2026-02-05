@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type DeleteFolderUsingPOSTRequestArray array{
  *     type: string,
  * }
+ *
+ * @method string getType()
+ * @method DeleteFolderUsingPOSTRequest setType(string $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<DeleteFolderUsingPOSTRequestArray>
  * @implements \ArrayAccess<key-of<DeleteFolderUsingPOSTRequestArray>, value-of<DeleteFolderUsingPOSTRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -125,39 +129,6 @@ class DeleteFolderUsingPOSTRequest extends ModelBase implements ModelInterface, 
         ];
     }
 
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type type
-     *
-     * @return self
-     */
-    public function setType(string $type): DeleteFolderUsingPOSTRequest
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

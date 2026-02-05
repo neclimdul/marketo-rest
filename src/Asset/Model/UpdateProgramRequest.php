@@ -35,6 +35,22 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     start_date?: ?string,
  *     tags?: ?\NecLimDul\MarketoRest\Asset\Model\TagRequest[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null getCosts()
+ * @method UpdateProgramRequest setCosts(\NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null $costs)
+ * @method bool|null getCostsDestructiveUpdate()
+ * @method UpdateProgramRequest setCostsDestructiveUpdate(bool|null $costs_destructive_update)
+ * @method string|null getDescription()
+ * @method UpdateProgramRequest setDescription(string|null $description)
+ * @method string|null getEndDate()
+ * @method UpdateProgramRequest setEndDate(string|null $end_date)
+ * @method string|null getName()
+ * @method UpdateProgramRequest setName(string|null $name)
+ * @method string|null getStartDate()
+ * @method UpdateProgramRequest setStartDate(string|null $start_date)
+ * @method \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null getTags()
+ * @method UpdateProgramRequest setTags(\NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null $tags)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateProgramRequestArray>
  * @implements \ArrayAccess<key-of<UpdateProgramRequestArray>, value-of<UpdateProgramRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -128,167 +144,6 @@ class UpdateProgramRequest extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets costs
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null
-     */
-    public function getCosts(): ?array
-    {
-        return $this->container['costs'] ?? null;
-    }
-
-    /**
-     * Sets costs
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null $costs Lists of associated period costs that allow you to append, replace, or delete. To append new costs, simply add them to costs array. To replace costs (destructive update), pass new costs and set costsDestructiveUpdate to true. To delete costs, do not pass costs parameter and set costsDestructiveUpdate to true
-     *
-     * @return self
-     */
-    public function setCosts(?array $costs): UpdateProgramRequest
-    {
-        $this->container['costs'] = $costs;
-
-        return $this;
-    }
-    /**
-     * Gets costs_destructive_update
-     *
-     * @return bool|null
-     */
-    public function getCostsDestructiveUpdate(): ?bool
-    {
-        return $this->container['costs_destructive_update'] ?? null;
-    }
-
-    /**
-     * Sets costs_destructive_update
-     *
-     * @param bool|null $costs_destructive_update Set true to destroy existing costs and replace them with the specified costs
-     *
-     * @return self
-     */
-    public function setCostsDestructiveUpdate(?bool $costs_destructive_update): UpdateProgramRequest
-    {
-        $this->container['costs_destructive_update'] = $costs_destructive_update;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Updated description for the program
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): UpdateProgramRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets end_date
-     *
-     * @return string|null
-     */
-    public function getEndDate(): ?string
-    {
-        return $this->container['end_date'] ?? null;
-    }
-
-    /**
-     * Sets end_date
-     *
-     * @param string|null $end_date End date of the program. Applicable to event, email, and webinar type programs
-     *
-     * @return self
-     */
-    public function setEndDate(?string $end_date): UpdateProgramRequest
-    {
-        $this->container['end_date'] = $end_date;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the program
-     *
-     * @return self
-     */
-    public function setName(?string $name): UpdateProgramRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets start_date
-     *
-     * @return string|null
-     */
-    public function getStartDate(): ?string
-    {
-        return $this->container['start_date'] ?? null;
-    }
-
-    /**
-     * Sets start_date
-     *
-     * @param string|null $start_date Start date of program. Applicable to event, email and webinar type programs
-     *
-     * @return self
-     */
-    public function setStartDate(?string $start_date): UpdateProgramRequest
-    {
-        $this->container['start_date'] = $start_date;
-
-        return $this;
-    }
-    /**
-     * Gets tags
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null
-     */
-    public function getTags(): ?array
-    {
-        return $this->container['tags'] ?? null;
-    }
-
-    /**
-     * Sets tags
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null $tags List of associated program tags
-     *
-     * @return self
-     */
-    public function setTags(?array $tags): UpdateProgramRequest
-    {
-        $this->container['tags'] = $tags;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

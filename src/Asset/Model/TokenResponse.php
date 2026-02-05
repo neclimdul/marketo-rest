@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     folder: string,
  *     tokens?: ?\NecLimDul\MarketoRest\Asset\Model\TokenDTO[],
  * }
+ *
+ * @method string getFolder()
+ * @method TokenResponse setFolder(string $folder)
+ * @method \NecLimDul\MarketoRest\Asset\Model\TokenDTO[]|null getTokens()
+ * @method TokenResponse setTokens(\NecLimDul\MarketoRest\Asset\Model\TokenDTO[]|null $tokens)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<TokenResponseArray>
  * @implements \ArrayAccess<key-of<TokenResponseArray>, value-of<TokenResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -104,52 +110,6 @@ class TokenResponse extends ModelBase implements ModelInterface, \ArrayAccess, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets folder
-     *
-     * @return string
-     */
-    public function getFolder(): string
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param string $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
-     *
-     * @return self
-     */
-    public function setFolder(string $folder): TokenResponse
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets tokens
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\TokenDTO[]|null
-     */
-    public function getTokens(): ?array
-    {
-        return $this->container['tokens'] ?? null;
-    }
-
-    /**
-     * Sets tokens
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\TokenDTO[]|null $tokens List of tokens in the folder
-     *
-     * @return self
-     */
-    public function setTokens(?array $tokens): TokenResponse
-    {
-        $this->container['tokens'] = $tokens;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

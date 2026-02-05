@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     leads: \NecLimDul\MarketoRest\Lead\Model\InputLead[],
  *     tokens?: ?\NecLimDul\MarketoRest\Lead\Model\Token[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\InputLead[] getLeads()
+ * @method TriggerCampaignData setLeads(\NecLimDul\MarketoRest\Lead\Model\InputLead[] $leads)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Token[]|null getTokens()
+ * @method TriggerCampaignData setTokens(\NecLimDul\MarketoRest\Lead\Model\Token[]|null $tokens)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<TriggerCampaignDataArray>
  * @implements \ArrayAccess<key-of<TriggerCampaignDataArray>, value-of<TriggerCampaignDataArray>>
  * @psalm-suppress MixedReturnStatement
@@ -104,52 +110,6 @@ class TriggerCampaignData extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets leads
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\InputLead[]
-     */
-    public function getLeads(): array
-    {
-        return $this->container['leads'];
-    }
-
-    /**
-     * Sets leads
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\InputLead[] $leads List of leads for input
-     *
-     * @return self
-     */
-    public function setLeads(array $leads): TriggerCampaignData
-    {
-        $this->container['leads'] = $leads;
-
-        return $this;
-    }
-    /**
-     * Gets tokens
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Token[]|null
-     */
-    public function getTokens(): ?array
-    {
-        return $this->container['tokens'] ?? null;
-    }
-
-    /**
-     * Sets tokens
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Token[]|null $tokens List of my tokens to replace during the run of the target campaign. The tokens must be available in a parent program or folder to be replaced during the run
-     *
-     * @return self
-     */
-    public function setTokens(?array $tokens): TriggerCampaignData
-    {
-        $this->container['tokens'] = $tokens;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

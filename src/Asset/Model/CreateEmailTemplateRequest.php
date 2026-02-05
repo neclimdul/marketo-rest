@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     description?: ?string,
  *     content: string,
  * }
+ *
+ * @method string getName()
+ * @method CreateEmailTemplateRequest setName(string $name)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CreateEmailTemplateRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string|null getDescription()
+ * @method CreateEmailTemplateRequest setDescription(string|null $description)
+ * @method string getContent()
+ * @method CreateEmailTemplateRequest setContent(string $content)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateEmailTemplateRequestArray>
  * @implements \ArrayAccess<key-of<CreateEmailTemplateRequestArray>, value-of<CreateEmailTemplateRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -116,98 +126,6 @@ class CreateEmailTemplateRequest extends ModelBase implements ModelInterface, \A
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the Email Template. Must be unique under the parent folder.
-     *
-     * @return self
-     */
-    public function setName(string $name): CreateEmailTemplateRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateEmailTemplateRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the email template
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CreateEmailTemplateRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets content
-     *
-     * @return string
-     */
-    public function getContent(): string
-    {
-        return $this->container['content'];
-    }
-
-    /**
-     * Sets content
-     *
-     * @param string $content HTML content for template. Multipart file.
-     *
-     * @return self
-     */
-    public function setContent(string $content): CreateEmailTemplateRequest
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

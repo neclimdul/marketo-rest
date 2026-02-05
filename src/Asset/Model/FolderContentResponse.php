@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     id?: ?int,
  *     type?: ?string,
  * }
+ *
+ * @method int|null getId()
+ * @method FolderContentResponse setId(int|null $id)
+ * @method string|null getType()
+ * @method FolderContentResponse setType(string|null $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FolderContentResponseArray>
  * @implements \ArrayAccess<key-of<FolderContentResponseArray>, value-of<FolderContentResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -104,52 +110,6 @@ class FolderContentResponse extends ModelBase implements ModelInterface, \ArrayA
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id id
-     *
-     * @return self
-     */
-    public function setId(?int $id): FolderContentResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType(): ?string
-    {
-        return $this->container['type'] ?? null;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type type
-     *
-     * @return self
-     */
-    public function setType(?string $type): FolderContentResponse
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

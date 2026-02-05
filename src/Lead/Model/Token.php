@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     name: string,
  *     value: string,
  * }
+ *
+ * @method string getName()
+ * @method Token setName(string $name)
+ * @method string getValue()
+ * @method Token setValue(string $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<TokenArray>
  * @implements \ArrayAccess<key-of<TokenArray>, value-of<TokenArray>>
  * @psalm-suppress MixedReturnStatement
@@ -105,52 +111,6 @@ class Token extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSeri
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the token. Should be formatted as \"{{my.name}}\"
-     *
-     * @return self
-     */
-    public function setName(string $name): Token
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value Value of the token
-     *
-     * @return self
-     */
-    public function setValue(string $value): Token
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

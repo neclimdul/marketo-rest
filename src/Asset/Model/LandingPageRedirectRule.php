@@ -36,6 +36,24 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     created_at: \DateTime,
  *     updated_at: \DateTime,
  * }
+ *
+ * @method int getId()
+ * @method LandingPageRedirectRule setId(int $id)
+ * @method string getRedirectFromUrl()
+ * @method LandingPageRedirectRule setRedirectFromUrl(string $redirect_from_url)
+ * @method string getRedirectToUrl()
+ * @method LandingPageRedirectRule setRedirectToUrl(string $redirect_to_url)
+ * @method string getHostname()
+ * @method LandingPageRedirectRule setHostname(string $hostname)
+ * @method \NecLimDul\MarketoRest\Asset\Model\RedirectFrom getRedirectFrom()
+ * @method LandingPageRedirectRule setRedirectFrom(\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from)
+ * @method \NecLimDul\MarketoRest\Asset\Model\RedirectTo getRedirectTo()
+ * @method LandingPageRedirectRule setRedirectTo(\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to)
+ * @method \DateTime getCreatedAt()
+ * @method LandingPageRedirectRule setCreatedAt(\DateTime $created_at)
+ * @method \DateTime getUpdatedAt()
+ * @method LandingPageRedirectRule setUpdatedAt(\DateTime $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LandingPageRedirectRuleArray>
  * @implements \ArrayAccess<key-of<LandingPageRedirectRuleArray>, value-of<LandingPageRedirectRuleArray>>
  * @psalm-suppress MixedReturnStatement
@@ -144,190 +162,6 @@ class LandingPageRedirectRule extends ModelBase implements ModelInterface, \Arra
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Internal id for landing page redirect rule
-     *
-     * @return self
-     */
-    public function setId(int $id): LandingPageRedirectRule
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets redirect_from_url
-     *
-     * @return string
-     */
-    public function getRedirectFromUrl(): string
-    {
-        return $this->container['redirect_from_url'];
-    }
-
-    /**
-     * Sets redirect_from_url
-     *
-     * @param string $redirect_from_url Redirect 'from' URL of the Landing Page. Combination of the hostname and redirectFrom landing page or path
-     *
-     * @return self
-     */
-    public function setRedirectFromUrl(string $redirect_from_url): LandingPageRedirectRule
-    {
-        $this->container['redirect_from_url'] = $redirect_from_url;
-
-        return $this;
-    }
-    /**
-     * Gets redirect_to_url
-     *
-     * @return string
-     */
-    public function getRedirectToUrl(): string
-    {
-        return $this->container['redirect_to_url'];
-    }
-
-    /**
-     * Sets redirect_to_url
-     *
-     * @param string $redirect_to_url Redirect 'to' URL of the Landing Page. Could be a Marketo landing page or non-Marketo URL.
-     *
-     * @return self
-     */
-    public function setRedirectToUrl(string $redirect_to_url): LandingPageRedirectRule
-    {
-        $this->container['redirect_to_url'] = $redirect_to_url;
-
-        return $this;
-    }
-    /**
-     * Gets hostname
-     *
-     * @return string
-     */
-    public function getHostname(): string
-    {
-        return $this->container['hostname'];
-    }
-
-    /**
-     * Sets hostname
-     *
-     * @param string $hostname The hostname for the landing pages. Branding domain or alias. Max 255 characters.
-     *
-     * @return self
-     */
-    public function setHostname(string $hostname): LandingPageRedirectRule
-    {
-        $this->container['hostname'] = $hostname;
-
-        return $this;
-    }
-    /**
-     * Gets redirect_from
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectFrom
-     */
-    public function getRedirectFrom(): \NecLimDul\MarketoRest\Asset\Model\RedirectFrom
-    {
-        return $this->container['redirect_from'];
-    }
-
-    /**
-     * Sets redirect_from
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from redirect_from
-     *
-     * @return self
-     */
-    public function setRedirectFrom(\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from): LandingPageRedirectRule
-    {
-        $this->container['redirect_from'] = $redirect_from;
-
-        return $this;
-    }
-    /**
-     * Gets redirect_to
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectTo
-     */
-    public function getRedirectTo(): \NecLimDul\MarketoRest\Asset\Model\RedirectTo
-    {
-        return $this->container['redirect_to'];
-    }
-
-    /**
-     * Sets redirect_to
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to redirect_to
-     *
-     * @return self
-     */
-    public function setRedirectTo(\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to): LandingPageRedirectRule
-    {
-        $this->container['redirect_to'] = $redirect_to;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime $created_at Datetime the landing page redirect rule was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $created_at): LandingPageRedirectRule
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime $updated_at Datetime the landing page redirect rule was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(\DateTime $updated_at): LandingPageRedirectRule
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

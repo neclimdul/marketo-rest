@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type LeadLookupInputDataArray array{
  *     id: int,
  * }
+ *
+ * @method int getId()
+ * @method LeadLookupInputData setId(int $id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadLookupInputDataArray>
  * @implements \ArrayAccess<key-of<LeadLookupInputDataArray>, value-of<LeadLookupInputDataArray>>
  * @psalm-suppress MixedReturnStatement
@@ -100,29 +104,6 @@ class LeadLookupInputData extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of a lead record
-     *
-     * @return self
-     */
-    public function setId(int $id): LeadLookupInputData
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

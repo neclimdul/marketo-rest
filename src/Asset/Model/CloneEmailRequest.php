@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     name: string,
  *     operational?: ?bool,
  * }
+ *
+ * @method string|null getDescription()
+ * @method CloneEmailRequest setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CloneEmailRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string getName()
+ * @method CloneEmailRequest setName(string $name)
+ * @method bool|null getOperational()
+ * @method CloneEmailRequest setOperational(bool|null $operational)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CloneEmailRequestArray>
  * @implements \ArrayAccess<key-of<CloneEmailRequestArray>, value-of<CloneEmailRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -115,98 +125,6 @@ class CloneEmailRequest extends ModelBase implements ModelInterface, \ArrayAcces
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CloneEmailRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CloneEmailRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the new email asset
-     *
-     * @return self
-     */
-    public function setName(string $name): CloneEmailRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets operational
-     *
-     * @return bool|null
-     */
-    public function getOperational(): ?bool
-    {
-        return $this->container['operational'] ?? null;
-    }
-
-    /**
-     * Sets operational
-     *
-     * @param bool|null $operational Whether the email is operational. Operational emails bypass unsubscribe status. Defaults to false
-     *
-     * @return self
-     */
-    public function setOperational(?bool $operational): CloneEmailRequest
-    {
-        $this->container['operational'] = $operational;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

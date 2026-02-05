@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type CustomActivityTypeAttributeRequestArray array{
  *     attributes?: ?\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null getAttributes()
+ * @method CustomActivityTypeAttributeRequest setAttributes(\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null $attributes)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CustomActivityTypeAttributeRequestArray>
  * @implements \ArrayAccess<key-of<CustomActivityTypeAttributeRequestArray>, value-of<CustomActivityTypeAttributeRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -98,29 +102,6 @@ class CustomActivityTypeAttributeRequest extends ModelBase implements ModelInter
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets attributes
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->container['attributes'] ?? null;
-    }
-
-    /**
-     * Sets attributes
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null $attributes List of attributes to add to the activity type
-     *
-     * @return self
-     */
-    public function setAttributes(?array $attributes): CustomActivityTypeAttributeRequest
-    {
-        $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

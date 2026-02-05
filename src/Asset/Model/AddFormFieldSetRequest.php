@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type AddFormFieldSetRequestArray array{
  *     label: string,
  * }
+ *
+ * @method string getLabel()
+ * @method AddFormFieldSetRequest setLabel(string $label)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<AddFormFieldSetRequestArray>
  * @implements \ArrayAccess<key-of<AddFormFieldSetRequestArray>, value-of<AddFormFieldSetRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class AddFormFieldSetRequest extends ModelBase implements ModelInterface, \Array
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets label
-     *
-     * @return string
-     */
-    public function getLabel(): string
-    {
-        return $this->container['label'];
-    }
-
-    /**
-     * Sets label
-     *
-     * @param string $label Label of the fieldset
-     *
-     * @return self
-     */
-    public function setLabel(string $label): AddFormFieldSetRequest
-    {
-        $this->container['label'] = $label;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

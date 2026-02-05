@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     code: int,
  *     message: string,
  * }
+ *
+ * @method int getCode()
+ * @method Warning setCode(int $code)
+ * @method string getMessage()
+ * @method Warning setMessage(string $message)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<WarningArray>
  * @implements \ArrayAccess<key-of<WarningArray>, value-of<WarningArray>>
  * @psalm-suppress MixedReturnStatement
@@ -106,52 +112,6 @@ class Warning extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSe
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets code
-     *
-     * @return int
-     */
-    public function getCode(): int
-    {
-        return $this->container['code'];
-    }
-
-    /**
-     * Sets code
-     *
-     * @param int $code Integer code of the warning
-     *
-     * @return self
-     */
-    public function setCode(int $code): Warning
-    {
-        $this->container['code'] = $code;
-
-        return $this;
-    }
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage(): string
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message Message describing the warning
-     *
-     * @return self
-     */
-    public function setMessage(string $message): Warning
-    {
-        $this->container['message'] = $message;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

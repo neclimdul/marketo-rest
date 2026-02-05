@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type DeleteProgramMemberRequestArray array{
  *     input: \NecLimDul\MarketoRest\Lead\Model\ProgramMemberDelete[],
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\ProgramMemberDelete[] getInput()
+ * @method DeleteProgramMemberRequest setInput(\NecLimDul\MarketoRest\Lead\Model\ProgramMemberDelete[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<DeleteProgramMemberRequestArray>
  * @implements \ArrayAccess<key-of<DeleteProgramMemberRequestArray>, value-of<DeleteProgramMemberRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class DeleteProgramMemberRequest extends ModelBase implements ModelInterface, \A
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMemberDelete[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ProgramMemberDelete[] $input List of input records
-     *
-     * @return self
-     */
-    public function setInput(array $input): DeleteProgramMemberRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -37,6 +37,26 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     updated_at: \DateTime,
  *     url: string,
  * }
+ *
+ * @method \DateTime getCreatedAt()
+ * @method FileResponse setCreatedAt(\DateTime $created_at)
+ * @method string|null getDescription()
+ * @method FileResponse setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\FileFolder getFolder()
+ * @method FileResponse setFolder(\NecLimDul\MarketoRest\Asset\Model\FileFolder $folder)
+ * @method int getId()
+ * @method FileResponse setId(int $id)
+ * @method string getMimeType()
+ * @method FileResponse setMimeType(string $mime_type)
+ * @method string getName()
+ * @method FileResponse setName(string $name)
+ * @method int getSize()
+ * @method FileResponse setSize(int $size)
+ * @method \DateTime getUpdatedAt()
+ * @method FileResponse setUpdatedAt(\DateTime $updated_at)
+ * @method string getUrl()
+ * @method FileResponse setUrl(string $url)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FileResponseArray>
  * @implements \ArrayAccess<key-of<FileResponseArray>, value-of<FileResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -150,213 +170,6 @@ class FileResponse extends ModelBase implements ModelInterface, \ArrayAccess, \J
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime $created_at Datetime when the file was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $created_at): FileResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the file
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): FileResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FileFolder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\FileFolder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\FileFolder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\FileFolder $folder): FileResponse
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the file
-     *
-     * @return self
-     */
-    public function setId(int $id): FileResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets mime_type
-     *
-     * @return string
-     */
-    public function getMimeType(): string
-    {
-        return $this->container['mime_type'];
-    }
-
-    /**
-     * Sets mime_type
-     *
-     * @param string $mime_type MIME type of the file
-     *
-     * @return self
-     */
-    public function setMimeType(string $mime_type): FileResponse
-    {
-        $this->container['mime_type'] = $mime_type;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the file
-     *
-     * @return self
-     */
-    public function setName(string $name): FileResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets size
-     *
-     * @return int
-     */
-    public function getSize(): int
-    {
-        return $this->container['size'];
-    }
-
-    /**
-     * Sets size
-     *
-     * @param int $size Size of the file in bytes
-     *
-     * @return self
-     */
-    public function setSize(int $size): FileResponse
-    {
-        $this->container['size'] = $size;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime $updated_at Datetime when the file was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(\DateTime $updated_at): FileResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string $url Publically accessible URL of the file
-     *
-     * @return self
-     */
-    public function setUrl(string $url): FileResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

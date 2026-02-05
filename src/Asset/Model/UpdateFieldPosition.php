@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     field_name: string,
  *     row_number: int,
  * }
+ *
+ * @method int getColumnNumber()
+ * @method UpdateFieldPosition setColumnNumber(int $column_number)
+ * @method \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null getFieldList()
+ * @method UpdateFieldPosition setFieldList(\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null $field_list)
+ * @method string getFieldName()
+ * @method UpdateFieldPosition setFieldName(string $field_name)
+ * @method int getRowNumber()
+ * @method UpdateFieldPosition setRowNumber(int $row_number)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateFieldPositionArray>
  * @implements \ArrayAccess<key-of<UpdateFieldPositionArray>, value-of<UpdateFieldPositionArray>>
  * @psalm-suppress MixedReturnStatement
@@ -118,98 +128,6 @@ class UpdateFieldPosition extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets column_number
-     *
-     * @return int
-     */
-    public function getColumnNumber(): int
-    {
-        return $this->container['column_number'];
-    }
-
-    /**
-     * Sets column_number
-     *
-     * @param int $column_number Column number of the field
-     *
-     * @return self
-     */
-    public function setColumnNumber(int $column_number): UpdateFieldPosition
-    {
-        $this->container['column_number'] = $column_number;
-
-        return $this;
-    }
-    /**
-     * Gets field_list
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null
-     */
-    public function getFieldList(): ?array
-    {
-        return $this->container['field_list'] ?? null;
-    }
-
-    /**
-     * Sets field_list
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null $field_list List of positions inside the fields. Only valid if the target is a fieldset
-     *
-     * @return self
-     */
-    public function setFieldList(?array $field_list): UpdateFieldPosition
-    {
-        $this->container['field_list'] = $field_list;
-
-        return $this;
-    }
-    /**
-     * Gets field_name
-     *
-     * @return string
-     */
-    public function getFieldName(): string
-    {
-        return $this->container['field_name'];
-    }
-
-    /**
-     * Sets field_name
-     *
-     * @param string $field_name Id of the field
-     *
-     * @return self
-     */
-    public function setFieldName(string $field_name): UpdateFieldPosition
-    {
-        $this->container['field_name'] = $field_name;
-
-        return $this;
-    }
-    /**
-     * Gets row_number
-     *
-     * @return int
-     */
-    public function getRowNumber(): int
-    {
-        return $this->container['row_number'];
-    }
-
-    /**
-     * Sets row_number
-     *
-     * @param int $row_number Row number of the field
-     *
-     * @return self
-     */
-    public function setRowNumber(int $row_number): UpdateFieldPosition
-    {
-        $this->container['row_number'] = $row_number;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

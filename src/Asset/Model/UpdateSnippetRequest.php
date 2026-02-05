@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     is_archive?: ?string,
  *     name?: ?string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method UpdateSnippetRequest setDescription(string|null $description)
+ * @method string|null getIsArchive()
+ * @method UpdateSnippetRequest setIsArchive(string|null $is_archive)
+ * @method string|null getName()
+ * @method UpdateSnippetRequest setName(string|null $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateSnippetRequestArray>
  * @implements \ArrayAccess<key-of<UpdateSnippetRequestArray>, value-of<UpdateSnippetRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -108,75 +116,6 @@ class UpdateSnippetRequest extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the snippet
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): UpdateSnippetRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets is_archive
-     *
-     * @return string|null
-     */
-    public function getIsArchive(): ?string
-    {
-        return $this->container['is_archive'] ?? null;
-    }
-
-    /**
-     * Sets is_archive
-     *
-     * @param string|null $is_archive Archival status of the snippet
-     *
-     * @return self
-     */
-    public function setIsArchive(?string $is_archive): UpdateSnippetRequest
-    {
-        $this->container['is_archive'] = $is_archive;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the snippet
-     *
-     * @return self
-     */
-    public function setName(?string $name): UpdateSnippetRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     code: string,
  *     message: string,
  * }
+ *
+ * @method string getCode()
+ * @method Reason setCode(string $code)
+ * @method string getMessage()
+ * @method Reason setMessage(string $message)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ReasonArray>
  * @implements \ArrayAccess<key-of<ReasonArray>, value-of<ReasonArray>>
  * @psalm-suppress MixedReturnStatement
@@ -105,52 +111,6 @@ class Reason extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSer
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets code
-     *
-     * @return string
-     */
-    public function getCode(): string
-    {
-        return $this->container['code'];
-    }
-
-    /**
-     * Sets code
-     *
-     * @param string $code Integer code of the reason
-     *
-     * @return self
-     */
-    public function setCode(string $code): Reason
-    {
-        $this->container['code'] = $code;
-
-        return $this;
-    }
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage(): string
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message Message describing the reason for the status of the operation
-     *
-     * @return self
-     */
-    public function setMessage(string $message): Reason
-    {
-        $this->container['message'] = $message;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

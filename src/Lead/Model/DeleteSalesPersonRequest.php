@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     delete_by?: ?string,
  *     input: \NecLimDul\MarketoRest\Lead\Model\SalesPerson[],
  * }
+ *
+ * @method string|null getDeleteBy()
+ * @method DeleteSalesPersonRequest setDeleteBy(string|null $delete_by)
+ * @method \NecLimDul\MarketoRest\Lead\Model\SalesPerson[] getInput()
+ * @method DeleteSalesPersonRequest setInput(\NecLimDul\MarketoRest\Lead\Model\SalesPerson[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<DeleteSalesPersonRequestArray>
  * @implements \ArrayAccess<key-of<DeleteSalesPersonRequestArray>, value-of<DeleteSalesPersonRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -104,52 +110,6 @@ class DeleteSalesPersonRequest extends ModelBase implements ModelInterface, \Arr
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets delete_by
-     *
-     * @return string|null
-     */
-    public function getDeleteBy(): ?string
-    {
-        return $this->container['delete_by'] ?? null;
-    }
-
-    /**
-     * Sets delete_by
-     *
-     * @param string|null $delete_by Key to use for deletion of the record
-     *
-     * @return self
-     */
-    public function setDeleteBy(?string $delete_by): DeleteSalesPersonRequest
-    {
-        $this->container['delete_by'] = $delete_by;
-
-        return $this;
-    }
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\SalesPerson[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\SalesPerson[] $input List of input records
-     *
-     * @return self
-     */
-    public function setInput(array $input): DeleteSalesPersonRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

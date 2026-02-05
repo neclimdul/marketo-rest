@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     code: string,
  *     message: string,
  * }
+ *
+ * @method string getCode()
+ * @method Error setCode(string $code)
+ * @method string getMessage()
+ * @method Error setMessage(string $message)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ErrorArray>
  * @implements \ArrayAccess<key-of<ErrorArray>, value-of<ErrorArray>>
  * @psalm-suppress MixedReturnStatement
@@ -105,52 +111,6 @@ class Error extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSeri
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets code
-     *
-     * @return string
-     */
-    public function getCode(): string
-    {
-        return $this->container['code'];
-    }
-
-    /**
-     * Sets code
-     *
-     * @param string $code Error code of the error. See full list of error codes <a href=\"https://developers.marketo.com/rest-api/error-codes/\">here</a>
-     *
-     * @return self
-     */
-    public function setCode(string $code): Error
-    {
-        $this->container['code'] = $code;
-
-        return $this;
-    }
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage(): string
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message Message describing the cause of the error
-     *
-     * @return self
-     */
-    public function setMessage(string $message): Error
-    {
-        $this->container['message'] = $message;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

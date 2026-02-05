@@ -37,6 +37,26 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     day_of_week: string,
  *     week_of_month: int,
  * }
+ *
+ * @method \DateTime getStartAt()
+ * @method Recurrence setStartAt(\DateTime $start_at)
+ * @method \DateTime getEndAt()
+ * @method Recurrence setEndAt(\DateTime $end_at)
+ * @method string getIntervalType()
+ * @method Recurrence setIntervalType(string $interval_type)
+ * @method int getInterval()
+ * @method Recurrence setInterval(int $interval)
+ * @method bool getWeekdayOnly()
+ * @method Recurrence setWeekdayOnly(bool $weekday_only)
+ * @method string[] getWeekdayMask()
+ * @method Recurrence setWeekdayMask(string[] $weekday_mask)
+ * @method int getDayOfMonth()
+ * @method Recurrence setDayOfMonth(int $day_of_month)
+ * @method string getDayOfWeek()
+ * @method Recurrence setDayOfWeek(string $day_of_week)
+ * @method int getWeekOfMonth()
+ * @method Recurrence setWeekOfMonth(int $week_of_month)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<RecurrenceArray>
  * @implements \ArrayAccess<key-of<RecurrenceArray>, value-of<RecurrenceArray>>
  * @psalm-suppress MixedReturnStatement
@@ -217,233 +237,6 @@ class Recurrence extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
         ];
     }
 
-    /**
-     * Gets start_at
-     *
-     * @return \DateTime
-     */
-    public function getStartAt(): \DateTime
-    {
-        return $this->container['start_at'];
-    }
-
-    /**
-     * Sets start_at
-     *
-     * @param \DateTime $start_at Datetime of the first scheduled campaign to run. Required if setting recurrence. Not required to create a smart campaign that has no recurrence
-     *
-     * @return self
-     */
-    public function setStartAt(\DateTime $start_at): Recurrence
-    {
-        $this->container['start_at'] = $start_at;
-
-        return $this;
-    }
-    /**
-     * Gets end_at
-     *
-     * @return \DateTime
-     */
-    public function getEndAt(): \DateTime
-    {
-        return $this->container['end_at'];
-    }
-
-    /**
-     * Sets end_at
-     *
-     * @param \DateTime $end_at Datetime after which no further runs will be automatically scheduled
-     *
-     * @return self
-     */
-    public function setEndAt(\DateTime $end_at): Recurrence
-    {
-        $this->container['end_at'] = $end_at;
-
-        return $this;
-    }
-    /**
-     * Gets interval_type
-     *
-     * @return string
-     */
-    public function getIntervalType(): string
-    {
-        return $this->container['interval_type'];
-    }
-
-    /**
-     * Sets interval_type
-     *
-     * @param string $interval_type Recurrence interval. Not required to create a smart campaign that has no recurrence
-     *
-     * @return self
-     */
-    public function setIntervalType(string $interval_type): Recurrence
-    {
-        $allowedValues = $this->getIntervalTypeAllowableValues();
-        if (!in_array($interval_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'interval_type', must be one of '%s'",
-                    $interval_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['interval_type'] = $interval_type;
-
-        return $this;
-    }
-    /**
-     * Gets interval
-     *
-     * @return int
-     */
-    public function getInterval(): int
-    {
-        return $this->container['interval'];
-    }
-
-    /**
-     * Sets interval
-     *
-     * @param int $interval Number of interval units between recurrences
-     *
-     * @return self
-     */
-    public function setInterval(int $interval): Recurrence
-    {
-        $this->container['interval'] = $interval;
-
-        return $this;
-    }
-    /**
-     * Gets weekday_only
-     *
-     * @return bool
-     */
-    public function getWeekdayOnly(): bool
-    {
-        return $this->container['weekday_only'];
-    }
-
-    /**
-     * Sets weekday_only
-     *
-     * @param bool $weekday_only Only run smart campaign on weekdays. May only be set if intervalType is 'Daily'. Defaults to false
-     *
-     * @return self
-     */
-    public function setWeekdayOnly(bool $weekday_only): Recurrence
-    {
-        $this->container['weekday_only'] = $weekday_only;
-
-        return $this;
-    }
-    /**
-     * Gets weekday_mask
-     *
-     * @return string[]
-     */
-    public function getWeekdayMask(): array
-    {
-        return $this->container['weekday_mask'];
-    }
-
-    /**
-     * Sets weekday_mask
-     *
-     * @param string[] $weekday_mask String array of empty or one or more of 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'. May only be set if intervalType is 'Weekly'
-     *
-     * @return self
-     */
-    public function setWeekdayMask(array $weekday_mask): Recurrence
-    {
-        $this->container['weekday_mask'] = $weekday_mask;
-
-        return $this;
-    }
-    /**
-     * Gets day_of_month
-     *
-     * @return int
-     */
-    public function getDayOfMonth(): int
-    {
-        return $this->container['day_of_month'];
-    }
-
-    /**
-     * Sets day_of_month
-     *
-     * @param int $day_of_month Day of the month to recur. Permissible range 1-31. May only be set if intervalType is 'Monthly' and dayOfWeek and weekOfMonth are unset.
-     *
-     * @return self
-     */
-    public function setDayOfMonth(int $day_of_month): Recurrence
-    {
-        $this->container['day_of_month'] = $day_of_month;
-
-        return $this;
-    }
-    /**
-     * Gets day_of_week
-     *
-     * @return string
-     */
-    public function getDayOfWeek(): string
-    {
-        return $this->container['day_of_week'];
-    }
-
-    /**
-     * Sets day_of_week
-     *
-     * @param string $day_of_week Day of the week to recur. May only be set if dayOfMonth is not set, and weekOfMonth is set
-     *
-     * @return self
-     */
-    public function setDayOfWeek(string $day_of_week): Recurrence
-    {
-        $allowedValues = $this->getDayOfWeekAllowableValues();
-        if (!in_array($day_of_week, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'day_of_week', must be one of '%s'",
-                    $day_of_week,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['day_of_week'] = $day_of_week;
-
-        return $this;
-    }
-    /**
-     * Gets week_of_month
-     *
-     * @return int
-     */
-    public function getWeekOfMonth(): int
-    {
-        return $this->container['week_of_month'];
-    }
-
-    /**
-     * Sets week_of_month
-     *
-     * @param int $week_of_month Week of the month to recur. Permissible range 1-4. May only be set if dayOfMonth is not set, and dayOfWeek is set
-     *
-     * @return self
-     */
-    public function setWeekOfMonth(int $week_of_month): Recurrence
-    {
-        $this->container['week_of_month'] = $week_of_month;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

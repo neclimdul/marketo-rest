@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type DeleteCustomObjectTypeFieldArray array{
  *     name: string,
  * }
+ *
+ * @method string getName()
+ * @method DeleteCustomObjectTypeField setName(string $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<DeleteCustomObjectTypeFieldArray>
  * @implements \ArrayAccess<key-of<DeleteCustomObjectTypeFieldArray>, value-of<DeleteCustomObjectTypeFieldArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class DeleteCustomObjectTypeField extends ModelBase implements ModelInterface, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name API Name of custom object type field
-     *
-     * @return self
-     */
-    public function setName(string $name): DeleteCustomObjectTypeField
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     primary_attribute: \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute,
  *     trigger_name: string,
  * }
+ *
+ * @method string getApiName()
+ * @method CustomActivityTypeRequest setApiName(string $api_name)
+ * @method string|null getDescription()
+ * @method CustomActivityTypeRequest setDescription(string|null $description)
+ * @method string getFilterName()
+ * @method CustomActivityTypeRequest setFilterName(string $filter_name)
+ * @method string getName()
+ * @method CustomActivityTypeRequest setName(string $name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute getPrimaryAttribute()
+ * @method CustomActivityTypeRequest setPrimaryAttribute(\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute $primary_attribute)
+ * @method string getTriggerName()
+ * @method CustomActivityTypeRequest setTriggerName(string $trigger_name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CustomActivityTypeRequestArray>
  * @implements \ArrayAccess<key-of<CustomActivityTypeRequestArray>, value-of<CustomActivityTypeRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -128,144 +142,6 @@ class CustomActivityTypeRequest extends ModelBase implements ModelInterface, \Ar
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets api_name
-     *
-     * @return string
-     */
-    public function getApiName(): string
-    {
-        return $this->container['api_name'];
-    }
-
-    /**
-     * Sets api_name
-     *
-     * @param string $api_name api_name
-     *
-     * @return self
-     */
-    public function setApiName(string $api_name): CustomActivityTypeRequest
-    {
-        $this->container['api_name'] = $api_name;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description description
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CustomActivityTypeRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets filter_name
-     *
-     * @return string
-     */
-    public function getFilterName(): string
-    {
-        return $this->container['filter_name'];
-    }
-
-    /**
-     * Sets filter_name
-     *
-     * @param string $filter_name Human-readable name of the associated filter
-     *
-     * @return self
-     */
-    public function setFilterName(string $filter_name): CustomActivityTypeRequest
-    {
-        $this->container['filter_name'] = $filter_name;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Human-readable display name of the activity type
-     *
-     * @return self
-     */
-    public function setName(string $name): CustomActivityTypeRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets primary_attribute
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute
-     */
-    public function getPrimaryAttribute(): \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute
-    {
-        return $this->container['primary_attribute'];
-    }
-
-    /**
-     * Sets primary_attribute
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute $primary_attribute primary_attribute
-     *
-     * @return self
-     */
-    public function setPrimaryAttribute(\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute $primary_attribute): CustomActivityTypeRequest
-    {
-        $this->container['primary_attribute'] = $primary_attribute;
-
-        return $this;
-    }
-    /**
-     * Gets trigger_name
-     *
-     * @return string
-     */
-    public function getTriggerName(): string
-    {
-        return $this->container['trigger_name'];
-    }
-
-    /**
-     * Sets trigger_name
-     *
-     * @param string $trigger_name Human-readable name of the associated trigger
-     *
-     * @return self
-     */
-    public function setTriggerName(string $trigger_name): CustomActivityTypeRequest
-    {
-        $this->container['trigger_name'] = $trigger_name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

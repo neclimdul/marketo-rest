@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     name: string,
  *     parent: \NecLimDul\MarketoRest\Asset\Model\Folder,
  * }
+ *
+ * @method string|null getDescription()
+ * @method CreateFolderRequest setDescription(string|null $description)
+ * @method string getName()
+ * @method CreateFolderRequest setName(string $name)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getParent()
+ * @method CreateFolderRequest setParent(\NecLimDul\MarketoRest\Asset\Model\Folder $parent)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateFolderRequestArray>
  * @implements \ArrayAccess<key-of<CreateFolderRequestArray>, value-of<CreateFolderRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -110,75 +118,6 @@ class CreateFolderRequest extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CreateFolderRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the Folder
-     *
-     * @return self
-     */
-    public function setName(string $name): CreateFolderRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets parent
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getParent(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['parent'];
-    }
-
-    /**
-     * Sets parent
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $parent parent
-     *
-     * @return self
-     */
-    public function setParent(\NecLimDul\MarketoRest\Asset\Model\Folder $parent): CreateFolderRequest
-    {
-        $this->container['parent'] = $parent;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     dedupe_by?: ?string,
  *     input: \NecLimDul\MarketoRest\Lead\Model\CustomObject[],
  * }
+ *
+ * @method string|null getAction()
+ * @method SyncCustomObjectRequest setAction(string|null $action)
+ * @method string|null getDedupeBy()
+ * @method SyncCustomObjectRequest setDedupeBy(string|null $dedupe_by)
+ * @method \NecLimDul\MarketoRest\Lead\Model\CustomObject[] getInput()
+ * @method SyncCustomObjectRequest setInput(\NecLimDul\MarketoRest\Lead\Model\CustomObject[] $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SyncCustomObjectRequestArray>
  * @implements \ArrayAccess<key-of<SyncCustomObjectRequestArray>, value-of<SyncCustomObjectRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -137,85 +145,6 @@ class SyncCustomObjectRequest extends ModelBase implements ModelInterface, \Arra
         ];
     }
 
-    /**
-     * Gets action
-     *
-     * @return string|null
-     */
-    public function getAction(): ?string
-    {
-        return $this->container['action'] ?? null;
-    }
-
-    /**
-     * Sets action
-     *
-     * @param string|null $action Type of sync operation to perform
-     *
-     * @return self
-     */
-    public function setAction(?string $action): SyncCustomObjectRequest
-    {
-        $allowedValues = $this->getActionAllowableValues();
-        if (!is_null($action) && !in_array($action, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'action', must be one of '%s'",
-                    $action,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['action'] = $action;
-
-        return $this;
-    }
-    /**
-     * Gets dedupe_by
-     *
-     * @return string|null
-     */
-    public function getDedupeBy(): ?string
-    {
-        return $this->container['dedupe_by'] ?? null;
-    }
-
-    /**
-     * Sets dedupe_by
-     *
-     * @param string|null $dedupe_by Field to deduplicate on. If the value in the field for a given record is not unique, an error will be returned for the individual record.
-     *
-     * @return self
-     */
-    public function setDedupeBy(?string $dedupe_by): SyncCustomObjectRequest
-    {
-        $this->container['dedupe_by'] = $dedupe_by;
-
-        return $this;
-    }
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObject[]
-     */
-    public function getInput(): array
-    {
-        return $this->container['input'];
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\CustomObject[] $input List of input records
-     *
-     * @return self
-     */
-    public function setInput(array $input): SyncCustomObjectRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

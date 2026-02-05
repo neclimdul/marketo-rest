@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     rest?: ?\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute,
  *     soap?: ?\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute,
  * }
+ *
+ * @method string getDataType()
+ * @method LeadAttribute setDataType(string $data_type)
+ * @method string getDisplayName()
+ * @method LeadAttribute setDisplayName(string $display_name)
+ * @method int getId()
+ * @method LeadAttribute setId(int $id)
+ * @method int|null getLength()
+ * @method LeadAttribute setLength(int|null $length)
+ * @method \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute|null getRest()
+ * @method LeadAttribute setRest(\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute|null $rest)
+ * @method \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute|null getSoap()
+ * @method LeadAttribute setSoap(\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute|null $soap)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LeadAttributeArray>
  * @implements \ArrayAccess<key-of<LeadAttributeArray>, value-of<LeadAttributeArray>>
  * @psalm-suppress MixedReturnStatement
@@ -128,144 +142,6 @@ class LeadAttribute extends ModelBase implements ModelInterface, \ArrayAccess, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets data_type
-     *
-     * @return string
-     */
-    public function getDataType(): string
-    {
-        return $this->container['data_type'];
-    }
-
-    /**
-     * Sets data_type
-     *
-     * @param string $data_type Datatype of the field
-     *
-     * @return self
-     */
-    public function setDataType(string $data_type): LeadAttribute
-    {
-        $this->container['data_type'] = $data_type;
-
-        return $this;
-    }
-    /**
-     * Gets display_name
-     *
-     * @return string
-     */
-    public function getDisplayName(): string
-    {
-        return $this->container['display_name'];
-    }
-
-    /**
-     * Sets display_name
-     *
-     * @param string $display_name UI display-name of the field
-     *
-     * @return self
-     */
-    public function setDisplayName(string $display_name): LeadAttribute
-    {
-        $this->container['display_name'] = $display_name;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the field
-     *
-     * @return self
-     */
-    public function setId(int $id): LeadAttribute
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets length
-     *
-     * @return int|null
-     */
-    public function getLength(): ?int
-    {
-        return $this->container['length'] ?? null;
-    }
-
-    /**
-     * Sets length
-     *
-     * @param int|null $length Max length of the field. Only applicable to text, string, and text area.
-     *
-     * @return self
-     */
-    public function setLength(?int $length): LeadAttribute
-    {
-        $this->container['length'] = $length;
-
-        return $this;
-    }
-    /**
-     * Gets rest
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute|null
-     */
-    public function getRest(): ?\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute
-    {
-        return $this->container['rest'] ?? null;
-    }
-
-    /**
-     * Sets rest
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute|null $rest rest
-     *
-     * @return self
-     */
-    public function setRest(?\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute $rest): LeadAttribute
-    {
-        $this->container['rest'] = $rest;
-
-        return $this;
-    }
-    /**
-     * Gets soap
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute|null
-     */
-    public function getSoap(): ?\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute
-    {
-        return $this->container['soap'] ?? null;
-    }
-
-    /**
-     * Sets soap
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute|null $soap soap
-     *
-     * @return self
-     */
-    public function setSoap(?\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute $soap): LeadAttribute
-    {
-        $this->container['soap'] = $soap;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

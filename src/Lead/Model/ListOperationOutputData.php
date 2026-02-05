@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     reasons?: ?\NecLimDul\MarketoRest\Lead\Model\Reason[],
  *     status?: ?string,
  * }
+ *
+ * @method int getId()
+ * @method ListOperationOutputData setId(int $id)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Reason[]|null getReasons()
+ * @method ListOperationOutputData setReasons(\NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons)
+ * @method string|null getStatus()
+ * @method ListOperationOutputData setStatus(string|null $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ListOperationOutputDataArray>
  * @implements \ArrayAccess<key-of<ListOperationOutputDataArray>, value-of<ListOperationOutputDataArray>>
  * @psalm-suppress MixedReturnStatement
@@ -110,75 +118,6 @@ class ListOperationOutputData extends ModelBase implements ModelInterface, \Arra
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of a lead record
-     *
-     * @return self
-     */
-    public function setId(int $id): ListOperationOutputData
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets reasons
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
-     */
-    public function getReasons(): ?array
-    {
-        return $this->container['reasons'] ?? null;
-    }
-
-    /**
-     * Sets reasons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed. Reasons are only present in API responses and should not be submitted
-     *
-     * @return self
-     */
-    public function setReasons(?array $reasons): ListOperationOutputData
-    {
-        $this->container['reasons'] = $reasons;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus(): ?string
-    {
-        return $this->container['status'] ?? null;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status Status of the operation performed on the record
-     *
-     * @return self
-     */
-    public function setStatus(?string $status): ListOperationOutputData
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

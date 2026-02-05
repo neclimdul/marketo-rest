@@ -38,6 +38,28 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     primary_attribute_value: string,
  *     status?: ?string,
  * }
+ *
+ * @method string getActivityDate()
+ * @method CustomActivity setActivityDate(string $activity_date)
+ * @method int getActivityTypeId()
+ * @method CustomActivity setActivityTypeId(int $activity_type_id)
+ * @method string|null getApiName()
+ * @method CustomActivity setApiName(string|null $api_name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Attribute[] getAttributes()
+ * @method CustomActivity setAttributes(\NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Error[] getErrors()
+ * @method CustomActivity setErrors(\NecLimDul\MarketoRest\Lead\Model\Error[] $errors)
+ * @method int getId()
+ * @method CustomActivity setId(int $id)
+ * @method int getLeadId()
+ * @method CustomActivity setLeadId(int $lead_id)
+ * @method string|null getMarketoGuid()
+ * @method CustomActivity setMarketoGuid(string|null $marketo_guid)
+ * @method string getPrimaryAttributeValue()
+ * @method CustomActivity setPrimaryAttributeValue(string $primary_attribute_value)
+ * @method string|null getStatus()
+ * @method CustomActivity setStatus(string|null $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CustomActivityArray>
  * @implements \ArrayAccess<key-of<CustomActivityArray>, value-of<CustomActivityArray>>
  * @psalm-suppress MixedReturnStatement
@@ -187,246 +209,6 @@ class CustomActivity extends ModelBase implements ModelInterface, \ArrayAccess, 
         ];
     }
 
-    /**
-     * Gets activity_date
-     *
-     * @return string
-     */
-    public function getActivityDate(): string
-    {
-        return $this->container['activity_date'];
-    }
-
-    /**
-     * Sets activity_date
-     *
-     * @param string $activity_date Datetime of the activity
-     *
-     * @return self
-     */
-    public function setActivityDate(string $activity_date): CustomActivity
-    {
-        $this->container['activity_date'] = $activity_date;
-
-        return $this;
-    }
-    /**
-     * Gets activity_type_id
-     *
-     * @return int
-     */
-    public function getActivityTypeId(): int
-    {
-        return $this->container['activity_type_id'];
-    }
-
-    /**
-     * Sets activity_type_id
-     *
-     * @param int $activity_type_id Id of the activity type
-     *
-     * @return self
-     */
-    public function setActivityTypeId(int $activity_type_id): CustomActivity
-    {
-        $this->container['activity_type_id'] = $activity_type_id;
-
-        return $this;
-    }
-    /**
-     * Gets api_name
-     *
-     * @return string|null
-     */
-    public function getApiName(): ?string
-    {
-        return $this->container['api_name'] ?? null;
-    }
-
-    /**
-     * Sets api_name
-     *
-     * @param string|null $api_name api_name
-     *
-     * @return self
-     */
-    public function setApiName(?string $api_name): CustomActivity
-    {
-        $this->container['api_name'] = $api_name;
-
-        return $this;
-    }
-    /**
-     * Gets attributes
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Attribute[]
-     */
-    public function getAttributes(): array
-    {
-        return $this->container['attributes'];
-    }
-
-    /**
-     * Sets attributes
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
-     *
-     * @return self
-     */
-    public function setAttributes(array $attributes): CustomActivity
-    {
-        $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
-    /**
-     * Gets errors
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
-     */
-    public function getErrors(): array
-    {
-        return $this->container['errors'];
-    }
-
-    /**
-     * Sets errors
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
-     *
-     * @return self
-     */
-    public function setErrors(array $errors): CustomActivity
-    {
-        $this->container['errors'] = $errors;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Integer id of the activity. For instances which have been migrated to Activity Service, this field may not be present, and should not be treated as unique.
-     *
-     * @return self
-     */
-    public function setId(int $id): CustomActivity
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets lead_id
-     *
-     * @return int
-     */
-    public function getLeadId(): int
-    {
-        return $this->container['lead_id'];
-    }
-
-    /**
-     * Sets lead_id
-     *
-     * @param int $lead_id Id of the lead associated to the activity
-     *
-     * @return self
-     */
-    public function setLeadId(int $lead_id): CustomActivity
-    {
-        $this->container['lead_id'] = $lead_id;
-
-        return $this;
-    }
-    /**
-     * Gets marketo_guid
-     *
-     * @return string|null
-     */
-    public function getMarketoGuid(): ?string
-    {
-        return $this->container['marketo_guid'] ?? null;
-    }
-
-    /**
-     * Sets marketo_guid
-     *
-     * @param string|null $marketo_guid Unique id of the activity (128 character string)
-     *
-     * @return self
-     */
-    public function setMarketoGuid(?string $marketo_guid): CustomActivity
-    {
-        $this->container['marketo_guid'] = $marketo_guid;
-
-        return $this;
-    }
-    /**
-     * Gets primary_attribute_value
-     *
-     * @return string
-     */
-    public function getPrimaryAttributeValue(): string
-    {
-        return $this->container['primary_attribute_value'];
-    }
-
-    /**
-     * Sets primary_attribute_value
-     *
-     * @param string $primary_attribute_value Value of the primary attribute
-     *
-     * @return self
-     */
-    public function setPrimaryAttributeValue(string $primary_attribute_value): CustomActivity
-    {
-        $this->container['primary_attribute_value'] = $primary_attribute_value;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus(): ?string
-    {
-        return $this->container['status'] ?? null;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status Status of the operation performed on the record
-     *
-     * @return self
-     */
-    public function setStatus(?string $status): CustomActivity
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

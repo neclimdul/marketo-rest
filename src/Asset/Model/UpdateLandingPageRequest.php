@@ -39,6 +39,30 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     title?: ?string,
  *     url_page_name?: ?string,
  * }
+ *
+ * @method string|null getCustomHeadHtml()
+ * @method UpdateLandingPageRequest setCustomHeadHtml(string|null $custom_head_html)
+ * @method string|null getDescription()
+ * @method UpdateLandingPageRequest setDescription(string|null $description)
+ * @method string|null getFacebookOgTags()
+ * @method UpdateLandingPageRequest setFacebookOgTags(string|null $facebook_og_tags)
+ * @method string|null getKeywords()
+ * @method UpdateLandingPageRequest setKeywords(string|null $keywords)
+ * @method string|null getMetaTagsDescription()
+ * @method UpdateLandingPageRequest setMetaTagsDescription(string|null $meta_tags_description)
+ * @method bool|null getMobileEnabled()
+ * @method UpdateLandingPageRequest setMobileEnabled(bool|null $mobile_enabled)
+ * @method string|null getName()
+ * @method UpdateLandingPageRequest setName(string|null $name)
+ * @method string|null getRobots()
+ * @method UpdateLandingPageRequest setRobots(string|null $robots)
+ * @method string|null getStyleOverRide()
+ * @method UpdateLandingPageRequest setStyleOverRide(string|null $style_over_ride)
+ * @method string|null getTitle()
+ * @method UpdateLandingPageRequest setTitle(string|null $title)
+ * @method string|null getUrlPageName()
+ * @method UpdateLandingPageRequest setUrlPageName(string|null $url_page_name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateLandingPageRequestArray>
  * @implements \ArrayAccess<key-of<UpdateLandingPageRequestArray>, value-of<UpdateLandingPageRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -148,259 +172,6 @@ class UpdateLandingPageRequest extends ModelBase implements ModelInterface, \Arr
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets custom_head_html
-     *
-     * @return string|null
-     */
-    public function getCustomHeadHtml(): ?string
-    {
-        return $this->container['custom_head_html'] ?? null;
-    }
-
-    /**
-     * Sets custom_head_html
-     *
-     * @param string|null $custom_head_html Any custom HTML to embed in the <head> tag of the page
-     *
-     * @return self
-     */
-    public function setCustomHeadHtml(?string $custom_head_html): UpdateLandingPageRequest
-    {
-        $this->container['custom_head_html'] = $custom_head_html;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): UpdateLandingPageRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets facebook_og_tags
-     *
-     * @return string|null
-     */
-    public function getFacebookOgTags(): ?string
-    {
-        return $this->container['facebook_og_tags'] ?? null;
-    }
-
-    /**
-     * Sets facebook_og_tags
-     *
-     * @param string|null $facebook_og_tags Any OpenGraph meta tags to apply to the page
-     *
-     * @return self
-     */
-    public function setFacebookOgTags(?string $facebook_og_tags): UpdateLandingPageRequest
-    {
-        $this->container['facebook_og_tags'] = $facebook_og_tags;
-
-        return $this;
-    }
-    /**
-     * Gets keywords
-     *
-     * @return string|null
-     */
-    public function getKeywords(): ?string
-    {
-        return $this->container['keywords'] ?? null;
-    }
-
-    /**
-     * Sets keywords
-     *
-     * @param string|null $keywords keywords
-     *
-     * @return self
-     */
-    public function setKeywords(?string $keywords): UpdateLandingPageRequest
-    {
-        $this->container['keywords'] = $keywords;
-
-        return $this;
-    }
-    /**
-     * Gets meta_tags_description
-     *
-     * @return string|null
-     */
-    public function getMetaTagsDescription(): ?string
-    {
-        return $this->container['meta_tags_description'] ?? null;
-    }
-
-    /**
-     * Sets meta_tags_description
-     *
-     * @param string|null $meta_tags_description Meta description property of the page
-     *
-     * @return self
-     */
-    public function setMetaTagsDescription(?string $meta_tags_description): UpdateLandingPageRequest
-    {
-        $this->container['meta_tags_description'] = $meta_tags_description;
-
-        return $this;
-    }
-    /**
-     * Gets mobile_enabled
-     *
-     * @return bool|null
-     */
-    public function getMobileEnabled(): ?bool
-    {
-        return $this->container['mobile_enabled'] ?? null;
-    }
-
-    /**
-     * Sets mobile_enabled
-     *
-     * @param bool|null $mobile_enabled Whether the page has mobile viewing enabled. Free-form pages only. Default false
-     *
-     * @return self
-     */
-    public function setMobileEnabled(?bool $mobile_enabled): UpdateLandingPageRequest
-    {
-        $this->container['mobile_enabled'] = $mobile_enabled;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the landing page
-     *
-     * @return self
-     */
-    public function setName(?string $name): UpdateLandingPageRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets robots
-     *
-     * @return string|null
-     */
-    public function getRobots(): ?string
-    {
-        return $this->container['robots'] ?? null;
-    }
-
-    /**
-     * Sets robots
-     *
-     * @param string|null $robots Robots directives to apply to the pages meta tags
-     *
-     * @return self
-     */
-    public function setRobots(?string $robots): UpdateLandingPageRequest
-    {
-        $this->container['robots'] = $robots;
-
-        return $this;
-    }
-    /**
-     * Gets style_over_ride
-     *
-     * @return string|null
-     */
-    public function getStyleOverRide(): ?string
-    {
-        return $this->container['style_over_ride'] ?? null;
-    }
-
-    /**
-     * Sets style_over_ride
-     *
-     * @param string|null $style_over_ride Additional CSS styles to append to the landing page <head>
-     *
-     * @return self
-     */
-    public function setStyleOverRide(?string $style_over_ride): UpdateLandingPageRequest
-    {
-        $this->container['style_over_ride'] = $style_over_ride;
-
-        return $this;
-    }
-    /**
-     * Gets title
-     *
-     * @return string|null
-     */
-    public function getTitle(): ?string
-    {
-        return $this->container['title'] ?? null;
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title Title element of the landing page
-     *
-     * @return self
-     */
-    public function setTitle(?string $title): UpdateLandingPageRequest
-    {
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-    /**
-     * Gets url_page_name
-     *
-     * @return string|null
-     */
-    public function getUrlPageName(): ?string
-    {
-        return $this->container['url_page_name'] ?? null;
-    }
-
-    /**
-     * Sets url_page_name
-     *
-     * @param string|null $url_page_name URL path of the page. Derived from the name field if unset
-     *
-     * @return self
-     */
-    public function setUrlPageName(?string $url_page_name): UpdateLandingPageRequest
-    {
-        $this->container['url_page_name'] = $url_page_name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

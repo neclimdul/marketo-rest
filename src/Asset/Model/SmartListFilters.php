@@ -36,6 +36,20 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     operator: string,
  *     conditions: \NecLimDul\MarketoRest\Asset\Model\SmartListConditions[],
  * }
+ *
+ * @method int getId()
+ * @method SmartListFilters setId(int $id)
+ * @method string getName()
+ * @method SmartListFilters setName(string $name)
+ * @method int getRuleTypeId()
+ * @method SmartListFilters setRuleTypeId(int $rule_type_id)
+ * @method string getRuleType()
+ * @method SmartListFilters setRuleType(string $rule_type)
+ * @method string getOperator()
+ * @method SmartListFilters setOperator(string $operator)
+ * @method \NecLimDul\MarketoRest\Asset\Model\SmartListConditions[] getConditions()
+ * @method SmartListFilters setConditions(\NecLimDul\MarketoRest\Asset\Model\SmartListConditions[] $conditions)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SmartListFiltersArray>
  * @implements \ArrayAccess<key-of<SmartListFiltersArray>, value-of<SmartListFiltersArray>>
  * @psalm-suppress MixedReturnStatement
@@ -133,144 +147,6 @@ class SmartListFilters extends ModelBase implements ModelInterface, \ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the filter
-     *
-     * @return self
-     */
-    public function setId(int $id): SmartListFilters
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of filter
-     *
-     * @return self
-     */
-    public function setName(string $name): SmartListFilters
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets rule_type_id
-     *
-     * @return int
-     */
-    public function getRuleTypeId(): int
-    {
-        return $this->container['rule_type_id'];
-    }
-
-    /**
-     * Sets rule_type_id
-     *
-     * @param int $rule_type_id Id of the rule type
-     *
-     * @return self
-     */
-    public function setRuleTypeId(int $rule_type_id): SmartListFilters
-    {
-        $this->container['rule_type_id'] = $rule_type_id;
-
-        return $this;
-    }
-    /**
-     * Gets rule_type
-     *
-     * @return string
-     */
-    public function getRuleType(): string
-    {
-        return $this->container['rule_type'];
-    }
-
-    /**
-     * Sets rule_type
-     *
-     * @param string $rule_type Name of rule type
-     *
-     * @return self
-     */
-    public function setRuleType(string $rule_type): SmartListFilters
-    {
-        $this->container['rule_type'] = $rule_type;
-
-        return $this;
-    }
-    /**
-     * Gets operator
-     *
-     * @return string
-     */
-    public function getOperator(): string
-    {
-        return $this->container['operator'];
-    }
-
-    /**
-     * Sets operator
-     *
-     * @param string $operator Name of operator
-     *
-     * @return self
-     */
-    public function setOperator(string $operator): SmartListFilters
-    {
-        $this->container['operator'] = $operator;
-
-        return $this;
-    }
-    /**
-     * Gets conditions
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\SmartListConditions[]
-     */
-    public function getConditions(): array
-    {
-        return $this->container['conditions'];
-    }
-
-    /**
-     * Sets conditions
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\SmartListConditions[] $conditions List of smart list conditions
-     *
-     * @return self
-     */
-    public function setConditions(array $conditions): SmartListFilters
-    {
-        $this->container['conditions'] = $conditions;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -34,6 +34,20 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     parent_html_id?: ?string,
  *     value: object,
  * }
+ *
+ * @method string getContentType()
+ * @method EmailContentResponse setContentType(string $content_type)
+ * @method string getHtmlId()
+ * @method EmailContentResponse setHtmlId(string $html_id)
+ * @method int|null getIndex()
+ * @method EmailContentResponse setIndex(int|null $index)
+ * @method bool|null getIsLocked()
+ * @method EmailContentResponse setIsLocked(bool|null $is_locked)
+ * @method string|null getParentHtmlId()
+ * @method EmailContentResponse setParentHtmlId(string|null $parent_html_id)
+ * @method object getValue()
+ * @method EmailContentResponse setValue(object $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<EmailContentResponseArray>
  * @implements \ArrayAccess<key-of<EmailContentResponseArray>, value-of<EmailContentResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -127,144 +141,6 @@ class EmailContentResponse extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content_type
-     *
-     * @return string
-     */
-    public function getContentType(): string
-    {
-        return $this->container['content_type'];
-    }
-
-    /**
-     * Sets content_type
-     *
-     * @param string $content_type Type of content to set for the section.
-     *
-     * @return self
-     */
-    public function setContentType(string $content_type): EmailContentResponse
-    {
-        $this->container['content_type'] = $content_type;
-
-        return $this;
-    }
-    /**
-     * Gets html_id
-     *
-     * @return string
-     */
-    public function getHtmlId(): string
-    {
-        return $this->container['html_id'];
-    }
-
-    /**
-     * Sets html_id
-     *
-     * @param string $html_id HTML id of the content section
-     *
-     * @return self
-     */
-    public function setHtmlId(string $html_id): EmailContentResponse
-    {
-        $this->container['html_id'] = $html_id;
-
-        return $this;
-    }
-    /**
-     * Gets index
-     *
-     * @return int|null
-     */
-    public function getIndex(): ?int
-    {
-        return $this->container['index'] ?? null;
-    }
-
-    /**
-     * Sets index
-     *
-     * @param int|null $index index
-     *
-     * @return self
-     */
-    public function setIndex(?int $index): EmailContentResponse
-    {
-        $this->container['index'] = $index;
-
-        return $this;
-    }
-    /**
-     * Gets is_locked
-     *
-     * @return bool|null
-     */
-    public function getIsLocked(): ?bool
-    {
-        return $this->container['is_locked'] ?? null;
-    }
-
-    /**
-     * Sets is_locked
-     *
-     * @param bool|null $is_locked is_locked
-     *
-     * @return self
-     */
-    public function setIsLocked(?bool $is_locked): EmailContentResponse
-    {
-        $this->container['is_locked'] = $is_locked;
-
-        return $this;
-    }
-    /**
-     * Gets parent_html_id
-     *
-     * @return string|null
-     */
-    public function getParentHtmlId(): ?string
-    {
-        return $this->container['parent_html_id'] ?? null;
-    }
-
-    /**
-     * Sets parent_html_id
-     *
-     * @param string|null $parent_html_id parent_html_id
-     *
-     * @return self
-     */
-    public function setParentHtmlId(?string $parent_html_id): EmailContentResponse
-    {
-        $this->container['parent_html_id'] = $parent_html_id;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return object
-     */
-    public function getValue(): object
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param object $value Contents of the section
-     *
-     * @return self
-     */
-    public function setValue(object $value): EmailContentResponse
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

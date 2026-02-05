@@ -46,6 +46,44 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     updated_at?: ?\DateTime,
  *     workspace?: ?string,
  * }
+ *
+ * @method string|null getUrl()
+ * @method LandingPageResponse setUrl(string|null $url)
+ * @method string|null getComputedUrl()
+ * @method LandingPageResponse setComputedUrl(string|null $computed_url)
+ * @method \DateTime|null getCreatedAt()
+ * @method LandingPageResponse setCreatedAt(\DateTime|null $created_at)
+ * @method string getCustomHeadHtml()
+ * @method LandingPageResponse setCustomHeadHtml(string $custom_head_html)
+ * @method string|null getDescription()
+ * @method LandingPageResponse setDescription(string|null $description)
+ * @method string getFacebookOgTags()
+ * @method LandingPageResponse setFacebookOgTags(string $facebook_og_tags)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder|null getFolder()
+ * @method LandingPageResponse setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder|null $folder)
+ * @method bool|null getFormPrefill()
+ * @method LandingPageResponse setFormPrefill(bool|null $form_prefill)
+ * @method int|null getId()
+ * @method LandingPageResponse setId(int|null $id)
+ * @method string|null getKeywords()
+ * @method LandingPageResponse setKeywords(string|null $keywords)
+ * @method bool|null getMobileEnabled()
+ * @method LandingPageResponse setMobileEnabled(bool|null $mobile_enabled)
+ * @method string|null getName()
+ * @method LandingPageResponse setName(string|null $name)
+ * @method string getRobots()
+ * @method LandingPageResponse setRobots(string $robots)
+ * @method string|null getStatus()
+ * @method LandingPageResponse setStatus(string|null $status)
+ * @method int|null getTemplate()
+ * @method LandingPageResponse setTemplate(int|null $template)
+ * @method string getTitle()
+ * @method LandingPageResponse setTitle(string $title)
+ * @method \DateTime|null getUpdatedAt()
+ * @method LandingPageResponse setUpdatedAt(\DateTime|null $updated_at)
+ * @method string|null getWorkspace()
+ * @method LandingPageResponse setWorkspace(string|null $workspace)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LandingPageResponseArray>
  * @implements \ArrayAccess<key-of<LandingPageResponseArray>, value-of<LandingPageResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -191,420 +229,6 @@ class LandingPageResponse extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl(): ?string
-    {
-        return $this->container['url'] ?? null;
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url Url of the asset in the Marketo UI
-     *
-     * @return self
-     */
-    public function setUrl(?string $url): LandingPageResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-    /**
-     * Gets computed_url
-     *
-     * @return string|null
-     */
-    public function getComputedUrl(): ?string
-    {
-        return $this->container['computed_url'] ?? null;
-    }
-
-    /**
-     * Sets computed_url
-     *
-     * @param string|null $computed_url computed_url
-     *
-     * @return self
-     */
-    public function setComputedUrl(?string $computed_url): LandingPageResponse
-    {
-        $this->container['computed_url'] = $computed_url;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at Datetime the asset was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?\DateTime $created_at): LandingPageResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets custom_head_html
-     *
-     * @return string
-     */
-    public function getCustomHeadHtml(): string
-    {
-        return $this->container['custom_head_html'];
-    }
-
-    /**
-     * Sets custom_head_html
-     *
-     * @param string $custom_head_html Any custom HTML to embed in the <head> tag of the page
-     *
-     * @return self
-     */
-    public function setCustomHeadHtml(string $custom_head_html): LandingPageResponse
-    {
-        $this->container['custom_head_html'] = $custom_head_html;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): LandingPageResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets facebook_og_tags
-     *
-     * @return string
-     */
-    public function getFacebookOgTags(): string
-    {
-        return $this->container['facebook_og_tags'];
-    }
-
-    /**
-     * Sets facebook_og_tags
-     *
-     * @param string $facebook_og_tags Any OpenGraph meta tags to apply to the page
-     *
-     * @return self
-     */
-    public function setFacebookOgTags(string $facebook_og_tags): LandingPageResponse
-    {
-        $this->container['facebook_og_tags'] = $facebook_og_tags;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder|null
-     */
-    public function getFolder(): ?\NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'] ?? null;
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder|null $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(?\NecLimDul\MarketoRest\Asset\Model\Folder $folder): LandingPageResponse
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets form_prefill
-     *
-     * @return bool|null
-     */
-    public function getFormPrefill(): ?bool
-    {
-        return $this->container['form_prefill'] ?? null;
-    }
-
-    /**
-     * Sets form_prefill
-     *
-     * @param bool|null $form_prefill Boolean to toggle whether forms embedded in the page will prefill. Default false
-     *
-     * @return self
-     */
-    public function setFormPrefill(?bool $form_prefill): LandingPageResponse
-    {
-        $this->container['form_prefill'] = $form_prefill;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id Id of the asset
-     *
-     * @return self
-     */
-    public function setId(?int $id): LandingPageResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets keywords
-     *
-     * @return string|null
-     */
-    public function getKeywords(): ?string
-    {
-        return $this->container['keywords'] ?? null;
-    }
-
-    /**
-     * Sets keywords
-     *
-     * @param string|null $keywords keywords
-     *
-     * @return self
-     */
-    public function setKeywords(?string $keywords): LandingPageResponse
-    {
-        $this->container['keywords'] = $keywords;
-
-        return $this;
-    }
-    /**
-     * Gets mobile_enabled
-     *
-     * @return bool|null
-     */
-    public function getMobileEnabled(): ?bool
-    {
-        return $this->container['mobile_enabled'] ?? null;
-    }
-
-    /**
-     * Sets mobile_enabled
-     *
-     * @param bool|null $mobile_enabled Whether the page has mobile viewing enabled. Free-form pages only. Default false
-     *
-     * @return self
-     */
-    public function setMobileEnabled(?bool $mobile_enabled): LandingPageResponse
-    {
-        $this->container['mobile_enabled'] = $mobile_enabled;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the asset
-     *
-     * @return self
-     */
-    public function setName(?string $name): LandingPageResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets robots
-     *
-     * @return string
-     */
-    public function getRobots(): string
-    {
-        return $this->container['robots'];
-    }
-
-    /**
-     * Sets robots
-     *
-     * @param string $robots Robots directives to apply to the pages meta tags
-     *
-     * @return self
-     */
-    public function setRobots(string $robots): LandingPageResponse
-    {
-        $this->container['robots'] = $robots;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus(): ?string
-    {
-        return $this->container['status'] ?? null;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status Status filter for draft or approved versions
-     *
-     * @return self
-     */
-    public function setStatus(?string $status): LandingPageResponse
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets template
-     *
-     * @return int|null
-     */
-    public function getTemplate(): ?int
-    {
-        return $this->container['template'] ?? null;
-    }
-
-    /**
-     * Sets template
-     *
-     * @param int|null $template Id of the template used
-     *
-     * @return self
-     */
-    public function setTemplate(?int $template): LandingPageResponse
-    {
-        $this->container['template'] = $template;
-
-        return $this;
-    }
-    /**
-     * Gets title
-     *
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->container['title'];
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string $title Title element of the landing page
-     *
-     * @return self
-     */
-    public function setTitle(string $title): LandingPageResponse
-    {
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at Datetime the asset was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?\DateTime $updated_at): LandingPageResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets workspace
-     *
-     * @return string|null
-     */
-    public function getWorkspace(): ?string
-    {
-        return $this->container['workspace'] ?? null;
-    }
-
-    /**
-     * Sets workspace
-     *
-     * @param string|null $workspace Name of the workspace
-     *
-     * @return self
-     */
-    public function setWorkspace(?string $workspace): LandingPageResponse
-    {
-        $this->container['workspace'] = $workspace;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

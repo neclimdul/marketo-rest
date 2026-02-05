@@ -32,6 +32,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     type: string,
  *     value: string,
  * }
+ *
+ * @method string getType()
+ * @method RedirectTo setType(string $type)
+ * @method string getValue()
+ * @method RedirectTo setValue(string $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<RedirectToArray>
  * @implements \ArrayAccess<key-of<RedirectToArray>, value-of<RedirectToArray>>
  * @psalm-suppress MixedReturnStatement
@@ -133,62 +139,6 @@ class RedirectTo extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
         ];
     }
 
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of redirect landing page
-     *
-     * @return self
-     */
-    public function setType(string $type): RedirectTo
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value Value for redirect landing page
-     *
-     * @return self
-     */
-    public function setValue(string $value): RedirectTo
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

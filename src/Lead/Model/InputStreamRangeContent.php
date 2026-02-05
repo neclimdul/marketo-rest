@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     input_stream?: ?object,
  *     length?: ?int,
  * }
+ *
+ * @method string|null getContentType()
+ * @method InputStreamRangeContent setContentType(string|null $content_type)
+ * @method \NecLimDul\MarketoRest\Lead\Model\FileRange|null getFileRange()
+ * @method InputStreamRangeContent setFileRange(\NecLimDul\MarketoRest\Lead\Model\FileRange|null $file_range)
+ * @method object|null getInputStream()
+ * @method InputStreamRangeContent setInputStream(object|null $input_stream)
+ * @method int|null getLength()
+ * @method InputStreamRangeContent setLength(int|null $length)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<InputStreamRangeContentArray>
  * @implements \ArrayAccess<key-of<InputStreamRangeContentArray>, value-of<InputStreamRangeContentArray>>
  * @psalm-suppress MixedReturnStatement
@@ -114,98 +124,6 @@ class InputStreamRangeContent extends ModelBase implements ModelInterface, \Arra
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content_type
-     *
-     * @return string|null
-     */
-    public function getContentType(): ?string
-    {
-        return $this->container['content_type'] ?? null;
-    }
-
-    /**
-     * Sets content_type
-     *
-     * @param string|null $content_type content_type
-     *
-     * @return self
-     */
-    public function setContentType(?string $content_type): InputStreamRangeContent
-    {
-        $this->container['content_type'] = $content_type;
-
-        return $this;
-    }
-    /**
-     * Gets file_range
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\FileRange|null
-     */
-    public function getFileRange(): ?\NecLimDul\MarketoRest\Lead\Model\FileRange
-    {
-        return $this->container['file_range'] ?? null;
-    }
-
-    /**
-     * Sets file_range
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\FileRange|null $file_range file_range
-     *
-     * @return self
-     */
-    public function setFileRange(?\NecLimDul\MarketoRest\Lead\Model\FileRange $file_range): InputStreamRangeContent
-    {
-        $this->container['file_range'] = $file_range;
-
-        return $this;
-    }
-    /**
-     * Gets input_stream
-     *
-     * @return object|null
-     */
-    public function getInputStream(): ?object
-    {
-        return $this->container['input_stream'] ?? null;
-    }
-
-    /**
-     * Sets input_stream
-     *
-     * @param object|null $input_stream input_stream
-     *
-     * @return self
-     */
-    public function setInputStream(?object $input_stream): InputStreamRangeContent
-    {
-        $this->container['input_stream'] = $input_stream;
-
-        return $this;
-    }
-    /**
-     * Gets length
-     *
-     * @return int|null
-     */
-    public function getLength(): ?int
-    {
-        return $this->container['length'] ?? null;
-    }
-
-    /**
-     * Sets length
-     *
-     * @param int|null $length length
-     *
-     * @return self
-     */
-    public function setLength(?int $length): InputStreamRangeContent
-    {
-        $this->container['length'] = $length;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

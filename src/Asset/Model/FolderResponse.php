@@ -42,6 +42,36 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     url: string,
  *     workspace?: ?string,
  * }
+ *
+ * @method int|null getAccessZoneId()
+ * @method FolderResponse setAccessZoneId(int|null $access_zone_id)
+ * @method \DateTime getCreatedAt()
+ * @method FolderResponse setCreatedAt(\DateTime $created_at)
+ * @method string|null getDescription()
+ * @method FolderResponse setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolderId()
+ * @method FolderResponse setFolderId(\NecLimDul\MarketoRest\Asset\Model\Folder $folder_id)
+ * @method string getFolderType()
+ * @method FolderResponse setFolderType(string $folder_type)
+ * @method int getId()
+ * @method FolderResponse setId(int $id)
+ * @method bool getIsArchive()
+ * @method FolderResponse setIsArchive(bool $is_archive)
+ * @method bool|null getIsSystem()
+ * @method FolderResponse setIsSystem(bool|null $is_system)
+ * @method string getName()
+ * @method FolderResponse setName(string $name)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getParent()
+ * @method FolderResponse setParent(\NecLimDul\MarketoRest\Asset\Model\Folder $parent)
+ * @method string getPath()
+ * @method FolderResponse setPath(string $path)
+ * @method \DateTime getUpdatedAt()
+ * @method FolderResponse setUpdatedAt(\DateTime $updated_at)
+ * @method string getUrl()
+ * @method FolderResponse setUrl(string $url)
+ * @method string|null getWorkspace()
+ * @method FolderResponse setWorkspace(string|null $workspace)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FolderResponseArray>
  * @implements \ArrayAccess<key-of<FolderResponseArray>, value-of<FolderResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -227,338 +257,6 @@ class FolderResponse extends ModelBase implements ModelInterface, \ArrayAccess, 
         ];
     }
 
-    /**
-     * Gets access_zone_id
-     *
-     * @return int|null
-     */
-    public function getAccessZoneId(): ?int
-    {
-        return $this->container['access_zone_id'] ?? null;
-    }
-
-    /**
-     * Sets access_zone_id
-     *
-     * @param int|null $access_zone_id access_zone_id
-     *
-     * @return self
-     */
-    public function setAccessZoneId(?int $access_zone_id): FolderResponse
-    {
-        $this->container['access_zone_id'] = $access_zone_id;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime $created_at Datetime the folder was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $created_at): FolderResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the folder
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): FolderResponse
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder_id
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolderId(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder_id'];
-    }
-
-    /**
-     * Sets folder_id
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder_id folder_id
-     *
-     * @return self
-     */
-    public function setFolderId(\NecLimDul\MarketoRest\Asset\Model\Folder $folder_id): FolderResponse
-    {
-        $this->container['folder_id'] = $folder_id;
-
-        return $this;
-    }
-    /**
-     * Gets folder_type
-     *
-     * @return string
-     */
-    public function getFolderType(): string
-    {
-        return $this->container['folder_type'];
-    }
-
-    /**
-     * Sets folder_type
-     *
-     * @param string $folder_type Type of folder
-     *
-     * @return self
-     */
-    public function setFolderType(string $folder_type): FolderResponse
-    {
-        $allowedValues = $this->getFolderTypeAllowableValues();
-        if (!in_array($folder_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'folder_type', must be one of '%s'",
-                    $folder_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['folder_type'] = $folder_type;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the folder
-     *
-     * @return self
-     */
-    public function setId(int $id): FolderResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets is_archive
-     *
-     * @return bool
-     */
-    public function getIsArchive(): bool
-    {
-        return $this->container['is_archive'];
-    }
-
-    /**
-     * Sets is_archive
-     *
-     * @param bool $is_archive Archival status of the folder
-     *
-     * @return self
-     */
-    public function setIsArchive(bool $is_archive): FolderResponse
-    {
-        $this->container['is_archive'] = $is_archive;
-
-        return $this;
-    }
-    /**
-     * Gets is_system
-     *
-     * @return bool|null
-     */
-    public function getIsSystem(): ?bool
-    {
-        return $this->container['is_system'] ?? null;
-    }
-
-    /**
-     * Sets is_system
-     *
-     * @param bool|null $is_system Whether the folder is system-managed
-     *
-     * @return self
-     */
-    public function setIsSystem(?bool $is_system): FolderResponse
-    {
-        $this->container['is_system'] = $is_system;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the folder. Not applicable for Programs
-     *
-     * @return self
-     */
-    public function setName(string $name): FolderResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets parent
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getParent(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['parent'];
-    }
-
-    /**
-     * Sets parent
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $parent parent
-     *
-     * @return self
-     */
-    public function setParent(\NecLimDul\MarketoRest\Asset\Model\Folder $parent): FolderResponse
-    {
-        $this->container['parent'] = $parent;
-
-        return $this;
-    }
-    /**
-     * Gets path
-     *
-     * @return string
-     */
-    public function getPath(): string
-    {
-        return $this->container['path'];
-    }
-
-    /**
-     * Sets path
-     *
-     * @param string $path Path of the folder
-     *
-     * @return self
-     */
-    public function setPath(string $path): FolderResponse
-    {
-        $this->container['path'] = $path;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime $updated_at Datetime the folder was last updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(\DateTime $updated_at): FolderResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets url
-     *
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string $url Url of the folder
-     *
-     * @return self
-     */
-    public function setUrl(string $url): FolderResponse
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-    /**
-     * Gets workspace
-     *
-     * @return string|null
-     */
-    public function getWorkspace(): ?string
-    {
-        return $this->container['workspace'] ?? null;
-    }
-
-    /**
-     * Sets workspace
-     *
-     * @param string|null $workspace Name of the workspace
-     *
-     * @return self
-     */
-    public function setWorkspace(?string $workspace): FolderResponse
-    {
-        $this->container['workspace'] = $workspace;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

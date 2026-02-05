@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     static_list_id: int,
  *     static_list_name: string,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\DateRange getUpdatedAt()
+ * @method ExportCustomObjectFilter setUpdatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at)
+ * @method int getSmartListId()
+ * @method ExportCustomObjectFilter setSmartListId(int $smart_list_id)
+ * @method string getSmartListName()
+ * @method ExportCustomObjectFilter setSmartListName(string $smart_list_name)
+ * @method int getStaticListId()
+ * @method ExportCustomObjectFilter setStaticListId(int $static_list_id)
+ * @method string getStaticListName()
+ * @method ExportCustomObjectFilter setStaticListName(string $static_list_name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ExportCustomObjectFilterArray>
  * @implements \ArrayAccess<key-of<ExportCustomObjectFilterArray>, value-of<ExportCustomObjectFilterArray>>
  * @psalm-suppress MixedReturnStatement
@@ -125,121 +137,6 @@ class ExportCustomObjectFilter extends ModelBase implements ModelInterface, \Arr
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets updated_at
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\DateRange
-     */
-    public function getUpdatedAt(): \NecLimDul\MarketoRest\Lead\Model\DateRange
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at updated_at
-     *
-     * @return self
-     */
-    public function setUpdatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at): ExportCustomObjectFilter
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets smart_list_id
-     *
-     * @return int
-     */
-    public function getSmartListId(): int
-    {
-        return $this->container['smart_list_id'];
-    }
-
-    /**
-     * Sets smart_list_id
-     *
-     * @param int $smart_list_id Id of smart list to retrieve leads from
-     *
-     * @return self
-     */
-    public function setSmartListId(int $smart_list_id): ExportCustomObjectFilter
-    {
-        $this->container['smart_list_id'] = $smart_list_id;
-
-        return $this;
-    }
-    /**
-     * Gets smart_list_name
-     *
-     * @return string
-     */
-    public function getSmartListName(): string
-    {
-        return $this->container['smart_list_name'];
-    }
-
-    /**
-     * Sets smart_list_name
-     *
-     * @param string $smart_list_name Name of smart list to retrieve leads from
-     *
-     * @return self
-     */
-    public function setSmartListName(string $smart_list_name): ExportCustomObjectFilter
-    {
-        $this->container['smart_list_name'] = $smart_list_name;
-
-        return $this;
-    }
-    /**
-     * Gets static_list_id
-     *
-     * @return int
-     */
-    public function getStaticListId(): int
-    {
-        return $this->container['static_list_id'];
-    }
-
-    /**
-     * Sets static_list_id
-     *
-     * @param int $static_list_id Id of static list to retrieve leads from
-     *
-     * @return self
-     */
-    public function setStaticListId(int $static_list_id): ExportCustomObjectFilter
-    {
-        $this->container['static_list_id'] = $static_list_id;
-
-        return $this;
-    }
-    /**
-     * Gets static_list_name
-     *
-     * @return string
-     */
-    public function getStaticListName(): string
-    {
-        return $this->container['static_list_name'];
-    }
-
-    /**
-     * Sets static_list_name
-     *
-     * @param string $static_list_name Name of static list to retrieve leads from
-     *
-     * @return self
-     */
-    public function setStaticListName(string $static_list_name): ExportCustomObjectFilter
-    {
-        $this->container['static_list_name'] = $static_list_name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

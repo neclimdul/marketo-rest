@@ -37,6 +37,26 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     updateable?: ?bool,
  *     updated_at?: ?string,
  * }
+ *
+ * @method string|null getCreatedAt()
+ * @method NamedAccountList setCreatedAt(string|null $created_at)
+ * @method string getMarketoGuid()
+ * @method NamedAccountList setMarketoGuid(string $marketo_guid)
+ * @method string|null getName()
+ * @method NamedAccountList setName(string|null $name)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Reason[]|null getReasons()
+ * @method NamedAccountList setReasons(\NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons)
+ * @method int getSeq()
+ * @method NamedAccountList setSeq(int $seq)
+ * @method string|null getStatus()
+ * @method NamedAccountList setStatus(string|null $status)
+ * @method string|null getType()
+ * @method NamedAccountList setType(string|null $type)
+ * @method bool|null getUpdateable()
+ * @method NamedAccountList setUpdateable(bool|null $updateable)
+ * @method string|null getUpdatedAt()
+ * @method NamedAccountList setUpdatedAt(string|null $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<NamedAccountListArray>
  * @implements \ArrayAccess<key-of<NamedAccountListArray>, value-of<NamedAccountListArray>>
  * @psalm-suppress MixedReturnStatement
@@ -175,223 +195,6 @@ class NamedAccountList extends ModelBase implements ModelInterface, \ArrayAccess
         ];
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return string|null
-     */
-    public function getCreatedAt(): ?string
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string|null $created_at Datetime when the named account list was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?string $created_at): NamedAccountList
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets marketo_guid
-     *
-     * @return string
-     */
-    public function getMarketoGuid(): string
-    {
-        return $this->container['marketo_guid'];
-    }
-
-    /**
-     * Sets marketo_guid
-     *
-     * @param string $marketo_guid Unique GUID of the custom object records
-     *
-     * @return self
-     */
-    public function setMarketoGuid(string $marketo_guid): NamedAccountList
-    {
-        $this->container['marketo_guid'] = $marketo_guid;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of named account list
-     *
-     * @return self
-     */
-    public function setName(?string $name): NamedAccountList
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets reasons
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
-     */
-    public function getReasons(): ?array
-    {
-        return $this->container['reasons'] ?? null;
-    }
-
-    /**
-     * Sets reasons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed. Reasons are only present in API responses and should not be submitted
-     *
-     * @return self
-     */
-    public function setReasons(?array $reasons): NamedAccountList
-    {
-        $this->container['reasons'] = $reasons;
-
-        return $this;
-    }
-    /**
-     * Gets seq
-     *
-     * @return int
-     */
-    public function getSeq(): int
-    {
-        return $this->container['seq'];
-    }
-
-    /**
-     * Sets seq
-     *
-     * @param int $seq Integer indicating the sequence of the record in response. This value is correlated to the order of the records included in the request input. Seq should only be part of responses and should not be submitted.
-     *
-     * @return self
-     */
-    public function setSeq(int $seq): NamedAccountList
-    {
-        $this->container['seq'] = $seq;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus(): ?string
-    {
-        return $this->container['status'] ?? null;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status status
-     *
-     * @return self
-     */
-    public function setStatus(?string $status): NamedAccountList
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType(): ?string
-    {
-        return $this->container['type'] ?? null;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type Type of named account list (\"default\" if created by user or API, \"external\" if managed by CRM-View)
-     *
-     * @return self
-     */
-    public function setType(?string $type): NamedAccountList
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets updateable
-     *
-     * @return bool|null
-     */
-    public function getUpdateable(): ?bool
-    {
-        return $this->container['updateable'] ?? null;
-    }
-
-    /**
-     * Sets updateable
-     *
-     * @param bool|null $updateable Whether the list is updateable (true if created by user or API, false if managed by CRM-View)
-     *
-     * @return self
-     */
-    public function setUpdateable(?bool $updateable): NamedAccountList
-    {
-        $this->container['updateable'] = $updateable;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return string|null
-     */
-    public function getUpdatedAt(): ?string
-    {
-        return $this->container['updated_at'] ?? null;
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param string|null $updated_at Datetime when the named account list was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(?string $updated_at): NamedAccountList
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

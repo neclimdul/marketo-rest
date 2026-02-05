@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     name?: ?string,
  *     type?: ?string,
  * }
+ *
+ * @method int|null getId()
+ * @method FileFolder setId(int|null $id)
+ * @method string|null getName()
+ * @method FileFolder setName(string|null $name)
+ * @method string|null getType()
+ * @method FileFolder setType(string|null $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FileFolderArray>
  * @implements \ArrayAccess<key-of<FileFolderArray>, value-of<FileFolderArray>>
  * @psalm-suppress MixedReturnStatement
@@ -109,75 +117,6 @@ class FileFolder extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets id
-     *
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->container['id'] ?? null;
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int|null $id id
-     *
-     * @return self
-     */
-    public function setId(?int $id): FileFolder
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name name
-     *
-     * @return self
-     */
-    public function setName(?string $name): FileFolder
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType(): ?string
-    {
-        return $this->container['type'] ?? null;
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type type
-     *
-     * @return self
-     */
-    public function setType(?string $type): FileFolder
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

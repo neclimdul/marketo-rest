@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type ImportCustomObjectUsingPOSTRequestArray array{
  *     file: \SplFileObject,
  * }
+ *
+ * @method \SplFileObject getFile()
+ * @method ImportCustomObjectUsingPOSTRequest setFile(\SplFileObject $file)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ImportCustomObjectUsingPOSTRequestArray>
  * @implements \ArrayAccess<key-of<ImportCustomObjectUsingPOSTRequestArray>, value-of<ImportCustomObjectUsingPOSTRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -100,29 +104,6 @@ class ImportCustomObjectUsingPOSTRequest extends ModelBase implements ModelInter
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets file
-     *
-     * @return \SplFileObject
-     */
-    public function getFile(): \SplFileObject
-    {
-        return $this->container['file'];
-    }
-
-    /**
-     * Sets file
-     *
-     * @param \SplFileObject $file File containing the data records to import.
-     *
-     * @return self
-     */
-    public function setFile(\SplFileObject $file): ImportCustomObjectUsingPOSTRequest
-    {
-        $this->container['file'] = $file;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

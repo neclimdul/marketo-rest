@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     errors?: ?\NecLimDul\MarketoRest\Lead\Model\ErrorCount[],
  *     total?: ?int,
  * }
+ *
+ * @method \DateTime getDate()
+ * @method ErrorsData setDate(\DateTime $date)
+ * @method \NecLimDul\MarketoRest\Lead\Model\ErrorCount[]|null getErrors()
+ * @method ErrorsData setErrors(\NecLimDul\MarketoRest\Lead\Model\ErrorCount[]|null $errors)
+ * @method int|null getTotal()
+ * @method ErrorsData setTotal(int|null $total)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ErrorsDataArray>
  * @implements \ArrayAccess<key-of<ErrorsDataArray>, value-of<ErrorsDataArray>>
  * @psalm-suppress MixedReturnStatement
@@ -111,75 +119,6 @@ class ErrorsData extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets date
-     *
-     * @return \DateTime
-     */
-    public function getDate(): \DateTime
-    {
-        return $this->container['date'];
-    }
-
-    /**
-     * Sets date
-     *
-     * @param \DateTime $date Date of the collected calls
-     *
-     * @return self
-     */
-    public function setDate(\DateTime $date): ErrorsData
-    {
-        $this->container['date'] = $date;
-
-        return $this;
-    }
-    /**
-     * Gets errors
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ErrorCount[]|null
-     */
-    public function getErrors(): ?array
-    {
-        return $this->container['errors'] ?? null;
-    }
-
-    /**
-     * Sets errors
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ErrorCount[]|null $errors Counts for individual error codes
-     *
-     * @return self
-     */
-    public function setErrors(?array $errors): ErrorsData
-    {
-        $this->container['errors'] = $errors;
-
-        return $this;
-    }
-    /**
-     * Gets total
-     *
-     * @return int|null
-     */
-    public function getTotal(): ?int
-    {
-        return $this->container['total'] ?? null;
-    }
-
-    /**
-     * Sets total
-     *
-     * @param int|null $total Total number of errors in the time period
-     *
-     * @return self
-     */
-    public function setTotal(?int $total): ErrorsData
-    {
-        $this->container['total'] = $total;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

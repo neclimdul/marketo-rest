@@ -35,6 +35,22 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     searchable_fields: array[],
  *     fields: \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields2[],
  * }
+ *
+ * @method string getName()
+ * @method ProgramMemberAttribute2 setName(string $name)
+ * @method string getDescription()
+ * @method ProgramMemberAttribute2 setDescription(string $description)
+ * @method string getCreatedAt()
+ * @method ProgramMemberAttribute2 setCreatedAt(string $created_at)
+ * @method string getUpdatedAt()
+ * @method ProgramMemberAttribute2 setUpdatedAt(string $updated_at)
+ * @method string[] getDedupeFields()
+ * @method ProgramMemberAttribute2 setDedupeFields(string[] $dedupe_fields)
+ * @method array[] getSearchableFields()
+ * @method ProgramMemberAttribute2 setSearchableFields(array[] $searchable_fields)
+ * @method \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields2[] getFields()
+ * @method ProgramMemberAttribute2 setFields(\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields2[] $fields)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ProgramMemberAttribute2Array>
  * @implements \ArrayAccess<key-of<ProgramMemberAttribute2Array>, value-of<ProgramMemberAttribute2Array>>
  * @psalm-suppress MixedReturnStatement
@@ -135,167 +151,6 @@ class ProgramMemberAttribute2 extends ModelBase implements ModelInterface, \Arra
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name \"API Program Member\"
-     *
-     * @return self
-     */
-    public function setName(string $name): ProgramMemberAttribute2
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string $description \"API Program Member Map\"
-     *
-     * @return self
-     */
-    public function setDescription(string $description): ProgramMemberAttribute2
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets created_at
-     *
-     * @return string
-     */
-    public function getCreatedAt(): string
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param string $created_at Datetime when created
-     *
-     * @return self
-     */
-    public function setCreatedAt(string $created_at): ProgramMemberAttribute2
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return string
-     */
-    public function getUpdatedAt(): string
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param string $updated_at Datetime updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(string $updated_at): ProgramMemberAttribute2
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-    /**
-     * Gets dedupe_fields
-     *
-     * @return string[]
-     */
-    public function getDedupeFields(): array
-    {
-        return $this->container['dedupe_fields'];
-    }
-
-    /**
-     * Sets dedupe_fields
-     *
-     * @param string[] $dedupe_fields List of dedupe fields
-     *
-     * @return self
-     */
-    public function setDedupeFields(array $dedupe_fields): ProgramMemberAttribute2
-    {
-        $this->container['dedupe_fields'] = $dedupe_fields;
-
-        return $this;
-    }
-    /**
-     * Gets searchable_fields
-     *
-     * @return array[]
-     */
-    public function getSearchableFields(): array
-    {
-        return $this->container['searchable_fields'];
-    }
-
-    /**
-     * Sets searchable_fields
-     *
-     * @param array[] $searchable_fields List of searchable fields
-     *
-     * @return self
-     */
-    public function setSearchableFields(array $searchable_fields): ProgramMemberAttribute2
-    {
-        $this->container['searchable_fields'] = $searchable_fields;
-
-        return $this;
-    }
-    /**
-     * Gets fields
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields2[]
-     */
-    public function getFields(): array
-    {
-        return $this->container['fields'];
-    }
-
-    /**
-     * Sets fields
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields2[] $fields Description of searchable fields
-     *
-     * @return self
-     */
-    public function setFields(array $fields): ProgramMemberAttribute2
-    {
-        $this->container['fields'] = $fields;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

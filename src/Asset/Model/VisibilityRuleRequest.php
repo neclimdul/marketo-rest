@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     subject_field: string,
  *     values: string[],
  * }
+ *
+ * @method string|null getAltLabel()
+ * @method VisibilityRuleRequest setAltLabel(string|null $alt_label)
+ * @method string getOperator()
+ * @method VisibilityRuleRequest setOperator(string $operator)
+ * @method \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null getPickListValues()
+ * @method VisibilityRuleRequest setPickListValues(\NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null $pick_list_values)
+ * @method string getSubjectField()
+ * @method VisibilityRuleRequest setSubjectField(string $subject_field)
+ * @method string[] getValues()
+ * @method VisibilityRuleRequest setValues(string[] $values)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<VisibilityRuleRequestArray>
  * @implements \ArrayAccess<key-of<VisibilityRuleRequestArray>, value-of<VisibilityRuleRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -191,131 +203,6 @@ class VisibilityRuleRequest extends ModelBase implements ModelInterface, \ArrayA
         ];
     }
 
-    /**
-     * Gets alt_label
-     *
-     * @return string|null
-     */
-    public function getAltLabel(): ?string
-    {
-        return $this->container['alt_label'] ?? null;
-    }
-
-    /**
-     * Sets alt_label
-     *
-     * @param string|null $alt_label alt_label
-     *
-     * @return self
-     */
-    public function setAltLabel(?string $alt_label): VisibilityRuleRequest
-    {
-        $this->container['alt_label'] = $alt_label;
-
-        return $this;
-    }
-    /**
-     * Gets operator
-     *
-     * @return string
-     */
-    public function getOperator(): string
-    {
-        return $this->container['operator'];
-    }
-
-    /**
-     * Sets operator
-     *
-     * @param string $operator Operation to apply to target field. Evaluated against the list of values when applicable.
-     *
-     * @return self
-     */
-    public function setOperator(string $operator): VisibilityRuleRequest
-    {
-        $allowedValues = $this->getOperatorAllowableValues();
-        if (!in_array($operator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'operator', must be one of '%s'",
-                    $operator,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['operator'] = $operator;
-
-        return $this;
-    }
-    /**
-     * Gets pick_list_values
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null
-     */
-    public function getPickListValues(): ?array
-    {
-        return $this->container['pick_list_values'] ?? null;
-    }
-
-    /**
-     * Sets pick_list_values
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null $pick_list_values Alternative label to display when rules are applied.
-     *
-     * @return self
-     */
-    public function setPickListValues(?array $pick_list_values): VisibilityRuleRequest
-    {
-        $this->container['pick_list_values'] = $pick_list_values;
-
-        return $this;
-    }
-    /**
-     * Gets subject_field
-     *
-     * @return string
-     */
-    public function getSubjectField(): string
-    {
-        return $this->container['subject_field'];
-    }
-
-    /**
-     * Sets subject_field
-     *
-     * @param string $subject_field Target field id to apply the operation defined by operator to
-     *
-     * @return self
-     */
-    public function setSubjectField(string $subject_field): VisibilityRuleRequest
-    {
-        $this->container['subject_field'] = $subject_field;
-
-        return $this;
-    }
-    /**
-     * Gets values
-     *
-     * @return string[]
-     */
-    public function getValues(): array
-    {
-        return $this->container['values'];
-    }
-
-    /**
-     * Sets values
-     *
-     * @param string[] $values Comma-separated list of values to match against. Valid for operators 'is', 'isNot', 'startsWith', 'notStartsWith', 'endsWith', 'notEndsWith', 'contains', and 'notContains'
-     *
-     * @return self
-     */
-    public function setValues(array $values): VisibilityRuleRequest
-    {
-        $this->container['values'] = $values;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

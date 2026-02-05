@@ -39,6 +39,30 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     video_url?: ?string,
  *     width?: ?int,
  * }
+ *
+ * @method string|null getAltText()
+ * @method UpdateEmailDynamicContentRequest setAltText(string|null $alt_text)
+ * @method string|null getExternalUrl()
+ * @method UpdateEmailDynamicContentRequest setExternalUrl(string|null $external_url)
+ * @method int|null getHeight()
+ * @method UpdateEmailDynamicContentRequest setHeight(int|null $height)
+ * @method string|null getImage()
+ * @method UpdateEmailDynamicContentRequest setImage(string|null $image)
+ * @method string|null getLinkUrl()
+ * @method UpdateEmailDynamicContentRequest setLinkUrl(string|null $link_url)
+ * @method bool|null getOverWrite()
+ * @method UpdateEmailDynamicContentRequest setOverWrite(bool|null $over_write)
+ * @method string|null getStyle()
+ * @method UpdateEmailDynamicContentRequest setStyle(string|null $style)
+ * @method string getType()
+ * @method UpdateEmailDynamicContentRequest setType(string $type)
+ * @method string getValue()
+ * @method UpdateEmailDynamicContentRequest setValue(string $value)
+ * @method string|null getVideoUrl()
+ * @method UpdateEmailDynamicContentRequest setVideoUrl(string|null $video_url)
+ * @method int|null getWidth()
+ * @method UpdateEmailDynamicContentRequest setWidth(int|null $width)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateEmailDynamicContentRequestArray>
  * @implements \ArrayAccess<key-of<UpdateEmailDynamicContentRequestArray>, value-of<UpdateEmailDynamicContentRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -180,269 +204,6 @@ class UpdateEmailDynamicContentRequest extends ModelBase implements ModelInterfa
         ];
     }
 
-    /**
-     * Gets alt_text
-     *
-     * @return string|null
-     */
-    public function getAltText(): ?string
-    {
-        return $this->container['alt_text'] ?? null;
-    }
-
-    /**
-     * Sets alt_text
-     *
-     * @param string|null $alt_text Sets the value of the alt parameter for the resulting img element
-     *
-     * @return self
-     */
-    public function setAltText(?string $alt_text): UpdateEmailDynamicContentRequest
-    {
-        $this->container['alt_text'] = $alt_text;
-
-        return $this;
-    }
-    /**
-     * Gets external_url
-     *
-     * @return string|null
-     */
-    public function getExternalUrl(): ?string
-    {
-        return $this->container['external_url'] ?? null;
-    }
-
-    /**
-     * Sets external_url
-     *
-     * @param string|null $external_url external_url
-     *
-     * @return self
-     */
-    public function setExternalUrl(?string $external_url): UpdateEmailDynamicContentRequest
-    {
-        $this->container['external_url'] = $external_url;
-
-        return $this;
-    }
-    /**
-     * Gets height
-     *
-     * @return int|null
-     */
-    public function getHeight(): ?int
-    {
-        return $this->container['height'] ?? null;
-    }
-
-    /**
-     * Sets height
-     *
-     * @param int|null $height Overrides naitve height of the image. The resulting file will be resized to the given height
-     *
-     * @return self
-     */
-    public function setHeight(?int $height): UpdateEmailDynamicContentRequest
-    {
-        $this->container['height'] = $height;
-
-        return $this;
-    }
-    /**
-     * Gets image
-     *
-     * @return string|null
-     */
-    public function getImage(): ?string
-    {
-        return $this->container['image'] ?? null;
-    }
-
-    /**
-     * Sets image
-     *
-     * @param string|null $image Multipart file that allows you to add an image from your computer
-     *
-     * @return self
-     */
-    public function setImage(?string $image): UpdateEmailDynamicContentRequest
-    {
-        $this->container['image'] = $image;
-
-        return $this;
-    }
-    /**
-     * Gets link_url
-     *
-     * @return string|null
-     */
-    public function getLinkUrl(): ?string
-    {
-        return $this->container['link_url'] ?? null;
-    }
-
-    /**
-     * Sets link_url
-     *
-     * @param string|null $link_url link_url
-     *
-     * @return self
-     */
-    public function setLinkUrl(?string $link_url): UpdateEmailDynamicContentRequest
-    {
-        $this->container['link_url'] = $link_url;
-
-        return $this;
-    }
-    /**
-     * Gets over_write
-     *
-     * @return bool|null
-     */
-    public function getOverWrite(): ?bool
-    {
-        return $this->container['over_write'] ?? null;
-    }
-
-    /**
-     * Sets over_write
-     *
-     * @param bool|null $over_write Allows overwriting of the existing image content section
-     *
-     * @return self
-     */
-    public function setOverWrite(?bool $over_write): UpdateEmailDynamicContentRequest
-    {
-        $this->container['over_write'] = $over_write;
-
-        return $this;
-    }
-    /**
-     * Gets style
-     *
-     * @return string|null
-     */
-    public function getStyle(): ?string
-    {
-        return $this->container['style'] ?? null;
-    }
-
-    /**
-     * Sets style
-     *
-     * @param string|null $style Sets the value of the style parameter for the content section
-     *
-     * @return self
-     */
-    public function setStyle(?string $style): UpdateEmailDynamicContentRequest
-    {
-        $this->container['style'] = $style;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of content to set for the section.
-     *
-     * @return self
-     */
-    public function setType(string $type): UpdateEmailDynamicContentRequest
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value Value to set for the section. For type Text, the HTML content of the section. For type DynamicContent, the id of the segmentation to use for the content. For type Snippet, the id of the snippet to embed
-     *
-     * @return self
-     */
-    public function setValue(string $value): UpdateEmailDynamicContentRequest
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
-    /**
-     * Gets video_url
-     *
-     * @return string|null
-     */
-    public function getVideoUrl(): ?string
-    {
-        return $this->container['video_url'] ?? null;
-    }
-
-    /**
-     * Sets video_url
-     *
-     * @param string|null $video_url Sets the Url of the video element. Videos must be either from YouTube or Vimeo
-     *
-     * @return self
-     */
-    public function setVideoUrl(?string $video_url): UpdateEmailDynamicContentRequest
-    {
-        $this->container['video_url'] = $video_url;
-
-        return $this;
-    }
-    /**
-     * Gets width
-     *
-     * @return int|null
-     */
-    public function getWidth(): ?int
-    {
-        return $this->container['width'] ?? null;
-    }
-
-    /**
-     * Sets width
-     *
-     * @param int|null $width Overrides native width of the image. The resulting file will be resized to the given width
-     *
-     * @return self
-     */
-    public function setWidth(?int $width): UpdateEmailDynamicContentRequest
-    {
-        $this->container['width'] = $width;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

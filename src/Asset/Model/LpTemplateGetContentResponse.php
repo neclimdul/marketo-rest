@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     status: string,
  *     template_type: string,
  * }
+ *
+ * @method string getContent()
+ * @method LpTemplateGetContentResponse setContent(string $content)
+ * @method bool getEnableMunchkin()
+ * @method LpTemplateGetContentResponse setEnableMunchkin(bool $enable_munchkin)
+ * @method int getId()
+ * @method LpTemplateGetContentResponse setId(int $id)
+ * @method string getStatus()
+ * @method LpTemplateGetContentResponse setStatus(string $status)
+ * @method string getTemplateType()
+ * @method LpTemplateGetContentResponse setTemplateType(string $template_type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<LpTemplateGetContentResponseArray>
  * @implements \ArrayAccess<key-of<LpTemplateGetContentResponseArray>, value-of<LpTemplateGetContentResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -176,141 +188,6 @@ class LpTemplateGetContentResponse extends ModelBase implements ModelInterface, 
         ];
     }
 
-    /**
-     * Gets content
-     *
-     * @return string
-     */
-    public function getContent(): string
-    {
-        return $this->container['content'];
-    }
-
-    /**
-     * Sets content
-     *
-     * @param string $content HTML content of the landing page template
-     *
-     * @return self
-     */
-    public function setContent(string $content): LpTemplateGetContentResponse
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
-    /**
-     * Gets enable_munchkin
-     *
-     * @return bool
-     */
-    public function getEnableMunchkin(): bool
-    {
-        return $this->container['enable_munchkin'];
-    }
-
-    /**
-     * Sets enable_munchkin
-     *
-     * @param bool $enable_munchkin Whether to enable munchkin on the derived pages. Defaults to true
-     *
-     * @return self
-     */
-    public function setEnableMunchkin(bool $enable_munchkin): LpTemplateGetContentResponse
-    {
-        $this->container['enable_munchkin'] = $enable_munchkin;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the template
-     *
-     * @return self
-     */
-    public function setId(int $id): LpTemplateGetContentResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status filter for draft or approved versions
-     *
-     * @return self
-     */
-    public function setStatus(string $status): LpTemplateGetContentResponse
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets template_type
-     *
-     * @return string
-     */
-    public function getTemplateType(): string
-    {
-        return $this->container['template_type'];
-    }
-
-    /**
-     * Sets template_type
-     *
-     * @param string $template_type Type of template to create. Defaults to freeForm
-     *
-     * @return self
-     */
-    public function setTemplateType(string $template_type): LpTemplateGetContentResponse
-    {
-        $allowedValues = $this->getTemplateTypeAllowableValues();
-        if (!in_array($template_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'template_type', must be one of '%s'",
-                    $template_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['template_type'] = $template_type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -35,6 +35,22 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     reason?: ?string,
  *     source?: ?string,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\PushLead[]|null getInput()
+ * @method PushLeadToMarketoRequest setInput(\NecLimDul\MarketoRest\Lead\Model\PushLead[]|null $input)
+ * @method string|null getLookupField()
+ * @method PushLeadToMarketoRequest setLookupField(string|null $lookup_field)
+ * @method string|null getPartitionName()
+ * @method PushLeadToMarketoRequest setPartitionName(string|null $partition_name)
+ * @method string|null getProgramName()
+ * @method PushLeadToMarketoRequest setProgramName(string|null $program_name)
+ * @method string|null getProgramStatus()
+ * @method PushLeadToMarketoRequest setProgramStatus(string|null $program_status)
+ * @method string|null getReason()
+ * @method PushLeadToMarketoRequest setReason(string|null $reason)
+ * @method string|null getSource()
+ * @method PushLeadToMarketoRequest setSource(string|null $source)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<PushLeadToMarketoRequestArray>
  * @implements \ArrayAccess<key-of<PushLeadToMarketoRequestArray>, value-of<PushLeadToMarketoRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -128,167 +144,6 @@ class PushLeadToMarketoRequest extends ModelBase implements ModelInterface, \Arr
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\PushLead[]|null
-     */
-    public function getInput(): ?array
-    {
-        return $this->container['input'] ?? null;
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\PushLead[]|null $input input
-     *
-     * @return self
-     */
-    public function setInput(?array $input): PushLeadToMarketoRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
-    /**
-     * Gets lookup_field
-     *
-     * @return string|null
-     */
-    public function getLookupField(): ?string
-    {
-        return $this->container['lookup_field'] ?? null;
-    }
-
-    /**
-     * Sets lookup_field
-     *
-     * @param string|null $lookup_field lookup_field
-     *
-     * @return self
-     */
-    public function setLookupField(?string $lookup_field): PushLeadToMarketoRequest
-    {
-        $this->container['lookup_field'] = $lookup_field;
-
-        return $this;
-    }
-    /**
-     * Gets partition_name
-     *
-     * @return string|null
-     */
-    public function getPartitionName(): ?string
-    {
-        return $this->container['partition_name'] ?? null;
-    }
-
-    /**
-     * Sets partition_name
-     *
-     * @param string|null $partition_name partition_name
-     *
-     * @return self
-     */
-    public function setPartitionName(?string $partition_name): PushLeadToMarketoRequest
-    {
-        $this->container['partition_name'] = $partition_name;
-
-        return $this;
-    }
-    /**
-     * Gets program_name
-     *
-     * @return string|null
-     */
-    public function getProgramName(): ?string
-    {
-        return $this->container['program_name'] ?? null;
-    }
-
-    /**
-     * Sets program_name
-     *
-     * @param string|null $program_name program_name
-     *
-     * @return self
-     */
-    public function setProgramName(?string $program_name): PushLeadToMarketoRequest
-    {
-        $this->container['program_name'] = $program_name;
-
-        return $this;
-    }
-    /**
-     * Gets program_status
-     *
-     * @return string|null
-     */
-    public function getProgramStatus(): ?string
-    {
-        return $this->container['program_status'] ?? null;
-    }
-
-    /**
-     * Sets program_status
-     *
-     * @param string|null $program_status program_status
-     *
-     * @return self
-     */
-    public function setProgramStatus(?string $program_status): PushLeadToMarketoRequest
-    {
-        $this->container['program_status'] = $program_status;
-
-        return $this;
-    }
-    /**
-     * Gets reason
-     *
-     * @return string|null
-     */
-    public function getReason(): ?string
-    {
-        return $this->container['reason'] ?? null;
-    }
-
-    /**
-     * Sets reason
-     *
-     * @param string|null $reason reason
-     *
-     * @return self
-     */
-    public function setReason(?string $reason): PushLeadToMarketoRequest
-    {
-        $this->container['reason'] = $reason;
-
-        return $this;
-    }
-    /**
-     * Gets source
-     *
-     * @return string|null
-     */
-    public function getSource(): ?string
-    {
-        return $this->container['source'] ?? null;
-    }
-
-    /**
-     * Sets source
-     *
-     * @param string|null $source source
-     *
-     * @return self
-     */
-    public function setSource(?string $source): PushLeadToMarketoRequest
-    {
-        $this->container['source'] = $source;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

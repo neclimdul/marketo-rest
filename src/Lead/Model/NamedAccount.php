@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     seq: int,
  *     status?: ?string,
  * }
+ *
+ * @method string getMarketoGuid()
+ * @method NamedAccount setMarketoGuid(string $marketo_guid)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Reason[]|null getReasons()
+ * @method NamedAccount setReasons(\NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons)
+ * @method int getSeq()
+ * @method NamedAccount setSeq(int $seq)
+ * @method string|null getStatus()
+ * @method NamedAccount setStatus(string|null $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<NamedAccountArray>
  * @implements \ArrayAccess<key-of<NamedAccountArray>, value-of<NamedAccountArray>>
  * @psalm-suppress MixedReturnStatement
@@ -150,108 +160,6 @@ class NamedAccount extends ModelBase implements ModelInterface, \ArrayAccess, \J
         ];
     }
 
-    /**
-     * Gets marketo_guid
-     *
-     * @return string
-     */
-    public function getMarketoGuid(): string
-    {
-        return $this->container['marketo_guid'];
-    }
-
-    /**
-     * Sets marketo_guid
-     *
-     * @param string $marketo_guid Unique GUID of the custom object records
-     *
-     * @return self
-     */
-    public function setMarketoGuid(string $marketo_guid): NamedAccount
-    {
-        $this->container['marketo_guid'] = $marketo_guid;
-
-        return $this;
-    }
-    /**
-     * Gets reasons
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
-     */
-    public function getReasons(): ?array
-    {
-        return $this->container['reasons'] ?? null;
-    }
-
-    /**
-     * Sets reasons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed. Reasons are only present in API responses and should not be submitted
-     *
-     * @return self
-     */
-    public function setReasons(?array $reasons): NamedAccount
-    {
-        $this->container['reasons'] = $reasons;
-
-        return $this;
-    }
-    /**
-     * Gets seq
-     *
-     * @return int
-     */
-    public function getSeq(): int
-    {
-        return $this->container['seq'];
-    }
-
-    /**
-     * Sets seq
-     *
-     * @param int $seq Integer indicating the sequence of the record in response. This value is correlated to the order of the records included in the request input. Seq should only be part of responses and should not be submitted.
-     *
-     * @return self
-     */
-    public function setSeq(int $seq): NamedAccount
-    {
-        $this->container['seq'] = $seq;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus(): ?string
-    {
-        return $this->container['status'] ?? null;
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status status
-     *
-     * @return self
-     */
-    public function setStatus(?string $status): NamedAccount
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

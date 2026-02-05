@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     insert_only?: ?bool,
  *     name: string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method CreateFileRequest setDescription(string|null $description)
+ * @method string getFile()
+ * @method CreateFileRequest setFile(string $file)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CreateFileRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method bool|null getInsertOnly()
+ * @method CreateFileRequest setInsertOnly(bool|null $insert_only)
+ * @method string getName()
+ * @method CreateFileRequest setName(string $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateFileRequestArray>
  * @implements \ArrayAccess<key-of<CreateFileRequestArray>, value-of<CreateFileRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -121,121 +133,6 @@ class CreateFileRequest extends ModelBase implements ModelInterface, \ArrayAcces
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the asset
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CreateFileRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets file
-     *
-     * @return string
-     */
-    public function getFile(): string
-    {
-        return $this->container['file'];
-    }
-
-    /**
-     * Sets file
-     *
-     * @param string $file Multipart file. Content of the file.
-     *
-     * @return self
-     */
-    public function setFile(string $file): CreateFileRequest
-    {
-        $this->container['file'] = $file;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateFileRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets insert_only
-     *
-     * @return bool|null
-     */
-    public function getInsertOnly(): ?bool
-    {
-        return $this->container['insert_only'] ?? null;
-    }
-
-    /**
-     * Sets insert_only
-     *
-     * @param bool|null $insert_only Whether the calls hould fail if there is already an existing file with the same name
-     *
-     * @return self
-     */
-    public function setInsertOnly(?bool $insert_only): CreateFileRequest
-    {
-        $this->container['insert_only'] = $insert_only;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the File
-     *
-     * @return self
-     */
-    public function setName(string $name): CreateFileRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

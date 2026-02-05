@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     file: string,
  *     id: int,
  * }
+ *
+ * @method string getFile()
+ * @method UpdateFileContentRequest setFile(string $file)
+ * @method int getId()
+ * @method UpdateFileContentRequest setId(int $id)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateFileContentRequestArray>
  * @implements \ArrayAccess<key-of<UpdateFileContentRequestArray>, value-of<UpdateFileContentRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -106,52 +112,6 @@ class UpdateFileContentRequest extends ModelBase implements ModelInterface, \Arr
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets file
-     *
-     * @return string
-     */
-    public function getFile(): string
-    {
-        return $this->container['file'];
-    }
-
-    /**
-     * Sets file
-     *
-     * @param string $file Multipart file. Content of the file.
-     *
-     * @return self
-     */
-    public function setFile(string $file): UpdateFileContentRequest
-    {
-        $this->container['file'] = $file;
-
-        return $this;
-    }
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the file
-     *
-     * @return self
-     */
-    public function setId(int $id): UpdateFileContentRequest
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

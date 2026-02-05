@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     type: string,
  *     value: string,
  * }
+ *
+ * @method string getType()
+ * @method EmailHeaderField setType(string $type)
+ * @method string getValue()
+ * @method EmailHeaderField setValue(string $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<EmailHeaderFieldArray>
  * @implements \ArrayAccess<key-of<EmailHeaderFieldArray>, value-of<EmailHeaderFieldArray>>
  * @psalm-suppress MixedReturnStatement
@@ -105,52 +111,6 @@ class EmailHeaderField extends ModelBase implements ModelInterface, \ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Field type
-     *
-     * @return self
-     */
-    public function setType(string $type): EmailHeaderField
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value Value of field
-     *
-     * @return self
-     */
-    public function setValue(string $value): EmailHeaderField
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

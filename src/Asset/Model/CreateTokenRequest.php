@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     type: string,
  *     value: string,
  * }
+ *
+ * @method string getFolderType()
+ * @method CreateTokenRequest setFolderType(string $folder_type)
+ * @method string getName()
+ * @method CreateTokenRequest setName(string $name)
+ * @method string getType()
+ * @method CreateTokenRequest setType(string $type)
+ * @method string getValue()
+ * @method CreateTokenRequest setValue(string $value)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateTokenRequestArray>
  * @implements \ArrayAccess<key-of<CreateTokenRequestArray>, value-of<CreateTokenRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -177,118 +187,6 @@ class CreateTokenRequest extends ModelBase implements ModelInterface, \ArrayAcce
         ];
     }
 
-    /**
-     * Gets folder_type
-     *
-     * @return string
-     */
-    public function getFolderType(): string
-    {
-        return $this->container['folder_type'];
-    }
-
-    /**
-     * Sets folder_type
-     *
-     * @param string $folder_type Type of folder. 'Folder' or 'Program'
-     *
-     * @return self
-     */
-    public function setFolderType(string $folder_type): CreateTokenRequest
-    {
-        $allowedValues = $this->getFolderTypeAllowableValues();
-        if (!in_array($folder_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'folder_type', must be one of '%s'",
-                    $folder_type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['folder_type'] = $folder_type;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the token. Max length is 50 characters)
-     *
-     * @return self
-     */
-    public function setName(string $name): CreateTokenRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of the token
-     *
-     * @return self
-     */
-    public function setType(string $type): CreateTokenRequest
-    {
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string $value Value of the token
-     *
-     * @return self
-     */
-    public function setValue(string $value): CreateTokenRequest
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

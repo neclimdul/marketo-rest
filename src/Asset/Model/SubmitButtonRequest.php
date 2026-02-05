@@ -32,6 +32,16 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     label?: ?string,
  *     waiting_label?: ?string,
  * }
+ *
+ * @method int|null getButtonPosition()
+ * @method SubmitButtonRequest setButtonPosition(int|null $button_position)
+ * @method string|null getButtonStyle()
+ * @method SubmitButtonRequest setButtonStyle(string|null $button_style)
+ * @method string|null getLabel()
+ * @method SubmitButtonRequest setLabel(string|null $label)
+ * @method string|null getWaitingLabel()
+ * @method SubmitButtonRequest setWaitingLabel(string|null $waiting_label)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<SubmitButtonRequestArray>
  * @implements \ArrayAccess<key-of<SubmitButtonRequestArray>, value-of<SubmitButtonRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -114,98 +124,6 @@ class SubmitButtonRequest extends ModelBase implements ModelInterface, \ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets button_position
-     *
-     * @return int|null
-     */
-    public function getButtonPosition(): ?int
-    {
-        return $this->container['button_position'] ?? null;
-    }
-
-    /**
-     * Sets button_position
-     *
-     * @param int|null $button_position Location in pixels of the button relative to the left of the form
-     *
-     * @return self
-     */
-    public function setButtonPosition(?int $button_position): SubmitButtonRequest
-    {
-        $this->container['button_position'] = $button_position;
-
-        return $this;
-    }
-    /**
-     * Gets button_style
-     *
-     * @return string|null
-     */
-    public function getButtonStyle(): ?string
-    {
-        return $this->container['button_style'] ?? null;
-    }
-
-    /**
-     * Sets button_style
-     *
-     * @param string|null $button_style Style of the button
-     *
-     * @return self
-     */
-    public function setButtonStyle(?string $button_style): SubmitButtonRequest
-    {
-        $this->container['button_style'] = $button_style;
-
-        return $this;
-    }
-    /**
-     * Gets label
-     *
-     * @return string|null
-     */
-    public function getLabel(): ?string
-    {
-        return $this->container['label'] ?? null;
-    }
-
-    /**
-     * Sets label
-     *
-     * @param string|null $label Label text of the button
-     *
-     * @return self
-     */
-    public function setLabel(?string $label): SubmitButtonRequest
-    {
-        $this->container['label'] = $label;
-
-        return $this;
-    }
-    /**
-     * Gets waiting_label
-     *
-     * @return string|null
-     */
-    public function getWaitingLabel(): ?string
-    {
-        return $this->container['waiting_label'] ?? null;
-    }
-
-    /**
-     * Sets waiting_label
-     *
-     * @param string|null $waiting_label Waiting text of the button
-     *
-     * @return self
-     */
-    public function setWaitingLabel(?string $waiting_label): SubmitButtonRequest
-    {
-        $this->container['waiting_label'] = $waiting_label;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

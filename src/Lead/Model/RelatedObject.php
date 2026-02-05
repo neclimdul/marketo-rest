@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     field: string,
  *     name: string,
  * }
+ *
+ * @method string getField()
+ * @method RelatedObject setField(string $field)
+ * @method string getName()
+ * @method RelatedObject setName(string $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<RelatedObjectArray>
  * @implements \ArrayAccess<key-of<RelatedObjectArray>, value-of<RelatedObjectArray>>
  * @psalm-suppress MixedReturnStatement
@@ -105,52 +111,6 @@ class RelatedObject extends ModelBase implements ModelInterface, \ArrayAccess, \
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets field
-     *
-     * @return string
-     */
-    public function getField(): string
-    {
-        return $this->container['field'];
-    }
-
-    /**
-     * Sets field
-     *
-     * @param string $field Name of link field (within link object)
-     *
-     * @return self
-     */
-    public function setField(string $field): RelatedObject
-    {
-        $this->container['field'] = $field;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the link object
-     *
-     * @return self
-     */
-    public function setName(string $name): RelatedObject
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

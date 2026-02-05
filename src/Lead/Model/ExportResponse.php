@@ -41,6 +41,30 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     started_at?: ?\DateTime,
  *     status: string,
  * }
+ *
+ * @method \DateTime|null getCreatedAt()
+ * @method ExportResponse setCreatedAt(\DateTime|null $created_at)
+ * @method string|null getErrorMsg()
+ * @method ExportResponse setErrorMsg(string|null $error_msg)
+ * @method string getExportId()
+ * @method ExportResponse setExportId(string $export_id)
+ * @method int|null getFileSize()
+ * @method ExportResponse setFileSize(int|null $file_size)
+ * @method string|null getFileChecksum()
+ * @method ExportResponse setFileChecksum(string|null $file_checksum)
+ * @method \DateTime|null getFinishedAt()
+ * @method ExportResponse setFinishedAt(\DateTime|null $finished_at)
+ * @method string|null getFormat()
+ * @method ExportResponse setFormat(string|null $format)
+ * @method int|null getNumberOfRecords()
+ * @method ExportResponse setNumberOfRecords(int|null $number_of_records)
+ * @method \DateTime|null getQueuedAt()
+ * @method ExportResponse setQueuedAt(\DateTime|null $queued_at)
+ * @method \DateTime|null getStartedAt()
+ * @method ExportResponse setStartedAt(\DateTime|null $started_at)
+ * @method string getStatus()
+ * @method ExportResponse setStatus(string $status)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ExportResponseArray>
  * @implements \ArrayAccess<key-of<ExportResponseArray>, value-of<ExportResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -158,259 +182,6 @@ class ExportResponse extends ModelBase implements ModelInterface, \ArrayAccess, 
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->container['created_at'] ?? null;
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at Date when the export request was created
-     *
-     * @return self
-     */
-    public function setCreatedAt(?\DateTime $created_at): ExportResponse
-    {
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-    /**
-     * Gets error_msg
-     *
-     * @return string|null
-     */
-    public function getErrorMsg(): ?string
-    {
-        return $this->container['error_msg'] ?? null;
-    }
-
-    /**
-     * Sets error_msg
-     *
-     * @param string|null $error_msg Error message in case of \"Failed\" status
-     *
-     * @return self
-     */
-    public function setErrorMsg(?string $error_msg): ExportResponse
-    {
-        $this->container['error_msg'] = $error_msg;
-
-        return $this;
-    }
-    /**
-     * Gets export_id
-     *
-     * @return string
-     */
-    public function getExportId(): string
-    {
-        return $this->container['export_id'];
-    }
-
-    /**
-     * Sets export_id
-     *
-     * @param string $export_id Unique id of the export job
-     *
-     * @return self
-     */
-    public function setExportId(string $export_id): ExportResponse
-    {
-        $this->container['export_id'] = $export_id;
-
-        return $this;
-    }
-    /**
-     * Gets file_size
-     *
-     * @return int|null
-     */
-    public function getFileSize(): ?int
-    {
-        return $this->container['file_size'] ?? null;
-    }
-
-    /**
-     * Sets file_size
-     *
-     * @param int|null $file_size Size of exported file in bytes. This will have a value only when status is \"Completed\", otherwise null
-     *
-     * @return self
-     */
-    public function setFileSize(?int $file_size): ExportResponse
-    {
-        $this->container['file_size'] = $file_size;
-
-        return $this;
-    }
-    /**
-     * Gets file_checksum
-     *
-     * @return string|null
-     */
-    public function getFileChecksum(): ?string
-    {
-        return $this->container['file_checksum'] ?? null;
-    }
-
-    /**
-     * Sets file_checksum
-     *
-     * @param string|null $file_checksum SHA-256 hash of exported file. This will have a value only when status is \"Completed\", otherwise null
-     *
-     * @return self
-     */
-    public function setFileChecksum(?string $file_checksum): ExportResponse
-    {
-        $this->container['file_checksum'] = $file_checksum;
-
-        return $this;
-    }
-    /**
-     * Gets finished_at
-     *
-     * @return \DateTime|null
-     */
-    public function getFinishedAt(): ?\DateTime
-    {
-        return $this->container['finished_at'] ?? null;
-    }
-
-    /**
-     * Sets finished_at
-     *
-     * @param \DateTime|null $finished_at Finish time of export job. This will have value only when status is \"Completed\" or \"Failed\", otherwise null
-     *
-     * @return self
-     */
-    public function setFinishedAt(?\DateTime $finished_at): ExportResponse
-    {
-        $this->container['finished_at'] = $finished_at;
-
-        return $this;
-    }
-    /**
-     * Gets format
-     *
-     * @return string|null
-     */
-    public function getFormat(): ?string
-    {
-        return $this->container['format'] ?? null;
-    }
-
-    /**
-     * Sets format
-     *
-     * @param string|null $format Format of file as given in the request (\"CSV\", \"TSV\", \"SSV\")
-     *
-     * @return self
-     */
-    public function setFormat(?string $format): ExportResponse
-    {
-        $this->container['format'] = $format;
-
-        return $this;
-    }
-    /**
-     * Gets number_of_records
-     *
-     * @return int|null
-     */
-    public function getNumberOfRecords(): ?int
-    {
-        return $this->container['number_of_records'] ?? null;
-    }
-
-    /**
-     * Sets number_of_records
-     *
-     * @param int|null $number_of_records Number of records in the export file. This will have value only when status is \"Completed\", otherwise null
-     *
-     * @return self
-     */
-    public function setNumberOfRecords(?int $number_of_records): ExportResponse
-    {
-        $this->container['number_of_records'] = $number_of_records;
-
-        return $this;
-    }
-    /**
-     * Gets queued_at
-     *
-     * @return \DateTime|null
-     */
-    public function getQueuedAt(): ?\DateTime
-    {
-        return $this->container['queued_at'] ?? null;
-    }
-
-    /**
-     * Sets queued_at
-     *
-     * @param \DateTime|null $queued_at Queue time of export job. This will have value when \"Queued\" status is reached, before that null
-     *
-     * @return self
-     */
-    public function setQueuedAt(?\DateTime $queued_at): ExportResponse
-    {
-        $this->container['queued_at'] = $queued_at;
-
-        return $this;
-    }
-    /**
-     * Gets started_at
-     *
-     * @return \DateTime|null
-     */
-    public function getStartedAt(): ?\DateTime
-    {
-        return $this->container['started_at'] ?? null;
-    }
-
-    /**
-     * Sets started_at
-     *
-     * @param \DateTime|null $started_at Start time of export job. This will have value when \"Processing\" status is reached, before that null
-     *
-     * @return self
-     */
-    public function setStartedAt(?\DateTime $started_at): ExportResponse
-    {
-        $this->container['started_at'] = $started_at;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status of the export job (\"Created\",\"Queued\",\"Processing\",\"Canceled\",\"Completed\",\"Failed\")
-     *
-     * @return self
-     */
-    public function setStatus(string $status): ExportResponse
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

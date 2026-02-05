@@ -35,6 +35,22 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     tags?: ?\NecLimDul\MarketoRest\Asset\Model\TagRequest[],
  *     type: string,
  * }
+ *
+ * @method string getChannel()
+ * @method CreateProgramRequest setChannel(string $channel)
+ * @method \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null getCosts()
+ * @method CreateProgramRequest setCosts(\NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null $costs)
+ * @method string|null getDescription()
+ * @method CreateProgramRequest setDescription(string|null $description)
+ * @method \NecLimDul\MarketoRest\Asset\Model\Folder getFolder()
+ * @method CreateProgramRequest setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder)
+ * @method string getName()
+ * @method CreateProgramRequest setName(string $name)
+ * @method \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null getTags()
+ * @method CreateProgramRequest setTags(\NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null $tags)
+ * @method string getType()
+ * @method CreateProgramRequest setType(string $type)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<CreateProgramRequestArray>
  * @implements \ArrayAccess<key-of<CreateProgramRequestArray>, value-of<CreateProgramRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -132,167 +148,6 @@ class CreateProgramRequest extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets channel
-     *
-     * @return string
-     */
-    public function getChannel(): string
-    {
-        return $this->container['channel'];
-    }
-
-    /**
-     * Sets channel
-     *
-     * @param string $channel Channel of the program
-     *
-     * @return self
-     */
-    public function setChannel(string $channel): CreateProgramRequest
-    {
-        $this->container['channel'] = $channel;
-
-        return $this;
-    }
-    /**
-     * Gets costs
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null
-     */
-    public function getCosts(): ?array
-    {
-        return $this->container['costs'] ?? null;
-    }
-
-    /**
-     * Sets costs
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null $costs Lists of associated period costs
-     *
-     * @return self
-     */
-    public function setCosts(?array $costs): CreateProgramRequest
-    {
-        $this->container['costs'] = $costs;
-
-        return $this;
-    }
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description description
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): CreateProgramRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
-     *
-     * @return self
-     */
-    public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateProgramRequest
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the program
-     *
-     * @return self
-     */
-    public function setName(string $name): CreateProgramRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets tags
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null
-     */
-    public function getTags(): ?array
-    {
-        return $this->container['tags'] ?? null;
-    }
-
-    /**
-     * Sets tags
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null $tags List of associated program tags
-     *
-     * @return self
-     */
-    public function setTags(?array $tags): CreateProgramRequest
-    {
-        $this->container['tags'] = $tags;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of the program
-     *
-     * @return self
-     */
-    public function setType(string $type): CreateProgramRequest
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

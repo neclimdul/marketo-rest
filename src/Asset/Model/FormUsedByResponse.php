@@ -33,6 +33,18 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     status: string,
  *     updated_at: \DateTime,
  * }
+ *
+ * @method int getId()
+ * @method FormUsedByResponse setId(int $id)
+ * @method string getName()
+ * @method FormUsedByResponse setName(string $name)
+ * @method string getType()
+ * @method FormUsedByResponse setType(string $type)
+ * @method string getStatus()
+ * @method FormUsedByResponse setStatus(string $status)
+ * @method \DateTime getUpdatedAt()
+ * @method FormUsedByResponse setUpdatedAt(\DateTime $updated_at)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<FormUsedByResponseArray>
  * @implements \ArrayAccess<key-of<FormUsedByResponseArray>, value-of<FormUsedByResponseArray>>
  * @psalm-suppress MixedReturnStatement
@@ -151,131 +163,6 @@ class FormUsedByResponse extends ModelBase implements ModelInterface, \ArrayAcce
         ];
     }
 
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Id of the asset
-     *
-     * @return self
-     */
-    public function setId(int $id): FormUsedByResponse
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the asset
-     *
-     * @return self
-     */
-    public function setName(string $name): FormUsedByResponse
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type Type of asset
-     *
-     * @return self
-     */
-    public function setType(string $type): FormUsedByResponse
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status filter for draft or approved versions
-     *
-     * @return self
-     */
-    public function setStatus(string $status): FormUsedByResponse
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime $updated_at Datetime the asset was most recently updated
-     *
-     * @return self
-     */
-    public function setUpdatedAt(\DateTime $updated_at): FormUsedByResponse
-    {
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

@@ -31,6 +31,14 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  *     run_at?: ?\DateTime,
  *     tokens?: ?\NecLimDul\MarketoRest\Lead\Model\Token[],
  * }
+ *
+ * @method string|null getCloneToProgramName()
+ * @method ScheduleCampaignData setCloneToProgramName(string|null $clone_to_program_name)
+ * @method \DateTime|null getRunAt()
+ * @method ScheduleCampaignData setRunAt(\DateTime|null $run_at)
+ * @method \NecLimDul\MarketoRest\Lead\Model\Token[]|null getTokens()
+ * @method ScheduleCampaignData setTokens(\NecLimDul\MarketoRest\Lead\Model\Token[]|null $tokens)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ScheduleCampaignDataArray>
  * @implements \ArrayAccess<key-of<ScheduleCampaignDataArray>, value-of<ScheduleCampaignDataArray>>
  * @psalm-suppress MixedReturnStatement
@@ -109,75 +117,6 @@ class ScheduleCampaignData extends ModelBase implements ModelInterface, \ArrayAc
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets clone_to_program_name
-     *
-     * @return string|null
-     */
-    public function getCloneToProgramName(): ?string
-    {
-        return $this->container['clone_to_program_name'] ?? null;
-    }
-
-    /**
-     * Sets clone_to_program_name
-     *
-     * @param string|null $clone_to_program_name Name of the resulting program. When set, this attribute will cause the campaign, parent program, and all of its assets, to be created with the resulting new name. The parent program will be cloned and the newly created campaign will be scheduled. The resulting program is created underneath the parent. Programs with snippets, push notifications, in-app messages, static lists, reports, and social assets may not be cloned in this way
-     *
-     * @return self
-     */
-    public function setCloneToProgramName(?string $clone_to_program_name): ScheduleCampaignData
-    {
-        $this->container['clone_to_program_name'] = $clone_to_program_name;
-
-        return $this;
-    }
-    /**
-     * Gets run_at
-     *
-     * @return \DateTime|null
-     */
-    public function getRunAt(): ?\DateTime
-    {
-        return $this->container['run_at'] ?? null;
-    }
-
-    /**
-     * Sets run_at
-     *
-     * @param \DateTime|null $run_at Datetime to run the campaign at. If unset, the campaign will be run five minutes after the call is made
-     *
-     * @return self
-     */
-    public function setRunAt(?\DateTime $run_at): ScheduleCampaignData
-    {
-        $this->container['run_at'] = $run_at;
-
-        return $this;
-    }
-    /**
-     * Gets tokens
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Token[]|null
-     */
-    public function getTokens(): ?array
-    {
-        return $this->container['tokens'] ?? null;
-    }
-
-    /**
-     * Sets tokens
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Token[]|null $tokens List of my tokens to replace during the run of the target campaign. The tokens must be available in a parent program or folder to be replaced during the run
-     *
-     * @return self
-     */
-    public function setTokens(?array $tokens): ScheduleCampaignData
-    {
-        $this->container['tokens'] = $tokens;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

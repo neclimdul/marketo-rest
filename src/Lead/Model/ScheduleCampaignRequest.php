@@ -31,6 +31,10 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @phpstan-type ScheduleCampaignRequestArray array{
  *     input?: ?\NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData,
  * }
+ *
+ * @method \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData|null getInput()
+ * @method ScheduleCampaignRequest setInput(\NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData|null $input)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<ScheduleCampaignRequestArray>
  * @implements \ArrayAccess<key-of<ScheduleCampaignRequestArray>, value-of<ScheduleCampaignRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -100,29 +104,6 @@ class ScheduleCampaignRequest extends ModelBase implements ModelInterface, \Arra
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets input
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData|null
-     */
-    public function getInput(): ?\NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData
-    {
-        return $this->container['input'] ?? null;
-    }
-
-    /**
-     * Sets input
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData|null $input input
-     *
-     * @return self
-     */
-    public function setInput(?\NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData $input): ScheduleCampaignRequest
-    {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

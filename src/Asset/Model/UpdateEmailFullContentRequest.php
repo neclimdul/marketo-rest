@@ -29,6 +29,10 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @phpstan-type UpdateEmailFullContentRequestArray array{
  *     content: string,
  * }
+ *
+ * @method string getContent()
+ * @method UpdateEmailFullContentRequest setContent(string $content)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateEmailFullContentRequestArray>
  * @implements \ArrayAccess<key-of<UpdateEmailFullContentRequestArray>, value-of<UpdateEmailFullContentRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -99,29 +103,6 @@ class UpdateEmailFullContentRequest extends ModelBase implements ModelInterface,
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets content
-     *
-     * @return string
-     */
-    public function getContent(): string
-    {
-        return $this->container['content'];
-    }
-
-    /**
-     * Sets content
-     *
-     * @param string $content Multipart file. File containing HTML document to update with. File cannot include JavaScript or script tags.
-     *
-     * @return self
-     */
-    public function setContent(string $content): UpdateEmailFullContentRequest
-    {
-        $this->container['content'] = $content;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}

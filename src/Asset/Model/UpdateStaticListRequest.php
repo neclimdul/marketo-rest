@@ -30,6 +30,12 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  *     description?: ?string,
  *     name?: ?string,
  * }
+ *
+ * @method string|null getDescription()
+ * @method UpdateStaticListRequest setDescription(string|null $description)
+ * @method string|null getName()
+ * @method UpdateStaticListRequest setName(string|null $name)
+ *
  * @extends \Neclimdul\OpenapiPhp\Helper\Model\ModelBase<UpdateStaticListRequestArray>
  * @implements \ArrayAccess<key-of<UpdateStaticListRequestArray>, value-of<UpdateStaticListRequestArray>>
  * @psalm-suppress MixedReturnStatement
@@ -103,52 +109,6 @@ class UpdateStaticListRequest extends ModelBase implements ModelInterface, \Arra
         return count($this->listInvalidProperties()) === 0;
     }
 
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription(): ?string
-    {
-        return $this->container['description'] ?? null;
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description Description of the static list
-     *
-     * @return self
-     */
-    public function setDescription(?string $description): UpdateStaticListRequest
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->container['name'] ?? null;
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Name of the static list
-     *
-     * @return self
-     */
-    public function setName(?string $name): UpdateStaticListRequest
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
 
     /**
      * {@inheritDoc}
