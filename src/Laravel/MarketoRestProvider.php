@@ -2,7 +2,8 @@
 
 namespace NecLimDul\MarketoRest\Laravel;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\HttpFactory;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
 use NecLimDul\MarketoRest\Asset\Api\ChannelsApi;
 use NecLimDul\MarketoRest\Asset\Api\EmailsApi;
@@ -47,6 +48,13 @@ use NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi;
 use NecLimDul\MarketoRest\Lead\Api\StaticListsApi as LeadStaticListsApi;
 use NecLimDul\MarketoRest\Lead\Api\UsageApi;
 use NecLimDul\MarketoRest\Lead\Configuration as LeadConfiguration;
+use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\Configuration as BaseConfiguration;
+use Neclimdul\OpenapiPhp\Helper\Model\ModelInterface;
+use Neclimdul\OpenapiPhp\Helper\RequestFactory;
+use Neclimdul\OpenapiPhp\Helper\Serialization\Deserializer;
+use Neclimdul\OpenapiPhp\Helper\Serialization\Serializer;
+use Psr\Container\ContainerInterface;
 
 /**
  * Laravel service provider class.
@@ -76,60 +84,80 @@ class MarketoRestProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'marketo_rest');
         $system_config = $this->app->get('config');
 
-        $configuration = new Configuration([
-            'clientId' => $system_config['marketo_rest.clientId'],
-            'clientSecret' => $system_config['marketo_rest.clientSecret'],
-            'baseUrl' => $system_config['marketo_rest.baseUrl'],
-        ]);
-        $client = ClientFactory::create($configuration);
-        $oauthClient = ClientFactory::createOauthClient($configuration);
+        $this->app->singleton('marketo_rest_client', fn(ContainerInterface $app) => new Client(
+            ClientFactory::createOauthClient(new Configuration([
+                'clientId' => $system_config['marketo_rest.clientId'],
+                'clientSecret' => $system_config['marketo_rest.clientSecret'],
+                'baseUrl' => $system_config['marketo_rest.baseUrl'],
+            ])),
+            $app->get('marketo_rest_deserializer'),
+        ));
+        $this->app->singleton('marketo_rest_serializer', fn() => new Serializer(ModelInterface::class));
+        $this->app->singleton('marketo_rest_deserializer', fn() => new Deserializer());
+
 
         // Asset APIs
-        $config = AssetConfiguration::getDefaultConfiguration();
+        $config = new AssetConfiguration();
         $config->setHost($system_config['marketo_rest.baseUrl']);
-        $this->registerSingleton(ChannelsApi::class, $oauthClient, $config);
-        $this->registerSingleton(EmailsApi::class, $oauthClient, $config);
-        $this->registerSingleton(EmailTemplatesApi::class, $oauthClient, $config);
-        $this->registerSingleton(FileContentsApi::class, $oauthClient, $config);
-        $this->registerSingleton(FilesApi::class, $oauthClient, $config);
-        $this->registerSingleton(FoldersApi::class, $oauthClient, $config);
-        $this->registerSingleton(FormFieldsApi::class, $oauthClient, $config);
-        $this->registerSingleton(FormsApi::class, $oauthClient, $config);
-        $this->registerSingleton(LandingPageContentApi::class, $oauthClient, $config);
-        $this->registerSingleton(LandingPageRedirectRulesApi::class, $oauthClient, $config);
-        $this->registerSingleton(LandingPageTemplatesApi::class, $oauthClient, $config);
-        $this->registerSingleton(LandingPagesApi::class, $oauthClient, $config);
-        $this->registerSingleton(ProgramsApi::class, $oauthClient, $config);
-        $this->registerSingleton(SegmentsApi::class, $oauthClient, $config);
-        $this->registerSingleton(SmartCampaignsApi::class, $oauthClient, $config);
-        $this->registerSingleton(SmartListsApi::class, $oauthClient, $config);
-        $this->registerSingleton(SnippetsApi::class, $oauthClient, $config);
-        $this->registerSingleton(StaticListsApi::class, $oauthClient, $config);
-        $this->registerSingleton(TagsApi::class, $oauthClient, $config);
-        $this->registerSingleton(TokensApi::class, $oauthClient, $config);
+        $this->app->singleton(
+            'marketo_rest_asset_request_factory',
+            fn(ContainerInterface $app) => new RequestFactory(
+                new HttpFactory(),
+                $app->get('marketo_rest_serializer'),
+                $config,
+            ),
+        );
+        $this->registerSingleton(ChannelsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(EmailsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(EmailTemplatesApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(FileContentsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(FilesApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(FoldersApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(FormFieldsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(FormsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(LandingPageContentApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(LandingPageRedirectRulesApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(LandingPageTemplatesApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(LandingPagesApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(ProgramsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(SegmentsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(SmartCampaignsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(SmartListsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(SnippetsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(StaticListsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(TagsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(TokensApi::class, $config, 'marketo_rest_asset_request_factory');
 
         // Lead APIs
-        $config = LeadConfiguration::getDefaultConfiguration();
+        $config = new LeadConfiguration();
         $config->setHost($system_config['marketo_rest.baseUrl']);
-        $this->registerSingleton(ActivitiesApi::class, $oauthClient, $config);
-        $this->registerSingleton(BulkExportActivitiesApi::class, $oauthClient, $config);
-        $this->registerSingleton(BulkExportCustomObjectsApi::class, $oauthClient, $config);
-        $this->registerSingleton(BulkExportLeadsApi::class, $oauthClient, $config);
-        $this->registerSingleton(BulkExportProgramMembersApi::class, $oauthClient, $config);
-        $this->registerSingleton(BulkImportCustomObjectsApi::class, $oauthClient, $config);
-        $this->registerSingleton(BulkImportLeadsApi::class, $oauthClient, $config);
-        $this->registerSingleton(BulkImportProgramMembersApi::class, $oauthClient, $config);
-        $this->registerSingleton(CampaignsApi::class, $oauthClient, $config);
-        $this->registerSingleton(CompaniesApi::class, $oauthClient, $config);
-        $this->registerSingleton(CustomObjectsApi::class, $oauthClient, $config);
-        $this->registerSingleton(LeadsApi::class, $oauthClient, $config);
-        $this->registerSingleton(NamedAccountListsApi::class, $oauthClient, $config);
-        $this->registerSingleton(NamedAccountsApi::class, $oauthClient, $config);
-        $this->registerSingleton(OpportunitiesApi::class, $oauthClient, $config);
-        $this->registerSingleton(ProgramMembersApi::class, $oauthClient, $config);
-        $this->registerSingleton(SalesPersonsApi::class, $oauthClient, $config);
-        $this->registerSingleton(LeadStaticListsApi::class, $oauthClient, $config);
-        $this->registerSingleton(UsageApi::class, $oauthClient, $config);
+        $this->app->singleton(
+            'marketo_rest_lead_request_factory',
+            fn(ContainerInterface $app) => new RequestFactory(
+                new HttpFactory(),
+                $app->get('marketo_rest_serializer'),
+                $config,
+            ),
+        );
+        $this->registerSingleton(ActivitiesApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(BulkExportActivitiesApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(BulkExportCustomObjectsApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(BulkExportLeadsApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(BulkExportProgramMembersApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(BulkImportCustomObjectsApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(BulkImportLeadsApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(BulkImportProgramMembersApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(CampaignsApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(CompaniesApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(CustomObjectsApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(LeadsApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(NamedAccountListsApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(NamedAccountsApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(OpportunitiesApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(ProgramMembersApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(SalesPersonsApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(LeadStaticListsApi::class, $config, 'marketo_rest_lead_request_factory');
+        $this->registerSingleton(UsageApi::class, $config, 'marketo_rest_lead_request_factory');
     }
 
     /**
@@ -190,16 +218,17 @@ class MarketoRestProvider extends ServiceProvider
      * Wraps some logic for quickly creating aliased.
      *
      * @param class-string $className
-     * @param \GuzzleHttp\Client $client
-     * @param mixed $config
+     * @param BaseConfiguration $config
+     * @param string $request_factory_service
+     *   Request factory service.
      */
-    private function registerSingleton(string $className, Client $client, $config): void
+    private function registerSingleton(string $className, BaseConfiguration $config, string $request_factory_service): void
     {
-        $this->app->singleton($className, function () use ($className, $client, $config) {
-            return new $className(
-                $client,
-                $config
-            );
-        });
+        $this->app->singleton($className, fn(Container $app) => new $className(
+            $config,
+            $app->get('marketo_rest_client'),
+            $app->get($request_factory_service),
+            $app->get('marketo_rest_serializer'),
+        ));
     }
 }

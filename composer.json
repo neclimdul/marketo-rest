@@ -27,6 +27,8 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.19",
+        "illuminate/config": "^12.0",
+        "illuminate/container": "^12.0",
         "illuminate/support": "^12.0",
         "jangregor/phpstan-prophecy": "^2.0",
         "neclimdul/openapi-php-testing": "^2.0",
@@ -37,7 +39,8 @@
         "phpstan/phpstan-phpunit": "^2.0",
         "phpunit/phpunit": "^11.0",
         "squizlabs/php_codesniffer": "~4.0",
-        "vimeo/psalm": "^6.13.1"
+        "vimeo/psalm": "^6.13.1",
+        "vlucas/phpdotenv": "^5.6"
     },
     "autoload": {
         "psr-4": {"NecLimDul\\MarketoRest\\": "src/"}
