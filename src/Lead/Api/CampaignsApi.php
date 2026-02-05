@@ -17,6 +17,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\HttpFactory;
 use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\ContentNegotiation;
 use Neclimdul\OpenapiPhp\Helper\RequestFactory;
 use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
 use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
@@ -24,7 +25,6 @@ use Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface;
 use Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface;
 // Package Includes
 use NecLimDul\MarketoRest\Lead\Configuration;
-use NecLimDul\MarketoRest\Lead\HeaderSelector;
 use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
@@ -65,8 +65,6 @@ readonly class CampaignsApi
      *   Request client.
      * @param Configuration|null $config
      *   API Configuration.
-     * @param HeaderSelector|null $selector
-     *   HeaderSelect helper.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface<\NecLimDul\MarketoRest\Lead\Model\ModelInterface>|null $serializer
      *   Serialization service.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface|null $deserializer
@@ -75,13 +73,13 @@ readonly class CampaignsApi
     public static function create(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
-        ?HeaderSelector $selector = null,
         ?SerializerInterface $serializer = null,
         ?DeserializerInterface $deserializer = null,
     ): self {
         $serializer = $serializer ?: ObjectSerializer::getDefaultSerializer();
+        $config = $config ?: new Configuration();
         return new self(
-            $config ?: new Configuration(),
+            $config,
             new Client(
                 $client ?: new GuzzleClient(),
                 $deserializer ?: ObjectSerializer::getDefaultDeserializer(),
@@ -89,6 +87,7 @@ readonly class CampaignsApi
             new RequestFactory(
                 new HttpFactory(),
                 $serializer,
+                $config,
             ),
             $serializer,
         );
@@ -142,11 +141,10 @@ readonly class CampaignsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -202,15 +200,22 @@ readonly class CampaignsApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'id' => isset($id) ? $this->serializer->serializeCollection($id, 'multi') : null,
+                'name' => isset($name) ? $this->serializer->serializeCollection($name, 'multi') : null,
+                'programName' => isset($program_name) ? $this->serializer->serializeCollection($program_name, 'multi') : null,
+                'workspaceName' => isset($workspace_name) ? $this->serializer->serializeCollection($workspace_name, 'multi') : null,
+                'batchSize' => isset($batch_size) ? $this->serializer->toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? $this->serializer->toQueryValue($next_page_token) : null,
+                'isTriggerable' => isset($is_triggerable) ? $this->serializer->toQueryValue($is_triggerable) : null,
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -263,11 +268,10 @@ readonly class CampaignsApi
             $headers,
             [],
             $schedule_campaign_request,
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/json'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/json'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -320,11 +324,10 @@ readonly class CampaignsApi
             $headers,
             [],
             $trigger_campaign_request,
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/json'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/json'],
+            ),
         );
 
         return $this->client->makeRequest(

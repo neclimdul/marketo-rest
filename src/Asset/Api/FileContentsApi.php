@@ -17,6 +17,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\HttpFactory;
 use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\ContentNegotiation;
 use Neclimdul\OpenapiPhp\Helper\RequestFactory;
 use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
 use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
@@ -24,7 +25,6 @@ use Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface;
 use Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface;
 // Package Includes
 use NecLimDul\MarketoRest\Asset\Configuration;
-use NecLimDul\MarketoRest\Asset\HeaderSelector;
 use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
@@ -65,8 +65,6 @@ readonly class FileContentsApi
      *   Request client.
      * @param Configuration|null $config
      *   API Configuration.
-     * @param HeaderSelector|null $selector
-     *   HeaderSelect helper.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface<\NecLimDul\MarketoRest\Asset\Model\ModelInterface>|null $serializer
      *   Serialization service.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface|null $deserializer
@@ -75,13 +73,13 @@ readonly class FileContentsApi
     public static function create(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
-        ?HeaderSelector $selector = null,
         ?SerializerInterface $serializer = null,
         ?DeserializerInterface $deserializer = null,
     ): self {
         $serializer = $serializer ?: ObjectSerializer::getDefaultSerializer();
+        $config = $config ?: new Configuration();
         return new self(
-            $config ?: new Configuration(),
+            $config,
             new Client(
                 $client ?: new GuzzleClient(),
                 $deserializer ?: ObjectSerializer::getDefaultDeserializer(),
@@ -89,6 +87,7 @@ readonly class FileContentsApi
             new RequestFactory(
                 new HttpFactory(),
                 $serializer,
+                $config,
             ),
             $serializer,
         );
@@ -151,12 +150,11 @@ readonly class FileContentsApi
                 'id' => $this->serializer->toFormValue($id2),
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['multipart/form-data'],
-            true,
+            new ContentNegotiation(
+                ['application/json'],
+                ['multipart/form-data'],
+                true,
+            ),
         );
 
         return $this->client->makeRequest(

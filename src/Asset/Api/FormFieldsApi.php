@@ -17,6 +17,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\HttpFactory;
 use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\ContentNegotiation;
 use Neclimdul\OpenapiPhp\Helper\RequestFactory;
 use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
 use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
@@ -24,7 +25,6 @@ use Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface;
 use Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface;
 // Package Includes
 use NecLimDul\MarketoRest\Asset\Configuration;
-use NecLimDul\MarketoRest\Asset\HeaderSelector;
 use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
@@ -65,8 +65,6 @@ readonly class FormFieldsApi
      *   Request client.
      * @param Configuration|null $config
      *   API Configuration.
-     * @param HeaderSelector|null $selector
-     *   HeaderSelect helper.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface<\NecLimDul\MarketoRest\Asset\Model\ModelInterface>|null $serializer
      *   Serialization service.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface|null $deserializer
@@ -75,13 +73,13 @@ readonly class FormFieldsApi
     public static function create(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
-        ?HeaderSelector $selector = null,
         ?SerializerInterface $serializer = null,
         ?DeserializerInterface $deserializer = null,
     ): self {
         $serializer = $serializer ?: ObjectSerializer::getDefaultSerializer();
+        $config = $config ?: new Configuration();
         return new self(
-            $config ?: new Configuration(),
+            $config,
             new Client(
                 $client ?: new GuzzleClient(),
                 $deserializer ?: ObjectSerializer::getDefaultDeserializer(),
@@ -89,6 +87,7 @@ readonly class FormFieldsApi
             new RequestFactory(
                 new HttpFactory(),
                 $serializer,
+                $config,
             ),
             $serializer,
         );
@@ -147,11 +146,10 @@ readonly class FormFieldsApi
                 'label' => $this->serializer->toFormValue($label),
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -286,11 +284,10 @@ readonly class FormFieldsApi
                 'visibleLines' => isset($visible_lines) ? $this->serializer->toFormValue($visible_lines) : null,
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -349,11 +346,10 @@ readonly class FormFieldsApi
                 'visibilityRule' => isset($visibility_rule) ? $this->serializer->toFormValue($visibility_rule) : null,
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -408,11 +404,10 @@ readonly class FormFieldsApi
                 'text' => $this->serializer->toFormValue($text),
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -472,11 +467,10 @@ readonly class FormFieldsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -531,11 +525,10 @@ readonly class FormFieldsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -576,15 +569,17 @@ readonly class FormFieldsApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'maxReturn' => isset($max_return) ? $this->serializer->toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? $this->serializer->toQueryValue($offset) : null,
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -625,15 +620,17 @@ readonly class FormFieldsApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'maxReturn' => isset($max_return) ? $this->serializer->toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? $this->serializer->toQueryValue($offset) : null,
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -682,15 +679,16 @@ readonly class FormFieldsApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'status' => isset($status) ? $this->serializer->toQueryValue($status) : null,
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -744,11 +742,10 @@ readonly class FormFieldsApi
                 'positions' => isset($positions) ? $this->serializer->toFormValue($positions, "csv") : null,
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -888,11 +885,10 @@ readonly class FormFieldsApi
                 'visibleLines' => isset($visible_lines) ? $this->serializer->toFormValue($visible_lines) : null,
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(

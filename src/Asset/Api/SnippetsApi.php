@@ -17,6 +17,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\HttpFactory;
 use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\ContentNegotiation;
 use Neclimdul\OpenapiPhp\Helper\RequestFactory;
 use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
 use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
@@ -24,7 +25,6 @@ use Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface;
 use Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface;
 // Package Includes
 use NecLimDul\MarketoRest\Asset\Configuration;
-use NecLimDul\MarketoRest\Asset\HeaderSelector;
 use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
@@ -65,8 +65,6 @@ readonly class SnippetsApi
      *   Request client.
      * @param Configuration|null $config
      *   API Configuration.
-     * @param HeaderSelector|null $selector
-     *   HeaderSelect helper.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface<\NecLimDul\MarketoRest\Asset\Model\ModelInterface>|null $serializer
      *   Serialization service.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface|null $deserializer
@@ -75,13 +73,13 @@ readonly class SnippetsApi
     public static function create(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
-        ?HeaderSelector $selector = null,
         ?SerializerInterface $serializer = null,
         ?DeserializerInterface $deserializer = null,
     ): self {
         $serializer = $serializer ?: ObjectSerializer::getDefaultSerializer();
+        $config = $config ?: new Configuration();
         return new self(
-            $config ?: new Configuration(),
+            $config,
             new Client(
                 $client ?: new GuzzleClient(),
                 $deserializer ?: ObjectSerializer::getDefaultDeserializer(),
@@ -89,6 +87,7 @@ readonly class SnippetsApi
             new RequestFactory(
                 new HttpFactory(),
                 $serializer,
+                $config,
             ),
             $serializer,
         );
@@ -142,11 +141,10 @@ readonly class SnippetsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -208,11 +206,10 @@ readonly class SnippetsApi
                 'description' => isset($description) ? $this->serializer->toFormValue($description) : null,
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -263,11 +260,10 @@ readonly class SnippetsApi
                 'name' => $this->serializer->toFormValue($name),
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -317,11 +313,10 @@ readonly class SnippetsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -371,11 +366,10 @@ readonly class SnippetsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -424,15 +418,16 @@ readonly class SnippetsApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'status' => isset($status) ? $this->serializer->toQueryValue($status) : null,
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -481,15 +476,16 @@ readonly class SnippetsApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'status' => isset($status) ? $this->serializer->toQueryValue($status) : null,
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -538,15 +534,16 @@ readonly class SnippetsApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'status' => isset($status) ? $this->serializer->toQueryValue($status) : null,
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -590,15 +587,18 @@ readonly class SnippetsApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'status' => isset($status) ? $this->serializer->toQueryValue($status) : null,
+                'maxReturn' => isset($max_return) ? $this->serializer->toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? $this->serializer->toQueryValue($offset) : null,
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -648,11 +648,10 @@ readonly class SnippetsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -704,15 +703,17 @@ readonly class SnippetsApi
             'POST',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'content' => $this->serializer->toQueryValue($content),
+                'type' => $this->serializer->toQueryValue($type),
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -776,11 +777,10 @@ readonly class SnippetsApi
                 'value' => isset($value) ? $this->serializer->toFormValue($value) : null,
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -843,11 +843,10 @@ readonly class SnippetsApi
                 'name' => isset($name) ? $this->serializer->toFormValue($name) : null,
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(

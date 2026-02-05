@@ -17,6 +17,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\HttpFactory;
 use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\ContentNegotiation;
 use Neclimdul\OpenapiPhp\Helper\RequestFactory;
 use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
 use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
@@ -24,7 +25,6 @@ use Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface;
 use Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface;
 // Package Includes
 use NecLimDul\MarketoRest\Lead\Configuration;
-use NecLimDul\MarketoRest\Lead\HeaderSelector;
 use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
@@ -65,8 +65,6 @@ readonly class BulkImportLeadsApi
      *   Request client.
      * @param Configuration|null $config
      *   API Configuration.
-     * @param HeaderSelector|null $selector
-     *   HeaderSelect helper.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface<\NecLimDul\MarketoRest\Lead\Model\ModelInterface>|null $serializer
      *   Serialization service.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface|null $deserializer
@@ -75,13 +73,13 @@ readonly class BulkImportLeadsApi
     public static function create(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
-        ?HeaderSelector $selector = null,
         ?SerializerInterface $serializer = null,
         ?DeserializerInterface $deserializer = null,
     ): self {
         $serializer = $serializer ?: ObjectSerializer::getDefaultSerializer();
+        $config = $config ?: new Configuration();
         return new self(
-            $config ?: new Configuration(),
+            $config,
             new Client(
                 $client ?: new GuzzleClient(),
                 $deserializer ?: ObjectSerializer::getDefaultDeserializer(),
@@ -89,6 +87,7 @@ readonly class BulkImportLeadsApi
             new RequestFactory(
                 new HttpFactory(),
                 $serializer,
+                $config,
             ),
             $serializer,
         );
@@ -142,11 +141,10 @@ readonly class BulkImportLeadsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -196,11 +194,10 @@ readonly class BulkImportLeadsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -250,11 +247,10 @@ readonly class BulkImportLeadsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -304,18 +300,22 @@ readonly class BulkImportLeadsApi
             'POST',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'format' => $this->serializer->toQueryValue($format),
+                'lookupField' => isset($lookup_field) ? $this->serializer->toQueryValue($lookup_field) : null,
+                'partitionName' => isset($partition_name) ? $this->serializer->toQueryValue($partition_name) : null,
+                'listId' => isset($list_id) ? $this->serializer->toQueryValue($list_id) : null,
+            ],
             $headers,
             [
                 'file' => $this->serializer->fileToFormValue($file),
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['multipart/form-data'],
-            true,
+            new ContentNegotiation(
+                ['application/json'],
+                ['multipart/form-data'],
+                true,
+            ),
         );
 
         return $this->client->makeRequest(

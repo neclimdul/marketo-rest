@@ -17,6 +17,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\HttpFactory;
 use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\ContentNegotiation;
 use Neclimdul\OpenapiPhp\Helper\RequestFactory;
 use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
 use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
@@ -24,7 +25,6 @@ use Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface;
 use Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface;
 // Package Includes
 use NecLimDul\MarketoRest\Asset\Configuration;
-use NecLimDul\MarketoRest\Asset\HeaderSelector;
 use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
@@ -65,8 +65,6 @@ readonly class FoldersApi
      *   Request client.
      * @param Configuration|null $config
      *   API Configuration.
-     * @param HeaderSelector|null $selector
-     *   HeaderSelect helper.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface<\NecLimDul\MarketoRest\Asset\Model\ModelInterface>|null $serializer
      *   Serialization service.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface|null $deserializer
@@ -75,13 +73,13 @@ readonly class FoldersApi
     public static function create(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
-        ?HeaderSelector $selector = null,
         ?SerializerInterface $serializer = null,
         ?DeserializerInterface $deserializer = null,
     ): self {
         $serializer = $serializer ?: ObjectSerializer::getDefaultSerializer();
+        $config = $config ?: new Configuration();
         return new self(
-            $config ?: new Configuration(),
+            $config,
             new Client(
                 $client ?: new GuzzleClient(),
                 $deserializer ?: ObjectSerializer::getDefaultDeserializer(),
@@ -89,6 +87,7 @@ readonly class FoldersApi
             new RequestFactory(
                 new HttpFactory(),
                 $serializer,
+                $config,
             ),
             $serializer,
         );
@@ -143,11 +142,10 @@ readonly class FoldersApi
                 'parent' => $this->serializer->toFormValue($parent),
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -202,11 +200,10 @@ readonly class FoldersApi
                 'type' => $this->serializer->toFormValue($type),
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -255,15 +252,16 @@ readonly class FoldersApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'type' => $this->serializer->toQueryValue($type),
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -310,15 +308,19 @@ readonly class FoldersApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'name' => $this->serializer->toQueryValue($name),
+                'type' => isset($type) ? $this->serializer->toQueryValue($type) : null,
+                'root' => isset($root) ? $this->serializer->toQueryValue($root) : null,
+                'workSpace' => isset($work_space) ? $this->serializer->toQueryValue($work_space) : null,
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -373,15 +375,18 @@ readonly class FoldersApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'maxReturn' => isset($max_return) ? $this->serializer->toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? $this->serializer->toQueryValue($offset) : null,
+                'type' => $this->serializer->toQueryValue($type),
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -431,15 +436,20 @@ readonly class FoldersApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'root' => isset($root) ? $this->serializer->toQueryValue($root) : null,
+                'maxDepth' => isset($max_depth) ? $this->serializer->toQueryValue($max_depth) : null,
+                'maxReturn' => isset($max_return) ? $this->serializer->toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? $this->serializer->toQueryValue($offset) : null,
+                'workSpace' => isset($work_space) ? $this->serializer->toQueryValue($work_space) : null,
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -506,11 +516,10 @@ readonly class FoldersApi
                 'type' => $this->serializer->toFormValue($type),
             ],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/x-www-form-urlencoded'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/x-www-form-urlencoded'],
+            ),
         );
 
         return $this->client->makeRequest(

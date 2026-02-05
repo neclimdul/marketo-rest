@@ -17,6 +17,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\HttpFactory;
 use Neclimdul\OpenapiPhp\Helper\Client;
+use Neclimdul\OpenapiPhp\Helper\ContentNegotiation;
 use Neclimdul\OpenapiPhp\Helper\RequestFactory;
 use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
 use Neclimdul\OpenapiPhp\Helper\Response\ResponseTypeMap;
@@ -24,7 +25,6 @@ use Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface;
 use Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface;
 // Package Includes
 use NecLimDul\MarketoRest\Lead\Configuration;
-use NecLimDul\MarketoRest\Lead\HeaderSelector;
 use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
@@ -65,8 +65,6 @@ readonly class BulkExportCustomObjectsApi
      *   Request client.
      * @param Configuration|null $config
      *   API Configuration.
-     * @param HeaderSelector|null $selector
-     *   HeaderSelect helper.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\SerializerInterface<\NecLimDul\MarketoRest\Lead\Model\ModelInterface>|null $serializer
      *   Serialization service.
      * @param \Neclimdul\OpenapiPhp\Helper\Serialization\DeserializerInterface|null $deserializer
@@ -75,13 +73,13 @@ readonly class BulkExportCustomObjectsApi
     public static function create(
         ?ClientInterface $client = null,
         ?Configuration $config = null,
-        ?HeaderSelector $selector = null,
         ?SerializerInterface $serializer = null,
         ?DeserializerInterface $deserializer = null,
     ): self {
         $serializer = $serializer ?: ObjectSerializer::getDefaultSerializer();
+        $config = $config ?: new Configuration();
         return new self(
-            $config ?: new Configuration(),
+            $config,
             new Client(
                 $client ?: new GuzzleClient(),
                 $deserializer ?: ObjectSerializer::getDefaultDeserializer(),
@@ -89,6 +87,7 @@ readonly class BulkExportCustomObjectsApi
             new RequestFactory(
                 new HttpFactory(),
                 $serializer,
+                $config,
             ),
             $serializer,
         );
@@ -147,11 +146,10 @@ readonly class BulkExportCustomObjectsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -204,11 +202,10 @@ readonly class BulkExportCustomObjectsApi
             $headers,
             [],
             $export_custom_object_request,
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            ['application/json'],
+            new ContentNegotiation(
+                ['application/json'],
+                ['application/json'],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -263,11 +260,10 @@ readonly class BulkExportCustomObjectsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -321,8 +317,7 @@ readonly class BulkExportCustomObjectsApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [
-            ],
+            [],
             array_merge(
                 [
                     'Range' => isset($range) ? $this->serializer->toHeaderValue($range) : null,
@@ -331,11 +326,10 @@ readonly class BulkExportCustomObjectsApi
             ),
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -390,11 +384,10 @@ readonly class BulkExportCustomObjectsApi
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
@@ -449,15 +442,18 @@ readonly class BulkExportCustomObjectsApi
             'GET',
             $this->config->getHost() . $resourcePath,
             // Query.
-            [],
+            [
+                'status' => isset($status) ? $this->serializer->serializeCollection($status, 'multi') : null,
+                'batchSize' => isset($batch_size) ? $this->serializer->toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? $this->serializer->toQueryValue($next_page_token) : null,
+            ],
             $headers,
             [],
             '',
-        );
-        $request = $this->requestFactory->attachAcceptHeader(
-            $request,
-            ['application/json'],
-            [],
+            new ContentNegotiation(
+                ['application/json'],
+                [],
+            ),
         );
 
         return $this->client->makeRequest(
