@@ -121,12 +121,6 @@ class Folder extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSer
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -139,7 +133,6 @@ class Folder extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSer
             self::TYPE_PROGRAM,
         ];
     }
-
 
     /**
      * {@inheritDoc}

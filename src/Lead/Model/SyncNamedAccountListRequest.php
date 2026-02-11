@@ -124,12 +124,6 @@ class SyncNamedAccountListRequest extends ModelBase implements ModelInterface, \
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -142,7 +136,6 @@ class SyncNamedAccountListRequest extends ModelBase implements ModelInterface, \
             self::ACTION_UPDATE_ONLY,
         ];
     }
-
 
     /**
      * {@inheritDoc}

@@ -120,13 +120,6 @@ class CloneLandingPageRequest extends ModelBase implements ModelInterface, \Arra
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

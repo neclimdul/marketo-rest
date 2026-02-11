@@ -162,12 +162,6 @@ class VisibilityRuleRequest extends ModelBase implements ModelInterface, \ArrayA
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -202,7 +196,6 @@ class VisibilityRuleRequest extends ModelBase implements ModelInterface, \ArrayA
             self::OPERATOR_ON_OR_BEFORE,
         ];
     }
-
 
     /**
      * {@inheritDoc}

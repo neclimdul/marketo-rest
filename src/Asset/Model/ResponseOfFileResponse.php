@@ -124,13 +124,6 @@ class ResponseOfFileResponse extends ModelBase implements ModelInterface, \Array
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

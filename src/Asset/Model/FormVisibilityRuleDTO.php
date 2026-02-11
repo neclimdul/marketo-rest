@@ -124,13 +124,6 @@ class FormVisibilityRuleDTO extends ModelBase implements ModelInterface, \ArrayA
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

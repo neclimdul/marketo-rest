@@ -227,12 +227,6 @@ class CreateLandingPageContentRequest extends ModelBase implements ModelInterfac
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -249,7 +243,6 @@ class CreateLandingPageContentRequest extends ModelBase implements ModelInterfac
             self::TYPE_HTML,
         ];
     }
-
 
     /**
      * {@inheritDoc}

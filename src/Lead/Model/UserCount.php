@@ -106,13 +106,6 @@ class UserCount extends ModelBase implements ModelInterface, \ArrayAccess, \Json
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

@@ -124,13 +124,6 @@ class ResponseOfGetEmailFullContentResponse extends ModelBase implements ModelIn
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

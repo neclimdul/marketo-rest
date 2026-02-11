@@ -125,12 +125,6 @@ class SyncSalesPersonRequest extends ModelBase implements ModelInterface, \Array
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -144,7 +138,6 @@ class SyncSalesPersonRequest extends ModelBase implements ModelInterface, \Array
             self::ACTION_CREATE_OR_UPDATE,
         ];
     }
-
 
     /**
      * {@inheritDoc}

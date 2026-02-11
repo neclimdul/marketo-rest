@@ -136,12 +136,6 @@ class SalesPerson extends ModelBase implements ModelInterface, \ArrayAccess, \Js
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -158,7 +152,6 @@ class SalesPerson extends ModelBase implements ModelInterface, \ArrayAccess, \Js
             self::STATUS_REMOVED,
         ];
     }
-
 
     /**
      * {@inheritDoc}

@@ -226,12 +226,6 @@ class FolderResponse extends ModelBase implements ModelInterface, \ArrayAccess, 
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -256,7 +250,6 @@ class FolderResponse extends ModelBase implements ModelInterface, \ArrayAccess, 
             self::FOLDER_TYPE_ZONE,
         ];
     }
-
 
     /**
      * {@inheritDoc}

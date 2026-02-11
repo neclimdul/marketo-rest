@@ -119,12 +119,6 @@ class FormFieldVisibilityRequest extends ModelBase implements ModelInterface, \A
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -138,7 +132,6 @@ class FormFieldVisibilityRequest extends ModelBase implements ModelInterface, \A
             self::RULE_TYPE_HIDE,
         ];
     }
-
 
     /**
      * {@inheritDoc}

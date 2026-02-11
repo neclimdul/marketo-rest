@@ -186,12 +186,6 @@ class LpTemplateResponse extends ModelBase implements ModelInterface, \ArrayAcce
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -204,7 +198,6 @@ class LpTemplateResponse extends ModelBase implements ModelInterface, \ArrayAcce
             self::TEMPLATE_TYPE_FREE_FORM,
         ];
     }
-
 
     /**
      * {@inheritDoc}

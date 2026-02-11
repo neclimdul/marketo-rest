@@ -136,12 +136,6 @@ class ProgramMemberDataResponse extends ModelBase implements ModelInterface, \Ar
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -155,7 +149,6 @@ class ProgramMemberDataResponse extends ModelBase implements ModelInterface, \Ar
             self::STATUS_SKIPPED,
         ];
     }
-
 
     /**
      * {@inheritDoc}

@@ -144,12 +144,6 @@ class FormUsedByResponse extends ModelBase implements ModelInterface, \ArrayAcce
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -162,7 +156,6 @@ class FormUsedByResponse extends ModelBase implements ModelInterface, \ArrayAcce
             self::STATUS_DRAFT,
         ];
     }
-
 
     /**
      * {@inheritDoc}

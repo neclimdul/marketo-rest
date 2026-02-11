@@ -223,13 +223,6 @@ class LandingPageResponse extends ModelBase implements ModelInterface, \ArrayAcc
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

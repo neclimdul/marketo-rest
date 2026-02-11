@@ -113,13 +113,6 @@ class ObjectRelation extends ModelBase implements ModelInterface, \ArrayAccess, 
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

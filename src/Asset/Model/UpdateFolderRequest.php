@@ -131,12 +131,6 @@ class UpdateFolderRequest extends ModelBase implements ModelInterface, \ArrayAcc
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -149,7 +143,6 @@ class UpdateFolderRequest extends ModelBase implements ModelInterface, \ArrayAcc
             self::TYPE_PROGRAM,
         ];
     }
-
 
     /**
      * {@inheritDoc}

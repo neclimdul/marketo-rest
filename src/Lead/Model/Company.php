@@ -112,13 +112,6 @@ class Company extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSe
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

@@ -124,13 +124,6 @@ class ResponseOfSnippetContentResponse extends ModelBase implements ModelInterfa
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

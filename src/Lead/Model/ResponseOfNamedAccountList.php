@@ -143,13 +143,6 @@ class ResponseOfNamedAccountList extends ModelBase implements ModelInterface, \A
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

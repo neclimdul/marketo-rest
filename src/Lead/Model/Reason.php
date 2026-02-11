@@ -105,13 +105,6 @@ class Reason extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSer
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

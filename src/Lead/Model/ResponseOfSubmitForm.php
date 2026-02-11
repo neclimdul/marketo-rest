@@ -129,13 +129,6 @@ class ResponseOfSubmitForm extends ModelBase implements ModelInterface, \ArrayAc
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

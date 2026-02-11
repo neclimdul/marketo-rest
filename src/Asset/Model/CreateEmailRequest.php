@@ -167,13 +167,6 @@ class CreateEmailRequest extends ModelBase implements ModelInterface, \ArrayAcce
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

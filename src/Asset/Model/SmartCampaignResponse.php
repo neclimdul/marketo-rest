@@ -331,12 +331,6 @@ class SmartCampaignResponse extends ModelBase implements ModelInterface, \ArrayA
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -397,7 +391,6 @@ class SmartCampaignResponse extends ModelBase implements ModelInterface, \ArrayA
             self::STATUS_NEVER_RUN,
         ];
     }
-
 
     /**
      * {@inheritDoc}

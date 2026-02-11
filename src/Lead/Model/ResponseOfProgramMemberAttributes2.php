@@ -143,13 +143,6 @@ class ResponseOfProgramMemberAttributes2 extends ModelBase implements ModelInter
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

@@ -137,12 +137,6 @@ class NamedAccount extends ModelBase implements ModelInterface, \ArrayAccess, \J
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -159,7 +153,6 @@ class NamedAccount extends ModelBase implements ModelInterface, \ArrayAccess, \J
             self::STATUS_REMOVED,
         ];
     }
-
 
     /**
      * {@inheritDoc}

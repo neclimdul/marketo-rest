@@ -184,12 +184,6 @@ class UpdateEmailDynamicContentRequest extends ModelBase implements ModelInterfa
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -203,7 +197,6 @@ class UpdateEmailDynamicContentRequest extends ModelBase implements ModelInterfa
             self::TYPE_SNIPPET,
         ];
     }
-
 
     /**
      * {@inheritDoc}

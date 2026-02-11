@@ -217,12 +217,6 @@ class BrowseAllPrograms extends ModelBase implements ModelInterface, \ArrayAcces
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -252,7 +246,6 @@ class BrowseAllPrograms extends ModelBase implements ModelInterface, \ArrayAcces
             self::TYPE_NURTURE,
         ];
     }
-
 
     /**
      * {@inheritDoc}

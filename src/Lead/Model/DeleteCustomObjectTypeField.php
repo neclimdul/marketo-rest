@@ -97,13 +97,6 @@ class DeleteCustomObjectTypeField extends ModelBase implements ModelInterface, \
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

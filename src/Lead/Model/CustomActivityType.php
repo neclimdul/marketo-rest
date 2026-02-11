@@ -182,12 +182,6 @@ class CustomActivityType extends ModelBase implements ModelInterface, \ArrayAcce
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -202,7 +196,6 @@ class CustomActivityType extends ModelBase implements ModelInterface, \ArrayAcce
             self::STATUS_APPROVED_WITH_DRAFT,
         ];
     }
-
 
     /**
      * {@inheritDoc}

@@ -178,12 +178,6 @@ class EmailTemplateResponse extends ModelBase implements ModelInterface, \ArrayA
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -196,7 +190,6 @@ class EmailTemplateResponse extends ModelBase implements ModelInterface, \ArrayA
             self::VERSION_NUMBER_2,
         ];
     }
-
 
     /**
      * {@inheritDoc}

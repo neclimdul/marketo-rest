@@ -166,12 +166,6 @@ class CreateLeadField extends ModelBase implements ModelInterface, \ArrayAccess,
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -194,7 +188,6 @@ class CreateLeadField extends ModelBase implements ModelInterface, \ArrayAccess,
             self::DATA_TYPE_URL,
         ];
     }
-
 
     /**
      * {@inheritDoc}

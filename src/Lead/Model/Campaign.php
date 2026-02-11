@@ -181,12 +181,6 @@ class Campaign extends ModelBase implements ModelInterface, \ArrayAccess, \JsonS
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -199,7 +193,6 @@ class Campaign extends ModelBase implements ModelInterface, \ArrayAccess, \JsonS
             self::TYPE_TRIGGER,
         ];
     }
-
 
     /**
      * {@inheritDoc}

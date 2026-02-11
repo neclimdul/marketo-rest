@@ -127,12 +127,6 @@ class GetEmailFullContentResponse extends ModelBase implements ModelInterface, \
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -145,7 +139,6 @@ class GetEmailFullContentResponse extends ModelBase implements ModelInterface, \
             self::STATUS_DRAFT,
         ];
     }
-
 
     /**
      * {@inheritDoc}

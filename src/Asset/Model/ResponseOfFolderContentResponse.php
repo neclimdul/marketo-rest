@@ -124,13 +124,6 @@ class ResponseOfFolderContentResponse extends ModelBase implements ModelInterfac
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

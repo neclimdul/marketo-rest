@@ -208,13 +208,6 @@ class UpdateLandingPageDynamicContentRequest extends ModelBase implements ModelI
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

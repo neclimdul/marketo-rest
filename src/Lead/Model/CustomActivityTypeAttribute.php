@@ -148,12 +148,6 @@ class CustomActivityTypeAttribute extends ModelBase implements ModelInterface, \
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -175,7 +169,6 @@ class CustomActivityTypeAttribute extends ModelBase implements ModelInterface, \
             self::DATA_TYPE_TEXT,
         ];
     }
-
 
     /**
      * {@inheritDoc}

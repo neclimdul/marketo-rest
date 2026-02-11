@@ -256,12 +256,6 @@ class JsonNode extends ModelBase implements ModelInterface, \ArrayAccess, \JsonS
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -281,7 +275,6 @@ class JsonNode extends ModelBase implements ModelInterface, \ArrayAccess, \JsonS
             self::NODE_TYPE_STRING,
         ];
     }
-
 
     /**
      * {@inheritDoc}

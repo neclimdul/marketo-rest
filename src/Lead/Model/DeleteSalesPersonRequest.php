@@ -104,13 +104,6 @@ class DeleteSalesPersonRequest extends ModelBase implements ModelInterface, \Arr
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

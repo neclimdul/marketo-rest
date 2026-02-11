@@ -140,12 +140,6 @@ class SyncLeadRequest extends ModelBase implements ModelInterface, \ArrayAccess,
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -160,7 +154,6 @@ class SyncLeadRequest extends ModelBase implements ModelInterface, \ArrayAccess,
             self::ACTION_CREATE_DUPLICATE,
         ];
     }
-
 
     /**
      * {@inheritDoc}

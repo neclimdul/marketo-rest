@@ -178,12 +178,6 @@ class LandingPageContentResponse extends ModelBase implements ModelInterface, \A
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -220,7 +214,6 @@ class LandingPageContentResponse extends ModelBase implements ModelInterface, \A
             self::TYPE_SWEEPSTAKES,
         ];
     }
-
 
     /**
      * {@inheritDoc}

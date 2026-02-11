@@ -143,13 +143,6 @@ class ResponseOfChangeLeadProgramStatusOutputData extends ModelBase implements M
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

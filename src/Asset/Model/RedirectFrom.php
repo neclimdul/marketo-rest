@@ -120,12 +120,6 @@ class RedirectFrom extends ModelBase implements ModelInterface, \ArrayAccess, \J
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -138,7 +132,6 @@ class RedirectFrom extends ModelBase implements ModelInterface, \ArrayAccess, \J
             self::TYPE_PATH,
         ];
     }
-
 
     /**
      * {@inheritDoc}

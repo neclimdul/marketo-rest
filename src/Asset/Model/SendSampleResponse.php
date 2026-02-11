@@ -117,12 +117,6 @@ class SendSampleResponse extends ModelBase implements ModelInterface, \ArrayAcce
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -134,7 +128,6 @@ class SendSampleResponse extends ModelBase implements ModelInterface, \ArrayAcce
             self::SERVICE_SEND_TEST_EMAIL,
         ];
     }
-
 
     /**
      * {@inheritDoc}

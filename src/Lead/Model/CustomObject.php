@@ -113,13 +113,6 @@ class CustomObject extends ModelBase implements ModelInterface, \ArrayAccess, \J
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

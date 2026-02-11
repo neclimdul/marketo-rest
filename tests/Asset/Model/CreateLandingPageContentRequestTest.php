@@ -196,15 +196,6 @@ class CreateLandingPageContentRequestTest extends TestCase
     }
 
     /**
-     * @legacy-covers ::listInvalidProperties
-     * @legacy-covers ::valid
-     */
-    public function testValid(): void
-    {
-        $this->markTestIncomplete('TODO');
-    }
-
-    /**
      * @legacy-covers ::setAdditionalProperties
      * @legacy-covers ::setAdditionalProperty
      * @legacy-covers ::getAdditionalProperties

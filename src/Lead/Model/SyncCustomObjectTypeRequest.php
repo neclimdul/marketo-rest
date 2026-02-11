@@ -147,12 +147,6 @@ class SyncCustomObjectTypeRequest extends ModelBase implements ModelInterface, \
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -166,7 +160,6 @@ class SyncCustomObjectTypeRequest extends ModelBase implements ModelInterface, \
             self::ACTION_CREATE_OR_UPDATE,
         ];
     }
-
 
     /**
      * {@inheritDoc}

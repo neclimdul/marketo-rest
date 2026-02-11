@@ -105,13 +105,6 @@ class Tags extends ModelBase implements ModelInterface, \ArrayAccess, \JsonSeria
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */

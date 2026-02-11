@@ -120,12 +120,6 @@ class RedirectTo extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -138,7 +132,6 @@ class RedirectTo extends ModelBase implements ModelInterface, \ArrayAccess, \Jso
             self::TYPE_URL,
         ];
     }
-
 
     /**
      * {@inheritDoc}

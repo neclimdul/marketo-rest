@@ -120,12 +120,6 @@ class LeadFieldStatus extends ModelBase implements ModelInterface, \ArrayAccess,
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -138,7 +132,6 @@ class LeadFieldStatus extends ModelBase implements ModelInterface, \ArrayAccess,
             self::STATUS_UPDATED,
         ];
     }
-
 
     /**
      * {@inheritDoc}

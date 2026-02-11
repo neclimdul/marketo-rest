@@ -139,12 +139,6 @@ class CreateLpTemplateRequest extends ModelBase implements ModelInterface, \Arra
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
     /**
      * Gets allowable values of the enum.
      *
@@ -157,7 +151,6 @@ class CreateLpTemplateRequest extends ModelBase implements ModelInterface, \Arra
             self::TEMPLATE_TYPE_FREE_FORM,
         ];
     }
-
 
     /**
      * {@inheritDoc}

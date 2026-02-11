@@ -126,13 +126,6 @@ class LookupCustomObjectRequest extends ModelBase implements ModelInterface, \Ar
         return $invalidProperties;
     }
 
-    #[\Override]
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
     /**
      * {@inheritDoc}
      */
