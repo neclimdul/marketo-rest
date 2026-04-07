@@ -23,7 +23,7 @@ use Neclimdul\OpenapiPhp\Helper\Response\ApiResponseInterface;
 /**
  * @template ResultType of CompanyResponse|CustomActivity|FormResponse|NamedAccount|NamedAccountList|ProgramMemberDataResponse|ProgramMemberDeleteResponse|ProgramMemberStatusResponse|SalesPerson
  */
-readonly class FailedResponse
+class FailedResponse
 {
     /**
      * @param ModelInterface $result
@@ -31,9 +31,9 @@ readonly class FailedResponse
      * @param array<\NecLimDul\MarketoRest\Lead\Model\Error|\NecLimDul\MarketoRest\Asset\Model\Error> $errors
      */
     public function __construct(
-        public ModelInterface $result,
-        public string $message = '',
-        public array $errors = [],
+        public readonly ModelInterface $result,
+        public readonly string $message = '',
+        public readonly array $errors = [],
     ) {
     }
 

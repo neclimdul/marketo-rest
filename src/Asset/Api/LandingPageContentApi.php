@@ -40,7 +40,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-readonly class LandingPageContentApi
+class LandingPageContentApi
 {
     /**
      * @param Configuration $config
@@ -53,10 +53,10 @@ readonly class LandingPageContentApi
      *   Serialization service.
      */
     public function __construct(
-        public Configuration $config,
-        private Client $client,
-        private RequestFactory $requestFactory,
-        private SerializerInterface $serializer,
+        public readonly Configuration $config,
+        private readonly Client $client,
+        private readonly RequestFactory $requestFactory,
+        private readonly SerializerInterface $serializer,
     ) {
     }
 
