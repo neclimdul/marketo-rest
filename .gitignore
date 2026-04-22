@@ -1,3 +1,7 @@
 /vendor/
 composer.lock
 .phpunit.result.cache
+.idea
+.phpunit.cache
+marketo-apis
+openapi-php

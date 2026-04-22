@@ -76,7 +76,7 @@ No authorization required
 ## `addFieldToAFormUsingPOST()`
 
 ```php
-addFieldToAFormUsingPOST($id, $field_id, $blank_fields, $default_value, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
+addFieldToAFormUsingPOST($id, $field_id, $blank_fields, $default_value, $field_type, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
 ```
 
 Add Field to Form
@@ -98,6 +98,7 @@ $id = 56; // int | id
 $field_id = 'field_id_example'; // string | Id of the field
 $blank_fields = 56; // int | Number of blank fields to show when progressive profiling is enabled
 $default_value = 'default_value_example'; // string | Optional default value for the field
+$field_type = 'field_type_example'; // string | Specifies the field type.
 $field_width = 56; // int | Width of the input or select element
 $form_prefill = True; // bool | Whether the field should prefill. Default true
 $is_sensitive = True; // bool | Whether the field is marked as sensitive. Default false
@@ -118,7 +119,7 @@ $values = 'values_example'; // string | Comma-separated list of accepted values 
 $visible_lines = 56; // int | Number of lines to display for the field element
 
 try {
-    $result = $apiInstance->addFieldToAFormUsingPOST($id, $field_id, $blank_fields, $default_value, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines);
+    $result = $apiInstance->addFieldToAFormUsingPOST($id, $field_id, $blank_fields, $default_value, $field_type, $field_width, $form_prefill, $is_sensitive, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->addFieldToAFormUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -133,6 +134,7 @@ Name | Type | Description  | Notes
  **field_id** | **string**| Id of the field |
  **blank_fields** | **int**| Number of blank fields to show when progressive profiling is enabled | [optional]
  **default_value** | **string**| Optional default value for the field | [optional]
+ **field_type** | **string**| Specifies the field type. | [optional]
  **field_width** | **int**| Width of the input or select element | [optional]
  **form_prefill** | **bool**| Whether the field should prefill. Default true | [optional]
  **is_sensitive** | **bool**| Whether the field is marked as sensitive. Default false | [optional]

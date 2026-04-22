@@ -1,8 +1,9 @@
 #!/bin/bash
-LEAD_SWAGGER="https://developer.adobe.com/marketo-apis/swagger-mapi.json"
-ASSET_SWAGGER="https://developer.adobe.com/marketo-apis/swagger-asset.json"
+LEAD_SWAGGER="./marketo-apis/static/swagger-mapi.json"
+ASSET_SWAGGER="./marketo-apis/static/swagger-asset.json"
 
 MakeSwagger() {
+  figlet "WOOOOOOOO"
   # Cleanup any lingering temporary directory so we're in a good state for the code generation.
   sudo find .build/ -mindepth 1 -not -name .gitignore -delete
 
@@ -10,6 +11,13 @@ MakeSwagger() {
   NAME=${2}
   NAMESPACE="NecLimDul\\MarketoRest\\${NAME}"
   FULL_OUTPUT_PATH="${PWD}/.build/${NAME}"
+
+  mkdir "${FULL_OUTPUT_PATH}/"
+  if [ -f "${SERVICE}" ]; then
+    cp "${SERVICE}" "${FULL_OUTPUT_PATH}/"
+    SERVICE=$(basename ${SERVICE})
+  fi
+
   shift 2
   EXTRA="${*}"
   sudo python3 ./openapi-php/build.py \
@@ -29,14 +37,23 @@ MakeSwagger() {
   mkdir -p "tests/${NAME}"
   rsync -a --delete ".build/${NAME}/tests/" "./tests/${NAME}/"
 
-  find .build/ -mindepth 1 -not -name .gitignore -delete
+  find ${FULL_OUTPUT_PATH} -mindepth 1 -delete
 }
 
 if [ ! -d "${PWD}/openapi-php" ]; then
-  git clone git@gitlab.com:neclimdul/openapi-php.git -b method-overloading
+  git clone git@gitlab.com:neclimdul/openapi-php.git -b 3.x
 else
   cd openapi-php || exit
-  git checkout method-overloading
+  git checkout 3.x
+  git pull
+  cd - || exit
+fi
+
+if [ ! -d "${PWD}/marketo-apis" ]; then
+  git clone https://github.com/AdobeDocs/marketo-apis.git
+else
+  cd marketo-apis || exit
+  git checkout main
   git pull
   cd - || exit
 fi

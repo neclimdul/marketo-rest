@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **blank_fields** | **int** | Number of blank fields to show when progressive profiling is enabled | [optional]
 **default_value** | **string** | Optional default value for the field | [optional]
 **field_id** | **string** | Id of the field |
+**field_type** | **string** | Specifies the field type. | [optional]
 **field_width** | **int** | Width of the input or select element | [optional]
 **form_prefill** | **bool** | Whether the field should prefill. Default true | [optional]
 **is_sensitive** | **bool** | Whether the field is marked as sensitive. Default false | [optional]
