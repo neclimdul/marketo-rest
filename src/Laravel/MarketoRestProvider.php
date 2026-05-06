@@ -29,6 +29,7 @@ use NecLimDul\MarketoRest\Asset\Api\StaticListsApi;
 use NecLimDul\MarketoRest\Asset\Api\TagsApi;
 use NecLimDul\MarketoRest\Asset\Api\TokensApi;
 use NecLimDul\MarketoRest\Asset\Configuration as AssetConfiguration;
+use NecLimDul\MarketoRest\Cache\StaticCachePool;
 use NecLimDul\MarketoRest\ClientFactory;
 use NecLimDul\MarketoRest\Configuration;
 use NecLimDul\MarketoRest\Lead\Api\ActivitiesApi;
@@ -87,12 +88,16 @@ class MarketoRestProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'marketo_rest');
         $system_config = $this->app->get('config');
 
+        $this->app->singleton('marketo_oauth_cache', fn(ContainerInterface $app) => new StaticCachePool());
         $this->app->singleton('marketo_rest_client', fn(ContainerInterface $app) => new Client(
-            ClientFactory::createOauthClient(new Configuration([
-                'clientId' => $system_config['marketo_rest.clientId'],
-                'clientSecret' => $system_config['marketo_rest.clientSecret'],
-                'baseUrl' => $system_config['marketo_rest.baseUrl'],
-            ])),
+            ClientFactory::createOauthClient(
+                new Configuration([
+                    'clientId' => $system_config['marketo_rest.clientId'],
+                    'clientSecret' => $system_config['marketo_rest.clientSecret'],
+                    'baseUrl' => $system_config['marketo_rest.baseUrl'],
+                ]),
+                $app->get('marketo_oauth_cache'),
+            ),
             $app->get('marketo_rest_deserializer'),
         ));
         $this->app->singleton('marketo_rest_serializer', fn() => new Serializer(ModelInterface::class));
