@@ -7,12 +7,15 @@ use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
 use NecLimDul\MarketoRest\Asset\Api\ChannelsApi;
 use NecLimDul\MarketoRest\Asset\Api\EmailsApi;
+use NecLimDul\MarketoRest\Asset\Api\EmailsNewApi;
 use NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi;
+use NecLimDul\MarketoRest\Asset\Api\EmailTemplatesNewApi;
 use NecLimDul\MarketoRest\Asset\Api\FileContentsApi;
 use NecLimDul\MarketoRest\Asset\Api\FilesApi;
 use NecLimDul\MarketoRest\Asset\Api\FoldersApi;
 use NecLimDul\MarketoRest\Asset\Api\FormFieldsApi;
 use NecLimDul\MarketoRest\Asset\Api\FormsApi;
+use NecLimDul\MarketoRest\Asset\Api\FragmentsNewApi;
 use NecLimDul\MarketoRest\Asset\Api\LandingPageContentApi;
 use NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi;
 use NecLimDul\MarketoRest\Asset\Api\LandingPagesApi;
@@ -109,16 +112,19 @@ class MarketoRestProvider extends ServiceProvider
         );
         $this->registerSingleton(ChannelsApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(EmailsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(EmailsNewApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(EmailTemplatesApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(EmailTemplatesNewApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(FileContentsApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(FilesApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(FoldersApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(FormFieldsApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(FormsApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(FragmentsNewApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(LandingPageContentApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(LandingPageRedirectRulesApi::class, $config, 'marketo_rest_asset_request_factory');
-        $this->registerSingleton(LandingPageTemplatesApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(LandingPagesApi::class, $config, 'marketo_rest_asset_request_factory');
+        $this->registerSingleton(LandingPageTemplatesApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(ProgramsApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(SegmentsApi::class, $config, 'marketo_rest_asset_request_factory');
         $this->registerSingleton(SmartCampaignsApi::class, $config, 'marketo_rest_asset_request_factory');
@@ -171,17 +177,20 @@ class MarketoRestProvider extends ServiceProvider
 
             // Asset APIs
             ChannelsApi::class,
-            EmailTemplatesApi::class,
             EmailsApi::class,
+            EmailsNewApi::class,
+            EmailTemplatesApi::class,
+            EmailTemplatesNewApi::class,
             FileContentsApi::class,
             FilesApi::class,
             FoldersApi::class,
             FormFieldsApi::class,
             FormsApi::class,
+            FragmentsNewApi::class,
             LandingPageContentApi::class,
             LandingPageRedirectRulesApi::class,
-            LandingPageTemplatesApi::class,
             LandingPagesApi::class,
+            LandingPageTemplatesApi::class,
             ProgramsApi::class,
             SegmentsApi::class,
             SmartCampaignsApi::class,

@@ -60,7 +60,7 @@ class MarketoRestProviderTest extends TestCase
     public function testProvides(): void
     {
         $classes = $this->getServiceClasses();
-        $this->assertEquals($classes, $this->provider->provides());
+        $this->assertEqualsCanonicalizing($classes, $this->provider->provides());
     }
 
     /**
