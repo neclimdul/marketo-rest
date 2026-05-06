@@ -1,20 +1,7 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Offset ''type'' on array\{content\?\: object\|null, followup_type\?\: string\|null, followup_value\?\: string\|null, formatting_options\?\: NecLimDul\\MarketoRest\\Asset\\Model\\JsonNode\|null, id\: object, index\?\: int\|null, type\: string\} in isset\(\) always exists and is not nullable\.$#'
-			identifier: isset.offset
-			count: 1
-			path: src/Asset/Model/LandingPageContentResponse.php
-
-		-
 			message: '#^Property NecLimDul\\MarketoRest\\Lead\\Api\\UsageApi\:\:\$serializer is never read, only written\.$#'
 			identifier: property.onlyWritten
 			count: 1
 			path: src/Lead/Api/UsageApi.php
-
-		-
-			message: '#^Offset ''version'' on array\{created_at\: DateTime, dedupe_fields\: array\<string\>, description\: string, display_name\: string, plural_name\: string, fields\: array\<NecLimDul\\MarketoRest\\Lead\\Model\\ObjectField\>, id_field\: string, api_name\: string, \.\.\.\} in isset\(\) always exists and is not nullable\.$#'
-			identifier: isset.offset
-			count: 1
-			path: src/Lead/Model/ObjectMetaData.php
-
