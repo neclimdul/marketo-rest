@@ -79,5 +79,100 @@ class ClientFactoryTest extends TestCase
         $this->assertEquals(['Bearer 123'], $request->getHeader('Authorization'));
         $this->assertEquals('/bizbaz', $request->getUri()->getPath());
     }
+    public function testCreateOauthClientRetry(): void
+    {
+        $client = ClientFactory::createOauthClient($this->config, handler: $this->handlerStack);
+        $this->mockHandler->append(new Response(200, ['X-Foo' => 'token1'], json_encode([
+            'access_token' => '123',
+            'expires_in' => 100,
+        ])));
+        $this->mockHandler->append(new Response(401, ['X-Foo' => 'request1'], 'Hello world.'));
+        $this->mockHandler->append(new Response(200, ['X-Foo' => 'token2'], json_encode([
+          'access_token' => '123',
+          'expires_in' => 100,
+        ])));
+        $this->mockHandler->append(new Response(200, ['X-Foo' => 'request2'], 'Hello world.'));
+        $client->get('/foobar', ['http_errors' => false]);
+        $this->assertCount(4, $this->history);
 
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = $this->history[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals('example.com', $request->getUri()->getHost());
+        $this->assertEquals('https', $request->getUri()->getScheme());
+        $this->assertEquals('/identity/oauth/token', $request->getUri()->getPath());
+
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = $this->history[1]['request'];
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals('example.com', $request->getUri()->getHost());
+        $this->assertEquals('https', $request->getUri()->getScheme());
+        $this->assertEquals(['Bearer 123'], $request->getHeader('Authorization'));
+        $this->assertEquals('/foobar', $request->getUri()->getPath());
+
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = $this->history[2]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals('example.com', $request->getUri()->getHost());
+        $this->assertEquals('https', $request->getUri()->getScheme());
+        $this->assertEquals('/identity/oauth/token', $request->getUri()->getPath());
+
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = $this->history[3]['request'];
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals('example.com', $request->getUri()->getHost());
+        $this->assertEquals('https', $request->getUri()->getScheme());
+        $this->assertEquals(['Bearer 123'], $request->getHeader('Authorization'));
+        $this->assertEquals('/foobar', $request->getUri()->getPath());
+    }
+    public function testCreateOauthClientRetrySuccessError(): void
+    {
+        $client = ClientFactory::createOauthClient($this->config, handler: $this->handlerStack);
+        $this->mockHandler->append(new Response(200, ['X-Foo' => 'token1'], json_encode([
+            'access_token' => '123',
+            'expires_in' => 100,
+        ])));
+        $this->mockHandler->append(new Response(200, ['X-Foo' => 'request1'], json_encode([
+          'errors' => [[
+            'message' => 'Access token invalid'
+          ]],
+        ])));
+        $this->mockHandler->append(new Response(200, ['X-Foo' => 'token2'], json_encode([
+          'access_token' => '123',
+          'expires_in' => 100,
+        ])));
+        $this->mockHandler->append(new Response(200, ['X-Foo' => 'request2'], 'Hello world.'));
+        $client->get('/foobar', ['http_errors' => false]);
+        $this->assertCount(4, $this->history);
+
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = $this->history[0]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals('example.com', $request->getUri()->getHost());
+        $this->assertEquals('https', $request->getUri()->getScheme());
+        $this->assertEquals('/identity/oauth/token', $request->getUri()->getPath());
+
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = $this->history[1]['request'];
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals('example.com', $request->getUri()->getHost());
+        $this->assertEquals('https', $request->getUri()->getScheme());
+        $this->assertEquals(['Bearer 123'], $request->getHeader('Authorization'));
+        $this->assertEquals('/foobar', $request->getUri()->getPath());
+
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = $this->history[2]['request'];
+        $this->assertEquals('POST', $request->getMethod());
+        $this->assertEquals('example.com', $request->getUri()->getHost());
+        $this->assertEquals('https', $request->getUri()->getScheme());
+        $this->assertEquals('/identity/oauth/token', $request->getUri()->getPath());
+
+        /** @var \GuzzleHttp\Psr7\Request $request */
+        $request = $this->history[3]['request'];
+        $this->assertEquals('GET', $request->getMethod());
+        $this->assertEquals('example.com', $request->getUri()->getHost());
+        $this->assertEquals('https', $request->getUri()->getScheme());
+        $this->assertEquals(['Bearer 123'], $request->getHeader('Authorization'));
+        $this->assertEquals('/foobar', $request->getUri()->getPath());
+    }
 }

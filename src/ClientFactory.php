@@ -8,12 +8,12 @@ use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use NecLimDul\MarketoRest\Cache\MarketoRetryOnAuthorizationError;
 use NecLimDul\MarketoRest\Cache\StaticCachePool;
 use NecLimDul\OAuth2\Client\Provider\Marketo;
 use Psr\Cache\CacheItemPoolInterface;
 use Softonic\OAuth2\Guzzle\Middleware\AccessTokenCacheHandler;
 use Softonic\OAuth2\Guzzle\Middleware\AddAuthorizationHeader;
-use Softonic\OAuth2\Guzzle\Middleware\RetryOnAuthorizationError;
 
 final readonly class ClientFactory
 {
@@ -36,7 +36,7 @@ final readonly class ClientFactory
     }
 
     /**
-     * Create a guzzle client with OAuth middleware setup.
+     * Create a Guzzle client with OAuth middleware setup.
      *
      * @param \NecLimDul\MarketoRest\Configuration $config
      *   Some config.
@@ -68,12 +68,16 @@ final readonly class ClientFactory
         }
         $cacheHandler = new AccessTokenCacheHandler($cache);
 
-        $stack->push(Middleware::mapRequest(new AddAuthorizationHeader(
+        // Order reversed from \Softonic\OAuth2\Guzzle\Middleware\ClientBuilder
+        // because we need the header request to be made on retry request as
+        // well. Review test for assertion of the behavior.
+        // @see https://github.com/softonic/guzzle-oauth2-middleware/issues/24
+        $stack->push(Middleware::retry(new MarketoRetryOnAuthorizationError(
             $oauthProvider,
             $tokenOptions,
             $cacheHandler
         )));
-        $stack->push(Middleware::retry(new RetryOnAuthorizationError(
+        $stack->push(Middleware::mapRequest(new AddAuthorizationHeader(
             $oauthProvider,
             $tokenOptions,
             $cacheHandler
